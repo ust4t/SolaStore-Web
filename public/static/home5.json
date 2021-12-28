@@ -1,0 +1,59 @@
+{
+  "sliders": [
+    {
+      "img": "/img/slider/slider-home-five-1.jpg",
+      "title": "Live Organic & Healthy",
+      "subTitle": "Seasonal Product Available!",
+      "text": "Let Food Be The Medicine & Medicine Be The Food!"
+    },
+    {
+      "img": "/img/slider/slider-home-five-2.jpg",
+      "title": "Live Organic & Healthy",
+      "subTitle": "Seasonal Product Available!",
+      "text": "Let Food Be The Medicine & Medicine Be The Food!"
+    },
+    {
+      "img": "/img/slider/slider-home-five-1.jpg",
+      "title": "Live Organic & Healthy",
+      "subTitle": "Seasonal Product Available!",
+      "text": "Let Food Be The Medicine & Medicine Be The Food!"
+    },
+    {
+      "img": "/img/slider/slider-home-five-2.jpg",
+      "title": "Live Organic & Healthy",
+      "subTitle": "Seasonal Product Available!",
+      "text": "Let Food Be The Medicine & Medicine Be The Food!"
+    }
+  ],
+  "banner": [
+    {
+      "img": "/img/banner/fruit-banner-1.jpg",
+      "name": "Grapes",
+      "title": "100% Natural Fruit Juice"
+    },
+    {
+      "img": "/img/banner/fruit-banner-2.jpg",
+      "name": "Apple",
+      "title": "50% Discount Top Deals"
+    },
+    {
+      "img": "/img/banner/fruit-banner-3.jpg",
+      "name": "Berries",
+      "title": "Free Shipping Join Us!"
+    }
+  ],
+  "banner_2": [
+    {
+      "img": "/img/banner/fruit-banner-4.jpg",
+      "title": "Fresh Vegetable",
+      "subTitle": "Same Day Delivery Now",
+      "text": "Sale Upto 30% Discount Available!"
+    },
+    {
+      "img": "/img/banner/fruit-banner-5.jpg",
+      "title": "Healthy Fruits",
+      "subTitle": "Same Day Delivery Now",
+      "text": "Sale Upto 30% Discount Available!"
+    }
+  ]
+}

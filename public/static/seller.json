@@ -1,0 +1,14 @@
+{
+  "topSellers": [
+    {
+      "name": "Xcross Comoer Furniture",
+      "banner": "/img/banner/top-seller/banner2.jpg",
+      "topProduct": {
+        "name": "Minimal Home Decor",
+        "img": "/img/banner/top-seller/banner1.jpg",
+        "price": "230.00",
+        "discount": "10"
+      }
+    }
+  ]
+}

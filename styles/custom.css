@@ -1,0 +1,226 @@
+html {
+  scroll-behavior: smooth;
+}
+.dark-bg .hamburger-menu a,
+.dark-bg span {
+  color: #fff;
+}
+
+.dark-bg .header-features span {
+  border-left: 1px solid #505050;
+}
+.header-features span:first-child {
+  border-left: 0 !important;
+}
+
+.dark-bg.top-border {
+  border-bottom: 0;
+}
+
+.kitchen-pro {
+  margin-left: 0;
+  padding-left: 35px;
+}
+
+.cart-icon .active {
+  color: #3e976c !important;
+}
+
+.custom-acc {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 1s linear;
+}
+.custom-acc.show {
+  max-height: 100rem;
+  height: auto;
+}
+
+.coupon-content,
+.coupon-checkout-content,
+#ship-box-info,
+.create-account {
+  display: block;
+}
+
+.fs-100 {
+  font-size: 100px;
+}
+
+.fs-20 {
+  font-size: 20px !important;
+}
+
+.order-success p {
+  margin-bottom: 0;
+}
+
+.home_3_margin .product-wrapper,
+.home_5_margin .fruit-product,
+.product-details .product-wrapper {
+  margin: 0 10px;
+  margin-bottom: 40px;
+}
+.product-details .slick-track {
+  display: flex;
+  align-items: center;
+}
+
+ul.pro-rating i {
+  color: #ffcc18;
+}
+
+.input-range__slider {
+  background: #fff !important;
+  border: 3px solid #262626 !important;
+}
+.input-range__track--active {
+  background: #262626 !important;
+}
+.input-range__track {
+  background: #ece8fe;
+  border: 0 none;
+  border-radius: 0;
+  height: 5px;
+}
+
+.qtybutton {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.active_wishList i {
+  color: #262626;
+}
+
+.c-pointer {
+  cursor: pointer;
+}
+
+.pro-desc-tab .active {
+  color: #3e976c;
+}
+.stock-update .stock-list li > span:first-child {
+  width: 100px;
+}
+.product-modal .custom-content {
+  width: 100%;
+  margin: 0;
+  float: unset;
+}
+.product-modal .custom-tab {
+  width: 100%;
+  margin: 0;
+  float: unset;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  justify-content: space-between;
+}
+.product-modal .nav-link {
+  margin-right: 0;
+}
+.product-modal .custom-tab .nav-item {
+  margin-bottom: 20px;
+  display: inline-block;
+  width: 31%;
+}
+.product-modal .custom-tab .nav-link {
+  height: 100%;
+}
+.product-modal .custom-tab .nav-link img {
+  height: 100%;
+}
+.product-modal .pro-cart-btn a {
+  padding: 0px 20px;
+}
+
+.modal-icon {
+  position: absolute;
+  right: -16.5px;
+  top: -14px;
+  border-radius: 50%;
+  background: #fff;
+  height: 30px;
+  width: 30px;
+  display: -moz-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #3e976c;
+}
+
+@media (min-width: 992px) {
+  .modal-dialog {
+    max-width: 70%;
+  }
+}
+
+.cdown {
+  margin-right: 10px;
+}
+.cdown p {
+  height: 60px;
+  width: 60px;
+  background: rgba(62, 151, 108, 0.76);
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0px 4px 17px -9px rgb(0 0 0 / 50%);
+}
+
+.variant-name {
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+.side-pro-img {
+  width: 80px;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: none;
+  box-shadow: none;
+}
+
+.iconValue {
+  right: -11px;
+  top: -6px;
+  background: #3e976c;
+  text-align: center;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  line-height: 20px;
+  color: #fff;
+  font-size: 10px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+a {
+  text-decoration: none;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
+
+.slider-text-five span,
+.fruit-banner-text span,
+.section-title-five span,
+.fruit-banner-text2 span {
+  font-family: "Caveat", cursive;
+}
+
+.product-quantity {
+  float: unset;
+}

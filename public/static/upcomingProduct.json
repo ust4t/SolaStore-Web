@@ -1,0 +1,18 @@
+{
+  "home1": {
+    "img": "/img/bg/bg.jpg",
+    "map": [
+      { "text": "Lodge Flush Mount", "class": "" },
+      { "text": "Lodge Flush Mount", "class": "" },
+      { "text": "Lodge Flush Mount", "class": "" }
+    ]
+  },
+  "home3": {
+    "img": "/img/bg/bg2.jpg",
+    "map": [
+      { "text": "New York /n 25632 Bern, 254 Strasse", "class": "map-c11" },
+      { "text": "India /n  25632 Bern, 254 Strasse", "class": "map-c22" },
+      { "text": "India /n  25632 Bern, 254 Strasse", "class": "map-c33" }
+    ]
+  }
+}
