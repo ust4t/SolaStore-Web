@@ -13,6 +13,7 @@ import {
 import SliderProducts from "../src/components/sliders/sliderProducts";
 import Stories from "../src/components/Stories";
 import Layout from "../src/layout/Layout";
+import TabLayout from "../src/layout/TabLayout";
 import { getHome4 } from "../src/redux/action/home";
 import { getProducts } from "../src/redux/action/product";
 import { simpleProductFilter } from "../src/utils/filterProduct";
@@ -40,8 +41,8 @@ const Index4 = ({
       <main>
         <Stories />
         <SliderProducts />
-
-        <PopularProducts />
+        <TabLayout />
+        {/*
         <section className="hero-area position-relative">
           <div className="slider-four">
             <div className="container">
@@ -49,21 +50,18 @@ const Index4 = ({
                 <div className="col-lg-8 col-12 custom-width-70">
                   <HomePageSliderWithDot
                     sliders={sliders}
-                    extraClass="slider-active slider-active-four common-dots"
-                  >
+                    extraClass="slider-active slider-active-four common-dots">
                     {sliders &&
                       sliders.map((slide, i) => (
                         <div
                           key={i}
                           className="single-slider slider-height-four d-flex align-items-center"
-                          data-background={slide.img}
-                        >
+                          data-background={slide.img}>
                           <div className="hero-caption-four ml-50">
                             <div
                               className="sli-offer mb-15 wow fadeInUp"
                               data-animation="fadeInUp"
-                              data-delay=".2s"
-                            >
+                              data-delay=".2s">
                               <span>{slide.valueChange}%</span>
                               <span>{slide.status}</span>
                             </div>
@@ -78,8 +76,7 @@ const Index4 = ({
                               onClick={(e) => e.preventDefault()}
                               className="common-link fadeInUp wow"
                               data-animation="fadeInUp"
-                              data-delay=".8s"
-                            >
+                              data-delay=".8s">
                               Start Shopping
                               <i className="fas fa-chevron-circle-right" />
                             </a>
@@ -95,8 +92,7 @@ const Index4 = ({
                         className={`sli-banner ${
                           banner_1 && banner_1.length !== i ? "mb-30" : ""
                         }`}
-                        key={i}
-                      >
+                        key={i}>
                         <img
                           src={banner.img}
                           className="img-fluid"
@@ -116,7 +112,7 @@ const Index4 = ({
                     ))}
                 </div>
               </div>
-              {/*extra banner for responsive*/}
+     
               <div className="row">
                 <div className="col-md-6 d-md-block d-lg-none">
                   <div className="sli-banner mt-30">
@@ -155,10 +151,10 @@ const Index4 = ({
                   </div>
                 </div>
               </div>
-              {/*extra banner for responsive*/}
+              
             </div>
           </div>
-        </section>
+        </section>{
 
         <section className="categories-slider pt-80 pb-70">
           <div className="container">
@@ -174,8 +170,7 @@ const Index4 = ({
                           marginLeft: 30,
                           marginRight: 30,
                           marginBottom: 10,
-                        }}
-                      >
+                        }}>
                         <a href="#">
                           <div className="icon gray-bg-icon">
                             <i className={`fal fa-${icon.icon}`} />
@@ -253,8 +248,7 @@ const Index4 = ({
         </section>
         <section
           className="countdown-area pt-125 pb-120"
-          data-background={banner_3 && banner_3.img}
-        >
+          data-background={banner_3 && banner_3.img}>
           <div className="container">
             <div className="row">
               <div className="col-xl-4 offset-xl-8 col-lg-5 offset-lg-7 col-md-8 offset-md-4 custom-width-40">
@@ -292,8 +286,7 @@ const Index4 = ({
                       onClick={(e) => {
                         e.preventDefault();
                       }}
-                      className="common-link"
-                    >
+                      className="common-link">
                       Deal of the day
                       <i className="fas fa-chevron-circle-right" />
                     </a>
@@ -355,8 +348,7 @@ const Index4 = ({
                     i <= 6 && (
                       <div
                         className="col-lg-3 col-sm-6 custom-width-20"
-                        key={i}
-                      >
+                        key={i}>
                         <Product product={product} />
                       </div>
                     )
@@ -374,8 +366,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=4"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/33a72a6d-1.jpg"
                       alt="CARLINO RICH"
@@ -388,8 +379,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=5"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/aeaa88cb-f.jpg"
                       alt="CHARMING"
@@ -402,8 +392,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=8"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/1d6fdc46-2.jpg"
                       alt="DI'MAIN"
@@ -416,8 +405,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=12"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/49562052-1.jpg"
                       alt="LADİYYA"
@@ -430,8 +418,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=13"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/3af4332a-1.jpg"
                       alt="LADYFORM"
@@ -444,8 +431,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=15"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/31c5d1ee-6.jpg"
                       alt="LADYBIRD"
@@ -458,8 +444,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=16"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/33890cc0-6.jpg"
                       alt="LA JULYET"
@@ -472,8 +457,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=17"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/904af0fa-1.jpg"
                       alt="LILIUM"
@@ -486,8 +470,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=19"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/b8fef8ba-5.jpg"
                       alt="MODALINDA"
@@ -500,8 +483,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=22"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/221fb429-0.jpg"
                       alt="NARCİSSSE"
@@ -514,8 +496,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=24"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/4714536f-5.jpg"
                       alt="NOMENS"
@@ -528,8 +509,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=26"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/c7707f15-4.jpg"
                       alt="SENASSA"
@@ -542,8 +522,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=27"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/b2c8e395-c.jpg"
                       alt="TESSY"
@@ -556,8 +535,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=28"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/a2ec13ed-2.png"
                       alt="TREND UP"
@@ -570,8 +548,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=29"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/d90304ab-5.jpg"
                       alt="TOP WOMAN"
@@ -584,8 +561,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=30"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/e8c2d440-5.png"
                       alt="VEGER"
@@ -598,8 +574,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=32"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/c44607ff-6.jpg"
                       alt="LUANİ"
@@ -612,8 +587,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=35"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/d61f3b92-6.jpg"
                       alt="MAGRO"
@@ -626,8 +600,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=36"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/b6dc1162-a.png"
                       alt="ARAX"
@@ -640,8 +613,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=41"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/de03a45f-a.png"
                       alt="M I S S D A Z Z L E"
@@ -654,8 +626,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=44"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/56c257d2-1.png"
                       alt="ESTA LINE"
@@ -668,8 +639,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=45"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/3259b2f1-1.png"
                       alt="SAN VERA"
@@ -682,8 +652,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=46"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/fb9bd309-0.png"
                       alt="VOLENTE"
@@ -696,8 +665,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=49"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/d7578dbe-6.jpg"
                       alt="GOGO"
@@ -710,8 +678,7 @@ const Index4 = ({
                 <div className="category-image">
                   <a
                     href="/Category/index?Type=Brand&BrandID=50"
-                    className="brand"
-                  >
+                    className="brand">
                     <img
                       src="img/brand/0b17c2cd-c.jpg"
                       alt="LAWİN"
@@ -722,7 +689,7 @@ const Index4 = ({
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </main>
     </Layout>
   );

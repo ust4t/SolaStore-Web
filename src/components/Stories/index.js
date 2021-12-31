@@ -1,7 +1,7 @@
 import React from "react";
 
 function Stories() {
-  return null;
+  return <></>;
 }
 
 export default Stories;

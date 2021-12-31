@@ -1,7 +1,6 @@
-
 module.exports = {
-    images: {
-      domains: ['solastore.com.tr'],
-      formats: ['image/jpeg', 'image/webp'],
-    },
-  }
+  images: {
+    domains: ["solastore.com.tr", "picsum.photos"],
+    formats: ["image/jpeg", "image/webp"],
+  },
+};

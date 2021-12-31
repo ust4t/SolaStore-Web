@@ -7,9 +7,10 @@ import ScrollTop from "../src/layout/ScrollTop";
 import store from "../src/redux/store";
 import { animationCreate, aTagClick } from "../src/utils/utils";
 import "../styles/main.css";
+import "swiper/css/bundle";
 import "../styles/global.css";
-import "antd/dist/antd.css";
 import "animate.css";
+import "antd/dist/antd.css";
 
 function MyApp({ Component, pageProps }) {
   const [preloader, setPreloader] = useState(true);

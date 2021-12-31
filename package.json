@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
     "@material-ui/icons": "^4.11.2",
     "@metismenu/react": "0.0.2",
+    "@mui/material": "^5.2.6",
     "@paypal/react-paypal-js": "^7.3.3",
     "@stripe/react-stripe-js": "^1.4.1",
     "@stripe/stripe-js": "^1.17.1",

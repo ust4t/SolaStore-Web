@@ -2,20 +2,15 @@ import { Row } from "antd";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import ProductCard from "../ProductCard";
-import PopularItem from "../PopularItem"
+import PopularCard from "../Cards/PopularCard";
 import { getPopulars } from "../../redux/action/populars";
 
-function PopularProducts({
-  popular,
-  getPopulars
-}) {
+function PopularProducts({ popular, getPopulars }) {
+  useEffect(() => {
+    getPopulars();
+  }, []);
 
-
-  useEffect(()=>{
-    getPopulars()
-  },[])
-
-  console.log("popular:", popular)
+  console.log("popular:", popular);
   // const products = [
   //   {
   //     name: "Product 1",
@@ -57,62 +52,29 @@ function PopularProducts({
 
   return (
     <Row className="popular-products">
-      {/* {
-        popular.popularProductData && popular.popularProductData.map(
-          ({
-            id,
-            name,
-              images,
-              price,
-              discount,
-          }, i) =>
-             (
-              <ProductCard
-                key={id}
-                price={price}
-                name={name}
-                discount={discount}
-                images={
-                  {
-                  }
-                }
-              />
-            ))
-      } */}
-      {
-        popular.popularProductData && popular.popularProductData.map(
-          ({
-            id,
-            name,
-              images,
-              price,
-              discount,
-              variants
-          }, i) =>
-             (
-          <PopularItem
-          key={id}
-          price={price}
-          name={name}
-          discount={discount}
-          images={
-            images
-          }
-          variants={variants}
-          />
-            ))
-      }
+      {popular.popularProductData &&
+        popular.popularProductData.map(
+          ({ id, name, images, price, discount, variants }, i) => (
+            <PopularCard
+              key={id}
+              price={price}
+              name={name}
+              discount={discount}
+              images={images}
+              variants={variants}
+            />
+          )
+        )}
     </Row>
   );
 }
 
-const mapStateToProps = (durum) => ({
-  popular: durum.populars
-})
+const mapStateToProps = (state) => ({
+  popular: state.populars,
+});
 
 export default connect(mapStateToProps, {
-  getPopulars
-})(PopularProducts)
-
+  getPopulars,
+})(PopularProducts);
 
 // export default PopularProducts;

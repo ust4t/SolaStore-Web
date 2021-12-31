@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button, Col, Row } from "antd";
-import ColorfulText from "../ColorfulText";
-import Heart from "../Heart";
+import ColorfulText from "../../ColorfulText";
+import Heart from "../../Heart";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import SliderProducts from "../sliders/sliderProducts";
+import SliderProducts from "../../sliders/sliderProducts";
 
 import "swiper/css";
 
@@ -93,7 +93,7 @@ function ProductCard({ price, name, discount, images, variants }) {
       </Link>
       <div className="product-card-price">{`$ ${price}`}</div>
 
-      <Row className="select-colors">
+      {/* <Row className="select-colors">
         {[...variants, images].map(({ picture_1, pictures }, i) => (
           <Image
             key={`${i}__`}
@@ -113,7 +113,7 @@ function ProductCard({ price, name, discount, images, variants }) {
             }}
           />
         ))}
-      </Row>
+      </Row> */}
     </div>
   );
 }
