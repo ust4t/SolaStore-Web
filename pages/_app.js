@@ -5,6 +5,7 @@ import AllToaster from "../src/components/AllToaser";
 import Preloader from "../src/layout/Preloader";
 import ScrollTop from "../src/layout/ScrollTop";
 import store from "../src/redux/store";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { animationCreate, aTagClick } from "../src/utils/utils";
 import "../styles/main.css";
 import "swiper/css/bundle";
@@ -23,6 +24,9 @@ function MyApp({ Component, pageProps }) {
     }, 2000);
     aTagClick();
   }, []);
+
+  const queryClient = new QueryClient();
+
   return (
     <Provider store={store}>
       <AllToaster />
@@ -38,7 +42,9 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
       {preloader ? <Preloader /> : <ScrollTop />}
-      <Component {...pageProps} />
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </Provider>
   );
 }

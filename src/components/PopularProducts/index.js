@@ -4,13 +4,18 @@ import { connect } from "react-redux";
 import ProductCard from "../ProductCard";
 import PopularCard from "../Cards/PopularCard";
 import { getPopulars } from "../../redux/action/populars";
+import { useQuery } from "react-query";
 
 function PopularProducts({ popular, getPopulars }) {
-  useEffect(() => {
-    getPopulars();
-  }, []);
+  const { isLoading, error, data, isFetching } = useQuery(
+    "popularProducts",
+    () => fetch("/api/getPopulars").then((res) => res.json())
+  );
 
-  console.log("popular:", popular);
+  // useEffect(() => {
+  //   getPopulars();
+  // }, []);
+
   // const products = [
   //   {
   //     name: "Product 1",
@@ -52,19 +57,21 @@ function PopularProducts({ popular, getPopulars }) {
 
   return (
     <Row className="popular-products">
-      {popular.popularProductData &&
-        popular.popularProductData.map(
-          ({ id, name, images, price, discount, variants }, i) => (
-            <PopularCard
-              key={id}
-              price={price}
-              name={name}
-              discount={discount}
-              images={images}
-              variants={variants}
-            />
-          )
-        )}
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        data.map(({ id, name, images, price, discount, variants }, i) => (
+          <PopularCard
+            key={id}
+            id={id}
+            price={price}
+            name={name}
+            discount={discount}
+            images={images}
+            variants={variants}
+          />
+        ))
+      )}
     </Row>
   );
 }

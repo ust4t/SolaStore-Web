@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { useQuery } from "react-query";
 import { connect, useSelector } from "react-redux";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
@@ -12,8 +13,19 @@ import {
 import { totalPrice } from "../src/utils/utils";
 
 const Cart = ({ removeCart, addToCart, decreaseCart }) => {
-  const carts = useSelector((state) => state.utilis.carts);
-  console.log("🤯 carts", carts);
+  // const carts = useSelector((state) => state.utilis.carts);
+
+  const {
+    isLoading,
+    error,
+    data: carts,
+    isFetching,
+  } = useQuery("cart", () =>
+    fetch(
+      `/api/cart/getCartItems?user=${"0d1c9955-326f-42fd-b04d-b745b80b70e3"}`
+    ).then((res) => res.json())
+  );
+
   const [cartValue, setCartValue] = useState(0);
 
   const [addCart, setaddCart] = useState(false);
@@ -35,7 +47,7 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
       <main>
         <PageTitle active="Cart" pageTitle="Shoping Cart" />
 
-        {carts && carts.length > 0 ? (
+        {carts && carts.data.length > 0 ? (
           <section className="cart-area pt-100 pb-100">
             <div className="container">
               <div className="row">
@@ -55,26 +67,29 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                         </thead>
                         <tbody>
                           {carts &&
-                            carts.map((cart) => (
-                              <tr key={cart.id}>
+                            carts.data.map((cart) => (
+                              <tr key={cart.chartID}>
                                 <td className="product-thumbnail">
                                   <a href="#">
-                                    <img src={cart.img} alt="cart" />
+                                    <img
+                                      src={`https://solastore.com.tr/img/ProductWM/maxPic/${cart.pictureOneGuidName}`}
+                                      alt="cart"
+                                    />
                                   </a>
                                 </td>
                                 <td className="product-name">
-                                  <a href="#">{cart.name}</a>
+                                  <a href="#">{cart.productShortName}</a>
                                 </td>
                                 <td className="product-price">
                                   <span className="amount">
-                                    ${Number(cart.mainPrice).toFixed(2)}
+                                    ${Number(cart.price).toFixed(2)}
                                   </span>
                                 </td>
                                 <td className="product-quantity">
                                   <div className="cart-plus-minus">
                                     <input
                                       type="text"
-                                      value={cart.qty}
+                                      value={cart.quantity}
                                       disabled
                                     />
                                     <div
@@ -96,7 +111,9 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                 </td>
                                 <td className="product-subtotal">
                                   <span className="amount">
-                                    ${Number(cart.totalPrice).toFixed(2)}
+                                    $
+                                    {Number(cart.price).toFixed(2) *
+                                      cart.quantity}
                                   </span>
                                 </td>
                                 <td className="product-remove">
@@ -153,10 +170,10 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                           <h2>Cart totals</h2>
                           <ul className="mb-20">
                             <li>
-                              Subtotal <span>${totalPrice(carts)}</span>
+                              {/* Subtotal <span>${totalPrice(carts.data)}</span> */}
                             </li>
                             <li>
-                              Total <span>${totalPrice(carts)}</span>
+                              {/* Total <span>${totalPrice(carts.data)}</span> */}
                             </li>
                           </ul>
                           <Link href="/checkout">

@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export default async function menuFetch(req, res) {
   const { user } = req.query;
   try {
@@ -9,7 +11,7 @@ export default async function menuFetch(req, res) {
     });
   } catch (error) {
     res.status(500).json({
-      error,
+      error: error.message,
     });
   }
 }

@@ -1,15 +1,29 @@
+import axios from "axios";
+
 export default async function menuFetch(req, res) {
-  const { user, ProductID } = req.query;
+  const { productID } = req.query;
   try {
-    const response = await axios.post(
-      `https://api.solastore.com.tr/api/Order/AddToChart?UserID=${user}&ProductID=${ProductID}&Quantity=1&sourceProof=${process.env.SOURCE_PROOF}`
+    const { data } = await axios.post(
+      `https://api.solastore.com.tr/api/Order/AddToChart?UserID=0d1c9955-326f-42fd-b04d-b745b80b70e3&ProductID=${productID}&Quantity=1&sourceProof=${process.env.SOURCE_PROOF}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {
+          productID,
+          quantity: 1,
+          originId: productID,
+        },
+      }
     );
     res.status(200).json({
-      data: response.data,
+      data,
     });
   } catch (error) {
     res.status(500).json({
-      error,
+      error: {
+        message: error,
+      },
     });
   }
 }
