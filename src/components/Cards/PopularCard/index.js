@@ -28,7 +28,6 @@ function ProductCard({ id, price, name, discount, images, variants }) {
   const queryClient = useQueryClient();
   const { mutate, isLoading } = useMutation(sendCartRequest, {
     onSuccess: (data) => {
-      console.log(data);
       const message = "success";
       alert(message);
     },
@@ -40,7 +39,10 @@ function ProductCard({ id, price, name, discount, images, variants }) {
       queryClient.invalidateQueries("create");
     },
   });
-  const [currentImages, setCurrentImages] = useState(images);
+  const [currentImages, setCurrentImages] = useState({
+    id,
+    pictures: images,
+  });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const rate = 0.7;
@@ -57,12 +59,11 @@ function ProductCard({ id, price, name, discount, images, variants }) {
   const onMouseLeave = () => {
     setCurrentImageIndex(0);
   };
-
   const onAddToCart = () => {
-    const employee = {
-      id,
+    const cartCurrent = {
+      id: currentImages.id,
     };
-    mutate(employee);
+    mutate(cartCurrent);
   };
 
   return (
@@ -98,7 +99,7 @@ function ProductCard({ id, price, name, discount, images, variants }) {
         >
           {/* default images */}
           <Image
-            src={`https://solastore.com.tr/img/ProductWM/maxPic/${currentImages[0].guidName}`}
+            src={`https://solastore.com.tr/img/ProductWM/maxPic/${currentImages.pictures[0].guidName}`}
             width={400 * rate}
             height={600 * rate}
             priority={true}
@@ -111,7 +112,7 @@ function ProductCard({ id, price, name, discount, images, variants }) {
         >
           {/* hover images */}
           <Image
-            src={`https://solastore.com.tr/img/ProductWM/maxPic/${currentImages[1].guidName}`}
+            src={`https://solastore.com.tr/img/ProductWM/maxPic/${currentImages.pictures[1].guidName}`}
             width={400 * rate}
             height={600 * rate}
           />
@@ -134,7 +135,7 @@ function ProductCard({ id, price, name, discount, images, variants }) {
           }}
           className="mySwiper"
         >
-          {[...variants, images].map(({ picture_1, pictures }, i) => (
+          {[...variants, { images }].map((variant, i) => (
             <SwiperSlide>
               <Image
                 key={`${i}__`}
@@ -142,14 +143,20 @@ function ProductCard({ id, price, name, discount, images, variants }) {
                 width={120}
                 height={120}
                 src={`https://solastore.com.tr/img/ProductWM/maxPic/${
-                  picture_1 || images[0].guidName
+                  variant.picture_1 || variant.images[0].guidName
                 }`}
                 priority={true}
                 onClick={() => {
-                  if (pictures) {
-                    changeDressColor(pictures);
+                  if (variant.pictures) {
+                    setCurrentImages({
+                      id: variant.productID,
+                      pictures: variant.pictures,
+                    });
                   } else {
-                    changeDressColor(images);
+                    setCurrentImages({
+                      id,
+                      pictures: variant.images,
+                    });
                   }
                 }}
               />

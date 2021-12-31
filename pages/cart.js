@@ -1,7 +1,8 @@
+import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { connect, useSelector } from "react-redux";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
@@ -10,20 +11,50 @@ import {
   decreaseCart,
   removeCart,
 } from "../src/redux/action/utilis";
-import { totalPrice } from "../src/utils/utils";
+
+const sendDeleteRequest = async (creds) => {
+  const { data: response } = await axios.post(
+    `/api/cart/removeFromCart?user=${creds.user}&ProductID=${creds.id}`
+  );
+
+  return response.data;
+};
 
 const Cart = ({ removeCart, addToCart, decreaseCart }) => {
   // const carts = useSelector((state) => state.utilis.carts);
+  const [carts, setCarts] = useState([]);
+  const queryClient = useQueryClient();
 
-  const {
-    isLoading,
-    error,
-    data: carts,
-    isFetching,
-  } = useQuery("cart", () =>
-    fetch(
-      `/api/cart/getCartItems?user=${"0d1c9955-326f-42fd-b04d-b745b80b70e3"}`
-    ).then((res) => res.json())
+  const { isLoading, error, data, isFetching, refetch } = useQuery(
+    "cart",
+    () =>
+      fetch(
+        `/api/cart/getCartItems?user=${"0d1c9955-326f-42fd-b04d-b745b80b70e3"}`
+      ).then((res) => res.json()),
+    {
+      onSuccess: (data) => {
+        setCarts(data);
+      },
+    }
+  );
+
+  const { mutate, isLoading: isDeleteLoading } = useMutation(
+    "deleteCart",
+    sendDeleteRequest,
+    {
+      onSuccess: (data) => {
+        refetch();
+        setaddCart(true);
+        toast.error("Remove Item from cart.");
+      },
+      onError: (error) => {
+        console.log(error);
+        alert(`there was an error ${id}`);
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries("deleteCart");
+      },
+    }
   );
 
   const [cartValue, setCartValue] = useState(0);
@@ -42,12 +73,34 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
     setaddCart(true);
     toast.error("Remove item from Cart.");
   };
+
+  const removeFromCart = (e, { id }) => {
+    // removeCart(cart.id);
+    const cartData = {
+      id,
+      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+    };
+    mutate(cartData);
+
+    e.preventDefault();
+  };
+
+  const totalPrice = (items) => {
+    const totalPrice = items.reduce((a, b) => {
+      return a + b.price * b.quantity;
+    }, 0);
+
+    return totalPrice;
+  };
+
   return (
     <Layout sticky footerBg container textCenter>
       <main>
         <PageTitle active="Cart" pageTitle="Shoping Cart" />
 
-        {carts && carts.data.length > 0 ? (
+        {isLoading ? (
+          "Loading..."
+        ) : carts && carts.data.length > 0 ? (
           <section className="cart-area pt-100 pb-100">
             <div className="container">
               <div className="row">
@@ -117,17 +170,20 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                   </span>
                                 </td>
                                 <td className="product-remove">
-                                  <a
-                                    href="#"
-                                    onClick={(e) => {
-                                      removeCart(cart.id);
-                                      setaddCart(true);
-                                      toast.error("Remove Item from cart.");
-                                      e.preventDefault();
-                                    }}
-                                  >
-                                    <i className="fa fa-times" />
-                                  </a>
+                                  {isDeleteLoading ? (
+                                    "Loading..."
+                                  ) : (
+                                    <a
+                                      href="#"
+                                      onClick={(e) =>
+                                        removeFromCart(e, {
+                                          id: cart.productID,
+                                        })
+                                      }
+                                    >
+                                      <i className="fa fa-times" />
+                                    </a>
+                                  )}
                                 </td>
                               </tr>
                             ))}
@@ -170,10 +226,7 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                           <h2>Cart totals</h2>
                           <ul className="mb-20">
                             <li>
-                              {/* Subtotal <span>${totalPrice(carts.data)}</span> */}
-                            </li>
-                            <li>
-                              {/* Total <span>${totalPrice(carts.data)}</span> */}
+                              Total <span>${totalPrice(carts.data)}</span>
                             </li>
                           </ul>
                           <Link href="/checkout">
