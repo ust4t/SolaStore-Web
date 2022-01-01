@@ -26,8 +26,13 @@ const utilis = (state = initialState, action) => {
         ...state,
         carts: payload,
       };
+    // case ADD_TO_CART:
+    //   return updateCart(state, payload, "+");
     case ADD_TO_CART:
-      return updateCart(state, payload, "+");
+      return {
+        ...state,
+        carts: payload,
+      };
     case DECREASE_CART:
       return updateCart(state, payload, "-");
     case REMOVE_CART:

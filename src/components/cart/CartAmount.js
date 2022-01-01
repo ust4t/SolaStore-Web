@@ -42,7 +42,7 @@ export default function CartAmount({
     };
 
     e.preventDefault();
-    addToCart(cart);
+    // addToCart(cart);
     setaddCart(true);
     toast.success("Add item in Cart.");
     mutate(cartData);

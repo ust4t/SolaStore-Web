@@ -47,31 +47,50 @@ export const CompareIcon = () => {
 };
 export const CartIcon = () => {
   const carts = useSelector((state) => state.utilis.carts);
+  console.log(carts);
+  const cartsNum = carts.reduce((quantity, currQty) => {
+    return quantity + currQty.quantity;
+  }, 0);
+
+  const totalPrice = carts.reduce((price, currPrice) => {
+    return price + currPrice.price;
+  }, 0);
+
   const menu = (
-    <Menu style={{ padding: 15 }}>
+    <Menu style={{ padding: 15, maxHeight: "400px", overflowY: "scroll" }}>
       <div style={{ display: "flex", justifyContent: "end" }}>
-        <ColorfulText>$229</ColorfulText>
+        <ColorfulText>${totalPrice}</ColorfulText>
       </div>
-      <CartProductItem
-        image={"/img/product/36848736-e.jpg"}
-        name="Exclusive Winter Jackets"
-        price="229.9"
-      />
-      <CartProductItem
-        image={"/img/product/8a93a1fc-a1.jpg"}
-        name="Winter Jackets For Women"
-        price="229.9"
-      />
+      {carts &&
+        carts.map(
+          ({
+            chartID,
+            pictureOneGuidName,
+            price,
+            productShortName,
+            quantity,
+          }) => (
+            <CartProductItem
+              key={chartID}
+              image={`https://solastore.com.tr/img/ProductWM/minPic/${pictureOneGuidName}`}
+              name={productShortName}
+              price={price}
+              quantity={quantity}
+            />
+          )
+        )}
     </Menu>
   );
   return (
     <Link href="/cart">
-      <Dropdown overlay={menu} placement="topRight">
-        <a className="position-relative">
-          <span className="iconValue">{carts && carts.length}</span>
-          <i className="fas fa-cart-arrow-down favf" />
-        </a>
-      </Dropdown>
+      {carts && (
+        <Dropdown overlay={menu} placement="topRight">
+          <a className="position-relative">
+            <span className="iconValue">{cartsNum}</span>
+            <i className="fas fa-cart-arrow-down favf" />
+          </a>
+        </Dropdown>
+      )}
     </Link>
   );
 };

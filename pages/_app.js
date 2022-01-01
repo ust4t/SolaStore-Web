@@ -18,10 +18,10 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     setTimeout(() => {
       store && setPreloader(false);
-    }, 2000);
+    }, 1000);
     setTimeout(() => {
       animationCreate();
-    }, 2000);
+    }, 1000);
     aTagClick();
   }, []);
 

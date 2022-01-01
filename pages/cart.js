@@ -26,7 +26,7 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
   const [carts, setCarts] = useState([]);
   const queryClient = useQueryClient();
 
-  const { isLoading, error, data, isFetching, refetch } = useQuery(
+  const { isLoading, error, refetch } = useQuery(
     "cart",
     () =>
       fetch(
@@ -35,6 +35,7 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
     {
       onSuccess: (data) => {
         setCarts(data);
+        addToCart(data.data);
       },
     }
   );
@@ -63,7 +64,7 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
   const [addCart, setaddCart] = useState(false);
 
   const removeFromCart = (e, { id }) => {
-    removeCart(cart.id);
+    removeCart(id);
     const cartData = {
       id,
       user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",

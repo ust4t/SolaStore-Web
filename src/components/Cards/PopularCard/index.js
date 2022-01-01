@@ -12,24 +12,47 @@ import SliderProducts from "../../sliders/sliderProducts";
 
 import "swiper/css";
 import axios from "axios";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { addToCart } from "../../../redux/action/utilis";
+import { connect } from "react-redux";
 
 const sendCartRequest = async (creds) => {
-  const { data: response } = await axios.post(
+  const { data } = await axios.post(
     `/api/cart/addToCart?productID=${creds.id}`
   );
 
-  return response.data;
+  return data;
 };
 
-function ProductCard({ id, price, name, discount, images, variants }) {
+function ProductCard({
+  id,
+  price,
+  name,
+  discount,
+  images,
+  variants,
+  addToCart,
+}) {
   //   const colors = Object.keys(images);
   //   if (colors?.length < 1) return null;
+
   const queryClient = useQueryClient();
+  const { refetch } = useQuery(
+    "cart",
+    () =>
+      fetch(
+        `/api/cart/getCartItems?user=${"0d1c9955-326f-42fd-b04d-b745b80b70e3"}`
+      ).then((res) => res.json()),
+    {
+      onSuccess: ({ data }) => {
+        addToCart(data);
+      },
+    }
+  );
   const { mutate, isLoading } = useMutation(sendCartRequest, {
     onSuccess: (data) => {
       const message = "success";
-      alert(message);
+      refetch();
     },
     onError: (error) => {
       console.log(error);
@@ -168,4 +191,6 @@ function ProductCard({ id, price, name, discount, images, variants }) {
   );
 }
 
-export default ProductCard;
+export default connect(null, {
+  addToCart,
+})(ProductCard);
