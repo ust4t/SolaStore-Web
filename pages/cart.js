@@ -4,6 +4,7 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { connect, useSelector } from "react-redux";
+import CartAmount from "../src/components/cart/CartAmount";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
 import {
@@ -61,21 +62,8 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
 
   const [addCart, setaddCart] = useState(false);
 
-  const onClickCart = (e, cart) => {
-    e.preventDefault();
-    addToCart(cart);
-    setaddCart(true);
-    toast.success("Add item in Cart.");
-  };
-  const onClickRemoveCart = (e, cart) => {
-    e.preventDefault();
-    decreaseCart(cart);
-    setaddCart(true);
-    toast.error("Remove item from Cart.");
-  };
-
   const removeFromCart = (e, { id }) => {
-    // removeCart(cart.id);
+    removeCart(cart.id);
     const cartData = {
       id,
       user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
@@ -139,28 +127,14 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                   </span>
                                 </td>
                                 <td className="product-quantity">
-                                  <div className="cart-plus-minus">
-                                    <input
-                                      type="text"
-                                      value={cart.quantity}
-                                      disabled
-                                    />
-                                    <div
-                                      className="dec qtybutton"
-                                      onClick={(e) =>
-                                        cart.qty !== 1 &&
-                                        onClickRemoveCart(e, cart)
-                                      }
-                                    >
-                                      -
-                                    </div>
-                                    <div
-                                      className="inc qtybutton"
-                                      onClick={(e) => onClickCart(e, cart)}
-                                    >
-                                      +
-                                    </div>
-                                  </div>
+                                  <CartAmount
+                                    productID={cart.productID}
+                                    cart={cart}
+                                    refetch={refetch}
+                                    setaddCart={setaddCart}
+                                    addToCart={addToCart}
+                                    decreaseCart={decreaseCart}
+                                  />
                                 </td>
                                 <td className="product-subtotal">
                                   <span className="amount">
