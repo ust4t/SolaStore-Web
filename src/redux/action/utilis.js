@@ -26,10 +26,10 @@ export const addToCart = (product) => (dispatch) => {
   });
 };
 
-export const removeCart = (id) => (dispatch) => {
+export const removeCart = (refetch) => (dispatch) => {
   dispatch({
     type: REMOVE_CART,
-    payload: id,
+    payload: refetch,
   });
 };
 

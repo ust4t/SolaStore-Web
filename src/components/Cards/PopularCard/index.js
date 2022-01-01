@@ -15,6 +15,7 @@ import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { addToCart } from "../../../redux/action/utilis";
 import { connect } from "react-redux";
+import toast from "react-hot-toast";
 
 const sendCartRequest = async (creds) => {
   const { data } = await axios.post(
@@ -36,6 +37,8 @@ function ProductCard({
   //   const colors = Object.keys(images);
   //   if (colors?.length < 1) return null;
 
+  const originalDiscount = (price * 100) / discount - price;
+
   const queryClient = useQueryClient();
   const { refetch } = useQuery(
     "cart",
@@ -53,6 +56,7 @@ function ProductCard({
     onSuccess: (data) => {
       const message = "success";
       refetch();
+      toast.success("Added order to cart");
     },
     onError: (error) => {
       console.log(error);
@@ -90,14 +94,23 @@ function ProductCard({
   };
 
   return (
-    <div className="product-card">
+    <div
+      className="product-card"
+      style={{
+        margin: "20px",
+      }}
+    >
       <Col
         className="product-image-container"
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
         <Row className="product-header">
-          <ColorfulText style={{ height: 22 }}>{`-${discount}%`}</ColorfulText>
+          {!!discount && discount > 0 && (
+            <ColorfulText
+              style={{ height: 22 }}
+            >{`- $${originalDiscount}`}</ColorfulText>
+          )}
           <div
             style={{
               paddingLeft: 10,
@@ -115,34 +128,46 @@ function ProductCard({
         >
           {isLoading ? "Loading......" : "Sepete Ekle"}
         </div>
+
         <div
           className={`product-image-1 animate__animated animate__faster ${
             !currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
           }`}
         >
-          {/* default images */}
-          <Image
-            src={`https://solastore.com.tr/img/ProductWM/maxPic/${currentImages.pictures[0].guidName}`}
-            width={400 * rate}
-            height={600 * rate}
-            priority={true}
-          />
+          <Link href={`/shop/${id}`}>
+            {/* default images */}
+            <Image
+              src={`https://solastore.com.tr/img/ProductWM/maxPic/${currentImages.pictures[0].guidName}`}
+              width={400 * rate}
+              height={600 * rate}
+              priority={true}
+            />
+          </Link>
         </div>
         <div
           className={`product-image-2 animate__animated animate__faster ${
             currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
           }`}
         >
-          {/* hover images */}
-          <Image
-            src={`https://solastore.com.tr/img/ProductWM/maxPic/${currentImages.pictures[1].guidName}`}
-            width={400 * rate}
-            height={600 * rate}
-          />
+          <Link href={`/shop/${id}`}>
+            {/* hover images */}
+            <Image
+              src={`https://solastore.com.tr/img/ProductWM/maxPic/${currentImages.pictures[1].guidName}`}
+              width={400 * rate}
+              height={600 * rate}
+            />
+          </Link>
         </div>
       </Col>
-      <Link href={"/shop-details"}>
-        <div className="product-card-name">{name}</div>
+      <Link href={`/shop/${id}`}>
+        <div
+          className="product-card-name"
+          style={{
+            fontSize: "1rem",
+          }}
+        >
+          {name}
+        </div>
       </Link>
       <div className="product-card-price">{`$ ${price}`}</div>
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { connect, useSelector } from "react-redux";
@@ -22,7 +22,7 @@ const sendDeleteRequest = async (creds) => {
 };
 
 const Cart = ({ removeCart, addToCart, decreaseCart }) => {
-  // const carts = useSelector((state) => state.utilis.carts);
+  const cartsState = useSelector((state) => state.utilis.carts);
   const [carts, setCarts] = useState([]);
   const queryClient = useQueryClient();
 
@@ -59,6 +59,10 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
     }
   );
 
+  useEffect(() => {
+    refetch();
+  }, [cartsState]);
+
   const [cartValue, setCartValue] = useState(0);
 
   const [addCart, setaddCart] = useState(false);
@@ -75,11 +79,14 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
   };
 
   const totalPrice = (items) => {
-    const totalPrice = items.reduce((a, b) => {
-      return a + b.price * b.quantity;
-    }, 0);
+    if (items) {
+      const totalPrice = items.reduce((a, b) => {
+        return a + b.price * b.quantity;
+      }, 0);
+      return totalPrice;
+    }
 
-    return totalPrice;
+    return 0;
   };
 
   return (

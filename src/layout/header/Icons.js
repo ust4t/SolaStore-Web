@@ -1,8 +1,11 @@
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { Menu, Dropdown, Row, Col } from "antd";
 import ColorfulText from "../../components/ColorfulText";
 import CartProductItem from "../../components/CartProductItem";
+import { removeCart } from "../../redux/action/utilis";
+import { QueryClient, useMutation } from "react-query";
+import toast from "react-hot-toast";
 
 export const SearchIcon = ({ hendelChangeSearch }) => (
   <Link href="#">
@@ -45,21 +48,26 @@ export const CompareIcon = () => {
     </Link>
   );
 };
-export const CartIcon = () => {
-  const carts = useSelector((state) => state.utilis.carts);
-  console.log(carts);
-  const cartsNum = carts.reduce((quantity, currQty) => {
-    return quantity + currQty.quantity;
-  }, 0);
 
-  const totalPrice = carts.reduce((price, currPrice) => {
-    return price + currPrice.price;
-  }, 0);
+export const CartIcon = ({ removeCart }) => {
+  const carts = useSelector((state) => state.utilis.carts);
+
+  const cartsNum =
+    carts &&
+    carts.reduce((quantity, currQty) => {
+      return quantity + currQty.quantity;
+    }, 0);
+
+  const totalPrice =
+    carts &&
+    carts.reduce((price, currPrice) => {
+      return price + currPrice.price;
+    }, 0);
 
   const menu = (
     <Menu style={{ padding: 15, maxHeight: "400px", overflowY: "scroll" }}>
       <div style={{ display: "flex", justifyContent: "end" }}>
-        <ColorfulText>${totalPrice}</ColorfulText>
+        <ColorfulText>${totalPrice || 0}</ColorfulText>
       </div>
       {carts &&
         carts.map(
@@ -68,6 +76,7 @@ export const CartIcon = () => {
             pictureOneGuidName,
             price,
             productShortName,
+            productID,
             quantity,
           }) => (
             <CartProductItem
@@ -75,6 +84,7 @@ export const CartIcon = () => {
               image={`https://solastore.com.tr/img/ProductWM/minPic/${pictureOneGuidName}`}
               name={productShortName}
               price={price}
+              id={productID}
               quantity={quantity}
             />
           )
@@ -83,17 +93,26 @@ export const CartIcon = () => {
   );
   return (
     <Link href="/cart">
-      {carts && (
+      {carts ? (
         <Dropdown overlay={menu} placement="topRight">
           <a className="position-relative">
-            <span className="iconValue">{cartsNum}</span>
+            <span className="iconValue">{cartsNum || 0}</span>
             <i className="fas fa-cart-arrow-down favf" />
           </a>
         </Dropdown>
+      ) : (
+        <a className="position-relative">
+          <i className="fas fa-cart-arrow-down favf" />
+        </a>
       )}
     </Link>
   );
 };
+
+export default connect(null, {
+  removeCart,
+})(CartIcon);
+
 export const Logo = () => (
   <div className="logo product-details-logo">
     <Link href="/">
