@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import { Nav, Tab } from "react-bootstrap";
 import { toast } from "react-hot-toast";
 import { connect } from "react-redux";
+import sources from "../../../sources";
 import Layout from "../../layout/Layout";
 import PageTitle from "../../layout/PageTitle";
 import { getProducts, getSingleProduct } from "../../redux/action/product";
@@ -29,7 +30,7 @@ const Details = ({
   addWishlist,
   getWishlist,
   product,
-  products,
+  // products,
   carts,
   wishlists,
   compares,
@@ -41,18 +42,20 @@ const Details = ({
 }) => {
   const router = useRouter();
   const { id } = router.query;
+  const videoRef = useRef();
   useEffect(() => {
+    videoRef.current.pause();
     getSingleProduct(id);
     getCarts();
     getWishlist();
-    getProducts();
+    // getProducts();
     getCompare();
   }, [id]);
-  const cart = product && carts && carts.find((cart) => cart.id === product.id);
-  const wishlist =
-    product &&
-    wishlists &&
-    wishlists.find((wishlist) => wishlist.id === product.id);
+  // const cart = product && carts && carts.find((cart) => cart.id === product.id);
+  // const wishlist =
+  //   product &&
+  //   wishlists &&
+  //   wishlists.find((wishlist) => wishlist.id === product.id);
   const compare_ =
     product &&
     compares &&
@@ -60,12 +63,12 @@ const Details = ({
 
   const onClickCart = (e) => {
     e.preventDefault();
-    addToCart(product);
+    // addToCart(product);
     toast.success("Add item in Cart.");
   };
   const onClickRemoveCart = (e) => {
     e.preventDefault();
-    decreaseCart(cart);
+    // decreaseCart(cart);
     toast.error("Remove item from Cart.");
   };
   const onClickWishlist = (e) => {
@@ -86,7 +89,7 @@ const Details = ({
       toast.success("Add item in compare.");
     }
   };
-  let totalTime = time(product && product.upComeing);
+  // let totalTime = time(product && product.upComeing);
   return (
     <Layout>
       <main>
@@ -105,10 +108,10 @@ const Details = ({
                       <div className="pro-details-tab">
                         <Tab.Content className="tab-content custom-content">
                           {product &&
-                            product.images.map((img, i) => (
+                            product.pictures.map((img, i) => (
                               <Tab.Pane key={i} eventKey={`tum-${i}`}>
                                 <img
-                                  src={img.src}
+                                  src={`${sources.imageMidSrc}${img.guidName}`}
                                   className={`img-fluid ${
                                     upthumb ? "mb-3" : ""
                                   }`}
@@ -116,6 +119,24 @@ const Details = ({
                                 />
                               </Tab.Pane>
                             ))}
+                          {product.video_1 && (
+                            <Tab.Pane eventKey={`tum-${12}`}>
+                              <video
+                                id="videoProductDetail"
+                                className="img-fluid"
+                                controls
+                                autoPlay
+                                ref={videoRef}
+                                width="536"
+                                height="870"
+                              >
+                                <source
+                                  src={`${sources.videos}${product.video_1}`}
+                                  type="video/mp4"
+                                />
+                              </video>
+                            </Tab.Pane>
+                          )}
                         </Tab.Content>
 
                         <Nav
@@ -124,76 +145,104 @@ const Details = ({
                           role="tablist"
                         >
                           {product &&
-                            product.images.map((img, i) => (
+                            product.pictures.map((img, i) => (
                               <Nav.Item key={i}>
                                 <Nav.Link
                                   eventKey={`tum-${i}`}
                                   className="mr-0"
+                                  onClick={() => {
+                                    videoRef.current.pause();
+                                  }}
                                 >
                                   <img
-                                    src={img.src}
+                                    src={`${sources.imageMidSrc}${img.guidName}`}
                                     className="img-fluid"
                                     alt="Src"
                                   />
                                 </Nav.Link>
                               </Nav.Item>
                             ))}
+                          {product.video_1 && (
+                            <Nav.Item>
+                              <Nav.Link
+                                onClick={(e) => {
+                                  videoRef.current.currentTime = 0;
+                                  videoRef.current.play();
+                                }}
+                                eventKey={`tum-${12}`}
+                                className="mr-0"
+                              >
+                                <img
+                                  src={`${sources.imageMidSrc}${product.picture_1}`}
+                                  className="img-fluid"
+                                  alt="Src"
+                                />
+                              </Nav.Link>
+                            </Nav.Item>
+                          )}
                         </Nav>
                       </div>
                     </Tab.Container>
                   </div>
                   <div className={upthumb ? "col-lg-7" : "col-lg-5"}>
                     <div className="pro-details-content mt-15 row">
-                    <div className="col-12 col-md-12">
-                      <h3 className="border-bottom">{product && product.name}</h3>
-                      {product && product.reating && (
-                        <div className="details-rating  d-flex">
-                          <Reating rating={product && product.reating} />
-                          <span>(23 Customer Review)</span>
-                        </div>
-                      )}
+                      <div className="col-12 col-md-12">
+                        <h3 className="border-bottom">
+                          {product && product.productShortName}
+                        </h3>
+                        {/* {product && product.reating && (
+                          <div className="details-rating  d-flex">
+                            <Reating rating={product && product.reating} />
+                            <span>(23 Customer Review)</span>
+                          </div>
+                        )} */}
                       </div>
-                    <div className="col-8 col-md-4 py-3 border-right">
-                      <span className="details-pro-price mb-40">
-                        $ {product && Number(product.mainPrice).toFixed(2)}{" "}
-                        {product &&
-                          product.price &&
-                          `- $${product && Number(product.price).toFixed(2)}`}
-                      </span>
-                      </div>  
+                      <div className="col-8 col-md-4 py-3 border-right">
+                        <span className="details-pro-price mb-40">
+                          {product &&
+                            product.price &&
+                            `$${product && Number(product.price).toFixed(2)}`}
+                        </span>
+                      </div>
                       <div className="col-8 col-md-4 py-3">
-                                <small>
-                                     <span>Ürün kodu: 9141-Y</span>
-                                </small>
-                                <br/>
-                                <small>
-                                        <span className="text-muted">Kategori:</span>
-                                            <a href="/kisa_elbise-c-26">KISA ELBİSE</a>
-                                </small>
-                                <br/>
-                                <small>
-                                        <span className="text-muted">Marka:</span>
-                                        <a href="/Category/index?Type=Brand&amp;BrandID=13">LADYFORM</a>
-                                </small>
-                     </div>
-                     <div className="col-4 col-md-4">
-                                    <div className="card border p-2">
-                                        <a href="/Category/index?Type=Brand&amp;BrandID=13">
-                                            <img src="../img/brand/3af4332a-1.jpg" className="card-img" />
-                                        </a>
-                                        <p className="card-body text-center px-1 py-0">
-                                            <small>
-                                                <a href="#">LADYFORM</a>
-                                            </small>
-                                        </p>
-                                    </div>
-                            </div> 
+                        <small>
+                          <span>Ürün kodu: {product.productStockCode}</span>
+                        </small>
+                        <br />
+                        <small>
+                          <span className="text-muted">Kategori:</span>
+                          <a href="/kisa_elbise-c-26">KISA ELBİSE</a>
+                        </small>
+                        <br />
+                        <small>
+                          <span className="text-muted">Marka:</span>
+                          <a href="/Category/index?Type=Brand&amp;BrandID=13">
+                            LADYFORM
+                          </a>
+                        </small>
+                      </div>
+                      <div className="col-4 col-md-4">
+                        <div className="card border p-2">
+                          <a href="/Category/index?Type=Brand&amp;BrandID=13">
+                            <img
+                              src="../img/brand/3af4332a-1.jpg"
+                              className="card-img"
+                            />
+                          </a>
+                          <p className="card-body text-center px-1 py-0">
+                            <small>
+                              <a href="#">LADYFORM</a>
+                            </small>
+                          </p>
+                        </div>
+                      </div>
 
-                            <div className="col-12 mt-2">
-                                         <span>BEDEN: </span><span>36-38-40-42</span>
-                            </div> 
+                      <div className="col-12 mt-2">
+                        <span>BEDEN: </span>
+                        <span>{product.sizes}</span>
+                      </div>
 
-                            <div className="pro-quan-area mb-55 mt-30">
+                      {/* <div className="pro-quan-area mb-55 mt-30">
                         <div className="product-quantity">
                           <div className="cart-plus-minus">
                             <input
@@ -218,8 +267,8 @@ const Details = ({
                               +
                             </button>
                           </div>
-                        </div>
-                        <div className="pro-cart-btn ml-20">
+                        </div> */}
+                      {/* <div className="pro-cart-btn ml-20">
                           <a
                             href="#"
                             onClick={(e) => {
@@ -239,70 +288,70 @@ const Details = ({
                           >
                             <i className="fas fa-heart" />
                           </a>
-                        
+                        </div>
+                      </div> */}
+                      {/* 
+                      <div className="rating">
+                        <i className="fas fa-star" />
+                        <i className="fas fa-star" />
+                        <i className="fas fa-star" />
+                        <i className="fas fa-star" />
+                        <i className="fas fa-star" />
+                      </div> */}
+
+                      <div className="product-details-info">
+                        <div className="sidebar-product-color">
+                          <h4 className="widget-title1">
+                            Ürünün diğer renkleri
+                          </h4>
+                          <div
+                            className="details-filter-row details-row-size"
+                            style={{ margin: 5 }}
+                          >
+                            <div className="product-nav product-nav-thumbs">
+                              <a
+                                href="javascript:getProductDetailsPartial('41843')"
+                                className="productvar"
+                              >
+                                <img
+                                  src="https://www.solastore.com.tr/img/ProductWM/minPic/98f0bb70-1.jpg"
+                                  alt="ESTA LINE-4086"
+                                  title="ESTA LINE-4086"
+                                  style={{ maxWidth: 90 }}
+                                />
+                              </a>
+                            </div>
+                            <div className="product-nav product-nav-thumbs">
+                              <a
+                                href="javascript:getProductDetailsPartial('41844')"
+                                className="productvar"
+                              >
+                                <img
+                                  src="https://www.solastore.com.tr/img/ProductWM/minPic/e9a6637e-6.jpg"
+                                  alt="ESTA LINE-4086"
+                                  title="ESTA LINE-4086"
+                                  style={{ maxWidth: 90 }}
+                                />
+                              </a>
+                            </div>
+                            <div className="product-nav product-nav-thumbs">
+                              <a
+                                href="javascript:getProductDetailsPartial('41845')"
+                                className="productvar"
+                              >
+                                <img
+                                  src="https://www.solastore.com.tr/img/ProductWM/minPic/9e624727-8.jpg"
+                                  alt="ESTA LINE-4086"
+                                  title="ESTA LINE-4086"
+                                  style={{ maxWidth: 90 }}
+                                />
+                              </a>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
-
-                            <div className="rating">
-                                <i className="fas fa-star" />
-                                <i className="fas fa-star" />
-                                <i className="fas fa-star" />
-                                <i className="fas fa-star" />
-                                <i className="fas fa-star" />
-                              </div>
-
-                            <div className="product-details-info">
-                              <div className="sidebar-product-color">
-                                <h4 className="widget-title1">Ürünün diğer renkleri</h4>
-                                <div className="details-filter-row details-row-size" style={{ margin: 5 }}>
-                                  <div className="product-nav product-nav-thumbs">
-                                    <a
-                                      href="javascript:getProductDetailsPartial('41843')"
-                                      className="productvar"
-                                    >
-                                      <img
-                                        src="https://www.solastore.com.tr/img/ProductWM/minPic/98f0bb70-1.jpg"
-                                        alt="ESTA LINE-4086"
-                                        title="ESTA LINE-4086"
-                                        style={{ maxWidth: 90 }}
-                                      />
-                                    </a>
-                                  </div>
-                                  <div className="product-nav product-nav-thumbs">
-                                    <a
-                                      href="javascript:getProductDetailsPartial('41844')"
-                                      className="productvar"
-                                    >
-                                      <img
-                                        src="https://www.solastore.com.tr/img/ProductWM/minPic/e9a6637e-6.jpg"
-                                        alt="ESTA LINE-4086"
-                                        title="ESTA LINE-4086"
-                                        style={{ maxWidth: 90 }}
-                                      />
-                                    </a>
-                                  </div>
-                                  <div className="product-nav product-nav-thumbs">
-                                    <a
-                                      href="javascript:getProductDetailsPartial('41845')"
-                                      className="productvar"
-                                    >
-                                      <img
-                                        src="https://www.solastore.com.tr/img/ProductWM/minPic/9e624727-8.jpg"
-                                        alt="ESTA LINE-4086"
-                                        title="ESTA LINE-4086"
-                                        style={{ maxWidth: 90 }}
-                                      />
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-
-                      <p>
-                     
-                      </p>
+                      <p></p>
                       {product.upComeing && (
                         <div className="product-coming variant-item mb-5 d-flex align-items-center">
                           <div className="variant-name me-4">
@@ -338,8 +387,8 @@ const Details = ({
                           </div>
                         </div>
                       )}
-                     
-                      <div className="stock-update">
+
+                      {/* <div className="stock-update">
                         <div className="stock-list">
                           <ul>
                             <li>
@@ -358,9 +407,8 @@ const Details = ({
                               </span>{" "}
                             </li>
                             <li>
-                              <span>Categgory :</span>{" "}
+                              <span>Categgory :</span>
                               <span className="s-text text-capitalize">
-                                {" "}
                                 {product &&
                                   product.category.map((category, i) => (
                                     <Fragment key={i}>
@@ -396,10 +444,11 @@ const Details = ({
                             </li>
                           </ul>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
-                </div></div>
+                </div>
+              </div>
             </section>
             {/* product details area end */}
             {/* product desc area start */}
@@ -441,17 +490,7 @@ const Details = ({
                                   <div className="col-lg-10 col-width-20">
                                     <div className="pro-desc-text">
                                       <h4>{product && product.name}</h4>
-                                      <p>
-                                        Duis aute irure dolor in reprehenderit
-                                        in voluptate velit esse cillum dolore eu
-                                        fugiat nulla pariatur. Excepteur sint
-                                        occaecat cupidatat non proident, sunt in
-                                        culpa deserunt mollit anim id est
-                                        laborum. Sed ut perspiciatis unde omnis
-                                        iste natus error sit voluptatem
-                                        accusantium doloremque laudantium, totam
-                                        aperiam,
-                                      </p>
+                                      <p>{product.productSelectedDetail}</p>
                                     </div>
                                   </div>
                                 </div>
@@ -475,7 +514,7 @@ const Details = ({
               </div>
             </section>
             <div className="product-details pt-100">
-              <RelatedProduct>
+              {/* <RelatedProduct>
                 {products &&
                   simpleProductFilter(
                     product && product.category[0],
@@ -483,7 +522,7 @@ const Details = ({
                   ).map((product) => (
                     <Product key={product.id} product={product} />
                   ))}
-              </RelatedProduct>
+              </RelatedProduct> */}
             </div>
           </Fragment>
         ) : (
@@ -495,8 +534,8 @@ const Details = ({
 };
 
 const mapStateToProps = (state) => ({
-  products: state.product.products,
-  product: state.product.singleProduct,
+  // products: state.product.products,
+  // product: state.product.singleProduct,
   carts: state.utilis.carts,
   wishlists: state.utilis.wishlist,
   compares: state.utilis.compares,

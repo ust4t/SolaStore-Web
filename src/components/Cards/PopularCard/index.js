@@ -16,6 +16,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { addToCart } from "../../../redux/action/utilis";
 import { connect } from "react-redux";
 import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 const sendCartRequest = async (creds) => {
   const { data } = await axios.post(
@@ -36,6 +37,7 @@ function ProductCard({
 }) {
   //   const colors = Object.keys(images);
   //   if (colors?.length < 1) return null;
+  const router = useRouter();
 
   const originalDiscount = (price * 100) / discount - price;
 
@@ -93,6 +95,12 @@ function ProductCard({
     mutate(cartCurrent);
   };
 
+  const navigateToDetail = () => {
+    router.push({
+      pathname: `/shop/${currentImages.id}`,
+    });
+  };
+
   return (
     <div
       className="product-card"
@@ -134,41 +142,45 @@ function ProductCard({
             !currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
           }`}
         >
-          <Link href={`/shop/${id}`}>
-            {/* default images */}
-            <Image
-              src={`https://solastore.com.tr/img/ProductWM/maxPic/${currentImages.pictures[0].guidName}`}
-              width={400 * rate}
-              height={600 * rate}
-              priority={true}
-            />
-          </Link>
+          {/* <Link href={`/shop/${currentImages.id}`}> */}
+          {/* default images */}
+          <Image
+            onClick={navigateToDetail}
+            src={`https://solastore.com.tr/img/ProductWM/maxPic/${currentImages.pictures[0].guidName}`}
+            width={400 * rate}
+            height={600 * rate}
+            priority={true}
+          />
+          {/* </Link> */}
         </div>
         <div
           className={`product-image-2 animate__animated animate__faster ${
             currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
           }`}
         >
-          <Link href={`/shop/${id}`}>
-            {/* hover images */}
-            <Image
-              src={`https://solastore.com.tr/img/ProductWM/maxPic/${currentImages.pictures[1].guidName}`}
-              width={400 * rate}
-              height={600 * rate}
-            />
-          </Link>
+          {/* <Link href={`/shop/${currentImages.id}`}> */}
+          {/* hover images */}
+          <Image
+            onClick={navigateToDetail}
+            src={`https://solastore.com.tr/img/ProductWM/maxPic/${currentImages.pictures[1].guidName}`}
+            width={400 * rate}
+            height={600 * rate}
+            priority={true}
+          />
+          {/* </Link> */}
         </div>
       </Col>
-      <Link href={`/shop/${id}`}>
-        <div
-          className="product-card-name"
-          style={{
-            fontSize: "1rem",
-          }}
-        >
-          {name}
-        </div>
-      </Link>
+      {/* <Link href={`/shop/${currentImages.id}`}> */}
+      <div
+        onClick={navigateToDetail}
+        className="product-card-name"
+        style={{
+          fontSize: "1rem",
+        }}
+      >
+        {name}
+      </div>
+      {/* </Link> */}
       <div className="product-card-price">{`$ ${price}`}</div>
 
       <Row className="select-colors">
