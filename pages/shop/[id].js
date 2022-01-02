@@ -1,13 +1,8 @@
 import axios from "axios";
-import { useRouter } from "next/router";
 import Details from "../../src/components/product/Details";
 
 const Single = ({ product }) => {
-  const router = useRouter();
-
-  console.log(router);
-
-  return <Details product={product} />;
+  return <Details incomingProduct={product} />;
 };
 
 export default Single;

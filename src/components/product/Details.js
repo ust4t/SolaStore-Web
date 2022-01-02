@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
-import { Fragment, useEffect, useRef } from "react";
+import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { Nav, Tab } from "react-bootstrap";
 import { toast } from "react-hot-toast";
 import { connect } from "react-redux";
 import sources from "../../../sources";
+import { StoreContext } from "../../context/StoreProvider";
 import Layout from "../../layout/Layout";
 import PageTitle from "../../layout/PageTitle";
 import { getProducts, getSingleProduct } from "../../redux/action/product";
@@ -29,9 +30,8 @@ const Details = ({
   getCarts,
   addWishlist,
   getWishlist,
-  product,
-  // products,
   carts,
+  incomingProduct,
   wishlists,
   compares,
   compare,
@@ -40,17 +40,20 @@ const Details = ({
   upcoming,
   upthumb,
 }) => {
+  const { state } = useContext(StoreContext);
   const router = useRouter();
   const { id } = router.query;
+  const [product, setProduct] = useState(incomingProduct);
   const videoRef = useRef();
+  console.log(state);
   useEffect(() => {
-    videoRef.current.pause();
-    getSingleProduct(id);
+    if (videoRef.current) videoRef.current.pause();
     getCarts();
     getWishlist();
     // getProducts();
     getCompare();
-  }, [id]);
+    console.log(product);
+  }, []);
   // const cart = product && carts && carts.find((cart) => cart.id === product.id);
   // const wishlist =
   //   product &&
@@ -102,8 +105,7 @@ const Details = ({
                   <div
                     className={` ${
                       upthumb ? "product-modal col-lg-5" : "col-lg-7"
-                    }`}
-                  >
+                    }`}>
                     <Tab.Container defaultActiveKey="tum-0">
                       <div className="pro-details-tab">
                         <Tab.Content className="tab-content custom-content">
@@ -128,8 +130,7 @@ const Details = ({
                                 autoPlay
                                 ref={videoRef}
                                 width="536"
-                                height="870"
-                              >
+                                height="870">
                                 <source
                                   src={`${sources.videos}${product.video_1}`}
                                   type="video/mp4"
@@ -142,8 +143,7 @@ const Details = ({
                         <Nav
                           className="nav custom-tab"
                           id="myTab"
-                          role="tablist"
-                        >
+                          role="tablist">
                           {product &&
                             product.pictures.map((img, i) => (
                               <Nav.Item key={i}>
@@ -152,8 +152,7 @@ const Details = ({
                                   className="mr-0"
                                   onClick={() => {
                                     videoRef.current.pause();
-                                  }}
-                                >
+                                  }}>
                                   <img
                                     src={`${sources.imageMidSrc}${img.guidName}`}
                                     className="img-fluid"
@@ -170,8 +169,7 @@ const Details = ({
                                   videoRef.current.play();
                                 }}
                                 eventKey={`tum-${12}`}
-                                className="mr-0"
-                              >
+                                className="mr-0">
                                 <img
                                   src={`${sources.imageMidSrc}${product.picture_1}`}
                                   className="img-fluid"
@@ -306,47 +304,30 @@ const Details = ({
                           </h4>
                           <div
                             className="details-filter-row details-row-size"
-                            style={{ margin: 5 }}
-                          >
-                            <div className="product-nav product-nav-thumbs">
-                              <a
-                                href="javascript:getProductDetailsPartial('41843')"
-                                className="productvar"
-                              >
-                                <img
-                                  src="https://www.solastore.com.tr/img/ProductWM/minPic/98f0bb70-1.jpg"
-                                  alt="ESTA LINE-4086"
-                                  title="ESTA LINE-4086"
-                                  style={{ maxWidth: 90 }}
-                                />
-                              </a>
-                            </div>
-                            <div className="product-nav product-nav-thumbs">
-                              <a
-                                href="javascript:getProductDetailsPartial('41844')"
-                                className="productvar"
-                              >
-                                <img
-                                  src="https://www.solastore.com.tr/img/ProductWM/minPic/e9a6637e-6.jpg"
-                                  alt="ESTA LINE-4086"
-                                  title="ESTA LINE-4086"
-                                  style={{ maxWidth: 90 }}
-                                />
-                              </a>
-                            </div>
-                            <div className="product-nav product-nav-thumbs">
-                              <a
-                                href="javascript:getProductDetailsPartial('41845')"
-                                className="productvar"
-                              >
-                                <img
-                                  src="https://www.solastore.com.tr/img/ProductWM/minPic/9e624727-8.jpg"
-                                  alt="ESTA LINE-4086"
-                                  title="ESTA LINE-4086"
-                                  style={{ maxWidth: 90 }}
-                                />
-                              </a>
-                            </div>
+                            style={{ margin: 5 }}>
+                            {[...state.detailVariants, incomingProduct].map(
+                              (variant) => (
+                                <div
+                                  className="details-filter-row details-row-size"
+                                  onClick={() => setProduct(variant)}
+                                  style={{ margin: 5, cursor: "pointer" }}>
+                                  <div className="product-nav product-nav-thumbs">
+                                    <span
+                                      className="productvar"
+                                      style={{
+                                        cursor: "pointer",
+                                      }}>
+                                      <img
+                                        src={`${sources.imageMinSrc}${variant.picture_1}`}
+                                        alt={variant.productShortName}
+                                        title={variant.productShortName}
+                                        style={{ maxWidth: 90 }}
+                                      />
+                                    </span>
+                                  </div>
+                                </div>
+                              )
+                            )}
                           </div>
                         </div>
                       </div>
@@ -462,20 +443,17 @@ const Details = ({
                           <div
                             className="nav pro-desc-tab"
                             id="nav-tab"
-                            role="tablist"
-                          >
+                            role="tablist">
                             <Nav.Link
                               as="a"
                               className="c-pointer"
-                              eventKey="dec"
-                            >
+                              eventKey="dec">
                               Description
                             </Nav.Link>
                             <Nav.Link
                               as="a"
                               className="c-pointer"
-                              eventKey="review"
-                            >
+                              eventKey="review">
                               Reviews (4)
                             </Nav.Link>
                           </div>
@@ -535,7 +513,8 @@ const Details = ({
 
 const mapStateToProps = (state) => ({
   // products: state.product.products,
-  // product: state.product.singleProduct,
+  detail: state.product,
+  // product: state.product,
   carts: state.utilis.carts,
   wishlists: state.utilis.wishlist,
   compares: state.utilis.compares,

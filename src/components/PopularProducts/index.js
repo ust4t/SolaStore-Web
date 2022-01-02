@@ -10,23 +10,24 @@ function PopularProducts({ popular, getPopulars }) {
   const { isLoading, error, data } = useQuery("popularProducts", () =>
     fetch("/api/getPopulars").then((res) => res.json())
   );
-
   return (
     <Row className="popular-products">
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        data.map(({ id, name, images, price, discount, variants }, i) => (
-          <PopularCard
-            key={id}
-            id={id}
-            price={price}
-            name={name}
-            discount={discount}
-            images={images}
-            variants={variants}
-          />
-        ))
+        data.map(({ id, name, images, price, discount, variants }) => {
+          return (
+            <PopularCard
+              key={id}
+              id={id}
+              price={price}
+              name={name}
+              discount={discount}
+              images={images}
+              variants={variants}
+            />
+          );
+        })
       )}
     </Row>
   );

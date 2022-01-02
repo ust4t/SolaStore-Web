@@ -68,14 +68,15 @@ export const simpleProductFilter = (key, arr) => {
         .sort()
     : [key.toLowerCase()];
 
-  return (
-    arr &&
-    arr.filter((arr) =>
-      arr.category.find((e) =>
-        e.toLowerCase().includes(sorted && sorted.join(","))
-      )
-    )
-  );
+  // return (
+  //   arr &&
+  //   arr.filter((arr) =>
+  //     arr.category.find((e) =>
+  //       e.toLowerCase().includes(sorted && sorted.join(","))
+  //     )
+  //   )
+  // );
+  return [];
 };
 
 export const exitsProduct = (state, item) => {

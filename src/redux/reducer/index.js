@@ -7,7 +7,7 @@ import product from "./product";
 import seller from "./seller";
 import upcomingProduct from "./upcomingProduct";
 import utilis from "./utilis";
-import populars from "./populars"
+import populars from "./populars";
 import menu from "./menu";
 
 export default combineReducers({
@@ -20,5 +20,5 @@ export default combineReducers({
   home,
   utilis,
   populars,
-    menu
+  menu,
 });

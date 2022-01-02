@@ -12,6 +12,7 @@ import "swiper/css/bundle";
 import "../styles/global.css";
 import "animate.css";
 import "antd/dist/antd.css";
+import StoreProvider from "../src/context/StoreProvider";
 
 function MyApp({ Component, pageProps }) {
   const [preloader, setPreloader] = useState(true);
@@ -29,22 +30,24 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Provider store={store}>
-      <AllToaster />
-      <Head>
-        <title>Retro - Minimal eCommerce Redux Template</title>
-        <meta name="description" content />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="manifest" href="site.webmanifest" />
-        <link
-          rel="shortcut icon"
-          type="image/x-icon"
-          href="/img/logo/favicon.png"
-        />
-      </Head>
-      {preloader ? <Preloader /> : <ScrollTop />}
-      <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
-      </QueryClientProvider>
+      <StoreProvider>
+        <AllToaster />
+        <Head>
+          <title>Retro - Minimal eCommerce Redux Template</title>
+          <meta name="description" content />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="manifest" href="site.webmanifest" />
+          <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="/img/logo/favicon.png"
+          />
+        </Head>
+        {preloader ? <Preloader /> : <ScrollTop />}
+        <QueryClientProvider client={queryClient}>
+          <Component {...pageProps} />
+        </QueryClientProvider>
+      </StoreProvider>
     </Provider>
   );
 }

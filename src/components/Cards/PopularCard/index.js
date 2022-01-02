@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button, Col, Row } from "antd";
@@ -7,6 +7,8 @@ import Heart from "../../Heart";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
+import { useDispatch } from "react-redux";
+import { GET_PRODUCT } from "../../../redux/action/type";
 
 import SliderProducts from "../../sliders/sliderProducts";
 
@@ -17,6 +19,9 @@ import { addToCart } from "../../../redux/action/utilis";
 import { connect } from "react-redux";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
+import { getProducts, getSingleProduct } from "../../../redux/action/product";
+import { StoreContext } from "../../../context/StoreProvider";
+import { SET_DETAILS } from "../../../context/types";
 
 const sendCartRequest = async (creds) => {
   const { data } = await axios.post(
@@ -38,6 +43,7 @@ function ProductCard({
   //   const colors = Object.keys(images);
   //   if (colors?.length < 1) return null;
   const router = useRouter();
+  const { dispatch } = useContext(StoreContext);
 
   const originalDiscount = (price * 100) / discount - price;
 
@@ -96,8 +102,12 @@ function ProductCard({
   };
 
   const navigateToDetail = () => {
+    dispatch({
+      type: SET_DETAILS,
+      payload: variants,
+    });
     router.push({
-      pathname: `/shop/${currentImages.id}`,
+      pathname: `/shop/${id}`,
     });
   };
 
@@ -106,25 +116,21 @@ function ProductCard({
       className="product-card"
       style={{
         margin: "20px",
-      }}
-    >
+      }}>
       <Col
         className="product-image-container"
         onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-      >
+        onMouseLeave={onMouseLeave}>
         <Row className="product-header">
           {!!discount && discount > 0 && (
             <ColorfulText
-              style={{ height: 22 }}
-            >{`- $${originalDiscount}`}</ColorfulText>
+              style={{ height: 22 }}>{`- $${originalDiscount}`}</ColorfulText>
           )}
           <div
             style={{
               paddingLeft: 10,
               paddingRight: 10,
-            }}
-          >
+            }}>
             <Heart isLiked={isLiked} setIsLiked={setIsLiked} />
           </div>
         </Row>
@@ -132,16 +138,14 @@ function ProductCard({
           className={`add-to-cart animate__animated animate__faster ${
             currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
           }`}
-          onClick={onAddToCart}
-        >
+          onClick={onAddToCart}>
           {isLoading ? "Loading......" : "Sepete Ekle"}
         </div>
 
         <div
           className={`product-image-1 animate__animated animate__faster ${
             !currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
-          }`}
-        >
+          }`}>
           {/* <Link href={`/shop/${currentImages.id}`}> */}
           {/* default images */}
           <Image
@@ -156,8 +160,7 @@ function ProductCard({
         <div
           className={`product-image-2 animate__animated animate__faster ${
             currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
-          }`}
-        >
+          }`}>
           {/* <Link href={`/shop/${currentImages.id}`}> */}
           {/* hover images */}
           <Image
@@ -176,8 +179,7 @@ function ProductCard({
         className="product-card-name"
         style={{
           fontSize: "1rem",
-        }}
-      >
+        }}>
         {name}
       </div>
       {/* </Link> */}
@@ -193,8 +195,7 @@ function ProductCard({
             delay: 2500,
             disableOnInteraction: false,
           }}
-          className="mySwiper"
-        >
+          className="mySwiper">
           {[...variants, { images }].map((variant, i) => (
             <SwiperSlide>
               <Image
@@ -230,4 +231,5 @@ function ProductCard({
 
 export default connect(null, {
   addToCart,
+  getProducts,
 })(ProductCard);

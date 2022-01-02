@@ -2,7 +2,7 @@ import { GET_PRODUCT, GET_SINGLE } from "../action/type";
 
 const initialState = {
   products: [],
-  singleProduct: null,
+  singleProduct: [],
 };
 const product = (state = initialState, action) => {
   const { type, payload } = action;
