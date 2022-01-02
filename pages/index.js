@@ -19,6 +19,7 @@ import { getProducts } from "../src/redux/action/product";
 import { simpleProductFilter } from "../src/utils/filterProduct";
 import time from "../src/utils/time";
 import { animationCreate, splitText } from "../src/utils/utils";
+import VideoLayout from "../src/layout/VideoLayout";
 
 const Index4 = ({
   getHome4,
@@ -42,6 +43,7 @@ const Index4 = ({
         <Stories />
         <SliderProducts />
         <TabLayout />
+        <VideoLayout />
         {/*
         <section className="hero-area position-relative">
           <div className="slider-four">

@@ -18,25 +18,19 @@ export default function SliderProducts() {
       .then((data) => setImages(data));
   };
 
-  const pagination = {
-    clickable: true,
-    renderBullet: function (index, className) {
-      return '<span class="' + className + '">' + (index + 1) + "</span>";
-    },
-  };
-
   useEffect(() => getImages(), []);
 
   return (
     <Swiper
-      modules={[Autoplay, Pagination, Navigation]}
-      spaceBetween={30}
+      modules={[Autoplay, Navigation]}
+      spaceBetween={0}
+      loop={true}
       centeredSlides={true}
+      slidesPerView={3}
       autoplay={{
         delay: 2500,
         disableOnInteraction: false,
       }}
-      pagination={pagination}
       navigation={{
         prevEl: ".prev",
         nextEl: ".next",
@@ -48,8 +42,9 @@ export default function SliderProducts() {
             <img
               src={img.download_url}
               style={{
+                objectFit: "cover",
                 width: "100%",
-                height: "500px",
+                height: "650px",
               }}
               layout="fill"
             />

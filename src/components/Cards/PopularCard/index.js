@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button, Col, Row } from "antd";
 import ColorfulText from "../../ColorfulText";
 import Heart from "../../Heart";
+import sources from "../../../../sources";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
@@ -150,7 +151,7 @@ function ProductCard({
           {/* default images */}
           <Image
             onClick={navigateToDetail}
-            src={`https://solastore.com.tr/img/ProductWM/maxPic/${currentImages.pictures[0].guidName}`}
+            src={`${sources.imageMidSrc}${currentImages.pictures[0].guidName}`}
             width={400 * rate}
             height={600 * rate}
             priority={true}
@@ -165,7 +166,7 @@ function ProductCard({
           {/* hover images */}
           <Image
             onClick={navigateToDetail}
-            src={`https://solastore.com.tr/img/ProductWM/maxPic/${currentImages.pictures[1].guidName}`}
+            src={`${sources.imageMidSrc}${currentImages.pictures[1].guidName}`}
             width={400 * rate}
             height={600 * rate}
             priority={true}
@@ -190,20 +191,19 @@ function ProductCard({
           modules={[Autoplay]}
           spaceBetween={0}
           centeredSlides={true}
-          slidesPerView={10}
+          slidesPerView={4}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
-          }}
-          className="mySwiper">
+          }}>
           {[...variants, { images }].map((variant, i) => (
             <SwiperSlide>
               <Image
                 key={`${i}__`}
                 className="color-select"
-                width={120}
-                height={120}
-                src={`https://solastore.com.tr/img/ProductWM/maxPic/${
+                width={60}
+                height={60}
+                src={`${sources.imageMinSrc}${
                   variant.picture_1 || variant.images[0].guidName
                 }`}
                 priority={true}
