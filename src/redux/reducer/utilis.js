@@ -38,7 +38,6 @@ const utilis = (state = initialState, action) => {
     case REMOVE_CART:
       // const removeItem = state.carts.filter((cart) => cart.id !== payload);
       // setLocalStorage("vue-ecommerce", removeItem);
-      payload.refetch();
       return state;
     case ADD_WISHLIST:
       const wishlist = state.wishlist.find(

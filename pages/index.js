@@ -20,6 +20,8 @@ import { simpleProductFilter } from "../src/utils/filterProduct";
 import time from "../src/utils/time";
 import { animationCreate, splitText } from "../src/utils/utils";
 import VideoLayout from "../src/layout/VideoLayout";
+import IntroBanners from "../src/components/Cards/IntroBanners";
+import Filter from "../src/components/product/filter/Filter";
 
 const Index4 = ({
   getHome4,
@@ -42,6 +44,7 @@ const Index4 = ({
       <main>
         <Stories />
         <SliderProducts />
+        <IntroBanners />
         <TabLayout />
         <VideoLayout />
         {/*

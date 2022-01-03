@@ -9,10 +9,10 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { animationCreate, aTagClick } from "../src/utils/utils";
 import "../styles/main.css";
 import "swiper/css/bundle";
-import "../styles/global.css";
 import "animate.css";
 import "antd/dist/antd.css";
 import StoreProvider from "../src/context/StoreProvider";
+import "../styles/global.css";
 
 function MyApp({ Component, pageProps }) {
   const [preloader, setPreloader] = useState(true);

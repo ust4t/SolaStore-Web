@@ -1,26 +1,21 @@
 import React, { useContext, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Button, Col, Row } from "antd";
+import { Col, Row } from "antd";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation } from "swiper";
+import { ChevronBackOutline, ChevronForwardOutline } from "react-ionicons";
+// import "swiper/css";
+import axios from "axios";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import toast from "react-hot-toast";
+import { useRouter } from "next/router";
+
 import ColorfulText from "../../ColorfulText";
 import Heart from "../../Heart";
 import sources from "../../../../sources";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper";
-import { useDispatch } from "react-redux";
-import { GET_PRODUCT } from "../../../redux/action/type";
-
-import SliderProducts from "../../sliders/sliderProducts";
-
-import "swiper/css";
-import axios from "axios";
-import { useMutation, useQuery, useQueryClient } from "react-query";
 import { addToCart } from "../../../redux/action/utilis";
 import { connect } from "react-redux";
-import toast from "react-hot-toast";
-import { useRouter } from "next/router";
-import { getProducts, getSingleProduct } from "../../../redux/action/product";
+import { getProducts } from "../../../redux/action/product";
 import { StoreContext } from "../../../context/StoreProvider";
 import { SET_DETAILS } from "../../../context/types";
 
@@ -38,6 +33,7 @@ function ProductCard({
   name,
   discount,
   images,
+  oldPrice,
   variants,
   addToCart,
 }) {
@@ -45,8 +41,13 @@ function ProductCard({
   //   if (colors?.length < 1) return null;
   const router = useRouter();
   const { dispatch } = useContext(StoreContext);
-
-  const originalDiscount = (price * 100) / discount - price;
+  const [currentImages, setCurrentImages] = useState({
+    id,
+    pictures: images,
+  });
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
+  console.log(currentImages);
 
   const queryClient = useQueryClient();
   const { refetch } = useQuery(
@@ -75,12 +76,9 @@ function ProductCard({
       queryClient.invalidateQueries("create");
     },
   });
-  const [currentImages, setCurrentImages] = useState({
-    id,
-    pictures: images,
-  });
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isLiked, setIsLiked] = useState(false);
+
+  const originalDiscount = oldPrice - price;
+
   const rate = 0.7;
 
   const [arr, setarr] = useState();
@@ -123,9 +121,9 @@ function ProductCard({
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}>
         <Row className="product-header">
-          {!!discount && discount > 0 && (
+          {!!oldPrice && oldPrice > 0 && (
             <ColorfulText
-              style={{ height: 22 }}>{`- $${originalDiscount}`}</ColorfulText>
+              style={{ height: 22 }}>{`↓ $${originalDiscount}`}</ColorfulText>
           )}
           <div
             style={{
@@ -188,13 +186,13 @@ function ProductCard({
 
       <Row className="select-colors">
         <Swiper
-          modules={[Autoplay]}
+          modules={[Autoplay, Navigation]}
           spaceBetween={0}
           centeredSlides={true}
-          slidesPerView={4}
+          slidesPerView={5}
+          navigation
           autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
+            delay: 6000,
           }}>
           {[...variants, { images }].map((variant, i) => (
             <SwiperSlide>

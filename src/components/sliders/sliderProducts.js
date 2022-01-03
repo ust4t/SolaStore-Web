@@ -1,57 +1,98 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useQuery } from "react-query";
+import Link from "next/link";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { ChevronBackOutline, ChevronForwardOutline } from "react-ionicons";
 
 // import Swiper core and required modules
-import { Autoplay, Pagination, Navigation } from "swiper";
+import { Autoplay, Navigation } from "swiper";
+import axios from "axios";
+import sources from "../../../sources";
+import styles from "./Slider.module.css";
+import Loader from "../Loader";
 
-// install Swiper modules
-// SwiperCore.use([Autoplay, Pagination, Navigation]);
+const fetchSlider = async () => {
+  const { data } = await axios.get("/api/getSlider");
+  return data;
+};
 
 export default function SliderProducts() {
   const [images, setImages] = useState(null);
-  const getImages = async () => {
-    return await fetch("https://picsum.photos/v2/list?page=2&limit=4")
-      .then((response) => response.json())
-      .then((data) => setImages(data));
-  };
-
-  useEffect(() => getImages(), []);
+  const { isLoading, error, refetch } = useQuery("slider", fetchSlider, {
+    onSuccess: ({ data }) => {
+      setImages(data);
+    },
+    onError: (error) => {
+      console.log(error);
+      refetch();
+    },
+  });
 
   return (
-    <Swiper
-      modules={[Autoplay, Navigation]}
-      spaceBetween={0}
-      loop={true}
-      centeredSlides={true}
-      slidesPerView={3}
-      autoplay={{
-        delay: 2500,
-        disableOnInteraction: false,
-      }}
-      navigation={{
-        prevEl: ".prev",
-        nextEl: ".next",
-      }}
-      className="mySwiper">
-      {Array.isArray(images) &&
-        images.map((img) => (
-          <SwiperSlide>
-            <img
-              src={img.download_url}
-              style={{
-                objectFit: "cover",
-                width: "100%",
-                height: "650px",
-              }}
-              layout="fill"
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Swiper
+          modules={[Autoplay, Navigation]}
+          spaceBetween={0}
+          loop={true}
+          centeredSlides={true}
+          slidesPerView={1}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          navigation={{
+            prevEl: ".prev",
+            nextEl: ".next",
+          }}
+          className="mySwiper">
+          {Array.isArray(images) &&
+            images.map(
+              ({
+                pictureID,
+                guidName,
+                selectedText1,
+                selectedText2,
+                selectedTextButton,
+              }) => (
+                <SwiperSlide key={pictureID}>
+                  <div
+                    className={styles.sliderContainer}
+                    style={{
+                      backgroundImage: `url(${sources.slider}${guidName})`,
+                    }}>
+                    <div className={styles.innerContainer}>
+                      <h6 className={styles.sliderSubtitle}>{selectedText1}</h6>
+                      <h1 className={styles.sliderTitle}>{selectedText2}</h1>
+                      <Link href="/">
+                        <a
+                          className={styles.sliderButton}
+                          rel="noopener noreferrer">
+                          {selectedTextButton}
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              )
+            )}
+          <div className={`prev ${styles.sliderArrow}`}>
+            <ChevronBackOutline color={"#00000"} height="45px" width="45px" />
+          </div>
+          <div className={`next ${styles.sliderArrow}`}>
+            <ChevronForwardOutline
+              color={"#00000"}
+              height="45px"
+              width="45px"
             />
-          </SwiperSlide>
-        ))}
-      <div className="prev"></div>
-      <div className="next"></div>
-    </Swiper>
+          </div>
+        </Swiper>
+      )}{" "}
+    </>
   );
 }
