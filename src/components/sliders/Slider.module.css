@@ -17,6 +17,8 @@
 }
 
 .sliderSubtitle {
+  text-align: center;
+
   font-size: 1.5rem;
   color: #fff;
   text-transform: uppercase;
@@ -25,6 +27,7 @@
 }
 
 .sliderTitle {
+  text-align: center;
   font-size: 3rem !important;
   font-weight: bold;
   color: #fff;
@@ -33,6 +36,8 @@
 }
 
 .sliderButton {
+  text-align: center;
+
   display: grid;
   place-content: center;
   padding: 1rem 3.5rem;
@@ -58,4 +63,16 @@
   display: grid;
   place-content: center;
   place-items: center;
+}
+
+@media (max-width: 625px) {
+  .sliderTitle {
+    font-size: 2.7rem !important;
+  }
+}
+
+@media (max-width: 565px) {
+  .sliderTitle {
+    font-size: 2.3rem !important;
+  }
 }

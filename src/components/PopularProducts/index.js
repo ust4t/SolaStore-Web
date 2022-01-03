@@ -22,12 +22,22 @@ function PopularProducts() {
           modules={[Autoplay]}
           spaceBetween={0}
           centeredSlides={true}
-          slidesPerView={4}
+          slidesPerView={1}
           loopFillGroupWithBlank={true}
           loop={true}
           autoplay={{
             delay: 8000,
-            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            395: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 4,
+            },
+            1024: {
+              slidesPerView: 4,
+            },
           }}
           className="mySwiper">
           {data

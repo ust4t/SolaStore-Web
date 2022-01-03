@@ -20,8 +20,11 @@ import { simpleProductFilter } from "../src/utils/filterProduct";
 import time from "../src/utils/time";
 import { animationCreate, splitText } from "../src/utils/utils";
 import VideoLayout from "../src/layout/VideoLayout";
-import IntroBanners from "../src/components/Cards/IntroBanners";
+import IntroBanners from "../src/layout/IntroBanners";
 import Filter from "../src/components/product/filter/Filter";
+import Categories from "../src/layout/Categories";
+import { Box } from "@mui/material";
+import BrandsLayout from "../src/layout/BrandsLayout";
 
 const Index4 = ({
   getHome4,
@@ -42,11 +45,32 @@ const Index4 = ({
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
-        <Stories />
+        {/* <Stories /> */}
         <SliderProducts />
-        <IntroBanners />
-        <TabLayout />
+        <Box
+          mx={{
+            xs: 0,
+            sm: 0,
+            md: 10,
+            lg: 12,
+            xl: 14,
+          }}>
+          <IntroBanners />
+          <TabLayout />
+          <Categories />
+        </Box>
         <VideoLayout />
+
+        <Box
+          mx={{
+            xs: 0,
+            sm: 0,
+            md: 10,
+            lg: 12,
+            xl: 14,
+          }}>
+          <BrandsLayout />
+        </Box>
         {/*
         <section className="hero-area position-relative">
           <div className="slider-four">

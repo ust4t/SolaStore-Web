@@ -8,9 +8,15 @@ function Heart({ isLiked, setIsLiked }) {
   return (
     <div className="heart-container" onClick={() => setIsLiked(!isLiked)}>
       {isLiked ? (
-        <HeartIcon color={"red"} height="40px" width="40px" />
+        <HeartIcon
+          title="heart"
+          beat
+          color={"#f44336"}
+          height="25px"
+          width="25px"
+        />
       ) : (
-        <HeartOutline color={"red"} height="40px" width="40px" />
+        <HeartOutline color={"#f44336"} height="25px" width="25px" />
       )}
     </div>
   );

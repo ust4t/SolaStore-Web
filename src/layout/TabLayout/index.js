@@ -62,27 +62,28 @@ export default function TabLayout() {
         onChange={handleChange}
         indicatorColor="secondary"
         textColor="inherit"
-        // variant="fullWidth"
+        variant="fullWidth"
         centered
         aria-label="full width tabs example">
         <Tab label="Çok Satanlar" {...a11yProps(0)} />
         <Tab label="Yeni Ürünler" {...a11yProps(1)} />
         <Tab label="İndirimdeki Ürünler" {...a11yProps(2)} />
       </Tabs>
-      <SwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={value}
-        onChangeIndex={handleChangeIndex}>
-        <TabPanel value={value} index={0} dir={theme.direction}>
+      <TabPanel value={value} index={0} dir={theme.direction}>
+        <SwipeableViews
+          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          // index={value}
+          // onChangeIndex={handleChangeIndex}
+        >
           <PopularProducts />
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
-        </TabPanel>
-      </SwipeableViews>
+        </SwipeableViews>
+      </TabPanel>
+      <TabPanel value={value} index={1} dir={theme.direction}>
+        Item Two
+      </TabPanel>
+      <TabPanel value={value} index={2} dir={theme.direction}>
+        Item Three
+      </TabPanel>
     </Box>
   );
 }

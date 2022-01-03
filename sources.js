@@ -6,4 +6,5 @@ export default {
   slider: "https://solastore.com.tr/img/Slider/",
   banners: "https://solastore.com.tr//img/MainAdd/",
   campaign: "https://solastore.com.tr/img/MainCampaingn/",
+  brand: "https://solastore.com.tr/img/Brand/",
 };

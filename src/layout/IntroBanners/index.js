@@ -9,13 +9,13 @@ import Paper from "@mui/material/Paper";
 import Masonry from "@mui/lab/Masonry";
 import { styled } from "@mui/material/styles";
 
-import Loader from "../../Loader";
-import sources from "../../../../sources";
+import Loader from "../../components/Loader";
+import sources from "../../../sources";
 import Link from "next/link";
 import styles from "./IntroBanners.module.css";
 
 const fetchBanners = async () => {
-  const { data } = await axios.get("/api/getBanners");
+  const { data } = await axios.get("/api/advertisement/getBanners");
   return data;
 };
 
@@ -33,13 +33,26 @@ function IntroBanners() {
         <Loader />
       ) : (
         <Box
-          sx={{ width: "100%", minHeight: 829 }}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          sx={{ width: "100%", minHeight: 400 }}
           p={{
-            xs: 3,
+            xs: 0,
             md: 5,
             lg: 15,
           }}>
-          <Masonry columns={2} spacing={2}>
+          <Masonry
+            sx={{
+              display: "flex",
+              alignContent: "center",
+              justifyContent: "center",
+            }}
+            columns={{
+              xs: 0,
+              md: 2,
+            }}
+            spacing={2}>
             {banners.map(
               (
                 {
@@ -70,8 +83,8 @@ function IntroBanners() {
                         flexDirection: "column",
                         alignItems: "flex-start",
                         justifyContent: "center",
-                        width: "85%",
-                        height: "85%",
+                        minWidth: "85%",
+                        minHeight: "85%",
                         border: ".5rem solid rgba(255,255,255,.3)",
                         transform: "translate(-50%, -50%)",
                         transition: "all .3s ease-in-out",
@@ -115,7 +128,8 @@ function IntroBanners() {
 
                     <img
                       src={`${sources.banners}${guidName}`}
-                      alt={""}
+                      alt={"product banner"}
+                      className="img-fluid"
                       loading="lazy"
                     />
                   </Stack>
