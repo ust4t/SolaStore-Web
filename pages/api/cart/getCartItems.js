@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function menuFetch(req, res) {
+export default async function getCartItems(req, res) {
   const { user } = req.query;
   try {
     const response = await axios.get(

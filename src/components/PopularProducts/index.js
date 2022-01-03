@@ -1,5 +1,5 @@
 import { Row } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import PopularCard from "../Cards/PopularCard";
@@ -9,10 +9,23 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import Loader from "../Loader";
 
-function PopularProducts() {
-  const { isLoading, error, data } = useQuery("popularProducts", () =>
-    fetch("/api/getPopulars").then((res) => res.json())
+const fetchPopulars = async () => {
+  const res = await fetch("/api/getPopulars");
+  const data = await res.json();
+  return data;
+};
+
+function PopularProducts({ popularData, setPopularData }) {
+  const { isLoading, error, data } = useQuery(
+    "popularProducts",
+    fetchPopulars,
+    {
+      onSuccess: (data) => {
+        if (data) setPopularData(data);
+      },
+    }
   );
+
   return (
     <Row className="popular-products">
       {isLoading ? (
@@ -40,7 +53,7 @@ function PopularProducts() {
             },
           }}
           className="mySwiper">
-          {data
+          {popularData
             .slice(14, data.length - 1)
             .map(
               ({ id, name, images, price, discount, oldPrice, variants }) => {

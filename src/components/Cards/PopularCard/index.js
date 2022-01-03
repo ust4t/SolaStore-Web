@@ -47,7 +47,6 @@ function ProductCard({
   });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
-  console.log(currentImages);
 
   const queryClient = useQueryClient();
   const { refetch } = useQuery(
@@ -64,7 +63,6 @@ function ProductCard({
   );
   const { mutate, isLoading } = useMutation(sendCartRequest, {
     onSuccess: (data) => {
-      const message = "success";
       refetch();
       toast.success("Added order to cart");
     },

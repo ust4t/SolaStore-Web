@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import PopularProducts from "../../components/PopularProducts";
 import styles from "./TabLayout.module.css";
@@ -10,6 +10,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import NewProducts from "../../components/NewProducts";
+import SaleProducts from "../../components/SaleProducts";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,7 +47,8 @@ function a11yProps(index) {
 
 export default function TabLayout() {
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+  const [popularData, setPopularData] = useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -70,19 +73,25 @@ export default function TabLayout() {
         <Tab label="İndirimdeki Ürünler" {...a11yProps(2)} />
       </Tabs>
       <TabPanel value={value} index={0} dir={theme.direction}>
-        <SwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-          // index={value}
-          // onChangeIndex={handleChangeIndex}
-        >
-          <PopularProducts />
+        <SwipeableViews axis={theme.direction === "rtl" ? "x-reverse" : "x"}>
+          <PopularProducts
+            popularData={popularData}
+            setPopularData={setPopularData}
+          />
         </SwipeableViews>
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
-        Item Two
+        <SwipeableViews axis={theme.direction === "rtl" ? "x-reverse" : "x"}>
+          <NewProducts />
+        </SwipeableViews>
       </TabPanel>
       <TabPanel value={value} index={2} dir={theme.direction}>
-        Item Three
+        <SwipeableViews axis={theme.direction === "rtl" ? "x-reverse" : "x"}>
+          <SaleProducts
+            popularData={popularData}
+            setPopularData={setPopularData}
+          />
+        </SwipeableViews>
       </TabPanel>
     </Box>
   );

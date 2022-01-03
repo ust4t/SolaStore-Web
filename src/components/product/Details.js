@@ -45,7 +45,6 @@ const Details = ({
   const { id } = router.query;
   const [product, setProduct] = useState(incomingProduct);
   const videoRef = useRef();
-  console.log(state);
   useEffect(() => {
     if (videoRef.current) videoRef.current.pause();
     getCarts();

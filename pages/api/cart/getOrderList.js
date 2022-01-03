@@ -1,4 +1,6 @@
-export default async function menuFetch(req, res) {
+import axios from "axios";
+
+export default async function getOrderList(req, res) {
   const { user } = req.query;
   try {
     const response = await axios.get(
