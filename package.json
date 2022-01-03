@@ -11,7 +11,6 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@material-ui/icons": "^4.11.2",
     "@metismenu/react": "0.0.2",
     "@mui/lab": "^5.0.0-alpha.62",
     "@mui/material": "^5.2.6",

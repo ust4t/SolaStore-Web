@@ -1,6 +1,5 @@
 import React from "react";
-import Favorite from "@material-ui/icons/Favorite";
-import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
+import { HeartOutline, Heart as HeartIcon } from "react-ionicons";
 
 function Heart({ isLiked, setIsLiked }) {
   if (typeof isLiked !== "boolean" || typeof setIsLiked !== "function")
@@ -9,12 +8,9 @@ function Heart({ isLiked, setIsLiked }) {
   return (
     <div className="heart-container" onClick={() => setIsLiked(!isLiked)}>
       {isLiked ? (
-        <Favorite
-          className="animate__animated animate__bounceIn"
-          style={{ color: "red" }}
-        />
+        <HeartIcon color={"red"} height="50px" width="50px" />
       ) : (
-        <FavoriteBorder style={{ color: "red" }} />
+        <HeartOutline color={"red"} height="50px" width="50px" />
       )}
     </div>
   );
