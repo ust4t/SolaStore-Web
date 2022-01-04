@@ -46,7 +46,7 @@ const Details = ({
   const [product, setProduct] = useState(incomingProduct);
   const videoRef = useRef();
   useEffect(() => {
-    if (videoRef.current) videoRef.current.pause();
+    if (product.video_1 && videoRef.current) videoRef.current.pause();
     getCarts();
     getWishlist();
     // getProducts();
@@ -150,7 +150,8 @@ const Details = ({
                                   eventKey={`tum-${i}`}
                                   className="mr-0"
                                   onClick={() => {
-                                    videoRef.current.pause();
+                                    if (product.video_1)
+                                      videoRef.current.pause();
                                   }}>
                                   <img
                                     src={`${sources.imageMidSrc}${img.guidName}`}
@@ -164,8 +165,10 @@ const Details = ({
                             <Nav.Item>
                               <Nav.Link
                                 onClick={(e) => {
-                                  videoRef.current.currentTime = 0;
-                                  videoRef.current.play();
+                                  if (product.video_1) {
+                                    videoRef.current.currentTime = 0;
+                                    videoRef.current.play();
+                                  }
                                 }}
                                 eventKey={`tum-${12}`}
                                 className="mr-0">

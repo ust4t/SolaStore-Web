@@ -117,7 +117,7 @@ function MainProductCard({ id, price, name, images, oldPrice = 0, addToCart }) {
           className={`product-image-1 animate__animated animate__faster ${
             !currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
           }`}>
-          <Link href={`/shop/${id}`}>
+          <Link href={`/${id}`}>
             <Image
               src={`${sources.imageMidSrc}${images[0].guidName}`}
               width={400 * rate}
@@ -130,7 +130,7 @@ function MainProductCard({ id, price, name, images, oldPrice = 0, addToCart }) {
           className={`product-image-2 animate__animated animate__faster ${
             currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
           }`}>
-          <Link href={`/shop/${id}`}>
+          <Link href={`/${id}`}>
             <Image
               src={`${sources.imageMidSrc}${images[1].guidName}`}
               width={400 * rate}
@@ -140,7 +140,7 @@ function MainProductCard({ id, price, name, images, oldPrice = 0, addToCart }) {
           </Link>
         </div>
       </Col>
-      <Link href={`/shop/${id}`}>
+      <Link href={`/${id}`}>
         <div
           className="product-card-name"
           style={{

@@ -5,17 +5,25 @@ import { connect, useSelector } from "react-redux";
 import sources from "../../../sources";
 import { addToCart, addWishlist } from "../../redux/action/utilis";
 import ProductModal from "./ProductModal";
-const ProductListView = ({ product, col5, addToCart, addWishlist }) => {
+const ProductListView = ({
+  product,
+  col5,
+  addToCart,
+  addWishlist,
+  addToCartAction,
+}) => {
   const wishlist = useSelector((state) => state.utilis.wishlist);
   const [quickView, setQuickView] = useState(false);
-  const [addCart, setaddCart] = useState(false);
+  // const [addCart, setaddCart] = useState(false);
   const [addWishlist_, setAddWishlist_] = useState(false);
 
   const onClickCart = (e) => {
     e.preventDefault();
-    addToCart(product);
-    setaddCart(true);
-    toast.success("Add item in Cart.");
+    const productData = {
+      id: product.productID,
+      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+    };
+    addToCartAction(productData);
   };
   const onClickWishlist = (e) => {
     e.preventDefault();
@@ -39,7 +47,7 @@ const ProductListView = ({ product, col5, addToCart, addWishlist }) => {
       <div className={`col-lg-4 col-sm-6 custom-col-10`}>
         <div className="product-wrapper mb-30">
           <div className="pro-img mb-20">
-            <Link href={`/shop/${product.masterProductID}`}>
+            <Link href={`/${product.masterProductID}`}>
               <a>
                 <img
                   src={`${sources.imageMidSrc}${product.picture_1}`}
@@ -59,23 +67,19 @@ const ProductListView = ({ product, col5, addToCart, addWishlist }) => {
           <div className="pro-text">
             <div className="pro-title">
               <h6>
-                <Link href={`/shop/${product.masterProductID}`}>
+                <Link href={`/${product.masterProductID}`}>
                   {product.productShortName}
                 </Link>
               </h6>
               <h5 className="pro-price">
-                {/* <span>{`$${Number(product.mainPrice).toFixed(2)} USD`}</span> */}
-                {/* {product.price && (
-                  <del className="old-price ml-2">
-                    {`$${Number(product.price).toFixed(2)} USD`}
-                  </del>
-                )} */}
                 {product.oldPrice > 0 ? (
                   <>
-                    <del className="old-price ml-2">
-                      {`$${
-                        Number(product.oldPrice) - Number(product.price)
-                      } USD`}
+                    <del
+                      style={{
+                        color: "red",
+                      }}
+                      className="old-price ml-2">
+                      {`$${Number(product.oldPrice)} USD`}
                     </del>
                     <h5 className="old-price ml-2">
                       {`$${Number(product.price)} USD`}

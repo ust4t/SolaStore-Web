@@ -114,7 +114,7 @@ function ProductCard({
       payload: variants,
     });
     router.push({
-      pathname: `/shop/${id}`,
+      pathname: `/${id}`,
     });
   };
 

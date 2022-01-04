@@ -84,7 +84,7 @@ const Cart = () => {
                             state.cartData.map((cart) => (
                               <tr key={cart.chartID}>
                                 <td className="product-thumbnail">
-                                  <Link href={`/shop/${cart.productID}`}>
+                                  <Link href={`/${cart.productID}`}>
                                     <a>
                                       <img
                                         src={`https://solastore.com.tr/img/ProductWM/maxPic/${cart.pictureOneGuidName}`}
@@ -94,7 +94,7 @@ const Cart = () => {
                                   </Link>
                                 </td>
                                 <td className="product-name">
-                                  <Link href={`/shop/${cart.productID}`}>
+                                  <Link href={`/${cart.productID}`}>
                                     <a>{cart.productShortName}</a>
                                   </Link>
                                 </td>

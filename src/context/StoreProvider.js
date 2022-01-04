@@ -17,7 +17,7 @@ export const StoreContext = createContext();
 export default function StoreProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { refetch: cartRefetch } = useQuery(
+  const { isLoading: isCartLoading, refetch: cartRefetch } = useQuery(
     "cart",
     () =>
       fetch(
@@ -33,7 +33,7 @@ export default function StoreProvider({ children }) {
     }
   );
 
-  const { isLoading: isCartLoading, mutate } = useCartMutation("addCart");
+  const { mutate } = useCartMutation("addCart");
 
   const addToCartAction = (creds) => {
     dispatch({

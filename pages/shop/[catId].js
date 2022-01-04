@@ -9,10 +9,10 @@ const ShopIndex = ({ allProducts }) => {
 export default ShopIndex;
 
 export async function getServerSideProps(context) {
-  const { id } = context.query;
+  const { catId } = context.query;
 
   const { data } = await axios.get(
-    `https://api.solastore.com.tr/api/Product/GetAllByCategoryID?id=${id}&lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
+    `https://api.solastore.com.tr/api/Product/GetAllByCategoryID?id=${catId}&lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
   );
 
   return {

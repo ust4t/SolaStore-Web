@@ -17,50 +17,55 @@ import sources from "../../../sources";
 
 const Product = ({
   product,
-  wrapperPadding0,
-  addToCart,
+  // wrapperPadding0,
+  // addToCart,
   addWishlist,
-  compare,
-  removeCompare,
+  // compare,
+  // removeCompare,
   home5,
   notHover,
-  home3,
+  // home3,
+  addToCartAction,
 }) => {
   const wishlist = useSelector((state) => state.utilis.wishlist);
-  const compares = useSelector((state) => state.utilis.compares);
+  // const compares = useSelector((state) => state.utilis.compares);
 
   const [quickView, setQuickView] = useState(false);
-  const [addCompare, setAddCompare] = useState(false);
-  const [addCart, setaddCart] = useState(false);
+  // const [addCompare, setAddCompare] = useState(false);
+  // const [addCart, setaddCart] = useState(false);
   const [addWishlist_, setAddWishlist_] = useState(false);
 
-  const onClickCompare = (e) => {
-    e.preventDefault();
-    setAddCompare(true);
-    const exitsItem = compares.find((compare) => compare.id === product.id);
-    if (compares.length < 3) {
-      if (exitsItem) {
-        toast.error("Remove item from compare.");
-        compare(product);
-      } else {
-        toast.success("Add item in Compare.");
-        compare(product);
-      }
-    } else {
-      if (exitsItem) {
-        toast.error("Remove item from compare.");
-        removeCompare(product);
-      } else {
-        toast.error("Compare is full please remove item from compare list.");
-      }
-    }
-  };
+  // const onClickCompare = (e) => {
+  //   e.preventDefault();
+  //   setAddCompare(true);
+  //   const exitsItem = compares.find((compare) => compare.id === product.id);
+  //   if (compares.length < 3) {
+  //     if (exitsItem) {
+  //       toast.error("Remove item from compare.");
+  //       compare(product);
+  //     } else {
+  //       toast.success("Add item in Compare.");
+  //       compare(product);
+  //     }
+  //   } else {
+  //     if (exitsItem) {
+  //       toast.error("Remove item from compare.");
+  //       removeCompare(product);
+  //     } else {
+  //       toast.error("Compare is full please remove item from compare list.");
+  //     }
+  //   }
+  // };
 
   const onClickCart = (e) => {
     e.preventDefault();
-    addToCart(product);
-    setaddCart(true);
-    toast.success("Add item in Cart.");
+
+    const productData = {
+      id: product.masterProductID,
+      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+    };
+
+    addToCartAction(productData);
   };
   const onClickWishlist = (e) => {
     e.preventDefault();
@@ -82,7 +87,7 @@ const Product = ({
       />
       <div
         className={`${home5 ? "fruit-img" : "pro-img"} mb-${home5 ? 10 : 20}`}>
-        <Link href={`/shop/${product.masterProductID}`}>
+        <Link href={`/${product.masterProductID}`}>
           <a>
             <img
               className="img-fluid"
@@ -166,7 +171,7 @@ const Product = ({
         {/* {home5 && product.subName && <span>{product.subName}</span>} */}
         <div className="pro-title">
           <h6>
-            <Link href={`/shop/${product.masterProductID}`}>
+            <Link href={`/${product.masterProductID}`}>
               {product.productShortName}
             </Link>
           </h6>

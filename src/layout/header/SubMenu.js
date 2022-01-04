@@ -17,7 +17,7 @@ const SubMenu = ({ menu, getMenu }) => {
             i
           ) => (
             <li key={`${i}_*_${i}`}>
-              <Link href={`/shop?id=${categoryID}`}>
+              <Link href={`/shop/${categoryID}`}>
                 <a>{selectedCategoryName}</a>
               </Link>
               <SubCategory

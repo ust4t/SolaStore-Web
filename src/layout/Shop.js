@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Nav, Tab } from "react-bootstrap";
 import { connect } from "react-redux";
 import Paggination from "../components/Paggination";
 import Filter from "../components/product/filter/Filter";
 import Product from "../components/product/Product";
 import ProductListView from "../components/product/ProductListView";
+import { StoreContext } from "../context/StoreProvider";
 import { getProducts } from "../redux/action/product";
 import { getProductByFilter } from "../utils/filterProduct";
 import { activeData, dblock, hideProduct } from "../utils/utils";
@@ -23,6 +24,9 @@ const ShopLayout = ({
   active_,
   filter,
 }) => {
+  const { cartActions } = useContext(StoreContext);
+  const { addToCartAction } = cartActions;
+
   useEffect(() => {
     getProductByFilter(hideProduct(allProducts), filter);
   }, []);
@@ -94,7 +98,10 @@ const ShopLayout = ({
                                     : "col-lg-4 col-sm-6 custom-col-10"
                                 } ${dblock(active, i, sort)}`}
                                 key={i}>
-                                <Product product={product} />
+                                <Product
+                                  addToCartAction={addToCartAction}
+                                  product={product}
+                                />
                               </div>
                             ))}
                         </div>
@@ -102,7 +109,11 @@ const ShopLayout = ({
                       <Tab.Pane eventKey="list">
                         {products &&
                           products.map((product, i) => (
-                            <ProductListView key={i} product={product} />
+                            <ProductListView
+                              addToCartAction={addToCartAction}
+                              key={`${product.masterProductID}_|${i}`}
+                              product={product}
+                            />
                           ))}
                       </Tab.Pane>
                     </Tab.Content>
