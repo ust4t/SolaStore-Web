@@ -19,7 +19,6 @@ export default function SaleProducts({ popularData, setPopularData }) {
       if (data) setPopularData(data);
     },
   });
-  console.log(popularData);
   return (
     <Row className="popular-products">
       {isLoading ? (

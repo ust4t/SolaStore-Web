@@ -38,7 +38,7 @@ const ProductListView = ({ product, col5, addToCart, addWishlist }) => {
       <div className={`col-lg-4 col-sm-6 custom-col-10`}>
         <div className="product-wrapper mb-30">
           <div className="pro-img mb-20">
-            <Link href={`/shop/${product.id}`}>
+            <Link href={`/shop/${product.masterProductID}`}>
               <a>
                 <img src={product.img} alt="img 1" />
               </a>
@@ -55,7 +55,9 @@ const ProductListView = ({ product, col5, addToCart, addWishlist }) => {
           <div className="pro-text">
             <div className="pro-title">
               <h6>
-                <Link href={`/shop/${product.id}`}>{product.name}</Link>
+                <Link href={`/shop/${product.masterProductID}`}>
+                  {product.name}
+                </Link>
               </h6>
               <h5 className="pro-price">
                 <span>{`$${Number(product.mainPrice).toFixed(2)} USD`}</span>
@@ -84,8 +86,7 @@ const ProductListView = ({ product, col5, addToCart, addWishlist }) => {
               onClick={(e) => {
                 e.preventDefault();
                 setQuickView(true);
-              }}
-            >
+              }}>
               <i className="fal fa-eye" />
             </a>
             <a
@@ -95,8 +96,7 @@ const ProductListView = ({ product, col5, addToCart, addWishlist }) => {
                   ? "active"
                   : ""
               } `}
-              onClick={(e) => onClickWishlist(e)}
-            >
+              onClick={(e) => onClickWishlist(e)}>
               <i className="fal fa-exchange" />
             </a>
           </div>

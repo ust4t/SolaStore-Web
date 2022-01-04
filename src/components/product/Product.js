@@ -12,6 +12,8 @@ import {
 import time from "../../utils/time";
 import ProductModal from "./ProductModal";
 import Reating from "./Reating";
+import sources from "../../../sources";
+
 const Product = ({
   product,
   wrapperPadding0,
@@ -78,16 +80,19 @@ const Product = ({
         product={product}
       />
       <div
-        className={`${home5 ? "fruit-img" : "pro-img"} mb-${home5 ? 10 : 20}`}
-      >
-        <Link href={`/shop/${product.id}`}>
+        className={`${home5 ? "fruit-img" : "pro-img"} mb-${home5 ? 10 : 20}`}>
+        <Link href={`/shop/${product.masterProductID}`}>
           <a>
-            <img src={product.img} className="img-fluid" alt="Product" />
+            <img
+              src={`${sources.imageMidSrc}${product.picture_1}`}
+              className="img-fluid"
+              alt="Product"
+            />
           </a>
         </Link>
         {home5 && (
           <Fragment>
-            {product.new && <span className="new-text">sale</span>}
+            {/* {product.new && <span className="new-text">sale</span>}
             {product.sale && <span className="sale-text">sale</span>}
             {product.upComeing && (
               <div className="countdown-wrapper-five">
@@ -114,7 +119,7 @@ const Product = ({
                   </div>
                 </div>
               </div>
-            )}
+            )} */}
           </Fragment>
         )}
         {!notHover && (
@@ -124,8 +129,7 @@ const Product = ({
               onClick={(e) => onClickCart(e)}
               data-toggle="tooltip"
               data-placement="top"
-              title="Shoppingb Cart"
-            >
+              title="Shoppingb Cart">
               <i className="fal fa-cart-arrow-down" />
             </a>
             <a
@@ -136,8 +140,7 @@ const Product = ({
               }}
               data-toggle="tooltip"
               data-placement="top"
-              title="Quick View"
-            >
+              title="Quick View">
               <i className="fal fa-eye" />
             </a>
             <a
@@ -150,29 +153,41 @@ const Product = ({
                 compares.find((compare) => compare.id === product.id)
                   ? "active"
                   : ""
-              }
-            >
+              }>
               <i className="fal fa-exchange" />
             </a>
           </div>
         )}
       </div>
-      {home3 && product.reating && <Reating rating={product.reating} />}
+      {/* {home3 && product.reating && <Reating rating={product.reating} />} */}
       <div className={home5 ? "fruit-text" : "pro-text"}>
-        {home5 && product.subName && <span>{product.subName}</span>}
+        {/* {home5 && product.subName && <span>{product.subName}</span>} */}
         <div className="pro-title">
           <h6>
-            <Link href={`/shop/${product.id}`}>{product.name}</Link>
+            <Link href={`/shop/${product.masterProductID}`}>
+              {product.productShortName}
+            </Link>
           </h6>
-          {home5 ? (
-            <span className="fruit-price">
-              ${Number(product.mainPrice).toFixed(2)}{" "}
-              {product.price && <del>${Number(product.price).toFixed(2)}</del>}
-            </span>
+
+          {product.oldPrice > 0 ? (
+            <>
+              <h5 className="pro-price">
+                {product.price &&
+                  product.oldPrice &&
+                  `${
+                    Number(product.oldPrice).toFixed(2) -
+                    Number(product.price).toFixed(2)
+                  }`}
+              </h5>
+              <h5 className="pro-price">
+                {product.price && (
+                  <del>${Number(product.price).toFixed(2)}</del>
+                )}
+              </h5>
+            </>
           ) : (
             <h5 className="pro-price">
-              ${Number(product.mainPrice).toFixed(2)}{" "}
-              {product.price && <del>${Number(product.price).toFixed(2)}</del>}
+              {product.price && `$${Number(product.price).toFixed(2)}`}
             </h5>
           )}
         </div>
@@ -185,8 +200,7 @@ const Product = ({
                 wishlist && wishlist.find((pro) => pro.id === product.id)
                   ? "active"
                   : ""
-              } `}
-            >
+              } `}>
               <i className="fal fa-heart" />
             </a>
           </div>

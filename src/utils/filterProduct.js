@@ -9,7 +9,9 @@ export const getProductByFilter = (data, filters) => {
         filteredList =
           filteredList &&
           filteredList.filter((data) =>
-            data.name.toLowerCase().includes(filters[key].toLowerCase())
+            data.productShortName
+              .toLowerCase()
+              .includes(filters[key].toLowerCase())
           );
       } else {
         if (key === "colors" || key === "category" || key === "tags") {
