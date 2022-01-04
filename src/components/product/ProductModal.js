@@ -1,4 +1,4 @@
-import { useRef, Fragment, useEffect } from "react";
+import { useRef, Fragment, useEffect, useContext } from "react";
 import { Modal, Nav, Tab } from "react-bootstrap";
 import toast from "react-hot-toast";
 import { connect } from "react-redux";
@@ -19,6 +19,7 @@ import {
   HomePage_1SliderWithArrow,
   HomePage_4SliderWithArrow,
 } from "../sliders/HomePageSlider";
+import { StoreContext } from "../../context/StoreProvider";
 
 const ProductModal = ({
   show,
@@ -37,14 +38,21 @@ const ProductModal = ({
   mainPrice,
   price,
 }) => {
-  const videoRef = useRef();
-
+  const { cartActions, state } = useContext(StoreContext);
+  const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
+  const productData = {
+    id: product.masterProductID,
+    user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+  };
   useEffect(() => {
-    getCarts();
+    // getCarts();
     getWishlist();
-    getCompare();
+    // getCompare();
   }, []);
-  // const cart = product && carts && carts.find((cart) => cart.id === product.id);
+  const cart =
+    product &&
+    state.cartData &&
+    state.cartData.find((cart) => cart.productID === product.productID);
   // const wishlist =
   //   product &&
   //   wishlists &&
@@ -54,15 +62,22 @@ const ProductModal = ({
   //   compares &&
   //   compares.find((compare) => compare.id === product.id);
 
-  const onClickCart = (e) => {
+  const onAddToCart = (e) => {
     e.preventDefault();
-    // addToCart(product);
-    toast.success("Add item in Cart.");
+    const productData = {
+      id: product.masterProductID,
+      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+    };
+    addToCartAction(productData);
   };
-  const onClickRemoveCart = (e) => {
+  const handleDecreaseCart = (e) => {
     e.preventDefault();
-    // decreaseCart(cart);
-    toast.error("Remove item from Cart.");
+    if (cart && cart.quantity !== 1) decrementQuantity(productData);
+  };
+
+  const handleIncreaseCart = (e) => {
+    e.preventDefault();
+    incrementQuantity(productData);
   };
   const onClickWishlist = (e) => {
     e.preventDefault();
@@ -88,10 +103,7 @@ const ProductModal = ({
       <Modal.Body>
         <div className="product-details-area product-modal">
           <div>
-            <i
-              className="fa fa-times modal-icon "
-              onClick={() => handleClose()}
-            />
+            <i className="fa fa-times modal-icon " onClick={handleClose} />
           </div>
           <div className="row">
             <div className="col-xl-6 col-lg-6">
@@ -190,35 +202,41 @@ const ProductModal = ({
                 <div className="pro-quan-area mb-55">
                   <div className="product-quantity">
                     <div className="cart-plus-minus">
-                      {/* <input type="text" value={cart ? cart.qty : 1} disabled /> */}
-                      <input type="text" value={false ? 0 : 1} disabled />
+                      <input
+                        type="text"
+                        value={cart ? cart.quantity : 1}
+                        disabled
+                      />
                       <button
-                        className="dec qtybutton"
-                        // onClick={(e) =>
-                        //   cart && cart.qty !== 1 && onClickRemoveCart(e)
-                        // }
-                        // disabled={cart ? false : true}
-                        disabled={false}>
+                        style={
+                          cart
+                            ? { cursor: "pointer" }
+                            : {
+                                cursor: "not-allowed",
+                              }
+                        }
+                        className="dec qtybutton fw-bold "
+                        onClick={handleDecreaseCart}
+                        disabled={cart ? false : true}>
                         -
                       </button>
                       <button
-                        className="inc qtybutton"
-                        // onClick={(e) => onClickCart(e)}
-                        // disabled={cart ? false : true}
-                        disabled={false}>
+                        style={
+                          cart
+                            ? { cursor: "pointer" }
+                            : {
+                                cursor: "not-allowed",
+                              }
+                        }
+                        onClick={handleIncreaseCart}
+                        className="inc qtybutton fw-bold "
+                        disabled={cart ? false : true}>
                         +
                       </button>
                     </div>
                   </div>
                   <div className="pro-cart-btn ms-10">
-                    <a
-                      href="#"
-                      // onClick={(e) => {
-                      //   e.preventDefault();
-                      //   addToCart(product);
-                      //   toast.success("Add item in Cart.");
-                      // }}
-                    >
+                    <a href="#" onClick={onAddToCart}>
                       Add to cart
                     </a>
                   </div>
