@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import { Col, Row } from "antd";
 import { QueryClient, useMutation, useQuery } from "react-query";
@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { addToCart } from "../../redux/action/utilis";
 import { connect } from "react-redux";
+import { StoreContext } from "../../context/StoreProvider";
 
 const sendDeleteRequest = async (creds) => {
   const { data } = await axios.post(
@@ -16,6 +17,9 @@ const sendDeleteRequest = async (creds) => {
 };
 function CartProductItem({ id, image, name, price, quantity, addToCart }) {
   const queryClient = new QueryClient();
+
+  const { cartActions, isCartLoading } = useContext(StoreContext);
+  const { removeFromCart } = cartActions;
 
   const { refetch } = useQuery(
     "cart",
@@ -64,10 +68,17 @@ function CartProductItem({ id, image, name, price, quantity, addToCart }) {
           <div className="cart-product-item-name">${price}</div>
           <div className="cart-product-item-name">Adet: {quantity}</div>
         </Col>
-        {isLoading ? (
+        {isCartLoading ? (
           "Loading..."
         ) : (
-          <div onClick={() => handleDelete(id)} className="trash-container">
+          <div
+            onClick={() =>
+              removeFromCart({
+                user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+                id,
+              })
+            }
+            className="trash-container">
             <i className="fas fa-trash-alt" />
           </div>
         )}

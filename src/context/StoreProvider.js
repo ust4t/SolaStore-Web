@@ -17,7 +17,7 @@ export const StoreContext = createContext();
 export default function StoreProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { isLoading: isCartLoading, refetch: cartRefetch } = useQuery(
+  const { refetch: cartRefetch } = useQuery(
     "cart",
     () =>
       fetch(
@@ -33,12 +33,11 @@ export default function StoreProvider({ children }) {
     }
   );
 
-  const { mutate } = useCartMutation("addCart");
+  const { isLoading: isCartLoading, mutate } = useCartMutation("addCart");
 
   const addToCartAction = (creds) => {
     dispatch({
       type: ADD_TO_CART,
-      payload: { cartId: creds.id },
     });
     mutate(
       {
@@ -47,38 +46,61 @@ export default function StoreProvider({ children }) {
       {
         onSuccess: ({ data }) => {
           cartRefetch();
-          toast.success("Added To Cart");
+          toast.success("Added order to cart");
         },
       }
     );
-    console.log(state.cartQueryName);
   };
 
   const removeFromCart = (creds) => {
     dispatch({
       type: REMOVE_FROM_CART,
     });
-    mutate({
-      url: `/api/cart/removeFromCart?user=${creds.user}&ProductID=${creds.id}`,
-    });
+    mutate(
+      {
+        url: `/api/cart/removeFromCart?user=${creds.user}&ProductID=${creds.id}`,
+      },
+      {
+        onSuccess: ({ data }) => {
+          cartRefetch();
+          toast.error("Removed From Cart");
+        },
+      }
+    );
   };
 
   const incrementQuantity = (creds) => {
     dispatch({
       type: INCREMENT_QUANTITY,
     });
-    mutate({
-      url: `/api/cart/increaseProductCount?user=${creds.user}&ProductID=${creds.id}`,
-    });
+    mutate(
+      {
+        url: `/api/cart/increaseProductCount?user=${creds.user}&ProductID=${creds.id}`,
+      },
+      {
+        onSuccess: ({ data }) => {
+          cartRefetch();
+          toast.success("Increased Quantity");
+        },
+      }
+    );
   };
 
   const decrementQuantity = (creds) => {
     dispatch({
       type: DECREMENT_QUANTITY,
     });
-    mutate({
-      url: `/api/cart/decreaseProductCount?user=${creds.user}&ProductID=${creds.id}`,
-    });
+    mutate(
+      {
+        url: `/api/cart/decreaseProductCount?user=${creds.user}&ProductID=${creds.id}`,
+      },
+      {
+        onSuccess: ({ data }) => {
+          cartRefetch();
+          toast.error("Decreased Quantity");
+        },
+      }
+    );
   };
 
   const cartActions = {

@@ -1,12 +1,12 @@
 import axios from "axios";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { toast } from "react-hot-toast";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useContext, useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
 import CartAmount from "../src/components/cart/CartAmount";
+import { StoreContext } from "../src/context/StoreProvider";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
+import Loader from "../src/components/Loader";
 import {
   addToCart,
   decreaseCart,
@@ -21,59 +21,24 @@ const sendDeleteRequest = async (creds) => {
   return response.data;
 };
 
-const Cart = ({ removeCart, addToCart, decreaseCart }) => {
-  const cartsState = useSelector((state) => state.utilis.carts);
-  const [carts, setCarts] = useState([]);
-  const queryClient = useQueryClient();
-
-  const { isLoading, error, refetch } = useQuery(
-    "cart",
-    () =>
-      fetch(
-        `/api/cart/getCartItems?user=${"0d1c9955-326f-42fd-b04d-b745b80b70e3"}`
-      ).then((res) => res.json()),
-    {
-      onSuccess: (data) => {
-        setCarts(data);
-        addToCart(data.data);
-      },
-    }
-  );
-
-  const { mutate, isLoading: isDeleteLoading } = useMutation(
-    "deleteCart",
-    sendDeleteRequest,
-    {
-      onSuccess: (data) => {
-        refetch();
-        setaddCart(true);
-        toast.error("Remove Item from cart.");
-      },
-      onError: (error) => {
-        console.log(error);
-        alert(`there was an error ${id}`);
-      },
-      onSettled: () => {
-        queryClient.invalidateQueries("deleteCart");
-      },
-    }
-  );
-
-  useEffect(() => {
-    refetch();
-  }, [cartsState]);
-
-  const [cartValue, setCartValue] = useState(0);
+const Cart = () => {
+  const { cartActions, state, isCartLoading } = useContext(StoreContext);
+  const {
+    removeFromCart: removeFromCartAction,
+    incrementQuantity,
+    decrementQuantity,
+  } = cartActions;
 
   const [addCart, setaddCart] = useState(false);
 
   const removeFromCart = (e, { id }) => {
-    removeCart(id);
+    // removeCart(id);
     const cartData = {
       id,
       user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
     };
-    mutate(cartData);
+    // mutate(cartData);
+    removeFromCartAction(cartData);
 
     e.preventDefault();
   };
@@ -94,9 +59,9 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
       <main>
         <PageTitle active="Cart" pageTitle="Shoping Cart" />
 
-        {isLoading ? (
-          "Loading..."
-        ) : carts && carts.data.length > 0 ? (
+        {isCartLoading ? (
+          <Loader />
+        ) : state.cartData && state.cartData.length > 0 ? (
           <section className="cart-area pt-100 pb-100">
             <div className="container">
               <div className="row">
@@ -115,19 +80,23 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                           </tr>
                         </thead>
                         <tbody>
-                          {carts &&
-                            carts.data.map((cart) => (
+                          {state.cartData &&
+                            state.cartData.map((cart) => (
                               <tr key={cart.chartID}>
                                 <td className="product-thumbnail">
-                                  <a href="#">
-                                    <img
-                                      src={`https://solastore.com.tr/img/ProductWM/maxPic/${cart.pictureOneGuidName}`}
-                                      alt="cart"
-                                    />
-                                  </a>
+                                  <Link href={`/shop/${cart.productID}`}>
+                                    <a>
+                                      <img
+                                        src={`https://solastore.com.tr/img/ProductWM/maxPic/${cart.pictureOneGuidName}`}
+                                        alt="cart"
+                                      />
+                                    </a>
+                                  </Link>
                                 </td>
                                 <td className="product-name">
-                                  <a href="#">{cart.productShortName}</a>
+                                  <Link href={`/shop/${cart.productID}`}>
+                                    <a>{cart.productShortName}</a>
+                                  </Link>
                                 </td>
                                 <td className="product-price">
                                   <span className="amount">
@@ -136,12 +105,11 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                 </td>
                                 <td className="product-quantity">
                                   <CartAmount
+                                    incrementQuantity={incrementQuantity}
+                                    decrementQuantity={decrementQuantity}
                                     productID={cart.productID}
                                     cart={cart}
-                                    refetch={refetch}
-                                    setaddCart={setaddCart}
-                                    addToCart={addToCart}
-                                    decreaseCart={decreaseCart}
+                                    isCartLoading={isCartLoading}
                                   />
                                 </td>
                                 <td className="product-subtotal">
@@ -152,7 +120,7 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                   </span>
                                 </td>
                                 <td className="product-remove">
-                                  {isDeleteLoading ? (
+                                  {isCartLoading ? (
                                     "Loading..."
                                   ) : (
                                     <a
@@ -161,8 +129,7 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                         removeFromCart(e, {
                                           id: cart.productID,
                                         })
-                                      }
-                                    >
+                                      }>
                                       <i className="fa fa-times" />
                                     </a>
                                   )}
@@ -188,8 +155,7 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                 className="bt-btn theme-btn-2"
                                 name="apply_coupon"
                                 type="submit"
-                                onClick={(e) => e.preventDefault()}
-                              >
+                                onClick={(e) => e.preventDefault()}>
                                 Apply coupon
                               </button>
                             </form>
@@ -208,7 +174,7 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                           <h2>Cart totals</h2>
                           <ul className="mb-20">
                             <li>
-                              Total <span>${totalPrice(carts.data)}</span>
+                              Total <span>${totalPrice(state.cartData)}</span>
                             </li>
                           </ul>
                           <Link href="/checkout">
