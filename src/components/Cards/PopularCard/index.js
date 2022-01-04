@@ -6,7 +6,12 @@ import { Autoplay, Navigation } from "swiper";
 import { ChevronBackOutline, ChevronForwardOutline } from "react-ionicons";
 // import "swiper/css";
 import axios from "axios";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import {
+  useIsMutating,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "react-query";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 
@@ -37,10 +42,9 @@ function ProductCard({
   variants,
   addToCart,
 }) {
-  //   const colors = Object.keys(images);
-  //   if (colors?.length < 1) return null;
   const router = useRouter();
-  const { dispatch } = useContext(StoreContext);
+  const { state, dispatch, cartActions } = useContext(StoreContext);
+  const { addToCartAction } = cartActions;
   const [currentImages, setCurrentImages] = useState({
     id,
     pictures: images,
@@ -61,6 +65,7 @@ function ProductCard({
       },
     }
   );
+  const isMutating = useIsMutating({ mutationKey: `addCart_${id}` });
   const { mutate, isLoading } = useMutation(sendCartRequest, {
     onSuccess: (data) => {
       refetch();
@@ -92,10 +97,15 @@ function ProductCard({
     setCurrentImageIndex(0);
   };
   const onAddToCart = () => {
-    const cartCurrent = {
-      id: currentImages.id,
-    };
-    mutate(cartCurrent);
+    addToCartAction({
+      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+      id,
+    });
+    console.log(state.cartData);
+    // const cartCurrent = {
+    //   id: currentImages.id,
+    // };
+    // mutate(cartCurrent);
   };
 
   const navigateToDetail = () => {
@@ -136,7 +146,7 @@ function ProductCard({
             currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
           }`}
           onClick={onAddToCart}>
-          {isLoading ? "Loading......" : "Sepete Ekle"}
+          {isMutating > 0 ? "Loading......" : "Sepete Ekle"}
         </div>
 
         <div

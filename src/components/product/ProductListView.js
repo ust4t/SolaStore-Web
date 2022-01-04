@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { connect, useSelector } from "react-redux";
+import sources from "../../../sources";
 import { addToCart, addWishlist } from "../../redux/action/utilis";
 import ProductModal from "./ProductModal";
 const ProductListView = ({ product, col5, addToCart, addWishlist }) => {
@@ -40,7 +41,10 @@ const ProductListView = ({ product, col5, addToCart, addWishlist }) => {
           <div className="pro-img mb-20">
             <Link href={`/shop/${product.masterProductID}`}>
               <a>
-                <img src={product.img} alt="img 1" />
+                <img
+                  src={`${sources.imageMidSrc}${product.picture_1}`}
+                  alt="img 1"
+                />
               </a>
             </Link>
             <div className="sale-tag">
@@ -56,27 +60,36 @@ const ProductListView = ({ product, col5, addToCart, addWishlist }) => {
             <div className="pro-title">
               <h6>
                 <Link href={`/shop/${product.masterProductID}`}>
-                  {product.name}
+                  {product.productShortName}
                 </Link>
               </h6>
               <h5 className="pro-price">
-                <span>{`$${Number(product.mainPrice).toFixed(2)} USD`}</span>
-                {product.price && (
+                {/* <span>{`$${Number(product.mainPrice).toFixed(2)} USD`}</span> */}
+                {/* {product.price && (
                   <del className="old-price ml-2">
                     {`$${Number(product.price).toFixed(2)} USD`}
                   </del>
+                )} */}
+                {product.oldPrice > 0 ? (
+                  <>
+                    <del className="old-price ml-2">
+                      {`$${
+                        Number(product.oldPrice) - Number(product.price)
+                      } USD`}
+                    </del>
+                    <h5 className="old-price ml-2">
+                      {`$${Number(product.price)} USD`}
+                    </h5>
+                  </>
+                ) : (
+                  <h5 className="old-price ml-2">
+                    {`$${Number(product.price)} USD`}
+                  </h5>
                 )}
               </h5>
             </div>
           </div>
-          <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-            aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-            eos qui ratione voluptatem sequi nesciunt.
-          </p>
+          {product.selectedDetail && <p>{product.selectedDetail}</p>}
           <div className="product-action">
             <a href="#" title="Shoppingb Cart" onClick={(e) => onClickCart(e)}>
               <i className="fal fa-cart-arrow-down" />
@@ -89,7 +102,7 @@ const ProductListView = ({ product, col5, addToCart, addWishlist }) => {
               }}>
               <i className="fal fa-eye" />
             </a>
-            <a
+            {/* <a
               href="#"
               className={` ${
                 wishlist && wishlist.find((pro) => pro.id === product.id)
@@ -98,7 +111,7 @@ const ProductListView = ({ product, col5, addToCart, addWishlist }) => {
               } `}
               onClick={(e) => onClickWishlist(e)}>
               <i className="fal fa-exchange" />
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

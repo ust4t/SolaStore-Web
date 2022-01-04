@@ -43,8 +43,7 @@ export const HomePageSliderWithDot = ({ sliders, children, extraClass }) => {
         extraClass
           ? extraClass
           : "slider-active slider-active-five common-dots common-space-5"
-      }
-    >
+      }>
       {children}
     </Slider>
   );
@@ -89,8 +88,7 @@ export const HomePage_1SliderWithArrow = ({
   return (
     <Slider
       {...settings}
-      className={extraClass ? extraClass : "dis-img-active"}
-    >
+      className={extraClass ? extraClass : "dis-img-active"}>
       {children}
     </Slider>
   );
@@ -119,8 +117,7 @@ export const HomePage_4SliderWithArrow = ({ children, extraClass }) => {
   return (
     <Slider
       {...settings}
-      className={extraClass ? extraClass : "dis-img-active"}
-    >
+      className={extraClass ? extraClass : "dis-img-active"}>
       {children}{" "}
     </Slider>
   );
@@ -149,8 +146,7 @@ export const HomePageProductSliderWithArrow = ({ children, extraClass }) => {
         extraClass
           ? extraClass
           : "row custom-row-10 product-active common-arrows"
-      }
-    >
+      }>
       {children}
     </Slider>
   );
@@ -176,8 +172,7 @@ export const HomePage5UpcomingSlider = ({ children, extraClass }) => {
       {...settings}
       className={
         extraClass ? extraClass : "row product-deals-five-active common-arrows"
-      }
-    >
+      }>
       {children}
     </Slider>
   );

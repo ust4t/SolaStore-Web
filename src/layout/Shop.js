@@ -100,10 +100,10 @@ const ShopLayout = ({
                         </div>
                       </Tab.Pane>
                       <Tab.Pane eventKey="list">
-                        {/* {products &&
+                        {products &&
                           products.map((product, i) => (
                             <ProductListView key={i} product={product} />
-                          ))} */}
+                          ))}
                       </Tab.Pane>
                     </Tab.Content>
                   </Tab.Container>
@@ -119,13 +119,12 @@ const ShopLayout = ({
                   />
                 </div>
               </div>
-              {/*
+
               {!full && rightSideBar && (
                 <div className="col-lg-3 col-md-4">
                   <Filter setActive_={() => setActive(0)} />
                 </div>
               )}
-            */}
             </div>
           </div>
         </section>

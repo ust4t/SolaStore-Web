@@ -43,7 +43,7 @@ const Filter2 = ({
               className="form-control"
               placeholder="Your keyword...."
               value={search}
-              onChange={(e) => filterByName(e.target.value)}
+              // onChange={(e) => filterByName(e.target.value)}
             />
             <span
               className="input-group-text bg-dark text-white "
@@ -112,7 +112,7 @@ const Filter2 = ({
                   <div className="side-pro-text">
                     <h6>
                       <Link href={`/shop/${product.masterProductID}`}>
-                        <a>{product.name}</a>
+                        <a>{product.productShortName}</a>
                       </Link>
                     </h6>
                     <span className="price">

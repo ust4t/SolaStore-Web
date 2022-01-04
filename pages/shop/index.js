@@ -2,6 +2,7 @@ import axios from "axios";
 import Shop from "../../src/layout/Shop";
 
 const ShopIndex = ({ allProducts }) => {
+  console.log(allProducts);
   return <Shop allProducts={allProducts} />;
 };
 
@@ -16,7 +17,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      allProducts: data.slice(0, 15),
+      allProducts: data.slice(0, 120),
     },
   };
 }

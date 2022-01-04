@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { useRef, Fragment, useEffect } from "react";
 import { Modal, Nav, Tab } from "react-bootstrap";
 import toast from "react-hot-toast";
 import { connect } from "react-redux";
@@ -13,6 +13,12 @@ import {
 } from "../../redux/action/utilis";
 import Reating from "./Reating";
 import sources from "../../../sources";
+import {
+  HomePage5UpcomingSlider,
+  HomePageSliderWithArrow as HomePageSliderWithArrowWithVideo,
+  HomePage_1SliderWithArrow,
+  HomePage_4SliderWithArrow,
+} from "../sliders/HomePageSlider";
 
 const ProductModal = ({
   show,
@@ -31,6 +37,8 @@ const ProductModal = ({
   mainPrice,
   price,
 }) => {
+  const videoRef = useRef();
+
   useEffect(() => {
     getCarts();
     getWishlist();
@@ -89,36 +97,57 @@ const ProductModal = ({
             <div className="col-xl-6 col-lg-6">
               <Tab.Container defaultActiveKey="tum-0">
                 <div className="pro-details-tab">
-                  <Tab.Content className="tab-content custom-content">
-                    {product &&
-                      product.pictures.map((img, i) => (
-                        <Tab.Pane
-                          key={`${img.productID}__${img.brandID}`}
-                          eventKey={`tum-${i}`}>
-                          <img
-                            src={`${sources.imageMidSrc}${img.guidName}`}
-                            className="img-fluid"
-                            alt="Tum img"
-                          />
-                        </Tab.Pane>
-                      ))}
+                  <Tab.Content className="tab-content custom-content ">
+                    <HomePageSliderWithArrowWithVideo
+                      sliders={product}
+                      extraClass="slider-active slider-active-one">
+                      {product.video_1 && (
+                        <div className="single-slider single-img d-flex align-items-end ">
+                          <video
+                            controls
+                            autoPlay
+                            style={{
+                              zIndex: "25",
+                            }}
+                            width="536"
+                            height="650">
+                            <source
+                              src={`${sources.videos}${product.video_1}`}
+                              type="video/mp4"
+                            />
+                          </video>
+                        </div>
+                      )}
+                      {product &&
+                        product.pictures.map((img, i) => (
+                          <div
+                            className="single-slider single-img d-flex align-items-end"
+                            key={`${img.productID}__${img.brandID}`}>
+                            <img
+                              src={`${sources.imageMaxSrc}${img.guidName}`}
+                              className="img-fluid"
+                              alt="Tum img"
+                            />
+                          </div>
+                        ))}
+                    </HomePageSliderWithArrowWithVideo>
                   </Tab.Content>
                   <Nav
                     className="nav custom-tab mt-3"
                     id="myTab"
                     role="tablist">
-                    {product &&
-                      product.pictures.map((img, i) => (
-                        <Nav.Item key={i}>
-                          <Nav.Link eventKey={`tum-${i}`}>
-                            <img
-                              src={`${sources.imageMinSrc}${img.guidName}`}
-                              className="img-fluid"
-                              alt="Src"
-                            />
-                          </Nav.Link>
-                        </Nav.Item>
-                      ))}
+                    {/* {product &&
+                        product.pictures.map((img, i) => (
+                          <Nav.Item key={i}>
+                            <Nav.Link eventKey={`tum-${i}`}>
+                              <img
+                                src={`${sources.imageMinSrc}${img.guidName}`}
+                                className="img-fluid"
+                                alt="Src"
+                              />
+                            </Nav.Link>
+                          </Nav.Item>
+                        ))} */}
                   </Nav>
                 </div>
               </Tab.Container>
@@ -133,36 +162,50 @@ const ProductModal = ({
                   </div>
                 )} */}
                 <span className="details-pro-price mb-40">
-                  {/* $ {product && Number(product.mainPrice).toFixed(2)}{" "} */}
-                  {product &&
+                  {product.oldPrice > 0 ? (
+                    <>
+                      <h5 className="pro-price">
+                        <del
+                          style={{
+                            color: "red",
+                          }}>
+                          ${product.oldPrice} USD
+                        </del>
+                      </h5>
+                      <h5 className="pro-price">${product.price} USD</h5>
+                    </>
+                  ) : (
+                    <h5 className="pro-price">${product.price} USD</h5>
+                  )}
+                  {/* product &&
                     product.price &&
-                    `- $${product && Number(product.price).toFixed(2)}`}
+                    `- $${product && Number(product.price).toFixed(2)}`} */}
                 </span>
-                <p>
+                {/* <p>
                   La croix blog sriracha, distillery ugh small batch retro
                   literally coloring book disrupt gochujang affogato. Edison
                   bulb. The next generation of our icon library + toolkit is
                   coming with more icons, more styles, more services..
-                </p>
+                </p> */}
                 <div className="pro-quan-area mb-55">
                   <div className="product-quantity">
                     <div className="cart-plus-minus">
                       {/* <input type="text" value={cart ? cart.qty : 1} disabled /> */}
+                      <input type="text" value={false ? 0 : 1} disabled />
                       <button
                         className="dec qtybutton"
                         // onClick={(e) =>
                         //   cart && cart.qty !== 1 && onClickRemoveCart(e)
                         // }
                         // disabled={cart ? false : true}
-                        disabled
-                        >
+                        disabled={false}>
                         -
                       </button>
                       <button
                         className="inc qtybutton"
                         // onClick={(e) => onClickCart(e)}
                         // disabled={cart ? false : true}
-                        disabled>
+                        disabled={false}>
                         +
                       </button>
                     </div>
@@ -175,7 +218,7 @@ const ProductModal = ({
                       //   addToCart(product);
                       //   toast.success("Add item in Cart.");
                       // }}
-                      >
+                    >
                       Add to cart
                     </a>
                   </div>
@@ -185,7 +228,7 @@ const ProductModal = ({
                       // className={`${wishlist ? "active_wishList" : ""} `}
                       className={`${true ? "active_wishList" : ""} `}
                       // onClick={(e) => onClickWishlist(e)}
-                      >
+                    >
                       <i className="fas fa-heart" />
                     </a>
                   </div>
@@ -200,20 +243,18 @@ const ProductModal = ({
                           {/* {product && product.stock
                             ? "In Stock"
                             : "Out Of Stock"} */}
-                          {product 
-                            ? "In Stock"
-                            : "Out Of Stock"}
+                          {product ? "In Stock" : "Out Of Stock"}
                         </span>
                       </li>
                       <li>
-                        <span>SKU :</span>{" "}
+                        <span>SKU :</span> {product.productStockCode}
                         {/* <span className="s-text">
                           {product &&
                             product.category[0].split("")[0] + product.id}
                         </span>{" "} */}
                       </li>
                       <li>
-                        <span>Categgory :</span>{" "}
+                        <span>Category :</span>{" "}
                         <span className="s-text text-capitalize">
                           {" "}
                           {/* {product &&

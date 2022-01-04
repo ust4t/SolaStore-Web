@@ -119,10 +119,7 @@ export const totalProductByKey = (data, key, value) => {
 };
 
 export const hideProduct = (products) => {
-  return (
-    // products && products.filter((product) => product.showProductPage !== false)
-    products
-  );
+  return products && products.filter((product) => product.productID);
 };
 
 export const animationCreate = () => {

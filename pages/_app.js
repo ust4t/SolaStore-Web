@@ -30,24 +30,24 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Provider store={store}>
-      <StoreProvider>
-        <AllToaster />
-        <Head>
-          <title>Retro - Minimal eCommerce Redux Template</title>
-          <meta name="description" content />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="manifest" href="site.webmanifest" />
-          <link
-            rel="shortcut icon"
-            type="image/x-icon"
-            href="/img/logo/favicon.png"
-          />
-        </Head>
-        {preloader ? <Preloader /> : <ScrollTop />}
-        <QueryClientProvider client={queryClient}>
+      <AllToaster />
+      <Head>
+        <title>Retro - Minimal eCommerce Redux Template</title>
+        <meta name="description" content />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="manifest" href="site.webmanifest" />
+        <link
+          rel="shortcut icon"
+          type="image/x-icon"
+          href="/img/logo/favicon.png"
+        />
+      </Head>
+      {preloader ? <Preloader /> : <ScrollTop />}
+      <QueryClientProvider client={queryClient}>
+        <StoreProvider>
           <Component {...pageProps} />
-        </QueryClientProvider>
-      </StoreProvider>
+        </StoreProvider>
+      </QueryClientProvider>
     </Provider>
   );
 }

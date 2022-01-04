@@ -88,7 +88,7 @@ const Product = ({
               className="img-fluid"
               src={`${sources.imageMidSrc}${product.picture_1}`}
               alt="Product"
-              layout="fill"
+              loading="lazy"
             />
           </a>
         </Link>
@@ -145,7 +145,7 @@ const Product = ({
               title="Quick View">
               <i className="fal fa-eye" />
             </a>
-            <a
+            {/* <a
               href="#"
               onClick={(e) => onClickCompare(e)}
               data-toggle="tooltip"
@@ -157,7 +157,7 @@ const Product = ({
                   : ""
               }>
               <i className="fal fa-exchange" />
-            </a>
+            </a> */}
           </div>
         )}
       </div>
@@ -173,23 +173,23 @@ const Product = ({
 
           {product.oldPrice > 0 ? (
             <>
-              <h5 className="pro-price">
-                {product.price &&
-                  product.oldPrice &&
-                  `${
-                    Number(product.oldPrice).toFixed(2) -
-                    Number(product.price).toFixed(2)
-                  }`}
+              <h5>
+                {product.price && (
+                  <del
+                    style={{
+                      color: "red !important",
+                    }}>
+                    ${Number(product.oldPrice)} USD
+                  </del>
+                )}
               </h5>
               <h5 className="pro-price">
-                {product.price && (
-                  <del>${Number(product.price).toFixed(2)}</del>
-                )}
+                {product.price && `$${Number(product.price)} USD`}
               </h5>
             </>
           ) : (
             <h5 className="pro-price">
-              {product.price && `$${Number(product.price).toFixed(2)}`}
+              {product.price && `$${Number(product.price)} USD`}
             </h5>
           )}
         </div>

@@ -5,14 +5,15 @@ import ColorfulText from "../../components/ColorfulText";
 import CartProductItem from "../../components/CartProductItem";
 import { removeCart } from "../../redux/action/utilis";
 import { QueryClient, useMutation } from "react-query";
+import { useContext } from "react";
+import { StoreContext } from "../../context/StoreProvider";
 import toast from "react-hot-toast";
 
 export const SearchIcon = ({ hendelChangeSearch }) => (
   <Link href="#">
     <a
       className="search-btn nav-search search-trigger"
-      onClick={() => hendelChangeSearch()}
-    >
+      onClick={() => hendelChangeSearch()}>
       <i className="fas fa-search" />
     </a>
   </Link>
@@ -50,17 +51,18 @@ export const CompareIcon = () => {
 };
 
 export const CartIcon = ({ removeCart }) => {
-  const carts = useSelector((state) => state.utilis.carts);
+  // const carts = useSelector((state) => state.utilis.carts);
+  const { state } = useContext(StoreContext);
 
   const cartsNum =
-    carts &&
-    carts.reduce((quantity, currQty) => {
+    state.cartData &&
+    state.cartData.reduce((quantity, currQty) => {
       return quantity + currQty.quantity;
     }, 0);
 
   const totalPrice =
-    carts &&
-    carts.reduce((price, currPrice) => {
+    state.cartData &&
+    state.cartData.reduce((price, currPrice) => {
       return price + currPrice.price;
     }, 0);
 
@@ -69,8 +71,8 @@ export const CartIcon = ({ removeCart }) => {
       <div style={{ display: "flex", justifyContent: "end" }}>
         <ColorfulText>${totalPrice || 0}</ColorfulText>
       </div>
-      {carts &&
-        carts.map(
+      {state.cartData &&
+        state.cartData.map(
           ({
             chartID,
             pictureOneGuidName,
@@ -93,7 +95,7 @@ export const CartIcon = ({ removeCart }) => {
   );
   return (
     <Link href="/cart">
-      {carts ? (
+      {state.cartData ? (
         <Dropdown overlay={menu} placement="topRight">
           <a className="position-relative">
             <span className="iconValue">{cartsNum || 0}</span>
@@ -130,8 +132,7 @@ export const HamburgerIcon = ({ sidebarActive, darkBg }) => (
         onClick={(e) => {
           sidebarActive();
           e.preventDefault();
-        }}
-      >
+        }}>
         <i className="fal fa-bars favf" />
       </a>
     </Link>
@@ -144,8 +145,7 @@ export const HomeHamburgerIcon = ({ sidebarActive }) => (
         onClick={(e) => {
           e.preventDefault();
           sidebarActive();
-        }}
-      >
+        }}>
         <span className="bar1" />
         <span className="bar2" />
         <span className="bar3" />

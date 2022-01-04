@@ -11,8 +11,7 @@ const Paggination = ({ setActive, active, length, sort }) => {
                   onClick={(e) => {
                     setActive(0);
                     e.preventDefault();
-                  }}
-                >
+                  }}>
                   <i className="fas fa-angle-double-left" />
                 </a>
               </li>
@@ -26,8 +25,7 @@ const Paggination = ({ setActive, active, length, sort }) => {
                       onClick={(e) => {
                         setActive(i);
                         e.preventDefault();
-                      }}
-                    >
+                      }}>
                       {i < 9 ? `0${i + 1}` : i + 1}
                     </a>
                   </li>
@@ -39,8 +37,7 @@ const Paggination = ({ setActive, active, length, sort }) => {
                   onClick={(e) => {
                     setActive(Array(Math.ceil(length / sort)).length - 1);
                     e.preventDefault();
-                  }}
-                >
+                  }}>
                   <i className="fas fa-angle-double-right" />
                 </a>
               </li>
