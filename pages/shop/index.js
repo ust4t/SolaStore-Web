@@ -16,7 +16,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      allProducts: data,
+      allProducts: data.slice(0, 15),
     },
   };
 }

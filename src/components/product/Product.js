@@ -12,6 +12,7 @@ import {
 import time from "../../utils/time";
 import ProductModal from "./ProductModal";
 import Reating from "./Reating";
+import Image from "next/image";
 import sources from "../../../sources";
 
 const Product = ({
@@ -84,9 +85,10 @@ const Product = ({
         <Link href={`/shop/${product.masterProductID}`}>
           <a>
             <img
-              src={`${sources.imageMidSrc}${product.picture_1}`}
               className="img-fluid"
+              src={`${sources.imageMidSrc}${product.picture_1}`}
               alt="Product"
+              layout="fill"
             />
           </a>
         </Link>
