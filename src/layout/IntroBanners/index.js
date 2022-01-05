@@ -13,6 +13,7 @@ import Loader from "../../components/Loader";
 import sources from "../../../sources";
 import Link from "next/link";
 import styles from "./IntroBanners.module.css";
+import BannerCard from "../../components/Cards/BannerCard";
 
 const fetchBanners = async () => {
   const { data } = await axios.get("/api/advertisement/getBanners");
@@ -32,112 +33,30 @@ function IntroBanners() {
       {isLoading ? (
         <Loader />
       ) : (
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          sx={{ width: "100%", minHeight: 400 }}
-          p={{
-            xs: 0,
-            md: 5,
-            lg: 15,
-          }}>
-          <Masonry
-            sx={{
-              display: "flex",
-              alignContent: "center",
-              justifyContent: "center",
-            }}
-            columns={{
-              xs: 0,
-              md: 2,
-            }}
-            spacing={2}>
-            {banners.map(
-              (
-                {
-                  pictureID,
-                  guidName,
-                  selectedText1,
-                  selectedText2,
-                  selectedTextButton,
-                },
-                index
-              ) => (
-                <Link href="/blog">
-                  <Stack
-                    sx={{
-                      cursor: "pointer",
-                    }}
-                    position="relative"
-                    key={pictureID}>
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        color: "#fff",
-                        display: "flex",
-                        textAlign: "left",
-                        gap: "10px",
-                        flexDirection: "column",
-                        alignItems: "flex-start",
-                        justifyContent: "center",
-                        minWidth: "85%",
-                        minHeight: "85%",
-                        border: ".5rem solid rgba(255,255,255,.3)",
-                        transform: "translate(-50%, -50%)",
-                        transition: "all .3s ease-in-out",
-                        "&:hover": {
-                          backgroundColor: "rgba(255,255,255,.3)",
-                        },
-                      }}>
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          color: "#fff",
-                          textShadow: "1px 1px #000000",
-                        }}
-                        color="#fff">
-                        {selectedText1}
-                      </Typography>
-                      <Typography
-                        variant="h4"
-                        sx={{
-                          color: "#fff",
-                          textShadow: "1px 1px #000000",
-                        }}
-                        color="#fff">
-                        {selectedText2}
-                      </Typography>
-                      <Typography
-                        variant="button"
-                        sx={{
-                          color: "#fff",
-                          textShadow: "1px 1px #000000",
-                          transition: "all .3s ease-in-out",
-                          borderBottom: "1.5px solid transparent",
-                          "&:hover": {
-                            color: "#c96c6c",
-                            borderColor: "#c96c6c",
-                          },
-                        }}>
-                        {selectedTextButton}→
-                      </Typography>
-                    </Box>
-
-                    <img
-                      src={`${sources.banners}${guidName}`}
-                      alt={"product banner"}
-                      className="img-fluid"
-                      loading="lazy"
-                    />
-                  </Stack>
-                </Link>
-              )
-            )}
-          </Masonry>
-        </Box>
+        <div className="banner-area pt-120">
+          <div className="container">
+            <div className="row custom-row align-items-center">
+              <BannerCard
+                banner={banners[1].guidName}
+                upperTitle={banners[1].selectedText1}
+                lowerTitle={banners[1].selectedText2}
+                buttonText={banners[1].selectedTextButton}
+              />
+              <BannerCard
+                banner={banners[0].guidName}
+                upperTitle={banners[0].selectedText1}
+                lowerTitle={banners[0].selectedText2}
+                buttonText={banners[0].selectedTextButton}
+              />
+              <BannerCard
+                banner={banners[2].guidName}
+                upperTitle={banners[2].selectedText1}
+                lowerTitle={banners[2].selectedText2}
+                buttonText={banners[2].selectedTextButton}
+              />
+            </div>
+          </div>
+        </div>
       )}
     </>
   );

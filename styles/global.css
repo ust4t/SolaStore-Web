@@ -3,6 +3,11 @@
     material-ui
 */
 
+::selection {
+  color: #fff;
+  background: var(--color-primary);
+}
+
 /* PopularProduct */
 .popular-products {
   margin-top: 50px;
@@ -262,4 +267,15 @@
 
 .swiper-button-prev {
   left: 0 !important;
+}
+
+.slider-active:hover button.slick-prev {
+  left: 10px !important;
+}
+.slider-active:hover button.slick-next {
+  right: 10px !important;
+}
+
+.slider-active button:hover {
+  background: var(--color-primary);
 }

@@ -8,6 +8,8 @@ import { useQuery } from "react-query";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import Loader from "../Loader";
+import { HomePageProductSliderWithArrow } from "../sliders/HomePageSlider";
+import Product from "../product/Product";
 
 const fetchPopulars = async () => {
   const res = await fetch("/api/getPopulars");
@@ -31,48 +33,68 @@ function PopularProducts({ popularData, setPopularData }) {
       {isLoading ? (
         <Loader />
       ) : (
-        <Swiper
-          modules={[Autoplay]}
-          spaceBetween={0}
-          centeredSlides={true}
-          slidesPerView={1}
-          loopFillGroupWithBlank={true}
-          loop={true}
-          autoplay={{
-            delay: 8000,
-          }}
-          breakpoints={{
-            395: {
-              slidesPerView: 2,
-            },
-            768: {
-              slidesPerView: 4,
-            },
-            1024: {
-              slidesPerView: 4,
-            },
-          }}
-          className="mySwiper">
+        // <Swiper
+        //   modules={[Autoplay]}
+        //   spaceBetween={0}
+        //   centeredSlides={true}
+        //   slidesPerView={1}
+        //   loopFillGroupWithBlank={true}
+        //   loop={true}
+        //   autoplay={{
+        //     delay: 8000,
+        //   }}
+        //   breakpoints={{
+        //     395: {
+        //       slidesPerView: 2,
+        //     },
+        //     768: {
+        //       slidesPerView: 4,
+        //     },
+        //     1024: {
+        //       slidesPerView: 4,
+        //     },
+        //   }}
+        //   className="mySwiper">
+        //   {popularData
+        //     .slice(14, data.length - 1)
+        //     .map(
+        //       ({ id, name, images, price, discount, oldPrice, variants }) => {
+        //         return (
+        //           <SwiperSlide key={id}>
+        //             <PopularCard
+        //               id={id}
+        //               price={price}
+        //               oldPrice={oldPrice}
+        //               name={name}
+        //               discount={discount}
+        //               images={images}
+        //               variants={variants}
+        //             />
+        //           </SwiperSlide>
+        //         );
+        //       }
+        //     )}
+        // </Swiper>
+        <HomePageProductSliderWithArrow>
           {popularData
             .slice(14, data.length - 1)
             .map(
               ({ id, name, images, price, discount, oldPrice, variants }) => {
                 return (
-                  <SwiperSlide key={id}>
-                    <PopularCard
-                      id={id}
-                      price={price}
-                      oldPrice={oldPrice}
-                      name={name}
-                      discount={discount}
-                      images={images}
-                      variants={variants}
-                    />
-                  </SwiperSlide>
+                  <PopularCard
+                    key={id}
+                    id={id}
+                    price={price}
+                    oldPrice={oldPrice}
+                    name={name}
+                    discount={discount}
+                    images={images}
+                    variants={variants}
+                  />
                 );
               }
             )}
-        </Swiper>
+        </HomePageProductSliderWithArrow>
       )}
     </Row>
   );

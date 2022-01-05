@@ -1,6 +1,42 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* custom styles */
+.bg-center-cover {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 5px #000000;
+}
+
+.underline-link {
+  border-bottom: 1px solid transparent;
+  color: #fff;
+  font-size: 1.1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.underline-link:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.custom-tabs .nav-link {
+  font-weight: bold;
+}
+
+.custom-tabs .nav-link:hover,
+.custom-tabs .nav-link:hover i,
+.custom-tabs .nav-link.active,
+.custom-tabs .nav-link.active i {
+  color: var(--color-primary);
+}
+
+/* custom styles */
 .dark-bg .hamburger-menu a,
 .dark-bg span {
   color: #fff;

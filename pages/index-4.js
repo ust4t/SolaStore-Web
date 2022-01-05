@@ -41,21 +41,18 @@ const Index4 = ({
                 <div className="col-lg-8 col-12 custom-width-70">
                   <HomePageSliderWithDot
                     sliders={sliders}
-                    extraClass="slider-active slider-active-four common-dots"
-                  >
+                    extraClass="slider-active slider-active-four common-dots">
                     {sliders &&
                       sliders.map((slide, i) => (
                         <div
                           key={i}
                           className="single-slider slider-height-four d-flex align-items-center"
-                          data-background={slide.img}
-                        >
+                          data-background={slide.img}>
                           <div className="hero-caption-four ml-50">
                             <div
                               className="sli-offer mb-15 wow fadeInUp"
                               data-animation="fadeInUp"
-                              data-delay=".2s"
-                            >
+                              data-delay=".2s">
                               <span>{slide.valueChange}%</span>
                               <span>{slide.status}</span>
                             </div>
@@ -70,8 +67,7 @@ const Index4 = ({
                               onClick={(e) => e.preventDefault()}
                               className="common-link fadeInUp wow"
                               data-animation="fadeInUp"
-                              data-delay=".8s"
-                            >
+                              data-delay=".8s">
                               Start Shopping
                               <i className="fas fa-chevron-circle-right" />
                             </a>
@@ -87,8 +83,7 @@ const Index4 = ({
                         className={`sli-banner ${
                           banner_1 && banner_1.length !== i ? "mb-30" : ""
                         }`}
-                        key={i}
-                      >
+                        key={i}>
                         <img
                           src={banner.img}
                           className="img-fluid"
@@ -236,8 +231,7 @@ const Index4 = ({
         </section>
         <section
           className="countdown-area pt-125 pb-120"
-          data-background={banner_3 && banner_3.img}
-        >
+          data-background={banner_3 && banner_3.img}>
           <div className="container">
             <div className="row">
               <div className="col-xl-4 offset-xl-8 col-lg-5 offset-lg-7 col-md-8 offset-md-4 custom-width-40">
@@ -275,8 +269,7 @@ const Index4 = ({
                       onClick={(e) => {
                         e.preventDefault();
                       }}
-                      className="common-link"
-                    >
+                      className="common-link">
                       Deal of the day
                       <i className="fas fa-chevron-circle-right" />
                     </a>
@@ -307,8 +300,7 @@ const Index4 = ({
                     i < 3 && (
                       <div
                         className="col-lg-3 col-sm-6 custom-width-20"
-                        key={i}
-                      >
+                        key={i}>
                         <Product product={product} />
                       </div>
                     )
@@ -407,8 +399,7 @@ const Index4 = ({
         <BrandSlider extraSection noBg customPadding="pt-50 pb-90" />
         <section
           className="discover-four pt-110 pb-115"
-          data-background="img/discover/discover-four-bg.jpg"
-        >
+          data-background="img/discover/discover-four-bg.jpg">
           <div className="container">
             <div className="row">
               <div className="col-xl-4 col-lg-6 col-md-8 col-12 custom-width-40">
@@ -445,8 +436,7 @@ const Index4 = ({
                       onClick={(e) => {
                         e.preventDefault();
                       }}
-                      className="common-link"
-                    >
+                      className="common-link">
                       Discover More{" "}
                       <i className="fas fa-chevron-circle-right" />
                     </a>

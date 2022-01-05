@@ -88,15 +88,6 @@ const ProductModal = ({
     //   toast.success("Add item in wishlist.");
     // }
   };
-  const onClickCompares = (e) => {
-    e.preventDefault();
-    // compare(product);
-    // if (compare_) {
-    //   toast.error("Remove item in compare.");
-    // } else {
-    //   toast.success("Add item in compare.");
-    // }
-  };
 
   return (
     <Modal show={show} onHide={handleClose}>
