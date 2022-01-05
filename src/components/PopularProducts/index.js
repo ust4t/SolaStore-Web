@@ -18,15 +18,19 @@ const fetchPopulars = async () => {
   return data;
 };
 
-function PopularProducts({ popularData, setPopularData }) {
-  const { isLoading, error, data } = useQuery(
+function PopularProducts() {
+  const {
+    isLoading,
+    error,
+    data: popularData,
+  } = useQuery(
     "popularProducts",
-    fetchPopulars,
-    {
-      onSuccess: (data) => {
-        if (data) setPopularData(data);
-      },
-    }
+    fetchPopulars
+    // {
+    //   onSuccess: (data) => {
+    //     if (data) setPopularData(data);
+    //   },
+    // }
   );
 
   return (
@@ -35,9 +39,9 @@ function PopularProducts({ popularData, setPopularData }) {
         <Loader />
       ) : (
         <HomePageProductSliderWithArrow extraClass=" slider-active-three common-arrows ">
-          {popularData.slice(14, data.length - 1).map((productData) => {
+          {popularData.map((productData, i) => {
             return (
-              <div className="home_3_margin" key={productData.id}>
+              <div className="home_3_margin" key={`${productData.id}_**_${i}`}>
                 <PopularCard productData={productData} />
               </div>
             );

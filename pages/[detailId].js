@@ -8,10 +8,10 @@ const Single = ({ product }) => {
 export default Single;
 
 export async function getServerSideProps(context) {
-  const { id } = context.query;
+  const { detailId } = context.query;
 
   const { data } = await axios.get(
-    `https://api.solastore.com.tr/api/Product/GetByProductID?id=${id}&lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
+    `https://api.solastore.com.tr/api/Product/GetByProductID?id=${detailId}&lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
   );
 
   return {

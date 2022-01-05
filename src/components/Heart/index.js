@@ -1,7 +1,7 @@
 import React from "react";
 import { HeartOutline, Heart as HeartIcon } from "react-ionicons";
 
-function Heart({ isLiked, setIsLiked }) {
+function Heart({ isLiked, setIsLiked, size }) {
   if (typeof isLiked !== "boolean" || typeof setIsLiked !== "function")
     return null;
 
@@ -12,11 +12,11 @@ function Heart({ isLiked, setIsLiked }) {
           title="heart"
           beat
           color={"#f44336"}
-          height="25px"
-          width="25px"
+          height={size}
+          width={size}
         />
       ) : (
-        <HeartOutline color={"#f44336"} height="25px" width="25px" />
+        <HeartOutline color={"#f44336"} height={size} width={size} />
       )}
     </div>
   );

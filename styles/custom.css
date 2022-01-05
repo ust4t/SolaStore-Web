@@ -65,6 +65,46 @@ html {
   color: #fff;
 }
 
+.discount-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 230;
+}
+
+.discount-tag::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent var(--color-danger) transparent transparent;
+  border-style: solid;
+  border-width: 0 65px 65px 0;
+  top: 5px;
+  right: 5px;
+  z-index: 220;
+}
+
+.discount-tag .discount-amount {
+  position: absolute;
+  top: 7px;
+  right: 8px;
+  font-size: 1.2rem;
+  /* font-weight: bold; */
+  color: #fff;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  z-index: 240;
+}
+
+.z-index-first {
+  z-index: 240;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
 a:hover {
   color: var(--color-primary);
 }

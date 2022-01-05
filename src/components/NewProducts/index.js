@@ -6,6 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import Loader from "../Loader";
 import MainProductCard from "../Cards/MainProductCard";
+import { HomePageProductSliderWithArrow } from "../sliders/HomePageSlider";
+import PopularCard from "../Cards/PopularCard";
 
 export default function NewProducts() {
   const [newProducts, setNewProducts] = useState([]);
@@ -18,50 +20,34 @@ export default function NewProducts() {
       },
     }
   );
-  console.log(newProducts);
   return (
-    <Row className="popular-products">
+    <>
       {isLoading ? (
         <Loader />
       ) : (
-        <Swiper
-          modules={[Autoplay]}
-          spaceBetween={0}
-          centeredSlides={true}
-          slidesPerView={1}
-          loopFillGroupWithBlank={true}
-          loop={true}
-          autoplay={{
-            delay: 8000,
-          }}
-          breakpoints={{
-            395: {
-              slidesPerView: 2,
-            },
-            768: {
-              slidesPerView: 4,
-            },
-            1024: {
-              slidesPerView: 4,
-            },
-          }}
-          className="mySwiper">
-          {newProducts
-            .slice(0, newProducts.length - 8)
-            .map(({ masterProductID, productShortName, pictures, price }) => {
-              return (
-                <SwiperSlide key={masterProductID}>
-                  <MainProductCard
-                    id={masterProductID}
-                    price={price}
-                    name={productShortName}
-                    images={pictures}
-                  />
-                </SwiperSlide>
-              );
-            })}
-        </Swiper>
+        <HomePageProductSliderWithArrow extraClass="slider-active-three common-arrows ">
+          {newProducts.map((productData, i) => {
+            return (
+              <div
+                className="home_3_margin"
+                key={`${productData.productID}*_${i}`}>
+                <PopularCard
+                  productData={{
+                    id: productData.productID,
+                    name: productData.productShortName,
+                    images: productData.pictures,
+                    price: productData.price,
+                    oldPrice: productData.oldPrice,
+                    productStockCode: productData.productStockCode,
+                    discount: productData.singlePrice,
+                    video_1: productData.video_1,
+                  }}
+                />
+              </div>
+            );
+          })}
+        </HomePageProductSliderWithArrow>
       )}
-    </Row>
+    </>
   );
 }

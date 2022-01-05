@@ -46,9 +46,14 @@ export default function TabLayout() {
                       setPopularData={setPopularData}
                     />
                   </Tab.Pane>
-                  <Tab.Pane eventKey="New Products">Yeni Ürünler</Tab.Pane>
+                  <Tab.Pane eventKey="New Products">
+                    <NewProducts />
+                  </Tab.Pane>
                   <Tab.Pane eventKey="Sale Products">
-                    İndirimdeki Ürünler
+                    <SaleProducts
+                      popularData={popularData}
+                      setPopularData={setPopularData}
+                    />
                   </Tab.Pane>
                 </Tab.Content>
               </Tab.Container>

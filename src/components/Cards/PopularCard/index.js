@@ -3,16 +3,9 @@ import Image from "next/image";
 import { Col, Row } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper";
-import { ChevronBackOutline, ChevronForwardOutline } from "react-ionicons";
 // import "swiper/css";
 import Link from "next/link";
-import axios from "axios";
-import {
-  useIsMutating,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "react-query";
+
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 
@@ -25,27 +18,10 @@ import { connect } from "react-redux";
 import { getProducts } from "../../../redux/action/product";
 import { StoreContext } from "../../../context/StoreProvider";
 import { SET_DETAILS } from "../../../context/types";
-
-const sendCartRequest = async (creds) => {
-  const { data } = await axios.post(
-    `/api/cart/addToCart?productID=${creds.id}`
-  );
-
-  return data;
-};
+import { useIsMutating } from "react-query";
 
 function ProductCard({ productData, addToCart }) {
-  const {
-    id,
-    name,
-    images,
-    price,
-    discount,
-    oldPrice,
-    variants,
-    productStockCode,
-    video_1,
-  } = productData;
+  const { id, name, images, price, oldPrice, variants } = productData;
   const router = useRouter();
   const { state, dispatch, cartActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
@@ -57,39 +33,11 @@ function ProductCard({ productData, addToCart }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
-  const queryClient = useQueryClient();
-  const { refetch } = useQuery(
-    "cart",
-    () =>
-      fetch(
-        `/api/cart/getCartItems?user=${"0d1c9955-326f-42fd-b04d-b745b80b70e3"}`
-      ).then((res) => res.json()),
-    {
-      onSuccess: ({ data }) => {
-        addToCart(data);
-      },
-    }
-  );
   const isMutating = useIsMutating({ mutationKey: `addCart_${id}` });
-  const { mutate, isLoading } = useMutation(sendCartRequest, {
-    onSuccess: (data) => {
-      refetch();
-      toast.success("Added order to cart");
-    },
-    onError: (error) => {
-      console.log(error);
-      alert(`there was an error ${id}`);
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries("create");
-    },
-  });
 
   const originalDiscount = oldPrice - price;
 
   const rate = 0.7;
-
-  const [arr, setarr] = useState();
 
   const changeDressColor = (imagesArray) => {
     setCurrentImages(imagesArray);
@@ -107,6 +55,8 @@ function ProductCard({ productData, addToCart }) {
       id,
     });
   };
+
+  console.log(name, variants);
 
   const navigateToDetail = () => {
     dispatch({
@@ -202,37 +152,39 @@ function ProductCard({ productData, addToCart }) {
   //         autoplay={{
   //           delay: 6000,
   //         }}>
-  //         {[...variants, { images }].map((variant, i) => (
-  //           <SwiperSlide>
-  //             <Image
-  //               key={`${i}__`}
-  //               className="color-select"
-  //               width={60}
-  //               height={60}
-  //               src={`${sources.imageMinSrc}${
-  //                 variant.picture_1 || variant.images[0].guidName
-  //               }`}
-  //               priority={true}
-  //               onClick={() => {
-  //                 if (variant.pictures) {
-  //                   setCurrentImages({
-  //                     id: variant.productID,
-  //                     pictures: variant.pictures,
-  //                   });
-  //                 } else {
-  //                   setCurrentImages({
-  //                     id,
-  //                     pictures: variant.images,
-  //                   });
-  //                 }
-  //               }}
-  //             />
-  //           </SwiperSlide>
-  //         ))}
+  //         {variants &&
+  //           [...variants, { images }].map((variant, i) => (
+  //             <SwiperSlide>
+  //               <Image
+  //                 key={`${i}__`}
+  //                 className="color-select"
+  //                 width={60}
+  //                 height={60}
+  //                 src={`${sources.imageMinSrc}${
+  //                   variant.picture_1 || variant.images[0].guidName
+  //                 }`}
+  //                 priority={true}
+  //                 onClick={() => {
+  //                   if (variant.pictures) {
+  //                     setCurrentImages({
+  //                       id: variant.productID,
+  //                       pictures: variant.pictures,
+  //                     });
+  //                   } else {
+  //                     setCurrentImages({
+  //                       id,
+  //                       pictures: variant.images,
+  //                     });
+  //                   }
+  //                 }}
+  //               />
+  //             </SwiperSlide>
+  //           ))}
   //       </Swiper>
   //     </Row>
   //   </div>
   // );
+
   return (
     <div
       className="product-wrapper mb-40"
@@ -249,6 +201,22 @@ function ProductCard({ productData, addToCart }) {
         }}
       />
       <div className="pro-img mb-20 position-relative">
+        {!!oldPrice && oldPrice > 0 && (
+          <span className="discount-tag">
+            <span className="discount-amount">-{originalDiscount}$</span>
+          </span>
+        )}
+        <span
+          className="position-absolute top-0 start-0 translate-middle m-4 z-index-first cursor-pointer"
+          // onClick={(e) => onClickWishlist(e)}
+          // className={` ${
+          //   wishlist && wishlist.find((pro) => pro.id === currentImages.id)
+          //     ? "active"
+          //     : ""
+          // } `}
+        >
+          <Heart isLiked={isLiked} setIsLiked={setIsLiked} size="35px" />
+        </span>
         <span>
           <Link href={`/${id}`}>
             <a>
@@ -297,6 +265,16 @@ function ProductCard({ productData, addToCart }) {
             title="Quick View">
             <i className="fal fa-eye" />
           </a>
+          <a
+            className={`animate__animated animate__faster ${
+              currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
+            }`}
+            href="#"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Share">
+            <i className="fas fa-share-alt"></i>
+          </a>
         </div>
         <div className="product-action text-center position-absolute bottom-0 start-50 translate-middle-x w-100 mb-0 p-0 ">
           <div
@@ -332,24 +310,49 @@ function ProductCard({ productData, addToCart }) {
             <h5 className="pro-price">{price && `$${Number(price)} USD`}</h5>
           )}
         </div>
-
-        <div className="cart-icon">
-          <a
-            href="#"
-            // onClick={(e) => onClickWishlist(e)}
-            // className={` ${
-            //   wishlist && wishlist.find((pro) => pro.id === currentImages.id)
-            //     ? "active"
-            //     : ""
-            // } `}
-          >
-            <i className="fal fa-heart" />
-          </a>
-        </div>
       </div>
+      <Row className="select-colors">
+        <Swiper
+          modules={[Autoplay, Navigation]}
+          spaceBetween={0}
+          centeredSlides={true}
+          slidesPerView={5}
+          navigation
+          autoplay={{
+            delay: 6000,
+          }}>
+          {productData.variants &&
+            [...productData.variants, { images }].map((variant, i) => (
+              <SwiperSlide>
+                <Image
+                  key={`${i}__`}
+                  className="color-select"
+                  width={60}
+                  height={60}
+                  src={`${sources.imageMinSrc}${
+                    variant.picture_1 || variant.images[0].guidName
+                  }`}
+                  priority={true}
+                  onClick={() => {
+                    if (variant.pictures) {
+                      setCurrentImages({
+                        id: variant.productID,
+                        pictures: variant.pictures,
+                      });
+                    } else {
+                      setCurrentImages({
+                        id,
+                        pictures: variant.images,
+                      });
+                    }
+                  }}
+                />
+              </SwiperSlide>
+            ))}
+        </Swiper>
+      </Row>
     </div>
   );
-  return <p>Test</p>;
 }
 
 export default connect(null, {

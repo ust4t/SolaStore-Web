@@ -162,7 +162,7 @@ export const HomePage5UpcomingSlider = ({ children, extraClass }) => {
     speed: 300,
     prevArrow: <Arrow icon="far fa-long-arrow-alt-left" text="prev" />,
     nextArrow: <Arrow icon="far fa-long-arrow-alt-right" text="next" />,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     responsive: [
       { breakpoint: 1200, settings: { slidesToShow: 3 } },

@@ -6,7 +6,7 @@ export default async function getNewProducts(req, res) {
       `https://api.solastore.com.tr/api/Product/GetNewProducts?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
     );
     res.status(200).json({
-      data,
+     data
     });
   } catch (error) {
     res.status(500).json({
