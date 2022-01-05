@@ -41,6 +41,34 @@ html {
   left: auto;
 }
 
+.product-wrapper .pro-title h6 a:hover,
+.product-wrapper .cart-icon a:hover {
+  color: var(--color-primary);
+}
+
+.product-action a:hover {
+  background: var(--color-primary);
+}
+
+.cart-button {
+  background: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-dark);
+  transition: all 0.3s ease-in-out;
+  padding: 6px 0;
+  cursor: pointer;
+}
+
+.cart-button:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
 /* ------------------------------------------------------------------------------------------------------------ */
 
 .dark-bg .hamburger-menu a,

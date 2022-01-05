@@ -15,7 +15,9 @@ export default async function (req, res) {
       images: popular.pictures,
       price: popular.price,
       oldPrice: popular.oldPrice,
+      productStockCode: popular.productStockCode,
       discount: popular.singlePrice,
+      video_1: popular.video_1,
       variants: specificData,
     });
   }

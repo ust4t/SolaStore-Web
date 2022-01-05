@@ -35,25 +35,13 @@ function PopularProducts({ popularData, setPopularData }) {
         <Loader />
       ) : (
         <HomePageProductSliderWithArrow extraClass=" slider-active-three common-arrows ">
-          {popularData
-            .slice(14, data.length - 1)
-            .map(
-              ({ id, name, images, price, discount, oldPrice, variants }) => {
-                return (
-                  <div className="home_3_margin" key={id}>
-                    <PopularCard
-                      id={id}
-                      price={price}
-                      oldPrice={oldPrice}
-                      name={name}
-                      discount={discount}
-                      images={images}
-                      variants={variants}
-                    />
-                  </div>
-                );
-              }
-            )}
+          {popularData.slice(14, data.length - 1).map((productData) => {
+            return (
+              <div className="home_3_margin" key={productData.id}>
+                <PopularCard productData={productData} />
+              </div>
+            );
+          })}
         </HomePageProductSliderWithArrow>
       )}
     </>

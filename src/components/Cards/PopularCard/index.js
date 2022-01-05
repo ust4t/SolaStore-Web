@@ -18,6 +18,7 @@ import { useRouter } from "next/router";
 
 import ColorfulText from "../../ColorfulText";
 import Heart from "../../Heart";
+import ProductModal from "../../product/ProductModal";
 import sources from "../../../../sources";
 import { addToCart } from "../../../redux/action/utilis";
 import { connect } from "react-redux";
@@ -33,16 +34,18 @@ const sendCartRequest = async (creds) => {
   return data;
 };
 
-function ProductCard({
-  id,
-  price,
-  name,
-  discount,
-  images,
-  oldPrice,
-  variants,
-  addToCart,
-}) {
+function ProductCard({ productData, addToCart }) {
+  const {
+    id,
+    name,
+    images,
+    price,
+    discount,
+    oldPrice,
+    variants,
+    productStockCode,
+    video_1,
+  } = productData;
   const router = useRouter();
   const { state, dispatch, cartActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
@@ -50,6 +53,7 @@ function ProductCard({
     id,
     pictures: images,
   });
+  const [quickView, setQuickView] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -102,11 +106,6 @@ function ProductCard({
       user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
       id,
     });
-    console.log(state.cartData);
-    // const cartCurrent = {
-    //   id: currentImages.id,
-    // };
-    // mutate(cartCurrent);
   };
 
   const navigateToDetail = () => {
@@ -235,21 +234,25 @@ function ProductCard({
   //   </div>
   // );
   return (
-    <div className="product-wrapper mb-40">
-      {/* <ProductModal
+    <div
+      className="product-wrapper mb-40"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}>
+      <ProductModal
         show={quickView}
         handleClose={() => setQuickView(false)}
-        product={product}
-      /> */}
-      <div
-        className="pro-img mb-20"
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}>
+        product={{
+          productID: id,
+          productShortName: name,
+          pictures: images,
+          ...productData,
+        }}
+      />
+      <div className="pro-img mb-20 position-relative">
         <span>
           <Link href={`/${id}`}>
             <a>
               <img
-                // className="img-fluid"
                 className={`  animate__animated product-image-1 animate__faster img-fluid ${
                   !currentImageIndex
                     ? "opacity-0 animate__fadeIn"
@@ -266,7 +269,6 @@ function ProductCard({
           <Link href={`/${id}`}>
             <a>
               <img
-                // className="img-fluid"
                 className={` animate__animated product-image-2 animate__faster img-fluid ${
                   currentImageIndex
                     ? "opacity-0 animate__fadeIn"
@@ -280,26 +282,30 @@ function ProductCard({
           </Link>
         </span>
 
-        <div className="product-action text-center">
+        <div className="mb-4 product-action text-center">
           <a
+            className={`animate__animated animate__faster ${
+              currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
+            }`}
             href="#"
-            // onClick={(e) => onClickCart(e)}
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Shopping Cart">
-            <i className="fal fa-cart-arrow-down" />
-          </a>
-          <a
-            href="#"
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   setQuickView(true);
-            // }}
+            onClick={(e) => {
+              e.preventDefault();
+              setQuickView(true);
+            }}
             data-toggle="tooltip"
             data-placement="top"
             title="Quick View">
             <i className="fal fa-eye" />
           </a>
+        </div>
+        <div className="product-action text-center position-absolute bottom-0 start-50 translate-middle-x w-100 mb-0 p-0 ">
+          <div
+            className={`cart-button animate__animated animate__faster h-100 ${
+              currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
+            }`}
+            onClick={onAddToCart}>
+            Sepete Ekle
+          </div>
         </div>
       </div>
       <div className="pro-text">

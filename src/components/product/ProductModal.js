@@ -41,7 +41,7 @@ const ProductModal = ({
   const { cartActions, state } = useContext(StoreContext);
   const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
   const productData = {
-    id: product.masterProductID,
+    id: product.productID,
     user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
   };
   useEffect(() => {
@@ -64,10 +64,6 @@ const ProductModal = ({
 
   const onAddToCart = (e) => {
     e.preventDefault();
-    const productData = {
-      id: product.masterProductID,
-      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
-    };
     addToCartAction(productData);
   };
   const handleDecreaseCart = (e) => {
@@ -125,7 +121,7 @@ const ProductModal = ({
                         product.pictures.map((img, i) => (
                           <div
                             className="single-slider single-img d-flex align-items-end"
-                            key={`${img.productID}__${img.brandID}`}>
+                            key={`${img.productID}__${i + 1}`}>
                             <img
                               src={`${sources.imageMaxSrc}${img.guidName}`}
                               className="img-fluid"
