@@ -2,7 +2,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* custom styles */
+/* custom styles --------------------------------------------------------------------------------------------*/
 .bg-center-cover {
   background-position: center;
   background-repeat: no-repeat;
@@ -36,7 +36,13 @@ html {
   color: var(--color-primary);
 }
 
-/* custom styles */
+.common-arrows button.slick-prev,
+.common-arrows button.slick-next {
+  left: auto;
+}
+
+/* ------------------------------------------------------------------------------------------------------------ */
+
 .dark-bg .hamburger-menu a,
 .dark-bg span {
   color: #fff;

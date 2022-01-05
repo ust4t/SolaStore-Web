@@ -8,8 +8,8 @@ export const HomePageSliderWithArrow = ({ sliders, children, extraClass }) => {
   }, [sliders]);
 
   var settings = {
-    autoplay: false,
-    autoplaySpeed: 10000,
+    autoplay: true,
+    autoplaySpeed: 5000,
     dots: false,
     fade: true,
     cssEase: "linear",
@@ -129,14 +129,17 @@ export const HomePageProductSliderWithArrow = ({ children, extraClass }) => {
     arrows: true,
     infinite: true,
     speed: 300,
-    prevArrow: <Arrow icon="far fa-long-arrow-alt-left" text="prev" />,
-    nextArrow: <Arrow icon="far fa-long-arrow-alt-right" text="next" />,
+    prevArrow: <Arrow icon="fas fa-arrow-left" />,
+    nextArrow: <Arrow icon="fas fa-arrow-right" />,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 4,
+    autoplay: true,
+    autoplaySpeed: 5000,
     responsive: [
       { breakpoint: 1200, settings: { slidesToShow: 4 } },
-      { breakpoint: 991, settings: { slidesToShow: 3 } },
-      { breakpoint: 767, settings: { slidesToShow: 1 } },
+      { breakpoint: 991, settings: { slidesToShow: 3, slidesToScroll: 3 } },
+      { breakpoint: 550, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+      { breakpoint: 420, settings: { slidesToShow: 1, slidesToScroll: 1 } },
     ],
   };
   return (

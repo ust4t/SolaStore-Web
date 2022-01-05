@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper";
 import { ChevronBackOutline, ChevronForwardOutline } from "react-ionicons";
 // import "swiper/css";
+import Link from "next/link";
 import axios from "axios";
 import {
   useIsMutating,
@@ -118,121 +119,231 @@ function ProductCard({
     });
   };
 
+  // return (
+  //   <div
+  //     className="product-card"
+  //     style={{
+  //       margin: "20px",
+  //     }}>
+  //     <Col
+  //       className="product-image-container"
+  //       onMouseEnter={onMouseEnter}
+  //       onMouseLeave={onMouseLeave}>
+  //       <Row className="product-header">
+  //         {!!oldPrice && oldPrice > 0 && (
+  //           <ColorfulText
+  //             style={{ height: 22 }}>{`↓ $${originalDiscount}`}</ColorfulText>
+  //         )}
+  //         <div
+  //           style={{
+  //             paddingLeft: 10,
+  //             paddingRight: 10,
+  //           }}>
+  //           <Heart isLiked={isLiked} setIsLiked={setIsLiked} />
+  //         </div>
+  //       </Row>
+  //       <div
+  //         className={`add-to-cart animate__animated animate__faster ${
+  //           currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
+  //         }`}
+  //         onClick={onAddToCart}>
+  //         {isMutating > 0 ? "Loading......" : "Sepete Ekle"}
+  //       </div>
+
+  //       <div
+  //         className={`product-image-1 animate__animated animate__faster ${
+  //           !currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
+  //         }`}>
+  //         {/* <Link href={`/shop/${currentImages.id}`}> */}
+  //         {/* default images */}
+  //         <Image
+  //           onClick={navigateToDetail}
+  //           src={`${sources.imageMidSrc}${currentImages.pictures[0].guidName}`}
+  //           width={400 * rate}
+  //           height={600 * rate}
+  //           priority={true}
+  //         />
+  //         {/* </Link> */}
+  //       </div>
+  //       <div
+  //         className={`product-image-2 animate__animated animate__faster ${
+  //           currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
+  //         }`}>
+  //         {/* <Link href={`/shop/${currentImages.id}`}> */}
+  //         {/* hover images */}
+  //         <Image
+  //           onClick={navigateToDetail}
+  //           src={`${sources.imageMidSrc}${currentImages.pictures[1].guidName}`}
+  //           width={400 * rate}
+  //           height={600 * rate}
+  //           priority={true}
+  //         />
+  //         {/* </Link> */}
+  //       </div>
+  //     </Col>
+  //     {/* <Link href={`/shop/${currentImages.id}`}> */}
+  //     <div
+  //       onClick={navigateToDetail}
+  //       className="product-card-name"
+  //       style={{
+  //         fontSize: "1rem",
+  //       }}>
+  //       {name}
+  //     </div>
+  //     {/* </Link> */}
+  //     <div className="product-card-price">{`$ ${price}`}</div>
+
+  //     <Row className="select-colors">
+  //       <Swiper
+  //         modules={[Autoplay, Navigation]}
+  //         spaceBetween={0}
+  //         centeredSlides={true}
+  //         slidesPerView={5}
+  //         navigation
+  //         autoplay={{
+  //           delay: 6000,
+  //         }}>
+  //         {[...variants, { images }].map((variant, i) => (
+  //           <SwiperSlide>
+  //             <Image
+  //               key={`${i}__`}
+  //               className="color-select"
+  //               width={60}
+  //               height={60}
+  //               src={`${sources.imageMinSrc}${
+  //                 variant.picture_1 || variant.images[0].guidName
+  //               }`}
+  //               priority={true}
+  //               onClick={() => {
+  //                 if (variant.pictures) {
+  //                   setCurrentImages({
+  //                     id: variant.productID,
+  //                     pictures: variant.pictures,
+  //                   });
+  //                 } else {
+  //                   setCurrentImages({
+  //                     id,
+  //                     pictures: variant.images,
+  //                   });
+  //                 }
+  //               }}
+  //             />
+  //           </SwiperSlide>
+  //         ))}
+  //       </Swiper>
+  //     </Row>
+  //   </div>
+  // );
   return (
-    <div
-      className="product-card"
-      style={{
-        margin: "20px",
-      }}>
-      <Col
-        className="product-image-container"
+    <div className="product-wrapper mb-40">
+      {/* <ProductModal
+        show={quickView}
+        handleClose={() => setQuickView(false)}
+        product={product}
+      /> */}
+      <div
+        className="pro-img mb-20"
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}>
-        <Row className="product-header">
-          {!!oldPrice && oldPrice > 0 && (
-            <ColorfulText
-              style={{ height: 22 }}>{`↓ $${originalDiscount}`}</ColorfulText>
-          )}
-          <div
-            style={{
-              paddingLeft: 10,
-              paddingRight: 10,
-            }}>
-            <Heart isLiked={isLiked} setIsLiked={setIsLiked} />
-          </div>
-        </Row>
-        <div
-          className={`add-to-cart animate__animated animate__faster ${
-            currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
-          }`}
-          onClick={onAddToCart}>
-          {isMutating > 0 ? "Loading......" : "Sepete Ekle"}
-        </div>
-
-        <div
-          className={`product-image-1 animate__animated animate__faster ${
-            !currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
-          }`}>
-          {/* <Link href={`/shop/${currentImages.id}`}> */}
-          {/* default images */}
-          <Image
-            onClick={navigateToDetail}
-            src={`${sources.imageMidSrc}${currentImages.pictures[0].guidName}`}
-            width={400 * rate}
-            height={600 * rate}
-            priority={true}
-          />
-          {/* </Link> */}
-        </div>
-        <div
-          className={`product-image-2 animate__animated animate__faster ${
-            currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
-          }`}>
-          {/* <Link href={`/shop/${currentImages.id}`}> */}
-          {/* hover images */}
-          <Image
-            onClick={navigateToDetail}
-            src={`${sources.imageMidSrc}${currentImages.pictures[1].guidName}`}
-            width={400 * rate}
-            height={600 * rate}
-            priority={true}
-          />
-          {/* </Link> */}
-        </div>
-      </Col>
-      {/* <Link href={`/shop/${currentImages.id}`}> */}
-      <div
-        onClick={navigateToDetail}
-        className="product-card-name"
-        style={{
-          fontSize: "1rem",
-        }}>
-        {name}
-      </div>
-      {/* </Link> */}
-      <div className="product-card-price">{`$ ${price}`}</div>
-
-      <Row className="select-colors">
-        <Swiper
-          modules={[Autoplay, Navigation]}
-          spaceBetween={0}
-          centeredSlides={true}
-          slidesPerView={5}
-          navigation
-          autoplay={{
-            delay: 6000,
-          }}>
-          {[...variants, { images }].map((variant, i) => (
-            <SwiperSlide>
-              <Image
-                key={`${i}__`}
-                className="color-select"
-                width={60}
-                height={60}
-                src={`${sources.imageMinSrc}${
-                  variant.picture_1 || variant.images[0].guidName
+        <span>
+          <Link href={`/${id}`}>
+            <a>
+              <img
+                // className="img-fluid"
+                className={`  animate__animated product-image-1 animate__faster img-fluid ${
+                  !currentImageIndex
+                    ? "opacity-0 animate__fadeIn"
+                    : "opacity-100 animate__fadeOut"
                 }`}
-                priority={true}
-                onClick={() => {
-                  if (variant.pictures) {
-                    setCurrentImages({
-                      id: variant.productID,
-                      pictures: variant.pictures,
-                    });
-                  } else {
-                    setCurrentImages({
-                      id,
-                      pictures: variant.images,
-                    });
-                  }
-                }}
+                src={`${sources.imageMidSrc}${currentImages.pictures[0].guidName}`}
+                alt="Product"
+                loading="lazy"
               />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </Row>
+            </a>
+          </Link>
+        </span>
+        <span>
+          <Link href={`/${id}`}>
+            <a>
+              <img
+                // className="img-fluid"
+                className={` animate__animated product-image-2 animate__faster img-fluid ${
+                  currentImageIndex
+                    ? "opacity-0 animate__fadeIn"
+                    : "opacity-100 animate__fadeOut"
+                }`}
+                src={`${sources.imageMidSrc}${currentImages.pictures[1].guidName}`}
+                alt="Product"
+                loading="lazy"
+              />
+            </a>
+          </Link>
+        </span>
+
+        <div className="product-action text-center">
+          <a
+            href="#"
+            // onClick={(e) => onClickCart(e)}
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Shopping Cart">
+            <i className="fal fa-cart-arrow-down" />
+          </a>
+          <a
+            href="#"
+            // onClick={(e) => {
+            //   e.preventDefault();
+            //   setQuickView(true);
+            // }}
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Quick View">
+            <i className="fal fa-eye" />
+          </a>
+        </div>
+      </div>
+      <div className="pro-text">
+        <div className="pro-title">
+          <h6>
+            <Link href={`/${id}`}>{name}</Link>
+          </h6>
+
+          {oldPrice > 0 ? (
+            <>
+              <h5>
+                {price && (
+                  <del
+                    style={{
+                      color: "red !important",
+                    }}>
+                    ${Number(oldPrice)} USD
+                  </del>
+                )}
+              </h5>
+              <h5 className="pro-price">{price && `$${Number(price)} USD`}</h5>
+            </>
+          ) : (
+            <h5 className="pro-price">{price && `$${Number(price)} USD`}</h5>
+          )}
+        </div>
+
+        <div className="cart-icon">
+          <a
+            href="#"
+            // onClick={(e) => onClickWishlist(e)}
+            // className={` ${
+            //   wishlist && wishlist.find((pro) => pro.id === currentImages.id)
+            //     ? "active"
+            //     : ""
+            // } `}
+          >
+            <i className="fal fa-heart" />
+          </a>
+        </div>
+      </div>
     </div>
   );
+  return <p>Test</p>;
 }
 
 export default connect(null, {

@@ -75,7 +75,6 @@ function Video() {
         // element's size by default, so we change
         // that behavior with `boxSizing`.
         boxSizing: "border-box",
-        background: "rgba(0,0,0,.4)",
       }}>
       <video
         src="https://www.meetup.com/mu_static/pt-BR/video.dddafbfe.mp4"

@@ -41,10 +41,10 @@ export default function TabLayout() {
                 </Nav>
                 <Tab.Content className="tab-content" id="nav-tabContent">
                   <Tab.Pane eventKey="Best Sell">
-                    {/* <PopularProducts
+                    <PopularProducts
                       popularData={popularData}
                       setPopularData={setPopularData}
-                    /> */}
+                    />
                   </Tab.Pane>
                   <Tab.Pane eventKey="New Products">Yeni Ürünler</Tab.Pane>
                   <Tab.Pane eventKey="Sale Products">
