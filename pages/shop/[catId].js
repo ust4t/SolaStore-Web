@@ -2,7 +2,6 @@ import axios from "axios";
 import Shop from "../../src/layout/Shop";
 
 const ShopIndex = ({ allProducts }) => {
-  console.log(allProducts);
   return <Shop allProducts={allProducts} />;
 };
 

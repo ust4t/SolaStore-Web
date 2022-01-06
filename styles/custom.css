@@ -13,6 +13,26 @@ body > #__next {
   background-size: cover;
 }
 
+.bg-color-main-outline {
+  background-color: #fff;
+  color: var(--color-primary);
+}
+
+.bg-color-main-outline:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.bg-color-main {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.bg-color-main:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+}
+
 .text-shadow {
   text-shadow: 1px 1px 5px #000000;
 }
@@ -128,6 +148,16 @@ body > #__next {
 
 a:hover {
   color: var(--color-primary);
+}
+
+.news-form-wrapper form button {
+  color: var(--color-primary);
+}
+
+.news-form-wrapper form button:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: #fff;
 }
 
 /* ------------------------------------------------------------------------------------------------------------ */

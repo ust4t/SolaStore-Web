@@ -87,7 +87,7 @@ const Product = ({
       />
       <div
         className={`${home5 ? "fruit-img" : "pro-img"} mb-${home5 ? 10 : 20}`}>
-        <Link href={`/${product.masterProductID}`}>
+        <Link href={`/detail/${product.masterProductID}`}>
           <a>
             <img
               className="img-fluid"
@@ -171,7 +171,7 @@ const Product = ({
         {/* {home5 && product.subName && <span>{product.subName}</span>} */}
         <div className="pro-title">
           <h6>
-            <Link href={`/${product.masterProductID}`}>
+            <Link href={`/detail/${product.masterProductID}`}>
               {product.productShortName}
             </Link>
           </h6>

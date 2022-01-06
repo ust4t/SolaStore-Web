@@ -216,7 +216,7 @@ function ProductCard({ productData, addToCart }) {
           <Heart isLiked={isLiked} setIsLiked={setIsLiked} size="35px" />
         </span>
         <span>
-          <Link href={`/${id}`}>
+          <Link href={`/detail/${id}`}>
             <a>
               <img
                 className={`  animate__animated product-image-1 animate__faster img-fluid ${
@@ -232,7 +232,7 @@ function ProductCard({ productData, addToCart }) {
           </Link>
         </span>
         <span>
-          <Link href={`/${id}`}>
+          <Link href={`/detail/${id}`}>
             <a>
               <img
                 className={` animate__animated product-image-2 animate__faster img-fluid ${
@@ -287,7 +287,7 @@ function ProductCard({ productData, addToCart }) {
       <div className="pro-text">
         <div className="pro-title">
           <h6>
-            <Link href={`/${id}`}>{name}</Link>
+            <Link href={`/detail/${id}`}>{name}</Link>
           </h6>
 
           {oldPrice > 0 ? (
@@ -305,7 +305,10 @@ function ProductCard({ productData, addToCart }) {
               <h5 className="pro-price">{price && `$${Number(price)} USD`}</h5>
             </>
           ) : (
-            <h5 className="pro-price">{price && `$${Number(price)} USD`}</h5>
+            <>
+              <br />
+              <h5 className="pro-price">{price && `$${Number(price)} USD`}</h5>
+            </>
           )}
         </div>
       </div>

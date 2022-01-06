@@ -47,7 +47,7 @@ const ProductListView = ({
       <div className={`col-lg-4 col-sm-6 custom-col-10`}>
         <div className="product-wrapper mb-30">
           <div className="pro-img mb-20">
-            <Link href={`/${product.masterProductID}`}>
+            <Link href={`/detail/${product.masterProductID}`}>
               <a>
                 <img
                   src={`${sources.imageMidSrc}${product.picture_1}`}
@@ -67,7 +67,7 @@ const ProductListView = ({
           <div className="pro-text">
             <div className="pro-title">
               <h6>
-                <Link href={`/${product.masterProductID}`}>
+                <Link href={`/detail/${product.masterProductID}`}>
                   {product.productShortName}
                 </Link>
               </h6>
@@ -95,7 +95,7 @@ const ProductListView = ({
           </div>
           {product.selectedDetail && <p>{product.selectedDetail}</p>}
           <div className="product-action">
-            <a href="#" title="Shoppingb Cart" onClick={(e) => onClickCart(e)}>
+            <a href="#" title="Shopping Cart" onClick={(e) => onClickCart(e)}>
               <i className="fal fa-cart-arrow-down" />
             </a>
             <a

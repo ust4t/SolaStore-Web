@@ -13,7 +13,7 @@ function Stories() {
             cursor: "pointer",
             margin: "10px",
           }}>
-          <Image
+          <img
             key={`${i}__`}
             className="color-select "
             width={80}

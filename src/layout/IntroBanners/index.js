@@ -33,7 +33,7 @@ function IntroBanners() {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="banner-area pt-120">
+        <div className="banner-area pt-90">
           <div className="container">
             <div className="row custom-row align-items-center">
               <BannerCard

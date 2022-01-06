@@ -30,7 +30,7 @@ const Index4 = ({
     getProducts();
     animationCreate();
   }, []);
-
+  console.log(banner_3);
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
