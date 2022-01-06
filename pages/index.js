@@ -57,7 +57,7 @@ const Index4 = ({
             xl: 14,
           }}>
           <IntroBanners />
-          {/* <FilterSearch /> */}
+          <FilterSearch />
           <TabLayout />
           <Categories />
         </Box>

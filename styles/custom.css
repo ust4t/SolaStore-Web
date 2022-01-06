@@ -105,6 +105,23 @@ html {
   cursor: pointer;
 }
 
+.btn-main {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  padding: 16px 0;
+  font-size: 1.35rem;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  outline: none;
+}
+.btn-main:hover {
+  background: #fff;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
 a:hover {
   color: var(--color-primary);
 }

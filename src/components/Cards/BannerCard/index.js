@@ -22,11 +22,11 @@ export default function BannerCard({
             <div className="container position-absolute top-50 start-0 translate-middle-y">
               <div className="row ">
                 <div className="col-md-12">
-                  <div className="banner-content d-flex flex-column align-items-start">
-                    <h5 className="text-white text-start text-shadow">
+                  <div className="banner-content d-flex flex-column align-items-center">
+                    <h5 className="text-white text-center text-shadow">
                       {upperTitle}
                     </h5>
-                    <h3 className="text-white text-start text-shadow">
+                    <h3 className="text-white text-center text-shadow">
                       {lowerTitle}
                     </h3>
                     <a href="#" className="underline-link text-shadow">

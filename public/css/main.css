@@ -2799,7 +2799,7 @@ input.main-search-input:-ms-input-placeholder {
 
 .new-item-area {
 
-    background:url(../img/all-bg/new-item-bg.jpg);
+    /* background:url(../img/all-bg/new-item-bg.jpg); */
 
     background-position: center;
 
