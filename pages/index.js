@@ -25,6 +25,7 @@ import Filter from "../src/components/product/filter/Filter";
 import Categories from "../src/layout/Categories";
 import { Box } from "@mui/material";
 import BrandsLayout from "../src/layout/BrandsLayout";
+import FilterSearch from "../src/layout/FilterSearch";
 
 const Index4 = ({
   getHome4,
@@ -56,6 +57,7 @@ const Index4 = ({
             xl: 14,
           }}>
           <IntroBanners />
+          {/* <FilterSearch /> */}
           <TabLayout />
           <Categories />
         </Box>

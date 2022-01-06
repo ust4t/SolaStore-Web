@@ -56,8 +56,6 @@ function ProductCard({ productData, addToCart }) {
     });
   };
 
-  console.log(name, variants);
-
   const navigateToDetail = () => {
     dispatch({
       type: SET_DETAILS,
@@ -311,18 +309,18 @@ function ProductCard({ productData, addToCart }) {
           )}
         </div>
       </div>
-      <Row className="select-colors">
-        <Swiper
-          modules={[Autoplay, Navigation]}
-          spaceBetween={0}
-          centeredSlides={true}
-          slidesPerView={5}
-          navigation
-          autoplay={{
-            delay: 6000,
-          }}>
-          {productData.variants &&
-            [...productData.variants, { images }].map((variant, i) => (
+      {productData.variants && (
+        <Row className="select-colors">
+          <Swiper
+            modules={[Autoplay, Navigation]}
+            spaceBetween={0}
+            centeredSlides={true}
+            slidesPerView={5}
+            navigation
+            autoplay={{
+              delay: 6000,
+            }}>
+            {[...productData.variants, { images }].map((variant, i) => (
               <SwiperSlide>
                 <Image
                   key={`${i}__`}
@@ -349,8 +347,9 @@ function ProductCard({ productData, addToCart }) {
                 />
               </SwiperSlide>
             ))}
-        </Swiper>
-      </Row>
+          </Swiper>
+        </Row>
+      )}
     </div>
   );
 }

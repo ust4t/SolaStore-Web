@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
     <Provider store={store}>
       <AllToaster />
       <Head>
-        <title>Retro - Minimal eCommerce Redux Template</title>
+        <title>SolaStore</title>
         <meta name="description" content />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="manifest" href="site.webmanifest" />
