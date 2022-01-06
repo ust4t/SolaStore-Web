@@ -23,6 +23,7 @@ export default function SaleProducts() {
       ) : (
         <HomePageProductSliderWithArrow extraClass="slider-active-three common-arrows ">
           {data.data
+            .slice(0, 16)
             .filter((item) => item.oldPrice > 0)
             .map((productData) => {
               return (

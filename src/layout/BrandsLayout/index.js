@@ -21,54 +21,28 @@ export default function BrandsLayout() {
   });
 
   return (
-    <Box
-      pt={5}
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center">
-      <Typography
-        fontWeight="bold"
-        textAlign="center"
-        variant="h4"
-        component="h1"
-        gutterBottom>
-        Markalar
-      </Typography>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <Grid
-          alignItems="center"
-          justifyContent="center"
-          container
-          py={7}
-          spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}>
-          {brands.map(({ brandID, guidName, brandName }) => (
-            <Grid
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              item
-              xs={12}
-              sm={3}
-              lg={2}
-              key={brandID}>
-              <Link href="/shop">
-                <img
-                  style={{
-                    cursor: "pointer",
-                  }}
-                  src={`${sources.brand}${guidName}`}
-                  alt={brandName}
-                  loading="lazy"
-                />
-              </Link>
-            </Grid>
-          ))}
-        </Grid>
-      )}
-    </Box>
+    <div className="container py-md-2 pt-md-4">
+      <div className="row">
+        <h4 className="fw-bold fs-1 text-center">Markalar</h4>
+      </div>
+      <div className="row py-3">
+        {isLoading ? (
+          <Loader />
+        ) : (
+          brands.map(({ brandID, guidName, brandName }, i) => (
+            <div
+              key={`${brandID}_|*_${i}`}
+              className="col-4 col-lg-2 py-3 px-sm-3">
+              <img
+                src={`${sources.brand}${guidName}`}
+                alt={brandName}
+                className="w-100 cursor-pointer"
+                loading="lazy"
+              />
+            </div>
+          ))
+        )}
+      </div>
+    </div>
   );
 }

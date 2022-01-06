@@ -5,8 +5,9 @@ export default async function getSaleProducts(req, res) {
     const { data } = await axios.get(
       `https://api.solastore.com.tr/api/Product/GetSaleProducts?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
     );
+
     res.status(200).json({
-      data: data.slice(0, 12),
+      data: data.reverse(),
     });
   } catch (error) {
     res.status(500).json({

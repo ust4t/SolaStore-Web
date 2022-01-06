@@ -46,7 +46,7 @@ const Index4 = ({
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
-        {/* <Stories /> */}
+        <Stories />
         <SliderProducts />
         <Box
           mx={{

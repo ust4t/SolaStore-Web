@@ -2,6 +2,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body > #__next {
+  overflow-x: hidden;
+}
+
 /* custom styles --------------------------------------------------------------------------------------------*/
 .bg-center-cover {
   background-position: center;

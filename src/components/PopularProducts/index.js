@@ -1,16 +1,11 @@
-import { Row } from "antd";
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import PopularCard from "../Cards/PopularCard";
 import { getPopulars } from "../../redux/action/populars";
 import { useQuery } from "react-query";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper";
 import Loader from "../Loader";
 import { HomePageProductSliderWithArrow } from "../sliders/HomePageSlider";
-import Product from "../product/Product";
-import BrandSlider from "../sliders/BrandSlider";
 
 const fetchPopulars = async () => {
   const res = await fetch("/api/getPopulars");
@@ -23,15 +18,7 @@ function PopularProducts() {
     isLoading,
     error,
     data: popularData,
-  } = useQuery(
-    "popularProducts",
-    fetchPopulars
-    // {
-    //   onSuccess: (data) => {
-    //     if (data) setPopularData(data);
-    //   },
-    // }
-  );
+  } = useQuery("popularProducts", fetchPopulars);
 
   return (
     <>

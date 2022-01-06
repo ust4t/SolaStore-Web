@@ -21,5 +21,5 @@ export default async function (req, res) {
       variants: specificData,
     });
   }
-  await res.status(201).send(allProducts);
+  await res.status(201).send(allProducts.reverse());
 }

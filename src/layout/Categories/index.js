@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Grid } from "@mui/material";
 import axios from "axios";
 import { useQuery } from "react-query";
 import Link from "next/link";
-import Image from "next/image";
 
 import Loader from "../../components/Loader";
 import sources from "../../../sources";
@@ -22,40 +20,27 @@ export default function Categories() {
   });
 
   return (
-    <Grid
-      mb={7}
-      alignItems="center"
-      justifyContent="center"
-      container
-      spacing={{ xs: 3, md: 3 }}>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        categories.map(({ mainCampaignName, pictureGuidName, campaignID }) => (
-          <Grid
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            item
-            xs={12}
-            sm={6}
-            md={4}
-            key={campaignID}>
-            <Link href="/shop">
-              <img
-                style={{
-                  cursor: "pointer",
-                }}
-                src={`${sources.campaign}${pictureGuidName}`}
-                alt={mainCampaignName}
-                className="img-fluid"
-                layout="fill"
-                loading="lazy"
-              />
-            </Link>
-          </Grid>
-        ))
-      )}
-    </Grid>
+    <div className="container py-4">
+      <div className="row justify-content-center align-items-center">
+        {isLoading ? (
+          <Loader />
+        ) : (
+          categories.map(
+            ({ mainCampaignName, pictureGuidName, campaignID }, i) => (
+              <div className="col-6 col-md-4 pb-3" key={`${campaignID}_*0${i}`}>
+                <Link href="/">
+                  <img
+                    src={`${sources.campaign}${pictureGuidName}`}
+                    alt={mainCampaignName}
+                    className="w-100 cursor-pointer"
+                    loading="lazy"
+                  />
+                </Link>
+              </div>
+            )
+          )
+        )}
+      </div>
+    </div>
   );
 }

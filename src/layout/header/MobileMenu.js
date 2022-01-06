@@ -1,7 +1,13 @@
 import MetisMenu from "@metismenu/react";
 import Link from "next/link";
-import { Fragment } from "react";
-const MobileMenu = ({ sidebarActive, sidebarClose }) => {
+import { Fragment, useEffect } from "react";
+import { connect } from "react-redux";
+import { getMenu } from "../../redux/action/menu";
+import InnerMobileMenu from "./InnerMobileMenu";
+const MobileMenu = ({ menu, getMenu, sidebarActive, sidebarClose }) => {
+  useEffect(() => {
+    getMenu();
+  }, []);
   return (
     <Fragment>
       <aside className={`slide-bar ${sidebarActive}`}>
@@ -11,19 +17,21 @@ const MobileMenu = ({ sidebarActive, sidebarClose }) => {
             onClick={(e) => {
               sidebarClose();
               e.preventDefault();
-            }}
-          >
+            }}>
             <i className="fas fa-times" />
           </a>
         </div>
         {/* side-mobile-menu start */}
         <nav className="side-mobile-menu">
           <MetisMenu id="mobile-menu-active" className="metismenu">
-            <li className="has-dropdown">
-              <Link href="/">
-                <a>Home</a>
-              </Link>
-              <ul className="submenu submenu-three mm-collapse">
+            {menu &&
+              menu.data.map(({ selectedCategoryName, categoryID }, i) => (
+                <li className="has-dropdown">
+                  <Link href={`/shop/${categoryID}`}>
+                    <a>{selectedCategoryName}</a>
+                  </Link>
+                  <InnerMobileMenu menuId={categoryID} />
+                  {/* <ul className="submenu submenu-three mm-collapse">
                 <li>
                   <Link href="/">
                     <a>Home Style 1</a>
@@ -49,15 +57,16 @@ const MobileMenu = ({ sidebarActive, sidebarClose }) => {
                     <a>Home Style 5</a>
                   </Link>
                 </li>
-              </ul>
-            </li>
+              </ul> */}
+                </li>
+              ))}
             <li>
               <Link href="/about">
                 <a>About</a>
               </Link>
             </li>
-            
-            <li className="has-dropdown">
+
+            {/* <li className="has-dropdown">
               <Link href="/blog">
                 <a>News</a>
               </Link>
@@ -106,14 +115,13 @@ const MobileMenu = ({ sidebarActive, sidebarClose }) => {
                   </Link>
                 </li>
               </ul>
-            </li>
-            <li className="has-dropdown">
+            </li> */}
+            {/* <li className="has-dropdown">
               <Link href="#">
                 <a
                   onClick={(e) => {
                     e.preventDefault();
-                  }}
-                >
+                  }}>
                   Pages
                 </a>
               </Link>{" "}
@@ -159,7 +167,7 @@ const MobileMenu = ({ sidebarActive, sidebarClose }) => {
                   </Link>
                 </li>
               </ul>
-            </li>
+            </li> */}
             <li>
               <Link href="/contact">
                 <a>Contact</a>
@@ -176,4 +184,8 @@ const MobileMenu = ({ sidebarActive, sidebarClose }) => {
   );
 };
 
-export default MobileMenu;
+const mapStateToProps = (state) => ({
+  menu: state.menu.menuData,
+});
+
+export default connect(mapStateToProps, { getMenu })(MobileMenu);
