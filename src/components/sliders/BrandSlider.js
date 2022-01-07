@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import Slider from "react-slick";
+import sources from "../../../sources";
 import { getBrand } from "../../redux/action/home";
 
 const BrandSlider = ({ getBrand, noBg, customPadding, extraSection }) => {
@@ -14,14 +15,14 @@ const BrandSlider = ({ getBrand, noBg, customPadding, extraSection }) => {
     arrows: false,
     infinite: true,
     speed: 300,
-    slidesToShow: 5,
+    slidesToShow: 4,
     slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1200,
 
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 6,
 
           slidesToScroll: 1,
 
@@ -33,7 +34,7 @@ const BrandSlider = ({ getBrand, noBg, customPadding, extraSection }) => {
         breakpoint: 991,
 
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 6,
 
           slidesToScroll: 1,
         },
@@ -43,7 +44,7 @@ const BrandSlider = ({ getBrand, noBg, customPadding, extraSection }) => {
         breakpoint: 767,
 
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 4,
 
           slidesToScroll: 1,
         },
@@ -52,36 +53,27 @@ const BrandSlider = ({ getBrand, noBg, customPadding, extraSection }) => {
   };
   return (
     <div
-      className={`brand-area ${
-        customPadding ? customPadding : "pt-100 pb-100"
-      } ${noBg ? "" : "gray-bg"}`}
-    >
-      <div className="container">
-        {extraSection && (
-          <div className="row">
-            <div className="col-md-12">
-              <div className="section-title-four mb-80">
-                <h4>Shop By Brands</h4>
-                <a href="#" className="common-link">
-                  View All Brands <i className="fas fa-chevron-circle-right" />
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-
-        <Slider {...settings} className="row brand-active">
+      className={` ${customPadding ? customPadding : "pt-100 pb-100"} ${
+        noBg ? "" : "gray-bg"
+      }`}>
+      <div className="container select-colors">
+        <Slider
+          {...settings}
+          className="row custom-row-10 product-active common-arrows">
           {brand &&
             brand.map((brand, i) => (
-              <div className="col-12" key={i}>
-                <div className="bt-brand">
+              <div className="col-12 opacity-100 h-25" key={i}>
+                <div className="text-center select-colors">
                   <Link href="#">
                     <a
                       onClick={(e) => {
                         e.preventDefault();
-                      }}
-                    >
-                      <img src={brand} alt="Brand" />
+                      }}>
+                      <img
+                        className="rounded-circle color-select"
+                        src={`${sources.imageMinSrc}ae56bd13-d.jpg`}
+                        alt="Brand"
+                      />
                     </a>
                   </Link>
                 </div>
