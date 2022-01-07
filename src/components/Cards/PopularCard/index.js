@@ -225,6 +225,11 @@ function ProductCard({ productData, addToCart }) {
                     : "opacity-100 animate__fadeOut"
                 }`}
                 src={`${sources.imageMidSrc}${currentImages.pictures[0].guidName}`}
+                src={`${
+                  currentImages.pictures[0]
+                    ? `${sources.imageMidSrc}${currentImages.pictures[0].guidName}`
+                    : "/img/placeholder.jpg"
+                }`}
                 alt="Product"
                 loading="lazy"
               />
@@ -235,12 +240,16 @@ function ProductCard({ productData, addToCart }) {
           <Link href={`/detail/${id}`}>
             <a>
               <img
-                className={` animate__animated product-image-2 animate__faster img-fluid ${
+                className={`animate__animated product-image-2 animate__faster img-fluid ${
                   currentImageIndex
                     ? "opacity-0 animate__fadeIn"
                     : "opacity-100 animate__fadeOut"
                 }`}
-                src={`${sources.imageMidSrc}${currentImages.pictures[1].guidName}`}
+                src={`${
+                  currentImages.pictures[1]
+                    ? `${sources.imageMidSrc}${currentImages.pictures[1].guidName}`
+                    : "/img/placeholder.jpg"
+                }`}
                 alt="Product"
                 loading="lazy"
               />
