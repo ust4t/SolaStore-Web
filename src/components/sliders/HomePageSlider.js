@@ -180,3 +180,56 @@ export const HomePage5UpcomingSlider = ({ children, extraClass }) => {
     </Slider>
   );
 };
+
+const HomeBrandSlider = ({ children }) => {
+  let settings = {
+    dots: false,
+    arrows: false,
+    infinite: false,
+    speed: 300,
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1200,
+
+        settings: {
+          slidesToShow: 6,
+
+          slidesToScroll: 1,
+        },
+      },
+
+      {
+        breakpoint: 991,
+
+        settings: {
+          slidesToShow: 4,
+
+          slidesToScroll: 1,
+        },
+      },
+
+      {
+        breakpoint: 767,
+
+        settings: {
+          slidesToShow: 2,
+
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+  return (
+    <div className={"brand-area"}>
+      <div className="container">
+        <Slider {...settings} className="row brand-active">
+          {children}
+        </Slider>
+      </div>
+    </div>
+  );
+};
+
+export { HomeBrandSlider };
