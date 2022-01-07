@@ -6,7 +6,7 @@ import time from "../../utils/time";
 export default function CountdownSection({ countdown }) {
   return (
     <section
-      className="countdown-area pt-60 pb-60 mb-40"
+      className="countdown-area pt-60 pb-60 mb-20 ml-10 mr-10"
       data-background={countdown && countdown.img}>
       <div className="container">
         <div className="row">

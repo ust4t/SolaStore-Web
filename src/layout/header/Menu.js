@@ -1,14 +1,28 @@
-import { useEffect } from "react";
-import Link from "next/link";
-import { connect } from "react-redux";
-import { getMenu } from "../../redux/action/menu";
 import SubMenu from "./SubMenu";
+import Link from "next/link";
 
 const Menu = () => {
   return (
     <nav id="mobile-menu-four">
       <ul>
-        <SubMenu />
+        <li>
+          <Link href="/">
+            <a>ANASAYFA</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/">
+            <a>MARKALAR</a>
+          </Link>
+        </li>
+        <li>
+          <SubMenu />
+        </li>
+        <li>
+          <Link href="/">
+            <a>İLETİŞİM</a>
+          </Link>
+        </li>
       </ul>
     </nav>
   );

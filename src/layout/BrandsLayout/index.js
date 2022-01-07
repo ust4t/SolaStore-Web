@@ -32,7 +32,7 @@ export default function BrandsLayout() {
           brands.map(({ brandID, guidName, brandName }, i) => (
             <div
               key={`${brandID}_|*_${i}`}
-              className="col-4 col-lg-2 py-3 px-sm-3">
+              className="col-4 col-lg-2 py-3 px-sm-3 brandborder">
               <img
                 src={`${sources.brand}${guidName}`}
                 alt={brandName}

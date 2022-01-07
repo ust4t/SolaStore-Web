@@ -20,7 +20,7 @@ export default function Categories() {
   });
 
   return (
-    <div className="container py-4">
+    <div className="container py-1">
       <div className="row justify-content-center align-items-center">
         {isLoading ? (
           <Loader />

@@ -80,7 +80,21 @@ export const Layout2 = ({
         <div className="row align-items-center">
           {logoLeft ? (
             <Fragment>
-              <div className="col-xl-4 col-lg-4 col-md-4 col-12 d-none d-lg-block">
+              <div className="col-xl-4 col-lg-4 col-md-4 col-4 ta d-none d-lg-block order-1">
+                <div className="logo">
+                  <Link href="/">
+                    <a>
+                      <img
+                        src={
+                          darkBg ? "img/logo/logo3.png" : "img/logo/logo.png"
+                        }
+                        alt=""
+                      />
+                    </a>
+                  </Link>
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-4 col-12 d-block order-2">
                 <div className="input-group">
                   {" "}
                   <input
@@ -94,25 +108,10 @@ export const Layout2 = ({
                     {" "}
                     <button
                       className="btn btn-outline-dark btn-lg search-buton search-p"
-                      type="button"
-                    >
+                      type="button">
                       <i className="fa fa-search" />
                     </button>{" "}
                   </div>
-                </div>
-              </div>
-              <div className="col-xl-4 col-lg-4 col-md-4 col-4 ta">
-                <div className="logo">
-                  <Link href="/">
-                    <a>
-                      <img
-                        src={
-                          darkBg ? "img/logo/logo3.png" : "img/logo/logo.png"
-                        }
-                        alt=""
-                      />
-                    </a>
-                  </Link>
                 </div>
               </div>
             </Fragment>
@@ -134,25 +133,27 @@ export const Layout2 = ({
               </div>
             </Fragment>
           )}
-          <div className="col-xl-2 col-lg-2 col-md-7 col-6">
+          <div className="col-xl-2 col-lg-2 col-md-7 col-6 order-1 order-md-3 mb-2">
             <div
               className={`header-left-icon ${
                 darkBg ? "header-right-icon" : ""
-              } d-flex align-items-center f-right`}
-            >
+              } d-flex align-items-center f-right`}>
               <WishlistIcon />
               <UserIcon />
               <CartIcon />
             </div>
           </div>
-          <div className="col-2 col-md-1 d-block d-lg-none">
+          <div className="col-2 col-md-1 d-block d-lg-none order-1 order-md-3 mb-2">
             <HamburgerIcon darkBg={darkBg} sidebarActive={() => setSidebar()} />
           </div>
         </div>
       </div>
     </div>
     <div className="col-xl-12 col-lg-12 col-md-12 d-none d-lg-block mt-20 borderet">
-      <div className={`main-menu ${darkBg ? " main-menu-3" : ""} text-center`}>
+      <div
+        className={`main-menu ${
+          darkBg ? " main-menu-3" : ""
+        } text-center py-2`}>
         <Menu />
       </div>
     </div>

@@ -26,26 +26,28 @@ export default function NewProducts() {
         <Loader />
       ) : (
         <HomePageProductSliderWithArrow extraClass="slider-active-three common-arrows ">
-          {newProducts.map((productData, i) => {
-            return (
-              <div
-                className="home_3_margin"
-                key={`${productData.productID}*_${i}`}>
-                <PopularCard
-                  productData={{
-                    id: productData.productID,
-                    name: productData.productShortName,
-                    images: productData.pictures,
-                    price: productData.price,
-                    oldPrice: productData.oldPrice,
-                    productStockCode: productData.productStockCode,
-                    discount: productData.singlePrice,
-                    video_1: productData.video_1,
-                  }}
-                />
-              </div>
-            );
-          })}
+          {newProducts
+            .slice(0, newProducts.length >= 12 ? 12 : newProducts.length)
+            .map((productData, i) => {
+              return (
+                <div
+                  className="home_3_margin"
+                  key={`${productData.productID}*_${i}`}>
+                  <PopularCard
+                    productData={{
+                      id: productData.productID,
+                      name: productData.productShortName,
+                      images: productData.pictures,
+                      price: productData.price,
+                      oldPrice: productData.oldPrice,
+                      productStockCode: productData.productStockCode,
+                      discount: productData.singlePrice,
+                      video_1: productData.video_1,
+                    }}
+                  />
+                </div>
+              );
+            })}
         </HomePageProductSliderWithArrow>
       )}
     </>

@@ -128,6 +128,7 @@ export const HomePageProductSliderWithArrow = ({ children, extraClass }) => {
     dots: false,
     arrows: true,
     infinite: true,
+    lazyLoad: true,
     speed: 300,
     prevArrow: <Arrow icon="fas fa-arrow-left" />,
     nextArrow: <Arrow icon="fas fa-arrow-right" />,

@@ -2,12 +2,12 @@ import React from "react";
 
 export default function EmailArea() {
   return (
-    <section className="newsletter-area pt-20 mb-60">
+    <section className="newsletter-area mb-20">
       <div className="container">
         <div className="row">
           <div className="col-sm-12">
             <div
-              className="news-wrapper news-wrapper-2 news-wrapper-3 text-center pt-30 pb-30"
+              className="news-wrapper news-wrapper-2 news-wrapper-3 text-center pt-10 pb-10"
               data-background="img/newsletter-bg.jpg"
               style={{
                 backgroundImage: 'url("/img/newsletter-bg.jpg")',
