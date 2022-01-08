@@ -5,11 +5,7 @@ import NewProducts from "../../components/NewProducts";
 import SaleProducts from "../../components/SaleProducts";
 import { Nav, Tab } from "react-bootstrap";
 
-export default function TabLayout({
-  popularProducts,
-  newProducts,
-  saleProducts,
-}) {
+export default function TabLayout({ newProducts, saleProducts }) {
   return (
     <section className="product-area pt-70 pb-70">
       <div className="container">
@@ -23,13 +19,9 @@ export default function TabLayout({
         <div className="row">
           <div className="col-xl-12">
             <div className="product-tab-five text-center">
-              <Tab.Container defaultActiveKey="Best Sell">
+              <Tab.Container defaultActiveKey="New Products">
                 <Nav className="justify-content-center">
                   <div className="nav custom-tabs" id="nav-tab" role="tablist">
-                    <Nav.Link eventKey="Best Sell">
-                      <i className="far fa-chart-line"></i>
-                      Çok Satanlar
-                    </Nav.Link>
                     <Nav.Link eventKey="New Products">
                       <i className="fas fa-fire-alt"></i>
                       Yeni Ürünler
@@ -38,17 +30,21 @@ export default function TabLayout({
                       <i className="fas fa-tags"></i>
                       İndirimdeki Ürünler
                     </Nav.Link>
+                    <Nav.Link eventKey="Best Sell">
+                      <i className="far fa-chart-line"></i>
+                      Çok Satanlar
+                    </Nav.Link>
                   </div>
                 </Nav>
                 <Tab.Content className="tab-content" id="nav-tabContent">
-                  <Tab.Pane eventKey="Best Sell">
-                    <PopularProducts popularProducts={popularProducts} />
-                  </Tab.Pane>
                   <Tab.Pane eventKey="New Products">
                     <NewProducts newProducts={newProducts} />
                   </Tab.Pane>
                   <Tab.Pane eventKey="Sale Products">
                     <SaleProducts saleProducts={saleProducts} />
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="Best Sell">
+                    <PopularProducts />
                   </Tab.Pane>
                 </Tab.Content>
               </Tab.Container>

@@ -18,7 +18,7 @@ import SliderProducts from "../src/components/sliders/sliderProducts";
 import TabLayout from "../src/layout/TabLayout";
 import axios from "axios";
 
-const Index4 = ({ popularProducts, newProducts, saleProducts }) => {
+const Index4 = ({ newProducts, saleProducts }) => {
   useEffect(() => {
     animationCreate();
   }, []);
@@ -47,11 +47,7 @@ const Index4 = ({ popularProducts, newProducts, saleProducts }) => {
           }}>
           <IntroBanners />
           <FilterSearch />
-          <TabLayout
-            popularProducts={popularProducts}
-            newProducts={newProducts}
-            saleProducts={saleProducts}
-          />
+          <TabLayout newProducts={newProducts} saleProducts={saleProducts} />
           <Categories />
           <CountdownSection countdown={countdownSource} />
           <EmailArea />
@@ -75,8 +71,7 @@ const Index4 = ({ popularProducts, newProducts, saleProducts }) => {
 
 export default Index4;
 
-export async function getServerSideProps(context) {
-  const popularProducts = await fetchPopulars();
+export async function getServerSideProps() {
   const { data: newProducts } = await axios.get(
     `https://api.solastore.com.tr/api/Product/GetNewProducts?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
   );
@@ -86,38 +81,8 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      popularProducts,
       newProducts: newProducts.reverse(),
       saleProducts: saleProducts.reverse(),
     },
   };
 }
-
-const fetchPopulars = async (res) => {
-  const respond = await fetch(
-    "https://api.solastore.com.tr/api/Product/GetBestSellerProducts?lang=tr&sourceProof=ugurturkmenn%40gmail.com"
-  );
-  const popularData = await respond.json();
-  const allProducts = [];
-
-  await Promise.all(
-    popularData.map(async (popular) => {
-      const product = await fetch(
-        `https://api.solastore.com.tr/api/Product/GetVariationsByProductID?ProductID=${popular.masterProductID}&lang=tr&sourceProof=ugurturkmenn%40gmail.com`
-      );
-      const specificData = await product.json();
-      allProducts.push({
-        id: popular.productID,
-        name: popular.productShortName,
-        images: popular.pictures,
-        price: popular.price,
-        oldPrice: popular.oldPrice,
-        productStockCode: popular.productStockCode,
-        discount: popular.singlePrice,
-        video_1: popular.video_1,
-        variants: specificData,
-      });
-    })
-  );
-  return allProducts.reverse();
-};
