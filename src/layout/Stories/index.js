@@ -53,7 +53,7 @@ export default function Stories({ stories }) {
           grabCursor={true}
           slidesPerView={5}
           autoplay={{
-            delay: 1000,
+            delay: 4000,
           }}
           breakpoints={{
             300: {
@@ -63,23 +63,25 @@ export default function Stories({ stories }) {
               slidesPerView: 5,
             },
           }}>
-          {stories.map((story, index) => (
-            <SwiperSlide
-              className="d-flex flex-column align-items-center justify-content-center mx-2"
-              key={`${story.masterProductID}_?_${index}`}>
-              <div
-                className={`${styles["cover-image-box"]} align-self-start`}
-                onClick={() => handleStories(story)}>
-                <img
-                  className="cursor-pointer"
-                  src={`${sources.imageMinSrc}${story.picture_1}`}
-                />
-              </div>
-              <p className="fs-6 text-end text-wrap my-1 w-100 ">
-                {story.productShortName}
-              </p>
-            </SwiperSlide>
-          ))}
+          {stories
+            .slice(0, stories.length >= 6 ? 6 : stories.length)
+            .map((story, index) => (
+              <SwiperSlide key={`${story.masterProductID}_?_${index}`}>
+                <div className="d-flex flex-column flex-wrap align-content-center justify-content-center mx-2">
+                  <div
+                    className={`${styles["cover-image-box"]} align-self-start`}
+                    onClick={() => handleStories(story)}>
+                    <img
+                      className="cursor-pointer"
+                      src={`${sources.imageMinSrc}${story.picture_1}`}
+                    />
+                  </div>
+                  <p className="fs-6 text-center text-wrap ">
+                    {story.productShortName}
+                  </p>
+                </div>
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
 

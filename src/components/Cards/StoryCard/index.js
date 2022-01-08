@@ -7,7 +7,7 @@ export default function StoryCard({ onClose, storiesData }) {
   const [storyPaused, setStoryPaused] = useState(false);
   const [storyIndex, setStoryIndex] = useState(0);
   const storyIndexRef = useRef(0);
-  const duration = 2;
+  const duration = 20;
   useEffect(() => {
     // autoskip for story
     const interval = setInterval(() => {
@@ -96,8 +96,9 @@ export default function StoryCard({ onClose, storiesData }) {
           )}
           <Link href={`detail/${storiesData.id}`}>
             <button
-              className="btn-main position-absolute top-50 start-50 translate-middle-x fs-5 text-center text-white cursor-pointer px-2 py-1 rounded"
+              className="btn-main position-absolute start-50 translate-middle fs-5 text-center text-white cursor-pointer px-2 py-1 rounded"
               style={{
+                bottom: "25%",
                 backgroundColor: "rgba(0,0,0,0.75)",
               }}>
               Ürünü Görüntüle
