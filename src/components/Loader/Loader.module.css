@@ -4,38 +4,35 @@
   place-content: center;
 }
 
-.ldsRing {
+.lds-ripple {
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
 }
-.ldsRing div {
-  box-sizing: border-box;
-  display: block;
+.lds-ripple div {
   position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid #cc8c68;
+  border: 4px solid var(--color-primary);
+  opacity: 1;
   border-radius: 50%;
-  animation: ldsRing 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #cc8c68 transparent transparent transparent;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
-.ldsRing div:nth-child(1) {
-  animation-delay: -0.45s;
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
 }
-.ldsRing div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-.ldsRing div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-@keyframes ldsRing {
+@keyframes lds-ripple {
   0% {
-    transform: rotate(0deg);
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
   }
   100% {
-    transform: rotate(360deg);
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
   }
 }

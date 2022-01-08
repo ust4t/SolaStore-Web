@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 
 import sources from "../../../../sources";
 
-export default function StoryCard({ onClose, stories }) {
+export default function StoryCard({ onClose, storiesData }) {
   const [storyPaused, setStoryPaused] = useState(false);
   const [storyIndex, setStoryIndex] = useState(0);
   const storyIndexRef = useRef(0);
   const duration = 2;
-
   useEffect(() => {
     // autoskip for story
     const interval = setInterval(() => {
       if (storyPaused) return;
-      if (storyIndexRef.current === stories.length - 1) {
+      if (storyIndexRef.current === storiesData.img.length - 1) {
         onClose();
       }
       setStoryIndex(storyIndexRef.current + 1);
@@ -24,8 +24,6 @@ export default function StoryCard({ onClose, stories }) {
   useEffect(() => {
     storyIndexRef.current = storyIndex;
   }, [storyIndex]);
-
-  console.log(stories[storyIndex]);
 
   function getProgressBarClassName(index) {
     if (index < storyIndex) {
@@ -46,21 +44,25 @@ export default function StoryCard({ onClose, stories }) {
           top: "20px",
           right: "20px",
         }}
-        onClick={() => onClose()}
+        onClick={onClose}
         class="fas fa-times position-absolute text-white fs-3 cursor-pointer"></i>
       <div className="story justify-content-end pt-2">
         <div className="title d-flex justify-content-space-between align-items-center">
-          <img src="/img/placeholder.jpg" />
+          <img
+            src={`${sources.imageMaxSrc}${storiesData.img[storyIndex].guidName}`}
+          />
           <div className="details">
-            <span>#penguin</span>
-            <span>username</span>
+            <span>#{storiesData.productStock}</span>
+            <span>{storiesData.productName}</span>
           </div>
           <div className="spacer"></div>
           {storyPaused && <div className="pause">PAUSED</div>}
         </div>
         <div className="progress-bars">
-          {stories.map((story, index) => (
-            <div className="progress-bar-container">
+          {storiesData.img.map((story, index) => (
+            <div
+              key={`${index}.ç${story.id}`}
+              className="progress-bar-container">
               <div
                 style={{ animationDuration: `${duration || 10}s` }}
                 className={getProgressBarClassName(index)}></div>
@@ -71,7 +73,7 @@ export default function StoryCard({ onClose, stories }) {
           <img
             onClick={(e) => setStoryPaused(!storyPaused)}
             id="video"
-            src={`${sources.imageMaxSrc}${stories[storyIndex].video_url}`}
+            src={`${sources.imageMaxSrc}${storiesData.img[storyIndex].guidName}`}
           />
           {storyIndex !== 0 && (
             <i
@@ -82,7 +84,7 @@ export default function StoryCard({ onClose, stories }) {
               }}
               onClick={(e) => setStoryIndex((value) => value - 1)}></i>
           )}
-          {storyIndex !== stories.length - 1 && (
+          {storyIndex !== storiesData.img.length - 1 && (
             <i
               class="fas fa-chevron-right bg-white position-absolute top-50 translate-middle fs-5 text-center cursor-pointer px-2 py-1 rounded-circle"
               style={{
@@ -92,14 +94,15 @@ export default function StoryCard({ onClose, stories }) {
               color="white"
               onClick={(e) => setStoryIndex((value) => value + 1)}></i>
           )}
-          <button
-            className="btn-main position-absolute top-50 start-50 translate-middle-x fs-5 text-center text-white cursor-pointer px-2 py-1 rounded"
-            style={{
-              backgroundColor: "rgba(0,0,0,0.75)",
-            }}
-            onClick={() => alert("clicked")}>
-            Ürünü Görüntüle
-          </button>
+          <Link href={`detail/${storiesData.id}`}>
+            <button
+              className="btn-main position-absolute top-50 start-50 translate-middle-x fs-5 text-center text-white cursor-pointer px-2 py-1 rounded"
+              style={{
+                backgroundColor: "rgba(0,0,0,0.75)",
+              }}>
+              Ürünü Görüntüle
+            </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
 import PopularProducts from "../../components/PopularProducts";
-import styles from "./TabLayout.module.css";
 import NewProducts from "../../components/NewProducts";
 import SaleProducts from "../../components/SaleProducts";
 import { Nav, Tab } from "react-bootstrap";
 
-export default function TabLayout() {
-  const [popularData, setPopularData] = useState([]);
-
+export default function TabLayout({
+  popularProducts,
+  newProducts,
+  saleProducts,
+}) {
   return (
     <section className="product-area pt-70 pb-70">
       <div className="container">
@@ -41,19 +42,13 @@ export default function TabLayout() {
                 </Nav>
                 <Tab.Content className="tab-content" id="nav-tabContent">
                   <Tab.Pane eventKey="Best Sell">
-                    {/* <PopularProducts
-                      popularData={popularData}
-                      setPopularData={setPopularData}
-                    /> */}
+                    <PopularProducts popularProducts={popularProducts} />
                   </Tab.Pane>
                   <Tab.Pane eventKey="New Products">
-                    <NewProducts />
+                    <NewProducts newProducts={newProducts} />
                   </Tab.Pane>
                   <Tab.Pane eventKey="Sale Products">
-                    <SaleProducts
-                      popularData={popularData}
-                      setPopularData={setPopularData}
-                    />
+                    <SaleProducts saleProducts={saleProducts} />
                   </Tab.Pane>
                 </Tab.Content>
               </Tab.Container>

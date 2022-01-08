@@ -1,43 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper";
+import { Autoplay } from "swiper";
 
 import sources from "../../../sources";
 import StoryCard from "../../components/Cards/StoryCard";
 import styles from "./Stories.module.css";
 
-const storiesData = [
-  {
-    profile_name: "Jeremy",
-    video_url: "ae56bd13-d.jpg",
-    duration: 7,
-  },
-  {
-    profile_name: "Meko222",
-    video_url: "ae56bd13-d.jpg",
-    duration: 7,
-  },
-  {
-    profile_name: "Chupachup",
-    video_url: "ae56bd13-d.jpg",
-    duration: 7,
-  },
-  {
-    profile_name: "Aron",
-    video_url: "ae56bd13-d.jpg",
-    duration: 7,
-  },
-];
+// const storiesData = [
+//   {
+//     productName: "Jeremy",
+//     img: "ae56bd13-d.jpg",
+//   },
+//   {
+//     profile_name: "Meko222",
+//     video_url: "59c495ab-4.jpg",
+//   },
+//   {
+//     profile_name: "Chupachup",
+//     video_url: "7225f052-3.jpg",
+//   },
+//   {
+//     profile_name: "Aron",
+//     video_url: "e6ed01a9-3.jpg",
+//   },
+// ];
 
-export default function Stories() {
-  const [storiesOpen, setStoriesOpen] = React.useState(false);
-
+export default function Stories({ stories }) {
+  const [storiesData, setStoriesData] = useState([]);
+  const [storiesOpen, setStoriesOpen] = useState(false);
   function closeStory() {
     setStoriesOpen(false);
   }
+  console.log(stories);
+
+  const handleStories = (story) => {
+    setStoriesData({
+      id: story.masterProductID,
+      productName: story.productShortName,
+      productStock: story.productStockCode,
+      img: story.pictures,
+    });
+    setStoriesOpen(true);
+  };
 
   return (
-    <div class="d-flex align-center justify-content-center my-4">
+    <div className="d-flex align-center justify-content-center my-4">
       <div className="slider-main">
         <Swiper
           modules={[Autoplay]}
@@ -56,22 +63,29 @@ export default function Stories() {
               slidesPerView: 5,
             },
           }}>
-          {[1, 2, 3, 4, 5, 6].map((item, index) => (
-            <SwiperSlide>
+          {stories.map((story, index) => (
+            <SwiperSlide
+              className="d-flex flex-column align-items-center justify-content-center mx-2"
+              key={`${story.masterProductID}_?_${index}`}>
               <div
-                className={styles["cover-image-box"]}
-                onClick={() => setStoriesOpen(true)}>
+                className={`${styles["cover-image-box"]} align-self-start`}
+                onClick={() => handleStories(story)}>
                 <img
                   className="cursor-pointer"
-                  src={`${sources.imageMinSrc}ae56bd13-d.jpg`}
+                  src={`${sources.imageMinSrc}${story.picture_1}`}
                 />
               </div>
+              <p className="fs-6 text-end text-wrap my-1 w-100 ">
+                {story.productShortName}
+              </p>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
-      {storiesOpen && <StoryCard stories={storiesData} onClose={closeStory} />}
+      {storiesOpen && (
+        <StoryCard storiesData={storiesData} onClose={closeStory} />
+      )}
     </div>
   );
 }

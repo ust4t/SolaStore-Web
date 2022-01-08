@@ -17,10 +17,6 @@ function SubCategory({ subMenu, picture, id }) {
       .then((res) => setCategoryData(res.data));
   }, [id]);
 
-  const handleGetID = (id) => {
-    alert(id);
-  };
-
   return (
     <ul className="submenu submenu-two">
       <ul
@@ -36,12 +32,8 @@ function SubCategory({ subMenu, picture, id }) {
           {!!categoryData.data &&
             categoryData.data.map(({ selectedCategoryName, categoryID }, i) => (
               <li key={`${i}_0_${i}`}>
-                <Link href="#">
-                  <a
-                    onClick={() => handleGetID(categoryID)}
-                    className="text-uppercase">
-                    {selectedCategoryName}
-                  </a>
+                <Link href={`/shop/${categoryID}`}>
+                  <a className="text-uppercase">{selectedCategoryName}</a>
                 </Link>
               </li>
             ))}

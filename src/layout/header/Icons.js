@@ -1,13 +1,11 @@
 import Link from "next/link";
 import { connect, useSelector } from "react-redux";
-import { Menu, Dropdown, Row, Col } from "antd";
+import { Menu, Dropdown } from "antd";
 import ColorfulText from "../../components/ColorfulText";
 import CartProductItem from "../../components/CartProductItem";
 import { removeCart } from "../../redux/action/utilis";
-import { QueryClient, useMutation } from "react-query";
 import { useContext } from "react";
 import { StoreContext } from "../../context/StoreProvider";
-import toast from "react-hot-toast";
 
 export const SearchIcon = ({ hendelChangeSearch }) => (
   <Link href="#">
@@ -50,8 +48,7 @@ export const CompareIcon = () => {
   );
 };
 
-export const CartIcon = ({ removeCart }) => {
-  // const carts = useSelector((state) => state.utilis.carts);
+export const CartIcon = () => {
   const { state } = useContext(StoreContext);
 
   const cartsNum =
@@ -95,18 +92,12 @@ export const CartIcon = ({ removeCart }) => {
   );
   return (
     <Link href="/cart">
-      {state.cartData ? (
-        <Dropdown overlay={menu} placement="topRight">
-          <a className="position-relative">
-            <span className="iconValue">{cartsNum || 0}</span>
-            <i className="fas fa-cart-arrow-down favf" />
-          </a>
-        </Dropdown>
-      ) : (
+      <Dropdown overlay={menu} placement="topRight">
         <a className="position-relative">
+          <span className="iconValue">{cartsNum || 0}</span>
           <i className="fas fa-cart-arrow-down favf" />
         </a>
-      )}
+      </Dropdown>
     </Link>
   );
 };

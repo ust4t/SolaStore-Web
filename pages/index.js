@@ -16,20 +16,10 @@ import Layout from "../src/layout/Layout";
 import Stories from "../src/layout/Stories";
 import SliderProducts from "../src/components/sliders/sliderProducts";
 import TabLayout from "../src/layout/TabLayout";
+import axios from "axios";
 
-const Index4 = ({
-  getHome4,
-  sliders,
-  banner_1,
-  iconSliders,
-  banner_2,
-  banner_3,
-  getProducts,
-  products,
-}) => {
+const Index4 = ({ popularProducts, newProducts, saleProducts }) => {
   useEffect(() => {
-    getHome4();
-    getProducts();
     animationCreate();
   }, []);
 
@@ -45,7 +35,7 @@ const Index4 = ({
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
-        <Stories />
+        <Stories stories={newProducts} />
         <SliderProducts />
         <Box
           mx={{
@@ -57,7 +47,11 @@ const Index4 = ({
           }}>
           <IntroBanners />
           <FilterSearch />
-          <TabLayout />
+          <TabLayout
+            popularProducts={popularProducts}
+            newProducts={newProducts}
+            saleProducts={saleProducts}
+          />
           <Categories />
           <CountdownSection countdown={countdownSource} />
           <EmailArea />
@@ -79,13 +73,51 @@ const Index4 = ({
   );
 };
 
-const mapStateToProps = (state) => ({
-  sliders: state.home.home4 && state.home.home4.sliders,
-  banner_1: state.home.home4 && state.home.home4.banner_1,
-  iconSliders: state.home.home4 && state.home.home4.iconSliders,
-  banner_2: state.home.home4 && state.home.home4.banner_2,
-  banner_3: state.home.home4 && state.home.home4.banner_3,
-  products: simpleProductFilter("home_4", state.product.products),
-});
+export default Index4;
 
-export default connect(mapStateToProps, { getHome4, getProducts })(Index4);
+export async function getServerSideProps(context) {
+  const popularProducts = await fetchPopulars();
+  const { data: newProducts } = await axios.get(
+    `https://api.solastore.com.tr/api/Product/GetNewProducts?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
+  );
+  const { data: saleProducts } = await axios.get(
+    `https://api.solastore.com.tr/api/Product/GetSaleProducts?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
+  );
+
+  return {
+    props: {
+      popularProducts,
+      newProducts: newProducts.reverse(),
+      saleProducts: saleProducts.reverse(),
+    },
+  };
+}
+
+const fetchPopulars = async (res) => {
+  const respond = await fetch(
+    "https://api.solastore.com.tr/api/Product/GetBestSellerProducts?lang=tr&sourceProof=ugurturkmenn%40gmail.com"
+  );
+  const popularData = await respond.json();
+  const allProducts = [];
+
+  await Promise.all(
+    popularData.map(async (popular) => {
+      const product = await fetch(
+        `https://api.solastore.com.tr/api/Product/GetVariationsByProductID?ProductID=${popular.masterProductID}&lang=tr&sourceProof=ugurturkmenn%40gmail.com`
+      );
+      const specificData = await product.json();
+      allProducts.push({
+        id: popular.productID,
+        name: popular.productShortName,
+        images: popular.pictures,
+        price: popular.price,
+        oldPrice: popular.oldPrice,
+        productStockCode: popular.productStockCode,
+        discount: popular.singlePrice,
+        video_1: popular.video_1,
+        variants: specificData,
+      });
+    })
+  );
+  return allProducts.reverse();
+};
