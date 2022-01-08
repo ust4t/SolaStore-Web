@@ -6,25 +6,6 @@ import sources from "../../../sources";
 import StoryCard from "../../components/Cards/StoryCard";
 import styles from "./Stories.module.css";
 
-// const storiesData = [
-//   {
-//     productName: "Jeremy",
-//     img: "ae56bd13-d.jpg",
-//   },
-//   {
-//     profile_name: "Meko222",
-//     video_url: "59c495ab-4.jpg",
-//   },
-//   {
-//     profile_name: "Chupachup",
-//     video_url: "7225f052-3.jpg",
-//   },
-//   {
-//     profile_name: "Aron",
-//     video_url: "e6ed01a9-3.jpg",
-//   },
-// ];
-
 export default function Stories({ stories }) {
   const [storiesData, setStoriesData] = useState([]);
   const [storiesOpen, setStoriesOpen] = useState(false);

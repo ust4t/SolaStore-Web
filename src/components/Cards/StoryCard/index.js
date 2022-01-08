@@ -7,7 +7,7 @@ export default function StoryCard({ onClose, storiesData }) {
   const [storyPaused, setStoryPaused] = useState(false);
   const [storyIndex, setStoryIndex] = useState(0);
   const storyIndexRef = useRef(0);
-  const duration = 20;
+  const duration = 2;
   useEffect(() => {
     // autoskip for story
     const interval = setInterval(() => {
