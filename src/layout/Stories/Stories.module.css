@@ -1,5 +1,4 @@
 .cover-image-box {
-  /* display: flex; */
   margin-left: 25px;
   max-width: min-content;
   position: relative;
@@ -29,4 +28,11 @@
   object-fit: cover;
   border-radius: 50%;
   padding: 3px;
+}
+
+@media (max-width: 650px) {
+  .cover-image-box img {
+    width: 80px;
+    height: 80px;
+  }
 }

@@ -38,7 +38,7 @@ export default function Stories() {
 
   return (
     <div class="d-flex align-center justify-content-center my-4">
-      <div className="w-50">
+      <div className="slider-main">
         <Swiper
           modules={[Autoplay]}
           spaceBetween={0}
@@ -47,6 +47,14 @@ export default function Stories() {
           slidesPerView={5}
           autoplay={{
             delay: 1000,
+          }}
+          breakpoints={{
+            300: {
+              slidesPerView: 3,
+            },
+            540: {
+              slidesPerView: 5,
+            },
           }}>
           {[1, 2, 3, 4, 5, 6].map((item, index) => (
             <SwiperSlide>

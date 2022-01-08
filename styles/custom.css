@@ -300,6 +300,23 @@ ul {
     padding-right: 3px;
   }
 }
+
+.slider-main {
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .slider-main {
+    width: 50%;
+  }
+}
+
+@media (min-width: 910px) and (max-width: 1310px) {
+  .slider-main {
+    width: 75%;
+  }
+}
+
 /* ------------------------------------------------------------------------------------------------------------ */
 
 .dark-bg .hamburger-menu a,
@@ -324,7 +341,7 @@ ul {
 }
 
 .cart-icon .active {
-  color: #3e976c !important;
+  color: var(--color-primary) !important;
 }
 
 .custom-acc {
@@ -400,7 +417,7 @@ ul.pro-rating i {
 }
 
 .pro-desc-tab .active {
-  color: #3e976c;
+  color: var(--color-primary);
 }
 .stock-update .stock-list li > span:first-child {
   width: 100px;
@@ -452,7 +469,7 @@ ul.pro-rating i {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #3e976c;
+  color: var(--color-primary);
 }
 
 @media (min-width: 992px) {
@@ -496,7 +513,7 @@ ul.pro-rating i {
 .iconValue {
   right: -11px;
   top: -6px;
-  background: #3e976c;
+  background: var(--color-primary);
   text-align: center;
   border-radius: 50%;
   width: 15px;

@@ -24,6 +24,16 @@ const MobileMenu = ({ menu, getMenu, sidebarActive, sidebarClose }) => {
         {/* side-mobile-menu start */}
         <nav className="side-mobile-menu">
           <MetisMenu id="mobile-menu-active" className="metismenu">
+            <li>
+              <Link href="/">
+                <a>ANASAYFA</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/">
+                <a>MARKALAR</a>
+              </Link>
+            </li>
             {menu &&
               menu.data.map(({ selectedCategoryName, categoryID }, i) => (
                 <li className="has-dropdown">
@@ -33,15 +43,10 @@ const MobileMenu = ({ menu, getMenu, sidebarActive, sidebarClose }) => {
                   <InnerMobileMenu menuId={categoryID} />
                 </li>
               ))}
-            <li>
-              <Link href="/about">
-                <a>About</a>
-              </Link>
-            </li>
 
             <li>
-              <Link href="/contact">
-                <a>Contact</a>
+              <Link href="/">
+                <a>İLETİŞİM</a>
               </Link>
             </li>
           </MetisMenu>

@@ -77,11 +77,11 @@ export const Layout2 = ({
 
     <div className="header-menu-area logo-circle-area ">
       <div className="container-fluid">
-        <div className="row align-items-center">
+        <div className="row align-items-center justify-content-end justify-content-lg-center">
           {logoLeft ? (
             <Fragment>
-              <div className="col-xl-4 col-lg-4 col-md-4 col-4 ta d-none d-lg-block order-1">
-                <div className="logo">
+              <div className="col-xl-2 col-lg-2 col-md-4 col-4 ta d-none d-lg-block order-1">
+                <div className="logo d-flex justify-content-lg-start">
                   <Link href="/">
                     <a>
                       <img
@@ -94,7 +94,7 @@ export const Layout2 = ({
                   </Link>
                 </div>
               </div>
-              <div className="col-xl-4 col-lg-4 col-md-4 col-12 d-block order-2">
+              <div className="col-xl-6 col-lg-6 col-md-8 col-12 d-block order-2">
                 <div className="input-group">
                   {" "}
                   <input
@@ -133,7 +133,7 @@ export const Layout2 = ({
               </div>
             </Fragment>
           )}
-          <div className="col-xl-2 col-lg-2 col-md-7 col-6 order-1 order-md-3 mb-2">
+          <div className="col-xl-2 col-lg-3 col-md-3 col-6 order-1 order-md-3 mb-2">
             <div
               className={`header-left-icon ${
                 darkBg ? "header-right-icon" : ""

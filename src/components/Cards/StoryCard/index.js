@@ -6,6 +6,7 @@ export default function StoryCard({ onClose, stories }) {
   const [storyPaused, setStoryPaused] = useState(false);
   const [storyIndex, setStoryIndex] = useState(0);
   const storyIndexRef = useRef(0);
+  const duration = 2;
 
   useEffect(() => {
     // autoskip for story
@@ -15,7 +16,7 @@ export default function StoryCard({ onClose, stories }) {
         onClose();
       }
       setStoryIndex(storyIndexRef.current + 1);
-    }, stories[storyIndexRef.current].duration * 1000);
+    }, duration * 1000);
 
     return () => clearInterval(interval);
   }, [storyPaused, storyIndex]);
@@ -23,18 +24,6 @@ export default function StoryCard({ onClose, stories }) {
   useEffect(() => {
     storyIndexRef.current = storyIndex;
   }, [storyIndex]);
-
-  //   useEffect(() => {
-  //     if (storyPaused) {
-  //       (document.getElementById("video")).pause();
-  //     } else {
-  //       (document.getElementById("video")).play();
-  //     }
-  //   }, [storyPaused]);
-
-  function onClickStory(element) {
-    // if (element.className === "story-container") onClose();
-  }
 
   console.log(stories[storyIndex]);
 
@@ -51,9 +40,7 @@ export default function StoryCard({ onClose, stories }) {
   }
 
   return (
-    <div
-      onClick={(e) => onClickStory(e.target)}
-      className="story-container z-index-first">
+    <div className="story-container z-index-first">
       <i
         style={{
           top: "20px",
@@ -75,7 +62,7 @@ export default function StoryCard({ onClose, stories }) {
           {stories.map((story, index) => (
             <div className="progress-bar-container">
               <div
-                style={{ animationDuration: `${story?.duration || 10}s` }}
+                style={{ animationDuration: `${duration || 10}s` }}
                 className={getProgressBarClassName(index)}></div>
             </div>
           ))}
