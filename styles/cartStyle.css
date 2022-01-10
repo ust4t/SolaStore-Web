@@ -164,3 +164,13 @@ tr:nth-child(3) {
   background: #d44600 none repeat scroll 0 0;
   color: #fff;
 }
+
+.sept40 {
+  margin-top: 37px;
+}
+
+@media (min-width: 1270px) {
+  .mustem {
+    max-width: 14% !important;
+  }
+}

@@ -54,7 +54,8 @@ const Cart = () => {
     decrementQuantity,
   } = cartActions;
 
-  const [addCart, setaddCart] = useState(false);
+  console.log(state.cartData);
+  // const [addCart, setaddCart] = useState(false);
 
   const removeFromCart = (e, { id }) => {
     const cartData = {
@@ -80,181 +81,204 @@ const Cart = () => {
   return (
     <Layout sticky footerBg container textCenter>
       <main>
-        {/* <PageTitle active="Cart" pageTitle="Shoping Cart" /> */}
+        <PageTitle active="Cart" pageTitle="Shoping Cart" />
 
-        {isCartLoading ? (
-          <Loader />
-        ) : state.cartData && state.cartData.length > 0 ? (
-          <section className="cart-area pt-20 pb-100">
-            <div className="container">
-              <div className="row">
-                <div className="col-12">
-                  <h2 className="text-center fw-bold ">
-                    SİPARİŞ TAMAMLAMA SAYFASI
-                  </h2>
-                  <h5 className="text-center fw-bold text-danger">
-                    Siparişinizi Güvenle Tamamlayabilirsiniz. Siparişinizi
-                    tamamladığınızda, ödeme ve kargo gönderim konusunda satış
-                    ekibimiz sizi arayacak.
-                  </h5>
+        <section className="cart-area pt-20 pb-100">
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <h2 className="text-center fw-bold ">
+                  SİPARİŞ TAMAMLAMA SAYFASI
+                </h2>
+                <h5 className="text-center fw-bold text-danger">
+                  Siparişinizi Güvenle Tamamlayabilirsiniz. Siparişinizi
+                  tamamladığınızda, ödeme ve kargo gönderim konusunda satış
+                  ekibimiz sizi arayacak.
+                </h5>
+              </div>
+              <div className="col-12 mt-20 d-flex flex-column justify-content-center">
+                <h3 className="fw-bold text-center">
+                  LÜTFEN SATIŞ TEMSİLCİNİZİ SEÇİNİZ
+                </h3>
+                <i
+                  className="fas fa-user text-center py-1"
+                  style={{
+                    fontSize: "7.3rem",
+                  }}></i>
+                <h4 className="fs-5 fw-bold text-center">
+                  İlk siparişim. Satış temsilcim yok.
+                </h4>
+                <div className="row">
+                  {saleTeam.map(({ name, img }, index) => (
+                    <div className="col-4 col-lg-2 mt-3 d-flex flex-column align-items-center mustem">
+                      <Image
+                        src={img}
+                        alt={name}
+                        className="rounded-circle"
+                        width={"150px"}
+                        height={"150px"}
+                        layout="fixed"
+                      />
+
+                      <h5 className="fs-4 mt-1 fw-bold text-center">{name}</h5>
+                    </div>
+                  ))}
                 </div>
-                <div className="col-12 mt-20 d-flex flex-column justify-content-center">
-                  <h3 className="fw-bold text-center">
-                    LÜTFEN SATIŞ TEMSİLCİNİZİ SEÇİNİZ
-                  </h3>
-                  <i
-                    className="fas fa-user text-center py-1"
-                    style={{
-                      fontSize: "7.3rem",
-                    }}></i>
-                  <h4 className="fs-5 fw-bold text-center">
-                    İlk siparişim. Satış temsilcim yok.
-                  </h4>
-                  <div className="row">
-                    {saleTeam.map(({ name, img }, index) => (
-                      <div className="col-4 col-lg-2 mt-3 d-flex flex-column align-items-center">
-                        <Image
-                          src={img}
-                          alt={name}
-                          className="rounded-circle"
-                          width={"150px"}
-                          height={"150px"}
-                          layout="fixed"
-                        />
-
-                        <h5 className="fs-4 mt-1 fw-bold text-center">
-                          {name}
-                        </h5>
+              </div>
+              <div className="col-12">
+                <div className="row px-md-4 px-2 pt-4">
+                  <div className="col-lg-8">
+                    <p className="pb-2 fw-bold text-secondary">
+                      Ürünlerinizi Buradan İnceleyebilirsiniz
+                    </p>
+                    <div className="card">
+                      <div className="ribbon ribbon-top-right">
+                        <span>SEPETİNİZ</span>
                       </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="col-12">
-                  <div className="row px-md-4 px-2 pt-4">
-                    <div className="col-lg-8">
-                      <p className="pb-2 fw-bold text-secondary">
-                        Ürünlerinizi Buradan İnceleyebilirsiniz
-                      </p>
-                      <div className="card">
-                        <div className="ribbon ribbon-top-right">
-                          <span>SEPETİNİZ</span>
-                        </div>
-                        <div>
-                          <div className="table-responsive px-md-4 px-2 pt-3">
-                            <table
-                              className="table table-borderless"
-                              style={{ marginBottom: "0rem" }}>
-                              <tbody>
-                                {state.cartData &&
-                                  state.cartData.map((cart) => (
-                                    <tr className="border-bottom">
-                                      <td>
-                                        <div className="d-flex align-items-center ord">
-                                          <div>
-                                            {" "}
-                                            <img
-                                              className="pic"
-                                              src={`${sources.imageMinSrc}${cart.pictureOneGuidName}`}
-                                              alt=""
-                                            />{" "}
-                                          </div>
-                                          <div className="ps-3 d-flex flex-column justify-content">
+                      <div>
+                        <div className="table-responsive px-md-4 px-2 pt-3">
+                          <table
+                            className="table table-borderless"
+                            style={{ marginBottom: "0rem" }}>
+                            <tbody>
+                              {isCartLoading ? (
+                                <Loader />
+                              ) : state.cartData &&
+                                state.cartData.length > 0 ? (
+                                state.cartData.map((cart) => (
+                                  <tr className="border-bottom">
+                                    <td>
+                                      <div className="d-flex align-items-center ord">
+                                        <div>
+                                          {" "}
+                                          <Link
+                                            href={`/detail/${cart.productID}`}>
+                                            <a>
+                                              <img
+                                                className="pic"
+                                                src={`${sources.imageMinSrc}${cart.pictureOneGuidName}`}
+                                                alt=""
+                                              />
+                                            </a>
+                                          </Link>
+                                        </div>
+                                        <div className="ps-3 d-flex flex-column justify-content">
+                                          <Link
+                                            href={`/detail/${cart.productID}`}>
                                             <p className="fw-bold text-secondary">
-                                              {cart.productShortName}
-                                            </p>{" "}
-                                          </div>
+                                              <a>{cart.productShortName}</a>
+                                            </p>
+                                          </Link>
                                         </div>
-                                      </td>
-                                      <td>
-                                        <div className="sept40">
-                                          <p className="pe-3">
-                                            <span className="red">
-                                              {" "}
-                                              ${Number(cart.price).toFixed(2)}
-                                            </span>
-                                          </p>
-                                          <p className="text-muted text-decoration-line-through">
-                                            $55.00
-                                          </p>
-                                        </div>
-                                      </td>
-                                      <CartAmount
-                                        incrementQuantity={incrementQuantity}
-                                        decrementQuantity={decrementQuantity}
-                                        productID={cart.productID}
-                                        cart={cart}
-                                        isCartLoading={isCartLoading}
-                                      />
-                                      <td>
-                                        <div className="sept40">
-                                          <p className="pe-3">
-                                            <span className="red">
-                                              $
-                                              {Number(cart.price).toFixed(2) *
-                                                cart.quantity}
-                                            </span>
-                                          </p>
-                                        </div>
-                                      </td>
-                                    </tr>
-                                  ))}
-                              </tbody>
-                            </table>
+                                      </div>
+                                    </td>
+                                    <td>
+                                      <div className="sept40">
+                                        <p className="pe-3">
+                                          <span className="red">
+                                            {" "}
+                                            ${Number(cart.price).toFixed(2)}
+                                          </span>
+                                        </p>
+                                        <p className="text-muted text-decoration-line-through">
+                                          $55.00
+                                        </p>
+                                      </div>
+                                    </td>
+                                    <CartAmount
+                                      incrementQuantity={incrementQuantity}
+                                      decrementQuantity={decrementQuantity}
+                                      productID={cart.productID}
+                                      cart={cart}
+                                      isCartLoading={isCartLoading}
+                                    />
+                                    <td>
+                                      <div className="sept40">
+                                        <p className="pe-3">
+                                          <span className="red">
+                                            $
+                                            {Number(cart.price).toFixed(2) *
+                                              cart.quantity}
+                                          </span>
+                                        </p>
+                                      </div>
+                                    </td>
+                                    <td>
+                                      <div className="sept40">
+                                        <a
+                                          href="#"
+                                          onClick={(e) =>
+                                            removeFromCart(e, {
+                                              id: cart.productID,
+                                            })
+                                          }>
+                                          <i className="fa fa-times" />
+                                        </a>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                ))
+                              ) : (
+                                <h2 className="pt-100 pb-50 text-center w-100">
+                                  No Product Found
+                                </h2>
+                              )}
+                            </tbody>
+                          </table>
 
-                            <div className="container">
-                              <div className="row py-3">
-                                <div className="col p00  mb-20 mt-15">
-                                  <div className="col-lg-11 mr-20">
-                                    <div className="d-flex justify-content-between pb-3">
-                                      {" "}
-                                      <small className="text-muted">
-                                        Kupon Kodunuz Varsa Kodunuzu Giriniz
-                                      </small>
-                                      <p className=""></p>
-                                    </div>
-                                    <div className="d-flex justify-content-between align-items-center">
-                                      {" "}
-                                      <input
-                                        type="text"
-                                        className="border border-secondary rounded kpninput"
-                                        placeholder="Kupon Kodu Giriniz"
-                                      />
-                                      <div className="kpnbut">Uygula</div>
-                                    </div>
+                          <div className="container">
+                            <div className="row py-3">
+                              <div className="col p00  mb-20 mt-15">
+                                <div className="col-lg-11 mr-20">
+                                  <div className="d-flex justify-content-between pb-3">
+                                    {" "}
+                                    <small className="text-muted">
+                                      Kupon Kodunuz Varsa Kodunuzu Giriniz
+                                    </small>
+                                    <p className=""></p>
+                                  </div>
+                                  <div className="d-flex justify-content-between align-items-center">
+                                    {" "}
+                                    <input
+                                      type="text"
+                                      className="border border-secondary rounded kpninput"
+                                      placeholder="Kupon Kodu Giriniz"
+                                    />
+                                    <div className="kpnbut">Uygula</div>
                                   </div>
                                 </div>
-                                <div className="col p00  mb-20">
-                                  <div className="col-lg-12">
-                                    <div className="d-flex flex-column">
-                                      <div className="d-flex justify-content-between">
-                                        {" "}
-                                        <small className="text-muted">
-                                          Sepet Tutar
-                                        </small>
-                                        <p>${totalPrice(state.cartData)}</p>
-                                      </div>
-                                      <div className="d-flex justify-content-between">
-                                        {" "}
-                                        <small className="text-muted fw-bold red">
-                                          İndirim Tutarı
-                                        </small>
-                                        <p className="red">$20</p>
-                                      </div>
-                                      <div className="d-flex justify-content-between">
-                                        {" "}
-                                        <small className="text-muted fw-bold">
-                                          Toplam Tutar
-                                        </small>
-                                        <p className="fw-bold">$80</p>
-                                      </div>
+                              </div>
+                              <div className="col p00  mb-20">
+                                <div className="col-lg-12">
+                                  <div className="d-flex flex-column">
+                                    <div className="d-flex justify-content-between">
+                                      {" "}
+                                      <small className="text-muted">
+                                        Sepet Tutar
+                                      </small>
+                                      <p>${totalPrice(state.cartData)}</p>
                                     </div>
-                                    <div style={{ display: "none" }}>
-                                      <div className="sale1 my-3">
-                                        Geçersiz Kod{" "}
-                                      </div>
-                                      <div className="true1 my-3">
-                                        Kupon Uygulandı{" "}
-                                      </div>
+                                    <div className="d-flex justify-content-between">
+                                      {" "}
+                                      <small className="text-muted fw-bold red">
+                                        İndirim Tutarı
+                                      </small>
+                                      <p className="red">$20</p>
+                                    </div>
+                                    <div className="d-flex justify-content-between">
+                                      {" "}
+                                      <small className="text-muted fw-bold">
+                                        Toplam Tutar
+                                      </small>
+                                      <p className="fw-bold">$80</p>
+                                    </div>
+                                  </div>
+                                  <div style={{ display: "none" }}>
+                                    <div className="sale1 my-3">
+                                      Geçersiz Kod{" "}
+                                    </div>
+                                    <div className="true1 my-3">
+                                      Kupon Uygulandı{" "}
                                     </div>
                                   </div>
                                 </div>
@@ -264,51 +288,52 @@ const Cart = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="col-lg-4 payment-summary">
-                      <p className="fw-bold pt-lg-0 pt-4 pb-2 text-secondary">
-                        Bilgilerinizi Giriniz
-                      </p>
-                      <form>
-                        <div className="form-group mb-10">
-                          <input
-                            type="text"
-                            className="form-control txth"
-                            id="BuyerName"
-                            placeholder="İsim Soyisim Giriniz"
-                          />
-                        </div>
-                        <div className="form-group mb-10">
-                          <input
-                            type="text"
-                            className="form-control txth"
-                            id="BuyerPhone"
-                            placeholder="Telefonunuz Giriniz"
-                          />
-                        </div>
-
-                        <button
-                          type="submit"
-                          className="btn grenbtn1 mb-10"
-                          style={{ width: "100%" }}>
-                          <i
-                            className="fas fa-credit-card"
-                            style={{ marginRight: "5px" }}></i>
-                          Kredi Kartı ile Öde
-                        </button>
-                        <button
-                          type="submit"
-                          className="btn grenbtn1 mb-10"
-                          style={{ width: "100%" }}>
-                          <i
-                            className="fas fa-dollar-sign"
-                            style={{ marginRight: "5px" }}></i>
-                          Cari Hesap ile Öde
-                        </button>
-                      </form>
-                    </div>
                   </div>
+                  <div className="col-lg-4 payment-summary">
+                    <p className="fw-bold pt-lg-0 pt-4 pb-2 text-secondary">
+                      Bilgilerinizi Giriniz
+                    </p>
+                    <form>
+                      <div className="form-group mb-10">
+                        <input
+                          type="text"
+                          className="form-control txth"
+                          id="BuyerName"
+                          placeholder="İsim Soyisim Giriniz"
+                        />
+                      </div>
+                      <div className="form-group mb-10">
+                        <input
+                          type="text"
+                          className="form-control txth"
+                          id="BuyerPhone"
+                          placeholder="Telefonunuz Giriniz"
+                        />
+                      </div>
 
-                  {/* 
+                      <button
+                        type="submit"
+                        className="btn grenbtn1 mb-10"
+                        style={{ width: "100%" }}>
+                        <i
+                          className="fas fa-credit-card"
+                          style={{ marginRight: "5px" }}></i>
+                        Kredi Kartı ile Öde
+                      </button>
+                      <button
+                        type="submit"
+                        className="btn grenbtn1 mb-10"
+                        style={{ width: "100%" }}>
+                        <i
+                          className="fas fa-dollar-sign"
+                          style={{ marginRight: "5px" }}></i>
+                        Cari Hesap ile Öde
+                      </button>
+                    </form>
+                  </div>
+                </div>
+
+                {/* 
                   <form action="#" onSubmit={(e) => e.preventDefault()}>
                     <div className="table-content table-responsive">
                       <table className="table">
@@ -429,13 +454,10 @@ const Cart = () => {
                       </div>
                     </div>
                   </form> */}
-                </div>
               </div>
             </div>
-          </section>
-        ) : (
-          <h2 className="pt-100 pb-50 text-center w-100">No Product Found</h2>
-        )}
+          </div>
+        </section>
       </main>
     </Layout>
   );

@@ -303,12 +303,7 @@ function ProductCard({ productData, addToCart }) {
             <>
               <h5>
                 {price && (
-                  <del
-                    style={{
-                      color: "red !important",
-                    }}>
-                    ${Number(oldPrice)} USD
-                  </del>
+                  <del className="text-danger">${Number(oldPrice)} USD</del>
                 )}
               </h5>
               <h5 className="pro-price">{price && `$${Number(price)} USD`}</h5>

@@ -9,6 +9,6 @@
 @import url("../public/css/ytplayer.min.css");
 @import url("../public/css/main.css");
 @import url("../public/css/responsive.css");
-@import url("./custom.css");
 @import url("./cartStyle.css");
+@import url("./custom.css");
 @import "react-input-range/lib/css/index.css";
