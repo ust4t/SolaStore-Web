@@ -21,7 +21,8 @@ import { SET_DETAILS } from "../../../context/types";
 import { useIsMutating } from "react-query";
 
 function ProductCard({ productData, addToCart }) {
-  const { id, name, images, price, oldPrice, variants } = productData;
+  const { id, name, images, price, oldPrice, singlePrice, sizes, variants } =
+    productData;
   const router = useRouter();
   const { state, dispatch, cartActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
@@ -35,7 +36,9 @@ function ProductCard({ productData, addToCart }) {
 
   const isMutating = useIsMutating({ mutationKey: `addCart_${id}` });
 
-  const originalDiscount = oldPrice - price;
+  const sizeNum = sizes.split("-").length || 0;
+  const oldUnitPrice = oldPrice / sizeNum;
+  const originalDiscount = oldUnitPrice - singlePrice;
 
   const rate = 0.7;
 
@@ -53,16 +56,6 @@ function ProductCard({ productData, addToCart }) {
     addToCartAction({
       user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
       id,
-    });
-  };
-
-  const navigateToDetail = () => {
-    dispatch({
-      type: SET_DETAILS,
-      payload: variants,
-    });
-    router.push({
-      pathname: `/${id}`,
     });
   };
 
@@ -299,19 +292,19 @@ function ProductCard({ productData, addToCart }) {
             <Link href={`/detail/${id}`}>{name}</Link>
           </h6>
 
-          {oldPrice > 0 ? (
+          {oldPrice > 0 && sizeNum ? (
             <>
               <h5>
                 {price && (
-                  <del className="text-danger">${Number(oldPrice)} USD</del>
+                  <del className="text-danger">${oldUnitPrice} USD</del>
                 )}
               </h5>
-              <h5 className="pro-price">{price && `$${Number(price)} USD`}</h5>
+              <h5 className="pro-price">{price && `$${singlePrice} USD`}</h5>
             </>
           ) : (
             <>
               <br />
-              <h5 className="pro-price">{price && `$${Number(price)} USD`}</h5>
+              <h5 className="pro-price">{price && `$${singlePrice} USD`}</h5>
             </>
           )}
         </div>

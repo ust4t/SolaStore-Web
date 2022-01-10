@@ -1,85 +1,108 @@
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
-import { useContext, useEffect, useState } from "react";
-import { connect, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import "yup-phone";
+import toast from "react-hot-toast";
+
+import Preloader from "../src/layout/Preloader";
 import CartAmount from "../src/components/cart/CartAmount";
 import { StoreContext } from "../src/context/StoreProvider";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
 import Loader from "../src/components/Loader";
-import {
-  addToCart,
-  decreaseCart,
-  removeCart,
-} from "../src/redux/action/utilis";
 import sources from "../sources";
+import { SET_COMPLETED_CART } from "../src/context/types";
 
-const saleTeam = [
-  {
-    name: "Fatıma",
-    img: "/img/team/team1.jpg",
-  },
-  {
-    name: "Galya",
-    img: "/img/team/team2.jpg",
-  },
-  {
-    name: "İsmail",
-    img: "/img/team/team3.jpg",
-  },
-  {
-    name: "Lena",
-    img: "/img/team/team4.jpg",
-  },
-  {
-    name: "Marina",
-    img: "/img/team/team5.jpg",
-  },
-  {
-    name: "Mustafa",
-    img: "/img/team/team6.jpg",
-  },
-  {
-    name: "Sevkan",
-    img: "/img/team/team7.jpg",
-  },
-];
-
-const Cart = () => {
-  const { cartActions, state, isCartLoading } = useContext(StoreContext);
+const Cart = ({ saleTeam }) => {
+  const { cartActions, state, isCartLoading, dispatch } =
+    useContext(StoreContext);
+  const router = useRouter();
   const {
     removeFromCart: removeFromCartAction,
     incrementQuantity,
     decrementQuantity,
+    cartRefetch,
   } = cartActions;
+  const [currentSeller, setCurrentSeller] = useState(null);
+  const [paymentType, setPaymentType] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  console.log(state.cartData);
-  // const [addCart, setaddCart] = useState(false);
+  const paymentValidationSchema = Yup.object({
+    name: Yup.string().required("Adınızı giriniz."),
+    tel: Yup.string().required("Telefon numaranızı giriniz."),
+  });
 
   const removeFromCart = (e, { id }) => {
+    e.preventDefault();
     const cartData = {
       id,
       user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
     };
     removeFromCartAction(cartData);
-
-    e.preventDefault();
   };
 
   const totalPrice = (items) => {
     if (items) {
-      const totalPrice = items.reduce((a, b) => {
+      const total = items.reduce((a, b) => {
         return a + b.price * b.quantity;
       }, 0);
-      return totalPrice;
+      return total;
     }
 
     return 0;
   };
 
+  const handleSeller = (seller) => setCurrentSeller(seller);
+
+  const handleSubmit = async (values, { resetForm }) => {
+    if (!currentSeller) {
+      toast.error("Lütfen bir satıcı seçiniz.");
+      return;
+    }
+    try {
+      setIsLoading(true);
+      const { data } = await axios.post("/api/payment/addOrderVisitor", {
+        buyerName: values.name,
+        buyerPhone: values.tel.replace(/\+/g, ""),
+        salesRepresantID: currentSeller.id,
+        visitorGuidID: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+        paymentType,
+      });
+      console.log(data);
+      resetForm();
+      setCurrentSeller(null);
+      dispatch({
+        type: SET_COMPLETED_CART,
+        payload: state.cartData,
+      });
+      cartRefetch();
+      router.push({
+        pathname: "/order-success",
+        query: {
+          orderID: data.data,
+          user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+          buyerName: values.name,
+          buyerPhone: values.tel.replace(/\+/g, ""),
+          paymentType,
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const preventKey = (keyEvent) =>
+    (keyEvent.charCode || keyEvent.keyCode) === 13 && keyEvent.preventDefault();
+
   return (
     <Layout sticky footerBg container textCenter>
+      {isLoading && <Preloader />}
       <main>
         <PageTitle active="Cart" pageTitle="Shoping Cart" />
 
@@ -97,22 +120,31 @@ const Cart = () => {
                 </h5>
               </div>
               <div className="col-12 mt-20 d-flex flex-column justify-content-center">
-                <h3 className="fw-bold text-center">
-                  LÜTFEN SATIŞ TEMSİLCİNİZİ SEÇİNİZ
-                </h3>
-                <i
-                  className="fas fa-user text-center py-1"
-                  style={{
-                    fontSize: "7.3rem",
-                  }}></i>
-                <h4 className="fs-5 fw-bold text-center">
-                  İlk siparişim. Satış temsilcim yok.
-                </h4>
                 <div className="row">
-                  {saleTeam.map(({ name, img }, index) => (
-                    <div className="col-4 col-lg-2 mt-3 d-flex flex-column align-items-center mustem">
+                  <i
+                    className="fas fa-user text-center py-1"
+                    style={{
+                      fontSize: "7.3rem",
+                    }}></i>
+                  <h4 className="fs-5 fw-bold text-center mb-20">
+                    İlk siparişim. Satış temsilcim yok.
+                  </h4>
+                  <h3 className="fw-bold text-center">
+                    LÜTFEN SATIŞ TEMSİLCİNİZİ SEÇİNİZ
+                  </h3>
+                  {saleTeam.map(({ id, name, pictureGuidName }, i) => (
+                    <div
+                      key={`${id}_?=${i}`}
+                      onClick={() =>
+                        handleSeller({
+                          id,
+                          name,
+                          img: `${sources.saleTeam}/${pictureGuidName}`,
+                        })
+                      }
+                      className="col-4 col-lg-2 mt-3 d-flex flex-column align-items-center mustem cursor-pointer">
                       <Image
-                        src={img}
+                        src={`${sources.saleTeam}/${pictureGuidName}`}
                         alt={name}
                         className="rounded-circle"
                         width={"150px"}
@@ -229,7 +261,7 @@ const Cart = () => {
                           <div className="container">
                             <div className="row py-3">
                               <div className="col p00  mb-20 mt-15">
-                                <div className="col-lg-11 mr-20">
+                                {/* <div className="col-lg-11 mr-20">
                                   <div className="d-flex justify-content-between pb-3">
                                     {" "}
                                     <small className="text-muted">
@@ -246,7 +278,7 @@ const Cart = () => {
                                     />
                                     <div className="kpnbut">Uygula</div>
                                   </div>
-                                </div>
+                                </div> */}
                               </div>
                               <div className="col p00  mb-20">
                                 <div className="col-lg-12">
@@ -258,19 +290,21 @@ const Cart = () => {
                                       </small>
                                       <p>${totalPrice(state.cartData)}</p>
                                     </div>
-                                    <div className="d-flex justify-content-between">
+                                    {/* <div className="d-flex justify-content-between">
                                       {" "}
                                       <small className="text-muted fw-bold red">
                                         İndirim Tutarı
                                       </small>
                                       <p className="red">$20</p>
-                                    </div>
+                                    </div> */}
                                     <div className="d-flex justify-content-between">
                                       {" "}
                                       <small className="text-muted fw-bold">
                                         Toplam Tutar
                                       </small>
-                                      <p className="fw-bold">$80</p>
+                                      <p className="fw-bold">
+                                        ${totalPrice(state.cartData)}
+                                      </p>
                                     </div>
                                   </div>
                                   <div style={{ display: "none" }}>
@@ -290,170 +324,91 @@ const Cart = () => {
                     </div>
                   </div>
                   <div className="col-lg-4 payment-summary">
-                    <p className="fw-bold pt-lg-0 pt-4 pb-2 text-secondary">
+                    {!!currentSeller && (
+                      <div className="d-flex flex-column align-items-center justify-content-center mb-20 mt-20">
+                        <h5 className="text-secondary">Satış Temsilcisi</h5>
+
+                        <Image
+                          src={currentSeller.img}
+                          alt={currentSeller.name}
+                          className="rounded-circle align-self-center"
+                          width={"100px"}
+                          height={"100px"}
+                          layout="fixed"
+                        />
+                        <h3 className="fw-bold text-center">
+                          {currentSeller.name}
+                        </h3>
+                      </div>
+                    )}
+                    <p className="fw-bold pt-lg-0 pt-4 pb-2 text-secondary mt-20">
                       Bilgilerinizi Giriniz
                     </p>
-                    <form>
-                      <div className="form-group mb-10">
-                        <input
-                          type="text"
-                          className="form-control txth"
-                          id="BuyerName"
-                          placeholder="İsim Soyisim Giriniz"
-                        />
-                      </div>
-                      <div className="form-group mb-10">
-                        <input
-                          type="text"
-                          className="form-control txth"
-                          id="BuyerPhone"
-                          placeholder="Telefonunuz Giriniz"
-                        />
-                      </div>
+                    <Formik
+                      initialValues={{
+                        name: "",
+                        tel: "",
+                      }}
+                      validationSchema={paymentValidationSchema}
+                      onSubmit={handleSubmit}>
+                      {({ values, errors, touched, handleChange }) => (
+                        <Form onKeyDown={preventKey}>
+                          <div className="form-group mb-10">
+                            <input
+                              value={values.name}
+                              onChange={handleChange("name")}
+                              type="text"
+                              className="form-control txth"
+                              placeholder="İsim Soyisim Giriniz"
+                              required
+                            />
+                          </div>
+                          {errors.name && touched.name ? (
+                            <div>
+                              <p className="text-danger">{errors.name}</p>
+                            </div>
+                          ) : null}
+                          <div className="form-group mb-10">
+                            <input
+                              value={values.tel}
+                              onChange={handleChange("tel")}
+                              type="tel"
+                              className="form-control txth"
+                              placeholder="Telefonunuz Giriniz"
+                              required
+                            />
+                          </div>
+                          {errors.tel && touched.tel ? (
+                            <div>
+                              <p className="text-danger">{errors.tel}</p>
+                            </div>
+                          ) : null}
 
-                      <button
-                        type="submit"
-                        className="btn grenbtn1 mb-10"
-                        style={{ width: "100%" }}>
-                        <i
-                          className="fas fa-credit-card"
-                          style={{ marginRight: "5px" }}></i>
-                        Kredi Kartı ile Öde
-                      </button>
-                      <button
-                        type="submit"
-                        className="btn grenbtn1 mb-10"
-                        style={{ width: "100%" }}>
-                        <i
-                          className="fas fa-dollar-sign"
-                          style={{ marginRight: "5px" }}></i>
-                        Cari Hesap ile Öde
-                      </button>
-                    </form>
+                          <button
+                            type="submit"
+                            onClick={() => setPaymentType("cc")}
+                            className="btn grenbtn1 mb-10"
+                            style={{ width: "100%" }}>
+                            <i
+                              className="fas fa-credit-card"
+                              style={{ marginRight: "5px" }}></i>
+                            Kredi Kartı ile Öde
+                          </button>
+                          <button
+                            type="submit"
+                            onClick={() => setPaymentType("order")}
+                            className="btn grenbtn1 mb-10"
+                            style={{ width: "100%" }}>
+                            <i
+                              className="fas fa-dollar-sign"
+                              style={{ marginRight: "5px" }}></i>
+                            Cari Hesap ile Öde
+                          </button>
+                        </Form>
+                      )}
+                    </Formik>
                   </div>
                 </div>
-
-                {/* 
-                  <form action="#" onSubmit={(e) => e.preventDefault()}>
-                    <div className="table-content table-responsive">
-                      <table className="table">
-                        <thead>
-                          <tr>
-                            <th className="product-thumbnail">Images</th>
-                            <th className="cart-product-name">Product</th>
-                            <th className="product-price">Unit Price</th>
-                            <th className="product-quantity">Quantity</th>
-                            <th className="product-subtotal">Total</th>
-                            <th className="product-remove">Remove</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {state.cartData &&
-                            state.cartData.map((cart) => (
-                              <tr key={cart.chartID}>
-                                <td className="product-thumbnail">
-                                  <Link href={`/detail/${cart.productID}`}>
-                                    <a>
-                                      <img
-                                        src={`https://solastore.com.tr/img/ProductWM/maxPic/${cart.pictureOneGuidName}`}
-                                        alt="cart"
-                                      />
-                                    </a>
-                                  </Link>
-                                </td>
-                                <td className="product-name">
-                                  <Link href={`/detail/${cart.productID}`}>
-                                    <a>{cart.productShortName}</a>
-                                  </Link>
-                                </td>
-                                <td className="product-price">
-                                  <span className="amount">
-                                    ${Number(cart.price).toFixed(2)}
-                                  </span>
-                                </td>
-                                <td className="product-quantity">
-                                  <CartAmount
-                                    incrementQuantity={incrementQuantity}
-                                    decrementQuantity={decrementQuantity}
-                                    productID={cart.productID}
-                                    cart={cart}
-                                    isCartLoading={isCartLoading}
-                                  />
-                                </td>
-                                <td className="product-subtotal">
-                                  <span className="amount">
-                                    $
-                                    {Number(cart.price).toFixed(2) *
-                                      cart.quantity}
-                                  </span>
-                                </td>
-                                <td className="product-remove">
-                                  {isCartLoading ? (
-                                    "Loading..."
-                                  ) : (
-                                    <a
-                                      href="#"
-                                      onClick={(e) =>
-                                        removeFromCart(e, {
-                                          id: cart.productID,
-                                        })
-                                      }>
-                                      <i className="fa fa-times" />
-                                    </a>
-                                  )}
-                                </td>
-                              </tr>
-                            ))}
-                        </tbody>
-                      </table>
-                    </div>
-                    <div className="row">
-                      <div className="col-12">
-                        <div className="coupon-all">
-                          <div className="coupon">
-                            <form onSubmit={(e) => e.preventDefault()}>
-                              <input
-                                id="coupon_code"
-                                className="input-text"
-                                name="coupon_code"
-                                placeholder="Coupon code"
-                                type="text"
-                              />
-                              <button
-                                className="bt-btn theme-btn-2"
-                                name="apply_coupon"
-                                type="submit"
-                                onClick={(e) => e.preventDefault()}>
-                                Apply coupon
-                              </button>
-                            </form>
-                          </div>
-                          <div className="coupon2">
-                            <Link href="/checkout">
-                              <a className="bt-btn theme-btn-2">Submit</a>
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-5 ml-auto">
-                        <div className="cart-page-total">
-                          <h2>Cart totals</h2>
-                          <ul className="mb-20">
-                            <li>
-                              Total <span>${totalPrice(state.cartData)}</span>
-                            </li>
-                          </ul>
-                          <Link href="/checkout">
-                            <a className="bt-btn theme-btn-2">
-                              Proceed to checkout
-                            </a>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </form> */}
               </div>
             </div>
           </div>
@@ -463,4 +418,15 @@ const Cart = () => {
   );
 };
 
-export default connect(null, { removeCart, addToCart, decreaseCart })(Cart);
+export default Cart;
+
+export async function getServerSideProps() {
+  const { data: saleTeam } = await axios.get(
+    `https://api.solastore.com.tr/api/User/GetSalesReps?sourceProof=${process.env.SOURCE_PROOF}`
+  );
+  return {
+    props: {
+      saleTeam,
+    },
+  };
+}

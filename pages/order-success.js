@@ -1,24 +1,16 @@
+import axios from "axios";
 import moment from "moment";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { connect, useSelector } from "react-redux";
+import sources from "../sources";
+import { StoreContext } from "../src/context/StoreProvider";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
 import { getCarts } from "../src/redux/action/utilis";
 import { totalPrice } from "../src/utils/utils";
 
-const OrderSuccess = ({ getCarts }) => {
-  useEffect(() => {
-    getCarts();
-  }, []);
-  const carts = useSelector((state) => state.utilis.carts);
-  const chcekoutData = useSelector((state) => state.utilis.chcekoutData);
-  let date = new Date();
-  date.setDate(date.getDate() + 7);
-
-  let randomNumber = `${Math.floor(Math.random() * 100000)}VUE${Math.floor(
-    Math.random() * 100000
-  )}`;
-
+const OrderSuccess = ({ orderList, buyer }) => {
+  const { state } = useContext(StoreContext);
   return (
     <Layout container footerBg textCenter sticky>
       <main>
@@ -26,13 +18,12 @@ const OrderSuccess = ({ getCarts }) => {
           pageTitle="THANK YOU"
           thankupage
           active="order success"
-          id={randomNumber}
+          id={orderList[0].orderID}
         />
         <section className="cart-area pt-100 pb-100">
           <div className="container">
             <div className="row">
               <div className="col-lg-6">
-                {/* <h5>Order Details : </h5> */}
                 <form onSubmit={(e) => e.preventDefault()}>
                   <div className="table-content table-responsive">
                     <table className="table">
@@ -46,34 +37,37 @@ const OrderSuccess = ({ getCarts }) => {
                         </tr>
                       </thead>
                       <tbody>
-                        {carts &&
-                          carts.map((cart) => (
-                            <tr key={cart.id}>
+                        {state.completedCartData &&
+                          state.completedCartData.map((cart) => (
+                            <tr key={cart.chartID}>
                               <td className="product-thumbnail">
                                 <a href="#" onClick={(e) => e.preventDefault()}>
-                                  <img src={cart.img} alt="cart" />
+                                  <img
+                                    src={`${sources.imageMinSrc}${cart.pictureOneGuidName}`}
+                                    alt="cart"
+                                  />
                                 </a>
                               </td>
                               <td className="product-name">
                                 <a href="#" onClick={(e) => e.preventDefault()}>
-                                  {cart.name}
+                                  {cart.productShortName}
                                 </a>
                               </td>
                               <td className="product-price">
                                 <span className="amount">
-                                  ${Number(cart.mainPrice).toFixed(2)}
+                                  ${Number(cart.price).toFixed(2)}
                                 </span>
                               </td>
 
                               <td className="product-price">
                                 <span className="amount">
-                                  {Number(cart.qty)}
+                                  {Number(cart.quantity)}
                                 </span>
                               </td>
 
                               <td className="product-subtotal">
                                 <span className="amount">
-                                  ${Number(cart.totalPrice).toFixed(2)}
+                                  ${Number(cart.price) * Number(cart.quantity)}
                                 </span>
                               </td>
                             </tr>
@@ -84,11 +78,11 @@ const OrderSuccess = ({ getCarts }) => {
                   <div className="cart-page-total">
                     <h2>Cart totals</h2>
                     <ul className="mb-20">
-                      <li>
+                      {/* <li>
                         Subtotal <span>${totalPrice(carts)}</span>
-                      </li>
+                      </li> */}
                       <li>
-                        Total <span>${totalPrice(carts)}</span>
+                        Total <span>${orderList[0].totalAmount}</span>
                       </li>
                     </ul>
                   </div>
@@ -97,46 +91,38 @@ const OrderSuccess = ({ getCarts }) => {
               <div className="col-lg-6 order-success">
                 <div className="row">
                   <div className="col-md-6">
-                    <h5>Summery :</h5>
+                    <h5>Summary :</h5>
                     <p>
-                      <b>Order ID:</b> {randomNumber}
+                      <b>Order ID:</b> {orderList[0].orderID}
                     </p>
                     <p>
-                      <b>Order Date:</b> {moment().format("MMMM DD, YYYY")}
+                      <b>Order Date:</b>{" "}
+                      {moment(orderList[0].addingDate).format("MMMM DD, YYYY")}
                     </p>
                     <p>
-                      <b>Order Total:</b> ${totalPrice(carts)}
+                      <b>Order Total:</b> ${orderList[0].totalAmount}
                     </p>
                   </div>
                   <div className="col-md-6">
                     <h5>Shipping Address</h5>
                     <p className="text-capitalize">
-                      {chcekoutData
-                        ? `${chcekoutData.fName} ${chcekoutData.lName}`
-                        : "Sabuj Hasan Sarker"}
+                      <b>Name:</b> {buyer.buyerName}
                     </p>
                     <p>
-                      {chcekoutData
-                        ? `${chcekoutData.address} ${chcekoutData.country}`
-                        : "Jatrabari,Dhaka-1204 Bangladesh"}
-                    </p>
-                    <p>
-                      Contact No.{" "}
-                      {chcekoutData ? chcekoutData.phone : "987456321"}
+                      <b>Contact No:</b> {buyer.buyerPhone}
                     </p>
                   </div>
                   <div className="col-12 mt-4">
-                    <h5>Payment Method</h5>
-                    <p>
-                      Pay on Delivery (Cash/Card). Cash on delivery (COD)
-                      available. Card/Net banking acceptance subject to device
-                      availability.
-                    </p>
-                    <div className="bg-light p-3 mt-4 text-center">
+                    <h5>
+                      <b>Payment Method:</b>{" "}
+                      {buyer.paymentMethod === "order"
+                        ? "Cari Ödeme"
+                        : "Kredi Kartı"}
+                    </h5>
+                    {/* <div className="bg-light p-3 mt-4 text-center">
                       <h5>Expected Date Of Delivery</h5>
-                      {/* <h2>{moment().add(7, "days")}</h2> */}
                       <h2>{moment(date).format("MMMM DD, YYYY")}</h2>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -149,3 +135,22 @@ const OrderSuccess = ({ getCarts }) => {
 };
 
 export default connect(null, { getCarts })(OrderSuccess);
+
+export async function getServerSideProps({ query }) {
+  const { orderID, user, buyerName, buyerPhone, paymentType } = query;
+  const { data: orderList } = await axios.get(
+    `https://api.solastore.com.tr/api/Order/OrderList?UserID=${user}&sourceProof=${process.env.SOURCE_PROOF}`
+  );
+
+  return {
+    props: {
+      orderList: orderList.filter((order) => order.orderID === Number(orderID)),
+      buyer: {
+        orderID,
+        buyerName,
+        buyerPhone,
+        paymentType,
+      },
+    },
+  };
+}

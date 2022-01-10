@@ -4,6 +4,7 @@ import {
   INCREMENT_QUANTITY,
   REMOVE_FROM_CART,
   SET_CART_DATA,
+  SET_COMPLETED_CART,
   SET_DETAILS,
 } from "./types";
 
@@ -38,6 +39,11 @@ export default function reducer(state, action) {
       return {
         ...state,
         cartData: action.payload,
+      };
+    case SET_COMPLETED_CART:
+      return {
+        ...state,
+        completedCartData: action.payload,
       };
 
     default:

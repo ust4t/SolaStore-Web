@@ -38,6 +38,8 @@ export default function NewProducts({ newProducts }) {
                   id: productData.productID,
                   name: productData.productShortName,
                   images: productData.pictures,
+                  sizes: productData.sizes,
+                  singlePrice: productData.singlePrice,
                   price: productData.price,
                   oldPrice: productData.oldPrice,
                   productStockCode: productData.productStockCode,

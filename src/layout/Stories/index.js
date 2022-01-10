@@ -12,7 +12,6 @@ export default function Stories({ stories }) {
   function closeStory() {
     setStoriesOpen(false);
   }
-  console.log(stories);
 
   const handleStories = (story) => {
     setStoriesData({

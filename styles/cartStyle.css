@@ -77,7 +77,7 @@ tr:nth-child(3) {
   text-transform: uppercase;
   margin-left: 10px;
   cursor: pointer;
-  box-shadow: 0 0 14px 3px #38383859;
+  box-shadow: 0 0 14px 3px #38383838;
   transition: all 0.3s ease 0s;
 }
 .kpnbut:hover {

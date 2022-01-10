@@ -15,6 +15,7 @@ export default async function (req, res) {
         id: popular.productID,
         name: popular.productShortName,
         images: popular.pictures,
+        sizes: popular.sizes,
         price: popular.price,
         singlePrice: popular.singlePrice,
         oldPrice: popular.oldPrice,

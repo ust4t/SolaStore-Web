@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export default async function getOrderLinesList(req, res) {
-  const { orderId } = req.query;
+  const { orderID } = req.query;
   try {
     const response = await axios.get(
-      `https://api.solastore.com.tr/api/Order/OrderLinesList?OrderID=${orderId}&sourceProof=${process.env.SOURCE_PROOF}`
+      `https://api.solastore.com.tr/api/Order/OrderLinesList?OrderID=${orderID}&sourceProof=${process.env.SOURCE_PROOF}`
     );
     res.status(200).json({
       data: response.data,

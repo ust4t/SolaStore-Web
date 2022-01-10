@@ -13,7 +13,6 @@ const fetchSale = async () => {
 };
 export default function SaleProducts({ saleProducts }) {
   // const { isLoading, error, data } = useQuery("saleProducts", fetchSale);
-
   return (
     // <>
     //   {isLoading ? (
@@ -31,6 +30,8 @@ export default function SaleProducts({ saleProducts }) {
                   id: productData.productID,
                   name: productData.productShortName,
                   images: productData.pictures,
+                  singlePrice: productData.singlePrice,
+                  sizes: productData.sizes,
                   price: productData.price,
                   oldPrice: productData.oldPrice,
                   productStockCode: productData.productStockCode,

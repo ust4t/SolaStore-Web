@@ -108,6 +108,7 @@ export default function StoreProvider({ children }) {
     removeFromCart,
     incrementQuantity,
     decrementQuantity,
+    cartRefetch,
   };
   return (
     <StoreContext.Provider
