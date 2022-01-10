@@ -33,9 +33,6 @@ export default function Stories({ stories }) {
           centeredSlides={true}
           grabCursor={true}
           slidesPerView={5}
-          autoplay={{
-            delay: 4000,
-          }}
           breakpoints={{
             300: {
               slidesPerView: 3,

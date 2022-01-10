@@ -28,8 +28,8 @@ export const Layout1 = ({
         <div className="row align-items-center">
           <div className="col-xl-3 col-lg-3 col-md-3 col-12">
             <div className="header-left-icon d-flex align-items-center justify-content-center justify-content-md-left">
-              <HomeHamburgerIcon sidebarActive={() => setSidebar()} />
-              <SearchIcon hendelChangeSearch={() => setActiveSearchBar()} />
+              <HomeHamburgerIcon sidebarActive={setSidebar} />
+              <SearchIcon hendelChangeSearch={setActiveSearchBar} />
               <WishlistIcon /> <CompareIcon />
               <UserIcon />
             </div>
@@ -144,7 +144,7 @@ export const Layout2 = ({
             </div>
           </div>
           <div className="col-2 col-md-1 d-block d-lg-none order-1 order-md-3 mb-2">
-            <HamburgerIcon darkBg={darkBg} sidebarActive={() => setSidebar()} />
+            <HamburgerIcon darkBg={darkBg} sidebarActive={setSidebar} />
           </div>
         </div>
       </div>
@@ -203,7 +203,7 @@ export const Layout3 = ({
             </div>
             <div className="col-xl-3 col-lg-3 d-lg-none d-xl-block col-md-7 d-none">
               <div className="search-five ml-35">
-                <form onSubmit={(e) => onSubmit(e)}>
+                <form onSubmit={onSubmit}>
                   <input
                     type="text"
                     placeholder="Search For Fruit, Vegetables.."
@@ -238,7 +238,7 @@ export const Layout3 = ({
               </div>
             </div>
             <div className="col-2 col-md-1 d-block d-lg-none">
-              <HamburgerIcon sidebarActive={() => setSidebar()} />
+              <HamburgerIcon sidebarActive={setSidebar} />
             </div>
           </div>
         </div>
@@ -263,7 +263,7 @@ export const DefaultLayout = ({ setActiveSearchBar, setSidebar, news }) => (
           </div>
           <div className="col-xl-5 col-lg-3 col-md-7 col-5 header-6-padd">
             <div className="header-left-icon d-flex align-items-center f-right">
-              <SearchIcon hendelChangeSearch={() => setActiveSearchBar()} />
+              <SearchIcon hendelChangeSearch={setActiveSearchBar} />
               <UserIcon />
               <WishlistIcon />
               <CompareIcon />
@@ -271,7 +271,7 @@ export const DefaultLayout = ({ setActiveSearchBar, setSidebar, news }) => (
             </div>
           </div>
           <div className="col-2 col-md-1 d-block d-lg-none">
-            <HamburgerIcon sidebarActive={() => setSidebar()} />
+            <HamburgerIcon sidebarActive={setSidebar} />
           </div>
         </div>
       </div>

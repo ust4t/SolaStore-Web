@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import SelectCheckboxGroup from "../../components/form/SelectCheckboxGroup";
 import SelectCheckbox from "../../components/form/SelectCheckbox";
 
@@ -8,7 +9,6 @@ export default function FilterSearch() {
     brand: [],
     price: [],
   });
-
   const dataset = {
     categories: [
       {
