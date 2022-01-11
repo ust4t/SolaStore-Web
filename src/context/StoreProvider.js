@@ -1,9 +1,10 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import initialState from "./store";
 import reducer from "./reducer";
 import useCartMutation from "../hooks/useCartMutation";
 import {
   ADD_TO_CART,
+  CHANGE_LANG,
   DECREMENT_QUANTITY,
   INCREMENT_QUANTITY,
   REMOVE_FROM_CART,
@@ -16,7 +17,6 @@ export const StoreContext = createContext();
 
 export default function StoreProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-
   const { isLoading: isCartLoading, refetch: cartRefetch } = useQuery(
     "cart",
     () =>
@@ -32,7 +32,6 @@ export default function StoreProvider({ children }) {
       },
     }
   );
-
   const { mutate } = useCartMutation("addCart");
 
   const addToCartAction = (creds) => {

@@ -14,19 +14,27 @@ import sources from "../../../sources";
 import Link from "next/link";
 import styles from "./IntroBanners.module.css";
 import BannerCard from "../../components/Cards/BannerCard";
+import { useSelector } from "react-redux";
 
-const fetchBanners = async () => {
-  const { data } = await axios.get("/api/advertisement/getBanners");
+const fetchBanners = async (lang) => {
+  const { data } = await axios.get(
+    `/api/advertisement/getBanners?lang=${lang}`
+  );
   return data;
 };
 
 function IntroBanners() {
+  const lang = useSelector((state) => state.lang.lang);
   const [banners, setBanners] = useState([]);
-  const { data, isLoading, error } = useQuery("banners", fetchBanners, {
-    onSuccess: ({ data }) => {
-      setBanners(data);
-    },
-  });
+  const { data, isLoading, error } = useQuery(
+    "banners",
+    () => fetchBanners(lang),
+    {
+      onSuccess: ({ data }) => {
+        setBanners(data);
+      },
+    }
+  );
 
   return (
     <>

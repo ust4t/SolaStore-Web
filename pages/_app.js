@@ -1,10 +1,10 @@
-import Head from "next/head";
 import { useEffect, useState } from "react";
-import { Provider } from "react-redux";
+import Head from "next/head";
+import { PersistGate } from "redux-persist/integration/react";
 import AllToaster from "../src/components/AllToaser";
 import Preloader from "../src/layout/Preloader";
 import ScrollTop from "../src/layout/ScrollTop";
-import store from "../src/redux/store";
+import { wrapper } from "../src/redux/store";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { animationCreate, aTagClick } from "../src/utils/utils";
 import "../styles/main.css";
@@ -13,9 +13,13 @@ import "animate.css";
 import "antd/dist/antd.css";
 import StoreProvider from "../src/context/StoreProvider";
 import "../styles/global.css";
+import { useStore } from "react-redux";
 
 function MyApp({ Component, pageProps }) {
+  const store = useStore((state) => state);
+  const queryClient = new QueryClient();
   const [preloader, setPreloader] = useState(true);
+  const dispatch = store.dispatch;
   useEffect(() => {
     setTimeout(() => {
       store && setPreloader(false);
@@ -26,10 +30,8 @@ function MyApp({ Component, pageProps }) {
     aTagClick();
   }, []);
 
-  const queryClient = new QueryClient();
-
   return (
-    <Provider store={store}>
+    <PersistGate persistor={store.__persistor} loading={<Preloader />}>
       <AllToaster />
       <Head>
         <title>SolaStore</title>
@@ -48,8 +50,8 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </StoreProvider>
       </QueryClientProvider>
-    </Provider>
+    </PersistGate>
   );
 }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);

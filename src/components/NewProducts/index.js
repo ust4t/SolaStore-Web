@@ -10,21 +10,7 @@ import { HomePageProductSliderWithArrow } from "../sliders/HomePageSlider";
 import PopularCard from "../Cards/PopularCard";
 
 export default function NewProducts({ newProducts }) {
-  // const [newProduct, setNewProduct] = useState([]);
-  // const { isLoading, error, data } = useQuery(
-  //   "newProduct",
-  //   () => fetch("/api/products/getNewProducts").then((res) => res.json()),
-  //   {
-  //     onSuccess: ({ data }) => {
-  //       setNewProduct(data);
-  //     },
-  //   }
-  // );
   return (
-    // <>
-    //   {isLoading ? (
-    //     <Loader />
-    //   ) : (
     <HomePageProductSliderWithArrow extraClass="slider-active-three common-arrows ">
       {newProducts
         .slice(0, newProducts.length >= 12 ? 12 : newProducts.length)
@@ -51,7 +37,5 @@ export default function NewProducts({ newProducts }) {
           );
         })}
     </HomePageProductSliderWithArrow>
-    //   )}
-    // </>
   );
 }

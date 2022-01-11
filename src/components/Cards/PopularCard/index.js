@@ -289,7 +289,9 @@ function ProductCard({ productData, addToCart }) {
       <div className="pro-text">
         <div className="pro-title">
           <h6>
-            <Link href={`/detail/${id}`}>{name}</Link>
+            <Link href={`/detail/${id}`} locale={"tr"}>
+              {name}
+            </Link>
           </h6>
 
           {oldPrice > 0 && sizeNum ? (

@@ -112,7 +112,7 @@ const Details = ({
                             product.pictures.map((img, i) => (
                               <Tab.Pane key={i} eventKey={`tum-${i}`}>
                                 <img
-                                  src={`${sources.imageMidSrc}${img.guidName}`}
+                                  src={`${sources.imageMaxSrc}${img.guidName}`}
                                   className={`img-fluid ${
                                     upthumb ? "mb-3" : ""
                                   }`}
@@ -154,7 +154,7 @@ const Details = ({
                                       videoRef.current.pause();
                                   }}>
                                   <img
-                                    src={`${sources.imageMidSrc}${img.guidName}`}
+                                    src={`${sources.imageMaxSrc}${img.guidName}`}
                                     className="img-fluid"
                                     alt="Src"
                                   />
@@ -173,7 +173,7 @@ const Details = ({
                                 eventKey={`tum-${12}`}
                                 className="mr-0">
                                 <img
-                                  src={`${sources.imageMidSrc}${product.picture_1}`}
+                                  src={`${sources.imageMaxSrc}${product.picture_1}`}
                                   className="img-fluid"
                                   alt="Src"
                                 />

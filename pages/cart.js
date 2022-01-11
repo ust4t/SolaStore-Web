@@ -72,7 +72,6 @@ const Cart = ({ saleTeam }) => {
         visitorGuidID: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
         paymentType,
       });
-      console.log(data);
       resetForm();
       setCurrentSeller(null);
       dispatch({
@@ -349,8 +348,7 @@ const Cart = ({ saleTeam }) => {
                         name: "",
                         tel: "",
                       }}
-                      validationSchema={paymentValidationSchema}
-                      onSubmit={handleSubmit}>
+                      validationSchema={paymentValidationSchema}>
                       {({ values, errors, touched, handleChange }) => (
                         <Form onKeyDown={preventKey}>
                           <div className="form-group mb-10">
@@ -386,7 +384,10 @@ const Cart = ({ saleTeam }) => {
 
                           <button
                             type="submit"
-                            onClick={() => setPaymentType("cc")}
+                            onClick={() => {
+                              setPaymentType("cc");
+                              alert("Ödeme Yapıldı");
+                            }}
                             className="btn grenbtn1 mb-10"
                             style={{ width: "100%" }}>
                             <i
@@ -396,7 +397,10 @@ const Cart = ({ saleTeam }) => {
                           </button>
                           <button
                             type="submit"
-                            onClick={() => setPaymentType("order")}
+                            onClick={() => {
+                              setPaymentType("order");
+                              handleSubmit();
+                            }}
                             className="btn grenbtn1 mb-10"
                             style={{ width: "100%" }}>
                             <i

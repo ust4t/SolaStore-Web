@@ -13,6 +13,7 @@ export const HOME_3 = "HOME_3";
 export const HOME_4 = "HOME_4";
 export const HOME_5 = "HOME_5";
 export const BRAND = "BRAND";
+export const CHANGE_LANG = "CHANGE_LANG";
 
 // Product
 export const GET_PRODUCT = "GET_PRODUCT";
@@ -42,6 +43,5 @@ export const GET_WISHLIST = "GET_WISHLIST";
 
 export const CHECKOUT_USER = "CHECKOUT_USER";
 
-
-export const GET_MAIN_MENU = "GET_MAIN_MENU"
-export const GET_SUB_MENU = "GET_SUB_MENU"
+export const GET_MAIN_MENU = "GET_MAIN_MENU";
+export const GET_SUB_MENU = "GET_SUB_MENU";

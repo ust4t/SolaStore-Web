@@ -9,9 +9,11 @@ import upcomingProduct from "./upcomingProduct";
 import utilis from "./utilis";
 import populars from "./populars";
 import menu from "./menu";
+import lang from "./lang";
 
 export default combineReducers({
   blog,
+  lang,
   seller,
   features,
   upcomingProduct,

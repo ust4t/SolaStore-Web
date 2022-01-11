@@ -1,36 +1,39 @@
-import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useContext, useState } from "react";
 import { useQuery } from "react-query";
 import Link from "next/link";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { ChevronBackOutline, ChevronForwardOutline } from "react-ionicons";
 
-// import Swiper core and required modules
-import { Autoplay, Navigation } from "swiper";
 import axios from "axios";
 import sources from "../../../sources";
 import styles from "./Slider.module.css";
 import Loader from "../Loader";
 import { HomePageSliderWithArrow } from "./HomePageSlider";
+import { StoreContext } from "../../context/StoreProvider";
+import { useSelector } from "react-redux";
 
-const fetchSlider = async () => {
-  const { data } = await axios.get("/api/getSlider");
+const fetchSlider = async (lang) => {
+  const { data } = await axios.get(`/api/getSlider?lang=${lang}`);
   return data;
 };
 
 export default function SliderProducts() {
   const [images, setImages] = useState(null);
-  const { isLoading, error, refetch } = useQuery("slider", fetchSlider, {
-    onSuccess: ({ data }) => {
-      setImages(data);
-    },
-    onError: (error) => {
-      console.log(error);
-      refetch();
-    },
-  });
+  const state = useSelector((state) => state.lang);
+  const { isLoading, error, refetch } = useQuery(
+    "slider",
+    () => fetchSlider(state.lang),
+    {
+      onSuccess: ({ data }) => {
+        setImages(data);
+      },
+      onError: (error) => {
+        console.log(error);
+        refetch();
+      },
+    }
+  );
 
   return (
     <>

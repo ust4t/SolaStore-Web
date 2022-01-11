@@ -10,5 +10,6 @@
 @import url("../public/css/main.css");
 @import url("../public/css/responsive.css");
 @import url("./cartStyle.css");
+@import url("./credit-cart.css");
 @import url("./custom.css");
 @import "react-input-range/lib/css/index.css";
