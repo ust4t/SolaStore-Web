@@ -58,7 +58,11 @@ const Cart = ({ saleTeam }) => {
 
   const handleSeller = (seller) => setCurrentSeller(seller);
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleCartSubmit = async (values, { resetForm }) => {
+    if (!state.cartData.length) {
+      toast.error("Sepetinizde ürün bulunmamaktadır.");
+      return;
+    }
     if (!currentSeller) {
       toast.error("Lütfen bir satıcı seçiniz.");
       return;
@@ -90,6 +94,7 @@ const Cart = ({ saleTeam }) => {
         },
       });
     } catch (err) {
+      toast.error("Bir hata oluştu. Lütfen tekrar deneyiniz.");
       console.log(err);
     } finally {
       setIsLoading(false);
@@ -348,7 +353,8 @@ const Cart = ({ saleTeam }) => {
                         name: "",
                         tel: "",
                       }}
-                      validationSchema={paymentValidationSchema}>
+                      validationSchema={paymentValidationSchema}
+                      onSubmit={handleCartSubmit}>
                       {({ values, errors, touched, handleChange }) => (
                         <Form onKeyDown={preventKey}>
                           <div className="form-group mb-10">
@@ -381,25 +387,23 @@ const Cart = ({ saleTeam }) => {
                               <p className="text-danger">{errors.tel}</p>
                             </div>
                           ) : null}
-
-                          <button
-                            type="submit"
-                            onClick={() => {
-                              setPaymentType("cc");
-                              alert("Ödeme Yapıldı");
-                            }}
-                            className="btn grenbtn1 mb-10"
-                            style={{ width: "100%" }}>
-                            <i
-                              className="fas fa-credit-card"
-                              style={{ marginRight: "5px" }}></i>
-                            Kredi Kartı ile Öde
-                          </button>
+                          <Link href="/checkout">
+                            <a
+                              onClick={() => {
+                                setPaymentType("cc");
+                              }}
+                              className="btn grenbtn1 mb-10"
+                              style={{ width: "100%" }}>
+                              <i
+                                className="fas fa-credit-card"
+                                style={{ marginRight: "5px" }}></i>
+                              Kredi Kartı ile Öde
+                            </a>
+                          </Link>
                           <button
                             type="submit"
                             onClick={() => {
                               setPaymentType("order");
-                              handleSubmit();
                             }}
                             className="btn grenbtn1 mb-10"
                             style={{ width: "100%" }}>

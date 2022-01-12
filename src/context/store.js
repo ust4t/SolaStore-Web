@@ -3,4 +3,5 @@ export default {
   cartData: [],
   cartQueryName: "",
   detailVariants: [],
+  buyerDetails: {},
 };

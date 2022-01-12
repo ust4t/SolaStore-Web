@@ -3,22 +3,15 @@ import qs from "qs";
 
 export default async function orderPay(req, res) {
   const formData = {
+    ...req.body,
     clientid: "190320263",
     storetype: "3d_pay",
-    hash: "xSxXh0SErIX8yEvk5cL46qNqS5w=",
     islemtipi: "Auth",
-    amount: "276",
     currency: "840",
-    oid: "4823",
     okUrl: "https://api.solastore.com.tr/api/Helpers/CCSuccess",
     failUrl: "https://api.solastore.com.tr/api/Helpers/CCFail",
     lang: "tr",
-    rnd: "8596",
-    pan: "5188960005010366",
-    Ecom_Payment_Card_ExpDate_Year: "24",
-    Ecom_Payment_Card_ExpDate_Month: "11",
-    cv2: "160",
-    sourceProof: "ugurturkmenn@gmail.com",
+    sourceProof: process.env.SOURCE_PROOF,
   };
   try {
     const options = {

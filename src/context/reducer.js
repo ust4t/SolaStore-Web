@@ -4,6 +4,7 @@ import {
   DECREMENT_QUANTITY,
   INCREMENT_QUANTITY,
   REMOVE_FROM_CART,
+  SET_BUYER_DETAILS,
   SET_CART_DATA,
   SET_COMPLETED_CART,
   SET_DETAILS,
@@ -45,6 +46,11 @@ export default function reducer(state, action) {
       return {
         ...state,
         completedCartData: action.payload,
+      };
+    case SET_BUYER_DETAILS:
+      return {
+        ...state,
+        buyerDetails: action.payload,
       };
 
     default:
