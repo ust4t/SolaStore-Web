@@ -2,7 +2,6 @@ import MetisMenu from "@metismenu/react";
 import Link from "next/link";
 import { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
-import { getMenu } from "../../redux/action/menu";
 import InnerMobileMenu from "./InnerMobileMenu";
 const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
   return (
@@ -66,4 +65,4 @@ const mapStateToProps = (state) => ({
   menu: state.menu.menuData,
 });
 
-export default connect(mapStateToProps, { getMenu })(MobileMenu);
+export default connect(mapStateToProps)(MobileMenu);

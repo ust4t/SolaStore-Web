@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { getMenu } from "../../redux/action/menu";
 import SubCategory from "./SubCategory";
 
-const SubMenu = ({ menu, getMenu }) => {
+const SubMenu = ({ menu }) => {
   return (
     <ul>
       {menu &&
@@ -38,4 +37,4 @@ const mapStateToProps = (state) => ({
   menu: state.menu.menuData,
 });
 
-export default connect(mapStateToProps, { getMenu })(SubMenu);
+export default connect(mapStateToProps)(SubMenu);
