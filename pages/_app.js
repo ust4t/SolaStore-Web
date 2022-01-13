@@ -27,6 +27,7 @@ function MyApp({ Component, pageProps }) {
   const [preloader, setPreloader] = useState(true);
 
   const fetchMenu = async () => {
+    setPreloader(true);
     try {
       const { data: menu } = await axios.get(
         `/api/getFullMenu?lang=${store.getState().lang.lang}`
@@ -42,17 +43,19 @@ function MyApp({ Component, pageProps }) {
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      setPreloader(false);
     }
   };
 
   useEffect(() => {
     fetchMenu();
-    setTimeout(() => {
-      store && setPreloader(false);
-    }, 1000);
-    setTimeout(() => {
-      animationCreate();
-    }, 1000);
+    // setTimeout(() => {
+    //   store && setPreloader(false);
+    // }, 1000);
+    // setTimeout(() => {
+    //   animationCreate();
+    // }, 1000);
     aTagClick();
   }, []);
 
@@ -71,16 +74,14 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <AllToaster />
       <PersistGate persistor={store.__persistor}>
-        {() => {
-          return (
-            <QueryClientProvider client={queryClient}>
-              <StoreProvider>
-                {preloader ? <Preloader /> : <ScrollTop />}
-                <Component {...pageProps} />
-              </StoreProvider>
-            </QueryClientProvider>
-          );
-        }}
+        {() => (
+          <QueryClientProvider client={queryClient}>
+            <StoreProvider>
+              {preloader ? <Preloader /> : <ScrollTop />}
+              <Component {...pageProps} />
+            </StoreProvider>
+          </QueryClientProvider>
+        )}
       </PersistGate>
     </>
   );
