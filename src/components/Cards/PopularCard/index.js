@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Image from "next/image";
-import { Col, Row } from "antd";
+import { Row } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper";
 // import "swiper/css";
@@ -20,7 +20,7 @@ import { StoreContext } from "../../../context/StoreProvider";
 import { SET_DETAILS } from "../../../context/types";
 import { useIsMutating } from "react-query";
 
-function ProductCard({ productData, addToCart }) {
+function PopularCard({ productData }) {
   const { id, name, images, price, oldPrice, singlePrice, sizes, variants } =
     productData;
   const router = useRouter();
@@ -217,7 +217,6 @@ function ProductCard({ productData, addToCart }) {
                     ? "opacity-0 animate__fadeIn"
                     : "opacity-100 animate__fadeOut"
                 }`}
-                src={`${sources.imageMidSrc}${currentImages.pictures[0].guidName}`}
                 src={`${
                   currentImages.pictures[0]
                     ? `${sources.imageMidSrc}${currentImages.pictures[0].guidName}`
@@ -356,7 +355,4 @@ function ProductCard({ productData, addToCart }) {
   );
 }
 
-export default connect(null, {
-  addToCart,
-  getProducts,
-})(ProductCard);
+export default PopularCard;

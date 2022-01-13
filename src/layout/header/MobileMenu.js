@@ -4,10 +4,7 @@ import { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 import { getMenu } from "../../redux/action/menu";
 import InnerMobileMenu from "./InnerMobileMenu";
-const MobileMenu = ({ menu, getMenu, sidebarActive, sidebarClose }) => {
-  useEffect(() => {
-    getMenu();
-  }, []);
+const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
   return (
     <Fragment>
       <aside className={`slide-bar ${sidebarActive}`}>
@@ -35,14 +32,19 @@ const MobileMenu = ({ menu, getMenu, sidebarActive, sidebarClose }) => {
               </Link>
             </li>
             {menu &&
-              menu.data.map(({ selectedCategoryName, categoryID }, i) => (
-                <li className="has-dropdown">
-                  <Link href={`/shop/${categoryID}`}>
-                    <a>{selectedCategoryName}</a>
-                  </Link>
-                  <InnerMobileMenu menuId={categoryID} />
-                </li>
-              ))}
+              menu.map(
+                ({ selectedCategoryName, categoryID, subcategories }, i) => (
+                  <li className="has-dropdown">
+                    <Link href={`/shop/${categoryID}`}>
+                      <a>{selectedCategoryName}</a>
+                    </Link>
+                    <InnerMobileMenu
+                      subcategories={subcategories}
+                      // menuId={categoryID}
+                    />
+                  </li>
+                )
+              )}
 
             <li>
               <Link href="/">
@@ -54,7 +56,7 @@ const MobileMenu = ({ menu, getMenu, sidebarActive, sidebarClose }) => {
       </aside>
       <div
         className={`body-overlay ${sidebarActive ? "active" : ""}`}
-        onClick={() => sidebarClose()}
+        onClick={sidebarClose}
       />
     </Fragment>
   );

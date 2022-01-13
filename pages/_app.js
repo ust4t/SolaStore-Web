@@ -14,13 +14,35 @@ import "antd/dist/antd.css";
 import StoreProvider from "../src/context/StoreProvider";
 import "../styles/global.css";
 import { useStore } from "react-redux";
+import axios from "axios";
+import { GET_BRANDS, GET_MAIN_MENU } from "../src/redux/action/type";
 
 function MyApp({ Component, pageProps }) {
   const store = useStore((state) => state);
   const queryClient = new QueryClient();
   const [preloader, setPreloader] = useState(true);
-  const dispatch = store.dispatch;
+
+  const fetchMenu = async () => {
+    try {
+      const { data: menu } = await axios.get(
+        `/api/getFullMenu?lang=${store.getState().lang.lang}`
+      );
+      const { data: brands } = await axios.get("/api/advertisement/getBrands");
+      store.dispatch({
+        type: GET_MAIN_MENU,
+        payload: menu,
+      });
+      store.dispatch({
+        type: GET_BRANDS,
+        payload: brands,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
+    fetchMenu();
     setTimeout(() => {
       store && setPreloader(false);
     }, 1000);

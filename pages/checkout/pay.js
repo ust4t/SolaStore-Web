@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import Head from "next/head";
 import DOMPurify from "dompurify";
 import Preloader from "../../src/layout/Preloader";
-import { IFrame } from "../../src/utils/iframe";
 import { StoreContext } from "../../src/context/StoreProvider";
 
 export default function Test() {
@@ -51,34 +49,22 @@ export default function Test() {
   }, []);
 
   return (
-    <>
-      <Head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta charset="utf-8" />
-        <title>3D Secure Processing</title>
-        <link
-          href="https://3d.payten.com.tr/mdpaympi/static/mpi.css"
-          rel="stylesheet"
-          type="text/css"
-        />
-      </Head>
-      <div
-        style={{
-          width: "100%",
-          height: "100vh",
-        }}>
-        {isLoading && <Preloader />}
+    <div
+      style={{
+        width: "100%",
+        height: "100vh",
+      }}>
+      {isLoading && <Preloader />}
 
-        {paymentBox && (
-          <iframe
-            srcDoc={paymentBox}
-            style={{
-              width: "100%",
-              height: "100%",
-            }}
-          />
-        )}
-      </div>
-    </>
+      {paymentBox && (
+        <iframe
+          srcDoc={paymentBox}
+          style={{
+            width: "100%",
+            height: "100%",
+          }}
+        />
+      )}
+    </div>
   );
 }

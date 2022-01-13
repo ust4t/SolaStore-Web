@@ -29,22 +29,25 @@ export default function SelectCheckbox({ filterData, title, data, onSelect }) {
         <b className="caret"></b>
       </button>
       <div
+        style={{
+          zIndex: "230",
+        }}
         ref={dropdownRef}
         className={`animate__animated animate__faster ${
           !hidden ? "animate__zoomIn d-block" : "animate__zoomOut d-none"
-        } dropdown-list shadow p-3 bg-body z-index-first w-100 position-absolute`}>
+        } dropdown-list shadow p-3 bg-body w-100 position-absolute`}>
         {data &&
-          data.map(({ value, name }, i) => (
+          data.map(({ brandID, brandName }, i) => (
             <label
-              key={`${value}*${i}`}
+              key={`${brandID}*${i}`}
               className="d-block dropdown-option w-100 pt-2">
               <input
                 type="checkbox"
                 name="dropdown-group"
-                value={value}
-                onChange={(e) => onSelect(e, value)}
+                value={brandID}
+                onChange={(e) => onSelect(e, brandID)}
               />
-              <b className="ps-2 fs-6 text-uppercase">{name}</b>
+              <b className="ps-2 fs-6 text-uppercase">{brandName}</b>
             </label>
           ))}
       </div>

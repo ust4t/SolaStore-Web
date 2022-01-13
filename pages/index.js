@@ -49,8 +49,8 @@ const Index4 = ({ newProducts, saleProducts }) => {
           <FilterSearch />
           <TabLayout newProducts={newProducts} saleProducts={saleProducts} />
           <Categories />
-          <CountdownSection countdown={countdownSource} />
-          <EmailArea />
+          {/* <CountdownSection countdown={countdownSource} /> */}
+          {/* <EmailArea /> */}
         </Box>
         <VideoLayout />
 

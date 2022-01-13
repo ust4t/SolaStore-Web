@@ -10,6 +10,7 @@ import utilis from "./utilis";
 import populars from "./populars";
 import menu from "./menu";
 import lang from "./lang";
+import brands from "./brands";
 
 export default combineReducers({
   blog,
@@ -18,6 +19,7 @@ export default combineReducers({
   features,
   upcomingProduct,
   product,
+  brands,
   filter,
   home,
   utilis,

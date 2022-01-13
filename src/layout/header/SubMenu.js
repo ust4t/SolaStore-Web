@@ -5,15 +5,17 @@ import { getMenu } from "../../redux/action/menu";
 import SubCategory from "./SubCategory";
 
 const SubMenu = ({ menu, getMenu }) => {
-  useEffect(() => {
-    getMenu();
-  }, []);
   return (
     <ul>
       {menu &&
-        menu.data.map(
+        menu.map(
           (
-            { selectedCategoryName, categoryID, squareCategoryPictureGuidName },
+            {
+              selectedCategoryName,
+              categoryID,
+              squareCategoryPictureGuidName,
+              subcategories,
+            },
             i
           ) => (
             <li key={`${i}_*_${i}`}>
@@ -21,7 +23,8 @@ const SubMenu = ({ menu, getMenu }) => {
                 <a>{selectedCategoryName}</a>
               </Link>
               <SubCategory
-                id={categoryID}
+                subMenuData={subcategories}
+                // id={categoryID}
                 picture={squareCategoryPictureGuidName}
               />
             </li>

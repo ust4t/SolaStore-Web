@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { getSubMenu } from "../../redux/action/menu";
+import { useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
 import sources from "../../../sources";
 
-function SubCategory({ subMenu, picture, id }) {
-  const [categoryData, setCategoryData] = useState({
-    data: [],
-  });
+function SubCategory({ picture, subMenuData }) {
+  // const lang = useSelector((state) => state.lang.lang);
+  // const [categoryData, setCategoryData] = useState({
+  //   data: [],
+  // });
 
-  useEffect(() => {
-    axios
-      .get(`/api/getSubMenu?id=${id}`)
-      .then((res) => setCategoryData(res.data));
-  }, [id]);
+  // useEffect(() => {
+  //   axios
+  //     .get(`/api/getSubMenu?id=${id}&lang=${lang}`)
+  //     .then((res) => setCategoryData(res.data));
+  // }, [id]);
 
   return (
     <ul className="submenu submenu-two">
@@ -29,8 +29,8 @@ function SubCategory({ subMenu, picture, id }) {
           style={{
             minWidth: "175px",
           }}>
-          {!!categoryData.data &&
-            categoryData.data.map(({ selectedCategoryName, categoryID }, i) => (
+          {!!subMenuData &&
+            subMenuData.map(({ selectedCategoryName, categoryID }, i) => (
               <li key={`${i}_0_${i}`}>
                 <Link href={`/shop/${categoryID}`}>
                   <a className="text-uppercase">{selectedCategoryName}</a>
@@ -49,8 +49,4 @@ function SubCategory({ subMenu, picture, id }) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  subMenu: state.menu.subMenuData,
-});
-
-export default connect(mapStateToProps, { getSubMenu })(SubCategory);
+export default SubCategory;

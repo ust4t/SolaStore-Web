@@ -36,36 +36,43 @@ export default function SelectCheckboxGroup({
         <b className="caret"></b>
       </button>
       <div
+        style={{
+          zIndex: "230",
+        }}
         ref={dropdownRef}
         className={`animate__animated animate__faster ${
           !hidden ? "animate__zoomIn d-block" : "animate__zoomOut d-none"
-        } dropdown-list shadow p-3 bg-body z-index-first w-100 position-absolute`}>
+        } dropdown-list shadow p-3 bg-body w-100 position-absolute`}>
         {data &&
-          data.map(({ value, name, subcategories }, i) => (
+          data.map(({ categoryID, selectedCategoryName, subcategories }, i) => (
             <>
               <label
-                key={`${value}_<_${i}`}
+                key={`${categoryID}_<_${i}`}
                 className="d-block dropdown-option w-100 pt-2">
                 <input
                   type="checkbox"
                   name="dropdown-group"
-                  value={value}
-                  onChange={(e) => onSelect(e, value)}
+                  value={categoryID}
+                  onChange={(e) => onSelect(e, categoryID)}
                 />
-                <b className="ps-2 fs-6 text-uppercase">{name}</b>
+                <b className="ps-2 fs-6 text-uppercase">
+                  {selectedCategoryName}
+                </b>
               </label>
               {subcategories &&
-                subcategories.map(({ value, name }, i) => (
+                subcategories.map(({ categoryID, selectedCategoryName }, i) => (
                   <label
-                    key={`${value}#${i}`}
+                    key={`${categoryID}#${i}`}
                     className="d-block dropdown-option w-100 ps-3 pt-2">
                     <input
                       type="checkbox"
                       name="dropdown-group"
-                      value={value}
-                      onChange={(e) => onSelect(e, value)}
+                      value={categoryID}
+                      onChange={(e) => onSelect(e, categoryID)}
                     />
-                    <b className="ps-2 fs-6 text-uppercase">{name}</b>
+                    <b className="ps-2 fs-6 text-uppercase">
+                      {selectedCategoryName}
+                    </b>
                   </label>
                 ))}
             </>
