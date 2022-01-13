@@ -1,9 +1,5 @@
-import { useEffect } from "react";
-import { connect } from "react-redux";
-import { getHome4 } from "../src/redux/action/home";
-import { getProducts } from "../src/redux/action/product";
-import { simpleProductFilter } from "../src/utils/filterProduct";
-import { animationCreate, splitText } from "../src/utils/utils";
+import { useEffect, memo } from "react";
+import { animationCreate } from "../src/utils/utils";
 import VideoLayout from "../src/layout/VideoLayout";
 import IntroBanners from "../src/layout/IntroBanners";
 import Categories from "../src/layout/Categories";
@@ -69,7 +65,7 @@ const Index4 = ({ newProducts, saleProducts }) => {
   );
 };
 
-export default Index4;
+export default memo(Index4);
 
 export async function getServerSideProps() {
   const { data: newProducts } = await axios.get(

@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import Image from "next/image";
-import { Row } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper";
 // import "swiper/css";
@@ -32,8 +31,6 @@ function PopularCard({ productData }) {
   const oldUnitPrice = oldPrice / sizeNum;
   const originalDiscount = oldUnitPrice - singlePrice;
 
-  const rate = 0.7;
-
   const changeDressColor = (variant) => {
     if (variant.pictures) {
       setCurrentImages({
@@ -48,18 +45,16 @@ function PopularCard({ productData }) {
     }
   };
 
-  const onMouseEnter = () => {
-    setCurrentImageIndex(1);
-  };
-  const onMouseLeave = () => {
-    setCurrentImageIndex(0);
-  };
-  const onAddToCart = () => {
+  const onMouseEnter = () => setCurrentImageIndex(1);
+
+  const onMouseLeave = () => setCurrentImageIndex(0);
+
+  const onAddToCart = () =>
     addToCartAction({
       user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
       id,
     });
-  };
+
   return (
     <div
       className="product-wrapper mb-40"
@@ -92,92 +87,49 @@ function PopularCard({ productData }) {
         >
           <Heart isLiked={isLiked} setIsLiked={setIsLiked} size="35px" />
         </span>
+
         <span
-          // className={`product-image-1 animate__animated animate__faster cursor-pointer ${
-          //   !currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
-          // }`}
-          className={`  animate__animated product-image-1 animate__faster img-fluid cursor-pointer ${
+          className={`animate__animated product-image-1 animate__faster ${
             !currentImageIndex
               ? "opacity-0 animate__fadeIn"
               : "opacity-100 animate__fadeOut"
           }`}>
           <Link href={`/detail/${id}`}>
-            <Image
-              src={`${
-                currentImages.pictures[0]
-                  ? `${sources.imageMidSrc}${currentImages.pictures[0].guidName}`
-                  : "/img/placeholder.jpg"
-              }`}
-              width={400 * rate}
-              height={600 * rate}
-              layout="responsive"
-            />
-          </Link>
-        </span>
-        <span
-          // className={`product-image-2 animate__animated animate__faster cursor-pointer ${
-          //   currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
-          // }`}
-          className={`animate__animated product-image-2 animate__faster img-fluid cursor-pointer ${
-            currentImageIndex
-              ? "opacity-0 animate__fadeIn"
-              : "opacity-100 animate__fadeOut"
-          }`}>
-          <Link href={`/detail/${id}`}>
-            <Image
-              src={`${
-                currentImages.pictures[1]
-                  ? `${sources.imageMidSrc}${currentImages.pictures[1].guidName}`
-                  : "/img/placeholder.jpg"
-              }`}
-              width={400 * rate}
-              height={600 * rate}
-              layout="responsive"
-            />
-          </Link>
-        </span>
-        {/* <span>
-          <Link href={`/detail/${id}`}>
             <a>
               <Image
-                className={`  animate__animated product-image-1 animate__faster img-fluid ${
-                  !currentImageIndex
-                    ? "opacity-0 animate__fadeIn"
-                    : "opacity-100 animate__fadeOut"
-                }`}
                 src={`${
                   currentImages.pictures[0]
                     ? `${sources.imageMidSrc}${currentImages.pictures[0].guidName}`
                     : "/img/placeholder.jpg"
                 }`}
-                width={400 * rate}
-                height={600 * rate}
+                width={400}
+                height={600}
+                alt={name}
               />
             </a>
           </Link>
         </span>
-        <span>
+        <span
+          className={`animate__animated product-image-2 animate__faster ${
+            currentImageIndex
+              ? "opacity-0 animate__fadeIn"
+              : "opacity-100 animate__fadeOut"
+          }`}>
           <Link href={`/detail/${id}`}>
             <a>
               <Image
-                className={`animate__animated product-image-2 animate__faster img-fluid ${
-                  currentImageIndex
-                    ? "opacity-0 animate__fadeIn"
-                    : "opacity-100 animate__fadeOut"
-                }`}
                 src={`${
                   currentImages.pictures[1]
                     ? `${sources.imageMidSrc}${currentImages.pictures[1].guidName}`
                     : "/img/placeholder.jpg"
                 }`}
-                alt="Product"
-                width={400 * rate}
-                height={600 * rate}
+                alt={name}
+                width={400}
+                height={600}
               />
             </a>
           </Link>
-        </span> */}
-
+        </span>
         <div className="mb-4 product-action text-center">
           <a
             className={`animate__animated animate__faster ${
@@ -240,7 +192,7 @@ function PopularCard({ productData }) {
         </div>
       </div>
       {productData.variants && (
-        <Row className="select-colors">
+        <>
           <Swiper
             modules={[Autoplay, Navigation]}
             spaceBetween={0}
@@ -266,7 +218,7 @@ function PopularCard({ productData }) {
               </SwiperSlide>
             ))}
           </Swiper>
-        </Row>
+        </>
       )}
     </div>
   );

@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, memo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 import sources from "../../../../sources";
 
-export default function StoryCard({ onClose, storiesData }) {
+function StoryCard({ onClose, storiesData }) {
   const [storyPaused, setStoryPaused] = useState(false);
   const [storyIndex, setStoryIndex] = useState(0);
   const storyIndexRef = useRef(0);
-  const duration = 20;
+  const duration = 2;
   useEffect(() => {
     // autoskip for story
     const interval = setInterval(() => {
@@ -84,7 +84,8 @@ export default function StoryCard({ onClose, storiesData }) {
             width={600}
             height={400}
             layout="intrinsic"
-            priority={true}
+            loading="eager"
+            // priority={true}
           />
           {storyIndex !== 0 && (
             <i
@@ -120,3 +121,5 @@ export default function StoryCard({ onClose, storiesData }) {
     </div>
   );
 }
+
+export default memo(StoryCard);

@@ -6,6 +6,7 @@ import CartProductItem from "../../components/CartProductItem";
 import { removeCart } from "../../redux/action/utilis";
 import { useContext } from "react";
 import { StoreContext } from "../../context/StoreProvider";
+import { VariableSizeList as List } from "react-window";
 
 export const SearchIcon = ({ hendelChangeSearch }) => (
   <Link href="#">

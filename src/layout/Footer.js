@@ -226,9 +226,12 @@ export const DefaultFooter = ({ darkBg, paymentOption }) => {
                     onClick={(e) => {
                       e.preventDefault();
                     }}>
-                    <img
+                    <Image
                       src="/img/footer/payment.png"
-                      className="img-fluid"
+                      // className="img-fluid"
+                      width={50}
+                      height={4}
+                      layout="responsive"
                       alt="payment"
                     />
                   </a>
@@ -238,9 +241,12 @@ export const DefaultFooter = ({ darkBg, paymentOption }) => {
             <div className="col-md-4 col-12">
               <div className="copyright-text text-end">
                 {paymentOption ? (
-                  <img
+                  <Image
                     src="/img/footer/payment-four.png"
-                    className="img-fluid"
+                    // className="img-fluid"
+                    width={50}
+                    height={4}
+                    layout="responsive"
                     alt=""
                   />
                 ) : (

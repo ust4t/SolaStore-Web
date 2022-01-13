@@ -1,27 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import SelectCheckboxGroup from "../../components/form/SelectCheckboxGroup";
 import SelectCheckbox from "../../components/form/SelectCheckbox";
 import axios from "axios";
-import { useQuery } from "react-query";
-
-const fetchCategories = async () => {
-  const { data } = await axios.get("/api/getFullMenu");
-  return data;
-};
 
 export default function FilterSearch() {
-  // const [category, setCategory] = useState([]);
-  // const { isLoading } = useQuery("category", fetchCategories, {
-  //   onSuccess: (data) => {
-  //     setCategory(data);
-  //   },
-  // });
-  // console.log(category);
   const state = useSelector((state) => state);
-
-  console.log(state);
 
   const [filterData, setFilterData] = useState({
     category: [],
@@ -46,7 +31,6 @@ export default function FilterSearch() {
   };
 
   const navigateToSearch = () => {
-    console.log(filterData);
     alert("search");
   };
 
@@ -108,7 +92,6 @@ export default function FilterSearch() {
           {state.menu.menuData && (
             <SelectCheckboxGroup
               filterData={filterData.category}
-              // data={dataset.categories}
               data={state.menu.menuData}
               title="Kategori"
               onSelect={handleFilterCategory}

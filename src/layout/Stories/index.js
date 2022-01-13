@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import Image from "next/image";
@@ -14,15 +14,18 @@ export default function Stories({ stories }) {
     setStoriesOpen(false);
   }
 
-  const handleStories = (story) => {
-    setStoriesData({
-      id: story.masterProductID,
-      productName: story.productShortName,
-      productStock: story.productStockCode,
-      img: story.pictures,
-    });
-    setStoriesOpen(true);
-  };
+  const handleStories = useCallback(
+    (story) => {
+      setStoriesData({
+        id: story.masterProductID,
+        productName: story.productShortName,
+        productStock: story.productStockCode,
+        img: story.pictures,
+      });
+      setStoriesOpen(true);
+    },
+    [storiesData]
+  );
 
   return (
     <div className="d-flex align-center justify-content-center my-4">
@@ -57,7 +60,7 @@ export default function Stories({ stories }) {
                       className="cursor-pointer p-1"
                       src={`${sources.imageMinSrc}${story.picture_1}`}
                       layout="fill"
-                      priority={true}
+                      // priority={true}
                     />
                   </div>
                   <p className="fs-6 text-center text-wrap ">

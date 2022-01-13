@@ -74,11 +74,10 @@ export const Layout2 = ({
   news,
 }) => {
   const [scrolled, setScrolled] = useState(false);
-
+  const offset = typeof window !== "undefined" ? window.pageYOffset : 0;
   // const stickyRef = React.useRef();
 
   const handleScroll = () => {
-    const offset = window.scrollY;
     if (offset > 100) {
       setScrolled(true);
     } else {
@@ -87,7 +86,7 @@ export const Layout2 = ({
   };
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-  });
+  }, [offset]);
 
   return (
     <header className={` ${darkBg ? "black-bg" : ""}`}>

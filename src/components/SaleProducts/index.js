@@ -1,23 +1,10 @@
-import { Row } from "antd";
-import React, { useState } from "react";
+import React from "react";
 
-import { useQuery } from "react-query";
-import Loader from "../Loader";
 import { HomePageProductSliderWithArrow } from "../sliders/HomePageSlider";
 import PopularCard from "../Cards/PopularCard";
 
-const fetchSale = async () => {
-  const res = await fetch("/api/products/getSaleProducts");
-  const data = await res.json();
-  return data;
-};
 export default function SaleProducts({ saleProducts }) {
-  // const { isLoading, error, data } = useQuery("saleProducts", fetchSale);
   return (
-    // <>
-    //   {isLoading ? (
-    //     <Loader />
-    //   ) : (
     <HomePageProductSliderWithArrow extraClass="slider-active-three common-arrows ">
       {saleProducts
         .slice(0, saleProducts.length >= 12 ? 12 : saleProducts.length)
@@ -43,7 +30,5 @@ export default function SaleProducts({ saleProducts }) {
           );
         })}
     </HomePageProductSliderWithArrow>
-    //   )}
-    // </>
   );
 }

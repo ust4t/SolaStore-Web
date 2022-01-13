@@ -1,11 +1,5 @@
-import { Row } from "antd";
-import React, { useState } from "react";
+import React from "react";
 
-import { useQuery } from "react-query";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper";
-import Loader from "../Loader";
-import MainProductCard from "../Cards/MainProductCard";
 import { HomePageProductSliderWithArrow } from "../sliders/HomePageSlider";
 import PopularCard from "../Cards/PopularCard";
 
