@@ -49,18 +49,24 @@ function IntroBanners() {
                 upperTitle={banners[1].selectedText1}
                 lowerTitle={banners[1].selectedText2}
                 buttonText={banners[1].selectedTextButton}
+                width={200}
+                height={120}
               />
               <BannerCard
                 banner={banners[0].guidName}
                 upperTitle={banners[0].selectedText1}
                 lowerTitle={banners[0].selectedText2}
                 buttonText={banners[0].selectedTextButton}
+                width={300}
+                height={350}
               />
               <BannerCard
                 banner={banners[2].guidName}
                 upperTitle={banners[2].selectedText1}
                 lowerTitle={banners[2].selectedText2}
                 buttonText={banners[2].selectedTextButton}
+                width={200}
+                height={120}
               />
             </div>
           </div>

@@ -12,6 +12,7 @@ import {
   WishlistIcon,
 } from "./Icons";
 import Menu from "./Menu";
+import Image from "next/image";
 
 export const Layout1 = ({
   setSidebar,
@@ -101,11 +102,17 @@ export const Layout2 = ({
                   <div className="logo d-flex justify-content-lg-start">
                     <Link href="/">
                       <a>
-                        <img
+                        <Image
                           src={
-                            darkBg ? "img/logo/logo3.png" : "img/logo/logo.png"
+                            darkBg
+                              ? "/img/logo/logo3.png"
+                              : "/img/logo/logo.png"
                           }
-                          alt=""
+                          alt="Logo"
+                          width={110}
+                          height={80}
+                          layout="intrinsic"
+                          priority={true}
                         />
                       </a>
                     </Link>

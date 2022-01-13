@@ -5,7 +5,9 @@ import rootReducer from "./reducer";
 import storage from "./sync_storage";
 
 const initialState = {
-  lang: "ru",
+  lang: {
+    lang: "ru",
+  },
 };
 
 const middleware = [thunk];

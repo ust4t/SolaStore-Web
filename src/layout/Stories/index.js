@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
+import Image from "next/image";
 
 import sources from "../../../sources";
 import StoryCard from "../../components/Cards/StoryCard";
@@ -46,11 +47,17 @@ export default function Stories({ stories }) {
               <SwiperSlide key={`${story.masterProductID}_?_${index}`}>
                 <div className="d-flex flex-column flex-wrap align-content-center justify-content-center mx-2">
                   <div
+                    style={{
+                      minWidth: "120px",
+                      height: "120px",
+                    }}
                     className={`${styles["cover-image-box"]} align-self-start`}
                     onClick={() => handleStories(story)}>
-                    <img
-                      className="cursor-pointer"
+                    <Image
+                      className="cursor-pointer p-1"
                       src={`${sources.imageMinSrc}${story.picture_1}`}
+                      layout="fill"
+                      priority={true}
                     />
                   </div>
                   <p className="fs-6 text-center text-wrap ">

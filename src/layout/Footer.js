@@ -2,6 +2,7 @@ import moment from "moment";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { findFilterValue, totalProductByKey } from "../utils/utils";
+import Image from "next/image";
 
 export const DefaultFooter = ({ darkBg, paymentOption }) => {
   const products = useSelector((state) => state.product.products);
@@ -21,19 +22,20 @@ export const DefaultFooter = ({ darkBg, paymentOption }) => {
               <div
                 className={`footer-widget mb-30 ${
                   darkBg ? "widget-three" : ""
-                }`}
-              >
+                }`}>
                 <div className="footer-logo">
                   <Link href="/index">
                     <a>
-                      <img
+                      <Image
                         src={
                           darkBg
                             ? "/img/footer/footer-logo3.png"
                             : "/img/footer/footer-logo.png"
                         }
-                        className="img-fluid"
                         alt="Logo"
+                        width={130}
+                        height={90}
+                        layout="intrinsic"
                       />
                     </a>
                   </Link>
@@ -53,15 +55,13 @@ export const DefaultFooter = ({ darkBg, paymentOption }) => {
                   </h6>
                   <span>34050 Fatih/İstanbul</span>
                 </div>
-                
               </div>
             </div>
             <div className="col-lg-2 col-md-6 col-6">
               <div
                 className={`footer-widget mb-30 ${
                   darkBg ? "widget-three" : ""
-                }`}
-              >
+                }`}>
                 <h5>KURUMSAL</h5>
                 <ul className="links">
                   <li>
@@ -69,8 +69,7 @@ export const DefaultFooter = ({ darkBg, paymentOption }) => {
                       <a
                         onClick={(e) => {
                           e.preventDefault();
-                        }}
-                      >
+                        }}>
                         Hakkımızda
                       </a>
                     </Link>
@@ -80,8 +79,7 @@ export const DefaultFooter = ({ darkBg, paymentOption }) => {
                       <a
                         onClick={(e) => {
                           e.preventDefault();
-                        }}
-                      >
+                        }}>
                         Gizlilik politikası
                       </a>
                     </Link>
@@ -91,9 +89,8 @@ export const DefaultFooter = ({ darkBg, paymentOption }) => {
                       <a
                         onClick={(e) => {
                           e.preventDefault();
-                        }}
-                      >
-                       Site Haritası
+                        }}>
+                        Site Haritası
                       </a>
                     </Link>
                   </li>
@@ -114,8 +111,7 @@ export const DefaultFooter = ({ darkBg, paymentOption }) => {
               <div
                 className={`footer-widget mb-30 ${
                   darkBg ? "widget-three" : ""
-                }`}
-              >
+                }`}>
                 <h5>HESABIM</h5>
                 <ul className="links">
                   <li>
@@ -123,8 +119,7 @@ export const DefaultFooter = ({ darkBg, paymentOption }) => {
                       <a
                         onClick={(e) => {
                           e.preventDefault();
-                        }}
-                      >
+                        }}>
                         Profilim
                       </a>
                     </Link>
@@ -134,8 +129,7 @@ export const DefaultFooter = ({ darkBg, paymentOption }) => {
                       <a
                         onClick={(e) => {
                           e.preventDefault();
-                        }}
-                      >
+                        }}>
                         Siparişlerim
                       </a>
                     </Link>
@@ -145,13 +139,11 @@ export const DefaultFooter = ({ darkBg, paymentOption }) => {
                       <a
                         onClick={(e) => {
                           e.preventDefault();
-                        }}
-                      >
-                       Hesaplarım
+                        }}>
+                        Hesaplarım
                       </a>
                     </Link>
                   </li>
-
                 </ul>
               </div>
             </div>
@@ -159,21 +151,26 @@ export const DefaultFooter = ({ darkBg, paymentOption }) => {
               <div
                 className={`footer-widget mb-30 ${
                   darkBg ? "widget-three" : ""
-                }`}
-              >
+                }`}>
                 <h5>MOBİL UYGULAMALARIMIZ</h5>
                 <div className={`subscription ${darkBg ? "subs-three" : ""}`}>
-                <div className="footer-widget mb-20">
+                  <div className="footer-widget mb-20">
                     <div className="fw-link">
-                      <a href="https://play.google.com/store/apps/details?id=com.solastore.solastoreapp" className="btn btn-primary btn-round mobil-foot">
-                        <i className="fab fa-google-play" /><span> Google Play</span>
+                      <a
+                        href="https://play.google.com/store/apps/details?id=com.solastore.solastoreapp"
+                        className="btn btn-primary btn-round mobil-foot">
+                        <i className="fab fa-google-play" />
+                        <span> Google Play</span>
                       </a>
-                      <a href="https://apps.apple.com/tr/app/sola-store/id1532399779?l=tr" className="btn btn-primary btn-round mobil-foot">
-                        <i className="fab fa-apple" /><span> APP Store</span>
+                      <a
+                        href="https://apps.apple.com/tr/app/sola-store/id1532399779?l=tr"
+                        className="btn btn-primary btn-round mobil-foot">
+                        <i className="fab fa-apple" />
+                        <span> APP Store</span>
                       </a>
                     </div>
                   </div>
-            
+
                   <div className="social-icon pt-15">
                     <span>Follow Us On:</span>
                     <Link href="#">
@@ -214,36 +211,30 @@ export const DefaultFooter = ({ darkBg, paymentOption }) => {
         </div>
       </div>
       <div
-        className={`copyright-two  ${darkBg ? "dark-bg" : "copyright-border"}`}
-      >
+        className={`copyright-two  ${darkBg ? "dark-bg" : "copyright-border"}`}>
         <div className="container">
           <div className="row">
             <div className="col-md-4 col-12">
               <div className="copyright-text">
-                <span>
-                  {paymentOption
-                    ? `Copyright 2020 `
-                    : `© 2020 `}
-                </span>
+                <span>{paymentOption ? `Copyright 2020 ` : `© 2020 `}</span>
               </div>
             </div>
             {!paymentOption && (
-                  <div className="footer-payment col-md-4 col-12 ta">
-                    <Link href="#">
-                      <a
-                        onClick={(e) => {
-                          e.preventDefault();
-                        }}
-                      >
-                        <img
-                          src="/img/footer/payment.png"
-                          className="img-fluid"
-                          alt="payment"
-                        />
-                      </a>
-                    </Link>
-                  </div>
-                )}
+              <div className="footer-payment col-md-4 col-12 ta">
+                <Link href="#">
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                    }}>
+                    <img
+                      src="/img/footer/payment.png"
+                      className="img-fluid"
+                      alt="payment"
+                    />
+                  </a>
+                </Link>
+              </div>
+            )}
             <div className="col-md-4 col-12">
               <div className="copyright-text text-end">
                 {paymentOption ? (
@@ -376,8 +367,6 @@ export const Footer_1 = () => {
           </div>
         </div>
       </div>
-    
     </footer>
-  
   );
 };

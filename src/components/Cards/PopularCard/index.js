@@ -34,7 +34,7 @@ function PopularCard({ productData }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
-  const isMutating = useIsMutating({ mutationKey: `addCart_${id}` });
+  // const isMutating = useIsMutating({ mutationKey: `addCart_${id}` });
 
   const sizeNum = sizes.split("-").length || 0;
   const oldUnitPrice = oldPrice / sizeNum;
@@ -42,8 +42,18 @@ function PopularCard({ productData }) {
 
   const rate = 0.7;
 
-  const changeDressColor = (imagesArray) => {
-    setCurrentImages(imagesArray);
+  const changeDressColor = (variant) => {
+    if (variant.pictures) {
+      setCurrentImages({
+        id: variant.productID,
+        pictures: variant.pictures,
+      });
+    } else {
+      setCurrentImages({
+        id,
+        pictures: variant.images,
+      });
+    }
   };
 
   const onMouseEnter = () => {
@@ -208,10 +218,38 @@ function PopularCard({ productData }) {
         >
           <Heart isLiked={isLiked} setIsLiked={setIsLiked} size="35px" />
         </span>
-        <span>
+        <div
+          className={`product-image-1 animate__animated animate__faster cursor-pointer ${
+            !currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
+          }`}>
+          <Image
+            src={`${
+              currentImages.pictures[0]
+                ? `${sources.imageMidSrc}${currentImages.pictures[0].guidName}`
+                : "/img/placeholder.jpg"
+            }`}
+            width={400 * rate}
+            height={600 * rate}
+          />
+        </div>
+        <div
+          className={`product-image-2 animate__animated animate__faster cursor-pointer ${
+            currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
+          }`}>
+          <Image
+            src={`${
+              currentImages.pictures[1]
+                ? `${sources.imageMidSrc}${currentImages.pictures[1].guidName}`
+                : "/img/placeholder.jpg"
+            }`}
+            width={400 * rate}
+            height={600 * rate}
+          />
+        </div>
+        {/* <span>
           <Link href={`/detail/${id}`}>
             <a>
-              <img
+              <Image
                 className={`  animate__animated product-image-1 animate__faster img-fluid ${
                   !currentImageIndex
                     ? "opacity-0 animate__fadeIn"
@@ -222,8 +260,8 @@ function PopularCard({ productData }) {
                     ? `${sources.imageMidSrc}${currentImages.pictures[0].guidName}`
                     : "/img/placeholder.jpg"
                 }`}
-                alt="Product"
-                loading="lazy"
+                width={400 * rate}
+                height={600 * rate}
               />
             </a>
           </Link>
@@ -231,7 +269,7 @@ function PopularCard({ productData }) {
         <span>
           <Link href={`/detail/${id}`}>
             <a>
-              <img
+              <Image
                 className={`animate__animated product-image-2 animate__faster img-fluid ${
                   currentImageIndex
                     ? "opacity-0 animate__fadeIn"
@@ -243,11 +281,12 @@ function PopularCard({ productData }) {
                     : "/img/placeholder.jpg"
                 }`}
                 alt="Product"
-                loading="lazy"
+                width={400 * rate}
+                height={600 * rate}
               />
             </a>
           </Link>
-        </span>
+        </span> */}
 
         <div className="mb-4 product-action text-center">
           <a
@@ -332,19 +371,7 @@ function PopularCard({ productData }) {
                     variant.picture_1 || variant.images[0].guidName
                   }`}
                   priority={true}
-                  onClick={() => {
-                    if (variant.pictures) {
-                      setCurrentImages({
-                        id: variant.productID,
-                        pictures: variant.pictures,
-                      });
-                    } else {
-                      setCurrentImages({
-                        id,
-                        pictures: variant.images,
-                      });
-                    }
-                  }}
+                  onClick={() => changeDressColor(variant)}
                 />
               </SwiperSlide>
             ))}

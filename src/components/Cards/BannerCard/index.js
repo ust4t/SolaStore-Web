@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 import sources from "../../../../sources";
 
@@ -8,16 +9,22 @@ export default function BannerCard({
   upperTitle,
   lowerTitle,
   buttonText,
+  width,
+  height,
 }) {
   return (
     <div className="col-md-4 custom-col">
       <div className="single-banner text-center mb-30">
         <Link href="/">
           <a className="position-relative">
-            <img
+            <Image
               src={`${sources.banners}${banner}`}
               className="img-fluid"
               alt="Banner"
+              // layout="fill"
+              width={width}
+              height={height}
+              layout="responsive"
             />
             <div className="container position-absolute top-50 start-0 translate-middle-y">
               <div className="row ">

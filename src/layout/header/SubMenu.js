@@ -23,7 +23,6 @@ const SubMenu = ({ menu }) => {
               </Link>
               <SubCategory
                 subMenuData={subcategories}
-                // id={categoryID}
                 picture={squareCategoryPictureGuidName}
               />
             </li>

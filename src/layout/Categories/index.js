@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { useQuery } from "react-query";
 import Link from "next/link";
+import Image from "next/image";
 
 import Loader from "../../components/Loader";
 import sources from "../../../sources";
@@ -53,11 +54,14 @@ export default function Categories() {
             ({ mainCampaignName, pictureGuidName, campaignID }, i) => (
               <div className="col-6 col-md-4 pb-3" key={`${campaignID}_*0${i}`}>
                 <Link href="/">
-                  <img
+                  <Image
                     src={`${sources.campaign}${pictureGuidName}`}
                     alt={mainCampaignName}
-                    className="w-100 cursor-pointer"
-                    loading="lazy"
+                    className="cursor-pointer"
+                    width={250}
+                    height={300}
+                    layout="responsive"
+                    quality={50}
                   />
                 </Link>
               </div>

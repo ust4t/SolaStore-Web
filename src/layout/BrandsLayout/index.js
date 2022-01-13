@@ -3,6 +3,7 @@ import { Grid, Typography, Box } from "@mui/material";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
 
 import Loader from "../../components/Loader";
 import sources from "../../../sources";
@@ -33,11 +34,14 @@ export default function BrandsLayout() {
             <div
               key={`${brandID}_|*_${i}`}
               className="col-4 col-lg-2 py-3 px-sm-3 brandborder">
-              <img
+              <Image
                 src={`${sources.brand}${guidName}`}
                 alt={brandName}
-                className="w-100 cursor-pointer"
-                loading="lazy"
+                className="cursor-pointer"
+                width={95}
+                height={80}
+                layout="responsive"
+                quality={60}
               />
             </div>
           ))

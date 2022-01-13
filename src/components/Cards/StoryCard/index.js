@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 import sources from "../../../../sources";
 
@@ -7,7 +8,7 @@ export default function StoryCard({ onClose, storiesData }) {
   const [storyPaused, setStoryPaused] = useState(false);
   const [storyIndex, setStoryIndex] = useState(0);
   const storyIndexRef = useRef(0);
-  const duration = 2;
+  const duration = 20;
   useEffect(() => {
     // autoskip for story
     const interval = setInterval(() => {
@@ -38,7 +39,11 @@ export default function StoryCard({ onClose, storiesData }) {
   }
 
   return (
-    <div className="story-container z-index-first">
+    <div
+      style={{
+        zIndex: "245",
+      }}
+      className="story-container">
       <i
         style={{
           top: "20px",
@@ -46,10 +51,13 @@ export default function StoryCard({ onClose, storiesData }) {
         }}
         onClick={onClose}
         class="fas fa-times position-absolute text-white fs-3 cursor-pointer"></i>
-      <div className="story justify-content-end pt-2">
+      <div className="story justify-content-end pt-2 my-0">
         <div className="title d-flex justify-content-space-between align-items-center">
-          <img
+          <Image
             src={`${sources.imageMaxSrc}${storiesData.img[storyIndex].guidName}`}
+            width={60}
+            height={60}
+            layout="intrinsic"
           />
           <div className="details">
             <span>#{storiesData.productStock}</span>
@@ -70,10 +78,13 @@ export default function StoryCard({ onClose, storiesData }) {
           ))}
         </div>
         <div className="storyEl position-relative w-100">
-          <img
-            onClick={(e) => setStoryPaused(!storyPaused)}
-            id="video"
+          <Image
+            onClick={() => setStoryPaused(!storyPaused)}
             src={`${sources.imageMaxSrc}${storiesData.img[storyIndex].guidName}`}
+            width={600}
+            height={400}
+            layout="intrinsic"
+            priority={true}
           />
           {storyIndex !== 0 && (
             <i

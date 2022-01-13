@@ -6,21 +6,12 @@ import axios from "axios";
 import sources from "../../../sources";
 
 function SubCategory({ picture, subMenuData }) {
-  // const lang = useSelector((state) => state.lang.lang);
-  // const [categoryData, setCategoryData] = useState({
-  //   data: [],
-  // });
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`/api/getSubMenu?id=${id}&lang=${lang}`)
-  //     .then((res) => setCategoryData(res.data));
-  // }, [id]);
-
   return (
     <ul className="submenu submenu-two">
       <ul
         style={{
+          minWidth: "420px",
+          minHeight: "270px",
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
@@ -38,11 +29,12 @@ function SubCategory({ picture, subMenuData }) {
               </li>
             ))}
         </div>
-        <img
+        <Image
           src={`${sources.imageMidSrc}${picture}`}
-          style={{
-            maxWidth: "280px",
-          }}
+          width={400}
+          height={600}
+          layout="intrinsic"
+          priority={true}
         />
       </ul>
     </ul>
