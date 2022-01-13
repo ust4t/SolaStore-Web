@@ -15,7 +15,11 @@ import StoreProvider from "../src/context/StoreProvider";
 import "../styles/global.css";
 import { useStore } from "react-redux";
 import axios from "axios";
-import { GET_BRANDS, GET_MAIN_MENU } from "../src/redux/action/type";
+import {
+  CHANGE_LANG,
+  GET_BRANDS,
+  GET_MAIN_MENU,
+} from "../src/redux/action/type";
 
 function MyApp({ Component, pageProps }) {
   const store = useStore((state) => state);
@@ -53,8 +57,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <PersistGate persistor={store.__persistor} loading={<Preloader />}>
-      <AllToaster />
+    <>
       <Head>
         <title>SolaStore</title>
         <meta name="description" content />
@@ -66,13 +69,20 @@ function MyApp({ Component, pageProps }) {
           href="/img/logo/favicon.png"
         />
       </Head>
-      {preloader ? <Preloader /> : <ScrollTop />}
-      <QueryClientProvider client={queryClient}>
-        <StoreProvider>
-          <Component {...pageProps} />
-        </StoreProvider>
-      </QueryClientProvider>
-    </PersistGate>
+      <AllToaster />
+      <PersistGate persistor={store.__persistor}>
+        {() => {
+          return (
+            <QueryClientProvider client={queryClient}>
+              <StoreProvider>
+                {preloader ? <Preloader /> : <ScrollTop />}
+                <Component {...pageProps} />
+              </StoreProvider>
+            </QueryClientProvider>
+          );
+        }}
+      </PersistGate>
+    </>
   );
 }
 

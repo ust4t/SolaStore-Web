@@ -37,10 +37,7 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                     <Link href={`/shop/${categoryID}`}>
                       <a>{selectedCategoryName}</a>
                     </Link>
-                    <InnerMobileMenu
-                      subcategories={subcategories}
-                      // menuId={categoryID}
-                    />
+                    <InnerMobileMenu subcategories={subcategories} />
                   </li>
                 )
               )}

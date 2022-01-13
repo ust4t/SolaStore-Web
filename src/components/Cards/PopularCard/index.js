@@ -6,25 +6,17 @@ import { Autoplay, Navigation } from "swiper";
 // import "swiper/css";
 import Link from "next/link";
 
-import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 
-import ColorfulText from "../../ColorfulText";
 import Heart from "../../Heart";
 import ProductModal from "../../product/ProductModal";
 import sources from "../../../../sources";
-import { addToCart } from "../../../redux/action/utilis";
-import { connect } from "react-redux";
-import { getProducts } from "../../../redux/action/product";
+
 import { StoreContext } from "../../../context/StoreProvider";
-import { SET_DETAILS } from "../../../context/types";
-import { useIsMutating } from "react-query";
 
 function PopularCard({ productData }) {
-  const { id, name, images, price, oldPrice, singlePrice, sizes, variants } =
-    productData;
-  const router = useRouter();
-  const { state, dispatch, cartActions } = useContext(StoreContext);
+  const { id, name, images, price, oldPrice, singlePrice, sizes } = productData;
+  const { cartActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
   const [currentImages, setCurrentImages] = useState({
     id,
@@ -68,124 +60,6 @@ function PopularCard({ productData }) {
       id,
     });
   };
-
-  // return (
-  //   <div
-  //     className="product-card"
-  //     style={{
-  //       margin: "20px",
-  //     }}>
-  //     <Col
-  //       className="product-image-container"
-  //       onMouseEnter={onMouseEnter}
-  //       onMouseLeave={onMouseLeave}>
-  //       <Row className="product-header">
-  //         {!!oldPrice && oldPrice > 0 && (
-  //           <ColorfulText
-  //             style={{ height: 22 }}>{`↓ $${originalDiscount}`}</ColorfulText>
-  //         )}
-  //         <div
-  //           style={{
-  //             paddingLeft: 10,
-  //             paddingRight: 10,
-  //           }}>
-  //           <Heart isLiked={isLiked} setIsLiked={setIsLiked} />
-  //         </div>
-  //       </Row>
-  //       <div
-  //         className={`add-to-cart animate__animated animate__faster ${
-  //           currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
-  //         }`}
-  //         onClick={onAddToCart}>
-  //         {isMutating > 0 ? "Loading......" : "Sepete Ekle"}
-  //       </div>
-
-  //       <div
-  //         className={`product-image-1 animate__animated animate__faster ${
-  //           !currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
-  //         }`}>
-  //         {/* <Link href={`/shop/${currentImages.id}`}> */}
-  //         {/* default images */}
-  //         <Image
-  //           onClick={navigateToDetail}
-  //           src={`${sources.imageMidSrc}${currentImages.pictures[0].guidName}`}
-  //           width={400 * rate}
-  //           height={600 * rate}
-  //           priority={true}
-  //         />
-  //         {/* </Link> */}
-  //       </div>
-  //       <div
-  //         className={`product-image-2 animate__animated animate__faster ${
-  //           currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
-  //         }`}>
-  //         {/* <Link href={`/shop/${currentImages.id}`}> */}
-  //         {/* hover images */}
-  //         <Image
-  //           onClick={navigateToDetail}
-  //           src={`${sources.imageMidSrc}${currentImages.pictures[1].guidName}`}
-  //           width={400 * rate}
-  //           height={600 * rate}
-  //           priority={true}
-  //         />
-  //         {/* </Link> */}
-  //       </div>
-  //     </Col>
-  //     {/* <Link href={`/shop/${currentImages.id}`}> */}
-  //     <div
-  //       onClick={navigateToDetail}
-  //       className="product-card-name"
-  //       style={{
-  //         fontSize: "1rem",
-  //       }}>
-  //       {name}
-  //     </div>
-  //     {/* </Link> */}
-  //     <div className="product-card-price">{`$ ${price}`}</div>
-
-  //     <Row className="select-colors">
-  //       <Swiper
-  //         modules={[Autoplay, Navigation]}
-  //         spaceBetween={0}
-  //         centeredSlides={true}
-  //         slidesPerView={5}
-  //         navigation
-  //         autoplay={{
-  //           delay: 6000,
-  //         }}>
-  //         {variants &&
-  //           [...variants, { images }].map((variant, i) => (
-  //             <SwiperSlide>
-  //               <Image
-  //                 key={`${i}__`}
-  //                 className="color-select"
-  //                 width={60}
-  //                 height={60}
-  //                 src={`${sources.imageMinSrc}${
-  //                   variant.picture_1 || variant.images[0].guidName
-  //                 }`}
-  //                 priority={true}
-  //                 onClick={() => {
-  //                   if (variant.pictures) {
-  //                     setCurrentImages({
-  //                       id: variant.productID,
-  //                       pictures: variant.pictures,
-  //                     });
-  //                   } else {
-  //                     setCurrentImages({
-  //                       id,
-  //                       pictures: variant.images,
-  //                     });
-  //                   }
-  //                 }}
-  //               />
-  //             </SwiperSlide>
-  //           ))}
-  //       </Swiper>
-  //     </Row>
-  //   </div>
-  // );
-
   return (
     <div
       className="product-wrapper mb-40"
@@ -218,34 +92,50 @@ function PopularCard({ productData }) {
         >
           <Heart isLiked={isLiked} setIsLiked={setIsLiked} size="35px" />
         </span>
-        <div
-          className={`product-image-1 animate__animated animate__faster cursor-pointer ${
-            !currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
+        <span
+          // className={`product-image-1 animate__animated animate__faster cursor-pointer ${
+          //   !currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
+          // }`}
+          className={`  animate__animated product-image-1 animate__faster img-fluid cursor-pointer ${
+            !currentImageIndex
+              ? "opacity-0 animate__fadeIn"
+              : "opacity-100 animate__fadeOut"
           }`}>
-          <Image
-            src={`${
-              currentImages.pictures[0]
-                ? `${sources.imageMidSrc}${currentImages.pictures[0].guidName}`
-                : "/img/placeholder.jpg"
-            }`}
-            width={400 * rate}
-            height={600 * rate}
-          />
-        </div>
-        <div
-          className={`product-image-2 animate__animated animate__faster cursor-pointer ${
-            currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
+          <Link href={`/detail/${id}`}>
+            <Image
+              src={`${
+                currentImages.pictures[0]
+                  ? `${sources.imageMidSrc}${currentImages.pictures[0].guidName}`
+                  : "/img/placeholder.jpg"
+              }`}
+              width={400 * rate}
+              height={600 * rate}
+              layout="responsive"
+            />
+          </Link>
+        </span>
+        <span
+          // className={`product-image-2 animate__animated animate__faster cursor-pointer ${
+          //   currentImageIndex ? "animate__fadeIn" : "animate__fadeOut"
+          // }`}
+          className={`animate__animated product-image-2 animate__faster img-fluid cursor-pointer ${
+            currentImageIndex
+              ? "opacity-0 animate__fadeIn"
+              : "opacity-100 animate__fadeOut"
           }`}>
-          <Image
-            src={`${
-              currentImages.pictures[1]
-                ? `${sources.imageMidSrc}${currentImages.pictures[1].guidName}`
-                : "/img/placeholder.jpg"
-            }`}
-            width={400 * rate}
-            height={600 * rate}
-          />
-        </div>
+          <Link href={`/detail/${id}`}>
+            <Image
+              src={`${
+                currentImages.pictures[1]
+                  ? `${sources.imageMidSrc}${currentImages.pictures[1].guidName}`
+                  : "/img/placeholder.jpg"
+              }`}
+              width={400 * rate}
+              height={600 * rate}
+              layout="responsive"
+            />
+          </Link>
+        </span>
         {/* <span>
           <Link href={`/detail/${id}`}>
             <a>

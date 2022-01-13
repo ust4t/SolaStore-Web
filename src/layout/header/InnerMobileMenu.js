@@ -1,20 +1,7 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import Link from "next/link";
-import { useSelector } from "react-redux";
 
-function InnerMobileMenu({ menuId, subcategories }) {
-  // const lang = useSelector((state) => state.lang.lang);
-  // const [categoryData, setCategoryData] = useState({
-  //   data: [],
-  // });
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`/api/getSubMenu?id=${menuId}&lang=${lang}`)
-  //     .then((res) => setCategoryData(res.data));
-  // }, [menuId]);
-
+function InnerMobileMenu({ subcategories }) {
   return (
     <ul className="submenu submenu-three mm-collapse">
       {subcategories &&

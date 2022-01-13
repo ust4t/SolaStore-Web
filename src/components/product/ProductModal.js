@@ -1,7 +1,8 @@
-import { useRef, Fragment, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { Modal, Nav, Tab } from "react-bootstrap";
-import toast from "react-hot-toast";
 import { connect } from "react-redux";
+import Image from "next/image";
+
 import {
   addToCart,
   addWishlist,
@@ -11,32 +12,16 @@ import {
   getCompare,
   getWishlist,
 } from "../../redux/action/utilis";
-import Reating from "./Reating";
 import sources from "../../../sources";
-import {
-  HomePage5UpcomingSlider,
-  HomePageSliderWithArrow as HomePageSliderWithArrowWithVideo,
-  HomePage_1SliderWithArrow,
-  HomePage_4SliderWithArrow,
-} from "../sliders/HomePageSlider";
+import { HomePageSliderWithArrow as HomePageSliderWithArrowWithVideo } from "../sliders/HomePageSlider";
 import { StoreContext } from "../../context/StoreProvider";
 
 const ProductModal = ({
   show,
   handleClose,
   product,
-  carts,
-  wishlists,
-  addToCart,
-  addWishlist,
-  decreaseCart,
-  getCarts,
+
   getWishlist,
-  getCompare,
-  compares,
-  compare,
-  mainPrice,
-  price,
 }) => {
   const { cartActions, state } = useContext(StoreContext);
   const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
@@ -122,10 +107,13 @@ const ProductModal = ({
                           <div
                             className="single-slider single-img d-flex align-items-end"
                             key={`${img.productID}__${i + 1}`}>
-                            <img
+                            <Image
                               src={`${sources.imageMaxSrc}${img.guidName}`}
-                              className="img-fluid"
-                              alt="Tum img"
+                              // className="img-fluid"
+                              alt="Product"
+                              width={410}
+                              height={600}
+                              layout="intrinsic"
                             />
                           </div>
                         ))}

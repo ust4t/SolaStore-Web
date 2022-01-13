@@ -42,11 +42,3 @@ const makeStore = ({ isServer }) => {
 };
 
 export const wrapper = createWrapper(makeStore);
-
-// const store = createStore(
-//   rootReducer,
-//   initialState,
-//   bindMiddleware(middleware)
-// );
-
-// export default store;

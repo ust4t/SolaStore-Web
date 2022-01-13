@@ -109,7 +109,7 @@ export const Layout2 = ({
                               : "/img/logo/logo.png"
                           }
                           alt="Logo"
-                          width={110}
+                          width={120}
                           height={80}
                           layout="intrinsic"
                           priority={true}
