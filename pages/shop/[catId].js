@@ -16,7 +16,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      allProducts: data.slice(0, 120),
+      allProducts: data.slice(0, 120).reverse(),
     },
   };
 }

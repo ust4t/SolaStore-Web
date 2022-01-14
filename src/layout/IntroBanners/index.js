@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 
@@ -13,24 +13,25 @@ const fetchBanners = async (lang) => {
   return data;
 };
 
-function IntroBanners() {
-  const lang = useSelector((state) => state.lang.lang);
-  const [banners, setBanners] = useState([]);
-  const { data, isLoading, error } = useQuery(
-    "banners",
-    () => fetchBanners(lang),
-    {
-      onSuccess: ({ data }) => {
-        setBanners(data);
-      },
-    }
-  );
+function IntroBanners({ banners }) {
+  // const lang = useSelector((state) => state.lang);
+  // const [banners, setBanners] = useState([]);
+  // const { data, isLoading, error } = useQuery(
+  //   "banners",
+  //   () => fetchBanners(lang),
+  //   {
+  //     onSuccess: ({ data }) => {
+  //       setBanners(data);
+  //     },
+  //   }
+  // );
 
   return (
+    //   {isLoading ? (
+    //     <Loader />
+    //   ) : (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : (
+      {banners && (
         <div className="banner-area pt-90">
           <div className="container">
             <div className="row custom-row align-items-center">
@@ -63,6 +64,7 @@ function IntroBanners() {
         </div>
       )}
     </>
+    //   )}
   );
 }
-export default memo(IntroBanners);
+export default IntroBanners;

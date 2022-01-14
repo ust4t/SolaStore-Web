@@ -1,6 +1,5 @@
 import { memo } from "react";
 import dynamic from "next/dynamic";
-import axios from "axios";
 import VideoLayout from "../src/layout/VideoLayout";
 import IntroBanners from "../src/layout/IntroBanners";
 // import Categories from "../src/layout/Categories";
@@ -13,11 +12,18 @@ import Layout from "../src/layout/Layout";
 // import Stories from "../src/layout/Stories";
 import SliderProducts from "../src/components/sliders/sliderProducts";
 import TabLayout from "../src/layout/TabLayout";
+import { connect } from "react-redux";
 const Stories = dynamic(() => import("../src/layout/Stories"));
 const BrandsLayout = dynamic(() => import("../src/layout/BrandsLayout"));
 const Categories = dynamic(() => import("../src/layout/Categories"));
 
-const Index4 = ({ newProducts, saleProducts }) => {
+const Index4 = ({
+  newProducts,
+  saleProducts,
+  lang,
+  slidersData,
+  bannersData,
+}) => {
   const countdownSource = {
     img: "/img/countdown-bg.jpg",
     value: "-28",
@@ -31,7 +37,7 @@ const Index4 = ({ newProducts, saleProducts }) => {
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
         <Stories stories={newProducts} />
-        <SliderProducts />
+        <SliderProducts sliders={slidersData} />
         <Box
           mx={{
             xs: 0,
@@ -40,7 +46,7 @@ const Index4 = ({ newProducts, saleProducts }) => {
             lg: 12,
             xl: 14,
           }}>
-          <IntroBanners />
+          <IntroBanners banners={bannersData} />
           <FilterSearch />
           <TabLayout newProducts={newProducts} saleProducts={saleProducts} />
           <Categories />
@@ -63,21 +69,39 @@ const Index4 = ({ newProducts, saleProducts }) => {
     </Layout>
   );
 };
-
 export default memo(Index4);
 
 export async function getStaticProps() {
-  const { data: newProducts } = await axios.get(
-    `https://api.solastore.com.tr/api/Product/GetNewProducts?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
-  );
-  const { data: saleProducts } = await axios.get(
-    `https://api.solastore.com.tr/api/Product/GetSaleProducts?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
-  );
+  const [newProductsRes, saleProductsRes, sliderRes, bannerRes] =
+    await Promise.all([
+      fetch(
+        `https://api.solastore.com.tr/api/Product/GetNewProducts?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
+      ),
+      fetch(
+        `https://api.solastore.com.tr/api/Product/GetSaleProducts?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
+      ),
+      fetch(
+        `https://api.solastore.com.tr/api/Advertising/Slider?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
+      ),
+      fetch(
+        `https://api.solastore.com.tr/api/Advertising/MainAdd?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
+      ),
+    ]);
+
+  const [newProducts, saleProducts, slidersData, bannersData] =
+    await Promise.all([
+      newProductsRes.json(),
+      saleProductsRes.json(),
+      sliderRes.json(),
+      bannerRes.json(),
+    ]);
 
   return {
     props: {
       newProducts: newProducts.reverse(),
       saleProducts: saleProducts.reverse(),
+      slidersData,
+      bannersData,
     },
   };
 }

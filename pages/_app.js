@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import AllToaster from "../src/components/AllToaser";
 import Preloader from "../src/layout/Preloader";
 import ScrollTop from "../src/layout/ScrollTop";
-import { wrapper } from "../src/redux/store";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { animationCreate, aTagClick } from "../src/utils/utils";
 import "../styles/main.css";
@@ -14,23 +14,23 @@ import "antd/dist/antd.css";
 import StoreProvider from "../src/context/StoreProvider";
 import "../styles/global.css";
 import { useStore } from "react-redux";
+import store from "../src/redux/store";
 import axios from "axios";
 import {
   CHANGE_LANG,
   GET_BRANDS,
   GET_MAIN_MENU,
 } from "../src/redux/action/type";
+import { getLocalStorage } from "../src/utils/localstorage";
 
 function MyApp({ Component, pageProps }) {
-  const store = useStore((state) => state);
   const queryClient = new QueryClient();
   const [preloader, setPreloader] = useState(true);
-
   const fetchMenu = async () => {
     setPreloader(true);
     try {
       const { data: menu } = await axios.get(
-        `/api/getFullMenu?lang=${store.getState().lang.lang}`
+        `/api/getFullMenu?lang=${store.getState().lang}`
       );
       const { data: brands } = await axios.get("/api/advertisement/getBrands");
       store.dispatch({
@@ -60,7 +60,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <>
+    <Provider store={store}>
       <Head>
         <title>SolaStore</title>
         <meta name="description" content />
@@ -149,18 +149,14 @@ function MyApp({ Component, pageProps }) {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <AllToaster />
-      <PersistGate persistor={store.__persistor}>
-        {() => (
-          <QueryClientProvider client={queryClient}>
-            <StoreProvider>
-              {preloader ? <Preloader /> : <ScrollTop />}
-              <Component {...pageProps} />
-            </StoreProvider>
-          </QueryClientProvider>
-        )}
-      </PersistGate>
-    </>
+      <QueryClientProvider client={queryClient}>
+        <StoreProvider>
+          {preloader ? <Preloader /> : <ScrollTop />}
+          <Component {...pageProps} />
+        </StoreProvider>
+      </QueryClientProvider>
+    </Provider>
   );
 }
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;

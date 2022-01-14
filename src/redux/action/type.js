@@ -14,6 +14,7 @@ export const HOME_4 = "HOME_4";
 export const HOME_5 = "HOME_5";
 export const BRAND = "BRAND";
 export const CHANGE_LANG = "CHANGE_LANG";
+export const GET_LANG = "GET_LANG";
 export const GET_BRANDS = "GET_BRANDS";
 
 // Product

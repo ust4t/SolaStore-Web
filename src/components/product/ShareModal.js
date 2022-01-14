@@ -17,8 +17,8 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
             <div className="col-2">
               <WhatsappShareButton
                 url={`https://solastore.vercel.app/detail/${urlDetails.id}`}
-                title="GitHub"
-                separator="::">
+                title="Solastore"
+                separator=":: ">
                 <WhatsappIcon size={55} round={true} />
               </WhatsappShareButton>
             </div>

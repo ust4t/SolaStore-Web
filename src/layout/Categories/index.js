@@ -31,7 +31,7 @@ const chooseLang = (lang) => {
 };
 
 export default function Categories() {
-  const lang = useSelector((state) => state.lang.lang);
+  const lang = useSelector((state) => state.lang);
   const [categories, setCategories] = useState([]);
   const catLang = chooseLang(lang);
   const { isLoading, error } = useQuery(
