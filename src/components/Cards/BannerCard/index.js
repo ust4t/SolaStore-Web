@@ -21,10 +21,11 @@ export default function BannerCard({
               src={`${sources.banners}${banner}`}
               className="img-fluid"
               alt="Banner"
-              // layout="fill"
               width={width}
               height={height}
               layout="responsive"
+              placeholder="blur"
+              blurDataURL="/img/loadingImg.jpg"
             />
             <div className="container position-absolute top-50 start-0 translate-middle-y">
               <div className="row ">

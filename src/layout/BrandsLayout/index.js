@@ -29,6 +29,8 @@ export default function BrandsLayout() {
                 height={80}
                 layout="responsive"
                 quality={60}
+                placeholder="blur"
+                blurDataURL="/img/loadingImg.jpg"
               />
             </div>
           ))

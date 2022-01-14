@@ -47,11 +47,10 @@ const Details = ({
   const videoRef = useRef();
   useEffect(() => {
     if (product.video_1 && videoRef.current) videoRef.current.pause();
-    getCarts();
+    // getCarts();
     getWishlist();
     // getProducts();
     getCompare();
-    console.log(product);
   }, []);
   // const cart = product && carts && carts.find((cart) => cart.id === product.id);
   // const wishlist =

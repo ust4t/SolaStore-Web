@@ -12,6 +12,7 @@ import ProductModal from "../../product/ProductModal";
 import sources from "../../../../sources";
 
 import { StoreContext } from "../../../context/StoreProvider";
+import ShareModal from "../../product/ShareModal";
 
 function PopularCard({ productData }) {
   const { id, name, images, price, oldPrice, singlePrice, sizes } = productData;
@@ -22,6 +23,7 @@ function PopularCard({ productData }) {
     pictures: images,
   });
   const [quickView, setQuickView] = useState(false);
+  const [shareModal, setShareModal] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -70,6 +72,13 @@ function PopularCard({ productData }) {
           ...productData,
         }}
       />
+      <ShareModal
+        urlDetails={{
+          id,
+        }}
+        show={shareModal}
+        handleClose={() => setShareModal(false)}
+      />
       <div className="pro-img mb-20 position-relative">
         {!!oldPrice && oldPrice > 0 && (
           <span className="discount-tag">
@@ -105,6 +114,8 @@ function PopularCard({ productData }) {
                 width={400}
                 height={600}
                 alt={name}
+                placeholder="blur"
+                blurDataURL="/img/loadingImg.jpg"
               />
             </a>
           </Link>
@@ -126,6 +137,8 @@ function PopularCard({ productData }) {
                 alt={name}
                 width={400}
                 height={600}
+                placeholder="blur"
+                blurDataURL="/img/loadingImg.jpg"
               />
             </a>
           </Link>
@@ -146,6 +159,10 @@ function PopularCard({ productData }) {
             <i className="fal fa-eye" />
           </a>
           <a
+            onClick={(e) => {
+              e.preventDefault();
+              setShareModal(true);
+            }}
             className={`animate__animated animate__faster ${
               currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
             }`}
@@ -214,6 +231,8 @@ function PopularCard({ productData }) {
                   }`}
                   priority={true}
                   onClick={() => changeDressColor(variant)}
+                  placeholder="blur"
+                  blurDataURL="/img/loadingImg.jpg"
                 />
               </SwiperSlide>
             ))}

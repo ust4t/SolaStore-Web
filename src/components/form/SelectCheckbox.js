@@ -31,11 +31,12 @@ export default function SelectCheckbox({ filterData, title, data, onSelect }) {
       <div
         style={{
           zIndex: "230",
+          maxHeight: "300px",
         }}
         ref={dropdownRef}
         className={`animate__animated animate__faster ${
           !hidden ? "animate__zoomIn d-block" : "animate__zoomOut d-none"
-        } dropdown-list shadow p-3 bg-body w-100 position-absolute`}>
+        } dropdown-list shadow p-3 bg-body w-100 position-absolute overflow-auto`}>
         {data &&
           data.map(({ brandID, brandName }, i) => (
             <label

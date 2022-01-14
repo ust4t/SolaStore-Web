@@ -63,6 +63,8 @@ export default function Stories({ stories }) {
                       src={`${sources.imageMinSrc}${story.picture_1}`}
                       layout="fill"
                       // priority={true}
+                      placeholder="blur"
+                      blurDataURL="/img/loadingImg.jpg"
                     />
                   </div>
                   <p className="fs-6 text-center text-wrap ">

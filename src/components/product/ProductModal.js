@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { Modal, Nav, Tab } from "react-bootstrap";
 import { connect } from "react-redux";
 import Image from "next/image";
@@ -16,15 +16,15 @@ import sources from "../../../sources";
 import { HomePageSliderWithArrow as HomePageSliderWithArrowWithVideo } from "../sliders/HomePageSlider";
 import { StoreContext } from "../../context/StoreProvider";
 
-const ProductModal = ({
-  show,
-  handleClose,
-  product,
-
-  getWishlist,
-}) => {
+const ProductModal = ({ show, handleClose, product, getWishlist }) => {
   const { cartActions, state } = useContext(StoreContext);
   const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
+  const { pictures } = product;
+  const [productModalData, setProductModalData] = useState({
+    pictures,
+    video: product.video_1,
+  });
+
   const productData = {
     id: product.productID,
     user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
@@ -42,10 +42,6 @@ const ProductModal = ({
   //   product &&
   //   wishlists &&
   //   wishlists.find((wishlist) => wishlist.id === product.id);
-  // const compare_ =
-  //   product &&
-  //   compares &&
-  //   compares.find((compare) => compare.id === product.id);
 
   const onAddToCart = (e) => {
     e.preventDefault();
@@ -85,7 +81,7 @@ const ProductModal = ({
                     <HomePageSliderWithArrowWithVideo
                       sliders={product}
                       extraClass="slider-active slider-active-one">
-                      {product.video_1 && (
+                      {productModalData.video && (
                         <div className="single-slider single-img d-flex align-items-end ">
                           <video
                             controls
@@ -96,20 +92,19 @@ const ProductModal = ({
                             width="536"
                             height="650">
                             <source
-                              src={`${sources.videos}${product.video_1}`}
+                              src={`${sources.videos}${productModalData.video}`}
                               type="video/mp4"
                             />
                           </video>
                         </div>
                       )}
                       {product &&
-                        product.pictures.map((img, i) => (
+                        productModalData.pictures.map((img, i) => (
                           <div
                             className="single-slider single-img d-flex align-items-end"
-                            key={`${img.productID}__${i + 1}`}>
+                            key={`${img.id}__${i + 1}`}>
                             <Image
                               src={`${sources.imageMaxSrc}${img.guidName}`}
-                              // className="img-fluid"
                               alt="Product"
                               width={410}
                               height={600}
@@ -285,6 +280,55 @@ const ProductModal = ({
                       </li>
                     </ul>
                   </div>
+                </div>
+                <div
+                  className="details-filter-row details-row-size"
+                  style={{ margin: 5 }}>
+                  {product.variants &&
+                    [{ pictures }, ...product.variants].map((variant, i) => (
+                      <div
+                        key={`${i}-*_${i}`}
+                        className="details-filter-row details-row-size cursor-pointer"
+                        onClick={() => {
+                          if (variant.picture_1) {
+                            setProductModalData({
+                              pictures: variant.pictures,
+                              video: variant.video_1,
+                            });
+                          } else {
+                            setProductModalData({
+                              pictures: product.pictures,
+                              video: product.video_1,
+                            });
+                          }
+                        }}
+                        style={{ margin: 5 }}>
+                        <div className="product-nav product-nav-thumbs">
+                          <span
+                            className="productvar"
+                            style={{
+                              cursor: "pointer",
+                            }}>
+                            <Image
+                              width="90px"
+                              height="140px"
+                              src={`${sources.imageMinSrc}${
+                                variant.picture_1 ||
+                                variant.pictures[0].guidName
+                              }`}
+                              alt={
+                                variant.productShortName ||
+                                product.productShortName
+                              }
+                              title={
+                                variant.productShortName ||
+                                product.productShortName
+                              }
+                            />
+                          </span>
+                        </div>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
