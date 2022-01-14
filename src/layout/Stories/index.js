@@ -2,10 +2,12 @@ import React, { useCallback, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
 import sources from "../../../sources";
-import StoryCard from "../../components/Cards/StoryCard";
+// import StoryCard from "../../components/Cards/StoryCard";
 import styles from "./Stories.module.css";
+const StoryCard = dynamic(() => import("../../components/Cards/StoryCard"));
 
 export default function Stories({ stories }) {
   const [storiesData, setStoriesData] = useState([]);

@@ -6,7 +6,7 @@ import CartProductItem from "../../components/CartProductItem";
 import { removeCart } from "../../redux/action/utilis";
 import { useContext } from "react";
 import { StoreContext } from "../../context/StoreProvider";
-import { VariableSizeList as List } from "react-window";
+import sources from "../../../sources";
 
 export const SearchIcon = ({ hendelChangeSearch }) => (
   <Link href="#">
@@ -81,7 +81,7 @@ export const CartIcon = () => {
           }) => (
             <CartProductItem
               key={chartID}
-              image={`https://solastore.com.tr/img/ProductWM/minPic/${pictureOneGuidName}`}
+              image={`${sources.imageMinSrc}${pictureOneGuidName}`}
               name={productShortName}
               price={price}
               id={productID}
@@ -102,10 +102,6 @@ export const CartIcon = () => {
     </Link>
   );
 };
-
-export default connect(null, {
-  removeCart,
-})(CartIcon);
 
 export const Logo = () => (
   <div className="logo product-details-logo">

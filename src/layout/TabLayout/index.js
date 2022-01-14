@@ -1,9 +1,14 @@
 import React from "react";
-
-import PopularProducts from "../../components/PopularProducts";
-import NewProducts from "../../components/NewProducts";
-import SaleProducts from "../../components/SaleProducts";
 import { Nav, Tab } from "react-bootstrap";
+import dynamic from "next/dynamic";
+
+// import PopularProducts from "../../components/PopularProducts";
+import NewProducts from "../../components/NewProducts";
+// import SaleProducts from "../../components/SaleProducts";
+const PopularProducts = dynamic(() =>
+  import("../../components/PopularProducts")
+);
+const SaleProducts = dynamic(() => import("../../components/SaleProducts"));
 
 export default function TabLayout({ newProducts, saleProducts }) {
   return (

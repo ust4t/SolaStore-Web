@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import "yup-phone";
 import toast from "react-hot-toast";
 
 import Preloader from "../src/layout/Preloader";

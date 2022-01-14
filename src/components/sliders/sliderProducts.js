@@ -1,17 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Link from "next/link";
+import axios from "axios";
+import { useSelector } from "react-redux";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import axios from "axios";
 import sources from "../../../sources";
 import styles from "./Slider.module.css";
 import Loader from "../Loader";
 import { HomePageSliderWithArrow } from "./HomePageSlider";
-import { StoreContext } from "../../context/StoreProvider";
-import { useSelector } from "react-redux";
 
 const fetchSlider = async (lang) => {
   const { data } = await axios.get(`/api/getSlider?lang=${lang}`);

@@ -1,18 +1,26 @@
 import { useEffect, memo } from "react";
+import dynamic from "next/dynamic";
+import axios from "axios";
 import { animationCreate } from "../src/utils/utils";
 import VideoLayout from "../src/layout/VideoLayout";
-import IntroBanners from "../src/layout/IntroBanners";
-import Categories from "../src/layout/Categories";
+// import IntroBanners from "../src/layout/IntroBanners";
+// import Categories from "../src/layout/Categories";
 import { Box } from "@mui/material";
-import BrandsLayout from "../src/layout/BrandsLayout";
+// import BrandsLayout from "../src/layout/BrandsLayout";
 import FilterSearch from "../src/layout/FilterSearch";
-import CountdownSection from "../src/layout/CountdownSection";
-import EmailArea from "../src/layout/EmailArea";
+// import CountdownSection from "../src/layout/CountdownSection";
+// import EmailArea from "../src/layout/EmailArea";
 import Layout from "../src/layout/Layout";
-import Stories from "../src/layout/Stories";
+// import Stories from "../src/layout/Stories";
 import SliderProducts from "../src/components/sliders/sliderProducts";
-import TabLayout from "../src/layout/TabLayout";
-import axios from "axios";
+// import TabLayout from "../src/layout/TabLayout";
+const Stories = dynamic(() => import("../src/layout/Stories"));
+const IntroBanners = dynamic(() =>
+  import("../src/layout/IntroBanners").then(({ IntroBanners }) => IntroBanners)
+);
+const BrandsLayout = dynamic(() => import("../src/layout/BrandsLayout"));
+const Categories = dynamic(() => import("../src/layout/Categories"));
+const TabLayout = dynamic(() => import("../src/layout/TabLayout"));
 
 const Index4 = ({ newProducts, saleProducts }) => {
   useEffect(() => {
@@ -67,7 +75,7 @@ const Index4 = ({ newProducts, saleProducts }) => {
 
 export default memo(Index4);
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { data: newProducts } = await axios.get(
     `https://api.solastore.com.tr/api/Product/GetNewProducts?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
   );
