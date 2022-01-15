@@ -75,6 +75,7 @@ function PopularCard({ productData }) {
       <ShareModal
         urlDetails={{
           id,
+          pictures: currentImages.pictures,
         }}
         show={shareModal}
         handleClose={() => setShareModal(false)}
