@@ -84,8 +84,8 @@ export const Layout2 = ({
       setScrolled(false);
     }
   };
-  if (typeof window !== "undefined")
-    window.addEventListener("scroll", handleScroll);
+  // if (typeof window !== "undefined")
+  //   window.addEventListener("scroll", handleScroll);
 
   return (
     <header className={` ${darkBg ? "black-bg" : ""}`}>
@@ -174,18 +174,18 @@ export const Layout2 = ({
       <div className="col-xl-12 col-lg-12 col-md-12 d-none d-lg-block mt-20 borderet ">
         <div
           // ref={stickyRef}
-          style={{
-            ...(scrolled
-              ? {
-                  width: "100%",
-                  padding: "0px 30px 0 0",
-                  position: "fixed",
-                  background: "#fff",
-                  top: 0,
-                }
-              : {}),
-            transition: "0.5s ease",
-          }}
+          // style={{
+          //   ...(scrolled
+          //     ? {
+          //         width: "100%",
+          //         padding: "0px 30px 0 0",
+          //         position: "fixed",
+          //         background: "#fff",
+          //         top: 0,
+          //       }
+          //     : {}),
+          //   transition: "0.5s ease",
+          // }}
           className={`main-menu z-index-first ${
             darkBg ? " main-menu-3" : ""
           } text-center py-2`}>

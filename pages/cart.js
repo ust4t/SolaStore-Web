@@ -57,7 +57,7 @@ const Cart = ({ saleTeam }) => {
 
   const handleSeller = (seller) => setCurrentSeller(seller);
 
-  const handleCartSubmit = async (values, { resetForm }) => {
+  const handleCartSubmit = async (values, { resetForm }, paymentRoute) => {
     if (!state.cartData.length) {
       toast.error("Sepetinizde ürün bulunmamaktadır.");
       return;
@@ -79,11 +79,18 @@ const Cart = ({ saleTeam }) => {
       setCurrentSeller(null);
       dispatch({
         type: SET_COMPLETED_CART,
-        payload: state.cartData,
+        payload: {
+          orderID: data.data,
+          amount: totalPrice(state.cartData),
+          buyerName: values.name,
+          buyerPhone: values.tel.replace(/\+/g, ""),
+          paymentType,
+          carts: state.cartData,
+        },
       });
       cartRefetch();
       router.push({
-        pathname: "/order-success",
+        pathname: paymentRoute,
         query: {
           orderID: data.data,
           user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
@@ -104,7 +111,7 @@ const Cart = ({ saleTeam }) => {
     (keyEvent.charCode || keyEvent.keyCode) === 13 && keyEvent.preventDefault();
 
   return (
-    <Layout sticky footerBg container textCenter>
+    <Layout news={4} logoLeft layout={2} paymentOption>
       {isLoading && <Preloader />}
       <main>
         <PageTitle active="Cart" pageTitle="Shoping Cart" />
@@ -123,12 +130,23 @@ const Cart = ({ saleTeam }) => {
                 </h5>
               </div>
               <div className="col-12 mt-20 d-flex flex-column justify-content-center">
-                <div className="row">
-                  <i
-                    className="fas fa-user text-center py-1"
-                    style={{
-                      fontSize: "7.3rem",
-                    }}></i>
+                <div className="row justify-content-center">
+                  <div
+                    onClick={() =>
+                      handleSeller({
+                        id: 0,
+                        name: "İlk siparişim. Satış temsilcim yok.",
+                        img: "/img/logo/person.jpg",
+                      })
+                    }
+                    className="col-2 d-flex justify-content-center cursor-pointer">
+                    <Image
+                      src="/img/logo/person.jpg"
+                      width={120}
+                      height={120}
+                      className="rounded-circle"
+                    />
+                  </div>
                   <h4 className="fs-5 fw-bold text-center mb-20">
                     İlk siparişim. Satış temsilcim yok.
                   </h4>
@@ -353,7 +371,17 @@ const Cart = ({ saleTeam }) => {
                         tel: "",
                       }}
                       validationSchema={paymentValidationSchema}
-                      onSubmit={handleCartSubmit}>
+                      onSubmit={(values, { resetForm }) => {
+                        if (paymentType === "order") {
+                          handleCartSubmit(
+                            values,
+                            { resetForm },
+                            "/order-success"
+                          );
+                        } else {
+                          handleCartSubmit(values, { resetForm }, "/checkout");
+                        }
+                      }}>
                       {({ values, errors, touched, handleChange }) => (
                         <Form onKeyDown={preventKey}>
                           <div className="form-group mb-10">
@@ -386,24 +414,19 @@ const Cart = ({ saleTeam }) => {
                               <p className="text-danger">{errors.tel}</p>
                             </div>
                           ) : null}
-                          <Link href="/checkout">
-                            <a
-                              onClick={() => {
-                                setPaymentType("cc");
-                              }}
-                              className="btn grenbtn1 mb-10"
-                              style={{ width: "100%" }}>
-                              <i
-                                className="fas fa-credit-card"
-                                style={{ marginRight: "5px" }}></i>
-                              Kredi Kartı ile Öde
-                            </a>
-                          </Link>
                           <button
                             type="submit"
-                            onClick={() => {
-                              setPaymentType("order");
-                            }}
+                            onClick={() => setPaymentType("cc")}
+                            className="btn grenbtn1 mb-10"
+                            style={{ width: "100%" }}>
+                            <i
+                              className="fas fa-credit-card"
+                              style={{ marginRight: "5px" }}></i>
+                            Kredi Kartı ile Öde
+                          </button>
+                          <button
+                            type="submit"
+                            onClick={() => setPaymentType("order")}
                             className="btn grenbtn1 mb-10"
                             style={{ width: "100%" }}>
                             <i
@@ -427,7 +450,7 @@ const Cart = ({ saleTeam }) => {
 
 export default Cart;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { data: saleTeam } = await axios.get(
     `https://api.solastore.com.tr/api/User/GetSalesReps?sourceProof=${process.env.SOURCE_PROOF}`
   );

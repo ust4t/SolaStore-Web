@@ -1,40 +1,26 @@
 // import swal from "@sweetalert/with-react";
-import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
-import { CardElement, Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
-import { Accordion, Card } from "react-bootstrap";
-import { connect, useSelector } from "react-redux";
-import InputGroup from "../../src/components/form/InputGroup";
-import SelectGroup from "../../src/components/form/SelectGroup";
-import Layout from "../../src/layout/Layout";
-import PageTitle from "../../src/layout/PageTitle";
-import { setCheckoutData } from "../../src/redux/action/utilis";
-import { totalPrice } from "../../src/utils/utils";
-import {
-  checkoutSchema,
-  couponSchema,
-  loginSchema,
-} from "../../src/utils/yupModal";
-import * as Yup from "yup";
-import { StoreContext } from "../../src/context/StoreProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
+import * as Yup from "yup";
+
+import InputGroup from "../../src/components/form/InputGroup";
+import Layout from "../../src/layout/Layout";
+import PageTitle from "../../src/layout/PageTitle";
+import { StoreContext } from "../../src/context/StoreProvider";
 import { SET_BUYER_DETAILS } from "../../src/context/types";
+import PayModal from "../../src/components/Modals/PayModal/PayModal";
 
-const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
-
-const Checkout = ({ setCheckoutData }) => {
-  const { dispatch } = useContext(StoreContext);
+const Checkout = () => {
+  const [payModal, setPayModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [paymentBox, setPaymentBox] = useState(null);
+  const { state } = useContext(StoreContext);
   const router = useRouter();
-  // const carts = useSelector((state) => state.utilis.carts);
-  // const [freeShpping, setFreeShpping] = useState(false);
-  // const [flat, setFlat] = useState(false);
-  // const price = totalPrice(carts);
-  // let shppingPrice = 30,
-  //   flatPrice = 7;
+  const { orderID, amount } = state.completedCartData;
+  console.log(state.completedCartData);
 
   const checkoutInitialValues = {
     cardNumber: "",
@@ -60,45 +46,27 @@ const Checkout = ({ setCheckoutData }) => {
       .matches(/^[0-9]{3}$/, "Must be 3 digits"),
   });
 
-  // const [activeId, setActiveId] = useState(false);
-  // const [active2, setActive2] = useState(false);
-  // const [active3, setActive3] = useState(false);
-  // const [active4, setActive4] = useState(false);
-
-  // const countrys = [
-  //   "bangladesh",
-  //   "Algeria",
-  //   "Afghanistan",
-  //   "Ghana",
-  //   "Albania",
-  //   "Bahrain",
-  //   "Colombia",
-  //   "Dominican Republic",
-  // ];
-
   const handlePayment = async (values, { resetForm }) => {
     const rnd = Date.now();
     try {
       const { data: hashData } = await axios.post("/api/payment/generateHash", {
-        oid: "4839",
-        amount: "108",
+        oid: `${orderID}`,
+        amount: `${amount}`,
         okUrl: "https://api.solastore.com.tr/api/Helpers/CCSuccess",
         failUrl: "https://api.solastore.com.tr/api/Helpers/CCFail",
         islemtipi: "Auth",
         taksit: "",
         rnd: `${rnd}`,
       });
-      dispatch({
-        type: SET_BUYER_DETAILS,
-        payload: {
-          oid: "4839",
-          amount: "108",
-          ...values,
-          rnd,
-          ...hashData.data,
-        },
+      await fetchPay({
+        oid: orderID,
+        amount,
+        ...values,
+        rnd,
+        ...hashData.data,
       });
-      router.push("/checkout/pay");
+      // router.push("/checkout/pay");
+      setPayModal(true);
       resetForm();
     } catch (err) {
       toast.error("Bir hata oluştu");
@@ -106,23 +74,57 @@ const Checkout = ({ setCheckoutData }) => {
     }
   };
 
+  const fetchPay = async (buyerValues) => {
+    const {
+      hash,
+      amount,
+      oid,
+      rnd,
+      cardNumber,
+      expirationMonth,
+      expirationYear,
+      cvv,
+    } = buyerValues;
+
+    setIsLoading(true);
+
+    try {
+      const { data } = await axios.post("/api/payment/orderPay", {
+        oid,
+        amount,
+        hash,
+        rnd,
+        pan: cardNumber,
+        Ecom_Payment_Card_ExpDate_Year: expirationYear,
+        Ecom_Payment_Card_ExpDate_Month: expirationMonth,
+        cv2: cvv,
+      });
+      // const cleanHtml = DOMPurify.sanitize(data.data, {
+      //   ADD_TAGS: ["link", "style"],
+      // });
+      setPaymentBox(data.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      toast.error("Bir hata oluştu");
+    }
+  };
+
   return (
-    <Layout sticky textCenter container footerBg>
+    <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
         <PageTitle active="Checkout" pageTitle="Checkout" />
-
+        <PayModal
+          show={payModal}
+          handleClose={() => setPayModal(false)}
+          isLoading={isLoading}
+          paymentBox={paymentBox}
+        />
         <Formik
           initialValues={checkoutInitialValues}
           validationSchema={checkoutSchema}
           onSubmit={handlePayment}>
-          {({
-            values,
-            errors,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            isSubmitting,
-          }) => (
+          {({ values, errors, handleChange }) => (
             <section className="checkout-area pb-70">
               <div className="container">
                 <Form>
@@ -210,4 +212,4 @@ const Checkout = ({ setCheckoutData }) => {
   );
 };
 
-export default connect(null, { setCheckoutData })(Checkout);
+export default Checkout;

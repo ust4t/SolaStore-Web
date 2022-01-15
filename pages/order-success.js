@@ -12,10 +12,10 @@ import { totalPrice } from "../src/utils/utils";
 const OrderSuccess = ({ orderList, buyer }) => {
   const { state } = useContext(StoreContext);
   return (
-    <Layout container footerBg textCenter sticky>
+    <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
         <PageTitle
-          pageTitle="THANK YOU"
+          pageTitle="SİPARİŞİNİZ İÇİN TEŞEKKÜR EDERİZ"
           thankupage
           active="order success"
           id={orderList[0].orderID}
@@ -37,8 +37,8 @@ const OrderSuccess = ({ orderList, buyer }) => {
                         </tr>
                       </thead>
                       <tbody>
-                        {state.completedCartData &&
-                          state.completedCartData.map((cart) => (
+                        {state.completedCartData.carts &&
+                          state.completedCartData.carts.map((cart) => (
                             <tr key={cart.chartID}>
                               <td className="product-thumbnail">
                                 <a href="#" onClick={(e) => e.preventDefault()}>
@@ -134,7 +134,7 @@ const OrderSuccess = ({ orderList, buyer }) => {
   );
 };
 
-export default connect(null, { getCarts })(OrderSuccess);
+export default OrderSuccess;
 
 export async function getServerSideProps({ query }) {
   const { orderID, user, buyerName, buyerPhone, paymentType } = query;

@@ -8365,7 +8365,7 @@ p.checkout-coupon input[type="text"] {
 /*--- preloader ---*/
 
 .dark #preloader {
-  background-color: #232323;
+  background-color: #232323c4;
 }
 
 #preloader {
@@ -8379,7 +8379,7 @@ p.checkout-coupon input[type="text"] {
 
   bottom: 0;
 
-  background-color: #fff;
+  background-color: #ffffff63;
 
   z-index: 999999;
 }
