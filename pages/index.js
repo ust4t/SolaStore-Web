@@ -71,20 +71,20 @@ const Index4 = ({
 };
 export default memo(Index4);
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const [newProductsRes, saleProductsRes, sliderRes, bannerRes] =
     await Promise.all([
       fetch(
-        `https://api.solastore.com.tr/api/Product/GetNewProducts?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
+        `https://api.solastore.com.tr/api/Product/GetNewProducts?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
       ),
       fetch(
-        `https://api.solastore.com.tr/api/Product/GetSaleProducts?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
+        `https://api.solastore.com.tr/api/Product/GetSaleProducts?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
       ),
       fetch(
-        `https://api.solastore.com.tr/api/Advertising/Slider?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
+        `https://api.solastore.com.tr/api/Advertising/Slider?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
       ),
       fetch(
-        `https://api.solastore.com.tr/api/Advertising/MainAdd?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
+        `https://api.solastore.com.tr/api/Advertising/MainAdd?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
       ),
     ]);
 

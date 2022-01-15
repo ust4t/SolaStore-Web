@@ -1,15 +1,18 @@
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { CHANGE_LANG } from "../../redux/action/type";
 
 export const News_4 = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const changeLang = (lang) => {
     dispatch({
       type: CHANGE_LANG,
       payload: lang,
     });
-    Router.reload(window.location.pathname);
+    router.push(router.asPath, router.asPath, {
+      locale: lang,
+    });
   };
 
   return (
