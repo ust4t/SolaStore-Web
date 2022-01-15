@@ -3,20 +3,20 @@ import Head from "next/head";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 import AllToaster from "../src/components/AllToaser";
 import Preloader from "../src/layout/Preloader";
 import ScrollTop from "../src/layout/ScrollTop";
 import { aTagClick } from "../src/utils/utils";
+import StoreProvider from "../src/context/StoreProvider";
+import store from "../src/redux/store";
+import { GET_MAIN_MENU } from "../src/redux/action/type";
 import "../styles/main.css";
 import "swiper/css/bundle";
 import "animate.css";
 import "antd/dist/antd.css";
-import StoreProvider from "../src/context/StoreProvider";
 import "../styles/global.css";
-import store from "../src/redux/store";
-import axios from "axios";
-import { GET_BRANDS, GET_MAIN_MENU } from "../src/redux/action/type";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();

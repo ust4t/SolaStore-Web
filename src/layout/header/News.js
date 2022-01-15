@@ -30,7 +30,7 @@ export const News_4 = () => {
           <div className="flagright d-flex justify-content-center justify-content-lg-end">
             <a href="#" className="flag" onClick={() => changeLang("en")}>
               <img
-                src="./img/flags/uk.jpg"
+                src="/img/flags/uk.jpg"
                 className="flag"
                 alt="https://www.solastore.com.tr"
                 title="https://www.solastore.com.tr"
@@ -38,7 +38,7 @@ export const News_4 = () => {
             </a>
             <a onClick={() => changeLang("fr")} href="#" className="flag">
               <img
-                src="./img/flags/fr.jpg"
+                src="/img/flags/fr.jpg"
                 className="flag"
                 alt="https://www.solastore.com.tr"
                 title="https://www.solastore.com.tr"
@@ -46,7 +46,7 @@ export const News_4 = () => {
             </a>
             <a onClick={() => changeLang("ar")} href="#" className="flag">
               <img
-                src="./img/flags/sa.jpg"
+                src="/img/flags/sa.jpg"
                 className="flag"
                 alt="https://www.solastore.com.tr"
                 title="https://www.solastore.com.tr"
@@ -54,7 +54,7 @@ export const News_4 = () => {
             </a>
             <a onClick={() => changeLang("ru")} href="#" className="flag">
               <img
-                src="./img/flags/rs.jpg"
+                src="/img/flags/rs.jpg"
                 className="flag"
                 alt="https://www.solastore.com.tr"
                 title="https://www.solastore.com.tr"
@@ -62,7 +62,7 @@ export const News_4 = () => {
             </a>
             <a onClick={() => changeLang("tr")} href="#" className="flag">
               <img
-                src="./img/flags/tr.jpg"
+                src="/img/flags/tr.jpg"
                 className="flag"
                 alt="https://www.solastore.com.tr"
                 title="https://www.solastore.com.tr"

@@ -84,9 +84,8 @@ export const Layout2 = ({
       setScrolled(false);
     }
   };
-  useEffect(() => {
+  if (typeof window !== "undefined")
     window.addEventListener("scroll", handleScroll);
-  }, [offset]);
 
   return (
     <header className={` ${darkBg ? "black-bg" : ""}`}>

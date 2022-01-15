@@ -159,9 +159,6 @@ const ProductModal = ({ show, handleClose, product, getWishlist }) => {
                   ) : (
                     <h5 className="pro-price">${product.price} USD</h5>
                   )}
-                  {/* product &&
-                    product.price &&
-                    `- $${product && Number(product.price).toFixed(2)}`} */}
                 </span>
                 {/* <p>
                   La croix blog sriracha, distillery ugh small batch retro

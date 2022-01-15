@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
 import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { Nav, Tab } from "react-bootstrap";
 import { toast } from "react-hot-toast";
 import { connect } from "react-redux";
+
 import sources from "../../../sources";
 import { StoreContext } from "../../context/StoreProvider";
 import Layout from "../../layout/Layout";
@@ -22,37 +22,32 @@ import time from "../../utils/time";
 import RelatedProduct from "../sliders/RelatedProduct";
 import Product from "./Product";
 import Reating from "./Reating";
+import ShareModal from "./ShareModal";
 
 const Details = ({
-  addToCart,
-  decreaseCart,
-  getSingleProduct,
-  getCarts,
+  productVariants,
   addWishlist,
-  getWishlist,
-  carts,
   incomingProduct,
-  wishlists,
   compares,
   compare,
-  getProducts,
   getCompare,
-  upcoming,
   upthumb,
 }) => {
-  const { state } = useContext(StoreContext);
-  const router = useRouter();
-  const { id } = router.query;
+  const { state, cartActions } = useContext(StoreContext);
+  const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
   const [product, setProduct] = useState(incomingProduct);
+  const [shareModal, setShareModal] = useState(false);
   const videoRef = useRef();
+
+  const cart =
+    product &&
+    state.cartData &&
+    state.cartData.find((cart) => cart.productID === product.productID);
+
   useEffect(() => {
     if (product.video_1 && videoRef.current) videoRef.current.pause();
-    // getCarts();
-    getWishlist();
-    // getProducts();
     getCompare();
   }, []);
-  // const cart = product && carts && carts.find((cart) => cart.id === product.id);
   // const wishlist =
   //   product &&
   //   wishlists &&
@@ -62,15 +57,27 @@ const Details = ({
     compares &&
     compares.find((compare) => compare.id === product.id);
 
-  const onClickCart = (e) => {
+  const handleAddToCart = (e) => {
     e.preventDefault();
-    // addToCart(product);
-    toast.success("Add item in Cart.");
+    addToCartAction({
+      id: product.productID,
+      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+    });
   };
-  const onClickRemoveCart = (e) => {
+
+  const onIncrementCart = (e) => {
     e.preventDefault();
-    // decreaseCart(cart);
-    toast.error("Remove item from Cart.");
+    incrementQuantity({
+      id: product.productID,
+      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+    });
+  };
+  const onDecrementCart = (e) => {
+    e.preventDefault();
+    decrementQuantity({
+      id: product.productID,
+      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+    });
   };
   const onClickWishlist = (e) => {
     e.preventDefault();
@@ -81,23 +88,21 @@ const Details = ({
       toast.success("Add item in wishlist.");
     }
   };
-  const onClickCompares = (e) => {
-    e.preventDefault();
-    compare(product);
-    if (compare_) {
-      toast.error("Remove item in compare.");
-    } else {
-      toast.success("Add item in compare.");
-    }
-  };
-  // let totalTime = time(product && product.upComeing);
   return (
-    <Layout>
+    <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
         <PageTitle active="SHOP DETAILS" pageTitle="Our Shop" />
         {product ? (
           <Fragment>
             <section className="product-details-area pt-50 pb-50">
+              <ShareModal
+                urlDetails={{
+                  id: product.productID,
+                  pictures: product.pictures,
+                }}
+                show={shareModal}
+                handleClose={() => setShareModal(false)}
+              />
               <div className="container">
                 <div className="row">
                   <div
@@ -107,18 +112,6 @@ const Details = ({
                     <Tab.Container defaultActiveKey="tum-0">
                       <div className="pro-details-tab">
                         <Tab.Content className="tab-content custom-content">
-                          {product &&
-                            product.pictures.map((img, i) => (
-                              <Tab.Pane key={i} eventKey={`tum-${i}`}>
-                                <img
-                                  src={`${sources.imageMaxSrc}${img.guidName}`}
-                                  className={`img-fluid ${
-                                    upthumb ? "mb-3" : ""
-                                  }`}
-                                  alt="Tum img"
-                                />
-                              </Tab.Pane>
-                            ))}
                           {product.video_1 && (
                             <Tab.Pane eventKey={`tum-${12}`}>
                               <video
@@ -136,6 +129,18 @@ const Details = ({
                               </video>
                             </Tab.Pane>
                           )}
+                          {product &&
+                            product.pictures.map((img, i) => (
+                              <Tab.Pane key={i} eventKey={`tum-${i}`}>
+                                <img
+                                  src={`${sources.imageMaxSrc}${img.guidName}`}
+                                  className={`img-fluid ${
+                                    upthumb ? "mb-3" : ""
+                                  }`}
+                                  alt="Tum img"
+                                />
+                              </Tab.Pane>
+                            ))}
                         </Tab.Content>
 
                         <Nav
@@ -189,12 +194,6 @@ const Details = ({
                         <h3 className="border-bottom">
                           {product && product.productShortName}
                         </h3>
-                        {/* {product && product.reating && (
-                          <div className="details-rating  d-flex">
-                            <Reating rating={product && product.reating} />
-                            <span>(23 Customer Review)</span>
-                          </div>
-                        )} */}
                       </div>
                       <div className="col-8 col-md-4 py-3 border-right">
                         <span className="details-pro-price mb-40">
@@ -235,68 +234,92 @@ const Details = ({
                           </p>
                         </div>
                       </div>
-
-                      <div className="col-12 mt-2">
-                        <span>BEDEN: </span>
-                        <span>{product.sizes}</span>
+                      <div className="stock-update">
+                        <div className="stock-list">
+                          <ul>
+                            <li>
+                              <span className="fs-6">Stock :</span>
+                              <span className="red fs-6">
+                                {product ? "In Stock" : "Out Of Stock"}
+                              </span>
+                            </li>
+                            <li>
+                              <span className="fs-6">SKU :</span>{" "}
+                              <span className="fs-6"></span>{" "}
+                            </li>
+                            <li>
+                              <span className="fs-6">Beden :</span>{" "}
+                              <span className="fs-6">{product.sizes}</span>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
 
-                      {/* <div className="pro-quan-area mb-55 mt-30">
+                      <div className="pro-quan-area mb-55 mt-30">
                         <div className="product-quantity">
                           <div className="cart-plus-minus">
                             <input
                               type="text"
-                              value={cart ? cart.qty : 1}
+                              value={cart ? cart.quantity : 1}
+                              readOnly
                               disabled
                             />
                             <button
+                              style={
+                                cart
+                                  ? { cursor: "pointer" }
+                                  : {
+                                      cursor: "not-allowed",
+                                    }
+                              }
                               className="dec qtybutton"
                               onClick={(e) =>
-                                cart && cart.qty !== 1 && onClickRemoveCart(e)
+                                cart &&
+                                cart.quantity !== 1 &&
+                                onDecrementCart(e)
                               }
-                              disabled={cart ? false : true}
-                            >
+                              disabled={cart ? false : true}>
                               -
                             </button>
                             <button
+                              style={
+                                cart
+                                  ? { cursor: "pointer" }
+                                  : {
+                                      cursor: "not-allowed",
+                                    }
+                              }
                               className="inc qtybutton"
-                              onClick={(e) => onClickCart(e)}
-                              disabled={cart ? false : true}
-                            >
+                              onClick={onIncrementCart}
+                              disabled={cart ? false : true}>
                               +
                             </button>
                           </div>
-                        </div> */}
-                      {/* <div className="pro-cart-btn ml-20">
-                          <a
-                            href="#"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              addToCart(product);
-                              toast.success("Add item in Cart.");
-                            }}
-                          >
+                        </div>
+                        <div className="pro-cart-btn ml-20">
+                          <a href="#" onClick={handleAddToCart}>
                             Add to cart
                           </a>
                         </div>
-                        <div className="pro-wish ml-45">
+                        <div className="pro-wish ml-30">
                           <a
                             href="#"
-                            className={`${wishlist ? "active_wishList" : ""} `}
-                            onClick={(e) => onClickWishlist(e)}
+                            // className={`${wishlist ? "active_wishList" : ""} `}
+                            className={"fs-3"}
+                            // onClick={onClickWishlist}
                           >
                             <i className="fas fa-heart" />
                           </a>
                         </div>
-                      </div> */}
-                      {/* 
-                      <div className="rating">
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                      </div> */}
+                        <div className="pro-wish ml-20">
+                          <a
+                            href="#"
+                            className={"fs-3"}
+                            onClick={() => setShareModal(true)}>
+                            <i className="fas fa-share-alt" />
+                          </a>
+                        </div>
+                      </div>
 
                       <div className="product-details-info">
                         <div className="sidebar-product-color">
@@ -306,7 +329,7 @@ const Details = ({
                           <div
                             className="details-filter-row details-row-size"
                             style={{ margin: 5 }}>
-                            {[...state.detailVariants, incomingProduct].map(
+                            {[incomingProduct, ...productVariants].map(
                               (variant) => (
                                 <div
                                   className="details-filter-row details-row-size"
@@ -333,107 +356,28 @@ const Details = ({
                         </div>
                       </div>
 
-                      <p></p>
-                      {product.upComeing && (
-                        <div className="product-coming variant-item mb-5 d-flex align-items-center">
-                          <div className="variant-name me-4">
-                            <span>time left</span>
-                          </div>
-                          <div className="event-timer details-timer d-flex">
-                            <div className="cdown mb-1 days">
-                              <p>
-                                {totalTime.days} <br /> Days
-                              </p>
-                            </div>
-                            <span className="cdown mb-1 hour">
-                              <p>
-                                {totalTime.hours} <br />
-                                Hour
-                              </p>
-                            </span>
-                            <span className="cdown mb-1 minutes">
-                              <p>
-                                {" "}
-                                {totalTime.minutes} <br />
-                                Min
-                              </p>
-                            </span>
-                            <span className="cdown mb-1 second">
-                              <span>
-                                <p>
-                                  {totalTime.seconds} <br />
-                                  Sec
-                                </p>
-                              </span>
-                            </span>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* <div className="stock-update">
+                      <div className="stock-update">
                         <div className="stock-list">
                           <ul>
                             <li>
-                              <span>Stock :</span>{" "}
-                              <span className="s-text red">
-                                {product && product.stock
-                                  ? "In Stock"
-                                  : "Out Of Stock"}
+                              <span className="fs-6">Stock :</span>
+                              <span className="red">
+                                {product ? "In Stock" : "Out Of Stock"}
                               </span>
                             </li>
                             <li>
-                              <span>SKU :</span>{" "}
-                              <span className="s-text">
-                                {product &&
-                                  product.category[0].split("")[0] + product.id}
-                              </span>{" "}
-                            </li>
-                            <li>
-                              <span>Categgory :</span>
-                              <span className="s-text text-capitalize">
-                                {product &&
-                                  product.category.map((category, i) => (
-                                    <Fragment key={i}>
-                                      {"home_1home_2home_3home_4home_5".includes(
-                                        category
-                                      )
-                                        ? ""
-                                        : `${category}  ${
-                                            product.category.length > 1 &&
-                                            i !== product.category.length - 1
-                                              ? ", "
-                                              : ""
-                                          }`}
-                                    </Fragment>
-                                  ))}
-                              </span>
-                            </li>
-                            <li>
-                              <span>Tag :</span>{" "}
-                              <span className="s-text text-capitalize">
-                                {" "}
-                                {product &&
-                                  product.tags.map((tags, i) => (
-                                    <Fragment key={i}>
-                                      {tags}
-                                      {product.tags.length > 1 &&
-                                      i !== product.tags.length - 1
-                                        ? ", "
-                                        : ""}
-                                    </Fragment>
-                                  ))}
-                              </span>
+                              <span className="fs-6">SKU :</span>{" "}
+                              <span className="s-text"></span>{" "}
                             </li>
                           </ul>
                         </div>
-                      </div> */}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </section>
-            {/* product details area end */}
-            {/* product desc area start */}
+
             <section className="pro-desc-area">
               <div className="container">
                 <Tab.Container defaultActiveKey="dec">
