@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Router from "next/router";
-import React, { Fragment, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import React, { Fragment, useEffect, useState, useRef } from "react";
 import {
   CartIcon,
   CompareIcon,
@@ -73,6 +73,9 @@ export const Layout2 = ({
   logoLeft,
   news,
 }) => {
+  const { push } = useRouter();
+  const searchRef = useRef();
+  // const [search, setSearch] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const offset = typeof window !== "undefined" ? window.pageYOffset : 0;
   // const stickyRef = React.useRef();
@@ -86,6 +89,15 @@ export const Layout2 = ({
   };
   // if (typeof window !== "undefined")
   //   window.addEventListener("scroll", handleScroll);
+
+  const handleSearch = () => {
+    push({
+      pathname: "/search",
+      query: {
+        searchText: searchRef.current.value,
+      },
+    });
+  };
 
   return (
     <header className={` ${darkBg ? "black-bg" : ""}`}>
@@ -120,6 +132,8 @@ export const Layout2 = ({
                   <div className="input-group">
                     {" "}
                     <input
+                      ref={searchRef}
+                      onKeyDown={handleSearch}
                       type="text"
                       className="form-control input-text"
                       placeholder="Aramak İstediğiniz Ürünü Yazınız..."
@@ -129,6 +143,7 @@ export const Layout2 = ({
                     <div className="input-group-append">
                       {" "}
                       <button
+                        onClick={handleSearch}
                         className="btn btn-outline-dark btn-lg search-buton search-p"
                         type="button">
                         <i className="fa fa-search" />
@@ -201,9 +216,10 @@ export const Layout3 = ({
   news,
   filterByName,
 }) => {
+  const router = useRouter();
   const [text, setText] = useState(false);
   if (text) {
-    Router.push(
+    router.push(
       {
         pathname: "/shop",
       },

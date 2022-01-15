@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Nav, Tab } from "react-bootstrap";
 import { connect } from "react-redux";
+import PopularCard from "../components/Cards/PopularCard";
 import Paggination from "../components/Paggination";
 import Filter from "../components/product/filter/Filter";
 import Product from "../components/product/Product";
@@ -13,8 +14,7 @@ import Layout from "./Layout";
 import PageTitle from "./PageTitle";
 
 const ShopLayout = ({
-  // getProducts,
-  allProducts,
+  allProducts: products,
   defaultKey,
   rightSideBar,
   full,
@@ -27,20 +27,21 @@ const ShopLayout = ({
   const { cartActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
 
+  console.log(products);
+
   useEffect(() => {
-    getProductByFilter(hideProduct(allProducts), filter);
+    getProductByFilter(hideProduct(products), filter);
   }, []);
   const [active, setActive] = useState(active_ ? active_ : 0);
-  let sort = sortValue ? sortValue : 6;
+  let sort = sortValue ? sortValue : 15;
   // let products =
   //   allProducts && value
   //     ? allProducts.filter((product) =>
   //         product[keyValueForQurey].includes(value)
   //       )
   //     : allProducts;
-  let products = allProducts;
   return (
-    <Layout>
+    <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
         <PageTitle pageTitle="Shop" active="Products" />
         <section className="shop-sidebar pt-75">
@@ -90,7 +91,7 @@ const ShopLayout = ({
                       <Tab.Pane eventKey="grid">
                         <div className="row custom-row-10">
                           {products &&
-                            products.map((product, i) => (
+                            products.map((productItem, i) => (
                               <div
                                 className={`${
                                   full
@@ -98,9 +99,20 @@ const ShopLayout = ({
                                     : "col-lg-4 col-sm-6 custom-col-10"
                                 } ${dblock(active, i, sort)}`}
                                 key={i}>
-                                <Product
-                                  addToCartAction={addToCartAction}
-                                  product={product}
+                                <PopularCard
+                                  productData={{
+                                    id: productItem.productID,
+                                    name: productItem.productShortName,
+                                    images: productItem.pictures,
+                                    singlePrice: productItem.singlePrice,
+                                    sizes: productItem.sizes,
+                                    price: productItem.price,
+                                    oldPrice: productItem.oldPrice,
+                                    productStockCode:
+                                      productItem.productStockCode,
+                                    video_1: productItem.video_1,
+                                    variants: productItem?.variants,
+                                  }}
                                 />
                               </div>
                             ))}

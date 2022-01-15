@@ -22,7 +22,6 @@ export default function SaleProducts({ saleProducts }) {
                   price: productData.price,
                   oldPrice: productData.oldPrice,
                   productStockCode: productData.productStockCode,
-                  discount: productData.singlePrice,
                   video_1: productData.video_1,
                 }}
               />
