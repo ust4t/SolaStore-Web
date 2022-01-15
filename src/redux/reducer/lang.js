@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "../../utils/localstorage";
+import { setLocalStorage } from "../../utils/localstorage";
 import { CHANGE_LANG, GET_LANG } from "../action/type";
 
 const lang = (state = "ru", action) => {
@@ -6,11 +6,7 @@ const lang = (state = "ru", action) => {
   switch (type) {
     case CHANGE_LANG:
       setLocalStorage("lang", payload);
-      return {
-        ...state,
-        lang: payload,
-      };
-
+      return payload;
     case GET_LANG:
       return {
         ...state,

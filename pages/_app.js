@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import { Provider } from "react-redux";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { useRouter } from "next/router";
+
 import AllToaster from "../src/components/AllToaser";
 import Preloader from "../src/layout/Preloader";
 import ScrollTop from "../src/layout/ScrollTop";
-import { QueryClient, QueryClientProvider } from "react-query";
 import { aTagClick } from "../src/utils/utils";
 import "../styles/main.css";
 import "swiper/css/bundle";
@@ -15,26 +17,21 @@ import "../styles/global.css";
 import store from "../src/redux/store";
 import axios from "axios";
 import { GET_BRANDS, GET_MAIN_MENU } from "../src/redux/action/type";
-import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const queryClient = new QueryClient();
   const [preloader, setPreloader] = useState(true);
+
   const fetchMenu = async () => {
     setPreloader(true);
     try {
       const { data: menu } = await axios.get(
         `/api/getFullMenu?lang=${store.getState().lang}`
       );
-      const { data: brands } = await axios.get("/api/advertisement/getBrands");
       store.dispatch({
         type: GET_MAIN_MENU,
         payload: menu,
-      });
-      store.dispatch({
-        type: GET_BRANDS,
-        payload: brands,
       });
     } catch (error) {
       console.log(error);
@@ -45,15 +42,15 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     fetchMenu();
-    router.push(router.asPath, router.asPath, {
-      locale: store.getState().lang,
-    });
-    // setTimeout(() => {
-    //   store && setPreloader(false);
-    // }, 1000);
-    // setTimeout(() => {
-    //   animationCreate();
-    // }, 1000);
+  }, [router.locale]);
+
+  useEffect(() => {
+    if (router.locale !== store.getState().lang) {
+      router.push(router.asPath, router.asPath, {
+        locale: store.getState().lang,
+      });
+    }
+
     aTagClick();
   }, []);
 

@@ -1,7 +1,6 @@
-const KEY = "lang";
-export function loadState() {
+export function loadState(key) {
   try {
-    const serializedState = localStorage.getItem(KEY);
+    const serializedState = localStorage.getItem(key);
     if (!serializedState) return undefined;
     return JSON.parse(serializedState);
   } catch (e) {
@@ -9,11 +8,12 @@ export function loadState() {
   }
 }
 
-export async function saveState(state) {
+export async function saveState(key, state) {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem(KEY, serializedState);
+    localStorage.setItem(key, serializedState);
   } catch (e) {
     // Ignore
+    console.log(e);
   }
 }

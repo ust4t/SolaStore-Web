@@ -2,10 +2,9 @@ import React, { useContext, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper";
-// import "swiper/css";
 import Link from "next/link";
-
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 import Heart from "../../Heart";
 import ProductModal from "../../product/ProductModal";
@@ -16,6 +15,7 @@ import ShareModal from "../../product/ShareModal";
 
 function PopularCard({ productData }) {
   const { id, name, images, price, oldPrice, singlePrice, sizes } = productData;
+  const lang = useSelector((state) => state.lang.lang);
   const { cartActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
   const [currentImages, setCurrentImages] = useState({
@@ -104,7 +104,7 @@ function PopularCard({ productData }) {
               ? "opacity-0 animate__fadeIn"
               : "opacity-100 animate__fadeOut"
           }`}>
-          <Link href={`/detail/${id}`}>
+          <Link href={`/detail/${id}`} locale={lang}>
             <a>
               <Image
                 src={`${
@@ -127,7 +127,7 @@ function PopularCard({ productData }) {
               ? "opacity-0 animate__fadeIn"
               : "opacity-100 animate__fadeOut"
           }`}>
-          <Link href={`/detail/${id}`}>
+          <Link href={`/detail/${id}`} locale={lang}>
             <a>
               <Image
                 src={`${
@@ -187,7 +187,7 @@ function PopularCard({ productData }) {
       <div className="pro-text">
         <div className="pro-title">
           <h6>
-            <Link href={`/detail/${id}`} locale={"tr"}>
+            <Link href={`/detail/${id}`} locale={lang}>
               {name}
             </Link>
           </h6>

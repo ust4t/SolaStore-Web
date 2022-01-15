@@ -3,10 +3,9 @@ import { useSelector } from "react-redux";
 
 import SelectCheckboxGroup from "../../components/form/SelectCheckboxGroup";
 import SelectCheckbox from "../../components/form/SelectCheckbox";
-import axios from "axios";
 
-export default function FilterSearch() {
-  const state = useSelector((state) => state);
+export default function FilterSearch({ brands }) {
+  const menu = useSelector((state) => state.menu.menuData);
 
   const [filterData, setFilterData] = useState({
     category: [],
@@ -89,20 +88,20 @@ export default function FilterSearch() {
     <div className="container py-3">
       <div className="row justify-content-space-evenly align-items-end">
         <div className="col-xs-12 col-md-4 col-lg-3 py-3">
-          {state.menu.menuData && (
+          {menu && (
             <SelectCheckboxGroup
               filterData={filterData.category}
-              data={state.menu.menuData}
+              data={menu}
               title="Kategori"
               onSelect={handleFilterCategory}
             />
           )}
         </div>
         <div className="col-xs-12 col-md-4 col-lg-3 py-3">
-          {state.brands.brands && (
+          {brands && (
             <SelectCheckbox
               filterData={filterData.brand}
-              data={state.brands.brands}
+              data={brands}
               title="Marka"
               onSelect={handleFilterBrand}
             />

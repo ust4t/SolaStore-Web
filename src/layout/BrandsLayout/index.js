@@ -1,13 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import Image from "next/image";
 
 import Loader from "../../components/Loader";
 import sources from "../../../sources";
 
-export default function BrandsLayout() {
-  const brands = useSelector((state) => state.brands.brands);
-
+export default function BrandsLayout({ brands }) {
   return (
     <div className="container py-md-2 pt-md-4">
       <div className="row">

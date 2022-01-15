@@ -12,7 +12,6 @@ import Layout from "../src/layout/Layout";
 // import Stories from "../src/layout/Stories";
 import SliderProducts from "../src/components/sliders/sliderProducts";
 import TabLayout from "../src/layout/TabLayout";
-import { connect } from "react-redux";
 const Stories = dynamic(() => import("../src/layout/Stories"));
 const BrandsLayout = dynamic(() => import("../src/layout/BrandsLayout"));
 const Categories = dynamic(() => import("../src/layout/Categories"));
@@ -20,9 +19,10 @@ const Categories = dynamic(() => import("../src/layout/Categories"));
 const Index4 = ({
   newProducts,
   saleProducts,
-  lang,
+  categoriesData,
   slidersData,
   bannersData,
+  brands,
 }) => {
   const countdownSource = {
     img: "/img/countdown-bg.jpg",
@@ -32,7 +32,6 @@ const Index4 = ({
     text: "Ut ultricies imperdiet sodales. Aliquam fringilla aliquam exs it amet elementum. Proin bibendum feugiat simplifies.",
     date: "2022-11-27 00:00:00",
   };
-
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
@@ -47,9 +46,9 @@ const Index4 = ({
             xl: 14,
           }}>
           <IntroBanners banners={bannersData} />
-          <FilterSearch />
+          <FilterSearch brands={brands} />
           <TabLayout newProducts={newProducts} saleProducts={saleProducts} />
-          <Categories />
+          <Categories categories={categoriesData} />
           {/* <CountdownSection countdown={countdownSource} /> */}
           {/* <EmailArea /> */}
         </Box>
@@ -63,7 +62,7 @@ const Index4 = ({
             lg: 12,
             xl: 14,
           }}>
-          <BrandsLayout />
+          <BrandsLayout brands={brands} />
         </Box>
       </main>
     </Layout>
@@ -72,29 +71,51 @@ const Index4 = ({
 export default memo(Index4);
 
 export async function getStaticProps({ locale }) {
-  const [newProductsRes, saleProductsRes, sliderRes, bannerRes] =
-    await Promise.all([
-      fetch(
-        `https://api.solastore.com.tr/api/Product/GetNewProducts?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
-      ),
-      fetch(
-        `https://api.solastore.com.tr/api/Product/GetSaleProducts?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
-      ),
-      fetch(
-        `https://api.solastore.com.tr/api/Advertising/Slider?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
-      ),
-      fetch(
-        `https://api.solastore.com.tr/api/Advertising/MainAdd?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
-      ),
-    ]);
+  const [
+    newProductsRes,
+    saleProductsRes,
+    sliderRes,
+    bannerRes,
+    categoriesRes,
+    brandsRes,
+  ] = await Promise.all([
+    fetch(
+      `https://api.solastore.com.tr/api/Product/GetNewProducts?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
+    ),
+    fetch(
+      `https://api.solastore.com.tr/api/Product/GetSaleProducts?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
+    ),
+    fetch(
+      `https://api.solastore.com.tr/api/Advertising/Slider?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
+    ),
+    fetch(
+      `https://api.solastore.com.tr/api/Advertising/MainAdd?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
+    ),
+    fetch(
+      `https://api.solastore.com.tr/api/Advertising/CampaignPictruresByLang?sourceProof=${
+        process.env.SOURCE_PROOF
+      }&lang=${chooseLang(locale)}`
+    ),
+    fetch(
+      `https://api.solastore.com.tr/api/Brand/GetAllBrands?sourceProof=${process.env.SOURCE_PROOF}`
+    ),
+  ]);
 
-  const [newProducts, saleProducts, slidersData, bannersData] =
-    await Promise.all([
-      newProductsRes.json(),
-      saleProductsRes.json(),
-      sliderRes.json(),
-      bannerRes.json(),
-    ]);
+  const [
+    newProducts,
+    saleProducts,
+    slidersData,
+    bannersData,
+    categoriesData,
+    brands,
+  ] = await Promise.all([
+    newProductsRes.json(),
+    saleProductsRes.json(),
+    sliderRes.json(),
+    bannerRes.json(),
+    categoriesRes.json(),
+    brandsRes.json(),
+  ]);
 
   return {
     props: {
@@ -102,6 +123,23 @@ export async function getStaticProps({ locale }) {
       saleProducts: saleProducts.reverse(),
       slidersData,
       bannersData,
+      categoriesData,
+      brands,
     },
   };
 }
+
+const chooseLang = (lang) => {
+  switch (lang) {
+    case "tr":
+      return 1;
+    case "en":
+      return 2;
+    case "fr":
+      return 3;
+    case "ar":
+      return 4;
+    default:
+      return 5;
+  }
+};
