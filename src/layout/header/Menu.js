@@ -11,7 +11,7 @@ const Menu = () => {
           </Link>
         </li>
         <li>
-          <Link href="/">
+          <Link href="/shop/brandlist">
             <a>MARKALAR</a>
           </Link>
         </li>

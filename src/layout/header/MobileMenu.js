@@ -26,7 +26,7 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
               </Link>
             </li>
             <li>
-              <Link href="/">
+              <Link href="/shop/brandlist">
                 <a>MARKALAR</a>
               </Link>
             </li>
