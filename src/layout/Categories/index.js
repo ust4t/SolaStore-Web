@@ -13,9 +13,12 @@ export default function Categories({ categories }) {
     <div className="container py-1">
       <div className="row justify-content-center align-items-center">
         {categories.map(
-          ({ mainCampaignName, pictureGuidName, campaignID }, i) => (
+          (
+            { mainCampaignName, pictureGuidName, campaignID, pictureLink },
+            i
+          ) => (
             <div className="col-6 col-md-4 pb-3" key={`${campaignID}_*0${i}`}>
-              <Link href="/">
+              <Link href={`/shop/${pictureLink.replace(/[^0-9.]/g, "")}`}>
                 <Image
                   src={`${sources.campaign}${pictureGuidName}`}
                   alt={mainCampaignName}

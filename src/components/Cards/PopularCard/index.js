@@ -29,7 +29,7 @@ function PopularCard({ productData }) {
 
   // const isMutating = useIsMutating({ mutationKey: `addCart_${id}` });
 
-  const sizeNum = sizes.split("-").length || 0;
+  const sizeNum = (sizes && sizes.split("-").length) || 0;
   const oldUnitPrice = oldPrice / sizeNum;
   const originalDiscount = oldUnitPrice - singlePrice;
 

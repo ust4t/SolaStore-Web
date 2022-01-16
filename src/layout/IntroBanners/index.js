@@ -6,30 +6,8 @@ import Loader from "../../components/Loader";
 import BannerCard from "../../components/Cards/BannerCard";
 import { useSelector } from "react-redux";
 
-const fetchBanners = async (lang) => {
-  const { data } = await axios.get(
-    `/api/advertisement/getBanners?lang=${lang}`
-  );
-  return data;
-};
-
 function IntroBanners({ banners }) {
-  // const lang = useSelector((state) => state.lang);
-  // const [banners, setBanners] = useState([]);
-  // const { data, isLoading, error } = useQuery(
-  //   "banners",
-  //   () => fetchBanners(lang),
-  //   {
-  //     onSuccess: ({ data }) => {
-  //       setBanners(data);
-  //     },
-  //   }
-  // );
-
   return (
-    //   {isLoading ? (
-    //     <Loader />
-    //   ) : (
     <>
       {banners && (
         <div className="banner-area pt-90">
@@ -42,6 +20,7 @@ function IntroBanners({ banners }) {
                 buttonText={banners[1].selectedTextButton}
                 width={200}
                 height={120}
+                link="/shop/saleproducts"
               />
               <BannerCard
                 banner={banners[0].guidName}
@@ -50,6 +29,7 @@ function IntroBanners({ banners }) {
                 buttonText={banners[0].selectedTextButton}
                 width={300}
                 height={350}
+                link="/shop/newproducts"
               />
               <BannerCard
                 banner={banners[2].guidName}
@@ -58,13 +38,13 @@ function IntroBanners({ banners }) {
                 buttonText={banners[2].selectedTextButton}
                 width={200}
                 height={120}
+                link="/shop/bestseller"
               />
             </div>
           </div>
         </div>
       )}
     </>
-    //   )}
   );
 }
 export default IntroBanners;

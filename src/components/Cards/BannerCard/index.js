@@ -11,11 +11,12 @@ export default function BannerCard({
   buttonText,
   width,
   height,
+  link,
 }) {
   return (
     <div className="col-md-4 custom-col">
       <div className="single-banner text-center mb-30">
-        <Link href="/">
+        <Link href={link}>
           <a className="position-relative">
             <Image
               src={`${sources.banners}${banner}`}
@@ -37,9 +38,7 @@ export default function BannerCard({
                     <h3 className="text-white text-center text-shadow">
                       {lowerTitle}
                     </h3>
-                    <a href="#" className="underline-link text-shadow">
-                      {buttonText}
-                    </a>
+                    <a className="underline-link text-shadow">{buttonText}</a>
                   </div>
                 </div>
               </div>

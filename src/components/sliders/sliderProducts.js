@@ -1,45 +1,15 @@
-import React, { useState } from "react";
-import { useQuery } from "react-query";
+import React from "react";
 import Link from "next/link";
-import axios from "axios";
-import { useSelector } from "react-redux";
-import { getLocalStorage } from "../../utils/localstorage";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import sources from "../../../sources";
 import styles from "./Slider.module.css";
-import Loader from "../Loader";
 import { HomePageSliderWithArrow } from "./HomePageSlider";
 
-const fetchSlider = async (lang) => {
-  const { data } = await axios.get(`/api/getSlider?lang=${lang}`);
-  return data;
-};
-
 export default function SliderProducts({ sliders }) {
-  // const [images, setImages] = useState(null);
-  // const state = useSelector((state) => state.lang);
-  // const { isLoading, error, refetch } = useQuery(
-  //   "slider",
-  //   () => fetchSlider(state),
-  //   {
-  //     onSuccess: ({ data }) => {
-  //       setImages(data);
-  //     },
-  //     onError: (error) => {
-  //       console.log(error);
-  //       refetch();
-  //     },
-  //   }
-  // );
-
   return (
-    // <>
-    //   {isLoading ? (
-    //     <Loader />
-    //   ) : (
     <section className="hero-area position-relative ">
       <div className="hero-slider-two">
         <div className="slider-active slider-active-one">
@@ -76,7 +46,12 @@ export default function SliderProducts({ sliders }) {
                               data-delay=".4s">
                               {selectedText2}
                             </h2>
-                            <Link href="/">
+                            <Link
+                              href={
+                                selectedText1 === "İNDİRİMLİ ÜRÜNLER"
+                                  ? "/shop/saleproducts"
+                                  : "/shop/newproducts"
+                              }>
                               <a
                                 className={`${styles.sliderButton} w-25`}
                                 rel="noopener noreferrer">
@@ -94,7 +69,5 @@ export default function SliderProducts({ sliders }) {
         </div>
       </div>
     </section>
-    //   )}
-    // </>
   );
 }
