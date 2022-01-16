@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import PopularCard from "../components/Cards/PopularCard";
 import Paggination from "../components/Paggination";
 import Filter from "../components/product/filter/Filter";
+import FilterDropdown from "../components/product/filter/FilterDropdown";
 import Product from "../components/product/Product";
 import ProductListView from "../components/product/ProductListView";
 import { StoreContext } from "../context/StoreProvider";
@@ -15,6 +16,7 @@ import PageTitle from "./PageTitle";
 
 const ShopLayout = ({
   allProducts: products,
+  brands,
   defaultKey,
   rightSideBar,
   full,
@@ -23,17 +25,17 @@ const ShopLayout = ({
   value = "vegetables",
   active_,
   filter,
+  filterDropdown = false,
 }) => {
   const { cartActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
-
-  console.log(products);
+  const [pageLimit, setPageLimit] = useState(15);
 
   useEffect(() => {
     getProductByFilter(hideProduct(products), filter);
   }, []);
   const [active, setActive] = useState(active_ ? active_ : 0);
-  let sort = sortValue ? sortValue : 15;
+  let sort = sortValue ? sortValue : pageLimit;
   // let products =
   //   allProducts && value
   //     ? allProducts.filter((product) =>
@@ -46,6 +48,14 @@ const ShopLayout = ({
         <PageTitle pageTitle="Shop" active="Products" />
         <section className="shop-sidebar pt-75">
           <div className="container">
+            {filterDropdown && (
+              <FilterDropdown
+                brands={brands}
+                pageLimit={pageLimit}
+                setPageLimit={setPageLimit}
+                setActive_={() => setActive(0)}
+              />
+            )}
             <div className="row">
               {!full && !rightSideBar && (
                 <div className="col-lg-3 col-md-4">

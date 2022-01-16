@@ -6,7 +6,12 @@ function Heart({ isLiked, setIsLiked, size }) {
     return null;
 
   return (
-    <div className="heart-container" onClick={() => setIsLiked(!isLiked)}>
+    <div
+      style={{
+        zIndex: "229",
+      }}
+      className="heart-container"
+      onClick={() => setIsLiked(!isLiked)}>
       {isLiked ? (
         <HeartIcon
           title="heart"

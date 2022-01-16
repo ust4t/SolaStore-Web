@@ -1,16 +1,14 @@
 import React from "react";
 import useDetectOutside from "../../hooks/useDetectOutside";
 
-export default function SelectCheckbox({
-  filterData,
+export default function SelectOptions({
+  selectedData = "Seç",
   title,
   data,
   onSelect = () => {},
 }) {
   const dropdownRef = React.useRef(null);
   const [hidden, setHidden] = React.useState(true);
-  const buttonText =
-    filterData.length < 1 ? "seçiniz" : `${filterData.length} seçildi`;
   useDetectOutside(dropdownRef, hideDropdown);
 
   function hideDropdown() {
@@ -29,7 +27,7 @@ export default function SelectCheckbox({
         type="button"
         className="d-flex justify-content-space-around align-items-center multiselect dropdown-toggle btn btn-default shadow p-3 bg-body rounded w-100">
         <span className="multiselect-selected-text text-uppercase me-auto fs-5">
-          {buttonText}
+          {selectedData}
         </span>{" "}
         <b className="caret"></b>
       </button>
@@ -44,17 +42,15 @@ export default function SelectCheckbox({
         } dropdown-list shadow p-3 bg-body w-100 position-absolute overflow-auto`}>
         {data &&
           data.map(({ brandID, brandName }, i) => (
-            <label
+            <span
+              onClick={() => {
+                onSelect(brandID);
+                hideDropdown();
+              }}
               key={`${brandID}*${i}`}
-              className="d-block dropdown-option w-100 pt-2">
-              <input
-                type="checkbox"
-                name="dropdown-group"
-                value={brandID}
-                onChange={(e) => onSelect(e, brandID)}
-              />
+              className="d-block dropdown-option w-100 pt-2 cursor-pointer">
               <b className="ps-2 fs-6 text-uppercase">{brandName}</b>
-            </label>
+            </span>
           ))}
       </div>
     </div>

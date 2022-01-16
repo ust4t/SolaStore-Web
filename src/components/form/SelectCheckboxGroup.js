@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import useDetectOutside from "../../hooks/useDetectOutside";
 
-function SelectCheckboxGroup({ filterData, title, data, onSelect }) {
+function SelectCheckboxGroup({ filterData, title, data, onSelect = () => {} }) {
   const dropdownRef = React.useRef(null);
   const [hidden, setHidden] = React.useState(true);
 
@@ -32,7 +32,7 @@ function SelectCheckboxGroup({ filterData, title, data, onSelect }) {
       </button>
       <div
         style={{
-          zIndex: "230",
+          zIndex: "250",
           maxHeight: "300px",
         }}
         ref={dropdownRef}

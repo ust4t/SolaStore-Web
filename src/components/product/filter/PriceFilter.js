@@ -14,6 +14,8 @@ const PriceFilter = ({ filterByPrice, setActive_ }) => {
           value={price.value}
           onChange={(value) => {
             setPrice({ value });
+          }}
+          onChangeComplete={(value) => {
             filterByPrice(value);
             setActive_();
           }}

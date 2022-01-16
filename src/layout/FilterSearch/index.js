@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 import SelectCheckboxGroup from "../../components/form/SelectCheckboxGroup";
 import SelectCheckbox from "../../components/form/SelectCheckbox";
 
 export default function FilterSearch({ brands }) {
+  const { push } = useRouter();
   const menu = useSelector((state) => state.menu.menuData);
 
   const [filterData, setFilterData] = useState({
@@ -26,11 +28,42 @@ export default function FilterSearch({ brands }) {
         brandName: "20-30",
         brandID: "20-30",
       },
+      {
+        brandName: "30-40",
+        brandID: "30-40",
+      },
+      {
+        brandName: "40-50",
+        brandID: "40-50",
+      },
+      {
+        brandName: "50-60",
+        brandID: "50-60",
+      },
+      {
+        brandName: "60-70",
+        brandID: "60-70",
+      },
+      {
+        brandName: "70-80",
+        brandID: "70-80",
+      },
+      {
+        brandName: "80-90",
+        brandID: "80-90",
+      },
     ],
   };
 
   const navigateToSearch = () => {
-    alert("search");
+    push({
+      pathname: "/filter",
+      query: {
+        categoryIds: filterData.category.join(","),
+        brandIds: filterData.brand.join(","),
+        searchPrice: filterData.price,
+      },
+    });
   };
 
   const handleFilterBrand = (e, value) => {
