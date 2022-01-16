@@ -2,7 +2,8 @@ import React from "react";
 import useDetectOutside from "../../hooks/useDetectOutside";
 
 export default function SelectOptions({
-  selectedData = "Seç",
+  selectedData,
+  defaultValue,
   title,
   data,
   onSelect = () => {},
@@ -27,7 +28,7 @@ export default function SelectOptions({
         type="button"
         className="d-flex justify-content-space-around align-items-center multiselect dropdown-toggle btn btn-default shadow p-3 bg-body rounded w-100">
         <span className="multiselect-selected-text text-uppercase me-auto fs-5">
-          {selectedData}
+          {selectedData || defaultValue}
         </span>{" "}
         <b className="caret"></b>
       </button>

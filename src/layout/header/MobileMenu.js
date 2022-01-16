@@ -34,7 +34,15 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
               menu.map(
                 ({ selectedCategoryName, categoryID, subcategories }, i) => (
                   <li className="has-dropdown">
-                    <Link href={`/shop/${categoryID}`}>
+                    <Link
+                      href={{
+                        pathname: "/shop",
+                        query: {
+                          categoryIds: categoryID,
+                          brandIds: "",
+                          searchPrice: "",
+                        },
+                      }}>
                       <a>{selectedCategoryName}</a>
                     </Link>
                     <InnerMobileMenu subcategories={subcategories} />

@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import Loader from "../../components/Loader";
 import sources from "../../../sources";
@@ -18,17 +19,27 @@ export default function BrandsLayout({ brands }) {
             <div
               key={`${brandID}_|*_${i}`}
               className="col-4 col-lg-2 py-3 px-sm-3 brandborder">
-              <Image
-                src={`${sources.brand}${guidName}`}
-                alt={brandName}
-                className="cursor-pointer"
-                width={95}
-                height={80}
-                layout="responsive"
-                quality={60}
-                placeholder="blur"
-                blurDataURL="/img/loadingImg.jpg"
-              />
+              <Link
+                href={{
+                  pathname: "/shop",
+                  query: {
+                    categoryIds: "",
+                    brandIds: brandID,
+                    searchPrice: "",
+                  },
+                }}>
+                <Image
+                  src={`${sources.brand}${guidName}`}
+                  alt={brandName}
+                  className="cursor-pointer"
+                  width={95}
+                  height={80}
+                  layout="responsive"
+                  quality={60}
+                  placeholder="blur"
+                  blurDataURL="/img/loadingImg.jpg"
+                />
+              </Link>
             </div>
           ))
         )}

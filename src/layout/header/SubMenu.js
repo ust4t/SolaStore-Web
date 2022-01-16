@@ -18,7 +18,15 @@ const SubMenu = ({ menu }) => {
             i
           ) => (
             <li key={`${i}_*_${i}`}>
-              <Link href={`/shop/${categoryID}`}>
+              <Link
+                href={{
+                  pathname: "/shop",
+                  query: {
+                    categoryIds: categoryID,
+                    brandIds: "",
+                    searchPrice: "",
+                  },
+                }}>
                 <a>{selectedCategoryName}</a>
               </Link>
               <SubCategory

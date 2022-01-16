@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Nav, Tab } from "react-bootstrap";
 import { connect } from "react-redux";
+
 import PopularCard from "../components/Cards/PopularCard";
 import Paggination from "../components/Paggination";
 import Filter from "../components/product/filter/Filter";
 import FilterDropdown from "../components/product/filter/FilterDropdown";
-import Product from "../components/product/Product";
 import ProductListView from "../components/product/ProductListView";
 import { StoreContext } from "../context/StoreProvider";
 import { getProducts } from "../redux/action/product";
@@ -32,7 +32,7 @@ const ShopLayout = ({
   const [pageLimit, setPageLimit] = useState(15);
 
   useEffect(() => {
-    getProductByFilter(hideProduct(products), filter);
+    // getProductByFilter(hideProduct(products), filter);
   }, []);
   const [active, setActive] = useState(active_ ? active_ : 0);
   let sort = sortValue ? sortValue : pageLimit;
@@ -108,7 +108,7 @@ const ShopLayout = ({
                                     ? "col-lg-3 col-sm-6 custom-col-10"
                                     : "col-lg-4 col-sm-6 custom-col-10"
                                 } ${dblock(active, i, sort)}`}
-                                key={i}>
+                                key={`${productItem.productID}-_*|${i}`}>
                                 <PopularCard
                                   productData={{
                                     id: productItem.productID,

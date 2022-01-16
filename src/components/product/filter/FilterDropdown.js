@@ -24,7 +24,7 @@ export default function FilterDropdown({
 
   useEffect(() => {
     push({
-      pathname: "/filter",
+      pathname: "/shop",
       query: {
         categoryIds: filterData.category.join(",") || query.categoryIds,
         brandIds: filterData.brand.join(",") || query.brandIds,
@@ -87,7 +87,6 @@ export default function FilterDropdown({
   };
 
   const handlePriceSlider = ({ min, max }) => {
-    console.log(min, max);
     setFilterData({
       ...filterData,
       price: `${min}-${max}`,

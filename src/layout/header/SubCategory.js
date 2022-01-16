@@ -23,7 +23,15 @@ function SubCategory({ picture, subMenuData }) {
           {!!subMenuData &&
             subMenuData.map(({ selectedCategoryName, categoryID }, i) => (
               <li key={`${i}_0_${i}`}>
-                <Link href={`/shop/${categoryID}`}>
+                <Link
+                  href={{
+                    pathname: "/shop",
+                    query: {
+                      categoryIds: categoryID,
+                      brandIds: "",
+                      searchPrice: "",
+                    },
+                  }}>
                   <a className="text-uppercase">{selectedCategoryName}</a>
                 </Link>
               </li>

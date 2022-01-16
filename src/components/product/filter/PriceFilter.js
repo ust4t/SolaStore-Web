@@ -17,11 +17,11 @@ const PriceFilter = ({ filterByPrice, setActive_ }) => {
           }}
           onChangeComplete={(value) => {
             filterByPrice(value);
-            setActive_();
+            if (setActive_) setActive_();
           }}
         />
-        <span className="mt-10 d-block">
-          ${price.value.min} - ${price.value.max}
+        <span className="mt-10 d-block text-center fs-6">
+          Fiyat ${price.value.min} - ${price.value.max}
         </span>
       </div>
     </Fragment>

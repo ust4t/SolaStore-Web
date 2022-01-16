@@ -7,7 +7,15 @@ function InnerMobileMenu({ subcategories }) {
       {subcategories &&
         subcategories.map(({ categoryID, selectedCategoryName }) => (
           <li key={categoryID}>
-            <Link href={`/shop/${categoryID}`}>
+            <Link
+              href={{
+                pathname: "/shop",
+                query: {
+                  categoryIds: categoryID,
+                  brandIds: "",
+                  searchPrice: "",
+                },
+              }}>
               <a>{selectedCategoryName}</a>
             </Link>
           </li>
