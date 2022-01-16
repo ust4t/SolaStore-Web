@@ -9,7 +9,6 @@ export default function filter({ filter, filterBrand }) {
 
 export async function getServerSideProps({ query, locale }) {
   const { categoryIds, brandIds, searchPrice } = query;
-  console.log(query);
   const price = searchPrice ? searchPrice.split("-") : [0, 0];
 
   const [{ data: filterCatData }, { data: filterBrandData }] =
@@ -28,7 +27,7 @@ export async function getServerSideProps({ query, locale }) {
 
   return {
     props: {
-      filter: filterCatData.reverse().slice(0, 120),
+      filter: filterCatData.reverse(),
       filterBrand: filterBrandData,
     },
   };

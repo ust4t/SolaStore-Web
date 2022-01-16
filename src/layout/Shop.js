@@ -1,21 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 import { Nav, Tab } from "react-bootstrap";
 import { connect } from "react-redux";
+import ReactPaginate from "react-paginate";
 
 import PopularCard from "../components/Cards/PopularCard";
 import Paggination from "../components/Paggination";
+import PaginationList from "../components/PaginationList";
 import Filter from "../components/product/filter/Filter";
 import FilterDropdown from "../components/product/filter/FilterDropdown";
 import ProductListView from "../components/product/ProductListView";
 import { StoreContext } from "../context/StoreProvider";
 import { getProducts } from "../redux/action/product";
-import { getProductByFilter } from "../utils/filterProduct";
-import { activeData, dblock, hideProduct } from "../utils/utils";
+import { activeData, dblock } from "../utils/utils";
 import Layout from "./Layout";
 import PageTitle from "./PageTitle";
 
 const ShopLayout = ({
-  allProducts: products,
+  allProducts,
   brands,
   defaultKey,
   rightSideBar,
@@ -30,18 +31,30 @@ const ShopLayout = ({
   const { cartActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
   const [pageLimit, setPageLimit] = useState(15);
-
-  useEffect(() => {
-    // getProductByFilter(hideProduct(products), filter);
-  }, []);
+  const [offset, setOffset] = useState(0);
+  const pageCount = Math.ceil(allProducts.length / pageLimit);
   const [active, setActive] = useState(active_ ? active_ : 0);
   let sort = sortValue ? sortValue : pageLimit;
-  // let products =
-  //   allProducts && value
-  //     ? allProducts.filter((product) =>
-  //         product[keyValueForQurey].includes(value)
-  //       )
-  //     : allProducts;
+  const [products, setProducts] = useState(
+    allProducts.slice(offset, offset + pageLimit)
+  );
+
+  const handlePageData = () => {
+    const pageData = allProducts.slice(offset, offset + pageLimit);
+    setProducts(pageData);
+  };
+
+  const handlePageClick = (e) => {
+    const selectedPage = e.selected;
+    const offset = selectedPage * pageLimit;
+    setOffset(offset);
+    handlePageData();
+  };
+
+  useEffect(() => {
+    handlePageData();
+  }, [offset]);
+
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
@@ -90,7 +103,7 @@ const ShopLayout = ({
                       <div className="ch-right p-0">
                         <div className="show-text m-0">
                           <span className="p-0 border-0">
-                            {activeData(active, sort, products)}
+                            {activeData(active, sort, allProducts)}
                           </span>
                         </div>
                       </div>
@@ -144,12 +157,30 @@ const ShopLayout = ({
                   <h3 className="text-center">No Product Found</h3>
                 )}
                 <div className="mt-5 mb-5">
-                  <Paggination
-                    active={active}
-                    setActive={setActive}
-                    sort={sort}
-                    length={products && products.length}
+                  <PaginationList
+                    pageCount={pageCount}
+                    handlePageClick={handlePageClick}
                   />
+                  {/* <ReactPaginate
+                    previousClassName="page-item"
+                    previousLinkClassName="page-link"
+                    nextClassName="page-item"
+                    nextLinkClassName="page-link"
+                    breakClassName="page-item"
+                    breakLinkClassName="page-link"
+                    previousLabel={<i className="fas fa-angle-double-left" />}
+                    nextLabel={<i className="fas fa-angle-double-right" />}
+                    breakLabel={"..."}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={handlePageClick}
+                    containerClassName={
+                      "basic-pagination basic-pagination-2 text-center"
+                    }
+                    subContainerClassName={""}
+                    activeClassName={"active"}
+                  /> */}
                 </div>
               </div>
 

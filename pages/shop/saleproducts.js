@@ -14,7 +14,7 @@ export async function getStaticProps({ locale }) {
 
   return {
     props: {
-      saleProducts: data.reverse().slice(0, 120),
+      saleProducts: data.reverse(),
     },
   };
 }
