@@ -1,8 +1,11 @@
 import React, { memo, useContext } from "react";
 import Image from "next/image";
+import { useSelector } from "react-redux";
+
 import { StoreContext } from "../../context/StoreProvider";
 
 function CartProductItem({ id, image, name, price, quantity }) {
+  const uid = useSelector((state) => state.auth.uid);
   const { cartActions, isCartLoading } = useContext(StoreContext);
   const { removeFromCart } = cartActions;
 
@@ -10,7 +13,7 @@ function CartProductItem({ id, image, name, price, quantity }) {
 
   const handleDelete = () =>
     removeFromCart({
-      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+      user: uid,
       id,
     });
 

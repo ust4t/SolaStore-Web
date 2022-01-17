@@ -14,7 +14,7 @@ import ShareModal from "../../product/ShareModal";
 
 function PopularCard({ productData }) {
   const { id, name, images, price, oldPrice, singlePrice, sizes } = productData;
-  const lang = useSelector((state) => state.lang);
+  const { auth, lang } = useSelector((state) => state);
   const { state, cartActions, wishListActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
   const { addToWishList, removeFromWishList } = wishListActions;
@@ -60,21 +60,21 @@ function PopularCard({ productData }) {
 
   const onAddToCart = () =>
     addToCartAction({
-      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+      user: auth.uid,
       id,
     });
 
   const onClickWishlist = (e) => {
     if (!isLiked) {
       addToWishList({
-        user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+        user: auth.uid,
         id,
       });
       setIsLiked(true);
       return;
     }
     removeFromWishList({
-      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+      user: auth.uid,
       id,
     });
     setIsLiked(false);
@@ -112,14 +112,7 @@ function PopularCard({ productData }) {
         )}
         <span
           className="position-absolute top-0 start-0 translate-middle m-4 z-index-first cursor-pointer"
-          onClick={onClickWishlist}
-
-          // className={` ${
-          //   wishlist && wishlist.find((pro) => pro.id === currentImages.id)
-          //     ? "active"
-          //     : ""
-          // } `}
-        >
+          onClick={onClickWishlist}>
           <Heart isLiked={isLiked} setIsLiked={setIsLiked} size="35px" />
         </span>
 

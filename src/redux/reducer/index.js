@@ -11,6 +11,7 @@ import populars from "./populars";
 import menu from "./menu";
 import lang from "./lang";
 import brands from "./brands";
+import auth from "./auth";
 
 export default combineReducers({
   blog,
@@ -25,4 +26,5 @@ export default combineReducers({
   utilis,
   populars,
   menu,
+  auth,
 });

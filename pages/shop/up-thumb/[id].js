@@ -1,7 +1,0 @@
-import Details from "../../../src/components/product/Details";
-
-const Single = () => {
-  return <Details upthumb />;
-};
-
-export default Single;

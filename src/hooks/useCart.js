@@ -1,5 +1,6 @@
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
+import { useSelector } from "react-redux";
 
 import {
   ADD_TO_CART,
@@ -11,12 +12,10 @@ import {
 import useQueryMutation from "./useQueryMutation";
 
 export default function useCart(dispatch) {
+  const uid = useSelector((state) => state.auth.uid);
   const { isLoading: isCartLoading, refetch: cartRefetch } = useQuery(
     "cart",
-    () =>
-      fetch(
-        `/api/cart/getCartItems?user=${"0d1c9955-326f-42fd-b04d-b745b80b70e3"}`
-      ).then((res) => res.json()),
+    () => fetch(`/api/cart/getCartItems?user=${uid}`).then((res) => res.json()),
     {
       onSuccess: ({ data }) => {
         dispatch({
@@ -26,7 +25,7 @@ export default function useCart(dispatch) {
       },
     }
   );
-  const { mutate } = useQueryMutation("addCart");
+  const { mutate } = useQueryMutation(`addCart_${uid}`);
 
   const addToCartAction = (creds) => {
     dispatch({

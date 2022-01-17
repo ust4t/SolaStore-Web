@@ -1,10 +1,9 @@
 import { useContext } from "react";
 import Link from "next/link";
-import { connect, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Menu, Dropdown } from "antd";
 import ColorfulText from "../../components/ColorfulText";
 import CartProductItem from "../../components/CartProductItem";
-import { removeCart } from "../../redux/action/utilis";
 import { StoreContext } from "../../context/StoreProvider";
 import sources from "../../../sources";
 

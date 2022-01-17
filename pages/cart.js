@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 import Preloader from "../src/layout/Preloader";
 import CartAmount from "../src/components/cart/CartAmount";
@@ -17,6 +18,7 @@ import sources from "../sources";
 import { SET_COMPLETED_CART } from "../src/context/types";
 
 const Cart = ({ saleTeam }) => {
+  const uid = useSelector((state) => state.auth.uid);
   const { cartActions, state, isCartLoading, dispatch } =
     useContext(StoreContext);
   const router = useRouter();
@@ -39,7 +41,7 @@ const Cart = ({ saleTeam }) => {
     e.preventDefault();
     const cartData = {
       id,
-      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+      user: uid,
     };
     removeFromCartAction(cartData);
   };
@@ -72,7 +74,7 @@ const Cart = ({ saleTeam }) => {
         buyerName: values.name,
         buyerPhone: values.tel.replace(/\+/g, ""),
         salesRepresantID: currentSeller.id,
-        visitorGuidID: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+        visitorGuidID: uid,
         paymentType,
       });
       resetForm();
@@ -93,7 +95,7 @@ const Cart = ({ saleTeam }) => {
         pathname: paymentRoute,
         query: {
           orderID: data.data,
-          user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+          user: uid,
           buyerName: values.name,
           buyerPhone: values.tel.replace(/\+/g, ""),
           paymentType,

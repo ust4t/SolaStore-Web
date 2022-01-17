@@ -1,39 +1,31 @@
 import Link from "next/link";
-import { useEffect, useState, useContext } from "react";
-import { toast } from "react-hot-toast";
-import { connect, useSelector } from "react-redux";
+import { useContext } from "react";
+import { useSelector } from "react-redux";
+
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
 import { StoreContext } from "../src/context/StoreProvider";
-import {
-  addToCart,
-  addWishlist,
-  getWishlist,
-} from "../src/redux/action/utilis";
 import sources from "../sources";
 
-const Wishlist = ({ getWishlist, addToCart, addWishlist }) => {
+const Wishlist = () => {
+  const uid = useSelector((state) => state.auth.uid);
   const { state, wishListActions, cartActions } = useContext(StoreContext);
   const { removeFromWishList } = wishListActions;
   const { addToCartAction } = cartActions;
 
   const wishlist = state.wishlistData;
-  // const wishlist = useSelector((state) => state.utilis.wishlist);
-  // useEffect(() => {
-  //   getWishlist();
-  // }, []);
 
   const handleWishlistRemove = (id) => {
     removeFromWishList({
       id,
-      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+      user: uid,
     });
   };
 
   const handleAddToCart = (id) => {
     addToCartAction({
       id,
-      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+      user: uid,
     });
   };
 
@@ -126,4 +118,4 @@ const Wishlist = ({ getWishlist, addToCart, addWishlist }) => {
   );
 };
 
-export default connect(null, { getWishlist, addToCart, addWishlist })(Wishlist);
+export default Wishlist;

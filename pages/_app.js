@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useRouter } from "next/router";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 import AllToaster from "../src/components/AllToaser";
 import Preloader from "../src/layout/Preloader";
@@ -11,7 +12,7 @@ import ScrollTop from "../src/layout/ScrollTop";
 import { aTagClick } from "../src/utils/utils";
 import StoreProvider from "../src/context/StoreProvider";
 import store from "../src/redux/store";
-import { GET_MAIN_MENU } from "../src/redux/action/type";
+import { GET_MAIN_MENU, CREATE_USER_ID } from "../src/redux/action/type";
 import "../styles/main.css";
 import "swiper/css/bundle";
 import "animate.css";
@@ -35,10 +36,24 @@ function MyApp({ Component, pageProps }) {
       });
     } catch (error) {
       console.log(error);
+      toast.error("Menü alınırken hata oluştu");
     }
     // finally {
     //   setPreloader(false);
     // }
+  };
+
+  const fetchUser = async () => {
+    try {
+      const { data } = await axios.get("/api/auth/createUserId");
+      store.dispatch({
+        type: CREATE_USER_ID,
+        payload: data.data,
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Kullanıcı oluşturulurken bir hata oluştu");
+    }
   };
 
   useEffect(() => {
@@ -46,6 +61,7 @@ function MyApp({ Component, pageProps }) {
   }, [router.locale]);
 
   useEffect(() => {
+    fetchUser();
     if (router.locale !== store.getState().lang) {
       router.push(router.asPath, router.asPath, {
         locale: store.getState().lang,
