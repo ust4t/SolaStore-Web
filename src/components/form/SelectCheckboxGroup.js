@@ -19,7 +19,9 @@ function SelectCheckboxGroup({ filterData, title, data, onSelect = () => {} }) {
   }
 
   return (
-    <div className="dropdown category-lst on position-relative">
+    <div
+      ref={dropdownRef}
+      className="dropdown category-lst on position-relative">
       <h5 className="fs-4 text-center fw-bold">{title}</h5>
       <button
         onClick={toggleDropdown}

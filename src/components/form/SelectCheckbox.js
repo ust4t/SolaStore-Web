@@ -22,7 +22,9 @@ export default function SelectCheckbox({
   }
 
   return (
-    <div className="dropdown category-lst on position-relative">
+    <div
+      ref={dropdownRef}
+      className="dropdown category-lst on position-relative">
       <h5 className="fs-4 text-center fw-bold">{title}</h5>
       <button
         onClick={toggleDropdown}
@@ -38,7 +40,6 @@ export default function SelectCheckbox({
           zIndex: "250",
           maxHeight: "300px",
         }}
-        ref={dropdownRef}
         className={`animate__animated animate__faster ${
           !hidden ? "animate__zoomIn d-block" : "animate__zoomOut d-none"
         } dropdown-list shadow p-3 bg-body w-100 position-absolute overflow-auto`}>

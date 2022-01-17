@@ -118,12 +118,12 @@ export default function FilterDropdown({
         )}
       </div>
       <div className="col-xs-12 col-md-2 col-xl-3 py-3">
-        <SelectOptions
+        {/* <SelectOptions
           selectedData={pageLimit}
           data={showNum}
           title="Göster"
           onSelect={handlePageLimit}
-        />
+        /> */}
       </div>
       <div className="col-xs-12 col-md-2 col-xl-3 py-3">
         <h5 className="fs-4 text-center fw-bold">Fiyat</h5>

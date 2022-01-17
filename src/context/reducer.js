@@ -6,16 +6,11 @@ import {
   SET_BUYER_DETAILS,
   SET_CART_DATA,
   SET_COMPLETED_CART,
-  SET_DETAILS,
+  SET_WISHLIST_DATA,
 } from "./types";
 
 export default function reducer(state, action) {
   switch (action.type) {
-    case SET_DETAILS:
-      return {
-        ...state,
-        detailVariants: action.payload,
-      };
     case ADD_TO_CART:
       return {
         ...state,
@@ -40,6 +35,11 @@ export default function reducer(state, action) {
       return {
         ...state,
         cartData: action.payload,
+      };
+    case SET_WISHLIST_DATA:
+      return {
+        ...state,
+        wishlistData: action.payload,
       };
     case SET_COMPLETED_CART:
       return {

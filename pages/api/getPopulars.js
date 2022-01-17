@@ -1,6 +1,6 @@
 export default async function (req, res) {
   const respond = await fetch(
-    "https://api.solastore.com.tr/api/Product/GetBestSellerProducts?lang=tr&sourceProof=ugurturkmenn%40gmail.com"
+    `https://api.solastore.com.tr/api/Product/GetBestSellerProducts?lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
   );
   const popularData = await respond.json();
   const allProducts = [];
@@ -8,7 +8,7 @@ export default async function (req, res) {
   await Promise.all(
     popularData.map(async (popular) => {
       const product = await fetch(
-        `https://api.solastore.com.tr/api/Product/GetVariationsByProductID?ProductID=${popular.masterProductID}&lang=tr&sourceProof=ugurturkmenn%40gmail.com`
+        `https://api.solastore.com.tr/api/Product/GetVariationsByProductID?ProductID=${popular.masterProductID}&lang=tr&sourceProof=${process.env.SOURCE_PROOF}`
       );
       const specificData = await product.json();
       allProducts.push({

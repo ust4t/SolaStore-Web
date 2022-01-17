@@ -1,7 +1,7 @@
 export default {
   completedCartData: [],
   cartData: [],
+  wishlistData: [],
   cartQueryName: "",
-  detailVariants: [],
   buyerDetails: {},
 };
