@@ -33,10 +33,12 @@ const Details = ({
   getCompare,
   upthumb,
 }) => {
-  const { state, cartActions } = useContext(StoreContext);
+  const { state, cartActions, wishListActions } = useContext(StoreContext);
   const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
+  const { addToWishList, removeFromWishList } = wishListActions;
   const [product, setProduct] = useState(incomingProduct);
   const [shareModal, setShareModal] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
   const videoRef = useRef();
 
   const cart =
@@ -46,16 +48,13 @@ const Details = ({
 
   useEffect(() => {
     if (product.video_1 && videoRef.current) videoRef.current.pause();
-    getCompare();
+    const wishlist =
+      state.wishlistData &&
+      state.wishlistData.find(
+        (wishlist) => wishlist.productID === product.productID
+      );
+    setIsLiked(wishlist ? true : false);
   }, []);
-  // const wishlist =
-  //   product &&
-  //   wishlists &&
-  //   wishlists.find((wishlist) => wishlist.id === product.id);
-  const compare_ =
-    product &&
-    compares &&
-    compares.find((compare) => compare.id === product.id);
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -79,14 +78,22 @@ const Details = ({
       user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
     });
   };
-  const onClickWishlist = (e) => {
+  const handleAddToWishList = (e) => {
     e.preventDefault();
-    addWishlist(product);
-    if (wishlist) {
-      toast.error("Remove item in wishlist.");
-    } else {
-      toast.success("Add item in wishlist.");
+    if (!isLiked) {
+      addToWishList({
+        id: product.productID,
+        user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+      });
+      setIsLiked(true);
+      return;
     }
+    removeFromWishList({
+      id: product.productID,
+      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+    });
+    setIsLiked(false);
+    return;
   };
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
@@ -304,10 +311,10 @@ const Details = ({
                         <div className="pro-wish ml-30">
                           <a
                             href="#"
-                            // className={`${wishlist ? "active_wishList" : ""} `}
-                            className={"fs-3"}
-                            // onClick={onClickWishlist}
-                          >
+                            className={`fs-3 ${
+                              isLiked ? "active_wishList" : ""
+                            } `}
+                            onClick={handleAddToWishList}>
                             <i className="fas fa-heart" />
                           </a>
                         </div>
@@ -353,23 +360,6 @@ const Details = ({
                               )
                             )}
                           </div>
-                        </div>
-                      </div>
-
-                      <div className="stock-update">
-                        <div className="stock-list">
-                          <ul>
-                            <li>
-                              <span className="fs-6">Stock :</span>
-                              <span className="red">
-                                {product ? "In Stock" : "Out Of Stock"}
-                              </span>
-                            </li>
-                            <li>
-                              <span className="fs-6">SKU :</span>{" "}
-                              <span className="s-text"></span>{" "}
-                            </li>
-                          </ul>
                         </div>
                       </div>
                     </div>

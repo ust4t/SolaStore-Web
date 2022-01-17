@@ -21,10 +21,10 @@ import "../styles/global.css";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const queryClient = new QueryClient();
-  const [preloader, setPreloader] = useState(true);
+  // const [preloader, setPreloader] = useState(true);
 
   const fetchMenu = async () => {
-    setPreloader(true);
+    // setPreloader(true);
     try {
       const { data: menu } = await axios.get(
         `/api/getFullMenu?lang=${store.getState().lang}`
@@ -35,9 +35,10 @@ function MyApp({ Component, pageProps }) {
       });
     } catch (error) {
       console.log(error);
-    } finally {
-      setPreloader(false);
     }
+    // finally {
+    //   setPreloader(false);
+    // }
   };
 
   useEffect(() => {
@@ -145,7 +146,7 @@ function MyApp({ Component, pageProps }) {
       <AllToaster />
       <QueryClientProvider client={queryClient}>
         <StoreProvider>
-          {preloader ? <Preloader /> : <ScrollTop />}
+          <ScrollTop />
           <Component {...pageProps} />
         </StoreProvider>
       </QueryClientProvider>

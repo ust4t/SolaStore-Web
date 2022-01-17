@@ -1,10 +1,10 @@
+import { useContext } from "react";
 import Link from "next/link";
 import { connect, useSelector } from "react-redux";
 import { Menu, Dropdown } from "antd";
 import ColorfulText from "../../components/ColorfulText";
 import CartProductItem from "../../components/CartProductItem";
 import { removeCart } from "../../redux/action/utilis";
-import { useContext } from "react";
 import { StoreContext } from "../../context/StoreProvider";
 import sources from "../../../sources";
 
@@ -26,11 +26,13 @@ export const UserIcon = () => (
   </Link>
 );
 export const WishlistIcon = () => {
-  const wishlist = useSelector((state) => state.utilis.wishlist);
+  const { state } = useContext(StoreContext);
   return (
     <Link href="/wishlist">
       <a className="position-relative">
-        <span className="iconValue">{wishlist && wishlist.length}</span>
+        <span className="iconValue">
+          {state.wishlistData ? state.wishlistData.length : 0}
+        </span>
         <i className="fas fa-heart favf" />
       </a>
     </Link>

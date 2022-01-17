@@ -9,7 +9,7 @@ export const StoreContext = createContext();
 export default function StoreProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { cartActions, isCartLoading } = useCart(dispatch);
-  const { wishlistActions, isWishlistLoading } = useWishList(dispatch);
+  const { wishListActions, isWishlistLoading } = useWishList(dispatch);
 
   return (
     <StoreContext.Provider
@@ -18,7 +18,7 @@ export default function StoreProvider({ children }) {
         dispatch,
         cartActions,
         isCartLoading,
-        wishlistActions,
+        wishListActions,
         isWishlistLoading,
       }}>
       {children}

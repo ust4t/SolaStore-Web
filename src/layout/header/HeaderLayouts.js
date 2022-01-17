@@ -90,13 +90,15 @@ export const Layout2 = ({
   // if (typeof window !== "undefined")
   //   window.addEventListener("scroll", handleScroll);
 
-  const handleSearch = () => {
-    push({
-      pathname: "/search",
-      query: {
-        searchText: searchRef.current.value,
-      },
-    });
+  const handleSearch = (e) => {
+    if (e.keycode === 13) {
+      push({
+        pathname: "/search",
+        query: {
+          searchText: searchRef.current.value,
+        },
+      });
+    }
   };
 
   return (

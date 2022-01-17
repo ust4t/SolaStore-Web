@@ -1,26 +1,44 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { toast } from "react-hot-toast";
 import { connect, useSelector } from "react-redux";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
+import { StoreContext } from "../src/context/StoreProvider";
 import {
   addToCart,
   addWishlist,
   getWishlist,
 } from "../src/redux/action/utilis";
+import sources from "../sources";
 
 const Wishlist = ({ getWishlist, addToCart, addWishlist }) => {
-  const wishlist = useSelector((state) => state.utilis.wishlist);
-  useEffect(() => {
-    getWishlist();
-  }, []);
+  const { state, wishListActions, cartActions } = useContext(StoreContext);
+  const { removeFromWishList } = wishListActions;
+  const { addToCartAction } = cartActions;
 
-  const [addCart, setaddCart] = useState(false);
-  const [addWishlist_, setAddWishlist_] = useState(false);
+  const wishlist = state.wishlistData;
+  // const wishlist = useSelector((state) => state.utilis.wishlist);
+  // useEffect(() => {
+  //   getWishlist();
+  // }, []);
+
+  const handleWishlistRemove = (id) => {
+    removeFromWishList({
+      id,
+      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+    });
+  };
+
+  const handleAddToCart = (id) => {
+    addToCartAction({
+      id,
+      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+    });
+  };
 
   return (
-    <Layout sticky textCenter container footerBg>
+    <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
         <PageTitle active="Wishlist" pageTitle="Wishlist" />
         {wishlist && wishlist.length > 0 ? (
@@ -37,62 +55,61 @@ const Wishlist = ({ getWishlist, addToCart, addWishlist }) => {
                             <th className="cart-product-name">Product</th>
                             <th className="product-price">Unit Price</th>
                             <th className="product-quantity">Quantity</th>
-                            <th className="product-subtotal">Total</th>
                             <th className="product-remove">Remove</th>
                           </tr>
                         </thead>
                         <tbody>
                           {wishlist &&
-                            wishlist.map((wishlist) => (
-                              <tr key={wishlist.id}>
-                                <td className="product-thumbnail">
-                                  <a href="#">
-                                    <img src={wishlist.img} alt="wishlist" />
-                                  </a>
-                                </td>
-                                <td className="product-name">
-                                  <a href="#">{wishlist.name}</a>
-                                </td>
-                                <td className="product-price">
-                                  <span className="amount">
-                                    ${Number(wishlist.mainPrice).toFixed(2)}
-                                  </span>
-                                </td>
-                                <td className="product-quantity">
-                                  <Link href="#">
-                                    <a
-                                      className="bt-btn theme-btn-2"
-                                      onClick={(e) => {
-                                        addToCart(wishlist);
-                                        e.preventDefault();
-                                        setaddCart(true);
-                                        toast.success("Add item in Cart.");
-                                      }}
-                                    >
-                                      Add TO Cart
+                            wishlist.map(
+                              (
+                                {
+                                  picture_1,
+                                  productID,
+                                  productShortName,
+                                  singlePrice,
+                                },
+                                i
+                              ) => (
+                                <tr key={`${productID}--*?${i}`}>
+                                  <td className="product-thumbnail">
+                                    <a>
+                                      <img
+                                        src={`${sources.imageMidSrc}${picture_1}`}
+                                        alt="wishlist"
+                                      />
                                     </a>
-                                  </Link>
-                                </td>
-                                <td className="product-subtotal">
-                                  <span className="amount">
-                                    ${Number(wishlist.mainPrice).toFixed(2)}
-                                  </span>
-                                </td>
-                                <td className="product-remove">
-                                  <a
-                                    href="#"
-                                    onClick={(e) => {
-                                      addWishlist(wishlist);
-                                      e.preventDefault();
-                                      toast.error("Remove item in wishlist.");
-                                      setAddWishlist_(true);
-                                    }}
-                                  >
-                                    <i className="fa fa-times" />
-                                  </a>
-                                </td>
-                              </tr>
-                            ))}
+                                  </td>
+                                  <td className="product-name">
+                                    <a href="#">{productShortName}</a>
+                                  </td>
+                                  <td className="product-price">
+                                    <span className="amount">
+                                      ${Number(singlePrice).toFixed(2)}
+                                    </span>
+                                  </td>
+                                  <td className="product-quantity">
+                                    <Link href="#">
+                                      <a
+                                        className="bt-btn theme-btn-2"
+                                        onClick={() =>
+                                          handleAddToCart(productID)
+                                        }>
+                                        Add TO Cart
+                                      </a>
+                                    </Link>
+                                  </td>
+                                  <td className="product-remove">
+                                    <a
+                                      href="#"
+                                      onClick={() =>
+                                        handleWishlistRemove(productID)
+                                      }>
+                                      <i className="fa fa-times" />
+                                    </a>
+                                  </td>
+                                </tr>
+                              )
+                            )}
                         </tbody>
                       </table>
                     </div>

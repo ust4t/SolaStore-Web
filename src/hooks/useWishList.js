@@ -6,12 +6,12 @@ import { SET_WISHLIST_DATA } from "../context/types";
 import useQueryMutation from "./useQueryMutation";
 
 export default function useWishList(dispatch) {
-  const lang = useSelector((state) => state.lang.lang);
+  const lang = useSelector((state) => state.lang);
   const { isLoading: isWishlistLoading, refetch: wishlistRefetch } = useQuery(
     "wishlist",
     () =>
       fetch(
-        `/api/wishlist/getUserFavorites?user=${"0d1c9955-326f-42fd-b04d-b745b80b70e3"}lang=${lang}`
+        `/api/wishlist/getUserFavorites?user=${"0d1c9955-326f-42fd-b04d-b745b80b70e3"}&lang=${lang}`
       ).then((res) => res.json()),
     {
       onSuccess: ({ data }) => {

@@ -1,9 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
 import Heart from "../../Heart";
@@ -15,9 +14,10 @@ import ShareModal from "../../product/ShareModal";
 
 function PopularCard({ productData }) {
   const { id, name, images, price, oldPrice, singlePrice, sizes } = productData;
-  const lang = useSelector((state) => state.lang.lang);
-  const { cartActions } = useContext(StoreContext);
+  const lang = useSelector((state) => state.lang);
+  const { state, cartActions, wishListActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
+  const { addToWishList, removeFromWishList } = wishListActions;
   const [currentImages, setCurrentImages] = useState({
     id,
     pictures: images,
@@ -27,11 +27,18 @@ function PopularCard({ productData }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
-  // const isMutating = useIsMutating({ mutationKey: `addCart_${id}` });
-
   const sizeNum = (sizes && sizes.split("-").length) || 0;
   const oldUnitPrice = oldPrice / sizeNum;
   const originalDiscount = oldUnitPrice - singlePrice;
+
+  useEffect(() => {
+    const wishlist =
+      state.wishlistData &&
+      state.wishlistData.find((item) => item.productID === id);
+    if (wishlist) {
+      setIsLiked(true);
+    }
+  }, []);
 
   const changeDressColor = (variant) => {
     if (variant.pictures) {
@@ -56,6 +63,23 @@ function PopularCard({ productData }) {
       user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
       id,
     });
+
+  const onClickWishlist = (e) => {
+    if (!isLiked) {
+      addToWishList({
+        user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+        id,
+      });
+      setIsLiked(true);
+      return;
+    }
+    removeFromWishList({
+      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+      id,
+    });
+    setIsLiked(false);
+    return;
+  };
 
   return (
     <div
@@ -88,7 +112,8 @@ function PopularCard({ productData }) {
         )}
         <span
           className="position-absolute top-0 start-0 translate-middle m-4 z-index-first cursor-pointer"
-          // onClick={(e) => onClickWishlist(e)}
+          onClick={onClickWishlist}
+
           // className={` ${
           //   wishlist && wishlist.find((pro) => pro.id === currentImages.id)
           //     ? "active"
