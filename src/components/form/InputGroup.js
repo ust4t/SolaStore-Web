@@ -10,6 +10,7 @@ const InputGroup = ({
   id,
   type,
   name,
+  ...rest
 }) => {
   return (
     <Fragment>
@@ -25,12 +26,12 @@ const InputGroup = ({
         value={values}
         placeholder={placeholder}
         className="mb-0"
+        {...rest}
       />
       <div
         id="val-username1-error"
         className="invalid-feedback animated fadeInUp mb-3"
-        style={{ display: "block" }}
-      >
+        style={{ display: "block" }}>
         {errors && errors}
       </div>
     </Fragment>

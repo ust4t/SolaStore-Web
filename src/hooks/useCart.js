@@ -14,7 +14,7 @@ import useQueryMutation from "./useQueryMutation";
 export default function useCart(dispatch) {
   const uid = useSelector((state) => state.auth.uid);
   const { isLoading: isCartLoading, refetch: cartRefetch } = useQuery(
-    "cart",
+    `cart_${uid}`,
     () => fetch(`/api/cart/getCartItems?user=${uid}`).then((res) => res.json()),
     {
       onSuccess: ({ data }) => {

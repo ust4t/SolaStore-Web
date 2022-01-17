@@ -1,15 +1,53 @@
 import { Formik } from "formik";
 import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import InputGroup from "../src/components/form/InputGroup";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
+import { CREATE_USER_ID } from "../src/redux/action/type";
 import { registerSchema } from "../src/utils/yupModal";
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const { push } = useRouter();
+
+  const handleRegister = async (
+    { name, lastname, tel, password, email },
+    { setSubmitting }
+  ) => {
+    try {
+      const { data } = await axios.post("/api/auth/createUser", null, {
+        params: {
+          name,
+          lastname,
+          tel,
+          email,
+          password,
+        },
+      });
+      dispatch({
+        type: CREATE_USER_ID,
+        payload: data,
+      });
+      toast.success(
+        "Başarılı bir şekilde kayıt oldunuz. Giriş yapabilirsiniz."
+      );
+      push("/");
+    } catch (error) {
+      console.log(error);
+      toast.error("Bir hata oluştu. Lütfen tekrar deneyiniz.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
-    <Layout sticky container textCenter footerBg>
+    <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
-      <link rel="stylesheet" href="css/passopen.css" />
+        <link rel="stylesheet" href="css/passopen.css" />
         <PageTitle active="register" pageTitle="Register" />
         <section className="login-area pt-100 pb-100">
           <div className="container">
@@ -20,13 +58,7 @@ const Register = () => {
                   <Formik
                     initialValues={registerSchema.initialValue}
                     validationSchema={registerSchema.schema}
-                    onSubmit={(values, { setSubmitting }) => {
-                      setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
-                        setSubmitting(false);
-                      }, 400);
-                    }}
-                  >
+                    onSubmit={handleRegister}>
                     {({
                       values,
                       errors,
@@ -36,43 +68,90 @@ const Register = () => {
                       isSubmitting,
                     }) => (
                       <form onSubmit={handleSubmit}>
-                        <InputGroup
-                          label="Username"
-                          id="username"
-                          name="username"
-                          type="string"
-                          placeholder="Enter Username ..."
-                          values={values.username}
-                          errors={errors.username}
-                          handleBlur={handleBlur}
-                          handleChange={handleChange}
-                        />
-                        <InputGroup
-                          label="Email Address"
-                          id="email"
-                          name="email"
-                          type="string"
-                          placeholder="Enter Email address..."
-                          values={values.email}
-                          errors={errors.email}
-                          handleBlur={handleBlur}
-                          handleChange={handleChange}
-                        />
-                        <InputGroup
-                          label="Password"
-                          id="password"
-                          name="password"
-                          type="password"
-                          placeholder="Enter password..."
-                          values={values.password}
-                          errors={errors.password}
-                          handleBlur={handleBlur}
-                          handleChange={handleChange}
-                        />
+                        <div className="row">
+                          <div className="col-lg-6 col-md-6">
+                            <InputGroup
+                              label="Üye Adı"
+                              id="name"
+                              name="name"
+                              type="string"
+                              placeholder="İsim giriniz..."
+                              values={values.name}
+                              errors={errors.name}
+                              handleBlur={handleBlur}
+                              handleChange={handleChange}
+                            />
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <InputGroup
+                              label="Üye Soyadı"
+                              id="lastname"
+                              name="lastname"
+                              type="string"
+                              placeholder="Soyisim giriniz..."
+                              values={values.lastname}
+                              errors={errors.lastname}
+                              handleBlur={handleBlur}
+                              handleChange={handleChange}
+                            />
+                          </div>
+                          <div className="col-6">
+                            <InputGroup
+                              label="Email Adresi"
+                              id="email"
+                              name="email"
+                              type="string"
+                              placeholder="Email Adresini Giriniz..."
+                              values={values.email}
+                              errors={errors.email}
+                              handleBlur={handleBlur}
+                              handleChange={handleChange}
+                            />
+                          </div>
+                          <div className="col-6">
+                            <InputGroup
+                              label="Telefon Numarası"
+                              id="tel"
+                              name="tel"
+                              type="tel"
+                              placeholder="Telefon numarasını giriniz..."
+                              values={values.tel}
+                              errors={errors.tel}
+                              handleBlur={handleBlur}
+                              handleChange={handleChange}
+                            />
+                          </div>
+                          <div className="col-12">
+                            <InputGroup
+                              label="Şifre"
+                              id="password"
+                              name="password"
+                              type="password"
+                              placeholder="Şifre giriniz..."
+                              values={values.password}
+                              errors={errors.password}
+                              handleBlur={handleBlur}
+                              handleChange={handleChange}
+                            />
+                          </div>
+                          <div className="col-12">
+                            <InputGroup
+                              label="Şifreyi Onayla"
+                              id="confirmPassword"
+                              name="confirmPassword"
+                              type="password"
+                              placeholder="Şifreyi tekrar giriniz..."
+                              values={values.confirmPassword}
+                              errors={errors.confirmPassword}
+                              handleBlur={handleBlur}
+                              handleChange={handleChange}
+                            />
+                          </div>
+                        </div>
+
                         <button
                           disabled={isSubmitting}
-                          className="bt-btn theme-btn-2 w-100"
-                        >
+                          className="bt-btn theme-btn-2 w-100">
                           Register Now
                         </button>
                         <div className="or-divide">
@@ -92,9 +171,7 @@ const Register = () => {
           </div>
         </section>
       </main>
-
     </Layout>
-    
   );
 };
 

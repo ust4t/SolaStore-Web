@@ -1,11 +1,7 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import axios from "axios";
-import { useQuery } from "react-query";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import Loader from "../../components/Loader";
 import sources from "../../../sources";
 
 export default function Categories({ categories }) {
