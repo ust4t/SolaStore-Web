@@ -272,14 +272,7 @@ const Details = ({
                               disabled
                             />
                             <button
-                              style={
-                                cart
-                                  ? { cursor: "pointer" }
-                                  : {
-                                      cursor: "not-allowed",
-                                    }
-                              }
-                              className="dec qtybutton"
+                              className="dec qtybutton cursor-pointer"
                               onClick={(e) =>
                                 cart &&
                                 cart.quantity !== 1 &&
@@ -289,14 +282,7 @@ const Details = ({
                               -
                             </button>
                             <button
-                              style={
-                                cart
-                                  ? { cursor: "pointer" }
-                                  : {
-                                      cursor: "not-allowed",
-                                    }
-                              }
-                              className="inc qtybutton"
+                              className="inc qtybutton cursor-pointer"
                               onClick={onIncrementCart}
                               disabled={cart ? false : true}>
                               +
@@ -343,11 +329,7 @@ const Details = ({
                                   onClick={() => setProduct(variant)}
                                   style={{ margin: 5, cursor: "pointer" }}>
                                   <div className="product-nav product-nav-thumbs">
-                                    <span
-                                      className="productvar"
-                                      style={{
-                                        cursor: "pointer",
-                                      }}>
+                                    <span className="productvar cursor-pointer">
                                       <img
                                         src={`${sources.imageMinSrc}${variant.picture_1}`}
                                         alt={variant.productShortName}

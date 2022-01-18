@@ -175,28 +175,14 @@ const ProductModal = ({ show, handleClose, product, getWishlist }) => {
                         disabled
                       />
                       <button
-                        style={
-                          cart
-                            ? { cursor: "pointer" }
-                            : {
-                                cursor: "not-allowed",
-                              }
-                        }
-                        className="dec qtybutton fw-bold "
+                        className="dec qtybutton fw-bold cursor-pointer"
                         onClick={handleDecreaseCart}
                         disabled={cart ? false : true}>
                         -
                       </button>
                       <button
-                        style={
-                          cart
-                            ? { cursor: "pointer" }
-                            : {
-                                cursor: "not-allowed",
-                              }
-                        }
                         onClick={handleIncreaseCart}
-                        className="inc qtybutton fw-bold "
+                        className="inc qtybutton fw-bold cursor-pointer"
                         disabled={cart ? false : true}>
                         +
                       </button>
@@ -301,11 +287,7 @@ const ProductModal = ({ show, handleClose, product, getWishlist }) => {
                         }}
                         style={{ margin: 5 }}>
                         <div className="product-nav product-nav-thumbs">
-                          <span
-                            className="productvar"
-                            style={{
-                              cursor: "pointer",
-                            }}>
+                          <span className="productvar cursor-pointer">
                             <Image
                               width="90px"
                               height="140px"

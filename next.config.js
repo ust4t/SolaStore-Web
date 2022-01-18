@@ -1,3 +1,5 @@
+const nextTranslate = require("next-translate");
+
 module.exports = {
   i18n: {
     localeDetection: false,
@@ -17,3 +19,5 @@ module.exports = {
     formats: ["image/webp"],
   },
 };
+
+module.exports = nextTranslate();
