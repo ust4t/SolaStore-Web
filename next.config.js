@@ -1,6 +1,6 @@
 const nextTranslate = require("next-translate");
 
-module.exports = {
+module.exports = nextTranslate({
   i18n: {
     localeDetection: false,
     locales: ["en", "ru", "ar", "fr", "tr", "ru"],
@@ -18,6 +18,4 @@ module.exports = {
     domains: ["solastore.com.tr", "picsum.photos"],
     formats: ["image/webp"],
   },
-};
-
-module.exports = nextTranslate();
+});

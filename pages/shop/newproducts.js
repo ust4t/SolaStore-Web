@@ -14,25 +14,25 @@ export async function getStaticProps({ locale }) {
 
   const allNewProducts = [];
 
-  await Promise.all(
-    data
-      .reverse()
-      .slice(0, 30)
-      .map(async (newProduct) => {
-        const { data: specificData } = await axios.get(
-          `https://api.solastore.com.tr/api/Product/GetVariationsByProductID?ProductID=${newProduct.masterProductID}&lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
-        );
+  // await Promise.all(
+  //   data
+  //     .reverse()
+  //     .slice(0, 30)
+  //     .map(async (newProduct) => {
+  //       const { data: specificData } = await axios.get(
+  //         `https://api.solastore.com.tr/api/Product/GetVariationsByProductID?ProductID=${newProduct.masterProductID}&lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
+  //       );
 
-        allNewProducts.push({
-          ...newProduct,
-          variants: specificData,
-        });
-      })
-  );
+  //       allNewProducts.push({
+  //         ...newProduct,
+  //         variants: specificData,
+  //       });
+  //     })
+  // );
 
   return {
     props: {
-      newProducts: allNewProducts,
+      newProducts: data.reverse(),
     },
   };
 }

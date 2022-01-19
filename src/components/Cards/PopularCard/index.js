@@ -40,6 +40,12 @@ function PopularCard({ productData }) {
     }
   }, []);
 
+  if (!images[0].guidName) {
+    console.log(images[0].guidName);
+    throw new Error(`${images[0].guidName} is not a valid image`);
+  }
+  console.log(images);
+
   const changeDressColor = (variant) => {
     if (variant.pictures) {
       setCurrentImages({
@@ -227,7 +233,7 @@ function PopularCard({ productData }) {
           )}
         </div>
       </div>
-      {productData.variants && (
+      {!!productData?.variants && Array.isArray(images) && (
         <>
           <Swiper
             modules={[Autoplay, Navigation]}
@@ -238,7 +244,7 @@ function PopularCard({ productData }) {
             autoplay={{
               delay: 6000,
             }}>
-            {[...productData.variants, { images }].map((variant, i) => (
+            {[...productData.variants, { images: images }].map((variant, i) => (
               <SwiperSlide>
                 <Image
                   key={`${i}__`}
@@ -246,7 +252,9 @@ function PopularCard({ productData }) {
                   width={60}
                   height={60}
                   src={`${sources.imageMinSrc}${
-                    variant.picture_1 || variant.images[0].guidName
+                    variant.picture_1 ||
+                    variant.images[0]?.guidName ||
+                    variant.images[1]?.guidName
                   }`}
                   priority={true}
                   onClick={() => changeDressColor(variant)}
