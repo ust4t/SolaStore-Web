@@ -1,16 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, memo } from "react";
 import { Nav, Tab } from "react-bootstrap";
-import { connect } from "react-redux";
-import ReactPaginate from "react-paginate";
 
 import PopularCard from "../components/Cards/PopularCard";
-import Paggination from "../components/Paggination";
 import PaginationList from "../components/PaginationList";
 import Filter from "../components/product/filter/Filter";
 import FilterDropdown from "../components/product/filter/FilterDropdown";
 import ProductListView from "../components/product/ProductListView";
 import { StoreContext } from "../context/StoreProvider";
-import { getProducts } from "../redux/action/product";
 import { activeData, dblock } from "../utils/utils";
 import Layout from "./Layout";
 import PageTitle from "./PageTitle";
@@ -22,15 +18,12 @@ const ShopLayout = ({
   rightSideBar,
   full,
   sortValue,
-  keyValueForQurey,
-  value = "vegetables",
   active_,
-  filter,
   filterDropdown = false,
 }) => {
   const { cartActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
-  const [pageLimit, setPageLimit] = useState(15);
+  const [pageLimit, setPageLimit] = useState(16);
   const [offset, setOffset] = useState(0);
   const pageCount = Math.ceil(allProducts.length / pageLimit);
   const [active, setActive] = useState(active_ ? active_ : 0);
@@ -53,7 +46,7 @@ const ShopLayout = ({
 
   useEffect(() => {
     handlePageData();
-  }, [offset]);
+  }, [offset, allProducts]);
 
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
@@ -121,7 +114,7 @@ const ShopLayout = ({
                                     ? "col-lg-3 col-sm-6 custom-col-10"
                                     : "col-lg-4 col-sm-6 custom-col-10"
                                 } ${dblock(active, i, sort)}`}
-                                key={`${productItem.productID}-_*|${i}`}>
+                                key={`${productItem.productID}-_*-|${i}`}>
                                 <PopularCard
                                   productData={{
                                     id: productItem.productID,
@@ -161,26 +154,6 @@ const ShopLayout = ({
                     pageCount={pageCount}
                     handlePageClick={handlePageClick}
                   />
-                  {/* <ReactPaginate
-                    previousClassName="page-item"
-                    previousLinkClassName="page-link"
-                    nextClassName="page-item"
-                    nextLinkClassName="page-link"
-                    breakClassName="page-item"
-                    breakLinkClassName="page-link"
-                    previousLabel={<i className="fas fa-angle-double-left" />}
-                    nextLabel={<i className="fas fa-angle-double-right" />}
-                    breakLabel={"..."}
-                    pageCount={pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={handlePageClick}
-                    containerClassName={
-                      "basic-pagination basic-pagination-2 text-center"
-                    }
-                    subContainerClassName={""}
-                    activeClassName={"active"}
-                  /> */}
                 </div>
               </div>
 
@@ -197,12 +170,4 @@ const ShopLayout = ({
   );
 };
 
-const mapStateToProps = (state) => ({
-  // allProducts: getProductByFilter(
-  //   hideProduct(state.product.products),
-  //   state.filter
-  // ),
-  filter: state.filter,
-});
-
-export default connect(mapStateToProps, { getProducts })(ShopLayout);
+export default memo(ShopLayout);

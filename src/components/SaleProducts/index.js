@@ -9,9 +9,9 @@ export default function SaleProducts({ saleProducts }) {
       {saleProducts
         .slice(0, saleProducts.length >= 12 ? 12 : saleProducts.length)
         .filter((item) => item.oldPrice > 0)
-        .map((productData) => {
+        .map((productData, i) => {
           return (
-            <div className="home_3_margin" key={productData.id}>
+            <div className="home_3_margin" key={`${productData.id}|n|${i}`}>
               <PopularCard
                 productData={{
                   id: productData.productID,

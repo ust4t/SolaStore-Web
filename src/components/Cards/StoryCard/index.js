@@ -38,6 +38,10 @@ function StoryCard({ onClose, storiesData }) {
     }
   }
 
+  const checkImage = storiesData.img[storyIndex].guidName
+    ? `${sources.imageMaxSrc}${storiesData.img[storyIndex].guidName}`
+    : "/img/placeholder.jpg";
+
   return (
     <div
       style={{
@@ -50,7 +54,7 @@ function StoryCard({ onClose, storiesData }) {
           right: "20px",
         }}
         onClick={onClose}
-        class="fas fa-times position-absolute text-white fs-3 cursor-pointer"></i>
+        className="fas fa-times position-absolute text-white fs-3 cursor-pointer"></i>
       <div className="story justify-content-end pt-2 my-0">
         <div className="title d-flex justify-content-space-between align-items-center">
           <Image
@@ -69,7 +73,7 @@ function StoryCard({ onClose, storiesData }) {
         <div className="progress-bars">
           {storiesData.img.map((story, index) => (
             <div
-              key={`${index}.ç${story.id}`}
+              key={`${index}.ç.${story.id}`}
               className="progress-bar-container">
               <div
                 style={{ animationDuration: `${duration || 10}s` }}
@@ -80,14 +84,13 @@ function StoryCard({ onClose, storiesData }) {
         <div className="storyEl position-relative w-100">
           <Image
             onClick={() => setStoryPaused(!storyPaused)}
-            src={`${sources.imageMaxSrc}${storiesData.img[storyIndex].guidName}`}
+            src={checkImage}
             width={600}
             height={400}
             layout="intrinsic"
             loading="eager"
             placeholder="blur"
             blurDataURL="/img/loadingImg.jpg"
-            // priority={true}
           />
           {storyIndex !== 0 && (
             <i

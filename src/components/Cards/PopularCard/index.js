@@ -40,12 +40,6 @@ function PopularCard({ productData }) {
     }
   }, []);
 
-  if (!images[0].guidName) {
-    console.log(images[0].guidName);
-    throw new Error(`${images[0].guidName} is not a valid image`);
-  }
-  console.log(images);
-
   const changeDressColor = (variant) => {
     if (variant.pictures) {
       setCurrentImages({
@@ -85,6 +79,16 @@ function PopularCard({ productData }) {
     });
     setIsLiked(false);
     return;
+  };
+
+  const checkVariantImage = (variant) => {
+    if (variant.picture_1) {
+      return `${sources.imageMinSrc}${variant.picture_1}`;
+    } else if (Array.isArray(variant.images)) {
+      return `${sources.imageMinSrc}${variant.images[0].guidName}`;
+    } else {
+      return "/img/placeholder.jpg";
+    }
   };
 
   return (
@@ -244,18 +248,13 @@ function PopularCard({ productData }) {
             autoplay={{
               delay: 6000,
             }}>
-            {[...productData.variants, { images: images }].map((variant, i) => (
-              <SwiperSlide>
+            {[...productData.variants, { images }].map((variant, i) => (
+              <SwiperSlide key={`${i}__..`}>
                 <Image
-                  key={`${i}__`}
                   className="color-select"
                   width={60}
                   height={60}
-                  src={`${sources.imageMinSrc}${
-                    variant.picture_1 ||
-                    variant.images[0]?.guidName ||
-                    variant.images[1]?.guidName
-                  }`}
+                  src={checkVariantImage(variant)}
                   priority={true}
                   onClick={() => changeDressColor(variant)}
                   placeholder="blur"

@@ -43,6 +43,16 @@ const ProductModal = ({ show, handleClose, product, getWishlist }) => {
   //   wishlists &&
   //   wishlists.find((wishlist) => wishlist.id === product.id);
 
+  const checkVariantImage = (variant) => {
+    if (variant.picture_1) {
+      return `${sources.imageMinSrc}${variant.picture_1}`;
+    } else if (Array.isArray(variant.images)) {
+      return `${sources.imageMinSrc}${variant.images[0].guidName}`;
+    } else {
+      return "/img/placeholder.jpg";
+    }
+  };
+
   const onAddToCart = (e) => {
     e.preventDefault();
     addToCartAction(productData);
@@ -102,7 +112,7 @@ const ProductModal = ({ show, handleClose, product, getWishlist }) => {
                         productModalData.pictures.map((img, i) => (
                           <div
                             className="single-slider single-img d-flex align-items-end"
-                            key={`${img.id}__${i + 1}`}>
+                            key={`${img.id}_.._${i + 1}`}>
                             <Image
                               src={`${sources.imageMaxSrc}${img.guidName}`}
                               alt="Product"
@@ -291,10 +301,7 @@ const ProductModal = ({ show, handleClose, product, getWishlist }) => {
                             <Image
                               width="90px"
                               height="140px"
-                              src={`${sources.imageMinSrc}${
-                                variant.picture_1 ||
-                                variant.pictures[0].guidName
-                              }`}
+                              src={checkVariantImage(variant)}
                               alt={
                                 variant.productShortName ||
                                 product.productShortName
