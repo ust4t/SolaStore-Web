@@ -1,6 +1,6 @@
 import MetisMenu from "@metismenu/react";
 import Link from "next/link";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { connect } from "react-redux";
 import InnerMobileMenu from "./InnerMobileMenu";
 const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
@@ -33,7 +33,7 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
             {menu &&
               menu.map(
                 ({ selectedCategoryName, categoryID, subcategories }, i) => (
-                  <li className="has-dropdown">
+                  <li key={`${categoryID}?=)${i}`} className="has-dropdown">
                     <Link
                       href={{
                         pathname: "/shop",

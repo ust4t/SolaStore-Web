@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 import rootReducer from "./reducer";
 
 const middleware = [thunk];
-const loadedState = { lang: loadState("lang") };
+const loadedState = { lang: loadState("lang"), auth: loadState("udata") };
 
 const bindMiddleware = (middleware) => {
   if (process.env.NODE_ENV !== "production") {

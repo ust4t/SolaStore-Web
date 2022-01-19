@@ -6,7 +6,7 @@ function InnerMobileMenu({ subcategories }) {
     <ul className="submenu submenu-three mm-collapse">
       {subcategories &&
         subcategories.map(({ categoryID, selectedCategoryName }) => (
-          <li key={categoryID}>
+          <li key={`${categoryID}_?9`}>
             <Link
               href={{
                 pathname: "/shop",

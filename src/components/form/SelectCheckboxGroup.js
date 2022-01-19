@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, Fragment } from "react";
 import useDetectOutside from "../../hooks/useDetectOutside";
 
 function SelectCheckboxGroup({ filterData, title, data, onSelect = () => {} }) {
@@ -43,7 +43,7 @@ function SelectCheckboxGroup({ filterData, title, data, onSelect = () => {} }) {
         } dropdown-list shadow p-3 bg-body w-100 position-absolute overflow-auto`}>
         {data &&
           data.map(({ categoryID, selectedCategoryName, subcategories }, i) => (
-            <>
+            <Fragment key={`${categoryID}_._.?*${i}`}>
               <label
                 key={`${categoryID}_<_${i}`}
                 className="d-block dropdown-option w-100 pt-2">
@@ -73,7 +73,7 @@ function SelectCheckboxGroup({ filterData, title, data, onSelect = () => {} }) {
                     </b>
                   </label>
                 ))}
-            </>
+            </Fragment>
           ))}
       </div>
     </div>

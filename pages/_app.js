@@ -44,11 +44,16 @@ function MyApp({ Component, pageProps }) {
   };
 
   const fetchUser = async () => {
+    if (store.getState().auth.uid) return;
+
     try {
       const { data } = await axios.get("/api/auth/createUserId");
       store.dispatch({
         type: CREATE_USER_ID,
-        payload: data.data,
+        payload: {
+          uid: data.data,
+          state: "guest",
+        },
       });
     } catch (error) {
       console.log(error);
@@ -75,7 +80,10 @@ function MyApp({ Component, pageProps }) {
     <Provider store={store}>
       <Head>
         <title>SolaStore</title>
-        <meta name="description" content />
+        <meta
+          name="description"
+          content="Solastore where you can find the best fashion that you always desired"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
           rel="shortcut icon"
