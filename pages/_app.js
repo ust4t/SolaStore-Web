@@ -44,7 +44,12 @@ function MyApp({ Component, pageProps }) {
   };
 
   const fetchUser = async () => {
-    if (store.getState().auth.uid) return;
+    if (
+      (store.getState().auth.uuid &&
+        store.getState().auth.state === "user_registered") ||
+      store.getState().auth.state === "guest"
+    )
+      return;
 
     try {
       const { data } = await axios.get("/api/auth/createUserId");
@@ -53,6 +58,7 @@ function MyApp({ Component, pageProps }) {
         payload: {
           uid: data.data,
           state: "guest",
+          name: "Guest",
         },
       });
     } catch (error) {

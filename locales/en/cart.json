@@ -1,0 +1,20 @@
+{
+  "title": "Shopping Cart",
+  "breadcrumb": "Cart",
+  "orderTitle": "Order Completion Page",
+  "orderDesc": "You can complete your order without worry. When you complete your order, our team will contact you about payment and shipping details.",
+  "orderFirst": "My first order, I don't have any sales representative",
+  "orderChoose": "Please choose a sales representative",
+  "cartInfo": "You can check your cart information here",
+  "cartTitle": "Your Cart",
+  "cartEmpty": "Your cart is empty",
+  "cartAmount": "Cart Amount",
+  "totalAmount": "Total Amount",
+  "orderInfo": "Enter your order information",
+  "orderName": "Enter Name and Surname",
+  "orderTel": "Enter Telephone Number",
+  "orderCredit": "Pay with Credit Card",
+  "orderCurrent": "Pay with Current Account",
+  "validationName": "Please enter your name",
+  "validationTel": "Please enter your telephone number"
+}

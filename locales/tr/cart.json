@@ -1,0 +1,20 @@
+{
+  "title": "Alışveriş Sepeti",
+  "breadcrumb": "Sepet",
+  "orderTitle": "Sipariş Tamamlama Sayfası",
+  "orderDesc": "Siparişinizi Güvenle Tamamlayabilirsiniz. Siparişinizi tamamladığınızda, ödeme ve kargo gönderim konusunda satış ekibimiz sizi arayacak.",
+  "orderFirst": "İlk siparişim. Satış temsilcim yok.",
+  "orderChoose": "LÜTFEN SATIŞ TEMSİLCİNİZİ SEÇİNİZ",
+  "cartInfo": "Ürünlerinizi Buradan İnceleyebilirsiniz",
+  "cartTitle": "SEPETİNİZ",
+  "cartEmpty": "Sepetinizde ürün bulunmamaktadır.",
+  "cartAmount": "Sepet Tutarı",
+  "totalAmount": "Toplam Tutar",
+  "orderInfo": "Bilgilerinizi Giriniz",
+  "orderName": "İsim Soyisim Giriniz",
+  "orderTel": "Telefonunuz Giriniz",
+  "orderCredit": "Kredi Kartı ile Öde",
+  "orderCurrent": "Cari Hesap ile Öde",
+  "validationName": "Lütfen isminizi giriniz",
+  "validationTel": "Lütfen telefon numaranızı giriniz"
+}

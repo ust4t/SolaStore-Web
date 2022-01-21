@@ -1,0 +1,20 @@
+{
+  "title": "Panier",
+  "breadcrumb": "Chariot",
+  "orderTitle": "Page de fin de commande",
+  "orderDesc": "Vous pouvez terminer votre commande sans souci. Lorsque vous aurez terminé votre commande, notre équipe vous contactera au sujet des détails de paiement et d'expédition.",
+  "orderFirst": "Ma première commande, je n'ai pas de commercial",
+  "orderChoose": "Veuillez choisir un représentant commercial",
+  "cartInfo": "Vous pouvez vérifier les informations de votre panier ici",
+  "cartTitle": "Votre panier",
+  "cartEmpty": "Votre panier est vide",
+  "cartAmount": "Montant du panier",
+  "totalAmount": "Montant total",
+  "orderInfo": "Entrez les informations de votre commande",
+  "orderName": "Entrez le nom et le prénom",
+  "orderTel": "Entrez le numéro de téléphone",
+  "orderCredit": "Payez avec une carte de crédit",
+  "orderCurrent": "Payer avec un compte courant",
+  "validationName": "S'il vous plaît entrez votre nom",
+  "validationTel": "Veuillez entrer votre numéro de téléphone"
+}

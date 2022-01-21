@@ -1,5 +1,11 @@
 import Link from "next/link";
-const PageTitle = ({ pageTitle, active, thankupage, id }) => {
+const PageTitle = ({
+  pageTitle,
+  active,
+  thankupage,
+  id,
+  navigation = true,
+}) => {
   return (
     <div
       className="breadcrumb-bg pt-20 pb-20"
@@ -24,14 +30,16 @@ const PageTitle = ({ pageTitle, active, thankupage, id }) => {
                 </p>
               )}
               {/* <h2 className="breadcrumb-title">{pageTitle}</h2> */}
-              <div className="row">
-                <div className="col-lg-3 d-none d-lg-block">
-                  <div className="previous-product">
-                    <a href="#">
-                      <i className="fas fa-angle-left" /> Önceki Ürünü Gör
-                    </a>
+              <div className="row justify-content-center">
+                {navigation && (
+                  <div className="col-lg-3 d-none d-lg-block">
+                    <div className="previous-product">
+                      <a href="#">
+                        <i className="fas fa-angle-left" /> Önceki Ürünü Gör
+                      </a>
+                    </div>
                   </div>
-                </div>
+                )}
                 <div className="col-lg-6">
                   <div className="breadcrumb-menu mt-20">
                     <ul className="trail-items">
@@ -46,13 +54,15 @@ const PageTitle = ({ pageTitle, active, thankupage, id }) => {
                     </ul>
                   </div>
                 </div>
-                <div className="col-lg-3 d-none d-lg-block">
-                  <div className="next-product">
-                    <a href="#">
-                      Sonraki Ürünü Gör <i className="fas fa-angle-right" />
-                    </a>
+                {navigation && (
+                  <div className="col-lg-3 d-none d-lg-block">
+                    <div className="next-product">
+                      <a href="#">
+                        Sonraki Ürünü Gör <i className="fas fa-angle-right" />
+                      </a>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>

@@ -7,6 +7,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
+import useTranslation from "next-translate/useTranslation";
 
 import Preloader from "../src/layout/Preloader";
 import CartAmount from "../src/components/cart/CartAmount";
@@ -18,6 +19,7 @@ import sources from "../sources";
 import { SET_COMPLETED_CART } from "../src/context/types";
 
 const Cart = ({ saleTeam }) => {
+  const { t } = useTranslation("cart");
   const uid = useSelector((state) => state.auth.uid);
   const { cartActions, state, isCartLoading, dispatch } =
     useContext(StoreContext);
@@ -33,8 +35,8 @@ const Cart = ({ saleTeam }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const paymentValidationSchema = Yup.object({
-    name: Yup.string().required("Adınızı giriniz."),
-    tel: Yup.string().required("Telefon numaranızı giriniz."),
+    name: Yup.string().required(t("validationName")),
+    tel: Yup.string().required(t("validationTel")),
   });
 
   const removeFromCart = (e, { id }) => {
@@ -116,19 +118,19 @@ const Cart = ({ saleTeam }) => {
     <Layout news={4} logoLeft layout={2} paymentOption>
       {isLoading && <Preloader />}
       <main>
-        <PageTitle active="Cart" pageTitle="Shoping Cart" />
+        <PageTitle
+          active={t("breadcrumb")}
+          pageTitle={t("title")}
+          navigation={false}
+        />
 
         <section className="cart-area pt-20 pb-100">
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <h2 className="text-center fw-bold ">
-                  SİPARİŞ TAMAMLAMA SAYFASI
-                </h2>
+                <h2 className="text-center fw-bold ">{t("orderTitle")}</h2>
                 <h5 className="text-center fw-bold text-danger">
-                  Siparişinizi Güvenle Tamamlayabilirsiniz. Siparişinizi
-                  tamamladığınızda, ödeme ve kargo gönderim konusunda satış
-                  ekibimiz sizi arayacak.
+                  {t("orderDesc")}
                 </h5>
               </div>
               <div className="col-12 mt-20 d-flex flex-column justify-content-center">
@@ -137,7 +139,7 @@ const Cart = ({ saleTeam }) => {
                     onClick={() =>
                       handleSeller({
                         id: 0,
-                        name: "İlk siparişim. Satış temsilcim yok.",
+                        name: t("orderFirst"),
                         img: "/img/logo/person.jpg",
                       })
                     }
@@ -150,11 +152,9 @@ const Cart = ({ saleTeam }) => {
                     />
                   </div>
                   <h4 className="fs-5 fw-bold text-center mb-20">
-                    İlk siparişim. Satış temsilcim yok.
+                    {t("orderFirst")}
                   </h4>
-                  <h3 className="fw-bold text-center">
-                    LÜTFEN SATIŞ TEMSİLCİNİZİ SEÇİNİZ
-                  </h3>
+                  <h3 className="fw-bold text-center">{t("orderChoose")}</h3>
                   {saleTeam.map(({ id, name, pictureGuidName }, i) => (
                     <div
                       key={`${id}_?=${i}`}
@@ -184,11 +184,11 @@ const Cart = ({ saleTeam }) => {
                 <div className="row px-md-4 px-2 pt-4">
                   <div className="col-lg-8">
                     <p className="pb-2 fw-bold text-secondary">
-                      Ürünlerinizi Buradan İnceleyebilirsiniz
+                      {t("cartInfo")}
                     </p>
                     <div className="card">
                       <div className="ribbon ribbon-top-right">
-                        <span>SEPETİNİZ</span>
+                        <span>{t("cartTitle")}</span>
                       </div>
                       <div>
                         <div className="table-responsive px-md-4 px-2 pt-3">
@@ -275,7 +275,7 @@ const Cart = ({ saleTeam }) => {
                                 ))
                               ) : (
                                 <h2 className="pt-100 pb-50 text-center w-100">
-                                  No Product Found
+                                  {t("cartEmpty")}
                                 </h2>
                               )}
                             </tbody>
@@ -309,7 +309,7 @@ const Cart = ({ saleTeam }) => {
                                     <div className="d-flex justify-content-between">
                                       {" "}
                                       <small className="text-muted">
-                                        Sepet Tutar
+                                        {t("cartAmount")}
                                       </small>
                                       <p>${totalPrice(state.cartData)}</p>
                                     </div>
@@ -323,7 +323,7 @@ const Cart = ({ saleTeam }) => {
                                     <div className="d-flex justify-content-between">
                                       {" "}
                                       <small className="text-muted fw-bold">
-                                        Toplam Tutar
+                                        {t("totalAmount")}
                                       </small>
                                       <p className="fw-bold">
                                         ${totalPrice(state.cartData)}
@@ -365,7 +365,7 @@ const Cart = ({ saleTeam }) => {
                       </div>
                     )}
                     <p className="fw-bold pt-lg-0 pt-4 pb-2 text-secondary mt-20">
-                      Bilgilerinizi Giriniz
+                      {t("orderInfo")}
                     </p>
                     <Formik
                       initialValues={{
@@ -392,7 +392,7 @@ const Cart = ({ saleTeam }) => {
                               onChange={handleChange("name")}
                               type="text"
                               className="form-control txth"
-                              placeholder="İsim Soyisim Giriniz"
+                              placeholder={t("orderName")}
                               required
                             />
                           </div>
@@ -407,7 +407,7 @@ const Cart = ({ saleTeam }) => {
                               onChange={handleChange("tel")}
                               type="tel"
                               className="form-control txth"
-                              placeholder="Telefonunuz Giriniz"
+                              placeholder={t("orderTel")}
                               required
                             />
                           </div>
@@ -424,7 +424,7 @@ const Cart = ({ saleTeam }) => {
                             <i
                               className="fas fa-credit-card"
                               style={{ marginRight: "5px" }}></i>
-                            Kredi Kartı ile Öde
+                            {t("orderCredit")}
                           </button>
                           <button
                             type="submit"
@@ -434,7 +434,7 @@ const Cart = ({ saleTeam }) => {
                             <i
                               className="fas fa-dollar-sign"
                               style={{ marginRight: "5px" }}></i>
-                            Cari Hesap ile Öde
+                            {t("orderCurrent")}
                           </button>
                         </Form>
                       )}

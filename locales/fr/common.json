@@ -1,1 +1,15 @@
-{}
+{
+  "menu": {
+    "home": "page d'accueil",
+    "brands": "marques",
+    "contact": "prendre contact"
+  },
+  "search": "Tapez l'article que vous recherchez",
+  "category": "Catégorie",
+  "price": "Prix",
+  "choose": "Choisir",
+  "basket": "Ajouter au panier",
+  "share": "partager le produit",
+  "stock": "en stock",
+  "saleInfo": "Découvrez les produits %30 de réduction pour le premier abonnement"
+}

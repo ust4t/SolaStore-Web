@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { Fragment, useEffect, useState, useRef } from "react";
+import Image from "next/image";
+import useTranslation from "next-translate/useTranslation";
 import {
   CartIcon,
   CompareIcon,
@@ -12,7 +14,6 @@ import {
   WishlistIcon,
 } from "./Icons";
 import Menu from "./Menu";
-import Image from "next/image";
 
 export const Layout1 = ({
   setSidebar,
@@ -73,6 +74,7 @@ export const Layout2 = ({
   logoLeft,
   news,
 }) => {
+  const { t } = useTranslation("common");
   const { push } = useRouter();
   const searchRef = useRef();
   // const [search, setSearch] = useState("");
@@ -138,7 +140,7 @@ export const Layout2 = ({
                       onKeyDown={handleSearch}
                       type="text"
                       className="form-control input-text"
-                      placeholder="Aramak İstediğiniz Ürünü Yazınız..."
+                      placeholder={t("search")}
                       aria-label
                       aria-describedby="basic-addon2"
                     />

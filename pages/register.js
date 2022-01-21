@@ -1,9 +1,10 @@
+import { useEffect } from "react";
 import { Formik } from "formik";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import InputGroup from "../src/components/form/InputGroup";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
@@ -11,8 +12,13 @@ import { CREATE_USER_ID } from "../src/redux/action/type";
 import { registerSchema } from "../src/utils/yupModal";
 
 const Register = () => {
+  const user = useSelector((state) => state.auth.uid);
   const dispatch = useDispatch();
   const { push } = useRouter();
+
+  useEffect(() => {
+    if (user) push("/dashboard");
+  }, []);
 
   const handleRegister = async (
     { name, lastname, tel, password, email },
@@ -30,7 +36,11 @@ const Register = () => {
       });
       dispatch({
         type: CREATE_USER_ID,
-        payload: data,
+        payload: {
+          uuid: data,
+          state: "user_registered",
+          name: `${name} ${lastname}`,
+        },
       });
       toast.success(
         "Başarılı bir şekilde kayıt oldunuz. Giriş yapabilirsiniz."

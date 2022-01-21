@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import useTranslation from "next-translate/useTranslation";
 
 import SelectCheckboxGroup from "../../components/form/SelectCheckboxGroup";
 import SelectCheckbox from "../../components/form/SelectCheckbox";
 import PriceFilter from "../../components/product/filter/PriceFilter";
 
 export default function FilterSearch({ brands }) {
+  const { t } = useTranslation("common");
   const { push } = useRouter();
   const menu = useSelector((state) => state.menu.menuData);
 
@@ -115,7 +117,7 @@ export default function FilterSearch({ brands }) {
             <SelectCheckboxGroup
               filterData={filterData.category}
               data={menu}
-              title="Kategori"
+              title={t("category")}
               onSelect={handleFilterCategory}
             />
           )}
@@ -125,7 +127,7 @@ export default function FilterSearch({ brands }) {
             <SelectCheckbox
               filterData={filterData.brand}
               data={brands}
-              title="Marka"
+              title={t("menu.brands")}
               onSelect={handleFilterBrand}
             />
           )}
@@ -144,7 +146,7 @@ export default function FilterSearch({ brands }) {
           <button
             onClick={navigateToSearch}
             className="btn btn-main text-uppercase shadow-none w-100 h-100">
-            Ara
+            {t("choose")}
           </button>
         </div>
       </div>

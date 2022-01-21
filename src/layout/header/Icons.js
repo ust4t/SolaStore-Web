@@ -17,13 +17,17 @@ export const SearchIcon = ({ hendelChangeSearch }) => (
   </Link>
 );
 
-export const UserIcon = () => (
-  <Link href="/login">
-    <a>
-      <i className="fas fa-user favf" />
-    </a>
-  </Link>
-);
+export const UserIcon = () => {
+  const name = useSelector((state) => state.auth.name);
+  return (
+    <Link href="/login">
+      <a className="d-flex align-items-end justify-content-center">
+        <i className="fas fa-user favf" />
+        <h6 className="fs-6 fw-bold">{name}</h6>
+      </a>
+    </Link>
+  );
+};
 export const WishlistIcon = () => {
   const { state } = useContext(StoreContext);
   return (

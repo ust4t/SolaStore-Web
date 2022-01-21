@@ -1,9 +1,9 @@
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Form, Formik } from "formik";
 import Link from "next/link";
-import { useState } from "react";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import InputGroup from "../src/components/form/InputGroup";
 import Layout from "../src/layout/Layout";
@@ -15,8 +15,15 @@ import { useRouter } from "next/router";
 
 const Login = () => {
   const { push } = useRouter();
+  const user = useSelector((state) => state.auth.state);
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    if (user === "user_registered") {
+      push("/dashboard");
+    }
+  }, []);
 
   const loginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
@@ -39,7 +46,11 @@ const Login = () => {
 
       dispatch({
         type: CREATE_USER_ID,
-        payload: data.data.userID,
+        payload: {
+          uuid: data.data.userID,
+          state: "user_registered",
+          name: `${data.data.userName} ${data.data.userSurname}`,
+        },
       });
       toast.success("Başarılı bir şekilde giriş yaptınız.");
       push("/");

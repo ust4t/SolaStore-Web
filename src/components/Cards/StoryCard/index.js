@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef, memo } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import useTranslation from "next-translate/useTranslation";
 
 import sources from "../../../../sources";
 
 function StoryCard({ onClose, storiesData }) {
+  const { t } = useTranslation("common");
   const [storyPaused, setStoryPaused] = useState(false);
   const [storyIndex, setStoryIndex] = useState(0);
   const storyIndexRef = useRef(0);
@@ -118,7 +120,7 @@ function StoryCard({ onClose, storiesData }) {
                 bottom: "25%",
                 backgroundColor: "rgba(0,0,0,0.75)",
               }}>
-              Ürünü Görüntüle
+              {t("seeProduct")}
             </button>
           </Link>
         </div>

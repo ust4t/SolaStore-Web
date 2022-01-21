@@ -1,18 +1,20 @@
-import SubMenu from "./SubMenu";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
+import SubMenu from "./SubMenu";
 
 const Menu = () => {
+  const { t } = useTranslation("common");
   return (
     <nav id="mobile-menu-four">
       <ul>
         <li>
           <Link href="/">
-            <a>ANASAYFA</a>
+            <a className="text-uppercase">{t("menu.home")}</a>
           </Link>
         </li>
         <li>
           <Link href="/shop/brandlist">
-            <a>MARKALAR</a>
+            <a className="text-uppercase">{t("menu.brands")}</a>
           </Link>
         </li>
         <li>
@@ -20,7 +22,7 @@ const Menu = () => {
         </li>
         <li>
           <Link href="/">
-            <a>İLETİŞİM</a>
+            <a className="text-uppercase">{t("menu.contact")}</a>
           </Link>
         </li>
       </ul>

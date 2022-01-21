@@ -1,6 +1,7 @@
 import React from "react";
 import { Nav, Tab } from "react-bootstrap";
 import dynamic from "next/dynamic";
+import useTranslation from "next-translate/useTranslation";
 
 // import PopularProducts from "../../components/PopularProducts";
 import NewProducts from "../../components/NewProducts";
@@ -11,13 +12,15 @@ const PopularProducts = dynamic(() =>
 const SaleProducts = dynamic(() => import("../../components/SaleProducts"));
 
 export default function TabLayout({ newProducts, saleProducts }) {
+  const { t } = useTranslation("home");
+
   return (
     <section className="product-area pt-70 pb-70">
       <div className="container">
         <div className="row">
           <div className="col-sm-12">
             <div className="section-title-five text-center">
-              <h4>Öne Çıkan Ürünler</h4>
+              <h4>{t("featured")}</h4>
             </div>
           </div>
         </div>
@@ -29,15 +32,15 @@ export default function TabLayout({ newProducts, saleProducts }) {
                   <div className="nav custom-tabs" id="nav-tab" role="tablist">
                     <Nav.Link eventKey="New Products">
                       <i className="fas fa-fire-alt"></i>
-                      Yeni Ürünler
+                      {t("new")}
                     </Nav.Link>
                     <Nav.Link eventKey="Sale Products">
                       <i className="fas fa-tags"></i>
-                      İndirimdeki Ürünler
+                      {t("sale")}
                     </Nav.Link>
                     <Nav.Link eventKey="Best Sell">
                       <i className="far fa-chart-line"></i>
-                      Çok Satanlar
+                      {t("bestseller")}
                     </Nav.Link>
                   </div>
                 </Nav>

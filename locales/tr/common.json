@@ -1,1 +1,15 @@
-{}
+{
+  "menu": {
+    "home": "Anasayfa",
+    "brands": "Markalar",
+    "contact": "İletişim"
+  },
+  "search": "Aramak istediğiniz ürünü giriniz",
+  "category": "Kategoriler",
+  "price": "Fiyat",
+  "choose": "Seçiniz",
+  "basket": "Sepete Ekle",
+  "share": "Ürünü Paylaş",
+  "stock": "Stokta",
+  "saleInfo": "İLK ÜYELERE %30 İNDİRİM ÜRÜNLERİ İNCELE"
+}

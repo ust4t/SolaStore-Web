@@ -1,1 +1,15 @@
-{}
+{
+  "menu": {
+    "home": "Homepage",
+    "brands": "Brands",
+    "contact": "Contact"
+  },
+  "search": "Type the item you are looking for",
+  "category": "Category",
+  "price": "Price",
+  "choose": "Choose",
+  "basket": "Add to basket",
+  "share": "Share Product",
+  "stock": "In Stock",
+  "saleInfo": "Check out products %30 off for the first membership"
+}
