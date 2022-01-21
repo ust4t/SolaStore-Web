@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useContext } from "react";
 import { useSelector } from "react-redux";
+import useTranslation from "next-translate/useTranslation";
 
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
@@ -8,6 +9,7 @@ import { StoreContext } from "../src/context/StoreProvider";
 import sources from "../sources";
 
 const Wishlist = () => {
+  const { t } = useTranslation("wishlist");
   const uid = useSelector((state) => state.auth.uid);
   const { state, wishListActions, cartActions } = useContext(StoreContext);
   const { removeFromWishList } = wishListActions;
@@ -32,7 +34,11 @@ const Wishlist = () => {
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
-        <PageTitle active="Wishlist" pageTitle="Wishlist" />
+        <PageTitle
+          active={t("title")}
+          pageTitle={t("title")}
+          navigation={false}
+        />
         {wishlist && wishlist.length > 0 ? (
           <section className="cart-area pt-100 pb-100">
             <div className="container">
