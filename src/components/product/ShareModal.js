@@ -1,3 +1,4 @@
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { Modal } from "react-bootstrap";
 import {
@@ -23,6 +24,8 @@ import sources from "../../../sources";
 const shareUrl = "https://solastore.vercel.app/detail/";
 
 export default function ShareModal({ show, handleClose, urlDetails }) {
+  const { t } = useTranslation("common");
+
   return (
     <Modal
       show={show}
@@ -36,7 +39,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
             <i className="fa fa-times modal-icon " onClick={handleClose} />
           </div>
           <div className="row">
-            <h2 className="text-center">Ürünü Paylaş</h2>
+            <h2 className="text-center">{t("share")}</h2>
           </div>
           <div className="row justify-content-center py-3">
             <input

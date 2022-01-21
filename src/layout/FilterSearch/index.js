@@ -17,46 +17,6 @@ export default function FilterSearch({ brands }) {
     brand: [],
     price: "",
   });
-  // const dataset = {
-  //   prices: [
-  //     {
-  //       brandName: "0-10",
-  //       brandID: "0-10",
-  //     },
-  //     {
-  //       brandName: "10-20",
-  //       brandID: "10-20",
-  //     },
-  //     {
-  //       brandName: "20-30",
-  //       brandID: "20-30",
-  //     },
-  //     {
-  //       brandName: "30-40",
-  //       brandID: "30-40",
-  //     },
-  //     {
-  //       brandName: "40-50",
-  //       brandID: "40-50",
-  //     },
-  //     {
-  //       brandName: "50-60",
-  //       brandID: "50-60",
-  //     },
-  //     {
-  //       brandName: "60-70",
-  //       brandID: "60-70",
-  //     },
-  //     {
-  //       brandName: "70-80",
-  //       brandID: "70-80",
-  //     },
-  //     {
-  //       brandName: "80-90",
-  //       brandID: "80-90",
-  //     },
-  //   ],
-  // };
 
   const navigateToSearch = () => {
     push({
@@ -133,13 +93,7 @@ export default function FilterSearch({ brands }) {
           )}
         </div>
         <div className="col-xs-12 col-md-4 col-lg-3 py-3">
-          {/* <SelectCheckbox
-            filterData={filterData.price}
-            data={dataset.prices}
-            title="Fiyat"
-            onSelect={handleFilterPrice}
-          /> */}
-          <h5 className="fs-4 text-center fw-bold pb-10">Fiyat</h5>
+          <h5 className="fs-4 text-center fw-bold pb-10">{t("price")}</h5>
           <PriceFilter filterByPrice={handlePriceSelect} />
         </div>
         <div className="col-xs-12 col-lg-3 py-3 d-flex align-items-end justify-content-center h-100 rounded">

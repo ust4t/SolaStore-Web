@@ -1,3 +1,4 @@
+import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -13,6 +14,7 @@ export default function FilterDropdown({
   pageLimit,
   setActive_,
 }) {
+  const { t } = useTranslation("common");
   const menu = useSelector((state) => state.menu.menuData);
   const { push, query } = useRouter();
 
@@ -102,7 +104,7 @@ export default function FilterDropdown({
           <SelectCheckboxGroup
             filterData={filterData.category}
             data={menu}
-            title="Kategori"
+            title={t("category")}
             onSelect={handleFilterCategory}
           />
         )}
@@ -112,7 +114,7 @@ export default function FilterDropdown({
           <SelectCheckbox
             filterData={filterData.brand}
             data={brands}
-            title="Marka"
+            title={t("menu.brands")}
             onSelect={handleFilterBrand}
           />
         )}
@@ -126,7 +128,7 @@ export default function FilterDropdown({
         /> */}
       </div>
       <div className="col-xs-12 col-md-2 col-xl-3 py-3">
-        <h5 className="fs-4 text-center fw-bold">Fiyat</h5>
+        <h5 className="fs-4 text-center fw-bold">{t("price")}</h5>
         <PriceFilter
           filterByPrice={handlePriceSlider}
           setActive_={setActive_}

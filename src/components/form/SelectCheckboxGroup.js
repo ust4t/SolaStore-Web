@@ -1,12 +1,15 @@
 import React, { memo, Fragment } from "react";
+import useTranslation from "next-translate/useTranslation";
+
 import useDetectOutside from "../../hooks/useDetectOutside";
 
 function SelectCheckboxGroup({ filterData, title, data, onSelect = () => {} }) {
+  const { t } = useTranslation("common");
   const dropdownRef = React.useRef(null);
   const [hidden, setHidden] = React.useState(true);
 
   const buttonText =
-    filterData.length < 1 ? "seçiniz" : `${filterData.length} seçildi`;
+    filterData.length < 1 ? t("choose") : `${filterData.length} ${t("chosen")}`;
 
   useDetectOutside(dropdownRef, hideDropdown);
 

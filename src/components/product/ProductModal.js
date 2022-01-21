@@ -2,6 +2,7 @@ import { useEffect, useContext, useState } from "react";
 import { Modal, Nav, Tab } from "react-bootstrap";
 import { connect } from "react-redux";
 import Image from "next/image";
+import useTranslation from "next-translate/useTranslation";
 
 import {
   addToCart,
@@ -17,6 +18,7 @@ import { HomePageSliderWithArrow as HomePageSliderWithArrowWithVideo } from "../
 import { StoreContext } from "../../context/StoreProvider";
 
 const ProductModal = ({ show, handleClose, product, getWishlist }) => {
+  const { t } = useTranslation("common");
   const { cartActions, state } = useContext(StoreContext);
   const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
   const { pictures } = product;
@@ -200,7 +202,7 @@ const ProductModal = ({ show, handleClose, product, getWishlist }) => {
                   </div>
                   <div className="pro-cart-btn ms-10">
                     <a href="#" onClick={onAddToCart}>
-                      Add to cart
+                      {t("basket")}
                     </a>
                   </div>
                   <div className="pro-wish ml-20">

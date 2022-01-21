@@ -1,4 +1,6 @@
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
+
 import useDetectOutside from "../../hooks/useDetectOutside";
 
 export default function SelectCheckbox({
@@ -7,10 +9,11 @@ export default function SelectCheckbox({
   data,
   onSelect = () => {},
 }) {
+  const { t } = useTranslation("common");
   const dropdownRef = React.useRef(null);
   const [hidden, setHidden] = React.useState(true);
   const buttonText =
-    filterData.length < 1 ? "seçiniz" : `${filterData.length} seçildi`;
+    filterData.length < 1 ? t("choose") : `${filterData.length} ${t("chosen")}`;
   useDetectOutside(dropdownRef, hideDropdown);
 
   function hideDropdown() {

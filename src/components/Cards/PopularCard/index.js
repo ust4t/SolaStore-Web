@@ -11,8 +11,10 @@ import sources from "../../../../sources";
 
 import { StoreContext } from "../../../context/StoreProvider";
 import ShareModal from "../../product/ShareModal";
+import useTranslation from "next-translate/useTranslation";
 
 function PopularCard({ productData }) {
+  const { t } = useTranslation("common");
   const { id, name, images, price, oldPrice, singlePrice, sizes } = productData;
   const { auth, lang } = useSelector((state) => state);
   const { state, cartActions, wishListActions } = useContext(StoreContext);
@@ -208,7 +210,7 @@ function PopularCard({ productData }) {
               currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
             }`}
             onClick={onAddToCart}>
-            Sepete Ekle
+            {t("basket")}
           </div>
         </div>
       </div>
