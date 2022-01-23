@@ -139,7 +139,7 @@ const Cart = ({ saleTeam }) => {
                     onClick={() =>
                       handleSeller({
                         id: 0,
-                        name: t("orderFirst"),
+                        name: "orderFirst",
                         img: "/img/logo/person.jpg",
                       })
                     }
@@ -319,7 +319,6 @@ const Cart = ({ saleTeam }) => {
                                       <p className="red">$20</p>
                                     </div> */}
                                     <div className="d-flex justify-content-between">
-                                      {" "}
                                       <small className="text-muted fw-bold">
                                         {t("totalAmount")}
                                       </small>
@@ -347,7 +346,9 @@ const Cart = ({ saleTeam }) => {
                   <div className="col-lg-4 payment-summary">
                     {!!currentSeller && (
                       <div className="d-flex flex-column align-items-center justify-content-center mb-20 mt-20">
-                        <h5 className="text-secondary">Satış Temsilcisi</h5>
+                        <h5 className="text-secondary">
+                          {t("salesRepresentative")}
+                        </h5>
 
                         <Image
                           src={currentSeller.img}
@@ -358,7 +359,9 @@ const Cart = ({ saleTeam }) => {
                           layout="fixed"
                         />
                         <h3 className="fw-bold text-center">
-                          {currentSeller.name}
+                          {currentSeller.id === 0
+                            ? t(currentSeller.name)
+                            : currentSeller.name}
                         </h3>
                       </div>
                     )}

@@ -1,6 +1,7 @@
-import Link from "next/link";
 import { useContext } from "react";
 import { useSelector } from "react-redux";
+import Link from "next/link";
+import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
 
 import Layout from "../src/layout/Layout";
@@ -70,15 +71,21 @@ const Wishlist = () => {
                               ) => (
                                 <tr key={`${productID}--*?${i}`}>
                                   <td className="product-thumbnail">
-                                    <a>
-                                      <img
-                                        src={`${sources.imageMidSrc}${picture_1}`}
-                                        alt="wishlist"
-                                      />
-                                    </a>
+                                    <Link href={`detail/${productID}`}>
+                                      <a>
+                                        <Image
+                                          src={`${sources.imageMidSrc}${picture_1}`}
+                                          alt="wishlist"
+                                          width="210"
+                                          height="300"
+                                        />
+                                      </a>
+                                    </Link>
                                   </td>
                                   <td className="product-name">
-                                    <a href="#">{productShortName}</a>
+                                    <Link href={`detail/${productID}`}>
+                                      <a href="#">{productShortName}</a>
+                                    </Link>
                                   </td>
                                   <td className="product-price">
                                     <span className="amount">
@@ -92,7 +99,7 @@ const Wishlist = () => {
                                         onClick={() =>
                                           handleAddToCart(productID)
                                         }>
-                                        Add TO Cart
+                                        {t("common:basket")}
                                       </a>
                                     </Link>
                                   </td>
@@ -117,7 +124,9 @@ const Wishlist = () => {
             </div>
           </section>
         ) : (
-          <h2 className="pt-100 pb-50 text-center w-100">No Product Found</h2>
+          <h2 className="pt-100 pb-50 text-center w-100">
+            {t("wishlistEmpty")}
+          </h2>
         )}
       </main>
     </Layout>

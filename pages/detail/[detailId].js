@@ -1,4 +1,3 @@
-import axios from "axios";
 import Details from "../../src/components/product/Details";
 
 const Single = ({ product, productVariants }) => {

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import useTranslation from "next-translate/useTranslation";
+
 const PageTitle = ({
   pageTitle,
   active,
@@ -6,6 +8,7 @@ const PageTitle = ({
   id,
   navigation = true,
 }) => {
+  const { t } = useTranslation("common");
   return (
     <div
       className="breadcrumb-bg pt-20 pb-20"
@@ -45,7 +48,7 @@ const PageTitle = ({
                     <ul className="trail-items">
                       <li className="trail-item trail-begin">
                         <Link href="/">
-                          <a>Home</a>
+                          <a>{t("menu.home")}</a>
                         </Link>
                       </li>
                       <li className="trail-item trail-end">

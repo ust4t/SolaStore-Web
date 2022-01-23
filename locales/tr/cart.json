@@ -16,5 +16,6 @@
   "orderCredit": "Kredi Kartı ile Öde",
   "orderCurrent": "Cari Hesap ile Öde",
   "validationName": "Lütfen isminizi giriniz",
-  "validationTel": "Lütfen telefon numaranızı giriniz"
+  "validationTel": "Lütfen telefon numaranızı giriniz",
+  "salesRepresentative": "Satış Temsilcisi"
 }

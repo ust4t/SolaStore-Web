@@ -16,5 +16,6 @@
   "orderCredit": "Pay with Credit Card",
   "orderCurrent": "Pay with Current Account",
   "validationName": "Please enter your name",
-  "validationTel": "Please enter your telephone number"
+  "validationTel": "Please enter your telephone number",
+  "salesRepresentative": "Sales Representative"
 }

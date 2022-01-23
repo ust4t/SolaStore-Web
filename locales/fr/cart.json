@@ -16,5 +16,6 @@
   "orderCredit": "Payez avec une carte de crédit",
   "orderCurrent": "Payer avec un compte courant",
   "validationName": "S'il vous plaît entrez votre nom",
-  "validationTel": "Veuillez entrer votre numéro de téléphone"
+  "validationTel": "Veuillez entrer votre numéro de téléphone",
+  "salesRepresentative": "Commercial"
 }

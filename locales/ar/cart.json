@@ -16,5 +16,6 @@
   "orderCredit": "دفع مع بطاقة الائتمان",
   "orderCurrent": "ادفع بالحساب الجاري",
   "validationName": "من فضلك أدخل إسمك",
-  "validationTel": "يرجى إدخال رقم الهاتف الخاص بك"
+  "validationTel": "يرجى إدخال رقم الهاتف الخاص بك",
+  "salesRepresentative": "مندوب مبيعات"
 }

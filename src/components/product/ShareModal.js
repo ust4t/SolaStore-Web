@@ -21,7 +21,7 @@ import {
 } from "react-share";
 import sources from "../../../sources";
 
-const shareUrl = "https://solastore.vercel.app/detail/";
+const shareUrl = "https://yenisite.solastore.com.tr/detail/";
 
 export default function ShareModal({ show, handleClose, urlDetails }) {
   const { t } = useTranslation("common");
