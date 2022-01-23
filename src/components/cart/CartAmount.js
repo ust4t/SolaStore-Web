@@ -1,39 +1,29 @@
 import React from "react";
-import { useMutation, useQueryClient } from "react-query";
-import { toast } from "react-hot-toast";
-import axios from "axios";
-
-const handleAmount = async (creds) => {
-  const { data: response } = await axios.post(
-    `/api/cart/${creds.type}?user=${creds.user}&ProductID=${creds.id}`
-  );
-
-  return response.data;
-};
+import { useSelector } from "react-redux";
 
 export default function CartAmount({
   cart,
   productID,
   decrementQuantity,
   incrementQuantity,
-  isCartLoading,
 }) {
-  const onClickCart = (e, cart) => {
+  const uid = useSelector((state) => state.auth.uid);
+  const onClickCart = (e) => {
     e.preventDefault();
     const cartData = {
       type: "increaseProductCount",
       id: productID,
-      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+      user: uid,
     };
 
     incrementQuantity(cartData);
   };
-  const onClickRemoveCart = (e, cart) => {
+  const onClickRemoveCart = (e) => {
     e.preventDefault();
     const cartData = {
       type: "decreaseProductCount",
       id: productID,
-      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+      user: uid,
     };
     decrementQuantity(cartData);
   };
@@ -43,7 +33,7 @@ export default function CartAmount({
       <div className="left">
         <input
           type="button"
-          onClick={(e) => cart.quantity !== 1 && onClickRemoveCart(e, cart)}
+          onClick={(e) => cart.quantity !== 1 && onClickRemoveCart(e)}
           className="minus"
           value="-"
         />
@@ -65,7 +55,7 @@ export default function CartAmount({
       <div className="left">
         <input
           type="button"
-          onClick={(e) => onClickCart(e, cart)}
+          onClick={onClickCart}
           className="minus"
           value="+"
         />

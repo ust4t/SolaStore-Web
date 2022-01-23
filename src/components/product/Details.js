@@ -1,7 +1,7 @@
 import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { Nav, Tab } from "react-bootstrap";
-import { toast } from "react-hot-toast";
 import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 import sources from "../../../sources";
 import { StoreContext } from "../../context/StoreProvider";
@@ -17,11 +17,7 @@ import {
   getCompare,
   getWishlist,
 } from "../../redux/action/utilis";
-import { simpleProductFilter } from "../../utils/filterProduct";
-import time from "../../utils/time";
 import RelatedProduct from "../sliders/RelatedProduct";
-import Product from "./Product";
-import Reating from "./Reating";
 import ShareModal from "./ShareModal";
 
 const Details = ({
@@ -33,6 +29,7 @@ const Details = ({
   getCompare,
   upthumb,
 }) => {
+  const uid = useSelector((state) => state.auth.uid);
   const { state, cartActions, wishListActions } = useContext(StoreContext);
   const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
   const { addToWishList, removeFromWishList } = wishListActions;
@@ -60,7 +57,7 @@ const Details = ({
     e.preventDefault();
     addToCartAction({
       id: product.productID,
-      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+      user: uid,
     });
   };
 
@@ -68,14 +65,14 @@ const Details = ({
     e.preventDefault();
     incrementQuantity({
       id: product.productID,
-      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+      user: uid,
     });
   };
   const onDecrementCart = (e) => {
     e.preventDefault();
     decrementQuantity({
       id: product.productID,
-      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+      user: uid,
     });
   };
   const handleAddToWishList = (e) => {
@@ -83,14 +80,14 @@ const Details = ({
     if (!isLiked) {
       addToWishList({
         id: product.productID,
-        user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+        user: uid,
       });
       setIsLiked(true);
       return;
     }
     removeFromWishList({
       id: product.productID,
-      user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+      user: uid,
     });
     setIsLiked(false);
     return;

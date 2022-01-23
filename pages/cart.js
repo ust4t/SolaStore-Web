@@ -205,7 +205,6 @@ const Cart = ({ saleTeam }) => {
                                     <td>
                                       <div className="d-flex align-items-center ord">
                                         <div>
-                                          {" "}
                                           <Link
                                             href={`/detail/${cart.productID}`}>
                                             <a>
@@ -245,7 +244,6 @@ const Cart = ({ saleTeam }) => {
                                       decrementQuantity={decrementQuantity}
                                       productID={cart.productID}
                                       cart={cart}
-                                      isCartLoading={isCartLoading}
                                     />
                                     <td>
                                       <div className="sept40">

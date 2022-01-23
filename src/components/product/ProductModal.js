@@ -3,6 +3,7 @@ import { Modal, Nav, Tab } from "react-bootstrap";
 import { connect } from "react-redux";
 import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
+import { useSelector } from "react-redux";
 
 import {
   addToCart,
@@ -18,6 +19,7 @@ import { HomePageSliderWithArrow as HomePageSliderWithArrowWithVideo } from "../
 import { StoreContext } from "../../context/StoreProvider";
 
 const ProductModal = ({ show, handleClose, product, getWishlist }) => {
+  const uid = useSelector((state) => state.auth.uid);
   const { t } = useTranslation("common");
   const { cartActions, state } = useContext(StoreContext);
   const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
@@ -29,7 +31,7 @@ const ProductModal = ({ show, handleClose, product, getWishlist }) => {
 
   const productData = {
     id: product.productID,
-    user: "0d1c9955-326f-42fd-b04d-b745b80b70e3",
+    user: uid,
   };
   useEffect(() => {
     // getCarts();
