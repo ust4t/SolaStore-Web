@@ -1,0 +1,11 @@
+.imgContainer {
+  background-repeat: no-repeat;
+  cursor: crosshair;
+  overflow: hidden;
+  padding-left: 10px;
+  margin-left: -10px;
+}
+
+.imgContainer:hover .zoomImg {
+  opacity: 0;
+}

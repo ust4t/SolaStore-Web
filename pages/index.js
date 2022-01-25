@@ -1,6 +1,6 @@
 import { memo } from "react";
 import dynamic from "next/dynamic";
-import VideoLayout from "../src/layout/VideoLayout";
+// import VideoLayout from "../src/layout/VideoLayout";
 import IntroBanners from "../src/layout/IntroBanners";
 // import Categories from "../src/layout/Categories";
 import { Box } from "@mui/material";
@@ -52,7 +52,7 @@ const Index4 = ({
           {/* <CountdownSection countdown={countdownSource} /> */}
           {/* <EmailArea /> */}
         </Box>
-        <VideoLayout />
+        {/* <VideoLayout /> */}
 
         <Box
           mx={{

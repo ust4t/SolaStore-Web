@@ -18,6 +18,7 @@ import {
   getWishlist,
 } from "../../redux/action/utilis";
 import RelatedProduct from "../sliders/RelatedProduct";
+import Zoom from "../Zoom";
 import ShareModal from "./ShareModal";
 
 const Details = ({
@@ -46,6 +47,7 @@ const Details = ({
   useEffect(() => {
     if (product.video_1 && videoRef.current) videoRef.current.pause();
     const wishlist =
+      product &&
       state.wishlistData &&
       state.wishlistData.find(
         (wishlist) => wishlist.productID === product.productID
@@ -117,7 +119,8 @@ const Details = ({
                       <div className="pro-details-tab">
                         <Tab.Content className="tab-content custom-content">
                           {product.video_1 && (
-                            <Tab.Pane eventKey={`tum-${12}`}>
+                            <Tab.Pane
+                              eventKey={`tum-${product.pictures.length}`}>
                               <video
                                 id="videoProductDetail"
                                 className="img-fluid"
@@ -136,12 +139,11 @@ const Details = ({
                           {product &&
                             product.pictures.map((img, i) => (
                               <Tab.Pane key={i} eventKey={`tum-${i}`}>
-                                <img
+                                <Zoom
+                                  width="536"
+                                  height="870"
+                                  alt={product.productShortName}
                                   src={`${sources.imageMaxSrc}${img.guidName}`}
-                                  className={`img-fluid ${
-                                    upthumb ? "mb-3" : ""
-                                  }`}
-                                  alt="Tum img"
                                 />
                               </Tab.Pane>
                             ))}
@@ -178,7 +180,7 @@ const Details = ({
                                     videoRef.current.play();
                                   }
                                 }}
-                                eventKey={`tum-${12}`}
+                                eventKey={`tum-${product.pictures.length}`}
                                 className="mr-0">
                                 <img
                                   src={`${sources.imageMaxSrc}${product.picture_1}`}
