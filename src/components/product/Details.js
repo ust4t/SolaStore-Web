@@ -1,33 +1,27 @@
 import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { Nav, Tab } from "react-bootstrap";
-import { connect } from "react-redux";
 import { useSelector } from "react-redux";
 
 import sources from "../../../sources";
 import { StoreContext } from "../../context/StoreProvider";
 import Layout from "../../layout/Layout";
 import PageTitle from "../../layout/PageTitle";
-import { getProducts, getSingleProduct } from "../../redux/action/product";
-import {
-  addToCart,
-  addWishlist,
-  compare,
-  decreaseCart,
-  getCarts,
-  getCompare,
-  getWishlist,
-} from "../../redux/action/utilis";
+
 import RelatedProduct from "../sliders/RelatedProduct";
 import Zoom from "../Zoom";
 import ShareModal from "./ShareModal";
+import {
+  arrowContainer,
+  arrow,
+  arrowLeft,
+  arrowRight,
+} from "./Details.module.css";
+import { Arrow } from "../sliders/SliderArrows";
 
 const Details = ({
   productVariants,
-  addWishlist,
   incomingProduct,
-  compares,
-  compare,
-  getCompare,
+
   upthumb,
 }) => {
   const uid = useSelector((state) => state.auth.uid);
@@ -37,6 +31,7 @@ const Details = ({
   const [product, setProduct] = useState(incomingProduct);
   const [shareModal, setShareModal] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const [imageKey, setImageKey] = useState(0);
   const videoRef = useRef();
 
   const cart =
@@ -115,9 +110,21 @@ const Details = ({
                     className={` ${
                       upthumb ? "product-modal col-lg-5" : "col-lg-7"
                     }`}>
-                    <Tab.Container defaultActiveKey="tum-0">
+                    <Tab.Container
+                      activeKey={`tum-${imageKey}`}
+                      defaultActiveKey={`tum-0`}>
                       <div className="pro-details-tab">
-                        <Tab.Content className="tab-content custom-content">
+                        <Tab.Content
+                          className={`tab-content custom-content position-relative ${arrowContainer}`}>
+                          <Arrow
+                            onClick={() =>
+                              imageKey > 0
+                                ? setImageKey(imageKey - 1)
+                                : setImageKey(product.pictures.length)
+                            }
+                            className={`${arrow} ${arrowLeft}`}
+                            icon="fas fa-arrow-left"
+                          />
                           {product.video_1 && (
                             <Tab.Pane
                               eventKey={`tum-${product.pictures.length}`}>
@@ -138,7 +145,10 @@ const Details = ({
                           )}
                           {product &&
                             product.pictures.map((img, i) => (
-                              <Tab.Pane key={i} eventKey={`tum-${i}`}>
+                              <Tab.Pane
+                                key={i}
+                                eventKey={`tum-${i}`}
+                                style={{ maxWidth: "536px" }}>
                                 <Zoom
                                   width="536"
                                   height="870"
@@ -147,6 +157,15 @@ const Details = ({
                                 />
                               </Tab.Pane>
                             ))}
+                          <Arrow
+                            onClick={() =>
+                              imageKey < product.pictures.length
+                                ? setImageKey(imageKey + 1)
+                                : setImageKey(0)
+                            }
+                            className={`${arrow} ${arrowRight}`}
+                            icon="fas fa-arrow-right"
+                          />
                         </Tab.Content>
 
                         <Nav
@@ -160,8 +179,10 @@ const Details = ({
                                   eventKey={`tum-${i}`}
                                   className="mr-0"
                                   onClick={() => {
-                                    if (product.video_1)
+                                    if (product.video_1) {
                                       videoRef.current.pause();
+                                    }
+                                    setImageKey(i);
                                   }}>
                                   <img
                                     src={`${sources.imageMaxSrc}${img.guidName}`}
@@ -179,6 +200,7 @@ const Details = ({
                                     videoRef.current.currentTime = 0;
                                     videoRef.current.play();
                                   }
+                                  setImageKey(product.pictures.length);
                                 }}
                                 eventKey={`tum-${product.pictures.length}`}
                                 className="mr-0">
@@ -427,23 +449,4 @@ const Details = ({
   );
 };
 
-const mapStateToProps = (state) => ({
-  // products: state.product.products,
-  detail: state.product,
-  // product: state.product,
-  carts: state.utilis.carts,
-  wishlists: state.utilis.wishlist,
-  compares: state.utilis.compares,
-});
-
-export default connect(mapStateToProps, {
-  addToCart,
-  decreaseCart,
-  getCarts,
-  getSingleProduct,
-  addWishlist,
-  getWishlist,
-  getProducts,
-  getCompare,
-  compare,
-})(Details);
+export default Details;

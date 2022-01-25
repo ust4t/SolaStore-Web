@@ -31,16 +31,28 @@ export default function Zoom({ src, width, height, ...rest }) {
     <figure
       className={styles.imgContainer}
       onMouseMove={
-        typeof screen.orientation === "undefined" ? null : handleMouseMove
+        typeof window !== "undefined" &&
+        typeof screen.orientation === "undefined"
+          ? null
+          : handleMouseMove
       }
       onMouseLeave={
-        typeof screen.orientation === "undefined" ? null : handleMouseLeave
+        typeof window !== "undefined" &&
+        typeof screen.orientation === "undefined"
+          ? null
+          : handleMouseLeave
       }
       onTouchMove={
-        typeof screen.orientation !== "undefined" ? null : handleMouseMove
+        typeof window !== "undefined" &&
+        typeof screen.orientation !== "undefined"
+          ? null
+          : handleMouseMove
       }
       onTouchEnd={
-        typeof screen.orientation !== "undefined" ? null : handleMouseLeave
+        typeof window !== "undefined" &&
+        typeof screen.orientation !== "undefined"
+          ? null
+          : handleMouseLeave
       }
       style={imageStyle}>
       <Image
