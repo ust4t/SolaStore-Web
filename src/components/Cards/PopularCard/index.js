@@ -10,7 +10,7 @@ import ProductModal from "../../product/ProductModal";
 import sources from "../../../../sources";
 
 import { StoreContext } from "../../../context/StoreProvider";
-import ShareModal from "../../product/ShareModal";
+import ShareModal from "../../Modals/ShareModal";
 import useTranslation from "next-translate/useTranslation";
 
 function PopularCard({ productData }) {

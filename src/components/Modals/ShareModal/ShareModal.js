@@ -19,19 +19,28 @@ import {
   RedditIcon,
   RedditShareButton,
 } from "react-share";
-import sources from "../../../sources";
+
+import { modalContainer, copyText } from "./ShareModal.module.css";
+import sources from "../../../../sources";
 
 const shareUrl = "https://yenisite.solastore.com.tr/detail/";
 
 export default function ShareModal({ show, handleClose, urlDetails }) {
   const { t } = useTranslation("common");
 
+  const handleCopyText = (e) => {
+    const text = e.target.value;
+    e.target.select();
+    e.target.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(text);
+  };
+
   return (
     <Modal
       show={show}
       onHide={handleClose}
       centered
-      dialogClassName="modal-30w justify-content-center w-50"
+      dialogClassName={modalContainer}
       aria-labelledby="share-modal-title">
       <Modal.Body>
         <div className="product-details-area product-modal">
@@ -43,24 +52,14 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
           </div>
           <div className="row justify-content-center py-3">
             <input
-              style={{
-                backgroundColor: "var(--color-light)",
-                pointerEvents: "auto",
-                fontSize: "1rem",
-                fontWeight: "500",
-              }}
-              onClick={(e) => {
-                const text = e.target.value;
-                e.target.select();
-                e.target.setSelectionRange(0, 99999);
-                navigator.clipboard.writeText(text);
-              }}
+              readOnly
+              onClick={handleCopyText}
               value={`${shareUrl}${urlDetails.id}`}
-              className="py-10 text-center w-50 cursor-pointer border-0"
+              className={`py-10 text-center cursor-pointer border-0 ${copyText}`}
             />
           </div>
-          <div className="row px-2 mx-0 gy-3">
-            <div className="col-2">
+          <div className="row px-md-2 mx-0 gy-3">
+            <div className="col-3 col-md-2">
               <WhatsappShareButton
                 url={`${shareUrl}${urlDetails.id}`}
                 title="Solastore"
@@ -68,7 +67,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
                 <WhatsappIcon size={55} round={true} />
               </WhatsappShareButton>
             </div>
-            <div className="col-2">
+            <div className="col-3 col-md-2">
               <TelegramShareButton
                 url={`${shareUrl}${urlDetails.id}`}
                 title="Solastore"
@@ -76,7 +75,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
                 <TelegramIcon size={55} round={true} />
               </TelegramShareButton>
             </div>
-            <div className="col-2">
+            <div className="col-3 col-md-2">
               <FacebookShareButton
                 url={`${shareUrl}${urlDetails.id}`}
                 quote="Solastore"
@@ -84,7 +83,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
                 <FacebookIcon size={55} round={true} />
               </FacebookShareButton>
             </div>
-            <div className="col-2">
+            <div className="col-3 col-md-2">
               <FacebookMessengerShareButton
                 url={`${shareUrl}${urlDetails.id}`}
                 quote="Solastore"
@@ -92,7 +91,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
                 <FacebookMessengerIcon size={55} round={true} />
               </FacebookMessengerShareButton>
             </div>
-            <div className="col-2">
+            <div className="col-3 col-md-2">
               <TwitterShareButton
                 url={`${shareUrl}${urlDetails.id}`}
                 title="Solastore"
@@ -100,7 +99,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
                 <TwitterIcon size={55} round={true} />
               </TwitterShareButton>
             </div>
-            <div className="col-2">
+            <div className="col-3 col-md-2">
               <PinterestShareButton
                 url={`${shareUrl}${urlDetails.id}`}
                 media={`${
@@ -111,7 +110,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
                 <PinterestIcon size={55} round={true} />
               </PinterestShareButton>
             </div>
-            <div className="col-2">
+            <div className="col-3 col-md-2">
               <VKShareButton
                 url={`${shareUrl}${urlDetails.id}`}
                 title="Solastore"
@@ -124,7 +123,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
                 <VKIcon size={55} round={true} />
               </VKShareButton>
             </div>
-            <div className="col-2">
+            <div className="col-3 col-md-2">
               <RedditShareButton
                 url={`${shareUrl}${urlDetails.id}`}
                 title="Solastore"

@@ -9,7 +9,7 @@ import PageTitle from "../../layout/PageTitle";
 
 import RelatedProduct from "../sliders/RelatedProduct";
 import Zoom from "../Zoom";
-import ShareModal from "./ShareModal";
+import ShareModal from "../Modals/ShareModal";
 import {
   arrowContainer,
   arrow,
