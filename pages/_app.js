@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
+import Script from 'next/script';
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useRouter } from 'next/router';
@@ -172,6 +173,7 @@ function MyApp({ Component, pageProps }) {
 					content='/img/logo/favicon/ms-icon-144x144.png'
 				/>
 				<meta name='theme-color' content='#ffffff' />
+
 				<link
 					href='https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
 					rel='stylesheet'
@@ -188,6 +190,10 @@ function MyApp({ Component, pageProps }) {
 					<Component {...pageProps} />
 				</StoreProvider>
 			</QueryClientProvider>
+			<Script
+				src='https://kit.fontawesome.com/9134714f20.js'
+				crossorigin='anonymous'
+			/>
 		</Provider>
 	);
 }
