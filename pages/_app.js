@@ -16,7 +16,7 @@ import { GET_MAIN_MENU, CREATE_USER_ID } from '../src/redux/action/type';
 import '../styles/main.css';
 import 'swiper/css/bundle';
 import 'animate.css';
-// import 'antd/dist/antd.css';
+import 'antd/dist/antd.css';
 import '../styles/global.css';
 
 function MyApp({ Component, pageProps }) {
