@@ -210,18 +210,7 @@
 	-webkit-transform-style: 'flat';
 	box-sizing: border-box;
 }
-.YTPOverlay.raster {
-	/* background: url(images/raster.png); */
-}
-.YTPOverlay.raster.retina {
-	/* background: url(images/raster@2x.png); */
-}
-.YTPOverlay.raster-dot {
-	/* background: url(images/raster_dot.png); */
-}
-.YTPOverlay.raster-dot.retina {
-	/* background: url(images/raster_dot@2x.png); */
-}
+
 .mb_YTPBar .simpleSlider {
 	position: relative;
 	width: 100px;
