@@ -7,7 +7,7 @@ import Image from 'next/image';
 import sources from '../../../sources';
 import { StoreContext } from '../../context/StoreProvider';
 import Layout from '../../layout/Layout';
-import PageTitle from '../../layout/PageTitle';
+// import PageTitle from '../../layout/PageTitle';
 
 import RelatedProduct from '../sliders/RelatedProduct';
 import Zoom from '../Zoom';
@@ -18,6 +18,8 @@ import {
 	arrowRight,
 	brandStyle,
 	smallBrandStyle,
+	videoStyle,
+	videoLogoStyle,
 } from './Details.module.css';
 import { Arrow } from '../sliders/SliderArrows';
 
@@ -31,11 +33,14 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 	const [isLiked, setIsLiked] = useState(false);
 	const [imageKey, setImageKey] = useState(0);
 	const videoRef = useRef();
-
+	console.log(product);
 	const cart =
 		product &&
 		state.cartData &&
 		state.cartData.find((cart) => cart.productID === product.productID);
+
+	const sizeNum = (product.sizes && product.sizes.split('-').length) || 0;
+	const oldUnitPrice = product.oldPrice / sizeNum;
 
 	useEffect(() => {
 		if (product.video_1 && videoRef.current) videoRef.current.pause();
@@ -152,12 +157,10 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 															eventKey={`tum-${product.pictures.length}`}>
 															<video
 																id='videoProductDetail'
-																style={{ maxWidth: '100%' }}
 																controls
 																autoPlay
 																ref={videoRef}
-																width='600'
-																height='600'>
+																className={videoStyle}>
 																<source
 																	src={`${sources.videos}${product.video_1}`}
 																	type='video/mp4'
@@ -172,8 +175,9 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 																eventKey={`tum-${i}`}
 																style={{ maxWidth: '900px' }}>
 																<Zoom
-																	width='650'
+																	width='600'
 																	height='900'
+																	layout='responsive'
 																	alt={product.productShortName}
 																	src={`${sources.imageMaxSrc}${img.guidName}`}
 																/>
@@ -224,7 +228,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 																eventKey={`tum-${product.pictures.length}`}
 																className='mr-0'>
 																<i
-																	className='fas fa-play fa-3x position-absolute top-50 start-50 translate-middle z-index-first'
+																	className={`fas fa-play position-absolute top-50 start-50 translate-middle z-index-first ${videoLogoStyle}`}
 																	style={{
 																		color: 'var(--color-primary)',
 																	}}
@@ -251,9 +255,27 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 											</div>
 											<div className='col-8 col-md-4 py-3 border-right'>
 												<span className='details-pro-price mb-40'>
-													{product &&
-														product.price &&
-														`$${product && Number(product.price).toFixed(2)}`}
+													{product.oldPrice > 0 && sizeNum ? (
+														<>
+															<h5>
+																{product.price && (
+																	<del className='text-danger'>
+																		${oldUnitPrice} USD
+																	</del>
+																)}
+															</h5>
+															<span className='details-pro-price mb-40'>
+																{product.price && `$${product.singlePrice} USD`}
+															</span>
+														</>
+													) : (
+														<>
+															<br />
+															<span className='details-pro-price mb-40'>
+																{product.price && `$${product.singlePrice} USD`}
+															</span>
+														</>
+													)}
 												</span>
 											</div>
 											<div className='col-8 col-md-4 py-3'>
@@ -307,6 +329,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 															src={`${sources.brand}${brand.guidName2}`}
 															width='180'
 															height='130'
+															quality={50}
 														/>
 													</Link>
 													<p className='card-body text-center px-1 py-0 m-0 my-1'>
@@ -419,11 +442,12 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 																	style={{ margin: 5, cursor: 'pointer' }}>
 																	<div className='product-nav product-nav-thumbs'>
 																		<span className='productvar cursor-pointer'>
-																			<img
+																			<Image
 																				src={`${sources.imageMinSrc}${variant.picture_1}`}
 																				alt={variant.productShortName}
 																				title={variant.productShortName}
-																				style={{ maxWidth: 90 }}
+																				width={90}
+																				height={140}
 																			/>
 																		</span>
 																	</div>
