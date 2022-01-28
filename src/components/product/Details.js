@@ -124,7 +124,6 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 	return (
 		<Layout news={4} logoLeft layout={2} paymentOption>
 			<main>
-				{/* <PageTitle active='SHOP DETAILS' pageTitle='Our Shop' /> */}
 				{product ? (
 					<Fragment>
 						<section className='product-details-area pt-50 pb-50'>

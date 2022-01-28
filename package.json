@@ -7,7 +7,29 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"find:unused": "next-unused"
+	},
+	"next-unused": {
+		"include": [
+			"src",
+			"pages",
+			"src/components",
+			"src/redux/action",
+			"src/redux/reducer",
+			"src/layout",
+			"src/layout/header",
+			"src/layout/BrandsLayout",
+			"src/layout/Categories",
+			"src/layout/CountdownSection",
+			"src/layout/EmailArea",
+			"src/layout/FilterSearch",
+			"src/layout/IntroBanners",
+			"src/layout/Stories",
+			"src/layout/TabLayout",
+			"src/layout/VideoLayout",
+			"styles"
+		]
 	},
 	"dependencies": {
 		"@emotion/react": "^11.7.1",
@@ -54,6 +76,7 @@
 	},
 	"devDependencies": {
 		"eslint": "7.32.0",
-		"eslint-config-next": "11.1.2"
+		"eslint-config-next": "11.1.2",
+		"next-unused": "^0.0.6"
 	}
 }

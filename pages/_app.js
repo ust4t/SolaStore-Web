@@ -8,9 +8,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 import AllToaster from '../src/components/AllToaser';
-// import Preloader from '../src/layout/Preloader';
 import ScrollTop from '../src/layout/ScrollTop';
-import { aTagClick } from '../src/utils/utils';
 import StoreProvider from '../src/context/StoreProvider';
 import store from '../src/redux/store';
 import { GET_MAIN_MENU, CREATE_USER_ID } from '../src/redux/action/type';
@@ -80,8 +78,6 @@ function MyApp({ Component, pageProps }) {
 				locale: store.getState().lang,
 			});
 		}
-
-		aTagClick();
 	}, []);
 
 	return (
