@@ -23,6 +23,7 @@
 		"antd": "^4.17.3",
 		"axios": "^0.24.0",
 		"dompurify": "^2.3.4",
+		"express": "^4.17.2",
 		"formik": "^2.2.9",
 		"isotope-layout": "^3.0.6",
 		"moment": "^2.29.1",
