@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useSelector } from 'react-redux';
+
 import { Menu, Dropdown } from 'antd';
 import ColorfulText from '../../components/ColorfulText';
 import CartProductItem from '../../components/CartProductItem';
@@ -100,7 +102,7 @@ export const Logo = () => (
 	<div className='logo product-details-logo'>
 		<Link href='/'>
 			<a>
-				<img src='/img/logo/logo.png' alt='Logo' />
+				<Image src='/img/logo/logo.png' alt='Logo' width='120' height='80' />
 			</a>
 		</Link>
 	</div>
@@ -111,25 +113,10 @@ export const HamburgerIcon = ({ sidebarActive, darkBg }) => (
 			<a
 				className={darkBg ? 'text-white' : ''}
 				onClick={(e) => {
-					sidebarActive();
-					e.preventDefault();
-				}}>
-				<i className='fal fa-bars favf' />
-			</a>
-		</Link>
-	</div>
-);
-export const HomeHamburgerIcon = ({ sidebarActive }) => (
-	<div className='basic-bar hamburger-menu'>
-		<Link href='#'>
-			<a
-				onClick={(e) => {
 					e.preventDefault();
 					sidebarActive();
 				}}>
-				<span className='bar1' />
-				<span className='bar2' />
-				<span className='bar3' />
+				<i className='fas fa-bars' />
 			</a>
 		</Link>
 	</div>

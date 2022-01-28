@@ -6,7 +6,6 @@ import useTranslation from 'next-translate/useTranslation';
 import {
 	CartIcon,
 	HamburgerIcon,
-	HomeHamburgerIcon,
 	Logo,
 	SearchIcon,
 	UserIcon,
