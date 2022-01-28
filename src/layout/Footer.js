@@ -1,9 +1,8 @@
 import moment from 'moment';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
 import Image from 'next/image';
 
-export const DefaultFooter = ({ darkBg, paymentOption }) => {
+export const DefaultFooter = ({ darkBg }) => {
 	return (
 		<footer className='bgblack'>
 			<div className={`footer-area pt-60 pb-55 ${darkBg ? 'black-bg' : ''}`}>
@@ -269,8 +268,7 @@ export const Footer_1 = () => {
 								<div className='widget-five-text'>
 									<ul>
 										<li>
-											Telefon :{' '}
-											<span>(+2) 1800 555 {new Date().getFullYear}</span>
+											Telefon : <span>(+2) 1800 555 2022</span>
 										</li>
 										<li>
 											Address :
@@ -351,10 +349,7 @@ export const Footer_1 = () => {
 					<div className='row'>
 						<div className='col-sm-12'>
 							<div className='copytext-five text-center'>
-								<span>
-									Copyright © {moment().year()} Retro Theme. All Rights
-									Reserved.
-								</span>
+								<span>Copyright © 2022 Retro Theme. All Rights Reserved.</span>
 							</div>
 						</div>
 					</div>

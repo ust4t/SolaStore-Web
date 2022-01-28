@@ -41,18 +41,6 @@ export const WishlistIcon = () => {
 		</Link>
 	);
 };
-export const CompareIcon = () => {
-	const compare = useSelector((state) => state.utilis.compares);
-
-	return (
-		<Link href='/compare'>
-			<a className='position-relative'>
-				<span className='iconValue'>{compare && compare.length}</span>
-				<i className='fas fa-exchange-alt favf' />
-			</a>
-		</Link>
-	);
-};
 
 export const CartIcon = () => {
 	const { state } = useContext(StoreContext);
