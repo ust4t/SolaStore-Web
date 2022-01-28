@@ -2,7 +2,7 @@ import useTranslation from 'next-translate/useTranslation';
 import { Fragment, useState } from 'react';
 import InputRange from 'react-input-range';
 
-const PriceFilter = ({ setActive_ }) => {
+const PriceFilter = ({ setActive_, filterByPrice }) => {
 	const { t } = useTranslation('common');
 	const [price, setPrice] = useState({ value: { min: 0, max: 300 } });
 
@@ -18,6 +18,7 @@ const PriceFilter = ({ setActive_ }) => {
 						setPrice({ value });
 					}}
 					onChangeComplete={(value) => {
+						filterByPrice(value);
 						if (setActive_) setActive_();
 					}}
 				/>

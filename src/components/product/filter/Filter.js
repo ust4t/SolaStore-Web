@@ -1,5 +1,4 @@
 import Link from 'next/dist/client/link';
-import { hideProduct } from '../../../utils/utils';
 import PriceFilter from './PriceFilter';
 
 const Filter2 = ({ products, setActive_, search }) => {
@@ -67,7 +66,7 @@ const Filter2 = ({ products, setActive_, search }) => {
 			</div>
 			<div className='side-product mb-50'>
 				<h6 className='cat-title pb-20'>Recent Product</h6>
-				{products &&
+				{/* {products &&
 					hideProduct(products).map(
 						(product, i) =>
 							i < 3 && (
@@ -90,7 +89,6 @@ const Filter2 = ({ products, setActive_, search }) => {
 											</Link>
 										</h6>
 										<span className='price'>
-											{/* ${Number(product.mainPrice).toFixed(2)}{" "} */}
 											{product.price && (
 												<del>${Number(product.price).toFixed(2)}</del>
 											)}
@@ -98,7 +96,7 @@ const Filter2 = ({ products, setActive_, search }) => {
 									</div>
 								</div>
 							)
-					)}
+					)} */}
 			</div>
 		</div>
 	);

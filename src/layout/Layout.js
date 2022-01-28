@@ -11,7 +11,6 @@ const Layout = ({
 	footer,
 	children,
 	transparent,
-	paymentOption,
 }) => {
 	const footerLayout = (value) => {
 		switch (value) {
@@ -19,7 +18,7 @@ const Layout = ({
 				return <Footer_1 darkBg={darkBg} />;
 
 			default:
-				return <DefaultFooter darkBg={darkBg} paymentOption={paymentOption} />;
+				return <DefaultFooter darkBg={darkBg} />;
 		}
 	};
 	return (

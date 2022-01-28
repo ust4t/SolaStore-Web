@@ -113,27 +113,3 @@ export const findFilterValue = (data, key, removeItem) => {
 	let removeUndifin = filteredArr.filter((f) => f !== undefined && f);
 	return removeUndifin;
 };
-
-export const totalProductByKey = (data, key, value) => {
-	return data && data.filter((d) => d[key] && d[key].includes(value)).length;
-};
-
-export const hideProduct = (products) => {
-	return products && products.filter((product) => product.productID);
-};
-
-// export const animationCreate = () => {
-//   if (typeof window !== "undefined") {
-//     window.WOW = require("wowjs");
-//   }
-//   new WOW.WOW().init();
-// };
-export const aTagClick = () => {
-	const aTag = document.querySelectorAll("[href='#']");
-	for (let i = 0; i < aTag.length; i++) {
-		const a = aTag[i];
-		a.addEventListener('click', (e) => {
-			e.preventDefault();
-		});
-	}
-};

@@ -22,10 +22,8 @@ import 'react-input-range/lib/css/index.css';
 function MyApp({ Component, pageProps }) {
 	const router = useRouter();
 	const queryClient = new QueryClient();
-	// const [preloader, setPreloader] = useState(true);
 
 	const fetchMenu = async () => {
-		// setPreloader(true);
 		try {
 			const { data: menu } = await axios.get(
 				`/api/getFullMenu?lang=${store.getState().lang}`
@@ -38,9 +36,6 @@ function MyApp({ Component, pageProps }) {
 			console.log(error);
 			toast.error('Menü alınırken hata oluştu');
 		}
-		// finally {
-		//   setPreloader(false);
-		// }
 	};
 
 	const fetchUser = async () => {
@@ -175,6 +170,14 @@ function MyApp({ Component, pageProps }) {
 					rel='stylesheet'
 					integrity='sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl'
 					crossorigin='anonymous'
+				/>
+				<link
+					href='https://solacss.s3.us-east-1.amazonaws.com/main.css?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEK%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDGV1LWNlbnRyYWwtMSJGMEQCIBos8uLt7Pu6W0MYjOwL%2BtB%2FDbI1Xbtg8tkWkyxKhfu7AiBfjXdWSxDlXXKFSx5T99o2YH2h5C8gHIy895zeO6z7xCrtAgjY%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDM1NTc5Nzk3MjgyOSIMoteue0ZqS8w2LBRzKsECpPKbUhBgUW5GxVa09NTH2uPwSC6abkqYqH8qEPsPjRU9baQfPqXZdzN%2B76y%2BV9JaR0AalyQVLFStRKQZm4HLksouX3b6HHCX4oRrBKz35EnF%2BNaTzWu14%2Fuw0EysSivjAMCco45mFNwD8ZJZOtHIfgnoWaCMp6xDU4VmrhTrrKL57wR7s4LMQl9ti03rKGUsjwdXzSqDC8%2FFbhJoHe8S%2FnDiUBlSj0OlS6tvmGAG5Xaogu0jROOMh2aGG5lgU4qzp3gBJfLhjwsw8bRf%2B2z%2FkVhF%2B7lCmoez4suLFJOEE2AtUeP0w6HyJQhJJiyCRdo3EKrVMAS4sTl%2BkBYu39EPKqccDl3YSLNUXh6QUYKUEynPKzlEVKFlccEx451ZaaM6NMvq2yel3nHJDLbRn2lBOgd%2FdBnfRvlSh5tiedCOelsgMOP4z48GOrQCXFltAuxFV2%2B33fjuW8jtmiNzWeB7RF%2B85KaKqntwzKENldq9N9fORvNjBHMHDcYNXbagrwQJO1VSu55NusXWJksbpP%2Fwsq%2Fon5HuBaRWPQ4WhXxP1AGEnwEZ4UjkLabvRj2e9WlFZsN38%2FrJLcJzU1HeIgPoahLnrax8t7vtk2mvAKDay3TIgtqv0%2Bo3LEtncbhCPQzVlagi%2B0YYIrE1aSvyzNapyoGSH2YTsl7SWMSl1sDiQGcrH3iCRI47QaFZNyBWAHckdNiecUWXfvp%2F9fwERJLXSt7bhZujUHsT1OA8Mei9pulVVongDyI3V7wOY6%2B0zSN%2BPWaI0%2FHo1ScVSTdiS73llpsjF4d9NbImNZIB%2BeM7sQ9Pnr%2BPaIMBAaGMiXiPNJrVKCWlQU5UhRm6rjeJ6PE%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220128T145547Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Credential=ASIAVFVZWG5O7DXPBA2S%2F20220128%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=42f9400692225583bb3b3936015c5ae5a1fd861eed8b2b37847aa8bd1c436779'
+					rel='stylesheet'
+				/>
+				<link
+					href='https://solacss.s3.us-east-1.amazonaws.com/animate.min.css?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEK%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDGV1LWNlbnRyYWwtMSJGMEQCIBos8uLt7Pu6W0MYjOwL%2BtB%2FDbI1Xbtg8tkWkyxKhfu7AiBfjXdWSxDlXXKFSx5T99o2YH2h5C8gHIy895zeO6z7xCrtAgjY%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDM1NTc5Nzk3MjgyOSIMoteue0ZqS8w2LBRzKsECpPKbUhBgUW5GxVa09NTH2uPwSC6abkqYqH8qEPsPjRU9baQfPqXZdzN%2B76y%2BV9JaR0AalyQVLFStRKQZm4HLksouX3b6HHCX4oRrBKz35EnF%2BNaTzWu14%2Fuw0EysSivjAMCco45mFNwD8ZJZOtHIfgnoWaCMp6xDU4VmrhTrrKL57wR7s4LMQl9ti03rKGUsjwdXzSqDC8%2FFbhJoHe8S%2FnDiUBlSj0OlS6tvmGAG5Xaogu0jROOMh2aGG5lgU4qzp3gBJfLhjwsw8bRf%2B2z%2FkVhF%2B7lCmoez4suLFJOEE2AtUeP0w6HyJQhJJiyCRdo3EKrVMAS4sTl%2BkBYu39EPKqccDl3YSLNUXh6QUYKUEynPKzlEVKFlccEx451ZaaM6NMvq2yel3nHJDLbRn2lBOgd%2FdBnfRvlSh5tiedCOelsgMOP4z48GOrQCXFltAuxFV2%2B33fjuW8jtmiNzWeB7RF%2B85KaKqntwzKENldq9N9fORvNjBHMHDcYNXbagrwQJO1VSu55NusXWJksbpP%2Fwsq%2Fon5HuBaRWPQ4WhXxP1AGEnwEZ4UjkLabvRj2e9WlFZsN38%2FrJLcJzU1HeIgPoahLnrax8t7vtk2mvAKDay3TIgtqv0%2Bo3LEtncbhCPQzVlagi%2B0YYIrE1aSvyzNapyoGSH2YTsl7SWMSl1sDiQGcrH3iCRI47QaFZNyBWAHckdNiecUWXfvp%2F9fwERJLXSt7bhZujUHsT1OA8Mei9pulVVongDyI3V7wOY6%2B0zSN%2BPWaI0%2FHo1ScVSTdiS73llpsjF4d9NbImNZIB%2BeM7sQ9Pnr%2BPaIMBAaGMiXiPNJrVKCWlQU5UhRm6rjeJ6PE%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220128T145603Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Credential=ASIAVFVZWG5O7DXPBA2S%2F20220128%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=cb19794bbbc9392ffca9ad0a367a0f5ec650add72b73520999b4697e13fcc2cd'
+					rel='stylesheet'
 				/>
 				<link
 					href='https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
