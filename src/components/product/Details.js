@@ -9,7 +9,7 @@ import { StoreContext } from '../../context/StoreProvider';
 import Layout from '../../layout/Layout';
 // import PageTitle from '../../layout/PageTitle';
 
-import RelatedProduct from '../sliders/RelatedProduct';
+// import RelatedProduct from '../sliders/RelatedProduct';
 import Zoom from '../Zoom';
 import ShareModal from '../Modals/ShareModal';
 import {
