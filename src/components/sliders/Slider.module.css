@@ -1,24 +1,23 @@
 .sliderButton {
-  text-align: center;
-
-  display: grid;
-  place-content: center;
-  padding: 1rem 3.5rem;
-  border: 1px solid #fff;
-  color: #fff;
-  border-radius: 30px;
-  font-size: 1.9rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-align: center;
-  cursor: pointer;
-  background-color: var(--color-primary);
-  font-size: 18px !important;
-  transition: all 0.3s ease-in-out;
-  z-index: 1;
+	text-align: center;
+	display: grid;
+	place-content: center;
+	padding: 1rem 3.5rem;
+	border: 1px solid #fff;
+	color: #fff;
+	border-radius: 30px;
+	font-size: 1.9rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	cursor: pointer;
+	background-color: var(--color-primary);
+	font-size: 18px !important;
+	transition: all 0.3s ease-in-out;
+	z-index: 1;
 }
 
 .sliderButton:hover {
-  background-color: #fff;
-  color: var(--color-primary);
+	background-color: #fff;
+	color: var(--color-primary);
 }
