@@ -22,14 +22,6 @@ const Header = ({ news, layout, darkBg, logoLeft }) => {
 		const handleSidebar = () => setSidebar(true);
 
 		switch (value) {
-			case 1:
-				return (
-					<Layout1
-						setActiveSearchBar={handleSearchBar}
-						setSidebar={handleSidebar}
-						news={news}
-					/>
-				);
 			case 2:
 				return (
 					<Layout2
@@ -40,15 +32,6 @@ const Header = ({ news, layout, darkBg, logoLeft }) => {
 						news={news}
 					/>
 				);
-			case 3:
-				return (
-					<Layout3
-						setActiveSearchBar={handleSearchBar}
-						setSidebar={handleSidebar}
-						news={news}
-					/>
-				);
-
 			default:
 				return (
 					<DefaultLayout

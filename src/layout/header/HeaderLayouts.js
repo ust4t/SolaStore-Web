@@ -14,65 +14,7 @@ import {
 } from './Icons';
 import Menu from './Menu';
 
-export const Layout1 = ({
-	setSidebar,
-	setActiveSearchBar,
-	news,
-	transparent,
-	totalPrice,
-	totalCarts,
-}) => (
-	<header className={transparent ? 'header-transparent' : ''}>
-		{news}
-		<div className='header-menu-area logo-circle-area'>
-			<div className='container-fluid'>
-				<div className='row align-items-center'>
-					<div className='col-xl-3 col-lg-3 col-md-3 col-12'>
-						<div className='header-left-icon d-flex align-items-center justify-content-center justify-content-md-left'>
-							<HomeHamburgerIcon sidebarActive={setSidebar} />
-							<SearchIcon hendelChangeSearch={setActiveSearchBar} />
-							<WishlistIcon />
-							<UserIcon />
-						</div>
-					</div>
-					<div className='col-xl-6 col-lg-5 col-md-4 col-5'>
-						<div className='logo pt-45 pb-45 text-left text-lg-center'>
-							<Link href='/'>
-								<a>
-									<img src='/img/logo/logo.png' alt='Logo' />
-								</a>
-							</Link>
-						</div>
-					</div>
-					<div className='col-xl-3 col-lg-4 col-md-5 col-7'>
-						<div className='shop-cart '>
-							<div className='text-end'>
-								<Link href='/cart'>
-									<a>
-										<h6 className='d-none d-md-inline-block'>
-											Shopping Bag <span>{totalCarts}</span>
-										</h6>
-										<h6 className='d-inline-block d-md-none'>
-											Cart <span>{totalCarts}</span>
-										</h6>
-										<div className='cart-price'>$ {totalPrice}</div>
-									</a>
-								</Link>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-);
-export const Layout2 = ({
-	setSidebar,
-	setActiveSearchBar,
-	darkBg,
-	logoLeft,
-	news,
-}) => {
+export const Layout2 = ({ setSidebar, darkBg, logoLeft, news }) => {
 	const { t } = useTranslation('common');
 	const { push } = useRouter();
 	const searchRef = useRef();
@@ -91,15 +33,13 @@ export const Layout2 = ({
 	// if (typeof window !== "undefined")
 	//   window.addEventListener("scroll", handleScroll);
 
-	const handleSearch = (e) => {
-		if (e.keycode === 13) {
-			push({
-				pathname: '/search',
-				query: {
-					searchText: searchRef.current.value,
-				},
-			});
-		}
+	const handleSearch = () => {
+		push({
+			pathname: '/search',
+			query: {
+				searchText: searchRef.current.value,
+			},
+		});
 	};
 
 	return (
@@ -136,7 +76,7 @@ export const Layout2 = ({
 										{' '}
 										<input
 											ref={searchRef}
-											onKeyDown={handleSearch}
+											onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
 											type='text'
 											className='form-control input-text'
 											placeholder={t('search')}
@@ -208,92 +148,6 @@ export const Layout2 = ({
 						darkBg ? ' main-menu-3' : ''
 					} text-center py-2`}>
 					<Menu />
-				</div>
-			</div>
-		</header>
-	);
-};
-export const Layout3 = ({
-	setSidebar,
-	setActiveSearchBar,
-	news,
-	filterByName,
-}) => {
-	const router = useRouter();
-	const [text, setText] = useState(false);
-	if (text) {
-		router.push(
-			{
-				pathname: '/shop',
-			},
-			undefined,
-			{ shallow: true }
-		);
-	}
-
-	const onSubmit = (e) => {
-		e.preventDefault();
-		setText(true);
-	};
-	return (
-		<header className='header-h-five common-space-5'>
-			{news}
-			<div className='header-menu-two'>
-				<div className='container-fluid'>
-					<div className='row align-items-center'>
-						<div className='col-xl-2 col-lg-2 col-md-4 col-4'>
-							<div className='logo'>
-								<Link href='/index'>
-									<a>
-										<img src='/img/logo/logo.png' alt='' />
-									</a>
-								</Link>
-							</div>
-						</div>
-						<div className='col-xl-4 col-lg-6 col-md-9 d-none d-lg-block'>
-							<div className='main-menu main-menu-five'>
-								<Menu />
-							</div>
-						</div>
-						<div className='col-xl-3 col-lg-3 d-lg-none d-xl-block col-md-7 d-none'>
-							<div className='search-five ml-35'>
-								<form onSubmit={onSubmit}>
-									<input
-										type='text'
-										placeholder='Search For Fruit, Vegetables..'
-										onChange={(e) => filterByName(e.target.value)}
-									/>
-									<button type='submit'>
-										<i className='far fa-search' />
-									</button>
-								</form>
-							</div>
-						</div>
-						<div className='col-xl-3 col-lg-4 col-md-7 col-6'>
-							<div className='header-left-icon header-left-icon-5 d-flex align-items-center f-right'>
-								<UserIcon />
-								<WishlistIcon />
-								<div className='shop-cart shop-cart-5 d-none d-sm-inline-block'>
-									<div className='text-end'>
-										<Link href='/cart'>
-											<a>
-												<h6 className='d-none d-md-inline-block'>
-													Shopping Bag <span>2</span>
-												</h6>
-												<h6 className='d-inline-block d-md-none'>
-													Cart <span>2</span>
-												</h6>
-												<div className='cart-price'>$ 275.50</div>
-											</a>
-										</Link>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className='col-2 col-md-1 d-block d-lg-none'>
-							<HamburgerIcon sidebarActive={setSidebar} />
-						</div>
-					</div>
 				</div>
 			</div>
 		</header>

@@ -33,7 +33,6 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 	const [isLiked, setIsLiked] = useState(false);
 	const [imageKey, setImageKey] = useState(0);
 	const videoRef = useRef();
-	console.log(product);
 	const cart =
 		product &&
 		state.cartData &&

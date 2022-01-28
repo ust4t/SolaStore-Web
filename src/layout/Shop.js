@@ -3,7 +3,6 @@ import { Nav, Tab } from 'react-bootstrap';
 
 import PopularCard from '../components/Cards/PopularCard';
 import PaginationList from '../components/PaginationList';
-import Filter from '../components/product/filter/Filter';
 import FilterDropdown from '../components/product/filter/FilterDropdown';
 import ProductListView from '../components/product/ProductListView';
 import { StoreContext } from '../context/StoreProvider';
@@ -15,7 +14,6 @@ const ShopLayout = ({
 	allProducts,
 	brands,
 	defaultKey,
-	rightSideBar,
 	full,
 	sortValue,
 	active_,
@@ -63,12 +61,6 @@ const ShopLayout = ({
 							/>
 						)}
 						<div className='row'>
-							{!full && !rightSideBar && (
-								<div className='col-lg-3 col-md-4'>
-									<Filter setActive_={() => setActive(0)} />
-								</div>
-							)}
-
 							<div className={full ? 'col-12' : 'col-lg-9 col-md-8'}>
 								{products && products.length > 0 ? (
 									<Tab.Container
@@ -156,12 +148,6 @@ const ShopLayout = ({
 									/>
 								</div>
 							</div>
-
-							{!full && rightSideBar && (
-								<div className='col-lg-3 col-md-4'>
-									<Filter setActive_={() => setActive(0)} />
-								</div>
-							)}
 						</div>
 					</div>
 				</section>
