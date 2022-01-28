@@ -24,3 +24,21 @@
 .arrowRight {
 	right: 0;
 }
+
+.brandStyle {
+	font-size: 1rem;
+	font-weight: bold;
+	color: var(--color-primary);
+	cursor: pointer;
+	transition: color 200ms ease-in-out;
+}
+
+.brandStyle:hover {
+	color: var(--color-dark);
+}
+
+.smallBrandStyle {
+	margin-left: 5px;
+	font-size: 0.8rem;
+	color: var(--color-primary);
+}

@@ -1,6 +1,8 @@
 import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import { Nav, Tab } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import Link from 'next/link';
+import Image from 'next/image';
 
 import sources from '../../../sources';
 import { StoreContext } from '../../context/StoreProvider';
@@ -10,7 +12,13 @@ import PageTitle from '../../layout/PageTitle';
 import RelatedProduct from '../sliders/RelatedProduct';
 import Zoom from '../Zoom';
 import ShareModal from '../Modals/ShareModal';
-import { arrow, arrowLeft, arrowRight } from './Details.module.css';
+import {
+	arrow,
+	arrowLeft,
+	arrowRight,
+	brandStyle,
+	smallBrandStyle,
+} from './Details.module.css';
 import { Arrow } from '../sliders/SliderArrows';
 
 const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
@@ -194,10 +202,11 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 																		}
 																		setImageKey(i);
 																	}}>
-																	<img
+																	<Image
 																		src={`${sources.imageMaxSrc}${img.guidName}`}
-																		className='img-fluid'
-																		alt='Src'
+																		width='145'
+																		height='220'
+																		alt={product.productShortName}
 																	/>
 																</Nav.Link>
 															</Nav.Item>
@@ -214,10 +223,17 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 																}}
 																eventKey={`tum-${product.pictures.length}`}
 																className='mr-0'>
-																<img
+																<i
+																	className='fas fa-play fa-3x position-absolute top-50 start-50 translate-middle z-index-first'
+																	style={{
+																		color: 'var(--color-primary)',
+																	}}
+																/>
+																<Image
 																	src={`${sources.imageMaxSrc}${product.picture_1}`}
-																	className='img-fluid'
-																	alt='Src'
+																	width='145'
+																	height='220'
+																	alt={product.productShortName}
 																/>
 															</Nav.Link>
 														</Nav.Item>
@@ -242,33 +258,71 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 											</div>
 											<div className='col-8 col-md-4 py-3'>
 												<small>
-													<span>Ürün kodu: {product.productStockCode}</span>
+													<span className='text-muted'>
+														Ürün kodu:{' '}
+														<span className='text-dark'>
+															{product.productStockCode}
+														</span>
+													</span>
 												</small>
 												<br />
 												<small>
-													<span className='text-muted'>Kategori:</span>
-													<a href='/kisa_elbise-c-26'>KISA ELBİSE</a>
+													<span className='text-muted'>
+														Kategori:{' '}
+														<span className='text-dark'>KATEGORI</span>
+													</span>
 												</small>
 												<br />
 												<small>
 													<span className='text-muted'>Marka:</span>
-													<a href='/Category/index?Type=Brand&amp;BrandID=13'>
-														{brand.brandName}
-													</a>
+													<Link
+														href={{
+															pathname: '/shop',
+															query: {
+																categoryIds: '',
+																brandIds: brand.brandID,
+																searchPrice: '',
+															},
+														}}>
+														<span
+															className={`${brandStyle} ${smallBrandStyle}`}>
+															{brand.brandName}
+														</span>
+													</Link>
 												</small>
 											</div>
 											<div className='col-4 col-md-4'>
 												<div className='card border p-2'>
-													<a href='/Category/index?Type=Brand&amp;BrandID=13'>
-														<img
+													<Link
+														href={{
+															pathname: '/shop',
+															query: {
+																categoryIds: '',
+																brandIds: brand.brandID,
+																searchPrice: '',
+															},
+														}}>
+														<Image
+															className='cursor-pointer'
 															src={`${sources.brand}${brand.guidName2}`}
-															className='card-img'
+															width='180'
+															height='130'
 														/>
-													</a>
-													<p className='card-body text-center px-1 py-0'>
-														<small>
-															<a href='#'>{brand.brandName}</a>
-														</small>
+													</Link>
+													<p className='card-body text-center px-1 py-0 m-0 my-1'>
+														<Link
+															href={{
+																pathname: '/shop',
+																query: {
+																	categoryIds: '',
+																	brandIds: brand.brandID,
+																	searchPrice: '',
+																},
+															}}>
+															<span className={brandStyle}>
+																{brand.brandName}
+															</span>
+														</Link>
 													</p>
 												</div>
 											</div>
