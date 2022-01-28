@@ -10,20 +10,10 @@ import PageTitle from '../../layout/PageTitle';
 import RelatedProduct from '../sliders/RelatedProduct';
 import Zoom from '../Zoom';
 import ShareModal from '../Modals/ShareModal';
-import {
-	arrowContainer,
-	arrow,
-	arrowLeft,
-	arrowRight,
-} from './Details.module.css';
+import { arrow, arrowLeft, arrowRight } from './Details.module.css';
 import { Arrow } from '../sliders/SliderArrows';
 
-const Details = ({
-	productVariants,
-	incomingProduct,
-
-	upthumb,
-}) => {
+const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 	const uid = useSelector((state) => state.auth.uid);
 	const { state, cartActions, wishListActions } = useContext(StoreContext);
 	const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
@@ -121,7 +111,7 @@ const Details = ({
 	return (
 		<Layout news={4} logoLeft layout={2} paymentOption>
 			<main>
-				<PageTitle active='SHOP DETAILS' pageTitle='Our Shop' />
+				{/* <PageTitle active='SHOP DETAILS' pageTitle='Our Shop' /> */}
 				{product ? (
 					<Fragment>
 						<section className='product-details-area pt-50 pb-50'>
@@ -143,8 +133,7 @@ const Details = ({
 											activeKey={`tum-${imageKey}`}
 											defaultActiveKey={`tum-0`}>
 											<div className='pro-details-tab'>
-												<Tab.Content
-													className={`tab-content custom-content position-relative ${arrowContainer}`}>
+												<Tab.Content className='tab-content custom-content position-relative'>
 													<Arrow
 														onClick={() => handlePrev({ imageKey, product })}
 														className={`${arrow} ${arrowLeft}`}
@@ -159,7 +148,7 @@ const Details = ({
 																controls
 																autoPlay
 																ref={videoRef}
-																width='650'
+																width='600'
 																height='600'>
 																<source
 																	src={`${sources.videos}${product.video_1}`}
@@ -264,7 +253,7 @@ const Details = ({
 												<small>
 													<span className='text-muted'>Marka:</span>
 													<a href='/Category/index?Type=Brand&amp;BrandID=13'>
-														LADYFORM
+														{brand.brandName}
 													</a>
 												</small>
 											</div>
@@ -272,13 +261,13 @@ const Details = ({
 												<div className='card border p-2'>
 													<a href='/Category/index?Type=Brand&amp;BrandID=13'>
 														<img
-															src='../img/brand/3af4332a-1.jpg'
+															src={`${sources.brand}${brand.guidName2}`}
 															className='card-img'
 														/>
 													</a>
 													<p className='card-body text-center px-1 py-0'>
 														<small>
-															<a href='#'>LADYFORM</a>
+															<a href='#'>{brand.brandName}</a>
 														</small>
 													</p>
 												</div>
