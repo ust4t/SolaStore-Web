@@ -1,6 +1,6 @@
 import axios from 'axios';
-import moment from 'moment';
 import { useContext } from 'react';
+
 import sources from '../sources';
 import { StoreContext } from '../src/context/StoreProvider';
 import Layout from '../src/layout/Layout';
@@ -8,6 +8,8 @@ import PageTitle from '../src/layout/PageTitle';
 
 const OrderSuccess = ({ orderList, buyer }) => {
 	const { state } = useContext(StoreContext);
+	const date = new Date();
+
 	return (
 		<Layout news={4} logoLeft layout={2} paymentOption>
 			<main>
@@ -91,7 +93,7 @@ const OrderSuccess = ({ orderList, buyer }) => {
 										</p>
 										<p>
 											<b>Order Date:</b>{' '}
-											{moment(orderList[0].addingDate).format('MMMM DD, YYYY')}
+											{new Date(orderList[0].addingDate).toLocaleDateString()}
 										</p>
 										<p>
 											<b>Order Total:</b> ${orderList[0].totalAmount}

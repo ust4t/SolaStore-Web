@@ -1,6 +1,4 @@
-// import swal from "@sweetalert/with-react";
 import { Form, Formik } from 'formik';
-import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -17,7 +15,6 @@ const Checkout = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [paymentBox, setPaymentBox] = useState(null);
 	const { state } = useContext(StoreContext);
-	const router = useRouter();
 	const { orderID, amount } = state.completedCartData;
 	console.log(state.completedCartData);
 

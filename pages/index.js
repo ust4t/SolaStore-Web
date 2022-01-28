@@ -9,7 +9,6 @@ import FilterSearch from '../src/layout/FilterSearch';
 // import CountdownSection from "../src/layout/CountdownSection";
 // import EmailArea from "../src/layout/EmailArea";
 import Layout from '../src/layout/Layout';
-// import Stories from "../src/layout/Stories";
 import SliderProducts from '../src/components/sliders/sliderProducts';
 import TabLayout from '../src/layout/TabLayout';
 const Stories = dynamic(() => import('../src/layout/Stories'));

@@ -12,23 +12,12 @@ export const activeData = (active, sort, products) => {
      of ${_(products && products.length)} results`;
 };
 
-export const updateState = (state, payload) => {
-	return state && state.includes(payload)
-		? state.filter((brand) => brand !== payload)
-		: [...state, payload];
-};
-
 export const clickToActive = (activeArr, value, setActiveArr) => {
 	if (activeArr.includes(value)) {
 		setActiveArr(activeArr.filter((active) => active !== value));
 	} else {
 		setActiveArr([...activeArr, value]);
 	}
-};
-
-export const getDiscount = (value, discount) => {
-	const valueBeforDiscount = value - (value * discount) / 100;
-	return valueBeforDiscount.toFixed(2);
 };
 
 export const scroll = () => {
@@ -51,65 +40,4 @@ export const dblock = (active, id, sort) => {
 			? 'd-block'
 			: 'd-none';
 	}
-};
-
-export const dataImage = () => {
-	let d = document.querySelectorAll('[data-background');
-	for (let i = 0; i < d.length; i++) {
-		const element = d[i];
-		element.style.backgroundImage = `url(${element.getAttribute(
-			'data-background'
-		)})`;
-	}
-};
-
-export const totalPrice = (items) => {
-	return (
-		items &&
-		items
-			.map((item) => item.totalPrice)
-			.reduce((prev, next) => prev + next, 0)
-			.toFixed(2)
-	);
-};
-
-export const splitText = (value, valueSplit) => {
-	return value.split(valueSplit);
-};
-
-export const findFilterValue = (data, key, removeItem) => {
-	let arr = [];
-	if (data) {
-		for (let i = 0; i < data.length; i++) {
-			const d = data[i];
-			if (typeof d[key] == 'object') {
-				for (let e = 0; e < d[key].length; e++) {
-					const c = d[key][e];
-					arr.push(c);
-				}
-			} else {
-				arr.push(d[key]);
-			}
-		}
-	}
-
-	const filteredArr = arr.reduce((acc, current) => {
-		const x = acc.find((item) => item === current);
-		if (!x) {
-			return acc.concat([current]);
-		} else {
-			return acc;
-		}
-	}, []);
-	if (removeItem) {
-		for (let i = 0; i < removeItem.length; i++) {
-			const e = removeItem[i];
-			var index = filteredArr.indexOf(e);
-			if (index !== -1) {
-				filteredArr.splice(index, 1);
-			}
-		}
-	}
-	let removeUndifin = filteredArr.filter((f) => f !== undefined && f);
-	return removeUndifin;
 };

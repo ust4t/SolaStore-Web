@@ -1,4 +1,3 @@
-import moment from 'moment';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -206,7 +205,7 @@ export const DefaultFooter = ({ darkBg }) => {
 					<div className='row'>
 						<div className='col-md-4 col-12'>
 							<div className='copyright-text'>
-								<span>Copyright {new Date().getFullYear}</span>
+								<span>Copyright {new Date().getFullYear()}</span>
 							</div>
 						</div>
 
