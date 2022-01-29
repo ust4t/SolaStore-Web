@@ -357,10 +357,6 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 															</span>
 														</li>
 														<li>
-															<span className='fs-6'>SKU :</span>{' '}
-															<span className='fs-6'></span>{' '}
-														</li>
-														<li>
 															<span className='fs-6'>Beden :</span>{' '}
 															<span className='fs-6'>{product.sizes}</span>
 														</li>
