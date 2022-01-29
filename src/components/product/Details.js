@@ -491,7 +491,9 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 																	<div className='col-lg-10 col-width-20'>
 																		<div className='pro-desc-text'>
 																			<h4>{product && product.name}</h4>
-																			<p>{product.productSelectedDetail}</p>
+																			<p>
+																				{incomingProduct.productSelectedDetail}
+																			</p>
 																		</div>
 																	</div>
 																</div>
@@ -499,13 +501,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 														</div>
 													</Tab.Pane>
 													<Tab.Pane eventKey='review'>
-														<p>
-															Duis aute irure dolor in reprehenderit in
-															voluptate velit esse cillum dolore eu fugiat nulla
-															pariatur. Excepteur sint occaecat cupidatat non
-															proident, sunt in culpa deserunt mollit anim id
-															est laborum.
-														</p>
+														<p>{incomingProduct.productSelectedDetail}</p>
 													</Tab.Pane>
 												</Tab.Content>
 											</div>

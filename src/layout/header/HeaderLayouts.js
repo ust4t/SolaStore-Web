@@ -48,54 +48,52 @@ export const Layout2 = ({ setSidebar, darkBg, logoLeft, news }) => {
 			<div className='header-menu-area logo-circle-area'>
 				<div className='container-fluid'>
 					<div className='row align-items-center justify-content-end justify-content-lg-center'>
-						{logoLeft ? (
-							<Fragment>
-								<div className='col-xl-2 col-lg-2 col-md-4 col-4 ta d-none d-lg-block order-1'>
-									<div className='logo d-flex justify-content-lg-start'>
-										<Link href='/'>
-											<a>
-												<Image
-													src={
-														darkBg
-															? '/img/logo/logo3.png'
-															: '/img/logo/logo.png'
-													}
-													alt='Logo'
-													width={120}
-													height={80}
-													layout='intrinsic'
-													priority={true}
-												/>
-											</a>
-										</Link>
-									</div>
+						{/* {logoLeft ? ( */}
+						<Fragment>
+							<div className='col-xl-2 col-lg-2 col-md-4 col-4 ta d-none d-lg-block order-1'>
+								<div className='logo d-flex justify-content-lg-start'>
+									<Link href='/'>
+										<a>
+											<Image
+												src={
+													darkBg ? '/img/logo/logo3.png' : '/img/logo/logo.png'
+												}
+												alt='Logo'
+												width={120}
+												height={80}
+												layout='intrinsic'
+												priority={true}
+											/>
+										</a>
+									</Link>
 								</div>
-								<div className='col-xl-6 col-lg-6 col-md-8 col-12 d-block order-2'>
-									<div className='input-group'>
+							</div>
+							<div className='col-7 d-block order-md-2'>
+								<div className='input-group'>
+									{' '}
+									<input
+										ref={searchRef}
+										onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+										type='text'
+										className='form-control input-text'
+										placeholder={t('search')}
+										aria-label
+										aria-describedby='basic-addon2'
+									/>
+									<div className='input-group-append'>
 										{' '}
-										<input
-											ref={searchRef}
-											onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-											type='text'
-											className='form-control input-text'
-											placeholder={t('search')}
-											aria-label
-											aria-describedby='basic-addon2'
-										/>
-										<div className='input-group-append'>
-											{' '}
-											<button
-												onClick={handleSearch}
-												className='btn btn-outline-dark btn-lg search-buton search-p'
-												type='button'>
-												<i className='fa fa-search' />
-											</button>{' '}
-										</div>
+										<button
+											onClick={handleSearch}
+											className='btn btn-outline-dark btn-lg search-buton search-p'
+											type='button'>
+											<i className='fa fa-search' />
+										</button>{' '}
 									</div>
 								</div>
-							</Fragment>
-						) : (
-							<Fragment>
+							</div>
+						</Fragment>
+						{/* ) : ( */}
+						{/* <Fragment>
 								<div className='col-xl-2 col-lg-2 col-md-4 col-4'>
 									<div className='logo'>
 										<Link href='/'>
@@ -110,9 +108,9 @@ export const Layout2 = ({ setSidebar, darkBg, logoLeft, news }) => {
 										</Link>
 									</div>
 								</div>
-							</Fragment>
-						)}
-						<div className='col-xl-2 col-lg-3 col-md-3 col-6 order-1 order-md-3 mb-2'>
+							</Fragment> */}
+						{/* )} */}
+						<div className='col-xl-2 col-lg-3 col-md-3 col-4 order-1 order-md-3'>
 							<div
 								className={`header-left-icon ${
 									darkBg ? 'header-right-icon' : ''
@@ -122,7 +120,7 @@ export const Layout2 = ({ setSidebar, darkBg, logoLeft, news }) => {
 								<CartIcon />
 							</div>
 						</div>
-						<div className='col-2 col-md-1 d-block d-lg-none order-1 order-md-3 mb-2'>
+						<div className='col-1 col-md-1 d-block d-lg-none order-1 order-md-3'>
 							<HamburgerIcon darkBg={darkBg} sidebarActive={setSidebar} />
 						</div>
 					</div>

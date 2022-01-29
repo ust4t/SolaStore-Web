@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useSelector } from 'react-redux';
 
 import { Menu, Dropdown } from 'antd';
 import ColorfulText from '../../components/ColorfulText';
@@ -20,12 +19,10 @@ export const SearchIcon = ({ hendelChangeSearch }) => (
 );
 
 export const UserIcon = () => {
-	const name = useSelector((state) => state.auth.name);
 	return (
 		<Link href='/login'>
 			<a className='d-flex align-items-end justify-content-center'>
 				<i className='fas fa-user favf' />
-				<h6 className='fs-6 fw-bold'>{name}</h6>
 			</a>
 		</Link>
 	);
