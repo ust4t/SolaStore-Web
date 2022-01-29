@@ -1,7 +1,7 @@
 {
-  "locales": ["ru", "en", "tr", "ar", "fr"],
-  "defaultLocale": "ru",
-  "pages": {
-    "*": ["common", "home", "cart", "wishlist"]
-  }
+	"locales": ["ru", "en", "tr", "ar", "fr"],
+	"defaultLocale": "ru",
+	"pages": {
+		"*": ["common", "home", "cart", "wishlist", "detail"]
+	}
 }

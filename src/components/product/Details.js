@@ -3,6 +3,7 @@ import { Nav, Tab } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import Image from 'next/image';
+import useTranslation from 'next-translate/useTranslation';
 
 import sources from '../../../sources';
 import { StoreContext } from '../../context/StoreProvider';
@@ -25,6 +26,7 @@ import {
 import { Arrow } from '../sliders/SliderArrows';
 
 const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
+	const { t } = useTranslation('detail');
 	const uid = useSelector((state) => state.auth.uid);
 	const { state, cartActions, wishListActions } = useContext(StoreContext);
 	const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
@@ -232,9 +234,6 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 																className='mr-0'>
 																<i
 																	className={`fas fa-play position-absolute top-50 start-50 translate-middle z-index-first ${videoLogoStyle}`}
-																	style={{
-																		color: 'var(--color-primary)',
-																	}}
 																/>
 																<Image
 																	className={`${
@@ -327,7 +326,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 											<div className='col-7 col-md-4 py-3'>
 												<small>
 													<span className='text-muted'>
-														Ürün kodu:{' '}
+														{t('productCode')}:{' '}
 														<span className='text-dark'>
 															{product.productStockCode}
 														</span>
@@ -336,13 +335,13 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 												<br />
 												<small>
 													<span className='text-muted'>
-														Kategori:{' '}
+														{t('category')}:{' '}
 														<span className='text-dark'>KATEGORI</span>
 													</span>
 												</small>
 												<br />
 												<small>
-													<span className='text-muted'>Marka:</span>
+													<span className='text-muted'>{t('brand')}:</span>
 													<Link
 														href={{
 															pathname: '/shop',
@@ -364,20 +363,20 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 												<div className='stock-list'>
 													<ul>
 														<li>
-															<span className='fs-6'>Stock :</span>
+															<span className='fs-6'>{t('stock')} :</span>
 															<span className='red fs-6'>
-																{product ? 'In Stock' : 'Out Of Stock'}
+																{product ? t('inStock') : t('outOfStock')}
 															</span>
 														</li>
 														<li>
-															<span className='fs-6'>Beden :</span>{' '}
+															<span className='fs-6'>{t('size')} :</span>{' '}
 															<span className='fs-6'>{product.sizes}</span>
 														</li>
 													</ul>
 												</div>
 											</div>
 
-											<div className='pro-quan-area mb-55 mt-30 justify-content-center'>
+											<div className='pro-quan-area mb-55 mt-30'>
 												<div className='product-quantity'>
 													<div className='cart-plus-minus'>
 														<input
@@ -435,7 +434,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 											<div className='product-details-info'>
 												<div className='sidebar-product-color'>
 													<h4 className='widget-title1 text-center text-md-start'>
-														Ürünün diğer renkleri
+														{t('otherColors')}
 													</h4>
 													<div
 														className='details-filter-row details-row-size'
@@ -487,7 +486,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 															as='a'
 															className='c-pointer'
 															eventKey='dec'>
-															Description
+															{t('desc')}
 														</Nav.Link>
 														<Nav.Link
 															as='a'

@@ -1,0 +1,11 @@
+{
+	"productCode": "Code produit",
+	"category": "Catégorie",
+	"brand": "Marque",
+	"stock": "Stocker",
+	"inStock": "En stock",
+	"outOfStock": "En rupture de stock",
+	"size": "Taille",
+	"otherColors": "Autres couleurs du produit",
+	"desc": "La description"
+}

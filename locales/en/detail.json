@@ -1,0 +1,10 @@
+{
+	"productCode": "Product Code",
+	"category": "Category",
+	"brand": "Brand",
+	"stock": "Stock",
+	"inStock": "In Stock",
+	"outOfStock": "Out of Stock",
+	"size": "Size",
+	"otherColors": "Other Colors of the Product"
+}

@@ -4511,6 +4511,12 @@ span.details-pro-price {
 	text-align: center;
 	text-transform: uppercase;
 	border-radius: 10px;
+	transition: all 0.3s;
+}
+
+.pro-cart-btn a:hover {
+	background: var(--color-primary-dark);
+	color: #fff;
 }
 
 .pro-wish {
