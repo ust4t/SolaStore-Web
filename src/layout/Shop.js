@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState, memo } from 'react';
 import { Nav, Tab } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
 import PopularCard from '../components/Cards/PopularCard';
 import PaginationList from '../components/PaginationList';
@@ -19,9 +20,10 @@ const ShopLayout = ({
 	active_,
 	filterDropdown = false,
 }) => {
+	const title = useSelector((state) => state.title);
 	const { cartActions } = useContext(StoreContext);
 	const { addToCartAction } = cartActions;
-	const [pageLimit, setPageLimit] = useState(16);
+	const [pageLimit, setPageLimit] = useState(20);
 	const [offset, setOffset] = useState(0);
 	const pageCount = Math.ceil(allProducts.length / pageLimit);
 	const [active, setActive] = useState(active_ ? active_ : 0);
@@ -49,7 +51,7 @@ const ShopLayout = ({
 	return (
 		<Layout news={4} logoLeft layout={2} paymentOption>
 			<main>
-				<PageTitle pageTitle='Shop' active='Products' />
+				<PageTitle pageTitle={title} active={title} />
 				<section className='shop-sidebar pt-75'>
 					<div className='container'>
 						{filterDropdown && (
