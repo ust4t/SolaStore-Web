@@ -20,6 +20,7 @@ import {
 	smallBrandStyle,
 	videoStyle,
 	videoLogoStyle,
+	navActive,
 } from './Details.module.css';
 import { Arrow } from '../sliders/SliderArrows';
 
@@ -40,6 +41,9 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 
 	const sizeNum = (product.sizes && product.sizes.split('-').length) || 0;
 	const oldUnitPrice = product.oldPrice / sizeNum;
+	const productSize = [...product.pictures, product.video_1].filter(
+		(item) => item !== null
+	).length;
 
 	useEffect(() => {
 		if (product.video_1 && videoRef.current) videoRef.current.pause();
@@ -96,9 +100,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 		if (product.video_1) {
 			videoRef.current.pause();
 		}
-		const productSize = [...product.pictures, product.video_1].filter(
-			(item) => item !== null
-		).length;
+
 		if (imageKey < productSize - 1) {
 			setImageKey(imageKey + 1);
 		} else {
@@ -110,9 +112,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 		if (product.video_1) {
 			videoRef.current.pause();
 		}
-		const productSize = [...product.pictures, product.video_1].filter(
-			(item) => item !== null
-		).length;
+
 		if (imageKey > 0) {
 			setImageKey(imageKey - 1);
 		} else {
@@ -205,6 +205,11 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 																		setImageKey(i);
 																	}}>
 																	<Image
+																		className={`${
+																			`tum-${imageKey}` === `tum-${i}`
+																				? navActive
+																				: ''
+																		}`}
 																		src={`${sources.imageMaxSrc}${img.guidName}`}
 																		width='145'
 																		height='220'
@@ -232,6 +237,12 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 																	}}
 																/>
 																<Image
+																	className={`${
+																		`tum-${imageKey}` ===
+																		`tum-${productSize - 1}`
+																			? navActive
+																			: ''
+																	}`}
 																	src={`${sources.imageMaxSrc}${product.picture_1}`}
 																	width='145'
 																	height='220'
@@ -366,7 +377,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 												</div>
 											</div>
 
-											<div className='pro-quan-area mb-55 mt-30 justify-content-md-center justify-content-lg-start'>
+											<div className='pro-quan-area mb-55 mt-30 justify-content-center'>
 												<div className='product-quantity'>
 													<div className='cart-plus-minus'>
 														<input
@@ -393,14 +404,14 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 														</button>
 													</div>
 												</div>
-												<div className='pro-cart-btn ms-md-4 ms-lg-2'>
+												<div className='pro-cart-btn ms-2 ms-sm-3 ms-md-4 ms-lg-3 me-1 me-sm-3'>
 													<a href='#' onClick={handleAddToCart}>
 														<i className='fas fa-cart-arrow-down fa-lg' /> Add
 														to cart
 													</a>
 												</div>
 												<div>
-													<div className='pro-wish mx-4'>
+													<div className='pro-wish'>
 														<a
 															href='#'
 															className={`fs-3 ${

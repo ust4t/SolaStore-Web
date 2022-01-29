@@ -1,3 +1,16 @@
+@media screen and (max-width: 425px) {
+	.pro-quan-area {
+		flex-direction: column;
+		gap: 30px;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.pro-quan-area {
+		justify-content: center;
+	}
+}
+
 @media (min-width: 1501px) and (max-width: 1700px) {
 	.main-menu ul li {
 		margin: 0px 8px;
@@ -1569,12 +1582,11 @@
 		text-align: center;
 
 		overflow: hidden;
-		flex-direction: column;
 	}
 
-	.pro-quan-area > div {
+	/* .pro-quan-area > div {
 		margin-bottom: 20px;
-	}
+	} */
 
 	.pro-cart-btn {
 		float: left;
@@ -1783,6 +1795,7 @@
 
 	.pro-quan-area {
 		display: flex;
+		justify-content: center;
 	}
 
 	.pro-cart-btn a {

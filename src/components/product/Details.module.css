@@ -12,6 +12,10 @@
 	z-index: 300;
 }
 
+.navActive {
+	border: 2px solid var(--color-primary) !important;
+}
+
 .arrow:hover {
 	background-color: var(--color-primary);
 	color: #fff;
