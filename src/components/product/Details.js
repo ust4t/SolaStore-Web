@@ -251,7 +251,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 													{product && product.productShortName}
 												</h3>
 											</div>
-											<div className='col-8 col-md-4 py-3 border-right'>
+											<div className='col-7 col-md-4 py-3 border-right'>
 												<span className='details-pro-price mb-40'>
 													{product.oldPrice > 0 && sizeNum ? (
 														<>
@@ -276,7 +276,44 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 													)}
 												</span>
 											</div>
-											<div className='col-8 col-md-4 py-3'>
+											<div className='col-5 col-md-4'>
+												<div className='card border p-2'>
+													<Link
+														href={{
+															pathname: '/shop',
+															query: {
+																categoryIds: '',
+																brandIds: brand.brandID,
+																searchPrice: '',
+															},
+														}}>
+														<Image
+															className='cursor-pointer'
+															src={`${sources.brand}${brand.guidName2}`}
+															width='180'
+															height='130'
+															layout='responsive'
+															quality={50}
+														/>
+													</Link>
+													<p className='card-body text-center px-1 py-0 m-0 my-1'>
+														<Link
+															href={{
+																pathname: '/shop',
+																query: {
+																	categoryIds: '',
+																	brandIds: brand.brandID,
+																	searchPrice: '',
+																},
+															}}>
+															<span className={brandStyle}>
+																{brand.brandName}
+															</span>
+														</Link>
+													</p>
+												</div>
+											</div>
+											<div className='col-7 col-md-4 py-3'>
 												<small>
 													<span className='text-muted'>
 														Ürün kodu:{' '}
@@ -311,42 +348,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 													</Link>
 												</small>
 											</div>
-											<div className='col-4 col-md-4'>
-												<div className='card border p-2'>
-													<Link
-														href={{
-															pathname: '/shop',
-															query: {
-																categoryIds: '',
-																brandIds: brand.brandID,
-																searchPrice: '',
-															},
-														}}>
-														<Image
-															className='cursor-pointer'
-															src={`${sources.brand}${brand.guidName2}`}
-															width='180'
-															height='130'
-															quality={50}
-														/>
-													</Link>
-													<p className='card-body text-center px-1 py-0 m-0 my-1'>
-														<Link
-															href={{
-																pathname: '/shop',
-																query: {
-																	categoryIds: '',
-																	brandIds: brand.brandID,
-																	searchPrice: '',
-																},
-															}}>
-															<span className={brandStyle}>
-																{brand.brandName}
-															</span>
-														</Link>
-													</p>
-												</div>
-											</div>
+
 											<div className='stock-update'>
 												<div className='stock-list'>
 													<ul>
@@ -364,7 +366,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 												</div>
 											</div>
 
-											<div className='pro-quan-area mb-55 mt-30'>
+											<div className='pro-quan-area mb-55 mt-30 justify-content-md-center justify-content-lg-start'>
 												<div className='product-quantity'>
 													<div className='cart-plus-minus'>
 														<input
@@ -391,34 +393,37 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 														</button>
 													</div>
 												</div>
-												<div className='pro-cart-btn ml-20'>
+												<div className='pro-cart-btn ms-md-4 ms-lg-2'>
 													<a href='#' onClick={handleAddToCart}>
-														Add to cart
+														<i className='fas fa-cart-arrow-down fa-lg' /> Add
+														to cart
 													</a>
 												</div>
-												<div className='pro-wish ml-30'>
-													<a
-														href='#'
-														className={`fs-3 ${
-															isLiked ? 'active_wishList' : ''
-														} `}
-														onClick={handleAddToWishList}>
-														<i className='fas fa-heart' />
-													</a>
-												</div>
-												<div className='pro-wish ml-20'>
-													<a
-														href='#'
-														className={'fs-3'}
-														onClick={() => setShareModal(true)}>
-														<i className='fas fa-share-alt' />
-													</a>
+												<div>
+													<div className='pro-wish mx-4'>
+														<a
+															href='#'
+															className={`fs-3 ${
+																isLiked ? 'active_wishList' : ''
+															} `}
+															onClick={handleAddToWishList}>
+															<i className='fas fa-heart' />
+														</a>
+													</div>
+													<div className='pro-wish'>
+														<a
+															href='#'
+															className={'fs-3'}
+															onClick={() => setShareModal(true)}>
+															<i className='fas fa-share-alt' />
+														</a>
+													</div>
 												</div>
 											</div>
 
 											<div className='product-details-info'>
 												<div className='sidebar-product-color'>
-													<h4 className='widget-title1'>
+													<h4 className='widget-title1 text-center text-md-start'>
 														Ürünün diğer renkleri
 													</h4>
 													<div

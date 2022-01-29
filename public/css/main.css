@@ -4502,22 +4502,15 @@ span.details-pro-price {
 
 .pro-cart-btn a {
 	line-height: 51px;
-
-	padding: 0px 60px;
-
+	padding: 0 40px;
 	color: #fff;
-
-	font-weight: 800;
-
-	font-size: 12px;
-
-	background: #000;
-
+	font-weight: 600;
+	font-size: 1rem;
+	background: var(--color-primary);
 	display: inline-block;
-
 	text-align: center;
-
 	text-transform: uppercase;
+	border-radius: 10px;
 }
 
 .pro-wish {
