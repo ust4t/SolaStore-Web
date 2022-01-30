@@ -22,7 +22,11 @@
   color: var(--color-primary);
 }
 
-.hero_caption_two span {
+.hero_container {
+  height: 750px;
+}
+
+.hero_caption span {
   font-size: 16px;
 
   font-weight: 300;
@@ -34,8 +38,13 @@
   display: block;
 }
 
-.hero_caption_two h2 {
+.hero_caption h2 {
   font-size: 80px;
 
   font-weight: 800;
+}
+
+.slider_height {
+  height: 830px;
+  text-align: center;
 }

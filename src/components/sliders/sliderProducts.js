@@ -6,7 +6,12 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import sources from "../../../sources";
-import { hero_caption_two, sliderButton } from "./Slider.module.css";
+import {
+  hero_caption,
+  hero_container,
+  sliderButton,
+  slider_height,
+} from "./Slider.module.css";
 import { HomePageSliderWithArrow } from "./HomePageSlider";
 
 export default function SliderProducts({ sliders }) {
@@ -29,12 +34,12 @@ export default function SliderProducts({ sliders }) {
                 ) => (
                   <div
                     key={`${pictureID}_-_${i}`}
-                    className="single-slider slider-height-two d-flex align-items-end bg-center-cover">
+                    className={`single-slider ${slider_height} d-flex align-items-end bg-center-cover`}>
                     <div className="container">
                       <div className="row">
-                        <div className="col-lg-12">
+                        <div className="col-lg-12 p-0">
                           <div
-                            className={`${hero_caption_two} position-relative mb-85 d-flex flex-column align-items-center justify-content-center`}>
+                            className={`${hero_caption} ${hero_container} position-relative mb-85 d-flex flex-column align-items-center justify-content-center`}>
                             <BackgroundImage
                               src={`${sources.slider}${guidName}`}
                               objectFit="cover"

@@ -209,7 +209,7 @@ export const DefaultFooter = ({ darkBg }) => {
               </div>
             </div>
 
-            <div className="footer-payment col-md-4 col-12 ta">
+            <div className="footer-payment col-md-4 col-12 text-center">
               <Link href="#">
                 <a
                   onClick={(e) => {
@@ -217,7 +217,6 @@ export const DefaultFooter = ({ darkBg }) => {
                   }}>
                   <Image
                     src="/img/footer/payment.png"
-                    // className="img-fluid"
                     width={50}
                     height={4}
                     layout="responsive"

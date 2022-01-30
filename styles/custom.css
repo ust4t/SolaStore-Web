@@ -343,24 +343,6 @@ ul {
   align-items: center;
 }
 
-ul.pro-rating i {
-  color: #ffcc18;
-}
-
-.input-range__slider {
-  background: #fff !important;
-  border: 3px solid #262626 !important;
-}
-.input-range__track--active {
-  background: #262626 !important;
-}
-.input-range__track {
-  background: #ece8fe;
-  border: 0 none;
-  border-radius: 0;
-  height: 5px;
-}
-
 .qtybutton {
   border: 0;
   padding: 0;
@@ -454,15 +436,6 @@ ul.pro-rating i {
   box-shadow: 0px 4px 17px -9px rgb(0 0 0 / 50%);
 }
 
-.variant-name {
-  text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: 2px;
-}
-.side-pro-img {
-  width: 80px;
-}
-
 .form-control:focus {
   outline: none;
   border-color: none;
@@ -489,12 +462,7 @@ a {
   text-decoration: none;
 }
 
-/* @import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap"); */
-
-.slider-text-five span,
-.fruit-banner-text span,
-.section-title-five span,
-.fruit-banner-text2 span {
+.section-title-five span {
   font-family: "Caveat", cursive;
 }
 
