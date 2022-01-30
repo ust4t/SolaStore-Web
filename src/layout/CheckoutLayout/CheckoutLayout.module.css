@@ -1,0 +1,57 @@
+.checkout_form_list {
+  margin-bottom: 30px;
+}
+
+.checkout_form_list label {
+  color: #6f7172;
+}
+
+.checkout_form_list input[type="text"],
+.checkout_form_list input[type="password"],
+.checkout_form_list input[type="email"] {
+  background: #ffffff;
+
+  border: 1px solid #eaedff;
+
+  border-radius: 0;
+
+  height: 45px;
+
+  padding: 0 0 0 10px;
+
+  width: 100%;
+}
+
+.checkout_form_list input[type="text"]::-moz-placeholder,
+.checkout_form_list input[type="password"]::-moz-placeholder,
+.checkout_form_list input[type="email"]::-moz-placeholder {
+  color: #6f7172;
+
+  opacity: 1;
+}
+
+.checkout_form_list input[type="text"]::placeholder,
+.checkout_form_list input[type="password"]::placeholder,
+.checkout_form_list input[type="email"]::placeholder {
+  color: #6f7172;
+
+  opacity: 1;
+}
+
+.checkout_form_list input[type="checkbox"] {
+  display: inline-block;
+
+  margin-right: 10px;
+
+  position: relative;
+
+  top: 1px;
+}
+
+.checkout_form_list label span.required {
+  color: red;
+}
+
+.order_button_payment button {
+  width: 100%;
+}

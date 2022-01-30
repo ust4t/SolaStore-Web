@@ -20,7 +20,7 @@ import { SET_COMPLETED_CART } from "../src/context/types";
 
 const Cart = ({ saleTeam }) => {
   const { t } = useTranslation("cart");
-  const uid = useSelector((state) => state.auth.uid);
+  const uid = useSelector((state) => state.auth.uuid);
   const { cartActions, state, isCartLoading, dispatch } =
     useContext(StoreContext);
   const router = useRouter();
@@ -76,7 +76,7 @@ const Cart = ({ saleTeam }) => {
         buyerName: values.name,
         buyerPhone: values.tel.replace(/\+/g, ""),
         salesRepresantID: currentSeller.id,
-        visitorGuidID: uid,
+        visitorGuidID: uid.toString(),
         paymentType,
       });
       resetForm();

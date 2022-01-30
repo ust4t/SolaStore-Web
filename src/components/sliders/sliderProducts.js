@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import sources from "../../../sources";
-import styles from "./Slider.module.css";
+import { hero_caption_two, sliderButton } from "./Slider.module.css";
 import { HomePageSliderWithArrow } from "./HomePageSlider";
 
 export default function SliderProducts({ sliders }) {
@@ -27,13 +27,15 @@ export default function SliderProducts({ sliders }) {
                   },
                   i
                 ) => (
-                  <div className="single-slider slider-height-two d-flex align-items-end bg-center-cover">
+                  <div
+                    key={`${pictureID}_-_${i}`}
+                    className="single-slider slider-height-two d-flex align-items-end bg-center-cover">
                     <div className="container">
                       <div className="row">
                         <div className="col-lg-12">
-                          <div className="hero-caption-two mb-85 d-flex flex-column align-items-center justify-content-center">
+                          <div
+                            className={`${hero_caption_two} position-relative mb-85 d-flex flex-column align-items-center justify-content-center`}>
                             <BackgroundImage
-                              key={`${pictureID}_-_${i}`}
                               src={`${sources.slider}${guidName}`}
                               objectFit="cover"
                               objectPosition="center"
@@ -59,7 +61,7 @@ export default function SliderProducts({ sliders }) {
                                     : "/shop/newproducts"
                                 }>
                                 <a
-                                  className={`${styles.sliderButton} w-25`}
+                                  className={`${sliderButton} w-25`}
                                   rel="noopener noreferrer">
                                   {selectedTextButton}
                                 </a>

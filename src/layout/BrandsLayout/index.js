@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
 
+import { brandborder } from "./BrandsLayout.module.css";
 import sources from "../../../sources";
 
 export default function BrandsLayout({ brands }) {
@@ -16,7 +17,7 @@ export default function BrandsLayout({ brands }) {
         {brands.map(({ brandID, guidName, brandName }, i) => (
           <div
             key={`${brandID}_|*_${i}`}
-            className="col-4 col-lg-2 py-3 px-sm-3 brandborder">
+            className={`col-4 col-lg-2 py-3 px-sm-3 ${brandborder}`}>
             <Link
               href={{
                 pathname: "/shop",

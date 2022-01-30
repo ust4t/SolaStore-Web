@@ -1,0 +1,13 @@
+.single_banner a {
+  display: block;
+
+  overflow: hidden;
+}
+
+.single_banner a img {
+  transition: all 1.5s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.single_banner a:hover img {
+  transform: scale3d(1.1, 1.1, 1.1);
+}

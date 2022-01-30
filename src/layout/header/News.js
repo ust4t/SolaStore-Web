@@ -39,7 +39,7 @@ export const News_4 = () => {
                 height="25"
                 alt="https://www.solastore.com.tr"
                 title="https://www.solastore.com.tr"
-                priorty={true}
+                priority
               />
             </a>
             <a className="mx-1" onClick={() => changeLang("fr")} href="#">
@@ -49,7 +49,7 @@ export const News_4 = () => {
                 height="25"
                 alt="https://www.solastore.com.tr"
                 title="https://www.solastore.com.tr"
-                priorty={true}
+                priority
               />
             </a>
             <a className="mx-1" onClick={() => changeLang("ar")} href="#">
@@ -59,7 +59,7 @@ export const News_4 = () => {
                 height="25"
                 alt="https://www.solastore.com.tr"
                 title="https://www.solastore.com.tr"
-                priorty={true}
+                priority
               />
             </a>
             <a className="mx-1" onClick={() => changeLang("ru")} href="#">
@@ -69,7 +69,7 @@ export const News_4 = () => {
                 height="25"
                 alt="https://www.solastore.com.tr"
                 title="https://www.solastore.com.tr"
-                priorty={true}
+                priority
               />
             </a>
             <a className="mx-1" onClick={() => changeLang("tr")} href="#">
@@ -79,7 +79,7 @@ export const News_4 = () => {
                 height="25"
                 alt="https://www.solastore.com.tr"
                 title="https://www.solastore.com.tr"
-                priorty={true}
+                priority
               />
             </a>
           </div>

@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+import { single_banner } from "./BannerCard.module.css";
 import sources from "../../../../sources";
 
 export default function BannerCard({
@@ -15,12 +16,12 @@ export default function BannerCard({
 }) {
   return (
     <div className="col-md-4 custom-col">
-      <div className="single-banner text-center mb-30">
+      <div className={`${single_banner} text-center mb-30`}>
         <Link href={link}>
           <a className="position-relative">
             <Image
               src={`${sources.banners}${banner}`}
-              className="img-fluid"
+              // className="img-fluid"
               alt="Banner"
               width={width}
               height={height}
@@ -29,7 +30,7 @@ export default function BannerCard({
               blurDataURL="/img/loadingImg.jpg"
             />
             <div className="container position-absolute top-50 start-0 translate-middle-y">
-              <div className="row ">
+              <div className="row">
                 <div className="col-md-12">
                   <div className="banner-content d-flex flex-column align-items-center">
                     <h5 className="text-white text-center text-shadow">
