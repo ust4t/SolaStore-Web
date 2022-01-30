@@ -1,6 +1,7 @@
 const nextTranslate = require('next-translate');
 
 module.exports = nextTranslate({
+	swcMinify: true,
 	plugins: [
 		'postcss-flexbugs-fixes',
 		[

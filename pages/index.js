@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic';
 // import VideoLayout from "../src/layout/VideoLayout";
 import IntroBanners from '../src/layout/IntroBanners';
 // import Categories from "../src/layout/Categories";
-import { Box } from '@mui/material';
 // import BrandsLayout from "../src/layout/BrandsLayout";
 import FilterSearch from '../src/layout/FilterSearch';
 // import CountdownSection from "../src/layout/CountdownSection";
@@ -36,33 +35,19 @@ const Index4 = ({
 			<main>
 				<Stories stories={newProducts} />
 				<SliderProducts sliders={slidersData} />
-				<Box
-					mx={{
-						xs: 0,
-						sm: 0,
-						md: 10,
-						lg: 12,
-						xl: 14,
-					}}>
+				<div className='mx-md-2 mx-lg-3 mx-xl-4'>
 					<IntroBanners banners={bannersData} />
 					<FilterSearch brands={brands} />
 					<TabLayout newProducts={newProducts} saleProducts={saleProducts} />
 					<Categories categories={categoriesData} />
 					{/* <CountdownSection countdown={countdownSource} /> */}
 					{/* <EmailArea /> */}
-				</Box>
+				</div>
 				{/* <VideoLayout /> */}
 
-				<Box
-					mx={{
-						xs: 0,
-						sm: 0,
-						md: 10,
-						lg: 12,
-						xl: 14,
-					}}>
+				<div className='mx-md-2 mx-lg-3 mx-xl-4'>
 					<BrandsLayout brands={brands} />
-				</Box>
+				</div>
 			</main>
 		</Layout>
 	);
