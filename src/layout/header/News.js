@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import useTranslation from 'next-translate/useTranslation';
-import Script from 'next/script';
 
 import { CHANGE_LANG } from '../../redux/action/type';
 
@@ -83,7 +82,6 @@ export const News_4 = () => {
 					</div>
 				</div>
 			</div>
-			<Script src='js/marquee.js' defer />
 		</div>
 	);
 };
