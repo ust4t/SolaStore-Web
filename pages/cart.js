@@ -20,7 +20,7 @@ import { SET_COMPLETED_CART } from "../src/context/types";
 
 const Cart = ({ saleTeam }) => {
   const { t } = useTranslation("cart");
-  const uid = useSelector((state) => state.auth.uuid);
+  const uid = useSelector((state) => state.auth.uid);
   const { cartActions, state, isCartLoading, dispatch } =
     useContext(StoreContext);
   const router = useRouter();
@@ -47,7 +47,7 @@ const Cart = ({ saleTeam }) => {
     };
     removeFromCartAction(cartData);
   };
-
+  console.log(uid);
   const totalPrice = (items) => {
     if (items) {
       const total = items.reduce((a, b) => {
