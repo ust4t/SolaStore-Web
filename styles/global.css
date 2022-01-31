@@ -1,22 +1,7 @@
-/* silinecek libs
-    styled-components
-    material-ui
-*/
-
 ::selection {
   color: #fff;
   background: var(--color-primary);
 }
-
-/* PopularProduct */
-.popular-products {
-  margin-top: 50px;
-  margin-bottom: 50px;
-  display: flex;
-  justify-content: center;
-}
-
-/* HeaderButton */
 
 .swiper {
   width: 100%;

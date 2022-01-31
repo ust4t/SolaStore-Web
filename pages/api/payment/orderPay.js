@@ -10,7 +10,6 @@ export default async function orderPay(req, res) {
     currency: "840",
     okUrl: "https://api.solastore.com.tr/api/Helpers/CCSuccess",
     failUrl: "https://api.solastore.com.tr/api/Helpers/CCFail",
-    lang: "tr",
     sourceProof: process.env.SOURCE_PROOF,
   };
   try {

@@ -10,8 +10,10 @@ import PageTitle from "../../src/layout/PageTitle";
 import { StoreContext } from "../../src/context/StoreProvider";
 import PayModal from "../../src/components/Modals/PayModal/PayModal";
 import CheckoutLayout from "../../src/layout/CheckoutLayout";
+import { useSelector } from "react-redux";
 
 const Checkout = () => {
+  const lang = useSelector((state) => state.lang);
   const [payModal, setPayModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [paymentBox, setPaymentBox] = useState(null);
@@ -54,6 +56,7 @@ const Checkout = () => {
         islemtipi: "Auth",
         taksit: "",
         rnd: `${rnd}`,
+        lang,
       });
       await fetchPay({
         oid: orderID,
@@ -62,7 +65,6 @@ const Checkout = () => {
         rnd,
         ...hashData.data,
       });
-      // router.push("/checkout/pay");
       setPayModal(true);
       resetForm();
     } catch (err) {
