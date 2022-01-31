@@ -6,12 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import sources from "../../../sources";
-import {
-  hero_caption,
-  hero_container,
-  sliderButton,
-  slider_height,
-} from "./Slider.module.css";
+import { hero_caption, sliderButton, slider_height } from "./Slider.module.css";
 import { HomePageSliderWithArrow } from "./HomePageSlider";
 
 export default function SliderProducts({ sliders }) {
@@ -19,7 +14,7 @@ export default function SliderProducts({ sliders }) {
     <section className="hero-area position-relative ">
       <div className="hero-slider-two">
         <div className="slider-active slider-active-one">
-          <HomePageSliderWithArrow>
+          <HomePageSliderWithArrow sliders={sliders}>
             {sliders &&
               sliders.map(
                 (
