@@ -84,14 +84,14 @@ export const News_4 = () => {
             </a>
           </div>
         </div>
-        <div className="col-xl-12 col-lg-12 col-md-12 headhead black-bg d-none d-sm-block">
+        {/* <div className="col-xl-12 col-lg-12 col-md-12 headhead black-bg d-none d-sm-block">
           <div className="rightJS li">
             <div className="martext">
               {t("saleInfo")}{" "}
               <span className="marspantext">{t("saleInfoColored")}</span>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
