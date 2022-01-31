@@ -91,11 +91,7 @@ const Cart = ({ saleTeam }) => {
       toast.error("Sepetinizde ürün bulunmamaktadır.");
       return;
     }
-    if (!currentSeller) {
-      toast.error("Lütfen bir satıcı seçiniz.");
-      warningTimed("sellerWarning", 3000);
-      return;
-    }
+
     try {
       setIsLoading(true);
       const { data } = await axios.post("/api/payment/addOrderVisitor", {
@@ -451,7 +447,14 @@ const Cart = ({ saleTeam }) => {
                           ) : null}
                           <button
                             type="submit"
-                            onClick={() => setPaymentType("cc")}
+                            onClick={() => {
+                              setPaymentType("cc");
+                              if (!currentSeller) {
+                                toast.error("Lütfen bir satıcı seçiniz.");
+                                warningTimed("sellerWarning", 5000);
+                                return;
+                              }
+                            }}
                             className="btn grenbtn1 mb-10"
                             style={{ width: "100%" }}>
                             <i
@@ -461,7 +464,14 @@ const Cart = ({ saleTeam }) => {
                           </button>
                           <button
                             type="submit"
-                            onClick={() => setPaymentType("order")}
+                            onClick={() => {
+                              setPaymentType("order");
+                              if (!currentSeller) {
+                                toast.error("Lütfen bir satıcı seçiniz.");
+                                warningTimed("sellerWarning", 5000);
+                                return;
+                              }
+                            }}
                             className="btn grenbtn1 mb-10"
                             style={{ width: "100%" }}>
                             <i
