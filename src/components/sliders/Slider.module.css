@@ -23,7 +23,7 @@
 }
 
 .hero_container {
-  height: 750px;
+  padding: 130px 0;
 }
 
 .hero_caption span {
@@ -45,6 +45,6 @@
 }
 
 .slider_height {
-  height: 830px;
+  /* height: 830px; */
   text-align: center;
 }
