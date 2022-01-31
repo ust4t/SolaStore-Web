@@ -39,7 +39,7 @@ export default function SliderProducts({ sliders }) {
                       <div className="row">
                         <div className="col-lg-12 p-0">
                           <div
-                            className={`${hero_caption} ${hero_container} position-relative mb-85 d-flex flex-column align-items-center justify-content-center`}>
+                            className={`${hero_caption} position-relative mb-85 d-flex flex-column align-items-center justify-content-center`}>
                             <BackgroundImage
                               src={`${sources.slider}${guidName}`}
                               objectFit="cover"
