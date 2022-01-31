@@ -103,8 +103,8 @@ export async function getStaticProps({ locale }) {
 
   return {
     props: {
-      newProducts: newProducts.reverse(),
-      saleProducts: saleProducts.reverse(),
+      newProducts: newProducts.reverse().slice(0, 8),
+      saleProducts: saleProducts.reverse().slice(0, 8),
       slidersData,
       bannersData,
       categoriesData,

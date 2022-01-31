@@ -33,11 +33,36 @@ const Cart = ({ saleTeam }) => {
   const [currentSeller, setCurrentSeller] = useState(null);
   const [paymentType, setPaymentType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [warning, setWarning] = useState({
+    sellerWarning: "",
+  });
+  const sellerRef = React.createRef();
 
   const paymentValidationSchema = Yup.object({
     name: Yup.string().required(t("validationName")),
     tel: Yup.string().required(t("validationTel")),
   });
+
+  const warningTimed = (target, timeout = 3000) => {
+    if (typeof window !== "undefined" && sellerRef.current) {
+      window.scrollTo({
+        top: sellerRef.current.offsetTop,
+        behavior: "smooth",
+      });
+    }
+    if (!warning[target]) {
+      setTimeout(() => {
+        setWarning({
+          ...warning,
+          [target]: "",
+        });
+      }, timeout);
+      setWarning({
+        ...warning,
+        [target]: "border border-3 rounded-3 border-danger",
+      });
+    }
+  };
 
   const removeFromCart = (e, { id }) => {
     e.preventDefault();
@@ -68,6 +93,7 @@ const Cart = ({ saleTeam }) => {
     }
     if (!currentSeller) {
       toast.error("Lütfen bir satıcı seçiniz.");
+      warningTimed("sellerWarning", 3000);
       return;
     }
     try {
@@ -98,9 +124,6 @@ const Cart = ({ saleTeam }) => {
         query: {
           orderID: data.data,
           user: uid,
-          buyerName: values.name,
-          buyerPhone: values.tel.replace(/\+/g, ""),
-          paymentType,
         },
       });
     } catch (err) {
@@ -134,7 +157,9 @@ const Cart = ({ saleTeam }) => {
                 </h5>
               </div>
               <div className="col-12 mt-20 d-flex flex-column justify-content-center">
-                <div className="row justify-content-center">
+                <div
+                  ref={sellerRef}
+                  className={`row justify-content-center ${warning.sellerWarning}`}>
                   <div
                     onClick={() =>
                       handleSeller({
@@ -230,7 +255,6 @@ const Cart = ({ saleTeam }) => {
                                       <div className="sept40">
                                         <p className="pe-3">
                                           <span className="red">
-                                            {" "}
                                             ${Number(cart.price).toFixed(2)}
                                           </span>
                                         </p>
@@ -327,14 +351,14 @@ const Cart = ({ saleTeam }) => {
                                       </p>
                                     </div>
                                   </div>
-                                  <div style={{ display: "none" }}>
+                                  {/* <div style={{ display: "none" }}>
                                     <div className="sale1 my-3">
                                       Geçersiz Kod{" "}
                                     </div>
                                     <div className="true1 my-3">
                                       Kupon Uygulandı{" "}
                                     </div>
-                                  </div>
+                                  </div> */}
                                 </div>
                               </div>
                             </div>
@@ -359,7 +383,7 @@ const Cart = ({ saleTeam }) => {
                           layout="fixed"
                         />
                         <h3 className="fw-bold text-center">
-                          {currentSeller.id === 0
+                          {currentSeller.id === 9999
                             ? t(currentSeller.name)
                             : currentSeller.name}
                         </h3>
@@ -392,9 +416,13 @@ const Cart = ({ saleTeam }) => {
                               value={values.name}
                               onChange={handleChange("name")}
                               type="text"
-                              className="form-control txth"
+                              className={`form-control txth ${
+                                errors.name && touched.name
+                                  ? "border border-3 rounded-3 border-danger"
+                                  : ""
+                              }`}
                               placeholder={t("orderName")}
-                              required
+                              // required
                             />
                           </div>
                           {errors.name && touched.name ? (
@@ -407,9 +435,13 @@ const Cart = ({ saleTeam }) => {
                               value={values.tel}
                               onChange={handleChange("tel")}
                               type="tel"
-                              className="form-control txth"
+                              className={`form-control txth ${
+                                errors.tel && touched.tel
+                                  ? "border border-3 rounded-3 border-danger"
+                                  : ""
+                              }`}
                               placeholder={t("orderTel")}
-                              required
+                              // required
                             />
                           </div>
                           {errors.tel && touched.tel ? (
