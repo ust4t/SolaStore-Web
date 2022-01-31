@@ -33,8 +33,8 @@ const Index4 = ({
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
-        {/* <Stories stories={newProducts} /> */}
-        <SliderProducts sliders={slidersData} />
+        <Stories stories={newProducts} />
+        {/* <SliderProducts sliders={slidersData} /> */}
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <IntroBanners banners={bannersData} />
           <FilterSearch brands={brands} />
