@@ -9,9 +9,9 @@ import {
   embla__container,
 } from "./EmblaSlider.module.css";
 
-export default function EmblaSlider({ children, ...rest }) {
+export default function EmblaSlider({ children, config }) {
   const [viewportRef, embla] = useEmblaCarousel({
-    ...rest,
+    ...config,
   });
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);

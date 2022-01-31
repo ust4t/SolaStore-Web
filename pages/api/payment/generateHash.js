@@ -3,7 +3,7 @@ import axios from "axios";
 export default async function generateHash(req, res) {
   try {
     const { data } = await axios.post(
-      `https://api.solastore.com.tr/api/Helpers/GenerateHash`,
+      "https://api.solastore.com.tr/api/Helpers/GenerateHash",
       { ...req.body, sourceProof: process.env.SOURCE_PROOF }
     );
     res.status(200).json({

@@ -1,11 +1,13 @@
 import React, { useCallback, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
 import sources from "../../../sources";
-import styles from "./Stories.module.css";
+import styles, {
+  embla__slide,
+  embla__slide__inner,
+} from "./Stories.module.css";
+import EmblaSlider from "../../components/EmblaSlider";
 const StoryCard = dynamic(() => import("../../components/Cards/StoryCard"));
 
 export default function Stories({ stories }) {
@@ -30,25 +32,18 @@ export default function Stories({ stories }) {
 
   return (
     <div className="d-flex align-center justify-content-center my-4">
-      <div className="slider-main">
-        <Swiper
-          modules={[Autoplay]}
-          spaceBetween={0}
-          centeredSlides={true}
-          grabCursor={true}
-          slidesPerView={5}
-          breakpoints={{
-            300: {
-              slidesPerView: 3,
-            },
-            540: {
-              slidesPerView: 5,
-            },
-          }}>
-          {stories
-            .slice(0, stories.length >= 6 ? 6 : stories.length)
-            .map((story, index) => (
-              <SwiperSlide key={`${story.masterProductID}_?_${index}`}>
+      <EmblaSlider
+        config={{
+          dragFree: true,
+          containScroll: "trimSnaps",
+        }}>
+        {stories
+          .slice(0, stories.length >= 6 ? 6 : stories.length)
+          .map((story, index) => (
+            <div
+              className={embla__slide}
+              key={`${story.masterProductID}_?_${index}`}>
+              <div className={embla__slide__inner}>
                 <div className="d-flex flex-column flex-wrap align-content-center justify-content-center mx-2">
                   <div
                     style={{
@@ -61,7 +56,7 @@ export default function Stories({ stories }) {
                       className="cursor-pointer p-1"
                       src={`${sources.imageMinSrc}${story.picture_1}`}
                       layout="fill"
-                      priority={true}
+                      priority
                       placeholder="blur"
                       blurDataURL="/img/loadingImg.jpg"
                     />
@@ -70,10 +65,10 @@ export default function Stories({ stories }) {
                     {story.productShortName}
                   </p>
                 </div>
-              </SwiperSlide>
-            ))}
-        </Swiper>
-      </div>
+              </div>
+            </div>
+          ))}
+      </EmblaSlider>
 
       {storiesOpen && (
         <StoryCard storiesData={storiesData} onClose={closeStory} />
