@@ -1,29 +1,22 @@
 import React from "react";
-import { HeartOutline, Heart as HeartIcon } from "react-ionicons";
+
+import { heart_container } from "./Heart.module.css";
 
 function Heart({ isLiked, setIsLiked, size }) {
-  if (typeof isLiked !== "boolean" || typeof setIsLiked !== "function")
-    return null;
+  const toggleLike = () => setIsLiked(!isLiked);
 
   return (
     <div
       style={{
         zIndex: "229",
       }}
-      className="heart-container"
-      onClick={() => setIsLiked(!isLiked)}>
-      <i className="fas fa-heart" />{" "}
-      {/* {isLiked ? (
-        <HeartIcon
-          title="heart"
-          beat
-          color={"#f44336"}
-          height={size}
-          width={size}
-        />
+      className={`${heart_container} animate__pulse`}
+      onClick={toggleLike}>
+      {isLiked ? (
+        <i class="fas fa-heart fa-2x animate__pulse text-danger" />
       ) : (
-        <HeartOutline color={"#f44336"} height={size} width={size} />
-      )} */}
+        <i className="far fa-heart fa-2x  text-danger" />
+      )}
     </div>
   );
 }

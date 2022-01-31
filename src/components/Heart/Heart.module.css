@@ -1,0 +1,13 @@
+.heart_container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-duration: 0.4s;
+}
+.heart_container:hover {
+  background-color: rgba(252, 13, 27, 0.15);
+  transition-duration: 0.4s;
+}

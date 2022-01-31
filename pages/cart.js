@@ -138,7 +138,7 @@ const Cart = ({ saleTeam }) => {
                   <div
                     onClick={() =>
                       handleSeller({
-                        id: 0,
+                        id: 9999,
                         name: "orderFirst",
                         img: "/img/logo/person.jpg",
                       })
