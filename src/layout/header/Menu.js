@@ -17,9 +17,7 @@ const Menu = () => {
             <a className="text-uppercase">{t("menu.brands")}</a>
           </Link>
         </li>
-        <li>
-          <SubMenu />
-        </li>
+        <li>{/* <SubMenu /> */}</li>
         <li>
           <Link href="/">
             <a className="text-uppercase">{t("menu.contact")}</a>

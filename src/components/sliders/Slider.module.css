@@ -22,10 +22,6 @@
   color: var(--color-primary);
 }
 
-.hero_container {
-  height: 750px;
-}
-
 .hero_caption span {
   font-size: 16px;
 
@@ -45,6 +41,6 @@
 }
 
 .slider_height {
-  height: 830px;
+  /* height: 830px; */
   text-align: center;
 }
