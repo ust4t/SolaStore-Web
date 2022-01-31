@@ -36,7 +36,11 @@
 		"animate.css": "^4.1.1",
 		"antd": "^4.17.3",
 		"axios": "^0.24.0",
+<<<<<<< HEAD
 		"embla-carousel-react": "^6.1.1",
+=======
+		"express": "^4.17.2",
+>>>>>>> aa2c9ea94e0a2967c67e21ee6217bc7dc25702e1
 		"formik": "^2.2.9",
 		"next": "^12.0.9",
 		"next-translate": "^1.2.0",

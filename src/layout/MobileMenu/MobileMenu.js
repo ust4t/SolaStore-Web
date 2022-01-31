@@ -40,7 +40,7 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                 <a>{t("menu.brands")}</a>
               </Link>
             </li>
-            {menu &&
+            {/* {menu &&
               menu.map(
                 ({ selectedCategoryName, categoryID, subcategories }, i) => (
                   <li key={`${categoryID}?=)${i}`} className={has_dropdown}>
@@ -58,7 +58,7 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                     <InnerMobileMenu subcategories={subcategories} />
                   </li>
                 )
-              )}
+              )} */}
 
             <li>
               <Link href="/">

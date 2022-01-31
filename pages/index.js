@@ -37,7 +37,11 @@ const Index4 = ({
         <SliderProducts sliders={slidersData} />
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <IntroBanners banners={bannersData} />
+<<<<<<< HEAD
           <FilterSearch brands={brands} />
+=======
+          {/* <FilterSearch brands={brands} /> */}
+>>>>>>> aa2c9ea94e0a2967c67e21ee6217bc7dc25702e1
           <TabLayout newProducts={newProducts} saleProducts={saleProducts} />
           <Categories categories={categoriesData} />
           {/* <CountdownSection countdown={countdownSource} /> */}

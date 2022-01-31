@@ -12,7 +12,8 @@ function Heart({ isLiked, setIsLiked, size }) {
       }}
       className="heart-container"
       onClick={() => setIsLiked(!isLiked)}>
-      {isLiked ? (
+      <i className="fas fa-heart" />{" "}
+      {/* {isLiked ? (
         <HeartIcon
           title="heart"
           beat
@@ -22,7 +23,7 @@ function Heart({ isLiked, setIsLiked, size }) {
         />
       ) : (
         <HeartOutline color={"#f44336"} height={size} width={size} />
-      )}
+      )} */}
     </div>
   );
 }
