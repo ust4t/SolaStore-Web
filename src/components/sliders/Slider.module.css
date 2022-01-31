@@ -22,29 +22,39 @@
   color: var(--color-primary);
 }
 
-.hero_container {
-  height: 750px;
+.embla__slide {
+  position: relative;
+  min-width: 100%;
+  padding-left: 10px;
 }
 
-.hero_caption span {
-  font-size: 16px;
+.embla__slide__inner {
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+}
 
-  font-weight: 300;
-
-  letter-spacing: 3px;
-
-  margin-bottom: 15px;
-
+.embla__slide__img {
+  position: absolute;
   display: block;
+  /* top: 50%;
+  left: 50%; */
+  width: auto;
+  min-height: 100%;
+  min-width: 100%;
+  max-width: none;
+  /* transform: translate(-50%, -50%); */
 }
 
-.hero_caption h2 {
-  font-size: 80px;
-
-  font-weight: 800;
-}
-
-.slider_height {
-  height: 830px;
+.slider__content {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
   text-align: center;
+  width: 100%;
+  z-index: 1;
 }
