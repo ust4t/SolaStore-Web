@@ -34,10 +34,10 @@ const Index4 = ({
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
         <Stories stories={newProducts} />
-        {/* <SliderProducts sliders={slidersData} /> */}
+        <SliderProducts sliders={slidersData} />
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <IntroBanners banners={bannersData} />
-          <FilterSearch brands={brands} />
+          {/* <FilterSearch brands={brands} /> */}
           <TabLayout newProducts={newProducts} saleProducts={saleProducts} />
           <Categories categories={categoriesData} />
           {/* <CountdownSection countdown={countdownSource} /> */}
