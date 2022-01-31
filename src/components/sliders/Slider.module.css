@@ -22,10 +22,6 @@
   color: var(--color-primary);
 }
 
-.hero_container {
-  padding: 130px 0;
-}
-
 .hero_caption span {
   font-size: 16px;
 
