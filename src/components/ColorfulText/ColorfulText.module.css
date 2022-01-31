@@ -1,0 +1,25 @@
+.colorful_text {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  animation-name: changeColor;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+}
+@keyframes changeColor {
+  0% {
+    background-color: orange;
+  }
+  25% {
+    background-color: purple;
+  }
+  50% {
+    background-color: blue;
+  }
+  75% {
+    background-color: green;
+  }
+  100% {
+    background-color: orange;
+  }
+}

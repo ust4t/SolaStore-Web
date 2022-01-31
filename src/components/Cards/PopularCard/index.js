@@ -11,6 +11,12 @@ import ProductModal from "../../product/ProductModal";
 import sources from "../../../../sources";
 import { StoreContext } from "../../../context/StoreProvider";
 import ShareModal from "../../Modals/ShareModal";
+import {
+  product_image_1,
+  color_select,
+  product_image_2,
+  cart_button,
+} from "./PopularCard.module.css";
 
 function PopularCard({ productData }) {
   const { t } = useTranslation("common");
@@ -129,7 +135,7 @@ function PopularCard({ productData }) {
         </span>
 
         <span
-          className={`animate__animated product-image-1 animate__faster ${
+          className={`animate__animated ${product_image_1} animate__faster ${
             !currentImageIndex
               ? "opacity-0 animate__fadeIn"
               : "opacity-100 animate__fadeOut"
@@ -152,7 +158,7 @@ function PopularCard({ productData }) {
           </Link>
         </span>
         <span
-          className={`animate__animated product-image-2 animate__faster ${
+          className={`animate__animated ${product_image_2} animate__faster ${
             currentImageIndex
               ? "opacity-0 animate__fadeIn"
               : "opacity-100 animate__fadeOut"
@@ -206,7 +212,7 @@ function PopularCard({ productData }) {
         </div>
         <div className="product-action text-center position-absolute bottom-0 start-50 translate-middle-x w-100 mb-0 p-0 ">
           <div
-            className={`cart-button animate__animated animate__faster h-100 ${
+            className={`${cart_button} animate__animated animate__faster h-100 ${
               currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
             }`}
             onClick={onAddToCart}>
@@ -253,7 +259,7 @@ function PopularCard({ productData }) {
             {[...productData.variants, { images }].map((variant, i) => (
               <SwiperSlide key={`${i}__..`}>
                 <Image
-                  className="color-select"
+                  className={color_select}
                   width={60}
                   height={60}
                   src={checkVariantImage(variant)}

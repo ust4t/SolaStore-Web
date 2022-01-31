@@ -1,0 +1,29 @@
+.product_image_1 {
+  position: absolute;
+  z-index: 1;
+}
+.product_image_2 {
+  z-index: 0;
+}
+
+.color_select {
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: contain;
+  background-color: #efeef1;
+}
+
+.cart_button {
+  background: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-dark);
+  transition: all 0.3s ease-in-out;
+  padding: 6px 0;
+  cursor: pointer;
+}
+
+.cart_button:hover {
+  background: var(--color-primary);
+  color: #fff;
+}

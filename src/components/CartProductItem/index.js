@@ -3,6 +3,14 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 
 import { StoreContext } from "../../context/StoreProvider";
+import {
+  cart_product_item,
+  cart_product_item_image,
+  cart_product_item_name,
+  trash_container,
+  cart_product_item_info,
+  trash_icon,
+} from "./CartProductItem.module.css";
 
 function CartProductItem({ id, image, name, price, quantity }) {
   const uid = useSelector((state) => state.auth.uid);
@@ -19,20 +27,20 @@ function CartProductItem({ id, image, name, price, quantity }) {
 
   if (image && name && price)
     return (
-      <div className="cart-product-item">
-        <div className="cart-product-item-image">
+      <div className={cart_product_item}>
+        <div className={cart_product_item_image}>
           <Image src={image} width={400 * rate} height={600 * rate} />
         </div>
-        <div className="cart-product-item-info">
-          <span className="cart-product-item-name">{name}</span>
-          <div className="cart-product-item-name">${price}</div>
-          <div className="cart-product-item-name">Adet: {quantity}</div>
+        <div className={cart_product_item_info}>
+          <span className={cart_product_item_name}>{name}</span>
+          <div className={cart_product_item_name}>${price}</div>
+          <div className={cart_product_item_name}>Adet: {quantity}</div>
         </div>
         {isCartLoading ? (
           "Loading..."
         ) : (
-          <div onClick={handleDelete} className="trash-container">
-            <i className="fas fa-trash-alt" />
+          <div onClick={handleDelete} className={trash_container}>
+            <i className={`fas fa-trash-alt ${trash_icon}`} />
           </div>
         )}
       </div>
