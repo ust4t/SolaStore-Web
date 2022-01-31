@@ -34,8 +34,9 @@ export default function Stories({ stories }) {
     <div className="d-flex align-center justify-content-center my-4">
       <EmblaSlider
         config={{
+          loop: false,
           dragFree: true,
-          containScroll: "trimSnaps",
+          skipSnaps: false,
         }}>
         {stories
           .slice(0, stories.length >= 6 ? 6 : stories.length)
