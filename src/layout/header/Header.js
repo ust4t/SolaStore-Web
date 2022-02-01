@@ -1,8 +1,10 @@
-import { Fragment, useState } from "react";
-import { DefaultLayout, Layout1, Layout2, Layout3 } from "./HeaderLayouts";
+import { Fragment, useRef, useState } from "react";
+
+import { DefaultLayout, Layout2 } from "./HeaderLayouts";
 import MobileMenu from "../MobileMenu";
 import { News_4 } from "./News";
 import Search from "./Search";
+import useDetectOutside from "../../hooks/useDetectOutside";
 
 const Header = ({ news, layout, darkBg, logoLeft }) => {
   const [activeSearchBar, setActiveSearchBar] = useState(false);
@@ -16,11 +18,13 @@ const Header = ({ news, layout, darkBg, logoLeft }) => {
         break;
     }
   };
+  const handleSearchBar = () => setActiveSearchBar(true);
+  const handleSidebar = () => setSidebar(true);
+  function handleCloseSidebar() {
+    setSidebar(false);
+  }
 
   const headerLayout = (value, news) => {
-    const handleSearchBar = () => setActiveSearchBar(true);
-    const handleSidebar = () => setSidebar(true);
-
     switch (value) {
       case 2:
         return (
@@ -47,10 +51,7 @@ const Header = ({ news, layout, darkBg, logoLeft }) => {
     <Fragment>
       {headerLayout(layout, newsList(news))}
 
-      <MobileMenu
-        sidebarActive={sidebar ? "show" : ""}
-        sidebarClose={() => setSidebar(false)}
-      />
+      <MobileMenu sidebarActive={sidebar} sidebarClose={handleCloseSidebar} />
       <Search
         active={activeSearchBar ? "d-block" : ""}
         hendelChangeSearch={() => setActiveSearchBar(false)}

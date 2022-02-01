@@ -1,6 +1,6 @@
 import MetisMenu from "@metismenu/react";
 import Link from "next/link";
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import { connect } from "react-redux";
 import useTranslation from "next-translate/useTranslation";
 
@@ -12,12 +12,24 @@ import {
   slide_bar,
 } from "./MobileMenu.module.css";
 import InnerMobileMenu from "../header/InnerMobileMenu";
+import useDetectOutside from "../../hooks/useDetectOutside";
 
 const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
   const { t } = useTranslation("common");
+  const menuRef = useRef(null);
+
+  console.log(menuRef);
+
+  useDetectOutside(menuRef, sidebarClose);
+
   return (
     <Fragment>
-      <aside className={`${slide_bar} ${sidebarActive}`}>
+      <aside
+        ref={menuRef}
+        className={`${slide_bar}`}
+        style={{
+          right: sidebarActive ? "0" : "-360px",
+        }}>
         <div className={close_mobile_menu}>
           <a
             href="#"
