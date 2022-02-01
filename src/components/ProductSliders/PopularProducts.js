@@ -37,11 +37,18 @@ function PopularProducts() {
           }}>
           {popularData
             .slice(0, popularData.length >= 12 ? 12 : popularData.length)
-            .map((productData, i) => {
+            .map((productData, index) => {
               return (
-                <div key={`${productData.id}_**_${i}`} className={embla__slide}>
+                <div
+                  key={`${productData.id}_**_${index}`}
+                  className={embla__slide}>
                   <div className={embla__slide__inner}>
-                    <PopularCard productData={productData} />
+                    <PopularCard
+                      productData={{
+                        ...productData,
+                        index,
+                      }}
+                    />
                   </div>
                 </div>
               );

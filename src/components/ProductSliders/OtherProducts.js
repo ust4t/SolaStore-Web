@@ -19,10 +19,10 @@ export default function OtherProducts({ products }) {
       }}>
       {products
         .slice(0, products.length >= 8 ? 8 : products.length)
-        .map((productData, i) => {
+        .map((productData, index) => {
           return (
             <div
-              key={`${productData.productID}*_${i}`}
+              key={`${productData.productID}*_${index}`}
               className={embla__slide}>
               <div className={embla__slide__inner}>
                 <PopularCard
@@ -36,6 +36,7 @@ export default function OtherProducts({ products }) {
                     oldPrice: productData.oldPrice,
                     productStockCode: productData.productStockCode,
                     video_1: productData.video_1,
+                    index,
                   }}
                 />
               </div>

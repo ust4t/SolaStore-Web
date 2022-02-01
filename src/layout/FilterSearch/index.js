@@ -77,7 +77,7 @@ export default function FilterSearch({ brands }) {
 
   return (
     <div className="container py-3">
-      <div className="row justify-content-space-evenly align-items-end">
+      <div className="row justify-content-center align-items-end">
         <div className="col-xs-12 col-md-4 col-lg-3 py-3">
           {menu && (
             <SelectCheckboxGroup

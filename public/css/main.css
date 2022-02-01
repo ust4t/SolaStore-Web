@@ -2485,7 +2485,7 @@ small a {
 .pagination-item.active a {
   background: var(--color-primary);
 
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .basic-pagination-2 {

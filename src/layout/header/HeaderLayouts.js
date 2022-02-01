@@ -6,6 +6,7 @@ import useTranslation from "next-translate/useTranslation";
 import {
   CartIcon,
   HamburgerIcon,
+  HomeIcon,
   Logo,
   SearchIcon,
   UserIcon,
@@ -47,9 +48,11 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
 
       <div className="header-menu-area logo-circle-area">
         <div className="container-fluid">
-          <div className="row align-items-center justify-content-end justify-content-lg-center">
-            {/* {logoLeft ? ( */}
+          <div className="row align-items-center gx-0 justify-content-center justify-content-lg-center">
             <Fragment>
+              <div className="col-1 col-md-1 d-block d-lg-none">
+                <HamburgerIcon darkBg={darkBg} sidebarActive={setSidebar} />
+              </div>
               <div className="col-xl-2 col-lg-2 col-md-4 col-4 text-center d-none d-lg-block order-1">
                 <div className="logo d-flex justify-content-lg-start">
                   <Link href="/">
@@ -68,14 +71,14 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
                   </Link>
                 </div>
               </div>
-              <div className="col-7 d-block order-md-2">
+              <div className="col-6 d-block order-md-2">
                 <div className="input-group">
                   {" "}
                   <input
                     ref={searchRef}
                     onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                     type="text"
-                    className="form-control input-text p-3 py-2"
+                    className="form-control input-text"
                     placeholder={t("search")}
                     aria-label
                     aria-describedby="basic-addon2"
@@ -84,7 +87,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
                     {" "}
                     <button
                       onClick={handleSearch}
-                      className="btn btn-outline-dark btn-lg p-3 py-2"
+                      className="btn btn-outline-dark btn-lg search-buton search-p"
                       type="button">
                       <i className="fa fa-search" />
                     </button>{" "}
@@ -92,36 +95,17 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
                 </div>
               </div>
             </Fragment>
-            {/* ) : ( */}
-            {/* <Fragment>
-								<div className='col-xl-2 col-lg-2 col-md-4 col-4'>
-									<div className='logo'>
-										<Link href='/'>
-											<a>
-												<img
-													src={
-														darkBg ? 'img/logo/logo3.png' : 'img/logo/logo.png'
-													}
-													alt=''
-												/>
-											</a>
-										</Link>
-									</div>
-								</div>
-							</Fragment> */}
-            {/* )} */}
+
             <div className="col-xl-2 col-lg-3 col-md-3 col-4 order-1 order-md-3">
               <div
                 className={`header-left-icon ${
                   darkBg ? "header-right-icon" : ""
-                } d-flex align-items-center f-right`}>
+                } ms-auto d-flex justify-content-end align-items-center f-right`}>
+                <HomeIcon />
                 <WishlistIcon />
                 <UserIcon />
                 <CartIcon />
               </div>
-            </div>
-            <div className="col-1 col-md-1 d-block d-lg-none order-1 order-md-3">
-              <HamburgerIcon darkBg={darkBg} sidebarActive={setSidebar} />
             </div>
           </div>
         </div>

@@ -102,14 +102,14 @@ const ShopLayout = ({
                       <Tab.Pane eventKey="grid">
                         <div className="row custom-row-10">
                           {products &&
-                            products.map((productItem, i) => (
+                            products.map((productItem, index) => (
                               <div
                                 className={`${
                                   full
                                     ? `col-lg-3 ${custom_col_6} col-sm-6 custom-col-10`
                                     : `col-lg-4 ${custom_col_6} col-sm-6 custom-col-10`
-                                } ${dblock(active, i, sort)}`}
-                                key={`${productItem.productID}-_*-|${i}`}>
+                                } ${dblock(active, index, sort)}`}
+                                key={`${productItem.productID}-_*-|${index}`}>
                                 <PopularCard
                                   productData={{
                                     id: productItem.productID,
@@ -123,6 +123,7 @@ const ShopLayout = ({
                                       productItem.productStockCode,
                                     video_1: productItem.video_1,
                                     variants: productItem?.variants,
+                                    index,
                                   }}
                                 />
                               </div>
