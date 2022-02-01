@@ -131,7 +131,7 @@ body > #__next {
 }
 
 a:hover {
-  color: var(--color-primary);
+  color: var(--color-primary) !important;
 }
 
 .news-form-wrapper form button {

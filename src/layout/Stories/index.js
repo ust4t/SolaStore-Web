@@ -37,6 +37,8 @@ export default function Stories({ stories }) {
           loop: false,
           dragFree: true,
           skipSnaps: false,
+          align: "center",
+          startIndex: 3,
         }}>
         {stories
           .slice(0, stories.length >= 6 ? 6 : stories.length)

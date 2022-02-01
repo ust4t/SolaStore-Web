@@ -18,8 +18,6 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
   const { t } = useTranslation("common");
   const menuRef = useRef(null);
 
-  console.log(menuRef);
-
   useDetectOutside(menuRef, sidebarClose);
 
   return (
@@ -44,12 +42,12 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
           <MetisMenu id="mobile-menu-active" className="metismenu">
             <li>
               <Link href="/">
-                <a>{t("menu.home")}</a>
+                <a className="text-uppercase">{t("menu.home")}</a>
               </Link>
             </li>
             <li>
               <Link href="/shop/brandlist">
-                <a>{t("menu.brands")}</a>
+                <a className="text-uppercase">{t("menu.brands")}</a>
               </Link>
             </li>
             {menu &&
@@ -74,7 +72,7 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
 
             <li>
               <Link href="/">
-                <a>{t("menu.contact")}</a>
+                <a className="text-uppercase">{t("menu.contact")}</a>
               </Link>
             </li>
           </MetisMenu>
