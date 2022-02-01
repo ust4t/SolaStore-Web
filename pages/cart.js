@@ -72,7 +72,7 @@ const Cart = ({ saleTeam }) => {
     };
     removeFromCartAction(cartData);
   };
-  console.log(uid);
+
   const totalPrice = (items) => {
     if (items) {
       const total = items.reduce((a, b) => {

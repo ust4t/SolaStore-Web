@@ -28,6 +28,8 @@ const ShopLayout = ({
   const [offset, setOffset] = useState(0);
   const pageCount = Math.ceil(allProducts.length / pageLimit);
   const [active, setActive] = useState(active_ ? active_ : 0);
+  const [cartAnim, setCartAnim] = useState(false);
+
   let sort = sortValue ? sortValue : pageLimit;
   const [products, setProducts] = useState(
     allProducts.slice(offset, offset + pageLimit)
@@ -51,6 +53,7 @@ const ShopLayout = ({
 
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
+      {cartAnim && <div className="body_overlay" />}
       <main>
         <PageTitle pageTitle={title} active={title} />
         <section className=" pt-75">
@@ -111,6 +114,7 @@ const ShopLayout = ({
                                 } ${dblock(active, index, sort)}`}
                                 key={`${productItem.productID}-_*-|${index}`}>
                                 <PopularCard
+                                  setAnim={setCartAnim}
                                   productData={{
                                     id: productItem.productID,
                                     name: productItem.productShortName,
