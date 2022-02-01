@@ -12,12 +12,13 @@ import ScrollTop from "../src/layout/ScrollTop";
 import StoreProvider from "../src/context/StoreProvider";
 import store from "../src/redux/store";
 import { GET_MAIN_MENU, CREATE_USER_ID } from "../src/redux/action/type";
+import "../public/css/bootstrap.min.css";
+import "react-input-range/lib/css/index.css";
 import "../styles/main.css";
 import "swiper/css/bundle";
 import "animate.css";
 import "antd/dist/antd.css";
 import "../styles/global.css";
-import "react-input-range/lib/css/index.css";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -90,12 +91,12 @@ function MyApp({ Component, pageProps }) {
           href="/img/logo/favicon/favicon.ico"
         />
         <link rel="manifest" href="/img/logo/favicon/manifest.json" />
-        <link
+        {/* <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
           crossorigin="anonymous"
-        />
+        /> */}
         {/* <link
 					href='https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
 					rel='stylesheet'
@@ -111,7 +112,7 @@ function MyApp({ Component, pageProps }) {
       <Script
         src="https://kit.fontawesome.com/9134714f20.js"
         crossorigin="anonymous"
-        defer
+        strategy="beforeInteractive"
       />
     </Provider>
   );

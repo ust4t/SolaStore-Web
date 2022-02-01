@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { Fragment, useEffect, useState, useRef } from "react";
+import React, { Fragment, useState, useRef } from "react";
 import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
 import {
@@ -13,7 +13,7 @@ import {
 } from "./Icons";
 import Menu from "./Menu";
 
-export const Layout2 = ({ setSidebar, darkBg, logoLeft, news }) => {
+export const Layout2 = ({ setSidebar, darkBg, news }) => {
   const { t } = useTranslation("common");
   const { push } = useRouter();
   const searchRef = useRef();
@@ -75,7 +75,7 @@ export const Layout2 = ({ setSidebar, darkBg, logoLeft, news }) => {
                     ref={searchRef}
                     onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                     type="text"
-                    className="form-control input-text"
+                    className="form-control input-text p-3 py-2"
                     placeholder={t("search")}
                     aria-label
                     aria-describedby="basic-addon2"
@@ -84,7 +84,7 @@ export const Layout2 = ({ setSidebar, darkBg, logoLeft, news }) => {
                     {" "}
                     <button
                       onClick={handleSearch}
-                      className="btn btn-outline-dark btn-lg p-2 search-p"
+                      className="btn btn-outline-dark btn-lg p-3 py-2"
                       type="button">
                       <i className="fa fa-search" />
                     </button>{" "}

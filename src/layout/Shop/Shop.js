@@ -2,14 +2,15 @@ import { useContext, useEffect, useState, memo } from "react";
 import { Nav, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
-import PopularCard from "../components/Cards/PopularCard";
-import PaginationList from "../components/PaginationList";
-import FilterDropdown from "../components/product/filter/FilterDropdown";
-import ProductListView from "../components/product/ProductListView";
-import { StoreContext } from "../context/StoreProvider";
-import { activeData, dblock } from "../utils/utils";
-import Layout from "./Layout";
-import PageTitle from "./PageTitle";
+import PopularCard from "../../components/Cards/PopularCard";
+import PaginationList from "../../components/PaginationList";
+import FilterDropdown from "../../components/product/filter/FilterDropdown";
+import ProductListView from "../../components/product/ProductListView";
+import { StoreContext } from "../../context/StoreProvider";
+import { activeData, dblock } from "../../utils/utils";
+import Layout from "../Layout";
+import PageTitle from "../PageTitle";
+import { custom_col_6 } from "./Shop.module.css";
 
 const ShopLayout = ({
   allProducts,
@@ -52,7 +53,7 @@ const ShopLayout = ({
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
         <PageTitle pageTitle={title} active={title} />
-        <section className="shop-sidebar pt-75">
+        <section className=" pt-75">
           <div className="container">
             {filterDropdown && (
               <FilterDropdown
@@ -64,7 +65,7 @@ const ShopLayout = ({
             )}
             <div className="row">
               <div className={full ? "col-12" : "col-lg-9 col-md-8"}>
-                {products && products.length > 0 ? (
+                {products.length > 0 ? (
                   <Tab.Container
                     defaultActiveKey={defaultKey ? defaultKey : "grid"}
                     className="shop-content-area">
@@ -105,8 +106,8 @@ const ShopLayout = ({
                               <div
                                 className={`${
                                   full
-                                    ? "col-lg-3 col-sm-6 custom-col-10"
-                                    : "col-lg-4 col-sm-6 custom-col-10"
+                                    ? `col-lg-3 ${custom_col_6} col-sm-6 custom-col-10`
+                                    : `col-lg-4 ${custom_col_6} col-sm-6 custom-col-10`
                                 } ${dblock(active, i, sort)}`}
                                 key={`${productItem.productID}-_*-|${i}`}>
                                 <PopularCard

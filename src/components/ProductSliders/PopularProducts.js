@@ -28,6 +28,7 @@ function PopularProducts() {
           config={{
             infinite: true,
             loop: true,
+            draggable: true,
             dragFree: true,
             skipSnaps: false,
             align: "center",

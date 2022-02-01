@@ -22,6 +22,7 @@ export default function SliderProducts({ sliders }) {
       config={{
         skipSnaps: false,
         loop: true,
+        draggable: true,
       }}>
       {sliders.map(
         (
