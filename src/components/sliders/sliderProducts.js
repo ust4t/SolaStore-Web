@@ -14,9 +14,7 @@ import {
   sliderButton,
   slider__content,
 } from "./Slider.module.css";
-// import { HomePageSliderWithArrow } from "./HomePageSlider";
 import EmblaSlider from "../EmblaSlider";
-// import Image from "next/image";
 
 export default function SliderProducts({ sliders }) {
   return (

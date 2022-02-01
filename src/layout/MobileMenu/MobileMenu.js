@@ -65,7 +65,10 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                       }}>
                       <a>{selectedCategoryName}</a>
                     </Link>
-                    <InnerMobileMenu subcategories={subcategories} />
+                    <InnerMobileMenu
+                      allItems={categoryID}
+                      subcategories={subcategories}
+                    />
                   </li>
                 )
               )}

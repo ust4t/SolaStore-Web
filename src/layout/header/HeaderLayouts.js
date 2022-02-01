@@ -84,7 +84,7 @@ export const Layout2 = ({ setSidebar, darkBg, logoLeft, news }) => {
                     {" "}
                     <button
                       onClick={handleSearch}
-                      className="btn btn-outline-dark btn-lg search-buton search-p"
+                      className="btn btn-outline-dark btn-lg p-2 search-p"
                       type="button">
                       <i className="fa fa-search" />
                     </button>{" "}
