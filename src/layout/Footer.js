@@ -78,6 +78,11 @@ export const DefaultFooter = ({ darkBg }) => {
                       <a>KVKK</a>
                     </Link>
                   </li>
+                  <li>
+                    <Link href="/contact">
+                      <a>İletişim</a>
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>

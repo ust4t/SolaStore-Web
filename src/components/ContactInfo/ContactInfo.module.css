@@ -1,0 +1,78 @@
+.contact_sidebar {
+  margin: 15px 0;
+}
+
+.sub_title {
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  background: #373840;
+  min-width: 375px;
+  padding: 20px 40px;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.sub_title:hover {
+  color: var(--color-primary);
+}
+
+.contact_info_wrap {
+  position: relative;
+  padding: 50px 40px;
+  background: var(--color-primary);
+  z-index: 1;
+}
+
+.icon {
+  position: relative;
+  margin-right: 20px;
+  width: 75px;
+  height: 75px;
+  background: #ffd7c3;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.icon::before {
+  content: "";
+  position: absolute;
+  width: 62px;
+  height: 62px;
+  background: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.content p {
+  font-size: 1rem;
+  margin-bottom: 0;
+  color: #fff;
+}
+
+.content p > a {
+  color: #fff !important;
+}
+.content p > a:hover {
+  color: #333 !important;
+}
+
+.content h5 {
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 7px;
+}
+
+.circle_icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.4rem;
+  color: var(--color-primary);
+}

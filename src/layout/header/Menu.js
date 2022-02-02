@@ -21,7 +21,7 @@ const Menu = () => {
           <SubMenu />
         </li>
         <li>
-          <Link href="/">
+          <Link href="/contact">
             <a className="text-uppercase">{t("menu.contact")}</a>
           </Link>
         </li>
