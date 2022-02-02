@@ -46,9 +46,12 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
   const productSize = [...product.pictures, product.video_1].filter(
     (item) => item !== null
   ).length;
-
+  console.log(product);
   useEffect(() => {
     if (product.video_1 && videoRef.current) videoRef.current.pause();
+  }, [product]);
+
+  useEffect(() => {
     const wishlist =
       product &&
       state.wishlistData &&
@@ -449,7 +452,13 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                               .map((variant) => (
                                 <div
                                   className="details-filter-row details-row-size"
-                                  onClick={() => setProduct(variant)}
+                                  onClick={() => {
+                                    setProduct({
+                                      ...variant,
+                                      video_1: product.video_1,
+                                    });
+                                    setImageKey(0);
+                                  }}
                                   style={{ margin: 5, cursor: "pointer" }}>
                                   <div className="product-nav product-nav-thumbs">
                                     <span className="productvar cursor-pointer">

@@ -1,17 +1,17 @@
 {
-	"menu": {
-		"home": "page d'accueil",
-		"brands": "marques",
-		"contact": "prendre contact"
-	},
-	"search": "Tapez l'article que vous recherchez",
-	"category": "Catégorie",
-	"price": "Prix",
-	"choose": "Choisir",
-	"chosen": "Choisie",
-	"basket": "Ajouter au panier",
-	"share": "partager le produit",
-	"stock": "en stock",
-	"saleInfo": "AUX PREMIERS MEMBRES",
-	"saleInfoColored": "REMISE SUPPLÉMENTAIRE"
+  "menu": {
+    "home": "page d'accueil",
+    "brands": "Marques",
+    "contact": "prendre contact"
+  },
+  "search": "Tapez l'article que vous recherchez",
+  "category": "Catégorie",
+  "price": "Prix",
+  "choose": "Choisir",
+  "chosen": "Choisie",
+  "basket": "Ajouter au panier",
+  "share": "partager le produit",
+  "stock": "en stock",
+  "saleInfo": "AUX PREMIERS MEMBRES",
+  "saleInfoColored": "REMISE SUPPLÉMENTAIRE"
 }
