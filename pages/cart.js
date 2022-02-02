@@ -191,8 +191,8 @@ const Cart = ({ saleTeam }) => {
                         src={`${sources.saleTeam}/${pictureGuidName}`}
                         alt={name}
                         className="rounded-circle"
-                        width={"150px"}
-                        height={"150px"}
+                        width={"140px"}
+                        height={"140px"}
                         layout="fixed"
                       />
 

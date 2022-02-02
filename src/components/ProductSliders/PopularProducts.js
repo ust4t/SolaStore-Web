@@ -44,6 +44,7 @@ function PopularProducts({ setAnim }) {
                   className={embla__slide}>
                   <div className={embla__slide__inner}>
                     <PopularCard
+                      cartId="popularProducts"
                       setAnim={setAnim}
                       productData={{
                         ...productData,

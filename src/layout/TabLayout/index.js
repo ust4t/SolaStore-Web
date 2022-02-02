@@ -50,15 +50,15 @@ export default function TabLayout({ newProducts, saleProducts }) {
                   </Nav>
                   <Tab.Content className="tab-content" id="nav-tabContent">
                     <Tab.Pane eventKey="New Products">
-                      {/* <NewProducts newProducts={newProducts} /> */}
                       <OtherProducts
+                        id="new"
                         products={newProducts}
                         setAnim={setCartAnim}
                       />
                     </Tab.Pane>
                     <Tab.Pane eventKey="Sale Products">
-                      {/* <SaleProducts saleProducts={saleProducts} /> */}
                       <OtherProducts
+                        id="sale"
                         products={saleProducts}
                         setAnim={setCartAnim}
                       />

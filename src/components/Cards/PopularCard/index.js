@@ -18,7 +18,7 @@ import {
   cart_button,
 } from "./PopularCard.module.css";
 
-function PopularCard({ productData, setAnim }) {
+function PopularCard({ productData, setAnim, cartId }) {
   const { t } = useTranslation("common");
   const { id, name, images, price, oldPrice, singlePrice, sizes } = productData;
   const { auth, lang } = useSelector((state) => state);
@@ -74,8 +74,7 @@ function PopularCard({ productData, setAnim }) {
 
     setAnim(true);
 
-    let imgtodrag =
-      document.getElementsByClassName("product-wrapper")[productData.index];
+    let imgtodrag = document.getElementsByClassName(cartId)[productData.index];
     let viewcart = document.getElementsByClassName("cartToDrag")[0];
     let imgtodragImage = imgtodrag.querySelector(".pro-image-front");
 
@@ -135,7 +134,7 @@ function PopularCard({ productData, setAnim }) {
 
   return (
     <div
-      className="product-wrapper mb-40"
+      className={`${cartId} product-wrapper mb-40`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}>
       <ProductModal

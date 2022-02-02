@@ -110,6 +110,7 @@ export async function getStaticProps({ locale }) {
       categoriesData,
       brands,
     },
+    revalidate: 60 * 5,
   };
 }
 

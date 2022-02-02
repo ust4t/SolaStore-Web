@@ -59,13 +59,8 @@ export const DefaultFooter = ({ darkBg }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="#">
-                      <a
-                        onClick={(e) => {
-                          e.preventDefault();
-                        }}>
-                        Gizlilik politikası
-                      </a>
+                    <Link href="/policy">
+                      <a>Gizlilik politikası</a>
                     </Link>
                   </li>
                   <li>
