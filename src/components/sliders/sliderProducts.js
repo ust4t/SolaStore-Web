@@ -48,7 +48,6 @@ export default function SliderProducts({ sliders }) {
                 objectFit="cover"
                 objectPosition="center"
                 layout="fill"
-                quality={100}
                 priority={true}>
                 <div className={slider__content}>
                   <h5 className="text-white fadeInUp wow text-uppercase text-shadow">

@@ -100,8 +100,10 @@ function PopularCard({ productData, setAnim }) {
     }, 200);
     setTimeout(function () {
       rechange.parentNode.removeChild(rechange);
-      setAnim(false);
     }, 2000);
+    setTimeout(function () {
+      setAnim(false);
+    }, 1000);
   };
 
   const onClickWishlist = (e) => {

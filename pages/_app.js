@@ -91,16 +91,6 @@ function MyApp({ Component, pageProps }) {
           href="/img/logo/favicon/favicon.ico"
         />
         <link rel="manifest" href="/img/logo/favicon/manifest.json" />
-        {/* <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-          crossorigin="anonymous"
-        /> */}
-        {/* <link
-					href='https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
-					rel='stylesheet'
-				/> */}
       </Head>
       <AllToaster />
       <QueryClientProvider client={queryClient}>
@@ -113,6 +103,13 @@ function MyApp({ Component, pageProps }) {
         src="https://kit.fontawesome.com/9134714f20.js"
         crossorigin="anonymous"
         strategy="beforeInteractive"
+      />
+      <Script
+        id="yandex-metrika-script"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `!function(e,t,a,n,c,m,r){e.ym=e.ym||function(){(e.ym.a=e.ym.a||[]).push(arguments)},e.ym.l=1*new Date,m=t.createElement(a),r=t.getElementsByTagName(a)[0],m.async=1,m.src="https://mc.yandex.ru/metrika/tag.js",r.parentNode.insertBefore(m,r)}(window,document,"script"),ym(69119899,"init",{clickmap:!0,trackLinks:!0,accurateTrackBounce:!0,webvisor:!0});`,
+        }}
       />
     </Provider>
   );
