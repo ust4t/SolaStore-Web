@@ -10,11 +10,14 @@ const InputGroup = ({
   id,
   type,
   name,
+  labelClassName,
+  formClassName,
+  containerClass,
   ...rest
 }) => {
   return (
-    <Fragment>
-      <label htmlFor={id}>
+    <div className={containerClass}>
+      <label htmlFor={id} className={labelClassName}>
         {label} <span className="required">*</span>
       </label>
       <input
@@ -25,7 +28,9 @@ const InputGroup = ({
         onBlur={handleBlur}
         value={values}
         placeholder={placeholder}
-        className="mb-0"
+        className={`form-control txth mb-0 ${
+          errors && touched ? "border border-3 rounded-3 border-danger" : ""
+        } ${formClassName}`}
         {...rest}
       />
       <div
@@ -34,7 +39,7 @@ const InputGroup = ({
         style={{ display: "block" }}>
         {errors && errors}
       </div>
-    </Fragment>
+    </div>
   );
 };
 

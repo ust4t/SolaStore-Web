@@ -1,13 +1,14 @@
 .brandborder {
-  flex: 0 0 10.966667%;
-  max-width: 10.966667%;
+  flex: 0 0 32.966667%;
+  max-width: 32.966667%;
   padding: 5px;
   width: 33.33333333%;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
 @media (min-width: 768px) {
   .brandborder {
-    -ms-flex: 0 0 10.966667%;
     flex: 0 0 10.966667%;
     max-width: 10.966667%;
     margin-top: 6px;

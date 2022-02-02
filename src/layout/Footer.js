@@ -54,13 +54,8 @@ export const DefaultFooter = ({ darkBg }) => {
                 <h5>KURUMSAL</h5>
                 <ul className="links">
                   <li>
-                    <Link href="#">
-                      <a
-                        onClick={(e) => {
-                          e.preventDefault();
-                        }}>
-                        Hakkımızda
-                      </a>
+                    <Link href="/about">
+                      <a>Hakkımızda</a>
                     </Link>
                   </li>
                   <li>
