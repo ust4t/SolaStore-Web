@@ -78,6 +78,7 @@ const Login = () => {
                     onSubmit={handleLogin}>
                     {({
                       values,
+                      touched,
                       errors,
                       handleChange,
                       handleBlur,
@@ -95,6 +96,7 @@ const Login = () => {
                               placeholder="Email giriniz..."
                               values={values.email}
                               errors={errors.email}
+                              touched={touched.email}
                               handleBlur={handleBlur}
                               handleChange={handleChange}
                             />
@@ -108,6 +110,7 @@ const Login = () => {
                               placeholder="Şifreyi giriniz..."
                               values={values.password}
                               errors={errors.password}
+                              touched={touched.password}
                               handleBlur={handleBlur}
                               handleChange={handleChange}
                             />
@@ -115,6 +118,7 @@ const Login = () => {
                         </div>
 
                         <button
+                          type="submit"
                           disabled={isSubmitting}
                           className="bt-btn theme-btn-2 w-100">
                           Giriş Yap

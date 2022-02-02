@@ -1,3 +1,5 @@
+import Cookies from "cookies";
+
 export function loadState(key) {
   try {
     const serializedState = localStorage.getItem(key);
@@ -16,4 +18,15 @@ export async function saveState(key, state) {
     // Ignore
     console.log(e);
   }
+}
+
+export function saveCookie({ key, value, req, res }) {
+  const cookies = new Cookies(req, res);
+  cookies.set(key, JSON.stringify(value), {
+    httpOnly: true,
+    secure: process.env.NODE_ENV !== "development",
+    maxAge: 60 * 60 * 24 * 365,
+    path: "/",
+    sameSite: "strict",
+  });
 }

@@ -73,6 +73,7 @@ const Register = () => {
                     onSubmit={handleRegister}>
                     {({
                       values,
+                      touched,
                       errors,
                       handleChange,
                       handleBlur,
@@ -89,6 +90,7 @@ const Register = () => {
                               type="string"
                               placeholder="İsim giriniz..."
                               values={values.name}
+                              touched={touched.name}
                               errors={errors.name}
                               handleBlur={handleBlur}
                               handleChange={handleChange}
@@ -102,6 +104,7 @@ const Register = () => {
                               type="string"
                               placeholder="Soyisim giriniz..."
                               values={values.lastname}
+                              touched={touched.lastname}
                               errors={errors.lastname}
                               handleBlur={handleBlur}
                               handleChange={handleChange}
@@ -115,6 +118,7 @@ const Register = () => {
                               type="string"
                               placeholder="Email Adresini Giriniz..."
                               values={values.email}
+                              touched={touched.email}
                               errors={errors.email}
                               handleBlur={handleBlur}
                               handleChange={handleChange}
@@ -128,6 +132,7 @@ const Register = () => {
                               type="tel"
                               placeholder="Telefon numarasını giriniz..."
                               values={values.tel}
+                              touched={touched.tel}
                               errors={errors.tel}
                               handleBlur={handleBlur}
                               handleChange={handleChange}
@@ -141,6 +146,7 @@ const Register = () => {
                               type="password"
                               placeholder="Şifre giriniz..."
                               values={values.password}
+                              touched={touched.password}
                               errors={errors.password}
                               handleBlur={handleBlur}
                               handleChange={handleChange}
@@ -154,6 +160,7 @@ const Register = () => {
                               type="password"
                               placeholder="Şifreyi tekrar giriniz..."
                               values={values.confirmPassword}
+                              touched={touched.confirmPassword}
                               errors={errors.confirmPassword}
                               handleBlur={handleBlur}
                               handleChange={handleChange}

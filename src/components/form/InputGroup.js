@@ -13,6 +13,7 @@ const InputGroup = ({
   labelClassName,
   formClassName,
   containerClass,
+  touched,
   ...rest
 }) => {
   return (
