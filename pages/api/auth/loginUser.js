@@ -9,8 +9,6 @@ export default async function createUserId(req, res) {
       `https://api.solastore.com.tr/api/User/IsMemberByEmail?UserEmail=${email}&UserPassword=${password}&sourceProof=${process.env.SOURCE_PROOF}`
     );
 
-    console.log(data);
-
     saveCookie({
       key: "udata",
       value: {

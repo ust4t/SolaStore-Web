@@ -11,13 +11,11 @@ import PageTitle from "../src/layout/PageTitle";
 import * as Yup from "yup";
 import { CREATE_USER_ID } from "../src/redux/action/type";
 import { useRouter } from "next/router";
-// import { loginSchema } from "../src/utils/yupModal";
 
 const Login = () => {
   const { push } = useRouter();
   const user = useSelector((state) => state.auth.state);
   const dispatch = useDispatch();
-  // const [showPassword, setShowPassword] = useState(false);
 
   const loginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
@@ -134,7 +132,6 @@ const Login = () => {
           </div>
         </section>
       </main>
-      <script src="js/passopen.js"></script>
     </Layout>
   );
 };
