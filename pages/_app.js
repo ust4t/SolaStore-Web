@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }) {
 
   const fetchUser = async () => {
     if (
-      (store.getState().auth.uuid &&
+      (store.getState().auth.uid &&
         store.getState().auth.state === "user_registered") ||
       store.getState().auth.state === "guest"
     )

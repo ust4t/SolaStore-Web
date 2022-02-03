@@ -4,8 +4,9 @@ const express = require("express");
 const next = require("next");
 
 const dev = process.env.NODE_ENV !== "production";
+const hostname = "localhost";
 const port = process.env.PORT;
-const app = next({ dev });
+const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
@@ -37,6 +38,6 @@ app.prepare().then(() => {
       console.error(err);
       throw err;
     }
-    console.log(`> Ready on http://localhost:${port}`);
+    console.log(`> Ready on http://${hostname}:${port}`);
   });
 });

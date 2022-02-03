@@ -16,12 +16,6 @@ const Register = () => {
   const dispatch = useDispatch();
   const { push } = useRouter();
 
-  useEffect(() => {
-    if (user === "user_registered") {
-      push("/dashboard");
-    }
-  }, []);
-
   const handleRegister = async (
     { name, lastname, tel, password, email },
     { setSubmitting }

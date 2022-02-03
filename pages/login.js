@@ -19,12 +19,6 @@ const Login = () => {
   const dispatch = useDispatch();
   // const [showPassword, setShowPassword] = useState(false);
 
-  useEffect(() => {
-    if (user === "user_registered") {
-      push("/dashboard");
-    }
-  }, []);
-
   const loginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string().required("Required"),

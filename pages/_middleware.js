@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export function middleware(req) {
   const userData = JSON.parse(req.cookies["udata"] || "false");
@@ -9,17 +9,17 @@ export function middleware(req) {
     req.nextUrl.pathname === "/register"
   ) {
     // Parse the cookie
-    if (userData && userData.state === "user_registered") {
+    if (userData && userData.uid && userData.state === "user_registered") {
       // Rewrite to the correct page
-      return NextResponse.rewrite("/dashboard");
+      return NextResponse.rewrite(new URL("/dashboard", req.url));
     }
   }
 
   if (req.nextUrl.pathname === "/dashboard") {
     // Parse the cookie
-    if (!userData && userData.state !== "user_registered") {
+    if (!userData && !userData.uid && userData.state !== "user_registered") {
       // Rewrite to the correct page
-      return NextResponse.rewrite("/login");
+      return NextResponse.rewrite(new URL("/login", req.url));
     }
   }
 }

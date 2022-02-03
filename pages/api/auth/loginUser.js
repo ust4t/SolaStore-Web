@@ -16,6 +16,7 @@ export default async function createUserId(req, res) {
       value: {
         uid: data.userID,
         state: "user_registered",
+        name: `${data.userName} ${data.userSurname}`,
       },
       req,
       res,
