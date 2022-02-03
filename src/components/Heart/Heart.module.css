@@ -6,7 +6,6 @@
   justify-content: center;
   align-items: center;
   transition-duration: 0.4s;
-  z-index: "229";
 }
 .heart_container:hover {
   background-color: rgba(252, 13, 27, 0.15);

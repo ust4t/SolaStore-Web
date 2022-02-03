@@ -162,7 +162,10 @@ function PopularCard({ productData, setAnim, cartId }) {
           </span>
         )}
         <span
-          className="position-absolute top-0 start-0 translate-middle m-4 z-index-first cursor-pointer"
+          className="position-absolute top-0 start-0 translate-middle m-4 cursor-pointer"
+          style={{
+            zIndex: "150",
+          }}
           onClick={onClickWishlist}>
           <Heart isLiked={isLiked} setIsLiked={setIsLiked} size="35px" />
         </span>
