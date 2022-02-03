@@ -56,7 +56,7 @@ const ShopLayout = ({
       {cartAnim && <div className="body_overlay" />}
       <main>
         <PageTitle pageTitle={title} active={title} />
-        <section className=" pt-75">
+        <section className="pt-75 px-4">
           <div className="container">
             {filterDropdown && (
               <FilterDropdown

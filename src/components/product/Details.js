@@ -24,6 +24,7 @@ import {
   navActive,
 } from "./Details.module.css";
 import { Arrow } from "../sliders/SliderArrows";
+import Heart from "../Heart";
 
 const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
   const { t } = useTranslation("detail");
@@ -35,6 +36,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
   const [shareModal, setShareModal] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [imageKey, setImageKey] = useState(0);
+  const [anim, setAnim] = useState(false);
   const videoRef = useRef();
   const cart =
     product &&
@@ -60,12 +62,48 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
     setIsLiked(wishlist ? true : false);
   }, []);
 
+  const handleCartAnim = () => {
+    setAnim(true);
+
+    let imgtodrag = document.getElementsByClassName("detailPos")[0];
+    let viewcart = document.getElementsByClassName("cartToDrag")[0];
+    let imgtodragImage = document.querySelector(".detail-image-front");
+
+    let disLeft = imgtodrag.getBoundingClientRect().left;
+    let disTop = imgtodrag.getBoundingClientRect().top;
+    let cartleft = viewcart.getBoundingClientRect().left;
+    let carttop = viewcart.getBoundingClientRect().top;
+    let image = imgtodragImage.cloneNode(true);
+
+    image.style =
+      "z-index: 1111; width: 100px;opacity:0.8; position:fixed; top:" +
+      disTop +
+      "px;left:" +
+      disLeft +
+      "px;transition: left 2s, top 2s, width 7s, opacity 8s cubic-bezier(1, 1, 1, 1)";
+    var rechange = document.body.appendChild(image);
+    setTimeout(function () {
+      image.style.left = cartleft + "px";
+      image.style.top = carttop + "px";
+      image.style.width = "40px";
+      image.style.opacity = "0";
+    }, 200);
+    setTimeout(function () {
+      rechange.parentNode.removeChild(rechange);
+    }, 3000);
+    setTimeout(function () {
+      setAnim(false);
+    }, 2000);
+  };
+
   const handleAddToCart = (e) => {
     e.preventDefault();
     addToCartAction({
       id: product.productID,
       user: uid,
     });
+
+    handleCartAnim();
   };
 
   const onIncrementCart = (e) => {
@@ -127,6 +165,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
+        {anim && <div className="body_overlay" />}
         {product ? (
           <Fragment>
             <section className="product-details-area pt-50 pb-50">
@@ -177,6 +216,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                                 eventKey={`tum-${i}`}
                                 style={{ maxWidth: "900px" }}>
                                 <Zoom
+                                  className="detail-image-front"
                                   width="600"
                                   height="900"
                                   layout="responsive"
@@ -301,14 +341,16 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                                 searchPrice: "",
                               },
                             }}>
-                            <Image
-                              className="cursor-pointer"
-                              src={`${sources.brand}${brand.guidName2}`}
-                              width="180"
-                              height="130"
-                              layout="responsive"
-                              quality={50}
-                            />
+                            <div>
+                              <Image
+                                className="cursor-pointer"
+                                src={`${sources.brand}${brand.guidName2}`}
+                                width="180"
+                                height="130"
+                                layout="responsive"
+                                quality={50}
+                              />
+                            </div>
                           </Link>
                           <p className="card-body text-center px-1 py-0 m-0 my-1">
                             <Link
@@ -407,22 +449,15 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                             </button>
                           </div>
                         </div>
-                        <div className="pro-cart-btn ms-2 ms-sm-3 ms-md-4 ms-lg-3 me-1 me-sm-3">
+                        <div className="detailPos pro-cart-btn ms-2 ms-sm-3 ms-md-4 ms-lg-3 me-1 me-sm-3">
                           <a href="#" onClick={handleAddToCart}>
                             <i className="fas fa-cart-arrow-down fa-lg" /> Add
                             to cart
                           </a>
                         </div>
                         <div>
-                          <div className="pro-wish">
-                            <a
-                              href="#"
-                              className={`fs-3 ${
-                                isLiked ? "active_wishList" : ""
-                              } `}
-                              onClick={handleAddToWishList}>
-                              <i className="fas fa-heart" />
-                            </a>
+                          <div className="pro-wish me-2">
+                            <Heart isLiked={isLiked} setIsLiked={setIsLiked} />
                           </div>
                           <div className="pro-wish">
                             <a
