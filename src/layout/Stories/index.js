@@ -6,11 +6,15 @@ import sources from "../../../sources";
 import styles, {
   embla__slide,
   embla__slide__inner,
+  seen_img,
+  seen_container,
 } from "./Stories.module.css";
 import EmblaSlider from "../../components/EmblaSlider";
+import { useSelector } from "react-redux";
 const StoryCard = dynamic(() => import("../../components/Cards/StoryCard"));
 
 export default function Stories({ stories }) {
+  const storiesState = useSelector((state) => state.stories);
   const [storiesData, setStoriesData] = useState([]);
   const [storiesOpen, setStoriesOpen] = useState(false);
   function closeStory() {
@@ -47,16 +51,20 @@ export default function Stories({ stories }) {
               className={embla__slide}
               key={`${story.masterProductID}_?_${index}`}>
               <div className={embla__slide__inner}>
-                <div className="d-flex flex-column flex-wrap align-content-center justify-content-center mx-2">
+                <div className="d-flex flex-column flex-wrap align-content-center justify-content-center">
                   <div
                     style={{
                       minWidth: "120px",
                       height: "120px",
                     }}
-                    className={`${styles["cover-image-box"]} align-self-start`}
+                    className={`${styles["cover-image-box"]} ${
+                      storiesState[story.productShortName] ? seen_container : ""
+                    } align-self-start`}
                     onClick={() => handleStories(story)}>
                     <Image
-                      className="cursor-pointer p-1"
+                      className={`${
+                        storiesState[story.productShortName] ? seen_img : ""
+                      } cursor-pointer p-1`}
                       src={`${sources.imageMinSrc}${story.picture_1}`}
                       layout="fill"
                       priority

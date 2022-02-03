@@ -1,12 +1,14 @@
-import { combineReducers } from 'redux';
-import menu from './menu';
-import lang from './lang';
-import auth from './auth';
-import title from './title';
+import { combineReducers } from "redux";
+import menu from "./menu";
+import lang from "./lang";
+import auth from "./auth";
+import title from "./title";
+import stories from "./stories";
 
 export default combineReducers({
-	lang,
-	menu,
-	auth,
-	title,
+  stories,
+  lang,
+  menu,
+  auth,
+  title,
 });

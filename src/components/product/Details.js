@@ -46,7 +46,6 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
   const productSize = [...product.pictures, product.video_1].filter(
     (item) => item !== null
   ).length;
-  console.log(product);
   useEffect(() => {
     if (product.video_1 && videoRef.current) videoRef.current.pause();
   }, [product]);
@@ -271,7 +270,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                               <h5>
                                 {product.price && (
                                   <del className="text-danger">
-                                    ${oldUnitPrice} USD
+                                    ${oldUnitPrice * sizeNum} USD
                                   </del>
                                 )}
                               </h5>
