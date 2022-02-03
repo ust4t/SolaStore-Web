@@ -425,10 +425,6 @@ button {
   color: #fff;
 }
 
-.rightJS {
-  background: #000;
-}
-
 .favf {
   font-size: 28px;
 }
@@ -462,15 +458,6 @@ button {
 }
 .headhead {
   margin-bottom: 5px;
-}
-.martext {
-  color: white !important;
-  font-size: 15px;
-  padding: 15px;
-  margin-bottom: 0;
-  font-weight: 800;
-  color: #47474d;
-  font-family: "Muli", sans-serif;
 }
 
 .main-menu-4 ul li {

@@ -6,8 +6,19 @@
   justify-content: center;
   align-items: center;
   transition-duration: 0.4s;
+  z-index: "229";
 }
 .heart_container:hover {
   background-color: rgba(252, 13, 27, 0.15);
   transition-duration: 0.4s;
+}
+
+.beat_anim {
+  animation: 1s linear 1s infinite alternate heartbeat;
+}
+
+@keyframes heartbeat {
+  to {
+    transform: scale(1.2);
+  }
 }

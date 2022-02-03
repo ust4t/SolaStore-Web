@@ -28,6 +28,7 @@
   border-radius: 50%;
   padding: 3px;
 }
+
 .seen_container::before {
   filter: grayscale(100%);
 }
@@ -46,7 +47,6 @@
 .embla__slide {
   position: relative;
   min-width: 20%;
-  padding-left: 10px;
 }
 
 .embla__slide__inner {

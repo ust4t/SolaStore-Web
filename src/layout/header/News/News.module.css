@@ -1,0 +1,25 @@
+.rightJS {
+  background: #000;
+}
+
+.martext {
+  color: white !important;
+  font-size: 15px;
+  padding: 15px;
+  margin-bottom: 0;
+  font-weight: 800;
+  color: #47474d;
+  animation: slideInLeft 12s infinite;
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-30%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

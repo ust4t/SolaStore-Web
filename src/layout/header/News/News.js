@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 
-import { CHANGE_LANG } from "../../redux/action/type";
+import { CHANGE_LANG } from "../../../redux/action/type";
+import { martext, rightJS } from "./News.module.css";
 
 export const News_4 = () => {
   const { t } = useTranslation("common");
@@ -85,8 +86,8 @@ export const News_4 = () => {
           </div>
         </div>
         <div className="col-xl-12 col-lg-12 col-md-12 headhead black-bg d-none d-sm-block">
-          <div className="rightJS li">
-            <div className="martext">
+          <div className={rightJS}>
+            <div className={martext}>
               {t("saleInfo")}{" "}
               <span className="marspantext">{t("saleInfoColored")}</span>
             </div>
