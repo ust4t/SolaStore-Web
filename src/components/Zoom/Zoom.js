@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./Zoom.module.css";
 
-export default function Zoom({ src, width, height, ...rest }) {
+export default function Zoom({ src, width, height, className, ...rest }) {
   const [imageStyle, setImageStyle] = useState({
     backgroundImage: `none`,
     backgroundPosition: "0% 0%",
@@ -56,7 +56,7 @@ export default function Zoom({ src, width, height, ...rest }) {
       }
       style={imageStyle}>
       <Image
-        className={styles.zoomImg}
+        className={`${styles.zoomImg} ${className}`}
         src={src}
         width={width}
         height={height}

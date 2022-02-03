@@ -6,6 +6,11 @@
   background-clip: padding-box;
   border: solid 5px transparent;
   border-radius: 50%;
+  transition: all 300ms ease;
+}
+
+.cover-image-box:hover {
+  border: solid 15px transparent;
 }
 
 .cover-image-box::before {
@@ -27,6 +32,7 @@
   object-fit: cover;
   border-radius: 50%;
   padding: 3px;
+  z-index: 100;
 }
 
 .seen_container::before {
