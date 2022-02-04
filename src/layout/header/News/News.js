@@ -1,17 +1,18 @@
+import { useContext } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 import { CHANGE_LANG, CREATE_USER_ID } from "../../../redux/action/type";
 import { martext, rightJS, menu, menu_btn } from "./News.module.css";
-import axios from "axios";
-import toast from "react-hot-toast";
 import { StoreContext } from "../../../context/StoreProvider";
-import { useContext } from "react";
 
 export const News_4 = () => {
+  const { wishListActions } = useContext(StoreContext);
   const user = useSelector((state) => state.auth);
   const { t } = useTranslation("common");
   const router = useRouter();
@@ -34,6 +35,7 @@ export const News_4 = () => {
         payload: { ...data },
       });
       toast.success("Çıkış yapıldı");
+      wishListActions.wishlistRefetch();
       router.push("/");
     } catch (e) {
       toast.error("Çıkış yapılırken hata oluştu");

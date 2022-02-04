@@ -2,16 +2,19 @@ import axios from "axios";
 import { Formik } from "formik";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import { useContext } from "react";
+import * as Yup from "yup";
 
 import InputGroup from "../src/components/form/InputGroup";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
-import * as Yup from "yup";
 import { CREATE_USER_ID } from "../src/redux/action/type";
-import { useRouter } from "next/router";
+import { StoreContext } from "../src/context/StoreProvider";
 
 const Login = () => {
+  const { wishListActions } = useContext(StoreContext);
   const { push } = useRouter();
   const dispatch = useDispatch();
 
@@ -43,6 +46,7 @@ const Login = () => {
         },
       });
       toast.success("Başarılı bir şekilde giriş yaptınız.");
+      wishListActions.wishlistRefetch();
       push("/");
     } catch (error) {
       console.log(error);

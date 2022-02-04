@@ -7,6 +7,7 @@ import ColorfulText from "../../components/ColorfulText";
 import CartProductItem from "../../components/CartProductItem";
 import { StoreContext } from "../../context/StoreProvider";
 import sources from "../../../sources";
+import { useSelector } from "react-redux";
 
 export const SearchIcon = ({ hendelChangeSearch }) => (
   <Link href="#">

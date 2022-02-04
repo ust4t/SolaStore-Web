@@ -17,7 +17,7 @@ export default function useWishList(dispatch) {
       onSuccess: ({ data }) => {
         dispatch({
           type: SET_WISHLIST_DATA,
-          payload: data,
+          payload: auth.uid ? data : [],
         });
       },
     }

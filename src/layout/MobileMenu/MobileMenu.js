@@ -1,8 +1,11 @@
 import MetisMenu from "@metismenu/react";
 import Link from "next/link";
 import { Fragment, useRef } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import useTranslation from "next-translate/useTranslation";
+import axios from "axios";
+import toast from "react-hot-toast";
+import Router from "next/router";
 
 import {
   side_mobile_menu,
@@ -14,13 +17,29 @@ import {
 import InnerMobileMenu from "../header/InnerMobileMenu";
 import useDetectOutside from "../../hooks/useDetectOutside";
 import { useSelector } from "react-redux";
+import { CREATE_USER_ID } from "../../redux/action/type";
 
 const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
   const user = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const { t } = useTranslation("common");
   const menuRef = useRef(null);
 
   useDetectOutside(menuRef, sidebarClose);
+
+  const handleLogOut = async () => {
+    try {
+      const { data } = await axios.get("/api/auth/logOut");
+      dispatch({
+        type: CREATE_USER_ID,
+        payload: { ...data },
+      });
+      toast.success("Çıkış yapıldı");
+      Router.push("/");
+    } catch (e) {
+      toast.error("Çıkış yapılırken hata oluştu");
+    }
+  };
 
   return (
     <Fragment>

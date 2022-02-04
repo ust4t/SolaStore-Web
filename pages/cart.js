@@ -99,6 +99,7 @@ const Cart = ({ saleTeam }) => {
         buyerPhone: values.tel.replace(/\+/g, ""),
         salesRepresantID: currentSeller.id,
         visitorGuidID: uid.toString(),
+        os: "Desktop",
         paymentType,
       });
       resetForm();

@@ -1,10 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Formik } from "formik";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
 import InputGroup from "../src/components/form/InputGroup";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
@@ -13,6 +14,7 @@ import { registerSchema } from "../src/utils/yupModal";
 import { StoreContext } from "../src/context/StoreProvider";
 
 const Register = () => {
+  const { wishListActions } = useContext(StoreContext);
   const dispatch = useDispatch();
   const { push } = useRouter();
 
@@ -41,6 +43,7 @@ const Register = () => {
       toast.success(
         "Başarılı bir şekilde kayıt oldunuz. Giriş yapabilirsiniz."
       );
+      wishListActions.wishlistRefetch();
       push("/");
     } catch (error) {
       console.log(error);
