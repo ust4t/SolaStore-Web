@@ -16,7 +16,16 @@ function StoryCard({ onClose, storiesData }) {
   const storyIndexRef = useRef(0);
   const duration = 2;
 
-  console.log(storiesState[storiesData.productName]);
+  useEffect(() => {
+    if (storyIndex === storiesData.img.length - 1) {
+      dispatch({
+        type: SET_STORIES,
+        payload: {
+          [storiesData.productName]: storiesData.id,
+        },
+      });
+    }
+  }, [storyIndex]);
 
   useEffect(() => {
     // autoskip for story
@@ -24,12 +33,6 @@ function StoryCard({ onClose, storiesData }) {
       if (storyPaused) return;
       if (storyIndexRef.current === storiesData.img.length - 1) {
         onClose();
-        dispatch({
-          type: SET_STORIES,
-          payload: {
-            [storiesData.productName]: storiesData.id,
-          },
-        });
       }
       setStoryIndex(storyIndexRef.current + 1);
     }, duration * 1000);

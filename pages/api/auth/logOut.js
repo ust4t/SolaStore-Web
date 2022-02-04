@@ -5,23 +5,15 @@ export default async function loginUser(req, res) {
   const { email, password } = req.query;
 
   try {
-    const { data } = await axios.get(
-      `https://api.solastore.com.tr/api/User/IsMemberByEmail?UserEmail=${email}&UserPassword=${password}&sourceProof=${process.env.SOURCE_PROOF}`
-    );
-
     saveCookie({
       key: "udata",
-      value: {
-        uid: data.userID,
-        state: "user_registered",
-        name: `${data.userName} ${data.userSurname}`,
-      },
+      value: {},
       req,
       res,
     });
 
     res.status(200).json({
-      data,
+      status: "success",
     });
   } catch (error) {
     console.log(error);

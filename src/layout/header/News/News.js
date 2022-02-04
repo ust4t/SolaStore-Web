@@ -1,12 +1,15 @@
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
+import Link from "next/link";
 
 import { CHANGE_LANG } from "../../../redux/action/type";
-import { martext, rightJS } from "./News.module.css";
+import { martext, rightJS, menu, menu_btn } from "./News.module.css";
+import axios from "axios";
 
 export const News_4 = () => {
+  const user = useSelector((state) => state.auth);
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
@@ -20,10 +23,15 @@ export const News_4 = () => {
     });
   };
 
+  const handleLogOut = () => {
+    // await axios.post("/api/logout");
+    // router.reload();
+  };
+
   return (
     <div className="top-border-four">
       <div className="row align-items-center justify-content-center justify-content-lg-around rowss">
-        <div className="col-xl-6 col-lg-5 col-md-12">
+        <div className="col-xl-5 col-lg-5 col-md-12">
           <div className="header-top-offer">
             <p className="text-center text-lg-start">
               {" "}
@@ -31,8 +39,45 @@ export const News_4 = () => {
             </p>
           </div>
         </div>
-        <div className="col-xl-3 col-lg-6 col-md-6 ">
-          <div className="flagright d-flex justify-content-center justify-content-lg-end">
+        <div className="col-12 col-lg-3 d-lg-block justify-content-center">
+          <h6 className="text-center text-lg-start">Hoşgeldin, Harry Pique</h6>
+        </div>
+        <div className="col-xl-3 col-lg-3 col-md-6">
+          <div className="flagright d-flex align-items-center justify-content-center justify-content-lg-end">
+            <div
+              className={`${menu_btn} d-flex align-items-center position-relative me-1 shadow-none`}>
+              <h6 className="me-1 cursor-pointer">Hesabım</h6>
+              <i className="fas fa-chevron-down cursor-pointer mb-1" />
+              <ul className={`${menu}`}>
+                {user.state === "user_registered" ? (
+                  <>
+                    <li>
+                      <Link href="/dashboard">
+                        <a>Profilim</a>
+                      </Link>
+                    </li>
+                    <li>Siparişlerim</li>
+                    <li>Adreslerim</li>
+                    <li>İndirimlerim</li>
+                    <li onClick={handleLogOut}>Çıkış</li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <Link href="/login">
+                        <a>Giriş Yap</a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/register">
+                        <a>Kayıt Ol</a>
+                      </Link>
+                    </li>
+                    <li>Sipariş Listesi</li>
+                  </>
+                )}
+              </ul>
+            </div>
             <a className="mx-1" href="#" onClick={() => changeLang("en")}>
               <Image
                 src="/img/flags/uk.jpg"

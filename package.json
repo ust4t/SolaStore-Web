@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "node server.js",
     "lint": "next lint",
     "find:unused": "next-unused"
   },
@@ -37,6 +37,7 @@
     "antd": "^4.17.3",
     "axios": "^0.24.0",
     "cookies": "^0.8.0",
+    "dotenv": "^16.0.0",
     "embla-carousel-react": "^6.1.1",
     "express": "^4.17.2",
     "formik": "^2.2.9",
