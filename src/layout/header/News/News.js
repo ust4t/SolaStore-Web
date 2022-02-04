@@ -51,7 +51,7 @@ export const News_4 = () => {
             </p>
           </div>
         </div>
-        <div className="col-12 col-lg-3 d-lg-block justify-content-center">
+        <div className="col-lg-3 d-none d-lg-block justify-content-center">
           {user.uid && user.state === "user_registered" && (
             <h6 className="text-center text-lg-start">
               Hoşgeldin, {user.name}
@@ -61,7 +61,7 @@ export const News_4 = () => {
         <div className="col-xl-3 col-lg-3 col-md-6">
           <div className="flagright d-flex align-items-center justify-content-center justify-content-lg-end">
             <div
-              className={`${menu_btn} d-flex align-items-center position-relative me-1 shadow-none`}>
+              className={`${menu_btn} d-none d-lg-flex align-items-center position-relative me-1 shadow-none`}>
               <h6 className="me-1 cursor-pointer">Hesabım</h6>
               <i className="fas fa-chevron-down cursor-pointer mb-1" />
               <ul className={`${menu}`}>

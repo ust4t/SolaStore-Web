@@ -13,8 +13,10 @@ import {
 } from "./MobileMenu.module.css";
 import InnerMobileMenu from "../header/InnerMobileMenu";
 import useDetectOutside from "../../hooks/useDetectOutside";
+import { useSelector } from "react-redux";
 
 const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
+  const user = useSelector((state) => state.auth);
   const { t } = useTranslation("common");
   const menuRef = useRef(null);
 
@@ -40,6 +42,47 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
         </div>
         <nav className={side_mobile_menu}>
           <MetisMenu id="mobile-menu-active" className="metismenu">
+            {user.uid && user.state === "user_registered" && (
+              <h6 className="text-center fw-bold">Hoşgeldin, {user.name}</h6>
+            )}
+            <li className={has_dropdown}>
+              <Link href="/shop/brandlist">
+                <a className="text-uppercase">Hesabım</a>
+              </Link>
+              <ul className="submenu submenu-three mm-collapse">
+                {user.state === "user_registered" ? (
+                  <>
+                    <li>
+                      <Link href="/dashboard">
+                        <a>Profilim</a>
+                      </Link>
+                    </li>
+                    <li>Siparişlerim</li>
+                    <li>Adreslerim</li>
+                    <li>İndirimlerim</li>
+                    <li onClick={handleLogOut}>Çıkış</li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <Link href="/login">
+                        <a>Giriş Yap</a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/register">
+                        <a>Kayıt Ol</a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/dashboard">
+                        <a>Sipariş Listesi</a>
+                      </Link>
+                    </li>
+                  </>
+                )}
+              </ul>
+            </li>
             <li>
               <Link href="/">
                 <a className="text-uppercase">{t("menu.home")}</a>
@@ -50,10 +93,13 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                 <a className="text-uppercase">{t("menu.brands")}</a>
               </Link>
             </li>
+
             {menu &&
               menu.map(
                 ({ selectedCategoryName, categoryID, subcategories }, i) => (
-                  <li key={`${categoryID}?=)${i}`} className={has_dropdown}>
+                  <li
+                    key={`${categoryID}?=)${i}`}
+                    className={`text-uppercase ${has_dropdown}`}>
                     <Link
                       href={{
                         pathname: "/shop",
