@@ -13,6 +13,8 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
+  server.set("trust proxy", 1);
+
   server.all("*", (req, res) => {
     return handle(req, res);
   });
