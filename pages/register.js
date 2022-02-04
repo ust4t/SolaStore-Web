@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Formik } from "formik";
 import Link from "next/link";
 import axios from "axios";
@@ -10,9 +10,9 @@ import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
 import { CREATE_USER_ID } from "../src/redux/action/type";
 import { registerSchema } from "../src/utils/yupModal";
+import { StoreContext } from "../src/context/StoreProvider";
 
 const Register = () => {
-  const user = useSelector((state) => state.auth.uid);
   const dispatch = useDispatch();
   const { push } = useRouter();
 

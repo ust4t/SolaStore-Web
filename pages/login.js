@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import axios from "axios";
 import { Formik } from "formik";
 import Link from "next/link";
@@ -14,7 +13,6 @@ import { useRouter } from "next/router";
 
 const Login = () => {
   const { push } = useRouter();
-  const user = useSelector((state) => state.auth.state);
   const dispatch = useDispatch();
 
   const loginSchema = Yup.object().shape({

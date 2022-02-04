@@ -6,7 +6,6 @@ import rootReducer from "./reducer";
 const middleware = [thunk];
 const loadedState = {
   lang: loadState("lang"),
-  auth: loadState("udata"),
   stories: loadState("stories"),
 };
 

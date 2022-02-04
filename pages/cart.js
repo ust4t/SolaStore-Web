@@ -164,7 +164,7 @@ const Cart = ({ saleTeam }) => {
                         img: "/img/logo/person.jpg",
                       })
                     }
-                    className="col-2 d-flex justify-content-center cursor-pointer">
+                    className="col-5 d-flex justify-content-center cursor-pointer">
                     <Image
                       src="/img/logo/person.jpg"
                       width={120}
@@ -191,8 +191,8 @@ const Cart = ({ saleTeam }) => {
                         src={`${sources.saleTeam}/${pictureGuidName}`}
                         alt={name}
                         className="rounded-circle"
-                        width={"140px"}
-                        height={"140px"}
+                        width={"130px"}
+                        height={"130px"}
                         layout="fixed"
                       />
 

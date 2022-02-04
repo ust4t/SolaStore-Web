@@ -1,5 +1,4 @@
-import { CREATE_USER_ID } from "../action/type";
-import { saveState } from "../browser-storage";
+import { CREATE_USER_ID, RESET_USER_ID } from "../action/type";
 
 const initialState = {
   uid: null,
@@ -11,11 +10,7 @@ const auth = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case CREATE_USER_ID:
-      saveState("udata", payload);
-      return {
-        ...state,
-        payload,
-      };
+      return payload;
 
     default:
       return state;

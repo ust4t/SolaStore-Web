@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import Head from "next/head";
 import Script from "next/script";
 import { Provider } from "react-redux";
@@ -39,36 +39,24 @@ function MyApp({ Component, pageProps }) {
     }
   };
 
-  const fetchUser = async () => {
-    if (
-      (store.getState().auth.uid &&
-        store.getState().auth.state === "user_registered") ||
-      store.getState().auth.state === "guest"
-    )
-      return;
-
-    try {
-      const { data } = await axios.get("/api/auth/createUserId");
-      store.dispatch({
-        type: CREATE_USER_ID,
-        payload: {
-          uid: data.data,
-          state: "guest",
-          name: "Guest",
-        },
-      });
-    } catch (error) {
-      console.log(error);
-      toast.error("Kullanıcı oluşturulurken bir hata oluştu");
-    }
+  const checkUser = async () => {
+    const { data } = await axios.get("/api/auth/checkUser");
+    store.dispatch({
+      type: CREATE_USER_ID,
+      payload: { ...data },
+    });
   };
+
+  useLayoutEffect(() => {
+    checkUser();
+  }, []);
 
   useEffect(() => {
     fetchMenu();
   }, [router.locale]);
 
   useEffect(() => {
-    fetchUser();
+    // fetchUser();
     if (router.locale !== store.getState().lang) {
       router.push(router.asPath, router.asPath, {
         locale: store.getState().lang,

@@ -4,9 +4,12 @@ import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import Link from "next/link";
 
-import { CHANGE_LANG } from "../../../redux/action/type";
+import { CHANGE_LANG, CREATE_USER_ID } from "../../../redux/action/type";
 import { martext, rightJS, menu, menu_btn } from "./News.module.css";
 import axios from "axios";
+import toast from "react-hot-toast";
+import { StoreContext } from "../../../context/StoreProvider";
+import { useContext } from "react";
 
 export const News_4 = () => {
   const user = useSelector((state) => state.auth);
@@ -23,9 +26,17 @@ export const News_4 = () => {
     });
   };
 
-  const handleLogOut = () => {
-    // await axios.post("/api/logout");
-    // router.reload();
+  const handleLogOut = async () => {
+    try {
+      const { data } = await axios.get("/api/auth/logOut");
+      dispatch({
+        type: CREATE_USER_ID,
+        payload: { ...data },
+      });
+      toast.success("Çıkış yapıldı");
+    } catch (e) {
+      toast.error("Çıkış yapılırken hata oluştu");
+    }
   };
 
   return (
@@ -40,7 +51,11 @@ export const News_4 = () => {
           </div>
         </div>
         <div className="col-12 col-lg-3 d-lg-block justify-content-center">
-          <h6 className="text-center text-lg-start">Hoşgeldin, Harry Pique</h6>
+          {user.uid && user.state === "user_registered" && (
+            <h6 className="text-center text-lg-start">
+              Hoşgeldin, {user.name}
+            </h6>
+          )}
         </div>
         <div className="col-xl-3 col-lg-3 col-md-6">
           <div className="flagright d-flex align-items-center justify-content-center justify-content-lg-end">
