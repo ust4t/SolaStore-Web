@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }) {
     });
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     checkUser();
   }, []);
 

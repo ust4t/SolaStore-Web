@@ -21,7 +21,7 @@ export const SearchIcon = ({ hendelChangeSearch }) => (
 export const UserIcon = () => {
   return (
     <Link href="/login">
-      <a className="d-flex align-items-end justify-content-center">
+      <a className="d-flex align-items-end justify-content-center d-none d-sm-block">
         <i className="fas fa-user fs-4" />
       </a>
     </Link>
