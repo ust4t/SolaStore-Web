@@ -78,6 +78,12 @@ export default function FilterSearch({ brands }) {
   return (
     <div className="container py-3">
       <div className="row justify-content-center align-items-end">
+        <div className="col-12">
+          <h2 className="text-center fw-bold">Detaylı Arama</h2>
+          <h5 className="text-center">
+            Lütfen kategori, marka ve fiyat seçip "Ara" düğmesine basın.
+          </h5>
+        </div>
         <div className="col-xs-12 col-md-4 col-lg-3 py-3">
           {menu && (
             <SelectCheckboxGroup

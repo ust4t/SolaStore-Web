@@ -18,7 +18,7 @@ import {
   cart_button,
 } from "./PopularCard.module.css";
 
-function PopularCard({ productData, setAnim, cartId }) {
+function PopularCard({ productData, cartId }) {
   const { t } = useTranslation("common");
   const { id, name, images, price, oldPrice, singlePrice, sizes } = productData;
   const { auth, lang } = useSelector((state) => state);
@@ -72,8 +72,6 @@ function PopularCard({ productData, setAnim, cartId }) {
       id,
     });
 
-    setAnim(true);
-
     let imgtodrag = document.getElementsByClassName(cartId)[productData.index];
     let viewcart = document.getElementsByClassName("cartToDrag")[0];
     let imgtodragImage = imgtodrag.querySelector(".pro-image-front");
@@ -100,9 +98,6 @@ function PopularCard({ productData, setAnim, cartId }) {
     setTimeout(function () {
       rechange.parentNode.removeChild(rechange);
     }, 2000);
-    setTimeout(function () {
-      setAnim(false);
-    }, 1000);
   };
 
   const onClickWishlist = (e) => {

@@ -76,7 +76,11 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                         <a>Profilim</a>
                       </Link>
                     </li>
-                    <li>Siparişlerim</li>
+                    <li>
+                      <Link href="/orders">
+                        <a>Siparişlerim</a>
+                      </Link>
+                    </li>
                     <li>Adreslerim</li>
                     <li>İndirimlerim</li>
                     <li onClick={handleLogOut}>Çıkış</li>
@@ -94,7 +98,7 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                       </Link>
                     </li>
                     <li>
-                      <Link href="/dashboard">
+                      <Link href="/orders">
                         <a>Sipariş Listesi</a>
                       </Link>
                     </li>

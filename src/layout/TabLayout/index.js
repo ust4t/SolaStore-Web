@@ -11,68 +11,61 @@ const PopularProducts = dynamic(() =>
 
 export default function TabLayout({ newProducts, saleProducts }) {
   const { t } = useTranslation("home");
-  const [cartAnim, setCartAnim] = useState(false);
 
   return (
-    <>
-      {cartAnim && <div className="body_overlay" />}
-      <section className="product-area pt-70 pb-70">
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-12">
-              <div className="section-title-five text-center">
-                <h4>{t("featured")}</h4>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-xl-12">
-              <div className="product-tab-five text-center">
-                <Tab.Container defaultActiveKey="New Products">
-                  <Nav className="justify-content-center">
-                    <div
-                      className="nav custom-tabs"
-                      id="nav-tab"
-                      role="tablist">
-                      <Nav.Link eventKey="New Products">
-                        <i className="fas fa-fire-alt"></i>
-                        {t("new")}
-                      </Nav.Link>
-                      <Nav.Link eventKey="Sale Products">
-                        <i className="fas fa-tags"></i>
-                        {t("sale")}
-                      </Nav.Link>
-                      <Nav.Link eventKey="Best Sell">
-                        <i className="fas fa-chart-line"></i>
-                        {t("bestseller")}
-                      </Nav.Link>
-                    </div>
-                  </Nav>
-                  <Tab.Content className="tab-content" id="nav-tabContent">
-                    <Tab.Pane eventKey="New Products">
-                      <OtherProducts
-                        id="new"
-                        products={newProducts}
-                        setAnim={setCartAnim}
-                      />
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="Sale Products">
-                      <OtherProducts
-                        id="sale"
-                        products={saleProducts}
-                        setAnim={setCartAnim}
-                      />
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="Best Sell">
-                      <PopularProducts setAnim={setCartAnim} />
-                    </Tab.Pane>
-                  </Tab.Content>
-                </Tab.Container>
-              </div>
+    <section className="product-area pt-70 pb-70">
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-12">
+            <div className="section-title-five text-center">
+              <h4>{t("featured")}</h4>
             </div>
           </div>
         </div>
-      </section>
-    </>
+        <div className="row">
+          <div className="col-xl-12">
+            <div className="product-tab-five text-center">
+              <Tab.Container defaultActiveKey="New Products">
+                <Nav className="justify-content-center">
+                  <div className="nav custom-tabs" id="nav-tab" role="tablist">
+                    <Nav.Link eventKey="New Products">
+                      <i className="fas fa-fire-alt"></i>
+                      {t("new")}
+                    </Nav.Link>
+                    <Nav.Link eventKey="Sale Products">
+                      <i className="fas fa-tags"></i>
+                      {t("sale")}
+                    </Nav.Link>
+                    <Nav.Link eventKey="Best Sell">
+                      <i className="fas fa-chart-line"></i>
+                      {t("bestseller")}
+                    </Nav.Link>
+                  </div>
+                </Nav>
+                <Tab.Content className="tab-content" id="nav-tabContent">
+                  <Tab.Pane eventKey="New Products">
+                    <OtherProducts
+                      id="new"
+                      products={newProducts}
+                      setAnim={setCartAnim}
+                    />
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="Sale Products">
+                    <OtherProducts
+                      id="sale"
+                      products={saleProducts}
+                      setAnim={setCartAnim}
+                    />
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="Best Sell">
+                    <PopularProducts setAnim={setCartAnim} />
+                  </Tab.Pane>
+                </Tab.Content>
+              </Tab.Container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

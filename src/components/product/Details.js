@@ -36,7 +36,6 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
   const [shareModal, setShareModal] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [imageKey, setImageKey] = useState(0);
-  const [anim, setAnim] = useState(false);
   const videoRef = useRef();
   const cart =
     product &&
@@ -63,8 +62,6 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
   }, []);
 
   const handleCartAnim = () => {
-    setAnim(true);
-
     let imgtodrag = document.getElementsByClassName("detailPos")[0];
     let viewcart = document.getElementsByClassName("cartToDrag")[0];
     let imgtodragImage = document.querySelector(".detail-image-front");
@@ -91,9 +88,6 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
     setTimeout(function () {
       rechange.parentNode.removeChild(rechange);
     }, 3000);
-    setTimeout(function () {
-      setAnim(false);
-    }, 2000);
   };
 
   const handleAddToCart = (e) => {
@@ -165,7 +159,6 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
-        {anim && <div className="body_overlay" />}
         {product ? (
           <Fragment>
             <section className="product-details-area pt-50 pb-50">

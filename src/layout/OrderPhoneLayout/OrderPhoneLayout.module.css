@@ -1,0 +1,24 @@
+.tableRow {
+  width: 75%;
+  border: none;
+}
+.tableHead > tr,
+.tableBody > tr {
+  border: none;
+}
+.tableHead > tr > th {
+  font-size: 1rem;
+}
+
+.tableBody > tr {
+  font-size: 1.1rem;
+}
+
+.tableBody > tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.emptyIndicator {
+  color: var(--color-primary);
+  font-size: 5rem;
+}

@@ -74,7 +74,11 @@ export const News_4 = () => {
                         <a>Profilim</a>
                       </Link>
                     </li>
-                    <li>Siparişlerim</li>
+                    <li>
+                      <Link href="/orders">
+                        <a>Siparişlerim</a>
+                      </Link>
+                    </li>
                     <li>Adreslerim</li>
                     <li>İndirimlerim</li>
                     <li onClick={handleLogOut}>Çıkış</li>
@@ -91,7 +95,11 @@ export const News_4 = () => {
                         <a>Kayıt Ol</a>
                       </Link>
                     </li>
-                    <li>Sipariş Listesi</li>
+                    <li>
+                      <Link href="/orders">
+                        <a>Siparişlerim</a>
+                      </Link>
+                    </li>
                   </>
                 )}
               </ul>
