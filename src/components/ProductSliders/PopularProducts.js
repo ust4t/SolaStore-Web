@@ -12,7 +12,7 @@ const fetchPopulars = async () => {
   return data;
 };
 
-function PopularProducts({ setAnim }) {
+function PopularProducts() {
   const {
     isLoading,
     error,
@@ -45,7 +45,6 @@ function PopularProducts({ setAnim }) {
                   <div className={embla__slide__inner}>
                     <PopularCard
                       cartId="popularProducts"
-                      setAnim={setAnim}
                       productData={{
                         ...productData,
                         index,

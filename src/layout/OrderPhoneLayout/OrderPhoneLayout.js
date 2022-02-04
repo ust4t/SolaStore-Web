@@ -9,8 +9,10 @@ import {
   tableHead,
   tableBody,
   emptyIndicator,
+  detailButton,
 } from "./OrderPhoneLayout.module.css";
 import Loader from "../../components/Loader";
+import Link from "next/link";
 
 export default function OrderPhoneLayout() {
   const orderTel = useRef();
@@ -49,7 +51,7 @@ export default function OrderPhoneLayout() {
                 <th>Sipariş Sahibi</th>
                 <th>Tutar</th>
                 <th>Satış Temsilcisi</th>
-                <th>Detaylar</th>
+                <th></th>
               </tr>
             </thead>
 
@@ -61,7 +63,11 @@ export default function OrderPhoneLayout() {
                   <td>{order.totalAmount}</td>
                   <td>{order.salesRepresentID}</td>
                   <td>
-                    <a href="#">Detay</a>
+                    <button className={`btn grenbtn1 ${detailButton}`}>
+                      <Link href="#">
+                        <a>Detay</a>
+                      </Link>
+                    </button>
                   </td>
                 </tr>
               ))}

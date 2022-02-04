@@ -64,6 +64,11 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
             {user.uid && user.state === "user_registered" && (
               <h6 className="text-center fw-bold">Hoşgeldin, {user.name}</h6>
             )}
+            <li>
+              <Link href="/">
+                <a className="text-uppercase">{t("menu.home")}</a>
+              </Link>
+            </li>
             <li className={has_dropdown}>
               <Link href="/shop/brandlist">
                 <a className="text-uppercase">Hesabım</a>
@@ -81,9 +86,19 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                         <a>Siparişlerim</a>
                       </Link>
                     </li>
-                    <li>Adreslerim</li>
-                    <li>İndirimlerim</li>
-                    <li onClick={handleLogOut}>Çıkış</li>
+                    <li>
+                      <Link href="/orders">
+                        <a>Adreslerim</a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/orders">
+                        <a>İndirimlerim</a>
+                      </Link>
+                    </li>
+                    <li onClick={handleLogOut}>
+                      <a href="#">Çıkış</a>
+                    </li>
                   </>
                 ) : (
                   <>
@@ -106,11 +121,7 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                 )}
               </ul>
             </li>
-            <li>
-              <Link href="/">
-                <a className="text-uppercase">{t("menu.home")}</a>
-              </Link>
-            </li>
+
             <li>
               <Link href="/shop/brandlist">
                 <a className="text-uppercase">{t("menu.brands")}</a>

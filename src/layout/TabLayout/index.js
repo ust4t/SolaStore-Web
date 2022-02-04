@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import useTranslation from "next-translate/useTranslation";
 
 import OtherProducts from "../../components/ProductSliders/OtherProducts";
-import { useState } from "react";
 const PopularProducts = dynamic(() =>
   import("../../components/ProductSliders/PopularProducts")
 );
@@ -44,21 +43,13 @@ export default function TabLayout({ newProducts, saleProducts }) {
                 </Nav>
                 <Tab.Content className="tab-content" id="nav-tabContent">
                   <Tab.Pane eventKey="New Products">
-                    <OtherProducts
-                      id="new"
-                      products={newProducts}
-                      setAnim={setCartAnim}
-                    />
+                    <OtherProducts id="new" products={newProducts} />
                   </Tab.Pane>
                   <Tab.Pane eventKey="Sale Products">
-                    <OtherProducts
-                      id="sale"
-                      products={saleProducts}
-                      setAnim={setCartAnim}
-                    />
+                    <OtherProducts id="sale" products={saleProducts} />
                   </Tab.Pane>
                   <Tab.Pane eventKey="Best Sell">
-                    <PopularProducts setAnim={setCartAnim} />
+                    <PopularProducts />
                   </Tab.Pane>
                 </Tab.Content>
               </Tab.Container>

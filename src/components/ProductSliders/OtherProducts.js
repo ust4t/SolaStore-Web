@@ -4,7 +4,7 @@ import PopularCard from "../Cards/PopularCard";
 import EmblaSlider from "../EmblaSlider";
 import { embla__slide, embla__slide__inner } from "./ProductSliders.module.css";
 
-export default function OtherProducts({ products, setAnim, id }) {
+export default function OtherProducts({ products, id }) {
   return (
     <EmblaSlider
       config={{
@@ -27,7 +27,6 @@ export default function OtherProducts({ products, setAnim, id }) {
               <div className={embla__slide__inner}>
                 <PopularCard
                   cartId={id}
-                  setAnim={setAnim}
                   productData={{
                     index,
                     id: productData.productID,
