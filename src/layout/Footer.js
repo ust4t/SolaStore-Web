@@ -1,7 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import useTranslation from "next-translate/useTranslation";
 
 export const DefaultFooter = ({ darkBg }) => {
+  const { t } = useTranslation("footer");
+
   return (
     <footer className="bgblack">
       <div className={`footer-area pt-60 pb-55 ${darkBg ? "black-bg" : ""}`}>
@@ -31,18 +34,24 @@ export const DefaultFooter = ({ darkBg }) => {
                 </div>
                 <div className="footer-text mt-45">
                   <h6>
-                    Telefon:<span> +90 (0212) 458 45 00</span>
+                    {t("tel")}:<span> +90 (0212) 458 45 00</span>
                   </h6>
                   <h6>
-                    Telefon 2:<span> +90 (0555) 400 00 05</span>
+                    {t("tel")} 2:<span> +90 (0555) 400 00 05</span>
                   </h6>
                   <h6>
-                    Telefon 3:<span> +90 (0555) 400 00 11</span>
+                    {t("tel")} 3:<span> +90 (0555) 400 00 11</span>
                   </h6>
                   <h6>
-                    Adres:<span> Mimar Kemalettin, Mesihpaşa Cd. No:60,</span>
+                    {t("address")}:
+                    <span>
+                      <a
+                        href="https://www.google.com/maps?ll=41.007997,28.958228&z=14&t=m&hl=tr&gl=TR&mapclient=embed&cid=1563881826297615043"
+                        target="_blank">
+                        {t("address_desc")}
+                      </a>
+                    </span>
                   </h6>
-                  <span>34050 Fatih/İstanbul</span>
                 </div>
               </div>
             </div>
@@ -51,36 +60,32 @@ export const DefaultFooter = ({ darkBg }) => {
                 className={`footer-widget mb-30 ${
                   darkBg ? "widget-three" : ""
                 }`}>
-                <h5>KURUMSAL</h5>
+                <h5>{t("insti")}</h5>
                 <ul className="links">
                   <li>
                     <Link href="/about">
-                      <a>Hakkımızda</a>
+                      <a>{t("about")}</a>
                     </Link>
                   </li>
                   <li>
                     <Link href="/policy">
-                      <a>Gizlilik politikası</a>
+                      <a>{t("privacy")}</a>
                     </Link>
                   </li>
-                  {/* <li>
-                    <Link href="#">
-                      <a>Site Haritası</a>
-                    </Link>
-                  </li> */}
+
                   <li>
                     <Link href="/SalesPolicy">
-                      <a>Mesafeli Satış Sözleşmesi</a>
+                      <a>{t("distancesales")}</a>
                     </Link>
                   </li>
                   <li>
                     <Link href="/kvkk">
-                      <a>KVKK</a>
+                      <a>{t("kvkk")}</a>
                     </Link>
                   </li>
                   <li>
                     <Link href="/contact">
-                      <a>İletişim</a>
+                      <a>{t("contact")}</a>
                     </Link>
                   </li>
                 </ul>
@@ -91,36 +96,16 @@ export const DefaultFooter = ({ darkBg }) => {
                 className={`footer-widget mb-30 ${
                   darkBg ? "widget-three" : ""
                 }`}>
-                <h5>HESABIM</h5>
+                <h5>{t("account")}</h5>
                 <ul className="links">
                   <li>
-                    <Link href="#">
-                      <a
-                        onClick={(e) => {
-                          e.preventDefault();
-                        }}>
-                        Profilim
-                      </a>
+                    <Link href="/dashboard">
+                      <a>{t("myprofile")}</a>
                     </Link>
                   </li>
                   <li>
-                    <Link href="#">
-                      <a
-                        onClick={(e) => {
-                          e.preventDefault();
-                        }}>
-                        Siparişlerim
-                      </a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#">
-                      <a
-                        onClick={(e) => {
-                          e.preventDefault();
-                        }}>
-                        Hesaplarım
-                      </a>
+                    <Link href="/dashboard">
+                      <a>{t("myorders")}</a>
                     </Link>
                   </li>
                 </ul>
@@ -131,7 +116,7 @@ export const DefaultFooter = ({ darkBg }) => {
                 className={`footer-widget mb-30 ${
                   darkBg ? "widget-three" : ""
                 }`}>
-                <h5>MOBİL UYGULAMALARIMIZ</h5>
+                <h5>{t("mobilapp")}</h5>
                 <div className={`subscription ${darkBg ? "subs-three" : ""}`}>
                   <div className="footer-widget mb-20">
                     <div className="fw-link">

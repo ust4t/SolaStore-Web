@@ -34,6 +34,7 @@ export const News_4 = () => {
         payload: { ...data },
       });
       toast.success("Çıkış yapıldı");
+      router.push("/");
     } catch (e) {
       toast.error("Çıkış yapılırken hata oluştu");
     }

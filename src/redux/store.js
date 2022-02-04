@@ -1,11 +1,16 @@
-import { applyMiddleware, createStore, compose } from "redux";
-import { loadState } from "./browser-storage";
+import { applyMiddleware, createStore } from "redux";
+import { loadState, loadUserData } from "./browser-storage";
 import thunk from "redux-thunk";
 import rootReducer from "./reducer";
 
 const middleware = [thunk];
 const loadedState = {
   lang: loadState("lang"),
+  auth: loadState("udata", {
+    uid: null,
+    state: null,
+    name: "Guest",
+  }),
   stories: loadState("stories"),
 };
 

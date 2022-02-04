@@ -1,50 +1,50 @@
-import axios from 'axios';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import axios from "axios";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-import Shop from '../../src/layout/Shop';
-import { SET_TITLE } from '../../src/redux/action/type';
+import Shop from "../../src/layout/Shop";
+import { SET_TITLE } from "../../src/redux/action/type";
 
 const NewProductPage = ({ newProducts }) => {
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch({
-			type: SET_TITLE,
-			payload: 'New Products',
-		});
-	}, []);
-	return <Shop allProducts={newProducts} full />;
+  useEffect(() => {
+    dispatch({
+      type: SET_TITLE,
+      payload: "New Products",
+    });
+  }, []);
+  return <Shop allProducts={newProducts} full />;
 };
 
 export default NewProductPage;
 
 export async function getStaticProps({ locale }) {
-	const { data } = await axios.get(
-		`https://api.solastore.com.tr/api/Product/GetNewProducts?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
-	);
+  const { data } = await axios.get(
+    `https://api.solastore.com.tr/api/Product/GetNewProducts?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
+  );
 
-	const allNewProducts = [];
+  const allNewProducts = [];
 
-	// await Promise.all(
-	//   data
-	//     .reverse()
-	//     .slice(0, 30)
-	//     .map(async (newProduct) => {
-	//       const { data: specificData } = await axios.get(
-	//         `https://api.solastore.com.tr/api/Product/GetVariationsByProductID?ProductID=${newProduct.masterProductID}&lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
-	//       );
+  // await Promise.all(
+  //   data
+  //     .reverse()
+  //     .slice(0, 30)
+  //     .map(async (newProduct) => {
+  //       const { data: specificData } = await axios.get(
+  //         `https://api.solastore.com.tr/api/Product/GetVariationsByProductID?ProductID=${newProduct.masterProductID}&lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
+  //       );
 
-	//       allNewProducts.push({
-	//         ...newProduct,
-	//         variants: specificData,
-	//       });
-	//     })
-	// );
+  //       allNewProducts.push({
+  //         ...newProduct,
+  //         variants: specificData,
+  //       });
+  //     })
+  // );
 
-	return {
-		props: {
-			newProducts: data.reverse(),
-		},
-	};
+  return {
+    props: {
+      newProducts: data,
+    },
+  };
 }

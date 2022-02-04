@@ -4,7 +4,7 @@ export default async function addToCart(req, res) {
   const { user, productID } = req.query;
   try {
     const { data } = await axios.post(
-      `https://api.solastore.com.tr/api/Order/AddToChart?UserID=${user}&ProductID=${productID}&Quantity=1&sourceProof=${process.env.SOURCE_PROOF}`,
+      `https://api.solastore.com.tr/api/Order/AddToChart?UserID=${user}&ProductID=${productID}&Quantity=1&Os=Desktop&sourceProof=${process.env.SOURCE_PROOF}`,
       {
         headers: {
           "Content-Type": "application/json",

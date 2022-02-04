@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import Head from "next/head";
 import Script from "next/script";
 import { Provider } from "react-redux";
@@ -48,15 +48,11 @@ function MyApp({ Component, pageProps }) {
   };
 
   useEffect(() => {
-    checkUser();
-  }, []);
-
-  useEffect(() => {
     fetchMenu();
   }, [router.locale]);
 
   useEffect(() => {
-    // fetchUser();
+    checkUser();
     if (router.locale !== store.getState().lang) {
       router.push(router.asPath, router.asPath, {
         locale: store.getState().lang,

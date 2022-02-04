@@ -1,12 +1,13 @@
+import axios from "axios";
 import Cookies from "cookies";
 
-export function loadState(key) {
+export function loadState(key, fallback) {
   try {
     const serializedState = localStorage.getItem(key);
     if (!serializedState) return undefined;
     return JSON.parse(serializedState);
   } catch (e) {
-    return undefined;
+    return fallback;
   }
 }
 
