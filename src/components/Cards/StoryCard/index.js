@@ -79,7 +79,6 @@ function StoryCard({ onClose, storiesData }) {
             src={`${sources.imageMaxSrc}${storiesData.img[storyIndex].guidName}`}
             width={60}
             height={60}
-            layout="intrinsic"
           />
           <div className="details">
             <span>#{storiesData.productStock}</span>
@@ -121,7 +120,7 @@ function StoryCard({ onClose, storiesData }) {
           )}
           {storyIndex !== storiesData.img.length - 1 && (
             <i
-              class="fas fa-chevron-right bg-white position-absolute top-50 translate-middle fs-5 text-center cursor-pointer px-2 py-1 rounded-circle"
+              className="fas fa-chevron-right bg-white position-absolute top-50 translate-middle fs-5 text-center cursor-pointer px-2 py-1 rounded-circle"
               style={{
                 opacity: 0.5,
                 right: "-60px",

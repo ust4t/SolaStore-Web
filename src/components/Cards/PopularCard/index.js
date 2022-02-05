@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import useTranslation from "next-translate/useTranslation";
 
 import Heart from "../../Heart";
-import ProductModal from "../../product/ProductModal";
+// import ProductModal from "../../product/ProductModal";
 import sources from "../../../../sources";
 import { StoreContext } from "../../../context/StoreProvider";
 import ShareModal from "../../Modals/ShareModal";
@@ -29,7 +29,7 @@ function PopularCard({ productData, cartId }) {
     id,
     pictures: images,
   });
-  const [quickView, setQuickView] = useState(false);
+  // const [quickView, setQuickView] = useState(false);
   const [shareModal, setShareModal] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
@@ -134,7 +134,7 @@ function PopularCard({ productData, cartId }) {
       className={`${cartId} product-wrapper mb-40`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}>
-      <ProductModal
+      {/* <ProductModal
         show={quickView}
         handleClose={() => setQuickView(false)}
         product={{
@@ -143,7 +143,7 @@ function PopularCard({ productData, cartId }) {
           pictures: images,
           ...productData,
         }}
-      />
+      /> */}
       <ShareModal
         urlDetails={{
           id,

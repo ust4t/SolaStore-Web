@@ -24,14 +24,15 @@ export default function StoryButton({ story, onStoryClick }) {
   return (
     <div className={embla__slide}>
       <div className={embla__slide__inner}>
-        <div className="d-flex flex-column flex-wrap align-content-center justify-content-center">
+        <div
+          onClick={onStoryClick}
+          className="d-flex flex-column flex-wrap align-content-center justify-content-center cursor-pointer">
           <div
             className={`${cover_image_box} ${
               hasSeen ? seen_container : ""
-            } align-self-start`}
-            onClick={onStoryClick}>
+            } align-self-start`}>
             <Image
-              className={`${hasSeen ? seen_img : ""} cursor-pointer p-1`}
+              className={`${hasSeen ? seen_img : ""} p-1`}
               src={`${sources.imageMinSrc}${story.picture_1}`}
               layout="fill"
               priority

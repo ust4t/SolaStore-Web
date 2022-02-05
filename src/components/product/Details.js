@@ -464,46 +464,48 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                         </div>
                       </div>
 
-                      <div className="product-details-info">
-                        <div className="sidebar-product-color">
-                          <h4 className="widget-title1 text-center text-md-start">
-                            {t("otherColors")}
-                          </h4>
-                          <div
-                            className="details-filter-row details-row-size"
-                            style={{ margin: 5 }}>
-                            {[incomingProduct, ...productVariants]
-                              .filter(
-                                (variant) =>
-                                  variant.pictures && variant.pictures.length
-                              )
-                              .map((variant) => (
-                                <div
-                                  className="details-filter-row details-row-size"
-                                  onClick={() => {
-                                    setProduct({
-                                      ...variant,
-                                      video_1: product.video_1,
-                                    });
-                                    setImageKey(0);
-                                  }}
-                                  style={{ margin: 5, cursor: "pointer" }}>
-                                  <div className="product-nav product-nav-thumbs">
-                                    <span className="productvar cursor-pointer">
-                                      <Image
-                                        src={`${sources.imageMinSrc}${variant.picture_1}`}
-                                        alt={variant.productShortName}
-                                        title={variant.productShortName}
-                                        width={90}
-                                        height={140}
-                                      />
-                                    </span>
+                      {productVariants.length > 0 && (
+                        <div className="product-details-info">
+                          <div className="sidebar-product-color">
+                            <h4 className="widget-title1 text-center text-md-start">
+                              {t("otherColors")}
+                            </h4>
+                            <div
+                              className="details-filter-row details-row-size"
+                              style={{ margin: 5 }}>
+                              {[incomingProduct, ...productVariants]
+                                .filter(
+                                  (variant) =>
+                                    variant.pictures && variant.pictures.length
+                                )
+                                .map((variant) => (
+                                  <div
+                                    className="details-filter-row details-row-size"
+                                    onClick={() => {
+                                      setProduct({
+                                        ...variant,
+                                        video_1: product.video_1,
+                                      });
+                                      setImageKey(0);
+                                    }}
+                                    style={{ margin: 5, cursor: "pointer" }}>
+                                    <div className="product-nav product-nav-thumbs">
+                                      <span className="productvar cursor-pointer">
+                                        <Image
+                                          src={`${sources.imageMinSrc}${variant.picture_1}`}
+                                          alt={variant.productShortName}
+                                          title={variant.productShortName}
+                                          width={90}
+                                          height={140}
+                                        />
+                                      </span>
+                                    </div>
                                   </div>
-                                </div>
-                              ))}
+                                ))}
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   </div>
                 </div>
