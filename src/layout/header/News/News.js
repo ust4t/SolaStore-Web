@@ -79,8 +79,8 @@ export const News_4 = () => {
                         <a>Siparişlerim</a>
                       </Link>
                     </li>
-                    <li>Adreslerim</li>
-                    <li>İndirimlerim</li>
+                    {/* <li>Adreslerim</li>
+                    <li>İndirimlerim</li> */}
                     <li onClick={handleLogOut}>Çıkış</li>
                   </>
                 ) : (

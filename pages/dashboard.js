@@ -1,20 +1,102 @@
-import Layout from "../src/layout/Layout";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-
+import { useSelector } from "react-redux";
+import axios from "axios";
 import { Formik } from "formik";
+import toast from "react-hot-toast";
+
+import Layout from "../src/layout/Layout";
 import InputGroup from "../src/components/form/InputGroup";
+import Preloader from "../src/layout/Preloader";
+import ConfirmModal from "../src/components/Modals/ConfirmModal/ConfirmModal";
+
 const Login = () => {
-  const dashboardInitials = {
+  const user = useSelector((state) => state.auth);
+  const [userData, setUserData] = useState({
     name: "",
     lastname: "",
     email: "",
     tel: "",
     password: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [modal, setModal] = useState(false);
+
+  const closeModal = (setSubmitting) => {
+    setSubmitting(false);
+    setModal(false);
+  };
+
+  const openModal = () => setModal(true);
+
+  const getUserByID = async () => {
+    const { data } = await axios.get("/api/auth/getUserByID", {
+      params: {
+        id: user.uid,
+      },
+    });
+    setUserData({
+      name: data.userName,
+      lastname: data.userSurname,
+      email: data.userEmail,
+      tel: data.userPhone,
+      password: data.userPassword,
+    });
+  };
+
+  useEffect(() => {
+    getUserByID();
+  }, [user]);
+
+  const handleUserUpdate = async (
+    { name, lastname, email, password, tel },
+    setSubmitting
+  ) => {
+    setIsLoading(true);
+    try {
+      await axios.post(
+        "/api/auth/updateUser",
+        {
+          name,
+          lastname,
+          email,
+          oldPassword: userData.password,
+          password,
+          tel,
+        },
+        null
+      );
+
+      setUserData({
+        name,
+        lastname,
+        email,
+        password,
+        tel,
+      });
+      setModal(false);
+      toast.success("Hesabınız başarıyla güncellendi.");
+    } catch (error) {
+      toast.error(`Bir hata oluştu: ${error.message}`);
+    } finally {
+      setIsLoading(false);
+      setSubmitting(false);
+    }
+  };
+
+  const dashboardInitials = {
+    name: userData.name,
+    lastname: userData.lastname,
+    email: userData.email,
+    tel: userData.tel,
+    password: userData.password,
     bod: "",
   };
 
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
+      {isLoading && <Preloader />}
+
       <main>
         <section className="login-area pt-100 pb-100">
           <div className="container">
@@ -30,9 +112,9 @@ const Login = () => {
                   height="150"
                   className="m-2 rounded-circle"
                 />
-                <h4 className="fs-5 fw-bold">Harry Pique</h4>
-                <h5>hkn.unl@gmail.com</h5>
-                <div className="d-flex">
+                <h4 className="fs-5 fw-bold">{`${userData.name} ${userData.lastname}`}</h4>
+                <h5>{userData.email}</h5>
+                {/* <div className="d-flex">
                   <button className="btn grenbtn1 text-uppercase me-3">
                     Upload New Photo
                   </button>
@@ -42,7 +124,7 @@ const Login = () => {
                 </div>
                 <p className="fs-6 text-secondary">
                   En Fazla 300kb Fotoğraf Yükleyebilirsiniz.
-                </p>
+                </p> */}
               </div>
               <div className="col-12 col-md-6">
                 <h5 className="fs-4 fw-bold text-center text-md-start">
@@ -50,9 +132,8 @@ const Login = () => {
                 </h5>
                 <Formik
                   initialValues={dashboardInitials}
-                  // validationSchema={dashboardSchema}
-                  // onSubmit={handleRegister}
-                >
+                  onSubmit={openModal}
+                  enableReinitialize>
                   {({
                     values,
                     touched,
@@ -61,8 +142,18 @@ const Login = () => {
                     handleBlur,
                     handleSubmit,
                     isSubmitting,
+                    setSubmitting,
                   }) => (
                     <form onSubmit={handleSubmit}>
+                      <ConfirmModal
+                        title="Are You Sure?"
+                        show={modal}
+                        handleClose={() => closeModal(setSubmitting)}
+                        handleConfirm={() =>
+                          handleUserUpdate(values, setSubmitting)
+                        }
+                        handleCancel={() => closeModal(setSubmitting)}
+                      />
                       <div className="row g-3">
                         <div className="col-12 col-md-6">
                           <InputGroup
@@ -161,7 +252,8 @@ const Login = () => {
                         <div className="col-12 d-flex justify-content-center">
                           <button
                             type="submit"
-                            className="btn grenbtn1 text-uppercase">
+                            className="btn grenbtn1 text-uppercase"
+                            disabled={isSubmitting}>
                             Hesabı Kaydet
                           </button>
                         </div>

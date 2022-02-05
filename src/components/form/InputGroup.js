@@ -19,7 +19,7 @@ const InputGroup = ({
   return (
     <div className={containerClass}>
       <label htmlFor={id} className={labelClassName}>
-        {label} <span className="required">*</span>
+        {label} <span className="text-danger">*</span>
       </label>
       <input
         id={id}

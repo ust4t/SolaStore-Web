@@ -92,8 +92,8 @@ const Cart = ({ saleTeam }) => {
       return;
     }
 
+    setIsLoading(true);
     try {
-      setIsLoading(true);
       const { data } = await axios.post("/api/payment/addOrderVisitor", {
         buyerName: values.name,
         buyerPhone: values.tel.replace(/\+/g, ""),
@@ -396,7 +396,7 @@ const Cart = ({ saleTeam }) => {
                       }}
                       validationSchema={paymentValidationSchema}
                       onSubmit={(values, { resetForm }) => {
-                        if (paymentType === "order") {
+                        if (paymentType === "Order") {
                           handleCartSubmit(
                             values,
                             { resetForm },
@@ -466,7 +466,7 @@ const Cart = ({ saleTeam }) => {
                           <button
                             type="submit"
                             onClick={() => {
-                              setPaymentType("order");
+                              setPaymentType("Order");
                               if (!currentSeller) {
                                 toast.error("Lütfen bir satıcı seçiniz.");
                                 warningTimed("sellerWarning", 5000);
