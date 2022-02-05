@@ -3,7 +3,7 @@ import axios from "axios";
 export default async function addOrderVisitor(req, res) {
   try {
     const { data } = await axios.post(
-      `https://api.solastore.com.tr/api/Order/AddOrderVisitor?sourceProof=${process.env.SOURCE_PROOF}`,
+      `https://api.solastore.com.tr/api/Order/AddOrderVisitorNew?sourceProof=${process.env.SOURCE_PROOF}`,
       req.body
     );
     res.status(200).json({

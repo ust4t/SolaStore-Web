@@ -40,9 +40,10 @@ const Login = () => {
       dispatch({
         type: CREATE_USER_ID,
         payload: {
-          uid: data.data.userID,
+          uid: data.userID,
+          rnd_id: data.rnd_id,
           state: "user_registered",
-          name: `${data.data.userName} ${data.data.userSurname}`,
+          name: `${data.userName} ${data.userSurname}`,
         },
       });
       toast.success("Başarılı bir şekilde giriş yaptınız.");

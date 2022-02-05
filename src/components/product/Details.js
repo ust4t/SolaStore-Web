@@ -28,7 +28,8 @@ import Heart from "../Heart";
 
 const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
   const { t } = useTranslation("detail");
-  const uid = useSelector((state) => state.auth.uid);
+  const user = useSelector((state) => state.auth);
+  const chooseId = user.state === "guest" ? user.uid : user.rnd_id;
   const { state, cartActions, wishListActions } = useContext(StoreContext);
   const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
   const { addToWishList, removeFromWishList } = wishListActions;
@@ -94,7 +95,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
     e.preventDefault();
     addToCartAction({
       id: product.productID,
-      user: uid,
+      user: chooseId,
     });
 
     handleCartAnim();
@@ -104,14 +105,14 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
     e.preventDefault();
     incrementQuantity({
       id: product.productID,
-      user: uid,
+      user: chooseId,
     });
   };
   const onDecrementCart = (e) => {
     e.preventDefault();
     decrementQuantity({
       id: product.productID,
-      user: uid,
+      user: chooseId,
     });
   };
   const handleAddToWishList = (e) => {
@@ -119,14 +120,14 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
     if (!isLiked) {
       addToWishList({
         id: product.productID,
-        user: uid,
+        user: chooseId,
       });
       setIsLiked(true);
       return;
     }
     removeFromWishList({
       id: product.productID,
-      user: uid,
+      user: chooseId,
     });
     setIsLiked(false);
     return;

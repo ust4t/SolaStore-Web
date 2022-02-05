@@ -69,6 +69,7 @@ function MyApp({ Component, pageProps }) {
           content="Solastore where you can find the best fashion that you always desired"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="keywords" content="Fashion, Solastore, Trending" />
         <link
           rel="shortcut icon"
           type="image/x-icon"

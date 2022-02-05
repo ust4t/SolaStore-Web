@@ -7,22 +7,23 @@ import useQueryMutation from "./useQueryMutation";
 
 export default function useWishList(dispatch) {
   const { lang, auth } = useSelector((state) => state);
+  const chooseId = auth.state === "guest" ? auth.uid : auth.rnd_id;
   const { isLoading: isWishlistLoading, refetch: wishlistRefetch } = useQuery(
     "wishlist",
     () =>
       fetch(
-        `/api/wishlist/getUserFavorites?user=${auth.uid}&lang=${lang}`
+        `/api/wishlist/getUserFavorites?user=${chooseId}&lang=${lang}`
       ).then((res) => res.json()),
     {
       onSuccess: ({ data }) => {
         dispatch({
           type: SET_WISHLIST_DATA,
-          payload: auth.uid ? data : [],
+          payload: chooseId ? data : [],
         });
       },
     }
   );
-  const { mutate } = useQueryMutation(`wishlistMutate_${auth.uid}`);
+  const { mutate } = useQueryMutation(`wishlistMutate_${chooseId}`);
 
   const addToWishList = (creds) => {
     mutate(

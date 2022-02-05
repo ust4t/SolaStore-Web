@@ -11,7 +11,8 @@ import sources from "../sources";
 
 const Wishlist = () => {
   const { t } = useTranslation("wishlist");
-  const uid = useSelector((state) => state.auth.uid);
+  const user = useSelector((state) => state.auth);
+  const chooseId = user.state === "guest" ? user.uid : user.rnd_id;
   const { state, wishListActions, cartActions } = useContext(StoreContext);
   const { removeFromWishList } = wishListActions;
   const { addToCartAction } = cartActions;
@@ -21,14 +22,14 @@ const Wishlist = () => {
   const handleWishlistRemove = (id) => {
     removeFromWishList({
       id,
-      user: uid,
+      user: chooseId,
     });
   };
 
   const handleAddToCart = (id) => {
     addToCartAction({
       id,
-      user: uid,
+      user: chooseId,
     });
   };
 

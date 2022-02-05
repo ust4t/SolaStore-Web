@@ -35,7 +35,8 @@ const Register = () => {
       dispatch({
         type: CREATE_USER_ID,
         payload: {
-          uid: data,
+          uid: data.id,
+          rnd_id: data.rnd_id,
           state: "user_registered",
           name: `${name} ${lastname}`,
         },

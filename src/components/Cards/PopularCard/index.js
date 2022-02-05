@@ -38,6 +38,8 @@ function PopularCard({ productData, cartId }) {
   const oldUnitPrice = oldPrice / sizeNum;
   const originalDiscount = oldUnitPrice - singlePrice;
 
+  const chooseId = auth.state === "guest" ? auth.uid : auth.rnd_id;
+
   const wishlist =
     state.wishlistData &&
     state.wishlistData.find((item) => item.productID === id);
@@ -68,7 +70,7 @@ function PopularCard({ productData, cartId }) {
 
   const onAddToCart = () => {
     addToCartAction({
-      user: auth.uid,
+      user: chooseId,
       id,
     });
 
@@ -103,14 +105,14 @@ function PopularCard({ productData, cartId }) {
   const onClickWishlist = (e) => {
     if (!isLiked) {
       addToWishList({
-        user: auth.uid,
+        user: chooseId,
         id,
       });
       setIsLiked(true);
       return;
     }
     removeFromWishList({
-      user: auth.uid,
+      user: chooseId,
       id,
     });
     setIsLiked(false);
@@ -213,7 +215,7 @@ function PopularCard({ productData, cartId }) {
           </Link>
         </span>
         <div className="mb-4 product-action text-center">
-          <a
+          {/* <a
             className={`animate__animated animate__faster ${
               currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
             }`}
@@ -226,7 +228,7 @@ function PopularCard({ productData, cartId }) {
             data-placement="top"
             title="Quick View">
             <i className="fas fa-eye" />
-          </a>
+          </a> */}
           <a
             onClick={(e) => {
               e.preventDefault();

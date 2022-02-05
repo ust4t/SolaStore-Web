@@ -20,7 +20,8 @@ import { SET_COMPLETED_CART } from "../src/context/types";
 
 const Cart = ({ saleTeam }) => {
   const { t } = useTranslation("cart");
-  const uid = useSelector((state) => state.auth.uid);
+  const auth = useSelector((state) => state.auth);
+  const chooseId = auth.state === "guest" ? auth.uid : auth.rnd_id;
   const { cartActions, state, isCartLoading, dispatch } =
     useContext(StoreContext);
   const router = useRouter();
@@ -68,7 +69,7 @@ const Cart = ({ saleTeam }) => {
     e.preventDefault();
     const cartData = {
       id,
-      user: uid,
+      user: chooseId,
     };
     removeFromCartAction(cartData);
   };
@@ -98,8 +99,8 @@ const Cart = ({ saleTeam }) => {
         buyerName: values.name,
         buyerPhone: values.tel.replace(/\+/g, ""),
         salesRepresantID: currentSeller.id,
-        visitorGuidID: uid.toString(),
-        os: "Desktop",
+        visitorGuidID: chooseId.toString(),
+        os: "desktop",
         paymentType,
       });
       resetForm();
@@ -120,7 +121,7 @@ const Cart = ({ saleTeam }) => {
         pathname: paymentRoute,
         query: {
           orderID: data.data,
-          user: uid,
+          user: chooseId,
         },
       });
     } catch (err) {

@@ -12,12 +12,17 @@ import {
 import useQueryMutation from "./useQueryMutation";
 
 export default function useCart(dispatch) {
-  const uid = useSelector((state) => state.auth.uid);
+  const user = useSelector((state) => state.auth);
+  const chooseId = user.state === "guest" ? user.uid : user.rnd_id;
   const { isLoading: isCartLoading, refetch: cartRefetch } = useQuery(
-    `cart_${uid}`,
-    () => fetch(`/api/cart/getCartItems?user=${uid}`).then((res) => res.json()),
+    `cart_${chooseId}`,
+    () =>
+      fetch(`/api/cart/getCartItems?user=${chooseId}`).then((res) =>
+        res.json()
+      ),
     {
       onSuccess: ({ data }) => {
+        console.log("cart data", data);
         dispatch({
           type: SET_CART_DATA,
           payload: data,
@@ -25,7 +30,7 @@ export default function useCart(dispatch) {
       },
     }
   );
-  const { mutate } = useQueryMutation(`addCart_${uid}`);
+  const { mutate } = useQueryMutation(`addCart_${chooseId}`);
 
   const addToCartAction = (creds) => {
     dispatch({

@@ -9,6 +9,7 @@ import Layout from "../src/layout/Layout";
 import InputGroup from "../src/components/form/InputGroup";
 import Preloader from "../src/layout/Preloader";
 import ConfirmModal from "../src/components/Modals/ConfirmModal/ConfirmModal";
+import Router from "next/router";
 
 const Login = () => {
   const user = useSelector((state) => state.auth);
@@ -30,6 +31,7 @@ const Login = () => {
   const openModal = () => setModal(true);
 
   const getUserByID = async () => {
+    console.log(user);
     const { data } = await axios.get("/api/auth/getUserByID", {
       params: {
         id: user.uid,
@@ -45,8 +47,12 @@ const Login = () => {
   };
 
   useEffect(() => {
+    if (user.state === "guest") {
+      Router.push("/");
+      return;
+    }
     getUserByID();
-  }, [user]);
+  }, [user, isLoading]);
 
   const handleUserUpdate = async (
     { name, lastname, email, password, tel },
