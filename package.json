@@ -59,7 +59,8 @@
     "redux-thunk": "^2.3.0",
     "sharp": "^0.29.3",
     "swiper": "^7.4.1",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "zuck.js": "^1.6.0"
   },
   "devDependencies": {
     "eslint": "7.32.0",

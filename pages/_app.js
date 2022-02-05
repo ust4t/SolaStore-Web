@@ -12,6 +12,8 @@ import ScrollTop from "../src/layout/ScrollTop";
 import StoreProvider from "../src/context/StoreProvider";
 import store from "../src/redux/store";
 import { GET_MAIN_MENU, CREATE_USER_ID } from "../src/redux/action/type";
+import "zuck.js/dist/skins/snapgram.min.css";
+import "zuck.js/dist/zuck.min.css";
 import "react-input-range/lib/css/index.css";
 import "../public/css/bootstrap.min.css";
 import "../styles/main.css";

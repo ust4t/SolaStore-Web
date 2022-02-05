@@ -22,7 +22,6 @@ export default function useCart(dispatch) {
       ),
     {
       onSuccess: ({ data }) => {
-        console.log("cart data", data);
         dispatch({
           type: SET_CART_DATA,
           payload: data,

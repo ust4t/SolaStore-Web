@@ -7,6 +7,11 @@ body > #__next {
 }
 
 /* custom styles --------------------------------------------------------------------------------------------*/
+/* zuck.js */
+.story {
+  height: 130px !important;
+}
+
 .bg-center-cover {
   background-position: center;
   background-repeat: no-repeat;
