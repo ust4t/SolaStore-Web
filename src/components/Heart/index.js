@@ -2,8 +2,11 @@ import React from "react";
 
 import { heart_container, beat_anim } from "./Heart.module.css";
 
-function Heart({ isLiked, setIsLiked }) {
-  const toggleLike = () => setIsLiked(!isLiked);
+function Heart({ onClick, isLiked, setIsLiked }) {
+  const toggleLike = () => {
+    onClick();
+    setIsLiked(!isLiked);
+  };
 
   return (
     <div

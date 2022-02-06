@@ -1,20 +1,7 @@
-import { useEffect } from "react";
 import Slider from "react-slick";
 import { Arrow } from "./SliderArrows";
 
-// export const dataImage = () => {
-//   let d = document.querySelectorAll("[data-background");
-//   for (let i = 0; i < d.length; i++) {
-//     const element = d[i];
-//     element.style.backgroundImage = `url(${element.getAttribute(
-//       "data-background"
-//     )})`;
-//   }
-// };
 export const HomePageSliderWithArrow = ({ children, extraClass }) => {
-  //   useEffect(() => {
-  //     dataImage();
-  //   }, [sliders]);
   var settings = {
     autoplay: true,
     autoplaySpeed: 5000,

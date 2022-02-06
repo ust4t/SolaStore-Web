@@ -2,7 +2,7 @@ import Image from "next/image";
 import Router from "next/router";
 import React from "react";
 
-import { orderButton } from "./OrderDetailLayout.module.css";
+import { orderButton, emptyIndicator } from "./OrderDetailLayout.module.css";
 
 export default function OrderDetail({ orderData }) {
   return (
@@ -29,31 +29,40 @@ export default function OrderDetail({ orderData }) {
         </div>
       </div>
 
-      {orderData.map((item, i) => (
-        <div
-          key={`${i}_?.`}
-          onClick={() => Router.push(`/detail/${item.productID}`)}
-          className={`row justify-content-center align-items-center ${orderButton}`}>
-          <div className="col-2">
-            <Image
-              className="rounded-circle"
-              src="/img/placeholder.jpg"
-              width={95}
-              height={100}
-              alt={"Solastore"}
-            />
+      {orderData && orderData.length > 0 ? (
+        orderData.map((item, i) => (
+          <div
+            key={`${i}_?.`}
+            onClick={() => Router.push(`/detail/${item.productID}`)}
+            className={`row justify-content-center align-items-center ${orderButton}`}>
+            <div className="col-2">
+              <Image
+                className="rounded-circle"
+                src="/img/placeholder.jpg"
+                width={95}
+                height={100}
+                alt={"Solastore"}
+              />
+            </div>
+            <div className="col-4">
+              <p className="fs-6 fw-bold">{item.productName}</p>
+            </div>
+            <div className="col-3">
+              <p className="fs-6 fw-bold">{item.quantity}</p>
+            </div>
+            <div className="col-3">
+              <p className="fs-6 fw-bold">{item.price} USD</p>
+            </div>
           </div>
-          <div className="col-4">
-            <p className="fs-6 fw-bold">{item.productName}</p>
-          </div>
-          <div className="col-3">
-            <p className="fs-6 fw-bold">{item.quantity}</p>
-          </div>
-          <div className="col-3">
-            <p className="fs-6 fw-bold">{item.price} USD</p>
+        ))
+      ) : (
+        <div className="row">
+          <div className="col-12">
+            <i className={`fas fa-box-open ${emptyIndicator}`} />
+            <h3 className="text-center">Sipariş Bulunamadı</h3>
           </div>
         </div>
-      ))}
+      )}
     </div>
   );
 }

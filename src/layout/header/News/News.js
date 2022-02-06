@@ -55,8 +55,8 @@ export const News_4 = () => {
         </div>
         <div className="col-lg-3 d-none d-lg-block justify-content-center">
           {user.uid && user.state === "user_registered" && (
-            <h6 className="text-center text-lg-start">
-              Hoşgeldin, {user.name}
+            <h6 className="text-center text-lg-start fw-bold">
+              🎉Hoşgeldin, {user.name}
             </h6>
           )}
         </div>

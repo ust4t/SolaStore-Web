@@ -62,7 +62,7 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
         <nav className={side_mobile_menu}>
           <MetisMenu id="mobile-menu-active" className="metismenu">
             {user.uid && user.state === "user_registered" && (
-              <h6 className="text-center fw-bold">Hoşgeldin, {user.name}</h6>
+              <h6 className="text-center fw-bold">🎉Hoşgeldin, {user.name}</h6>
             )}
             <li>
               <Link href="/">

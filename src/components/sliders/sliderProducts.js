@@ -49,7 +49,7 @@ export default function SliderProducts({ sliders }) {
                 objectFit="cover"
                 objectPosition="center"
                 layout="fill"
-                priority={true}>
+                priority={i === 0}>
                 <div className={slider__content}>
                   <h5 className="text-white fadeInUp wow text-uppercase text-shadow">
                     {selectedText1}

@@ -2,16 +2,12 @@ import { memo } from "react";
 import dynamic from "next/dynamic";
 // import VideoLayout from "../src/layout/VideoLayout";
 import IntroBanners from "../src/layout/IntroBanners";
-// import Categories from "../src/layout/Categories";
-// import BrandsLayout from "../src/layout/BrandsLayout";
 import FilterSearch from "../src/layout/FilterSearch";
 // import CountdownSection from "../src/layout/CountdownSection";
 // import EmailArea from "../src/layout/EmailArea";
 import Layout from "../src/layout/Layout";
 import SliderProducts from "../src/components/sliders/sliderProducts";
 import TabLayout from "../src/layout/TabLayout";
-// import ZuckStories from "../src/components/Cards/StoryCard/ZuckStories";
-const Stories = dynamic(() => import("../src/layout/Stories"));
 const BrandsLayout = dynamic(() => import("../src/layout/BrandsLayout"));
 const Categories = dynamic(() => import("../src/layout/Categories"));
 const ZuckStories = dynamic(
@@ -40,8 +36,6 @@ const Index4 = ({
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
-        {/* <Stories stories={newProducts} /> */}
-
         <ZuckStories storiesData={newProducts.slice(0, 5)} />
         <SliderProducts sliders={slidersData} />
         <div className="mx-md-2 mx-lg-3 mx-xl-4">

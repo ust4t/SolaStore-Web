@@ -25,6 +25,7 @@ import {
 } from "./Details.module.css";
 import { Arrow } from "../sliders/SliderArrows";
 import Heart from "../Heart";
+import Head from "next/head";
 
 const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
   const { t } = useTranslation("detail");
@@ -115,8 +116,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
       user: chooseId,
     });
   };
-  const handleAddToWishList = (e) => {
-    e.preventDefault();
+  const handleAddToWishList = () => {
     if (!isLiked) {
       addToWishList({
         id: product.productID,
@@ -162,6 +162,9 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
       <main>
         {product ? (
           <Fragment>
+            <Head>
+              <title>Solastore | {product.productShortName}</title>
+            </Head>
             <section className="product-details-area pt-50 pb-50">
               <ShareModal
                 urlDetails={{
@@ -451,7 +454,11 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                         </div>
                         <div>
                           <div className="pro-wish me-2">
-                            <Heart isLiked={isLiked} setIsLiked={setIsLiked} />
+                            <Heart
+                              onClick={handleAddToWishList}
+                              isLiked={isLiked}
+                              setIsLiked={setIsLiked}
+                            />
                           </div>
                           <div className="pro-wish">
                             <a
@@ -479,8 +486,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                                     variant.pictures && variant.pictures.length
                                 )
                                 .map((variant) => (
-                                  <div
-                                    className="details-filter-row details-row-size"
+                                  <a
                                     onClick={() => {
                                       setProduct({
                                         ...variant,
@@ -488,19 +494,23 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                                       });
                                       setImageKey(0);
                                     }}
-                                    style={{ margin: 5, cursor: "pointer" }}>
-                                    <div className="product-nav product-nav-thumbs">
-                                      <span className="productvar cursor-pointer">
-                                        <Image
-                                          src={`${sources.imageMinSrc}${variant.picture_1}`}
-                                          alt={variant.productShortName}
-                                          title={variant.productShortName}
-                                          width={90}
-                                          height={140}
-                                        />
-                                      </span>
+                                    href="#">
+                                    <div
+                                      className="details-filter-row details-row-size"
+                                      style={{ margin: 5, cursor: "pointer" }}>
+                                      <div className="product-nav product-nav-thumbs">
+                                        <span className="productvar cursor-pointer">
+                                          <Image
+                                            src={`${sources.imageMinSrc}${variant.picture_1}`}
+                                            alt={variant.productShortName}
+                                            title={variant.productShortName}
+                                            width={90}
+                                            height={140}
+                                          />
+                                        </span>
+                                      </div>
                                     </div>
-                                  </div>
+                                  </a>
                                 ))}
                             </div>
                           </div>
@@ -566,8 +576,8 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                 </Tab.Container>
               </div>
             </section>
-            <div className="product-details pt-100">
-              {/* <RelatedProduct>
+            {/* <div className="product-details pt-100">
+              <RelatedProduct>
                 {products &&
                   simpleProductFilter(
                     product && product.category[0],
@@ -575,8 +585,9 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                   ).map((product) => (
                     <Product key={product.id} product={product} />
                   ))}
-              </RelatedProduct> */}
+              </RelatedProduct> 
             </div>
+          */}
           </Fragment>
         ) : (
           <h2 className="text-center pt-50 pb-50">No Product found</h2>

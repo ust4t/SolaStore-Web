@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { Fragment, useState, useRef } from "react";
+import React, { Fragment, useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
 import {
@@ -18,21 +18,15 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
   const { t } = useTranslation("common");
   const { push } = useRouter();
   const searchRef = useRef();
-  // const [search, setSearch] = useState("");
-  const [scrolled, setScrolled] = useState(false);
-  const offset = typeof window !== "undefined" ? window.pageYOffset : 0;
-  // const stickyRef = React.useRef();
+  const [showMenu, setShowMenu] = useState(false);
 
   const handleScroll = () => {
-    if (offset > 100) {
-      setScrolled(true);
+    if (typeof window !== "undefined" && window.scrollY > 100) {
+      setShowMenu(true);
     } else {
-      setScrolled(false);
+      setShowMenu(false);
     }
   };
-  // if (typeof window !== "undefined")
-  //   window.addEventListener("scroll", handleScroll);
-
   const handleSearch = () => {
     push({
       pathname: "/search",
@@ -42,10 +36,49 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
     });
   };
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScroll);
+    }
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+
   return (
     <header className={` ${darkBg ? "black-bg" : ""}`}>
       {news}
 
+      <div
+        className="position-fixed bg-white"
+        style={{
+          width: "100vw",
+          zIndex: "400",
+          top: showMenu ? "0" : "-200px",
+          visibility: showMenu ? "visible" : "hidden",
+          transition: "all 0.5s ease-in-out",
+          boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
+        }}>
+        <div className="row align-items-center">
+          <div
+            className={`col-8 main-menu z-index-first ${
+              darkBg ? " main-menu-3" : ""
+            } text-center py-2`}>
+            <Menu />
+          </div>
+
+          <div className="col-4">
+            <div className={`header-left-icon d-flex`}>
+              <HomeIcon />
+              <WishlistIcon />
+              <UserIcon />
+              <CartIcon />
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="header-menu-area logo-circle-area">
         <div className="container-fluid">
           <div className="row align-items-center gx-0 justify-content-center justify-content-lg-center">
@@ -112,19 +145,6 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
       </div>
       <div className="col-xl-12 col-lg-12 col-md-12 d-none d-lg-block mt-20 borderet ">
         <div
-          // ref={stickyRef}
-          // style={{
-          //   ...(scrolled
-          //     ? {
-          //         width: "100%",
-          //         padding: "0px 30px 0 0",
-          //         position: "fixed",
-          //         background: "#fff",
-          //         top: 0,
-          //       }
-          //     : {}),
-          //   transition: "0.5s ease",
-          // }}
           className={`main-menu z-index-first ${
             darkBg ? " main-menu-3" : ""
           } text-center py-2`}>
