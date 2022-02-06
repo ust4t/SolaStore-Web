@@ -27,7 +27,7 @@ export default function BannerCard({
               height={height}
               layout="responsive"
               placeholder="blur"
-              blurDataURL="/img/loadingImg.jpg"
+              blurDataURL="/img/placeholder.jpg"
             />
             <div className="container position-absolute top-50 start-0 translate-middle-y">
               <div className="row">

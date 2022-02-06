@@ -123,7 +123,7 @@ export default class ZuckStories extends Component {
         <div
           ref={(node) => (this.storiesElement = node)}
           id="stories-react"
-          className="storiesWrapper d-flex justify-content-center">
+          className="storiesWrapper d-flex justify-content-center my-2 my-md-3">
           {timelineItems}
         </div>
       </div>

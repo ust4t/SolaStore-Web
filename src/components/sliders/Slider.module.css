@@ -2,7 +2,7 @@
   text-align: center;
   display: grid;
   place-content: center;
-  padding: 1rem 3.5rem;
+  padding: 1rem 4.5rem;
   border: 1px solid #fff;
   color: #fff;
   border-radius: 30px;
@@ -22,6 +22,11 @@
   color: var(--color-primary);
 }
 
+.sliderTitle {
+  font-size: 3.3rem;
+  font-weight: bold;
+}
+
 .embla__slide {
   position: relative;
   min-width: 100%;
@@ -37,13 +42,10 @@
 .embla__slide__img {
   position: absolute;
   display: block;
-  /* top: 50%;
-  left: 50%; */
   width: auto;
   min-height: 100%;
   min-width: 100%;
   max-width: none;
-  /* transform: translate(-50%, -50%); */
 }
 
 .slider__content {

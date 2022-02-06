@@ -23,3 +23,9 @@
   margin: 24px 0 13px 0;
   padding: 0 25px;
 }
+
+@media screen and (max-width: 410px) {
+  .orderFormInput {
+    padding: 17px 55px 17px 10px;
+  }
+}

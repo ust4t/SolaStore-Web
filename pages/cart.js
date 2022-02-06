@@ -256,9 +256,9 @@ const Cart = ({ saleTeam }) => {
                                             ${Number(cart.price).toFixed(2)}
                                           </span>
                                         </p>
-                                        <p className="text-muted text-decoration-line-through">
+                                        {/* <p className="text-muted text-decoration-line-through">
                                           $55.00
-                                        </p>
+                                        </p> */}
                                       </div>
                                     </td>
                                     <CartAmount

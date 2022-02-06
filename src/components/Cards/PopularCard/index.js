@@ -186,7 +186,7 @@ function PopularCard({ productData, cartId }) {
                 height={600}
                 alt={name}
                 placeholder="blur"
-                blurDataURL="/img/loadingImg.jpg"
+                blurDataURL="/img/placeholder.jpg"
               />
             </a>
           </Link>
@@ -209,7 +209,7 @@ function PopularCard({ productData, cartId }) {
                 width={400}
                 height={600}
                 placeholder="blur"
-                blurDataURL="/img/loadingImg.jpg"
+                blurDataURL="/img/placeholder.jpg"
               />
             </a>
           </Link>
@@ -300,7 +300,7 @@ function PopularCard({ productData, cartId }) {
                   priority={true}
                   onClick={() => changeDressColor(variant)}
                   placeholder="blur"
-                  blurDataURL="/img/loadingImg.jpg"
+                  blurDataURL="/img/placeholder.jpg"
                 />
               </SwiperSlide>
             ))}

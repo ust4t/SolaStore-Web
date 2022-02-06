@@ -42,7 +42,7 @@ const Index4 = ({
       <main>
         {/* <Stories stories={newProducts} /> */}
 
-        <ZuckStories storiesData={newProducts.slice(0, 7)} />
+        <ZuckStories storiesData={newProducts.slice(0, 5)} />
         <SliderProducts sliders={slidersData} />
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <IntroBanners banners={bannersData} />
@@ -119,7 +119,7 @@ export async function getStaticProps({ locale }) {
       categoriesData,
       brands,
     },
-    revalidate: 60 * 5,
+    revalidate: 300,
   };
 }
 

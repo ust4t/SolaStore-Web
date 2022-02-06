@@ -13,6 +13,7 @@ import {
   embla__slide__img,
   sliderButton,
   slider__content,
+  sliderTitle,
 } from "./Slider.module.css";
 import EmblaSlider from "../EmblaSlider";
 
@@ -54,7 +55,7 @@ export default function SliderProducts({ sliders }) {
                     {selectedText1}
                   </h5>
                   <h2
-                    className="text-white fadeInUp wow text-uppercase text-shadow"
+                    className={`text-white fadeInUp wow text-uppercase text-shadow ${sliderTitle}`}
                     data-animation="fadeInUp"
                     data-delay=".4s">
                     {selectedText2}

@@ -37,7 +37,7 @@ export default function StoryButton({ story, onStoryClick }) {
               layout="fill"
               priority
               placeholder="blur"
-              blurDataURL="/img/loadingImg.jpg"
+              blurDataURL="/img/placeholder.jpg"
             />
           </div>
           <p className="fs-6 text-center text-wrap ">

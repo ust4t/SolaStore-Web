@@ -5,6 +5,18 @@
   }
 }
 
+@media screen and (max-width: 425px) {
+  .story {
+    height: 100px !important;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .story {
+    height: 80px !important;
+  }
+}
+
 @media screen and (max-width: 992px) {
   .pro-quan-area {
     justify-content: center;

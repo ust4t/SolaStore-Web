@@ -36,7 +36,7 @@ export default function BrandsLayout({ brands }) {
                 layout="responsive"
                 quality={60}
                 placeholder="blur"
-                blurDataURL="/img/loadingImg.jpg"
+                blurDataURL="/img/placeholder.jpg"
               />
             </Link>
           </div>

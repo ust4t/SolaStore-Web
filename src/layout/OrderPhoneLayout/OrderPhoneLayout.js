@@ -15,7 +15,6 @@ import Loader from "../../components/Loader";
 import Link from "next/link";
 
 export default function OrderPhoneLayout() {
-  const orderTel = useRef();
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -39,7 +38,7 @@ export default function OrderPhoneLayout() {
       <div className="col-12">
         <h2 className="text-center fw-bold">Sipariş Takibi</h2>
       </div>
-      <OrderFormPhone ref={orderTel} onSubmit={handleSubmit} />
+      <OrderFormPhone onSubmit={handleSubmit} />
       <div className="col-12 d-flex justify-content-center align-items-center my-2">
         {isLoading ? (
           <Loader />
@@ -64,7 +63,7 @@ export default function OrderPhoneLayout() {
                   <td>{order.salesRepresentID}</td>
                   <td>
                     <button className={`btn grenbtn1 ${detailButton}`}>
-                      <Link href="#">
+                      <Link href={`/orders/${order.orderID}`}>
                         <a>Detay</a>
                       </Link>
                     </button>

@@ -107,7 +107,7 @@ function StoryCard({ onClose, storiesData }) {
             layout="intrinsic"
             loading="eager"
             placeholder="blur"
-            blurDataURL="/img/loadingImg.jpg"
+            blurDataURL="/img/placeholder.jpg"
           />
           {storyIndex !== 0 && (
             <i
