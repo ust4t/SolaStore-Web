@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Zuck from "zuck.js";
+
 import sources from "../../../../sources";
+import { timestamp } from "../../../utils/utils";
 
 export default class ZuckStories extends Component {
   constructor(props) {
@@ -8,68 +10,23 @@ export default class ZuckStories extends Component {
     this.storiesElement = null;
     this.storiesApi = null;
     this.state = {
-      //   stories: [
-      //     Zuck.buildTimelineItem(
-      //       "ramon",
-      //       "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/1.jpg",
-      //       "Ramon",
-      //       "https://ramon.codes",
-      //       1575221470504,
-      //       [
-      //         [
-      //           "ramon-1",
-      //           "photo",
-      //           3,
-      //           "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
-      //           "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
-      //           "",
-      //           false,
-      //           false,
-      //           1575221470504,
-      //         ],
-      //         [
-      //           "ramon-2",
-      //           "video",
-      //           0,
-      //           "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/2.mp4",
-      //           "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/2.jpg",
-      //           "",
-      //           false,
-      //           false,
-      //           1575221470504,
-      //         ],
-      //         [
-      //           "ramon-3",
-      //           "photo",
-      //           3,
-      //           "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/3.png",
-      //           "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/3.png",
-      //           "https://ramon.codes",
-      //           "Visit my Portfolio",
-      //           false,
-      //           1575221470504,
-      //         ],
-      //       ]
-      //     ),
-      //   ],
-
       stories: this.props.storiesData.map((story) =>
         Zuck.buildTimelineItem(
           story.productShortName,
           `${sources.imageMinSrc}${story.picture_1}`,
           story.productShortName,
-          "https://ramon.codes",
-          1575221470504,
+          `/detail/${story.productID}`,
+          timestamp(),
           story.pictures.map((subStory) => [
             story.productShortName,
             "photo",
-            3,
+            story.pictures.length,
             `${sources.imageMaxSrc}${subStory.guidName}`,
             `${sources.imageMaxSrc}${subStory.guidName}`,
-            "",
+            `/detail/${story.productID}`,
+            "Ürüne tıklayın",
             false,
-            false,
-            1575221470504,
+            timestamp(),
           ])
         )
       ),
@@ -150,7 +107,7 @@ export default class ZuckStories extends Component {
               itemScope=""
               itemType="http://schema.org/Person">
               <strong className="name" itemProp="name">
-                {story.name}32453
+                {story.name}
               </strong>
               <span className="time">{story.lastUpdated}</span>
             </span>
@@ -166,7 +123,7 @@ export default class ZuckStories extends Component {
         <div
           ref={(node) => (this.storiesElement = node)}
           id="stories-react"
-          className="storiesWrapper d-flex justify-content-center mt-4">
+          className="storiesWrapper d-flex justify-content-center">
           {timelineItems}
         </div>
       </div>

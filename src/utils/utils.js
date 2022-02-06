@@ -12,6 +12,25 @@ export const activeData = (active, sort, products) => {
      of ${_(products && products.length)} results`;
 };
 
+export const timestamp = () => {
+  let timeIndex = 0;
+  let shifts = [
+    35,
+    60,
+    60 * 3,
+    60 * 60 * 2,
+    60 * 60 * 25,
+    60 * 60 * 24 * 4,
+    60 * 60 * 24 * 10,
+  ];
+
+  let now = new Date();
+  let shift = shifts[timeIndex++] || 0;
+  let date = new Date(now - shift * 1000);
+
+  return date.getTime() / 1000;
+};
+
 export const clickToActive = (activeArr, value, setActiveArr) => {
   if (activeArr.includes(value)) {
     setActiveArr(activeArr.filter((active) => active !== value));
