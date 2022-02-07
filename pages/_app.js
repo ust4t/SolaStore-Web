@@ -35,6 +35,14 @@ function MyApp({ Component, pageProps }) {
         payload: menu,
       });
     } catch (error) {
+      console.log("second menu");
+      const { data: menu } = await axios.get(
+        `/api/getFullMenuNew?lang=${store.getState().lang}`
+      );
+      store.dispatch({
+        type: GET_MAIN_MENU,
+        payload: menu,
+      });
       console.log(error);
       toast.error("Menü alınırken hata oluştu");
     }
