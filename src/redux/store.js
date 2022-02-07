@@ -11,7 +11,6 @@ const loadedState = {
     state: null,
     name: "Guest",
   }),
-  stories: loadState("stories"),
 };
 
 const bindMiddleware = (middleware) => {

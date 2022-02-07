@@ -11,7 +11,7 @@ import {
   SearchIcon,
   UserIcon,
   WishlistIcon,
-} from "./Icons";
+} from "./Icons/Icons";
 import { WhatsappIcon } from "react-share";
 import Menu from "./Menu";
 import useDetectScroll from "../../hooks/useDetectScroll";
@@ -75,7 +75,6 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
 
           <div className="col-6">
             <div className="input-group">
-              {" "}
               <input
                 ref={searchRef}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
@@ -86,7 +85,6 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
                 aria-describedby="basic-addon2"
               />
               <div className="input-group-append">
-                {" "}
                 <button
                   onClick={handleSearch}
                   className="btn btn-outline-dark btn-lg search-buton search-p"

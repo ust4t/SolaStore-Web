@@ -3,48 +3,59 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 
 import { StoreContext } from "../../context/StoreProvider";
-import {
-  cart_product_item,
-  cart_product_item_image,
-  cart_product_item_name,
-  trash_container,
-  cart_product_item_info,
-  trash_icon,
-} from "./CartProductItem.module.css";
+import { dropdown_img, dropdown_link } from "./CartProductItem.module.css";
+import Link from "next/link";
 
 function CartProductItem({ id, image, name, price, quantity }) {
-  const uid = useSelector((state) => state.auth.uid);
-  const { cartActions, isCartLoading } = useContext(StoreContext);
+  const auth = useSelector((state) => state.auth);
+  const chooseId = auth.state === "guest" ? auth.uid : auth.rnd_id;
+  const { cartActions } = useContext(StoreContext);
   const { removeFromCart } = cartActions;
-
-  const rate = 0.2;
 
   const handleDelete = () =>
     removeFromCart({
-      user: uid,
+      user: chooseId,
       id,
     });
 
-  if (image && name && price)
-    return (
-      <div className={cart_product_item}>
-        <div className={cart_product_item_image}>
-          <Image src={image} width={400 * rate} height={600 * rate} />
-        </div>
-        <div className={cart_product_item_info}>
-          <span className={cart_product_item_name}>{name}</span>
-          <div className={cart_product_item_name}>${price}</div>
-          <div className={cart_product_item_name}>Adet: {quantity}</div>
-        </div>
-        {isCartLoading ? (
-          "Loading..."
-        ) : (
-          <div onClick={handleDelete} className={trash_container}>
-            <i className={`fas fa-trash-alt ${trash_icon}`} />
-          </div>
-        )}
+  return (
+    <div className="row align-items-center justify-content-center">
+      <div className="col-7 d-flex align-items-center p-2">
+        <img src={image} className={dropdown_img} />
+        <Link href={`/detail/${id}`}>
+          <p
+            className={`fs-6 cursor-pointer ${dropdown_link}`}
+            style={{
+              fontWeight: "500",
+            }}>
+            {name}
+          </p>
+        </Link>
       </div>
-    );
+      <div className="col-2">
+        <p
+          className="fs-6"
+          style={{
+            fontWeight: "500",
+          }}>
+          x{quantity}
+        </p>
+      </div>
+      <div className="col-3 d-flex align-items-center">
+        <p
+          className="fs-6  me-3"
+          style={{
+            fontWeight: "500",
+          }}>
+          ${price}
+        </p>
+        <i
+          onClick={handleDelete}
+          className="fas fa-times fa-lg cursor-pointer"
+        />
+      </div>
+    </div>
+  );
 }
 
 export default memo(CartProductItem);

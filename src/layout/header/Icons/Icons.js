@@ -1,13 +1,11 @@
-import { Fragment, useContext } from "react";
+import { useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { Menu, Dropdown } from "antd";
-import ColorfulText from "../../components/ColorfulText";
-import CartProductItem from "../../components/CartProductItem";
-import { StoreContext } from "../../context/StoreProvider";
-import sources from "../../../sources";
-import { useSelector } from "react-redux";
+import CartProductItem from "../../../components/CartProductItem";
+import { StoreContext } from "../../../context/StoreProvider";
+import sources from "../../../../sources";
+import { cart_dropdown, mainCart, dropdown_btn } from "./Icons.module.css";
 
 export const SearchIcon = ({ hendelChangeSearch }) => (
   <Link href="#">
@@ -28,6 +26,7 @@ export const UserIcon = () => {
     </Link>
   );
 };
+
 export const WishlistIcon = () => {
   const { state } = useContext(StoreContext);
   return (
@@ -67,42 +66,71 @@ export const CartIcon = () => {
       return price + currPrice.price;
     }, 0);
 
-  const menu = (
-    <Menu style={{ padding: 15, maxHeight: "400px", overflowY: "scroll" }}>
-      <div style={{ display: "flex", justifyContent: "end" }}>
-        <ColorfulText>${totalPrice || 0}</ColorfulText>
-      </div>
-      {state.cartData &&
-        state.cartData.map(
-          ({
-            chartID,
-            pictureOneGuidName,
-            price,
-            productShortName,
-            productID,
-            quantity,
-          }) => (
-            <CartProductItem
-              key={chartID}
-              image={`${sources.imageMinSrc}${pictureOneGuidName}`}
-              name={productShortName}
-              price={price}
-              id={productID}
-              quantity={quantity}
-            />
-          )
-        )}
-    </Menu>
-  );
   return (
-    <Link href="/cart">
-      <Dropdown overlay={menu} placement="topRight">
-        <a className="cartToDrag position-relative ml-0">
+    <div className={mainCart}>
+      <Link href="/cart">
+        <a className="cartToDrag">
           <span className="iconValue">{cartsNum || 0}</span>
           <i className="fas fa-cart-arrow-down fs-3" />
         </a>
-      </Dropdown>
-    </Link>
+      </Link>
+      {state.cartData ? (
+        <div className={cart_dropdown}>
+          {state.cartData.map(
+            ({
+              chartID,
+              pictureOneGuidName,
+              price,
+              productShortName,
+              productID,
+              quantity,
+            }) => (
+              <CartProductItem
+                key={chartID}
+                image={`${sources.imageMinSrc}${pictureOneGuidName}`}
+                name={productShortName}
+                price={price}
+                id={productID}
+                quantity={quantity}
+              />
+            )
+          )}
+          <div className="row pe-3 bg-light py-1">
+            <div className="col-12">
+              <p
+                className="fw-bold text-end mb-1"
+                style={{
+                  fontSize: ".8rem",
+                }}>
+                Ara Toplam: <span className="ms-5">${totalPrice}</span>
+              </p>
+              <p
+                className="fw-bold text-end"
+                style={{
+                  fontSize: ".8rem",
+                }}>
+                Toplam: <span className="ms-5">${totalPrice}</span>
+              </p>
+            </div>
+          </div>
+          <div
+            className="row justify-content-center"
+            style={{
+              background: "#ccc",
+            }}>
+            <div className="col-5 py-2">
+              <button className={`btn grenbtn1 ${dropdown_btn}`}>
+                Sepete Git
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className={cart_dropdown}>
+          <p className="text-center p-3 fs-6">Alışveriş Sepetiniz Boş!</p>
+        </div>
+      )}
+    </div>
   );
 };
 

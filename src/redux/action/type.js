@@ -16,7 +16,6 @@ export const BRAND = "BRAND";
 export const CHANGE_LANG = "CHANGE_LANG";
 export const GET_LANG = "GET_LANG";
 export const GET_BRANDS = "GET_BRANDS";
-export const SET_STORIES = "SET_STORIES";
 
 // Product
 export const GET_PRODUCT = "GET_PRODUCT";
