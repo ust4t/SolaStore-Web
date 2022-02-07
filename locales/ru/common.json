@@ -16,7 +16,9 @@
   "saleInfoColored": "ДОПОЛНИТЕЛЬНАЯ СКИДКА",
   "loginhere": "АВТОРИЗОВАТЬСЯ",
   "emaillogin": "Электронная почта",
+  "email_placeholder": "Введите адрес электронной почты...",
   "passlogin": "Пароль",
+  "pass_placeholder": "Введите пароль...",
   "addtocart": "Добавить в корзину",
   "followus": "Подписывайтесь на нас",
   "removedfromlist": "Удалено из вашего списка",
@@ -25,7 +27,7 @@
   "profile": "Профиль",
   "myaccount": "Мой счет",
   "myorders": "мои заказы",
-  "sigup": "Регистрация",
+  "signup": "Регистрация",
   "welcome": "Добро пожаловать",
   "logout": "Выйти",
   "or": "ИЛИ"

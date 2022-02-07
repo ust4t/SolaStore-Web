@@ -90,7 +90,7 @@ const Login = () => {
                               id="email"
                               name="email"
                               type="email"
-                              placeholder="Email giriniz..."
+                              placeholder={t("email_placeholder")}
                               values={values.email}
                               errors={errors.email}
                               touched={touched.email}
@@ -104,7 +104,7 @@ const Login = () => {
                               id="password"
                               name="password"
                               type="password"
-                              placeholder="Şifreyi giriniz..."
+                              placeholder={t("pass_placeholder")}
                               values={values.password}
                               errors={errors.password}
                               touched={touched.password}

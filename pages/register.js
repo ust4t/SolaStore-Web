@@ -115,7 +115,7 @@ const Register = () => {
                               id="email"
                               name="email"
                               type="string"
-                              placeholder="Email Adresini Giriniz..."
+                              placeholder={t("common:email_placeholder")}
                               values={values.email}
                               touched={touched.email}
                               errors={errors.email}
@@ -143,7 +143,7 @@ const Register = () => {
                               id="password"
                               name="password"
                               type="password"
-                              placeholder="Şifre giriniz..."
+                              placeholder={t("common:pass_placeholder")}
                               values={values.password}
                               touched={touched.password}
                               errors={errors.password}
