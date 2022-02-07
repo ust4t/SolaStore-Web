@@ -56,7 +56,7 @@ export const News_4 = () => {
         <div className="col-lg-3 d-none d-lg-block justify-content-center">
           {user.uid && user.state === "user_registered" && (
             <h6 className="text-center text-lg-start fw-bold">
-              🎉Hoşgeldin, {user.name}
+              🎉{t("welcome")}, {user.name}
             </h6>
           )}
         </div>
@@ -64,40 +64,40 @@ export const News_4 = () => {
           <div className="flagright d-flex align-items-center justify-content-center justify-content-lg-end">
             <div
               className={`${menu_btn} d-none d-lg-flex align-items-center position-relative me-1 shadow-none`}>
-              <h6 className="me-1 cursor-pointer">Hesabım</h6>
+              <h6 className="me-1 cursor-pointer">{t("myaccount")}</h6>
               <i className="fas fa-chevron-down cursor-pointer mb-1" />
-              <ul className={`${menu}`}>
+              <ul className={menu}>
                 {user.state === "user_registered" ? (
                   <>
                     <li>
                       <Link href="/dashboard">
-                        <a>Profilim</a>
+                        <a>{t("profile")}</a>
                       </Link>
                     </li>
                     <li>
                       <Link href="/orders">
-                        <a>Siparişlerim</a>
+                        <a>{t("myorders")}</a>
                       </Link>
                     </li>
                     {/* <li>Adreslerim</li>
                     <li>İndirimlerim</li> */}
-                    <li onClick={handleLogOut}>Çıkış</li>
+                    <li onClick={handleLogOut}>{t("logout")}</li>
                   </>
                 ) : (
                   <>
                     <li>
                       <Link href="/login">
-                        <a>Giriş Yap</a>
+                        <a>{t("loginhere")}</a>
                       </Link>
                     </li>
                     <li>
                       <Link href="/register">
-                        <a>Kayıt Ol</a>
+                        <a>{t("signup")}</a>
                       </Link>
                     </li>
                     <li>
                       <Link href="/orders">
-                        <a>Siparişlerim</a>
+                        <a>{t("myorders")}</a>
                       </Link>
                     </li>
                   </>

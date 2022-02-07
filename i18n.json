@@ -2,6 +2,6 @@
   "locales": ["ru", "en", "tr", "ar", "fr"],
   "defaultLocale": "ru",
   "pages": {
-    "*": ["common", "home", "cart", "wishlist", "detail", "footer"]
+    "*": ["common", "home", "cart", "wishlist", "detail", "footer", "register"]
   }
 }

@@ -12,8 +12,10 @@ import PageTitle from "../src/layout/PageTitle";
 import { CREATE_USER_ID } from "../src/redux/action/type";
 import { registerSchema } from "../src/utils/yupModal";
 import { StoreContext } from "../src/context/StoreProvider";
+import useTranslation from "next-translate/useTranslation";
 
 const Register = () => {
+  const { t } = useTranslation("register");
   const { wishListActions } = useContext(StoreContext);
   const dispatch = useDispatch();
   const { push } = useRouter();
@@ -57,8 +59,7 @@ const Register = () => {
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
-        <link rel="stylesheet" href="css/passopen.css" />
-        <PageTitle active="register" pageTitle="Register" />
+        <PageTitle active={t("common:signup")} pageTitle={t("common:signup")} />
         <section className="login-area pt-100 pb-100">
           <div className="container">
             <div className="row">
@@ -82,11 +83,11 @@ const Register = () => {
                         <div className="row">
                           <div className="col-lg-6 col-md-6">
                             <InputGroup
-                              label="Üye Adı"
+                              label={t("username")}
                               id="name"
                               name="name"
                               type="string"
-                              placeholder="İsim giriniz..."
+                              placeholder={t("username_placeholder")}
                               values={values.name}
                               touched={touched.name}
                               errors={errors.name}
@@ -96,11 +97,11 @@ const Register = () => {
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <InputGroup
-                              label="Üye Soyadı"
+                              label={t("userlast")}
                               id="lastname"
                               name="lastname"
                               type="string"
-                              placeholder="Soyisim giriniz..."
+                              placeholder={t("userlast_placeholder")}
                               values={values.lastname}
                               touched={touched.lastname}
                               errors={errors.lastname}
@@ -110,7 +111,7 @@ const Register = () => {
                           </div>
                           <div className="col-6">
                             <InputGroup
-                              label="Email Adresi"
+                              label={t("common:emaillogin")}
                               id="email"
                               name="email"
                               type="string"
@@ -124,11 +125,11 @@ const Register = () => {
                           </div>
                           <div className="col-6">
                             <InputGroup
-                              label="Telefon Numarası"
+                              label={t("userphone")}
                               id="tel"
                               name="tel"
                               type="tel"
-                              placeholder="Telefon numarasını giriniz..."
+                              placeholder={t("userphone_placeholder")}
                               values={values.tel}
                               touched={touched.tel}
                               errors={errors.tel}
@@ -138,7 +139,7 @@ const Register = () => {
                           </div>
                           <div className="col-12">
                             <InputGroup
-                              label="Şifre"
+                              label={t("common:passlogin")}
                               id="password"
                               name="password"
                               type="password"
@@ -152,11 +153,11 @@ const Register = () => {
                           </div>
                           <div className="col-12">
                             <InputGroup
-                              label="Şifreyi Onayla"
+                              label={t("confirm")}
                               id="confirmPassword"
                               name="confirmPassword"
                               type="password"
-                              placeholder="Şifreyi tekrar giriniz..."
+                              placeholder={t("confirm_placeholder")}
                               values={values.confirmPassword}
                               touched={touched.confirmPassword}
                               errors={errors.confirmPassword}
@@ -169,14 +170,14 @@ const Register = () => {
                         <button
                           disabled={isSubmitting}
                           className="bt-btn theme-btn-2 w-100">
-                          Register Now
+                          {t("common:signup")}
                         </button>
                         <div className="or-divide">
-                          <span>or</span>
+                          <span>{t("common:or")}</span>
                         </div>
                         <Link href="/login">
                           <a className="bt-btn bt-btn-black w-100 text-center">
-                            Login Now
+                            {t("common:loginhere")}
                           </a>
                         </Link>
                       </form>

@@ -1,3 +1,4 @@
+import useTranslation from "next-translate/useTranslation";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
@@ -6,6 +7,7 @@ import { SET_WISHLIST_DATA } from "../context/types";
 import useQueryMutation from "./useQueryMutation";
 
 export default function useWishList(dispatch) {
+  const { t } = useTranslation("common");
   const { lang, auth } = useSelector((state) => state);
   const chooseId = auth.state === "guest" ? auth.uid : auth.rnd_id;
   const { isLoading: isWishlistLoading, refetch: wishlistRefetch } = useQuery(
@@ -47,7 +49,7 @@ export default function useWishList(dispatch) {
       {
         onSuccess: () => {
           wishlistRefetch();
-          toast.error("Removed from wishlist");
+          toast.error(t("removedfromlist"));
         },
       }
     );

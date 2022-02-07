@@ -153,9 +153,13 @@ function PopularCard({ productData, cartId }) {
           className="position-absolute top-0 start-0 translate-middle m-4 cursor-pointer"
           style={{
             zIndex: "150",
-          }}
-          onClick={onClickWishlist}>
-          <Heart isLiked={isLiked} setIsLiked={setIsLiked} size="35px" />
+          }}>
+          <Heart
+            isLiked={isLiked}
+            setIsLiked={setIsLiked}
+            onClick={onClickWishlist}
+            size="35px"
+          />
         </span>
 
         <span

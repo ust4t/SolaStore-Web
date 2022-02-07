@@ -19,7 +19,7 @@ const Menu = () => {
         </li>
         <li>
           <Link href="/shop/newproducts">
-            <a className="text-uppercase">yeni ürünler</a>
+            <a className="text-uppercase">{t("home:new")}</a>
           </Link>
         </li>
         <li>

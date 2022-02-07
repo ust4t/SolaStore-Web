@@ -1,0 +1,11 @@
+{
+  "username": "User Name",
+  "username_placeholder": "Enter your username",
+  "userlast": "User LastName",
+  "userlast_placeholder": "Enter your lastname...",
+  "userphone": "User Phone",
+  "userphone_placeholder": "Enter your phone number...",
+  "confirm": "Confirm Password",
+  "confirm_placeholder": "Confirm your password...",
+  "signhere": "Signup From Here"
+}

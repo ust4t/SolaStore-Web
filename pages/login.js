@@ -62,7 +62,7 @@ const Login = () => {
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
-        <PageTitle active="Login" pageTitle="Login" />
+        <PageTitle active={t("loginhere")} pageTitle={t("loginhere")} />
         <section className="login-area pt-100 pb-100">
           <div className="container">
             <div className="row">
@@ -121,11 +121,11 @@ const Login = () => {
                           {t("loginhere")}
                         </button>
                         <div className="or-divide">
-                          <span>ya da</span>
+                          <span>{t("or")}</span>
                         </div>
                         <Link href="/register">
                           <a className="bt-btn bt-btn-black w-100 text-center">
-                            Kayıt Ol
+                            {t("signup")}
                           </a>
                         </Link>
                       </form>

@@ -50,32 +50,34 @@ function SubCategory({ picture, subMenuData, parentCategory }) {
               ))}
           </ul>
         </div>
-        <div className="col-3">
-          <div className={`${banner} position-relative`}>
-            <Link
-              href={{
-                pathname: "/shop",
-                query: {
-                  categoryIds: parentCategory.id,
-                  brandIds: "",
-                  searchPrice: "",
-                },
-              }}>
-              <a>
-                <img
-                  src={`${sources.imageMidSrc}${picture}`}
-                  alt={parentCategory.name}
-                  loading="lazy"
-                />
-                <div className={overlay} />
-              </a>
-            </Link>
-            <div className={banner_content}>
-              <p className={title}>{parentCategory.name}</p>
-              <p className={year}>{new Date().getFullYear()}</p>
+        {picture !== null && (
+          <div className="col-3">
+            <div className={`${banner} position-relative`}>
+              <Link
+                href={{
+                  pathname: "/shop",
+                  query: {
+                    categoryIds: parentCategory.id,
+                    brandIds: "",
+                    searchPrice: "",
+                  },
+                }}>
+                <a>
+                  <img
+                    src={`${sources.imageMidSrc}${picture}`}
+                    alt={parentCategory.name}
+                    loading="lazy"
+                  />
+                  <div className={overlay} />
+                </a>
+              </Link>
+              <div className={banner_content}>
+                <p className={title}>{parentCategory.name}</p>
+                <p className={year}>{new Date().getFullYear()}</p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </ul>
   );
