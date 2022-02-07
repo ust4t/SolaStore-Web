@@ -13,5 +13,13 @@
 	"share": "مشاركة المنتج",
 	"stock": "في المخزن",
 	"saleInfo": "إلى الأعضاء الأوائل",
-	"saleInfoColored": "خصم اضافي"
+	"saleInfoColored": "خصم اضافي",
+	"loginhere": "تسجيل الدخول",
+	"emaillogin": "بريد الالكتروني",
+	"passlogin": "كلمة المرور",
+	"addtocart": "اضف الى السلة",
+	"followus": "تابعنا",
+	"removedfromlist": "تمت إزالته من قائمتك",
+	"noproductfound": "الصنف غير موجود",
+	"searchname": "يتصل"
 }

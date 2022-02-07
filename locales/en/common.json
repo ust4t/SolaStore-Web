@@ -13,5 +13,13 @@
 	"share": "Share Product",
 	"stock": "In Stock",
 	"saleInfo": "To the first Members",
-	"saleInfoColored": "EXTRA DISCOUNT"
+	"saleInfoColored": "EXTRA DISCOUNT",
+	"loginhere": "Login From Here",
+	"emaillogin": "E-mail",
+	"passlogin": "Password",
+	"addtocart": "Add to Cart",
+	"followus": "Follow Us",
+	"removedfromlist": "Removed Wishlist",
+	"noproductfound": "No Product Found",
+	"searchname": "Arama"
 }

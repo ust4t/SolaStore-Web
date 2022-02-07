@@ -51,7 +51,6 @@ export default class ZuckStories extends Component {
           this.setState(
             (state) => {
               state.stories = currentState;
-
               return state;
             },
             () => {
@@ -123,9 +122,24 @@ export default class ZuckStories extends Component {
         <div
           ref={(node) => (this.storiesElement = node)}
           id="stories-react"
-          className="storiesWrapper d-flex justify-content-center my-2 my-md-3">
+          className="position-relative storiesWrapper d-flex justify-content-center my-2 my-md-3">
           {timelineItems}
         </div>
+        {/* <div
+          className="storiesWrapper position-fixed stories user-icon carousel snapgram"
+          style={{
+            top: "50%",
+            right: "20px",
+            zIndex: "400",
+          }}>
+          <div className="story">
+            <a className="item-link" href="#">
+              <span className="item-preview">
+                <img src="https://solastore.com.tr/img/ProductWM/minPic/a07bc882-9.jpg" />
+              </span>
+            </a>
+          </div>
+        </div> */}
       </div>
     );
   }

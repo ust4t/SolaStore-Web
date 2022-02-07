@@ -1,0 +1,23 @@
+.reelsContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: 400;
+  display: grid;
+  place-items: center;
+}
+
+.reelsImgContainer {
+  max-width: 350px;
+  max-height: 700px;
+  display: grid;
+  place-items: center;
+}
+
+.reelsImg {
+  width: 300px;
+  height: 500px;
+}

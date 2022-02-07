@@ -13,5 +13,13 @@
 	"share": "поделиться продуктом",
 	"stock": "в наличии",
 	"saleInfo": "ПЕРВЫМ ЧЛЕНАМ",
-	"saleInfoColored": "ДОПОЛНИТЕЛЬНАЯ СКИДКА"
+	"saleInfoColored": "ДОПОЛНИТЕЛЬНАЯ СКИДКА",
+	"loginhere": "АВТОРИЗОВАТЬСЯ",
+	"emaillogin": "Электронная почта",
+	"passlogin": "Пароль",
+	"addtocart": "Добавить в корзину",
+	"followus": "Подписывайтесь на нас",
+	"removedfromlist": "Удалено из вашего списка",
+	"noproductfound": "Produit non trouvé",
+	"searchname": "Appeler"
 }

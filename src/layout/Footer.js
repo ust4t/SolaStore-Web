@@ -138,52 +138,52 @@ export const DefaultFooter = ({ darkBg }) => {
                   <div className="social-icon pt-15">
                     <span>Follow Us On:</span>
                     <Link href="https://www.facebook.com/solastore">
-                      <a onClick={(e) => e.preventDefault()}>
+                      <a target="_blank">
                         <i className="fab fa-facebook-square" />
                       </a>
                     </Link>
                     <Link href="https://twitter.com/Solastoreonline">
-                      <a onClick={(e) => e.preventDefault()}>
+                      <a target="_blank">
                         <i className="fab fa-twitter-square" />
                       </a>
                     </Link>
                     <Link href="https://www.linkedin.com/company/sola-store-tekstil/mycompany/">
-                      <a onClick={(e) => e.preventDefault()}>
+                      <a target="_blank">
                         <i className="fab fa-linkedin" />
                       </a>
                     </Link>
                     <Link href="https://tr.pinterest.com/SolaStoreonline/">
-                      <a onClick={(e) => e.preventDefault()}>
+                      <a target="_blank">
                         <i className="fab fa-pinterest-square" />
                       </a>
                     </Link>
                     <Link href="https://www.youtube.com/channel/UCO1EGdGpU-Moy8yJ8Hu3N2Q">
-                      <a onClick={(e) => e.preventDefault()}>
+                      <a target="_blank">
                         <i className="fab fa-youtube-square" />
                       </a>
                     </Link>
                     <Link href="https://vk.com/solastoreonline">
-                      <a onClick={(e) => e.preventDefault()}>
+                      <a target="_blank">
                         <i className="fab fa-vk" />
                       </a>
                     </Link>
                     <Link href="https://solastore.tumblr.com/">
-                      <a onClick={(e) => e.preventDefault()}>
+                      <a target="_blank">
                         <i className="fab fa-tumblr" />
                       </a>
                     </Link>
                     <Link href="https://t.me/solastoreonline">
-                      <a onClick={(e) => e.preventDefault()}>
+                      <a target="_blank">
                         <i className="fab fa-telegram" />
                       </a>
                     </Link>
                     <Link href="https://www.tiktok.com/@solastoreofficial">
-                      <a onClick={(e) => e.preventDefault()}>
+                      <a target="_blank">
                         <i className="fab fa-tiktok" />
                       </a>
                     </Link>
                     <Link href="https://ru.foursquare.com/user/399137018">
-                      <a onClick={(e) => e.preventDefault()}>
+                      <a target="_blank">
                         <i className="fab fa-foursquare" />
                       </a>
                     </Link>
@@ -204,21 +204,14 @@ export const DefaultFooter = ({ darkBg }) => {
               </div>
             </div>
 
-            <div className="footer-payment col-md-4 col-12 text-center">
-              <Link href="#">
-                <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}>
-                  <Image
-                    src="/img/footer/payment.png"
-                    width={50}
-                    height={4}
-                    layout="responsive"
-                    alt="payment"
-                  />
-                </a>
-              </Link>
+            <div className="footer-payment col-md-4  text-center">
+              <Image
+                src="/img/footer/payment.png"
+                width={50}
+                height={4}
+                layout="responsive"
+                alt="payment"
+              />
             </div>
             <div className="col-md-4 col-12">
               <div className="copyright-text text-end">

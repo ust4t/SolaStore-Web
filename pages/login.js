@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import * as Yup from "yup";
+import useTranslation from "next-translate/useTranslation";
 
 import InputGroup from "../src/components/form/InputGroup";
 import Layout from "../src/layout/Layout";
@@ -14,6 +15,7 @@ import { CREATE_USER_ID } from "../src/redux/action/type";
 import { StoreContext } from "../src/context/StoreProvider";
 
 const Login = () => {
+  const { t } = useTranslation("common");
   const { wishListActions } = useContext(StoreContext);
   const { push } = useRouter();
   const dispatch = useDispatch();
@@ -66,7 +68,7 @@ const Login = () => {
             <div className="row">
               <div className="col-lg-8 offset-lg-2">
                 <div className="basic-login">
-                  <h3 className="text-center mb-60">Login From Here</h3>
+                  <h3 className="text-center mb-60">{t("loginhere")}</h3>
                   <Formik
                     initialValues={initialValues}
                     validationSchema={loginSchema}
@@ -84,7 +86,7 @@ const Login = () => {
                         <div className="row">
                           <div className="col-12">
                             <InputGroup
-                              label="Email"
+                              label={t("emaillogin")}
                               id="email"
                               name="email"
                               type="email"
@@ -98,7 +100,7 @@ const Login = () => {
                           </div>
                           <div className="col-12">
                             <InputGroup
-                              label="Şifre"
+                              label={t("passlogin")}
                               id="password"
                               name="password"
                               type="password"
@@ -116,7 +118,7 @@ const Login = () => {
                           type="submit"
                           disabled={isSubmitting}
                           className="bt-btn theme-btn-2 w-100">
-                          Giriş Yap
+                          {t("loginhere")}
                         </button>
                         <div className="or-divide">
                           <span>ya da</span>

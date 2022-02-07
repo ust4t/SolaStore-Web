@@ -1,15 +1,13 @@
 {
-  "insti": "المؤسسية",
-  "about": "معلومات عنا",
-  "privacy": "سياسة الخصوصية",
-  "distancesales": "اتفاقية البيع عن بعد",
-  "kvkk": "KVKK",
-  "contact": "تواصل",
-  "account": "حسابي",
-  "myprofile": "ملفي",
-  "myorders": "طلباتي",
-  "mobilapp": "تطبيقاتنا للجوال",
-  "tel": "هاتف",
-  "address": "تبوك",
-  "address_desc": "Mimar Kemalettin, Mesihpaşa St. No:60, Fatih/İstanbul"
+	"insti": "المؤسسية",
+	"about": "معلومات عنا",
+	"privacy": "سياسة الخصوصية",
+	"distancesales": "اتفاقية البيع عن بعد",
+	"kvkk": "KVKK",
+	"contact": "تواصل",
+	"account": "حسابي",
+	"myprofile": "ملفي",
+	"myorders": "طلباتي",
+	"mobilapp": "تطبيقاتنا للجوال",
+	"tel": "هاتف"
 }

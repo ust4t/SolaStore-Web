@@ -19,7 +19,6 @@ import "../public/css/bootstrap.min.css";
 import "../styles/main.css";
 import "swiper/css/bundle";
 import "animate.css";
-import "antd/dist/antd.css";
 import "../styles/global.css";
 
 function MyApp({ Component, pageProps }) {

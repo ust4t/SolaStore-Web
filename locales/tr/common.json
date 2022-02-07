@@ -13,5 +13,13 @@
 	"share": "Ürünü Paylaş",
 	"stock": "Stokta",
 	"saleInfo": "İLK ÜYELERE",
-	"saleInfoColored": "EKSTRA İNDİRİM"
+	"saleInfoColored": "EKSTRA İNDİRİM",
+	"loginhere": "GİRİŞ YAP",
+	"emaillogin": "E-mail",
+	"passlogin": "Şifre",
+	"addtocart": "Sepete Ekle",
+	"followus": "Bizi Takip Edin",
+	"removedfromlist": "Listenizden Silindi",
+	"noproductfound": "Ürün Bulunamadı",
+	"searchname": "Arama"
 }

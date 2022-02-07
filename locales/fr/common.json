@@ -13,5 +13,13 @@
   "share": "partager le produit",
   "stock": "en stock",
   "saleInfo": "AUX PREMIERS MEMBRES",
-  "saleInfoColored": "REMISE SUPPLÉMENTAIRE"
+  "saleInfoColored": "REMISE SUPPLÉMENTAIRE",
+  "loginhere": "CONNEXION",
+	"emaillogin": "E-mail",
+	"passlogin": "Mot de passe",
+	"addtocart": "ajouter au panier",
+	"followus": "Suivez nous",
+	"removedfromlist": "Supprimé de votre liste",
+  "noproductfound": "Produit non trouvé",
+	"searchname": "Appeler"
 }

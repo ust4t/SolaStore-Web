@@ -1,15 +1,13 @@
 {
-  "insti": "Institutionnel",
-  "about": "à propos de nous",
-  "privacy": "Politique de confidentialité",
-  "distancesales": "Contrat de vente à distance",
-  "kvkk": "KVKK",
-  "contact": "la communication",
-  "account": "MON COMPTE",
-  "myprofile": "mon profil",
-  "myorders": "Mes commandes",
-  "mobilapp": "NOS APPLICATIONS MOBILES",
-  "tel": "Téléphoner",
-  "address": "Adresse",
-  "address_desc": "Mimar Kemalettin, Mesihpaşa St. No:60, Fatih/İstanbul"
+	"insti": "Institutionnel",
+	"about": "à propos de nous",
+	"privacy": "Politique de confidentialité",
+	"distancesales": "Contrat de vente à distance",
+	"kvkk": "KVKK",
+	"contact": "la communication",
+	"account": "MON COMPTE",
+	"myprofile": "mon profil",
+	"myorders": "Mes commandes",
+	"mobilapp": "NOS APPLICATIONS MOBILES",
+	"tel": "Téléphoner"
 }
