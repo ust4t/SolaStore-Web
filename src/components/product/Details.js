@@ -562,12 +562,12 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                               eventKey="dec">
                               {t("desc")}
                             </Nav.Link>
-                            <Nav.Link
+                            {/* <Nav.Link
                               as="a"
                               className="c-pointer"
                               eventKey="review">
                               Reviews (4)
-                            </Nav.Link>
+                            </Nav.Link> */}
                           </div>
                         </Nav>
                       </div>

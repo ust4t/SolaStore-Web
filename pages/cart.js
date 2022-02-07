@@ -443,7 +443,7 @@ const Cart = ({ saleTeam }) => {
                             <input
                               value={values.tel}
                               onChange={handleChange("tel")}
-                              type="tel"
+                              type="number"
                               className={`form-control txth ${
                                 errors.tel && touched.tel
                                   ? "border border-3 rounded-3 border-danger"

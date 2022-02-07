@@ -204,6 +204,9 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
                     <button
                       onClick={handleSearch}
                       className="btn btn-outline-dark btn-lg search-buton search-p"
+                      style={{
+                        padding: ".5rem 0.5rem",
+                      }}
                       type="button">
                       <i className="fa fa-search" />
                     </button>{" "}
@@ -212,11 +215,11 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
               </div>
             </Fragment>
 
-            <div className="col-xl-2 col-lg-3 col-md-3 col-4 order-1 order-md-3">
+            <div className="col-xl-2 col-lg-3 col-md-4 col-5 order-1 order-md-3">
               <div
                 className={`header-left-icon ${
                   darkBg ? "header-right-icon" : ""
-                } ms-auto d-flex justify-content-end align-items-center f-right`}>
+                } ms-auto d-flex justify-content-around align-items-center f-right`}>
                 <HomeIcon />
                 <WishlistIcon />
                 <UserIcon />

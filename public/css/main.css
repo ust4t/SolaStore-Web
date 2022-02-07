@@ -294,7 +294,7 @@ button {
 .main-menu ul li {
   display: inline-block;
 
-  margin: 0px 15px;
+  margin: 0px 10px;
 
   position: relative;
 
@@ -1968,7 +1968,7 @@ span.details-pro-price {
 .pro-tab-border {
   border-top: 1px solid #dbdbdb;
 
-  padding-top: 50px;
+  padding: 40px 0;
 }
 
 .pro-desc-tab {
@@ -1980,7 +1980,7 @@ span.details-pro-price {
 
   content: "";
 
-  height: 150px;
+  height: 60px;
 
   width: 1px;
 
@@ -1988,7 +1988,7 @@ span.details-pro-price {
 
   top: 0px;
 
-  right: 60px;
+  right: -20px;
 }
 
 .pro-desc-tab .nav-link {
