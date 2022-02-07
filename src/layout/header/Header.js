@@ -1,10 +1,9 @@
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useState } from "react";
 
 import { DefaultLayout, Layout2 } from "./HeaderLayouts";
 import MobileMenu from "../MobileMenu";
 import { News_4 } from "./News/News";
 import Search from "./Search";
-import useDetectOutside from "../../hooks/useDetectOutside";
 
 const Header = ({ news, layout, darkBg, logoLeft }) => {
   const [activeSearchBar, setActiveSearchBar] = useState(false);

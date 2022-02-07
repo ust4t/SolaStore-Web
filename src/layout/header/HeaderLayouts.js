@@ -54,6 +54,63 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
         }}>
         <WhatsappIcon size={55} round={true} />
       </a>
+
+      <div
+        className="position-fixed bg-white d-block d-lg-none"
+        style={{
+          width: "100vw",
+          zIndex: "400",
+          top: showMenu ? "0" : "-200px",
+          visibility: showMenu ? "visible" : "hidden",
+          transition: "all 0.5s ease-in-out",
+          boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
+        }}>
+        <div className="row align-items-center justify-content-center">
+          <div
+            className={`col-2 main-menu z-index-first ${
+              darkBg ? " main-menu-3" : ""
+            } text-center py-2`}>
+            <HamburgerIcon darkBg={darkBg} sidebarActive={setSidebar} />
+          </div>
+
+          <div className="col-6">
+            <div className="input-group">
+              {" "}
+              <input
+                ref={searchRef}
+                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                type="text"
+                className="form-control input-text"
+                placeholder={t("search")}
+                aria-label
+                aria-describedby="basic-addon2"
+              />
+              <div className="input-group-append">
+                {" "}
+                <button
+                  onClick={handleSearch}
+                  className="btn btn-outline-dark btn-lg search-buton search-p"
+                  type="button">
+                  <i className="fa fa-search" />
+                </button>{" "}
+              </div>
+            </div>
+          </div>
+
+          <div className="col-4">
+            <div
+              className="header-left-icon d-flex"
+              style={{
+                gap: "15px",
+              }}>
+              <HomeIcon />
+              <WishlistIcon />
+              <CartIcon />
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div
         className="position-fixed bg-white d-none d-lg-block"
         style={{
@@ -64,16 +121,40 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
           transition: "all 0.5s ease-in-out",
           boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
         }}>
-        <div className="row align-items-center">
+        <div className="row align-items-center justify-content-center">
           <div
-            className={`col-8 main-menu z-index-first ${
+            className={`col-7 main-menu z-index-first ${
               darkBg ? " main-menu-3" : ""
             } text-center py-2`}>
             <Menu />
           </div>
 
-          <div className="col-4">
-            <div className="header-left-icon d-flex justify-content-center">
+          <div className="col-2">
+            <div className="input-group">
+              {" "}
+              <input
+                ref={searchRef}
+                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                type="text"
+                className="form-control input-text"
+                placeholder={t("search")}
+                aria-label
+                aria-describedby="basic-addon2"
+              />
+              <div className="input-group-append">
+                {" "}
+                <button
+                  onClick={handleSearch}
+                  className="btn btn-outline-dark btn-lg search-buton search-p"
+                  type="button">
+                  <i className="fa fa-search" />
+                </button>{" "}
+              </div>
+            </div>
+          </div>
+
+          <div className="col-2">
+            <div className="header-left-icon d-flex">
               <HomeIcon />
               <WishlistIcon />
               <UserIcon />
