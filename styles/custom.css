@@ -9,7 +9,7 @@ body > #__next {
 /* custom styles --------------------------------------------------------------------------------------------*/
 /* zuck.js */
 .story {
-  height: 130px !important;
+  height: 120px !important;
 }
 
 .bg-center-cover {
@@ -360,7 +360,7 @@ ul {
   color: var(--color-primary);
 }
 .stock-update .stock-list li > span:first-child {
-  width: 100px;
+  width: 60px;
 }
 .product-modal .custom-content {
   width: 100%;

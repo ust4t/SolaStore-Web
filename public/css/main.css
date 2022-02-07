@@ -1829,9 +1829,9 @@ span.details-pro-price {
 
   display: inline-block;
 
-  padding: 14px 20px;
+  padding: 14px 10px;
 
-  width: 110px;
+  width: 80px;
 
   text-align: center;
 }
@@ -1872,10 +1872,10 @@ span.details-pro-price {
 
 .pro-cart-btn a {
   line-height: 51px;
-  padding: 0 40px;
+  padding: 0 20px;
   color: #fff;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.8rem;
   background: var(--color-primary);
   display: inline-block;
   text-align: center;

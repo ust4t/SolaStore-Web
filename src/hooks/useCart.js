@@ -37,10 +37,10 @@ export default function useCart(dispatch) {
     });
     mutate(
       {
-        url: `/api/cart/addToCart?user=${creds.user}&productID=${creds.id}`,
+        url: `/api/cart/addToCart?user=${creds.user}&productID=${creds.id}&quantity=${creds.quantity}`,
       },
       {
-        onSuccess: ({ data }) => {
+        onSuccess: () => {
           cartRefetch();
           toast.success("Added order to cart");
         },

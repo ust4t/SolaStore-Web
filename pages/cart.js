@@ -158,6 +158,9 @@ const Cart = ({ saleTeam }) => {
                 <div
                   ref={sellerRef}
                   className={`row justify-content-center ${warning.sellerWarning}`}>
+                  <h3 className="fw-bold text-center fs-4 fs-md-1">
+                    {t("orderChoose")}
+                  </h3>
                   <div
                     onClick={() =>
                       handleSeller({
@@ -181,7 +184,7 @@ const Cart = ({ saleTeam }) => {
                   <h4 className="fs-5 fw-bold text-center mb-20">
                     {t("orderFirst")}
                   </h4>
-                  <h3 className="fw-bold text-center">{t("orderChoose")}</h3>
+
                   {saleTeam.map(({ id, name, pictureGuidName }, i) => (
                     <div
                       key={`${id}_?=${i}`}
@@ -201,9 +204,9 @@ const Cart = ({ saleTeam }) => {
                         src={`${sources.saleTeam}/${pictureGuidName}`}
                         alt={name}
                         className="rounded-circle"
-                        width={"90px"}
-                        height={"90px"}
-                        layout="fixed"
+                        width={110}
+                        height={110}
+                        // layout=""
                       />
 
                       <h5 className="fs-4 mt-1 fw-bold text-center">{name}</h5>

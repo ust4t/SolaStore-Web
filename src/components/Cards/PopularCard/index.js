@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import useTranslation from "next-translate/useTranslation";
 
 import Heart from "../../Heart";
-// import ProductModal from "../../product/ProductModal";
 import sources from "../../../../sources";
 import { StoreContext } from "../../../context/StoreProvider";
 import ShareModal from "../../Modals/ShareModal";
@@ -72,6 +71,7 @@ function PopularCard({ productData, cartId }) {
     addToCartAction({
       user: chooseId,
       id,
+      quantity: 1,
     });
 
     let imgtodrag = document.getElementsByClassName(cartId)[productData.index];
@@ -111,6 +111,7 @@ function PopularCard({ productData, cartId }) {
       setIsLiked(true);
       return;
     }
+
     removeFromWishList({
       user: chooseId,
       id,
@@ -134,16 +135,6 @@ function PopularCard({ productData, cartId }) {
       className={`${cartId} product-wrapper mb-40`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}>
-      {/* <ProductModal
-        show={quickView}
-        handleClose={() => setQuickView(false)}
-        product={{
-          productID: id,
-          productShortName: name,
-          pictures: images,
-          ...productData,
-        }}
-      /> */}
       <ShareModal
         urlDetails={{
           id,

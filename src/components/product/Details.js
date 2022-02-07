@@ -38,6 +38,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
   const [shareModal, setShareModal] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [imageKey, setImageKey] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const videoRef = useRef();
   const cart =
     product &&
@@ -97,6 +98,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
     addToCartAction({
       id: product.productID,
       user: chooseId,
+      quantity,
     });
 
     handleCartAnim();
@@ -104,17 +106,18 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
 
   const onIncrementCart = (e) => {
     e.preventDefault();
-    incrementQuantity({
-      id: product.productID,
-      user: chooseId,
-    });
+    setQuantity(quantity + 1);
+    // incrementQuantity({
+    //   id: product.productID,
+    //   user: chooseId,
+    // });
   };
   const onDecrementCart = (e) => {
     e.preventDefault();
-    decrementQuantity({
-      id: product.productID,
-      user: chooseId,
-    });
+    // decrementQuantity({
+    //   id: product.productID,
+    //   user: chooseId,
+    // });
   };
   const handleAddToWishList = () => {
     if (!isLiked) {
@@ -417,23 +420,42 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                             </li>
                           </ul>
                         </div>
+                        <div className="d-flex justify-content-center d-sm-none ms-auto">
+                          <div className="pro-wish me-2">
+                            <Heart
+                              onClick={handleAddToWishList}
+                              isLiked={isLiked}
+                              setIsLiked={setIsLiked}
+                            />
+                          </div>
+                          <div className="pro-wish">
+                            <a
+                              href="#"
+                              className={"fs-3"}
+                              onClick={() => setShareModal(true)}>
+                              <i className="fas fa-share-alt" />
+                            </a>
+                          </div>
+                        </div>
                       </div>
 
-                      <div className="pro-quan-area mb-55 mt-30">
+                      <div className="d-flex justify-content-center justify-content-lg-start mb-55 mt-30">
                         <div className="product-quantity">
                           <div className="cart-plus-minus">
                             <input
                               type="text"
-                              value={cart ? cart.quantity : 1}
-                              readOnly
+                              onChange={(e) => setSizeNum(e.target.value)}
+                              value={quantity}
                               disabled
                             />
                             <button
                               className="dec qtybutton cursor-pointer"
-                              onClick={(e) =>
-                                cart &&
-                                cart.quantity !== 1 &&
-                                onDecrementCart(e)
+                              onClick={
+                                (e) =>
+                                  cart &&
+                                  quantity !== 1 &&
+                                  setQuantity(quantity - 1)
+                                // onDecrementCart(e)
                               }
                               disabled={cart ? false : true}>
                               -
@@ -441,7 +463,8 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                             <button
                               className="inc qtybutton cursor-pointer"
                               onClick={onIncrementCart}
-                              disabled={cart ? false : true}>
+                              // disabled={cart ? false : true}
+                            >
                               +
                             </button>
                           </div>
@@ -452,7 +475,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                             to cart
                           </a>
                         </div>
-                        <div>
+                        <div className="d-none d-sm-block">
                           <div className="pro-wish me-2">
                             <Heart
                               onClick={handleAddToWishList}
