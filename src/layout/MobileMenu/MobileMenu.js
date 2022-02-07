@@ -127,6 +127,11 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                 <a className="text-uppercase">{t("menu.brands")}</a>
               </Link>
             </li>
+            <li>
+              <Link href="/shop/newproducts">
+                <a className="text-uppercase">YENİ ÜRÜNLER</a>
+              </Link>
+            </li>
 
             {menu &&
               menu.map(

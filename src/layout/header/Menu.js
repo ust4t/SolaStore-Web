@@ -18,6 +18,11 @@ const Menu = () => {
           </Link>
         </li>
         <li>
+          <Link href="/shop/newproducts">
+            <a className="text-uppercase">yeni ürünler</a>
+          </Link>
+        </li>
+        <li>
           <SubMenu />
         </li>
         <li>

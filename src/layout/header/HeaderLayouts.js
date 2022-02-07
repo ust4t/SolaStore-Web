@@ -12,7 +12,9 @@ import {
   UserIcon,
   WishlistIcon,
 } from "./Icons";
+import { WhatsappIcon } from "react-share";
 import Menu from "./Menu";
+import useDetectScroll from "../../hooks/useDetectScroll";
 
 export const Layout2 = ({ setSidebar, darkBg, news }) => {
   const { t } = useTranslation("common");
@@ -21,12 +23,13 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
   const [showMenu, setShowMenu] = useState(false);
 
   const handleScroll = () => {
-    if (typeof window !== "undefined" && window.scrollY > 100) {
+    if (window.scrollY > 100) {
       setShowMenu(true);
     } else {
       setShowMenu(false);
     }
   };
+
   const handleSearch = () => {
     push({
       pathname: "/search",
@@ -36,23 +39,23 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
     });
   };
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", handleScroll);
-    }
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, []);
+  useDetectScroll(handleScroll);
 
   return (
     <header className={` ${darkBg ? "black-bg" : ""}`}>
       {news}
-
+      <a
+        href="https://api.whatsapp.com/send?phone=905554000005"
+        className="position-fixed z-index-first"
+        target="_blank"
+        style={{
+          left: "20px",
+          bottom: "20px",
+        }}>
+        <WhatsappIcon size={55} round={true} />
+      </a>
       <div
-        className="position-fixed bg-white"
+        className="position-fixed bg-white d-none d-lg-block"
         style={{
           width: "100vw",
           zIndex: "400",
@@ -70,7 +73,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
           </div>
 
           <div className="col-4">
-            <div className={`header-left-icon d-flex`}>
+            <div className="header-left-icon d-flex justify-content-center">
               <HomeIcon />
               <WishlistIcon />
               <UserIcon />
@@ -79,6 +82,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
           </div>
         </div>
       </div>
+
       <div className="header-menu-area logo-circle-area">
         <div className="container-fluid">
           <div className="row align-items-center gx-0 justify-content-center justify-content-lg-center">

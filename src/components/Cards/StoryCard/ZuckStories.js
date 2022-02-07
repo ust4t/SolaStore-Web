@@ -39,7 +39,7 @@ export default class ZuckStories extends Component {
       avatars: true, // shows user photo instead of last story item preview
       list: false, // displays a timeline instead of carousel
       openEffect: true, // enables effect when opening story - may decrease performance
-      cubeEffect: false, // enables the 3d cube effect when sliding story - may decrease performance
+      cubeEffect: true, // enables the 3d cube effect when sliding story - may decrease performance
       autoFullScreen: false, // enables fullscreen on mobile browsers
       backButton: true, // adds a back button to close the story viewer
       backNative: false, // uses window history to enable back button on browsers/android

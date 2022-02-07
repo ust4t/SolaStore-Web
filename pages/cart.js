@@ -166,7 +166,11 @@ const Cart = ({ saleTeam }) => {
                         img: "/img/logo/person.jpg",
                       })
                     }
-                    className="col-5 d-flex justify-content-center cursor-pointer">
+                    className={`col-5 d-flex justify-content-center cursor-pointer ${
+                      currentSeller && currentSeller.id === 9999
+                        ? "border border-2 border-danger"
+                        : ""
+                    }`}>
                     <Image
                       src="/img/logo/person.jpg"
                       width={120}
@@ -188,7 +192,11 @@ const Cart = ({ saleTeam }) => {
                           img: `${sources.saleTeam}/${pictureGuidName}`,
                         })
                       }
-                      className="col-4 col-lg-2 mt-3 d-flex flex-column align-items-center mustem cursor-pointer">
+                      className={`col-4 col-lg-2 mt-3 d-flex flex-column align-items-center mustem cursor-pointer ${
+                        currentSeller && currentSeller.id === id
+                          ? "border border-2 border-danger"
+                          : ""
+                      }`}>
                       <Image
                         src={`${sources.saleTeam}/${pictureGuidName}`}
                         alt={name}

@@ -15,10 +15,8 @@ export default function TabLayout({ newProducts, saleProducts }) {
     <section className="product-area pt-70 pb-70">
       <div className="container">
         <div className="row">
-          <div className="col-sm-12">
-            <div className="section-title-five text-center">
-              <h4>{t("featured")}</h4>
-            </div>
+          <div className="col-12">
+            <h2 className="text-center fw-bold">{t("featured")}</h2>
           </div>
         </div>
         <div className="row">
