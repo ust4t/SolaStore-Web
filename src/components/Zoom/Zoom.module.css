@@ -9,3 +9,9 @@
 .imgContainer:hover .zoomImg {
   opacity: 0;
 }
+
+@media (max-width: 500px) {
+  .imgContainer {
+    padding-left: 30px;
+  }
+}

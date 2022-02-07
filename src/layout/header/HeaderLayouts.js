@@ -219,7 +219,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
               <div
                 className={`header-left-icon ${
                   darkBg ? "header-right-icon" : ""
-                } ms-auto d-flex justify-content-around align-items-center f-right`}>
+                } ms-auto d-flex justify-content-around justify-content-xl-center align-items-center f-right`}>
                 <HomeIcon />
                 <WishlistIcon />
                 <UserIcon />
