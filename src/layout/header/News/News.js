@@ -10,7 +10,6 @@ import toast from "react-hot-toast";
 import { CHANGE_LANG, CREATE_USER_ID } from "../../../redux/action/type";
 import { martext, rightJS, menu, menu_btn } from "./News.module.css";
 import { StoreContext } from "../../../context/StoreProvider";
-import Router from "express";
 
 export const News_4 = () => {
   const { wishListActions } = useContext(StoreContext);
@@ -119,7 +118,7 @@ export const News_4 = () => {
               className="mx-1"
               onClick={() => {
                 changeLang("fr");
-                Router.reload();
+                router.reload();
               }}
               href="#">
               <Image
@@ -155,7 +154,7 @@ export const News_4 = () => {
               className="mx-1"
               onClick={() => {
                 changeLang("tr");
-                Router.reload();
+                router.reload();
               }}
               href="#">
               <Image
