@@ -1,10 +1,18 @@
 import React from "react";
 import axios from "axios";
 
-import Shop from "../../src/layout/Shop";
+import Shop from "../src/layout/Shop";
 
-export default function filter({ filter, filterBrand }) {
-  return <Shop allProducts={filter} full filterDropdown brands={filterBrand} />;
+export default function Filter({ filter, filterBrand }) {
+  return (
+    <Shop
+      allProducts={filter}
+      full
+      title="Filter"
+      filterDropdown
+      brands={filterBrand}
+    />
+  );
 }
 
 export async function getServerSideProps({ query, locale }) {

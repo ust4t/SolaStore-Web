@@ -28,14 +28,10 @@ const SubMenu = ({ menu }) => {
           ) => (
             <li key={`${i}_*_${i}`}>
               <Link
-                href={{
-                  pathname: "/shop",
-                  query: {
-                    categoryIds: categoryID,
-                    brandIds: "",
-                    searchPrice: "",
-                  },
-                }}>
+                href={`/shop/${selectedCategoryName.replace(
+                  " ",
+                  "-"
+                )}:${categoryID}`}>
                 <a onClick={() => changeTitle(selectedCategoryName)}>
                   {selectedCategoryName}
                 </a>

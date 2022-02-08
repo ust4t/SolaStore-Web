@@ -1,20 +1,11 @@
 import axios from "axios";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import useTranslation from "next-translate/useTranslation";
 
 import Shop from "../../src/layout/Shop";
-import { SET_TITLE } from "../../src/redux/action/type";
 
 const NewProductPage = ({ newProducts }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch({
-      type: SET_TITLE,
-      payload: "New Products",
-    });
-  }, []);
-  return <Shop allProducts={newProducts} full />;
+  const { t } = useTranslation("home");
+  return <Shop allProducts={newProducts} full title={t("new")} />;
 };
 
 export default NewProductPage;
@@ -24,7 +15,7 @@ export async function getStaticProps({ locale }) {
     `https://api.solastore.com.tr/api/Product/GetNewProducts?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
   );
 
-  const allNewProducts = [];
+  // const allNewProducts = [];
 
   // await Promise.all(
   //   data

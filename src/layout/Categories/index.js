@@ -15,14 +15,10 @@ export default function Categories({ categories }) {
           ) => (
             <div className="col-6 col-md-4 pb-3" key={`${campaignID}_*0${i}`}>
               <Link
-                href={{
-                  pathname: "/shop",
-                  query: {
-                    categoryIds: pictureLink.replace(/[^0-9.]/g, ""),
-                    brandIds: "",
-                    searchPrice: "",
-                  },
-                }}>
+                href={`/shop/${mainCampaignName.replace(
+                  " ",
+                  "-"
+                )}:${pictureLink.replace(/[^0-9.]/g, "")}`}>
                 <Image
                   src={`${sources.campaign}${pictureGuidName}`}
                   alt={mainCampaignName}

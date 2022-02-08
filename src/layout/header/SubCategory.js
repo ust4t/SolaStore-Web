@@ -36,14 +36,10 @@ function SubCategory({ picture, subMenuData, parentCategory }) {
                   key={`${i}_0_${i}`}
                   onClick={() => changeTitle(selectedCategoryName)}>
                   <Link
-                    href={{
-                      pathname: "/shop",
-                      query: {
-                        categoryIds: categoryID,
-                        brandIds: "",
-                        searchPrice: "",
-                      },
-                    }}>
+                    href={`/shop/${selectedCategoryName.replace(
+                      " ",
+                      "-"
+                    )}:${categoryID}`}>
                     <a className="text-uppercase">{selectedCategoryName}</a>
                   </Link>
                 </li>
@@ -54,14 +50,9 @@ function SubCategory({ picture, subMenuData, parentCategory }) {
           <div className="col-3">
             <div className={`${banner} position-relative`}>
               <Link
-                href={{
-                  pathname: "/shop",
-                  query: {
-                    categoryIds: parentCategory.id,
-                    brandIds: "",
-                    searchPrice: "",
-                  },
-                }}>
+                href={`/shop/${parentCategory.name.replace(" ", "-")}:${
+                  parentCategory.id
+                }`}>
                 <a>
                   <img
                     src={`${sources.imageMidSrc}${picture}`}

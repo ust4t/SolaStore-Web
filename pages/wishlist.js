@@ -30,6 +30,7 @@ const Wishlist = () => {
     addToCartAction({
       id,
       user: chooseId,
+      quantity: 1,
     });
   };
 
@@ -72,7 +73,11 @@ const Wishlist = () => {
                               ) => (
                                 <tr key={`${productID}--*?${i}`}>
                                   <td className="product-thumbnail">
-                                    <Link href={`detail/${productID}`}>
+                                    <Link
+                                      href={`/detail/${productShortName.replace(
+                                        " ",
+                                        "-"
+                                      )}:${productID}`}>
                                       <a>
                                         <Image
                                           src={`${sources.imageMidSrc}${picture_1}`}
@@ -84,7 +89,11 @@ const Wishlist = () => {
                                     </Link>
                                   </td>
                                   <td className="product-name">
-                                    <Link href={`detail/${productID}`}>
+                                    <Link
+                                      href={`/detail/${productShortName.replace(
+                                        " ",
+                                        "-"
+                                      )}:${productID}`}>
                                       <a href="#">{productShortName}</a>
                                     </Link>
                                   </td>

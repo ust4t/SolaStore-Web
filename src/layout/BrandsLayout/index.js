@@ -18,15 +18,7 @@ export default function BrandsLayout({ brands }) {
           <div
             key={`${brandID}_|*_${i}`}
             className={`col-4 col-lg-2 py-3 px-sm-3 ${brandborder}`}>
-            <Link
-              href={{
-                pathname: "/shop",
-                query: {
-                  categoryIds: "",
-                  brandIds: brandID,
-                  searchPrice: "",
-                },
-              }}>
+            <Link href={`/brands/${brandName.replace(" ", "-")}:${brandID}`}>
               <Image
                 src={`${sources.brand}${guidName}`}
                 alt={brandName}

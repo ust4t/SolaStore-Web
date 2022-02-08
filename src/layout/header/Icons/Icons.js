@@ -104,14 +104,14 @@ export const CartIcon = () => {
                 style={{
                   fontSize: ".8rem",
                 }}>
-                Ara Toplam: <span className="ms-5">${totalPrice}</span>
+                {t("cartAmount")}: <span className="ms-5">${totalPrice}</span>
               </p>
               <p
                 className="fw-bold text-end"
                 style={{
                   fontSize: ".8rem",
                 }}>
-                Toplam: <span className="ms-5">${totalPrice}</span>
+                {t("totalAmount")}: <span className="ms-5">${totalPrice}</span>
               </p>
             </div>
           </div>
@@ -121,9 +121,11 @@ export const CartIcon = () => {
               background: "#ccc",
             }}>
             <div className="col-5 py-2">
-              <button className={`btn grenbtn1 ${dropdown_btn}`}>
-                Sepete Git
-              </button>
+              <Link href="/cart">
+                <button className={`btn grenbtn1 ${dropdown_btn}`}>
+                  {t("cartTitle")}
+                </button>
+              </Link>
             </div>
           </div>
         </div>

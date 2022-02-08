@@ -240,7 +240,10 @@ const Cart = ({ saleTeam }) => {
                                       <div className="d-flex align-items-center ord">
                                         <div>
                                           <Link
-                                            href={`/detail/${cart.productID}`}>
+                                            href={`/detail/${cart.productShortName.replace(
+                                              " ",
+                                              "-"
+                                            )}:${cart.productID}`}>
                                             <a>
                                               <img
                                                 className="pic"
@@ -252,7 +255,10 @@ const Cart = ({ saleTeam }) => {
                                         </div>
                                         <div className="ps-3 d-flex flex-column justify-content">
                                           <Link
-                                            href={`/detail/${cart.productID}`}>
+                                            href={`/detail/${cart.productShortName.replace(
+                                              " ",
+                                              "-"
+                                            )}:${cart.productID}`}>
                                             <p className="fw-bold text-secondary">
                                               <a>{cart.productShortName}</a>
                                             </p>
@@ -314,8 +320,9 @@ const Cart = ({ saleTeam }) => {
 
                           <div className="container">
                             <div className="row py-3">
+                              {/*
                               <div className="col p00  mb-20 mt-15">
-                                {/* <div className="col-lg-11 mr-20">
+                                 <div className="col-lg-11 mr-20">
                                   <div className="d-flex justify-content-between pb-3">
                                     {" "}
                                     <small className="text-muted">
@@ -332,8 +339,9 @@ const Cart = ({ saleTeam }) => {
                                     />
                                     <div className="kpnbut">Uygula</div>
                                   </div>
-                                </div> */}
+                                </div> 
                               </div>
+                                */}
                               <div className="col p00  mb-20">
                                 <div className="col-lg-12">
                                   <div className="d-flex flex-column">

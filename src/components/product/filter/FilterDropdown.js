@@ -25,14 +25,20 @@ export default function FilterDropdown({
   });
 
   useEffect(() => {
-    push({
-      pathname: "/shop",
-      query: {
-        categoryIds: filterData.category.join(",") || query.categoryIds,
-        brandIds: filterData.brand.join(",") || query.brandIds,
-        searchPrice: filterData.price || query.searchPrice,
-      },
-    });
+    if (
+      filterData.category.length > 0 ||
+      filterData.brand.length > 0 ||
+      filterData.price !== ""
+    ) {
+      push({
+        pathname: "/filter",
+        query: {
+          categoryIds: filterData.category.join(",") || query.categoryIds,
+          brandIds: filterData.brand.join(",") || query.brandIds,
+          searchPrice: filterData.price || query.searchPrice,
+        },
+      });
+    }
   }, [filterData]);
 
   const showNum = [

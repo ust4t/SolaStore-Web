@@ -5,15 +5,7 @@ function InnerMobileMenu({ subcategories, allItems }) {
   return (
     <ul className="submenu submenu-three mm-collapse">
       <li>
-        <Link
-          href={{
-            pathname: "/shop",
-            query: {
-              categoryIds: allItems,
-              brandIds: "",
-              searchPrice: "",
-            },
-          }}>
+        <Link href={`/shop/${allItems.name.replace(" ", "-")}:${allItems.id}`}>
           <a className="text-uppercase">Tüm Ürünler</a>
         </Link>
       </li>
@@ -21,14 +13,10 @@ function InnerMobileMenu({ subcategories, allItems }) {
         subcategories.map(({ categoryID, selectedCategoryName }) => (
           <li key={`${categoryID}_?9`}>
             <Link
-              href={{
-                pathname: "/shop",
-                query: {
-                  categoryIds: categoryID,
-                  brandIds: "",
-                  searchPrice: "",
-                },
-              }}>
+              href={`/shop/${selectedCategoryName.replace(
+                " ",
+                "-"
+              )}:${categoryID}`}>
               <a>{selectedCategoryName}</a>
             </Link>
           </li>

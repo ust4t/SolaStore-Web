@@ -1,7 +1,6 @@
 import useTranslation from "next-translate/useTranslation";
 import { useContext, useEffect, useState, memo } from "react";
 import { Nav, Tab } from "react-bootstrap";
-import { useSelector } from "react-redux";
 
 import PopularCard from "../../components/Cards/PopularCard";
 import PaginationList from "../../components/PaginationList";
@@ -18,12 +17,12 @@ const ShopLayout = ({
   brands,
   defaultKey,
   full,
+  title = "Shop",
   sortValue,
   active_,
   filterDropdown = false,
 }) => {
   const { t } = useTranslation("common");
-  const title = useSelector((state) => state.title);
   const { cartActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
   const [pageLimit, setPageLimit] = useState(20);

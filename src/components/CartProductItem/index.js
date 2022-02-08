@@ -1,10 +1,10 @@
 import React, { memo, useContext } from "react";
 import Image from "next/image";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 
 import { StoreContext } from "../../context/StoreProvider";
 import { dropdown_img, dropdown_link } from "./CartProductItem.module.css";
-import Link from "next/link";
 
 function CartProductItem({ id, image, name, price, quantity }) {
   const auth = useSelector((state) => state.auth);
@@ -22,7 +22,7 @@ function CartProductItem({ id, image, name, price, quantity }) {
     <div className="row align-items-center justify-content-center">
       <div className="col-7 d-flex align-items-center p-2">
         <img src={image} className={dropdown_img} />
-        <Link href={`/detail/${id}`}>
+        <Link href={`/detail/${name.replace(" ", "-")}:${id}`}>
           <p
             className={`fs-6 cursor-pointer ${dropdown_link}`}
             style={{

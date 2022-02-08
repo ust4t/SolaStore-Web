@@ -112,13 +112,13 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
     //   user: chooseId,
     // });
   };
-  const onDecrementCart = (e) => {
-    e.preventDefault();
-    // decrementQuantity({
-    //   id: product.productID,
-    //   user: chooseId,
-    // });
-  };
+  // const onDecrementCart = (e) => {
+  //   e.preventDefault();
+  //   // decrementQuantity({
+  //   //   id: product.productID,
+  //   //   user: chooseId,
+  //   // });
+  // };
   const handleAddToWishList = () => {
     if (!isLiked) {
       addToWishList({
@@ -471,8 +471,8 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                         </div>
                         <div className="detailPos pro-cart-btn ms-2 ms-sm-3 ms-md-4 ms-lg-3 me-1 me-sm-3">
                           <a href="#" onClick={handleAddToCart}>
-                            <i className="fas fa-cart-arrow-down fa-lg" /> Add
-                            to cart
+                            <i className="fas fa-cart-arrow-down fa-lg" />{" "}
+                            {t("common:addtocart")}
                           </a>
                         </div>
                         <div className="d-none d-sm-block">

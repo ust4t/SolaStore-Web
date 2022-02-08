@@ -26,7 +26,7 @@ export default function FilterSearch({ brands }) {
       payload: "Search",
     });
     push({
-      pathname: "/shop",
+      pathname: "/filter",
       query: {
         categoryIds: filterData.category.join(","),
         brandIds: filterData.brand.join(","),

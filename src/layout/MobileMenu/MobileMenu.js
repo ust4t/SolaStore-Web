@@ -140,18 +140,17 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                     key={`${categoryID}?=)${i}`}
                     className={`text-uppercase ${has_dropdown}`}>
                     <Link
-                      href={{
-                        pathname: "/shop",
-                        query: {
-                          categoryIds: categoryID,
-                          brandIds: "",
-                          searchPrice: "",
-                        },
-                      }}>
+                      href={`/shop/${selectedCategoryName.replace(
+                        " ",
+                        "-"
+                      )}:${categoryID}`}>
                       <a>{selectedCategoryName}</a>
                     </Link>
                     <InnerMobileMenu
-                      allItems={categoryID}
+                      allItems={{
+                        id: categoryID,
+                        name: selectedCategoryName,
+                      }}
                       subcategories={subcategories}
                     />
                   </li>
