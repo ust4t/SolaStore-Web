@@ -35,7 +35,7 @@ const ProductModal = ({ show, handleClose, product }) => {
     } else if (Array.isArray(variant.images)) {
       return `${sources.imageMinSrc}${variant.images[0].guidName}`;
     } else {
-      return "/img/placeholder.jpg";
+      return "/images/placeholder.jpg";
     }
   };
 

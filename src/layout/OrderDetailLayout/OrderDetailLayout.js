@@ -38,7 +38,7 @@ export default function OrderDetail({ orderData }) {
             <div className="col-2">
               <Image
                 className="rounded-circle"
-                src="/img/placeholder.jpg"
+                src="/images/placeholder.jpg"
                 width={95}
                 height={100}
                 alt={"Solastore"}

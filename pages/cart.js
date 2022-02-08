@@ -166,7 +166,7 @@ const Cart = ({ saleTeam }) => {
                       handleSeller({
                         id: 9999,
                         name: "orderFirst",
-                        img: "/img/logo/person.jpg",
+                        img: "/images/logo/person.jpg",
                       })
                     }
                     className={`col-5 d-flex justify-content-center cursor-pointer ${
@@ -175,7 +175,7 @@ const Cart = ({ saleTeam }) => {
                         : ""
                     }`}>
                     <Image
-                      src="/img/logo/person.jpg"
+                      src="/images/logo/person.jpg"
                       width={120}
                       height={120}
                       className="rounded-circle"
@@ -451,7 +451,7 @@ const Cart = ({ saleTeam }) => {
                             <input
                               value={values.tel}
                               onChange={handleChange("tel")}
-                              type="number"
+                              type="text"
                               className={`form-control txth ${
                                 errors.tel && touched.tel
                                   ? "border border-3 rounded-3 border-danger"

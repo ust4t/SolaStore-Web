@@ -175,7 +175,9 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
                     <a>
                       <Image
                         src={
-                          darkBg ? "/img/logo/logo3.png" : "/img/logo/logo.png"
+                          darkBg
+                            ? "/images/logo/logo3.png"
+                            : "/images/logo/logo.png"
                         }
                         alt="Logo"
                         width={120}

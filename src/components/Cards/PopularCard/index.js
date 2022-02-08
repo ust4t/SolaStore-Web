@@ -126,7 +126,7 @@ function PopularCard({ productData, cartId }) {
     } else if (Array.isArray(variant.images)) {
       return `${sources.imageMinSrc}${variant.images[0].guidName}`;
     } else {
-      return "/img/placeholder.jpg";
+      return "/images/placeholder.jpg";
     }
   };
 
@@ -175,13 +175,13 @@ function PopularCard({ productData, cartId }) {
                 src={`${
                   currentImages.pictures[0]
                     ? `${sources.imageMidSrc}${currentImages.pictures[0].guidName}`
-                    : "/img/placeholder.jpg"
+                    : "/images/placeholder.jpg"
                 }`}
                 width={400}
                 height={600}
                 alt={name}
                 placeholder="blur"
-                blurDataURL="/img/placeholder.jpg"
+                blurDataURL="/images/placeholder.jpg"
               />
             </a>
           </Link>
@@ -198,13 +198,13 @@ function PopularCard({ productData, cartId }) {
                 src={`${
                   currentImages.pictures[1]
                     ? `${sources.imageMidSrc}${currentImages.pictures[1].guidName}`
-                    : "/img/placeholder.jpg"
+                    : "/images/placeholder.jpg"
                 }`}
                 alt={name}
                 width={400}
                 height={600}
                 placeholder="blur"
-                blurDataURL="/img/placeholder.jpg"
+                blurDataURL="/images/placeholder.jpg"
               />
             </a>
           </Link>
@@ -297,7 +297,7 @@ function PopularCard({ productData, cartId }) {
                   priority={true}
                   onClick={() => changeDressColor(variant)}
                   placeholder="blur"
-                  blurDataURL="/img/placeholder.jpg"
+                  blurDataURL="/images/placeholder.jpg"
                 />
               </SwiperSlide>
             ))}

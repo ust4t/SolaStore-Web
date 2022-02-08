@@ -23,7 +23,7 @@ import {
 import { modalContainer, copyText } from "./ShareModal.module.css";
 import sources from "../../../../sources";
 
-const shareUrl = "https://yenisite.solastore.com.tr/detail/";
+const shareUrl = "https://www.solastore.com.tr/detail/";
 
 export default function ShareModal({ show, handleClose, urlDetails }) {
   const { t } = useTranslation("common");
@@ -105,7 +105,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
                 media={`${
                   urlDetails.pictures[0]
                     ? `${sources.imageMidSrc}${urlDetails.pictures[0].guidName}`
-                    : "/img/placeholder.jpg"
+                    : "/images/placeholder.jpg"
                 }`}>
                 <PinterestIcon size={55} round={true} />
               </PinterestShareButton>
@@ -118,7 +118,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
                 image={`${
                   urlDetails.pictures[0]
                     ? `${sources.imageMidSrc}${urlDetails.pictures[0].guidName}`
-                    : "/img/placeholder.jpg"
+                    : "/images/placeholder.jpg"
                 }`}>
                 <VKIcon size={55} round={true} />
               </VKShareButton>

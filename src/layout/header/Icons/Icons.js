@@ -142,7 +142,7 @@ export const Logo = () => (
   <div className="logo product-details-logo">
     <Link href="/">
       <a>
-        <Image src="/img/logo/logo.png" alt="Logo" width="120" height="80" />
+        <Image src="/images/logo/logo.png" alt="Logo" width="120" height="80" />
       </a>
     </Link>
   </div>

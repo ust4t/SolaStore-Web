@@ -83,9 +83,9 @@ function MyApp({ Component, pageProps }) {
         <link
           rel="shortcut icon"
           type="image/x-icon"
-          href="/img/logo/favicon/favicon.ico"
+          href="logo/favicon/favicon.ico"
         />
-        <link rel="manifest" href="/img/logo/favicon/manifest.json" />
+        <link rel="manifest" href="logo/favicon/manifest.json" />
       </Head>
       <AllToaster />
       <QueryClientProvider client={queryClient}>

@@ -21,8 +21,8 @@ export const DefaultFooter = ({ darkBg }) => {
                       <Image
                         src={
                           darkBg
-                            ? "/img/footer/footer-logo3.png"
-                            : "/img/footer/footer-logo.png"
+                            ? "/images/footer/footer-logo3.png"
+                            : "/images/footer/footer-logo.png"
                         }
                         alt="Logo"
                         width={130}
@@ -206,7 +206,7 @@ export const DefaultFooter = ({ darkBg }) => {
 
             <div className="footer-payment col-md-4  text-center">
               <Image
-                src="/img/footer/payment.png"
+                src="/images/footer/payment.png"
                 width={50}
                 height={4}
                 layout="responsive"
@@ -216,7 +216,7 @@ export const DefaultFooter = ({ darkBg }) => {
             <div className="col-md-4 col-12">
               <div className="copyright-text text-end">
                 <Image
-                  src="/img/footer/payment-four.png"
+                  src="/images/footer/payment-four.png"
                   width={50}
                   height={4}
                   layout="responsive"
@@ -244,7 +244,7 @@ export const Footer_1 = () => {
                   <Link href="/">
                     <a>
                       <Image
-                        src="/img/logo/logo3.png"
+                        src="/images/logo/logo3.png"
                         alt="Logo"
                         width={120}
                         height={80}

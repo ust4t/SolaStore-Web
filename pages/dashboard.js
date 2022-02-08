@@ -113,7 +113,7 @@ const Login = () => {
                   gap: "15px",
                 }}>
                 <Image
-                  src="/img/logo/person.jpg"
+                  src="/images/logo/person.jpg"
                   width="150"
                   height="150"
                   className="m-2 rounded-circle"

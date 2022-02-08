@@ -51,7 +51,7 @@ export default function Categories({ categories }) {
                   layout="responsive"
                   quality={50}
                   placeholder="blur"
-                  blurDataURL="/img/placeholder.jpg"
+                  blurDataURL="/images/placeholder.jpg"
                 />
               </Link>
             </div>

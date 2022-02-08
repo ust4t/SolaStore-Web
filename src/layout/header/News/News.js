@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { CHANGE_LANG, CREATE_USER_ID } from "../../../redux/action/type";
 import { martext, rightJS, menu, menu_btn } from "./News.module.css";
 import { StoreContext } from "../../../context/StoreProvider";
+import Router from "express";
 
 export const News_4 = () => {
   const { wishListActions } = useContext(StoreContext);
@@ -106,7 +107,7 @@ export const News_4 = () => {
             </div>
             <a className="mx-1" href="#" onClick={() => changeLang("en")}>
               <Image
-                src="/img/flags/uk.jpg"
+                src="/images/flags/uk.jpg"
                 width="45"
                 height="25"
                 alt="https://www.solastore.com.tr"
@@ -114,9 +115,15 @@ export const News_4 = () => {
                 priority
               />
             </a>
-            <a className="mx-1" onClick={() => changeLang("fr")} href="#">
+            <a
+              className="mx-1"
+              onClick={() => {
+                changeLang("fr");
+                Router.reload();
+              }}
+              href="#">
               <Image
-                src="/img/flags/fr.jpg"
+                src="/images/flags/fr.jpg"
                 width="45"
                 height="25"
                 alt="https://www.solastore.com.tr"
@@ -126,7 +133,7 @@ export const News_4 = () => {
             </a>
             <a className="mx-1" onClick={() => changeLang("ar")} href="#">
               <Image
-                src="/img/flags/sa.jpg"
+                src="/images/flags/sa.jpg"
                 width="45"
                 height="25"
                 alt="https://www.solastore.com.tr"
@@ -136,7 +143,7 @@ export const News_4 = () => {
             </a>
             <a className="mx-1" onClick={() => changeLang("ru")} href="#">
               <Image
-                src="/img/flags/rs.jpg"
+                src="/images/flags/rs.jpg"
                 width="45"
                 height="25"
                 alt="https://www.solastore.com.tr"
@@ -144,9 +151,15 @@ export const News_4 = () => {
                 priority
               />
             </a>
-            <a className="mx-1" onClick={() => changeLang("tr")} href="#">
+            <a
+              className="mx-1"
+              onClick={() => {
+                changeLang("tr");
+                Router.reload();
+              }}
+              href="#">
               <Image
-                src="/img/flags/tr.jpg"
+                src="/images/flags/tr.jpg"
                 width="45"
                 height="25"
                 alt="https://www.solastore.com.tr"
