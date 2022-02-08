@@ -1624,9 +1624,9 @@ input.main-search-input:-ms-input-placeholder {
 }
 
 .pro-details-tab .custom-tab {
-  width: 18%;
+  /* width: 100%;
 
-  float: left;
+  float: left; */
 }
 
 .pro-details-tab .custom-tab .nav-link {

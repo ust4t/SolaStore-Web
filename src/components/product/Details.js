@@ -186,7 +186,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                     <Tab.Container
                       activeKey={`tum-${imageKey}`}
                       defaultActiveKey={`tum-0`}>
-                      <div className="pro-details-tab">
+                      <div className="pro-details-tab d-flex d-lg-block flex-column">
                         <Tab.Content className="tab-content custom-content position-relative">
                           <Arrow
                             onClick={() => handlePrev({ imageKey, product })}
@@ -233,12 +233,12 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                         </Tab.Content>
 
                         <Nav
-                          className="nav custom-tab"
+                          className="nav custom-tab justify-content-center justify-content-lg-start"
                           id="myTab"
                           role="tablist">
                           {product &&
                             product.pictures.map((img, i) => (
-                              <Nav.Item key={i}>
+                              <Nav.Item key={i} className="px-1">
                                 <Nav.Link
                                   eventKey={`tum-${i}`}
                                   className="mr-0"
