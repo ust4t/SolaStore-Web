@@ -10,7 +10,7 @@ export default class ZuckStories extends Component {
     this.storiesElement = null;
     this.storiesApi = null;
     this.state = {
-      stories: this.props.storiesData.map((story) =>
+      stories: this.props.storiesData.map((story, i) =>
         Zuck.buildTimelineItem(
           story.productShortName,
           `${sources.imageMinSrc}${story.picture_1}`,
@@ -69,10 +69,10 @@ export default class ZuckStories extends Component {
     this.state.stories.map((story, storyId) => {
       const storyItems = [];
 
-      story.items.map((storyItem) => {
+      story.items.map((storyItem, i) => {
         storyItems.push(
           <li
-            key={storyItem.id}
+            key={`${storyItem.id}.|${i}`}
             data-id={storyItem.id}
             data-time={storyItem.time}
             className={storyItem.seen ? "seen" : ""}>
@@ -81,7 +81,7 @@ export default class ZuckStories extends Component {
               data-type={storyItem.type}
               data-length={storyItem.length}
               data-link={storyItem.link}
-              data-linkText={storyItem.linkText}>
+              data-linktext={storyItem.linkText}>
               <img src={storyItem.preview} />
             </a>
           </li>
