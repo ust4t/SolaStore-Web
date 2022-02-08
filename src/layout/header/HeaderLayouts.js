@@ -23,7 +23,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
   const [showMenu, setShowMenu] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 250) {
       setShowMenu(true);
     } else {
       setShowMenu(false);
@@ -62,7 +62,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
           zIndex: "400",
           top: showMenu ? "0" : "-200px",
           visibility: showMenu ? "visible" : "hidden",
-          transition: "all 0.5s ease-in-out",
+          transition: "all 0.3s ease-in-out",
           boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
         }}>
         <div className="row align-items-center justify-content-center">
