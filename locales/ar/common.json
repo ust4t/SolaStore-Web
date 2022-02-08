@@ -8,7 +8,7 @@
   "category": "فئة",
   "price": "السعر",
   "choose": "اختر",
-  "chosen": "Chosen",
+  "chosen": "المختار",
   "basket": "اضف الى السلة",
   "share": "مشاركة المنتج",
   "stock": "في المخزن",
@@ -20,6 +20,7 @@
   "passlogin": "كلمة المرور",
   "pass_placeholder": "أدخل كلمة المرور ...",
   "addtocart": "اضف الى السلة",
+  "goToCart": "الذهاب الى السلة",
   "followus": "تابعنا",
   "removedfromlist": "تمت إزالته من قائمتك",
   "noproductfound": "الصنف غير موجود",
@@ -30,5 +31,6 @@
   "profile": "الملف الشخصي",
   "welcome": "مرحبا",
   "logout": "تسجيل الخروج",
-  "or": "أو"
+  "or": "أو",
+  "filterNum": "عرض {{min}} من {{max}} من النتائج"
 }

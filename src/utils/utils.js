@@ -2,14 +2,15 @@ export const activeData = (active, sort, products) => {
   function _(number) {
     return number <= 9 ? `0${number}` : number;
   }
-  return `Showing ${
-    products && products.length ? _(active * sort + 1) : "00"
-  }–${
-    products && products.length > (active + 1) * sort
-      ? _((active + 1) * sort)
-      : _(products && products.length)
-  }
-     of ${_(products && products.length)} results`;
+
+  return {
+    min: ` ${products && products.length ? _(active * sort + 1) : "00"}–${
+      products && products.length > (active + 1) * sort
+        ? _((active + 1) * sort)
+        : _(products && products.length)
+    }`,
+    max: _(products && products.length),
+  };
 };
 
 export const timestamp = () => {

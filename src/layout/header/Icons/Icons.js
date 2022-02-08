@@ -6,6 +6,7 @@ import CartProductItem from "../../../components/CartProductItem";
 import { StoreContext } from "../../../context/StoreProvider";
 import sources from "../../../../sources";
 import { cart_dropdown, mainCart, dropdown_btn } from "./Icons.module.css";
+import useTranslation from "next-translate/useTranslation";
 
 export const SearchIcon = ({ hendelChangeSearch }) => (
   <Link href="#">
@@ -52,6 +53,7 @@ export const HomeIcon = () => {
 };
 
 export const CartIcon = () => {
+  const { t } = useTranslation("cart");
   const { state } = useContext(StoreContext);
 
   const cartsNum =
@@ -127,7 +129,7 @@ export const CartIcon = () => {
         </div>
       ) : (
         <div className={cart_dropdown}>
-          <p className="text-center p-3 fs-6">Alışveriş Sepetiniz Boş!</p>
+          <p className="text-center p-3 fs-6">{t("cartEmpty")}</p>
         </div>
       )}
     </div>

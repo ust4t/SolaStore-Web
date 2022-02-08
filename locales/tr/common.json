@@ -20,6 +20,7 @@
   "passlogin": "Şifre",
   "pass_placeholder": "Şifrenizi giriniz...",
   "addtocart": "Sepete Ekle",
+  "goToCart": "Sepete Git",
   "followus": "Bizi Takip Edin",
   "removedfromlist": "Listenizden Silindi",
   "noproductfound": "Ürün Bulunamadı",
@@ -30,5 +31,6 @@
   "signup": "Kayıt Ol",
   "welcome": "Hoşgeldiniz",
   "logout": "Çıkış Yap",
-  "or": "veya"
+  "or": "veya",
+  "filterNum": "{{max}} sonuçtan {{min}} tanesi gösteriliyor"
 }

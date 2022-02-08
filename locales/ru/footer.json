@@ -1,13 +1,15 @@
 {
-	"insti": "институциональный",
-	"about": "о нас",
-	"privacy": "Политика конфиденциальности",
-	"distancesales": "Соглашение о дистанционной продаже",
-	"kvkk": "KVKK",
-	"contact": "Коммуникация",
-	"account": "МОЙ СЧЕТ",
-	"myprofile": "мой профайл",
-	"myorders": "мои заказы",
-	"mobilapp": "НАШИ МОБИЛЬНЫЕ ПРИЛОЖЕНИЯ",
-	"tel": "Телефон"
+  "insti": "институциональный",
+  "about": "о нас",
+  "privacy": "Политика конфиденциальности",
+  "distancesales": "Соглашение о дистанционной продаже",
+  "kvkk": "KVKK",
+  "contact": "Коммуникация",
+  "account": "МОЙ СЧЕТ",
+  "myprofile": "мой профайл",
+  "myorders": "мои заказы",
+  "mobilapp": "НАШИ МОБИЛЬНЫЕ ПРИЛОЖЕНИЯ",
+  "tel": "Телефон",
+  "address": "Адрес",
+  "address_desc": "Mimar Kemalettin, Mesihpaşa St. No:60, Fatih/İstanbul"
 }

@@ -20,6 +20,7 @@
   "passlogin": "Password",
   "pass_placeholder": "Enter your password...",
   "addtocart": "Add to Cart",
+  "goToCart": "Go to Cart",
   "followus": "Follow Us",
   "removedfromlist": "Removed Wishlist",
   "noproductfound": "No Product Found",
@@ -30,5 +31,6 @@
   "profile": "Profile",
   "welcome": "Welcome",
   "logout": "Logout",
-  "or": "Or"
+  "or": "Or",
+  "filterNum": "Showing {{min}} of {{max}} results"
 }

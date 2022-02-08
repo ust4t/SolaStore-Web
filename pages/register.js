@@ -65,7 +65,7 @@ const Register = () => {
             <div className="row">
               <div className="col-lg-8 offset-lg-2">
                 <div className="basic-login">
-                  <h3 className="text-center mb-60">Signup From Here</h3>
+                  <h3 className="text-center mb-60">{t("signhere")}</h3>
                   <Formik
                     initialValues={registerSchema.initialValue}
                     validationSchema={registerSchema.schema}

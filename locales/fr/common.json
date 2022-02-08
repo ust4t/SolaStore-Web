@@ -20,6 +20,7 @@
   "passlogin": "Mot de passe",
   "pass_placeholder": "tapez votre mot de passe...",
   "addtocart": "ajouter au panier",
+  "goToCart": "Aller au panier",
   "followus": "Suivez nous",
   "removedfromlist": "Supprimé de votre liste",
   "noproductfound": "Produit non trouvé",
@@ -30,5 +31,6 @@
   "signup": "S'inscrire",
   "welcome": "Bienvenue",
   "logout": "Déconnexion",
-  "or": "ou"
+  "or": "ou",
+  "filterNum": "Affichage de {{min}} résultats sur {{max}}"
 }

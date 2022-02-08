@@ -3,5 +3,7 @@
   "new": "Yeni Ürünler",
   "sale": "İndirimdeki Ürünler",
   "bestseller": "Çok Satan Ürünler",
-  "seeProduct": "Ürünü Gör"
+  "seeProduct": "Ürünü Gör",
+  "filterTitle": "Detaylı Arama",
+  "filterDesc": "Lütfen kategori, marka ve fiyat seçip Ara düğmesine basın."
 }

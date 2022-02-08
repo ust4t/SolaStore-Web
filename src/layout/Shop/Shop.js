@@ -1,3 +1,4 @@
+import useTranslation from "next-translate/useTranslation";
 import { useContext, useEffect, useState, memo } from "react";
 import { Nav, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
@@ -21,6 +22,7 @@ const ShopLayout = ({
   active_,
   filterDropdown = false,
 }) => {
+  const { t } = useTranslation("common");
   const title = useSelector((state) => state.title);
   const { cartActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
@@ -34,6 +36,8 @@ const ShopLayout = ({
   const [products, setProducts] = useState(
     allProducts.slice(offset, offset + pageLimit)
   );
+
+  const { min, max } = activeData(active, sort, allProducts);
 
   const handlePageData = () => {
     const pageData = allProducts.slice(offset, offset + pageLimit);
@@ -94,7 +98,7 @@ const ShopLayout = ({
                       <div className="ch-right p-0">
                         <div className="show-text m-0">
                           <span className="p-0 border-0">
-                            {activeData(active, sort, allProducts)}
+                            {t("common:filterNum", { min, max })}
                           </span>
                         </div>
                       </div>

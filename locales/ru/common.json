@@ -20,6 +20,7 @@
   "passlogin": "Пароль",
   "pass_placeholder": "Введите пароль...",
   "addtocart": "Добавить в корзину",
+  "goToCart": "Перейти в корзину",
   "followus": "Подписывайтесь на нас",
   "removedfromlist": "Удалено из вашего списка",
   "noproductfound": "Produit non trouvé",
@@ -30,5 +31,6 @@
   "signup": "Регистрация",
   "welcome": "Добро пожаловать",
   "logout": "Выйти",
-  "or": "ИЛИ"
+  "or": "ИЛИ",
+  "filterNum": "Показано {{min}} из {{max}} результатов"
 }

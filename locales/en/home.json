@@ -1,7 +1,9 @@
 {
-	"featured": "Featured Products",
-	"new": "New Products",
-	"sale": "Sale Products",
-	"bestseller": "Bestseller Products",
-	"seeProduct": "See Product"
+  "featured": "Featured Products",
+  "new": "New Products",
+  "sale": "Sale Products",
+  "bestseller": "Bestseller Products",
+  "seeProduct": "See Product",
+  "filterTitle": "Filter Search",
+  "filterDesc": "Please press 'Search' after you have selected category, brand and price"
 }

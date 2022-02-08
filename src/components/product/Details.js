@@ -379,13 +379,13 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                           </span>
                         </small>
                         <br />
-                        <small>
+                        {/* <small>
                           <span className="text-muted">
                             {t("category")}:{" "}
                             <span className="text-dark">KATEGORI</span>
                           </span>
                         </small>
-                        <br />
+                        <br /> */}
                         <small>
                           <span className="text-muted">{t("brand")}:</span>
                           <Link

@@ -3,5 +3,7 @@
   "new": "Nouveaux produits",
   "sale": "Produits en solde",
   "bestseller": "Produits les plus vendus",
-  "seeProduct": "Voir le produit"
+  "seeProduct": "Voir le produit",
+  "filterTitle": "Filtrer par",
+  "filterDesc": "Vous pouvez filtrer les produits par catégorie ou par marque"
 }
