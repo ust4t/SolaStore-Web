@@ -18,12 +18,12 @@ module.exports = nextTranslate({
   images: {
     domains: ["solastore.com.tr", "yenisite.solastore.com.tr"],
     formats: [
-      "image/webp",
+      // "image/webp",
       "image/jpeg",
-      "image/jpg",
+      // "image/jpg",
       "image/png",
-      "image/svg+xml",
-      "image/avif",
+      // "image/svg+xml",
+      // "image/avif",
     ],
   },
 });
