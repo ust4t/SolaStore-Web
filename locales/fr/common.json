@@ -32,5 +32,7 @@
   "welcome": "Bienvenue",
   "logout": "Déconnexion",
   "or": "ou",
-  "filterNum": "Affichage de {{min}} résultats sur {{max}}"
+  "filterNum": "Affichage de {{min}} résultats sur {{max}}",
+  "required": "requis",
+  "invalidEmail": "Adresse e-mail non valide"
 }

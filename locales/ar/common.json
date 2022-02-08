@@ -32,5 +32,7 @@
   "welcome": "مرحبا",
   "logout": "تسجيل الخروج",
   "or": "أو",
-  "filterNum": "عرض {{min}} من {{max}} من النتائج"
+  "filterNum": "عرض {{min}} من {{max}} من النتائج",
+  "required": "مطلوب",
+  "invalidEmail": "بريد الكتروني غير صحيح"
 }

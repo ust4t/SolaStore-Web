@@ -32,5 +32,7 @@
   "welcome": "Welcome",
   "logout": "Logout",
   "or": "Or",
-  "filterNum": "Showing {{min}} of {{max}} results"
+  "filterNum": "Showing {{min}} of {{max}} results",
+  "required": "Required",
+  "invalidEmail": "Invalid Email"
 }

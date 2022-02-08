@@ -32,5 +32,7 @@
   "welcome": "Hoşgeldiniz",
   "logout": "Çıkış Yap",
   "or": "veya",
-  "filterNum": "{{max}} sonuçtan {{min}} tanesi gösteriliyor"
+  "filterNum": "{{max}} sonuçtan {{min}} tanesi gösteriliyor",
+  "required": "Gerekli",
+  "invalidEmail": "Geçersiz E-mail"
 }

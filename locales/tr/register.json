@@ -7,5 +7,17 @@
   "userphone_placeholder": "Telefon giriniz...",
   "confirm": "Şifre Onayla",
   "confirm_placeholder": "Şifre onayla...",
-  "signhere": "Buradan Kayıt Olunuz"
+  "signhere": "Buradan Kayıt Olunuz",
+  "nameRequired": "Adınızı giriniz",
+  "nameRequiredMin": "En az 2 karakter giriniz",
+  "nameRequiredMax": "En fazla 30 karakter giriniz",
+  "lastnameRequired": "Soyadınızı giriniz",
+  "lastnameRequiredMin": "En az 2 karakter giriniz",
+  "lastnameRequiredMax": "En fazla 30 karakter giriniz",
+  "phoneRequired": "Telefon numaranızı giriniz",
+  "passRequired": "Şifrenizi giriniz",
+  "passRequiredMin": "En az 2 karakter giriniz",
+  "passRequiredMax": "En fazla 50 karakter giriniz",
+  "emailRequired": "Email adresinizi giriniz",
+  "confirmmisMatch": "Şifreler uyuşmuyor"
 }

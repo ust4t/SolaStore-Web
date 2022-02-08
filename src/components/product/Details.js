@@ -107,18 +107,8 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
   const onIncrementCart = (e) => {
     e.preventDefault();
     setQuantity(quantity + 1);
-    // incrementQuantity({
-    //   id: product.productID,
-    //   user: chooseId,
-    // });
   };
-  // const onDecrementCart = (e) => {
-  //   e.preventDefault();
-  //   // decrementQuantity({
-  //   //   id: product.productID,
-  //   //   user: chooseId,
-  //   // });
-  // };
+
   const handleAddToWishList = () => {
     if (!isLiked) {
       addToWishList({
@@ -233,7 +223,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                         </Tab.Content>
 
                         <Nav
-                          className="nav custom-tab justify-content-center justify-content-lg-start"
+                          className="nav custom-tab flex-nowrap flex-md-wrap justify-content-center justify-content-lg-start"
                           id="myTab"
                           role="tablist">
                           {product &&

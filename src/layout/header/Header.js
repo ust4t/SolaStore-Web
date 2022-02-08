@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 
-import { DefaultLayout, Layout2 } from "./HeaderLayouts";
+import { DefaultLayout, Layout2 } from "./HeaderLayout/HeaderLayouts";
 import MobileMenu from "../MobileMenu";
 import { News_4 } from "./News/News";
 import Search from "./Search";

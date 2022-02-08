@@ -198,7 +198,7 @@
   }
 
   .pro-desc-tab:after {
-    right: 45px;
+    right: -25px;
   }
 }
 
@@ -625,7 +625,7 @@
   .custom-content {
     margin-right: 0px;
 
-    width: 82%;
+    width: 100%;
   }
 
   .product-details-header.ml-35.mr-35 {

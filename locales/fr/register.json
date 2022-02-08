@@ -7,5 +7,17 @@
   "userphone_placeholder": "Entrez votre numéro de téléphone...",
   "confirm": "Confirmer",
   "confirm_placeholder": "Confirmer le mot de passe...",
-  "signhere": "Signez ici"
+  "signhere": "Signez ici",
+  "nameRequired": "Le nom est requis",
+  "nameRequiredMin": "Le nom doit contenir au moins 3 caractères",
+  "nameRequiredMax": "Le nom doit contenir au plus 30 caractères",
+  "lastnameRequired": "Le nom de famille est requis",
+  "lastnameRequiredMin": "Le nom de famille doit contenir au moins 2 caractères",
+  "lastnameRequiredMax": "Le nom de famille doit contenir au plus 30 caractères",
+  "phoneRequired": "Le numéro de téléphone est requis",
+  "passRequired": "Le mot de passe est requis",
+  "passRequiredMin": "Le mot de passe doit contenir au moins 2 caractères",
+  "passRequiredMax": "Le mot de passe doit contenir au plus 50 caractères",
+  "emailRequired": "L'adresse e-mail est requise",
+  "confirmmisMatch": "Les mots de passe ne correspondent pas"
 }

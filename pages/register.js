@@ -5,20 +5,57 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
+import * as Yup from "yup";
+import useTranslation from "next-translate/useTranslation";
 
 import InputGroup from "../src/components/form/InputGroup";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
 import { CREATE_USER_ID } from "../src/redux/action/type";
-import { registerSchema } from "../src/utils/yupModal";
 import { StoreContext } from "../src/context/StoreProvider";
-import useTranslation from "next-translate/useTranslation";
 
 const Register = () => {
   const { t } = useTranslation("register");
   const { wishListActions } = useContext(StoreContext);
   const dispatch = useDispatch();
   const { push } = useRouter();
+
+  const name = Yup.string()
+      .min(2, t("nameRequiredMax"))
+      .max(30, t("nameRequiredMin"))
+      .required(t("nameRequired")),
+    lastname = Yup.string()
+      .min(2, t("lastnameRequiredMin"))
+      .max(30, t("lastnameRequiredMax"))
+      .required(t("lastnameRequired")),
+    tel = Yup.string().required(t("phoneRequired")),
+    password = Yup.string()
+      .min(5, t("passRequiredMin"))
+      .max(50, t("passRequiredMax"))
+      .required(t("passRequired")),
+    confirmPassword = Yup.string()
+      .oneOf([Yup.ref("password"), null], t("confirmmisMatch"))
+      .required(t("confirm")),
+    email = Yup.string().email().required(t("emailRequired"));
+
+  const registerSchema = {
+    schema: Yup.object().shape({
+      name,
+      lastname,
+      tel,
+      password,
+      confirmPassword,
+      email,
+    }),
+    initialValue: {
+      name: "",
+      lastname: "",
+      tel: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  };
 
   const handleRegister = async (
     { name, lastname, tel, password, email },

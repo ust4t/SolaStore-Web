@@ -10,8 +10,9 @@
   opacity: 0;
 }
 
-@media (max-width: 500px) {
+@media (min-width: 502px) {
   .imgContainer {
-    padding-left: 30px;
+    padding-left: 10px;
+    margin-left: 0;
   }
 }

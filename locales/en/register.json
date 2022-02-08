@@ -7,5 +7,17 @@
   "userphone_placeholder": "Enter your phone number...",
   "confirm": "Confirm Password",
   "confirm_placeholder": "Confirm your password...",
-  "signhere": "Signup From Here"
+  "signhere": "Signup From Here",
+  "nameRequired": "Name is required",
+  "nameRequiredMin": "Name must be at least 2 characters",
+  "nameRequiredMax": "Name must be less than 30 characters",
+  "lastnameRequired": "Lastname is required",
+  "lastnameRequiredMin": "Lastname must be at least 2 characters",
+  "lastnameRequiredMax": "Lastname must be less than 30 characters",
+  "phoneRequired": "Phone is required",
+  "passRequired": "Password is required",
+  "passRequiredMin": "Password must be at least 5 characters",
+  "passRequiredMax": "Password must be less than 50 characters",
+  "emailRequired": "Email is required",
+  "confirmmisMatch": "Password doesn't match"
 }

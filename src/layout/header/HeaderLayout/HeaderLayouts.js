@@ -11,10 +11,10 @@ import {
   SearchIcon,
   UserIcon,
   WishlistIcon,
-} from "./Icons/Icons";
+} from "../Icons/Icons";
 import { WhatsappIcon } from "react-share";
-import Menu from "./Menu";
-import useDetectScroll from "../../hooks/useDetectScroll";
+import Menu from "../Menu";
+import useDetectScroll from "../../../hooks/useDetectScroll";
 
 export const Layout2 = ({ setSidebar, darkBg, news }) => {
   const { t } = useTranslation("common");

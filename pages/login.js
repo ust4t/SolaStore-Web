@@ -21,8 +21,8 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const loginSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Required"),
-    password: Yup.string().required("Required"),
+    email: Yup.string().email(t("invalidEmail")).required(t("required")),
+    password: Yup.string().required(t("required")),
   });
 
   const initialValues = {

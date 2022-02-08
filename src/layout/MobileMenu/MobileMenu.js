@@ -71,19 +71,19 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
             </li>
             <li className={has_dropdown}>
               <Link href="/shop/brandlist">
-                <a className="text-uppercase">Hesabım</a>
+                <a className="text-uppercase">{t("myaccount")}</a>
               </Link>
               <ul className="submenu submenu-three mm-collapse">
                 {user.state === "user_registered" ? (
                   <>
                     <li>
                       <Link href="/dashboard">
-                        <a>Profilim</a>
+                        <a>{t("profile")}</a>
                       </Link>
                     </li>
                     <li>
                       <Link href="/orders">
-                        <a>Siparişlerim</a>
+                        <a>{t("myorders")}</a>
                       </Link>
                     </li>
                     {/* <li>
@@ -97,24 +97,24 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                       </Link>
                     </li> */}
                     <li onClick={handleLogOut}>
-                      <a href="#">Çıkış</a>
+                      <a href="#">{t("logout")}</a>
                     </li>
                   </>
                 ) : (
                   <>
                     <li>
                       <Link href="/login">
-                        <a>Giriş Yap</a>
+                        <a>{t("loginhere")}</a>
                       </Link>
                     </li>
                     <li>
                       <Link href="/register">
-                        <a>Kayıt Ol</a>
+                        <a>{t("signup")}</a>
                       </Link>
                     </li>
                     <li>
                       <Link href="/orders">
-                        <a>Sipariş Listesi</a>
+                        <a>{t("myorders")}</a>
                       </Link>
                     </li>
                   </>
@@ -129,7 +129,7 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
             </li>
             <li>
               <Link href="/shop/newproducts">
-                <a className="text-uppercase">YENİ ÜRÜNLER</a>
+                <a className="text-uppercase">{t("home:new")}</a>
               </Link>
             </li>
 

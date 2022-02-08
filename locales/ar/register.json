@@ -7,5 +7,17 @@
   "userphone_placeholder": "ادخل رقم الهاتف",
   "confirm": "تأكيد",
   "confirm_placeholder": "تأكيد كلمة المرور...",
-  "signhere": "سجل من هنا"
+  "signhere": "سجل من هنا",
+  "nameRequired": "ادخل اسم المستخدم",
+  "nameRequiredMin": "اسم المستخدم يجب ان يكون اكثر من 3 حروف",
+  "nameRequiredMax": "اسم المستخدم يجب ان يكون اقل من 30 حرف",
+  "lastnameRequired": "ادخل اسم العائلة",
+  "lastnameRequiredMin": "اسم العائلة يجب ان يكون اكثر من 3 حروف",
+  "lastnameRequiredMax": "اسم العائلة يجب ان يكون اقل من 30 حرف",
+  "phoneRequired": "ادخل رقم الهاتف",
+  "passRequired": "ادخل كلمة المرور",
+  "passRequiredMin": "كلمة المرور يجب ان تكون اكثر من 2 حروف",
+  "passRequiredMax": "كلمة المرور يجب ان تكون اقل من 50 حرف",
+  "emailRequired": "ادخل البريد الالكتروني",
+  "confirmmisMatch": "كلمة المرور غير متطابقة"
 }
