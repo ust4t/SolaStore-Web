@@ -31,7 +31,6 @@ const Login = () => {
   const openModal = () => setModal(true);
 
   const getUserByID = async () => {
-    console.log(user);
     const { data } = await axios.get("/api/auth/getUserByID", {
       params: {
         id: user.uid,

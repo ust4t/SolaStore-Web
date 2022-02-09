@@ -360,7 +360,7 @@ ul {
   color: var(--color-primary);
 }
 .stock-update .stock-list li > span:first-child {
-  width: 60px;
+  width: 63px;
 }
 .product-modal .custom-content {
   width: 100%;
