@@ -30,9 +30,9 @@ import Head from "next/head";
 const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
   const { t } = useTranslation("detail");
   const user = useSelector((state) => state.auth);
-  const chooseId = user.state === "guest" ? user.uid : user.rnd_id;
+  // const chooseId = user.state === "guest" ? user.uid : user.rnd_id;
   const { state, cartActions, wishListActions } = useContext(StoreContext);
-  const { addToCartAction, incrementQuantity, decrementQuantity } = cartActions;
+  const { addToCartAction } = cartActions;
   const { addToWishList, removeFromWishList } = wishListActions;
   const [product, setProduct] = useState(incomingProduct);
   const [shareModal, setShareModal] = useState(false);
@@ -97,7 +97,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
     e.preventDefault();
     addToCartAction({
       id: product.productID,
-      user: chooseId,
+      user: user.uid,
       quantity,
     });
 
@@ -113,14 +113,14 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
     if (!isLiked) {
       addToWishList({
         id: product.productID,
-        user: chooseId,
+        user: user.uid,
       });
       setIsLiked(true);
       return;
     }
     removeFromWishList({
       id: product.productID,
-      user: chooseId,
+      user: user.uid,
     });
     setIsLiked(false);
     return;

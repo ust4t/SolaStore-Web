@@ -37,7 +37,7 @@ function PopularCard({ productData, cartId }) {
   const oldUnitPrice = oldPrice / sizeNum;
   const originalDiscount = oldUnitPrice - singlePrice;
 
-  const chooseId = auth.state === "guest" ? auth.uid : auth.rnd_id;
+  // const chooseId = auth.state === "guest" ? auth.uid : auth.rnd_id;
 
   const wishlist =
     state.wishlistData &&
@@ -69,7 +69,7 @@ function PopularCard({ productData, cartId }) {
 
   const onAddToCart = () => {
     addToCartAction({
-      user: chooseId,
+      user: auth.uid,
       id,
       quantity: 1,
     });
@@ -105,7 +105,7 @@ function PopularCard({ productData, cartId }) {
   const onClickWishlist = (e) => {
     if (!isLiked) {
       addToWishList({
-        user: chooseId,
+        user: auth.uid,
         id,
       });
       setIsLiked(true);
@@ -113,7 +113,7 @@ function PopularCard({ productData, cartId }) {
     }
 
     removeFromWishList({
-      user: chooseId,
+      user: auth.uid,
       id,
     });
     setIsLiked(false);

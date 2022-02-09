@@ -9,23 +9,23 @@ import useQueryMutation from "./useQueryMutation";
 export default function useWishList(dispatch) {
   const { t } = useTranslation("common");
   const { lang, auth } = useSelector((state) => state);
-  const chooseId = auth.state === "guest" ? auth.uid : auth.rnd_id;
+  // const chooseId = auth.state === "guest" ? auth.uid : auth.rnd_id;
   const { isLoading: isWishlistLoading, refetch: wishlistRefetch } = useQuery(
     "wishlist",
     () =>
       fetch(
-        `/api/wishlist/getUserFavorites?user=${chooseId}&lang=${lang}`
+        `/api/wishlist/getUserFavorites?user=${auth.uid}&lang=${lang}`
       ).then((res) => res.json()),
     {
       onSuccess: ({ data }) => {
         dispatch({
           type: SET_WISHLIST_DATA,
-          payload: chooseId ? data : [],
+          payload: auth.uid ? data : [],
         });
       },
     }
   );
-  const { mutate } = useQueryMutation(`wishlistMutate_${chooseId}`);
+  const { mutate } = useQueryMutation(`wishlistMutate_${auth.uid}`);
 
   const addToWishList = (creds) => {
     mutate(

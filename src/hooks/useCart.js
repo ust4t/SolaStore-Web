@@ -13,11 +13,11 @@ import useQueryMutation from "./useQueryMutation";
 
 export default function useCart(dispatch) {
   const user = useSelector((state) => state.auth);
-  const chooseId = user.state === "guest" ? user.uid : user.rnd_id;
+  // const chooseId = user.state === "guest" ? user.uid : user.rnd_id;
   const { isLoading: isCartLoading, refetch: cartRefetch } = useQuery(
-    `cart_${chooseId}`,
+    `cart_${user.uid}`,
     () =>
-      fetch(`/api/cart/getCartItems?user=${chooseId}`).then((res) =>
+      fetch(`/api/cart/getCartItems?user=${user.uid}`).then((res) =>
         res.json()
       ),
     {
@@ -29,7 +29,7 @@ export default function useCart(dispatch) {
       },
     }
   );
-  const { mutate } = useQueryMutation(`addCart_${chooseId}`);
+  const { mutate } = useQueryMutation(`addCart_${user.uid}`);
 
   const addToCartAction = (creds) => {
     dispatch({

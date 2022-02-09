@@ -30,6 +30,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       bestSeller: popularData,
+      revalidate: 180,
     },
   };
 }

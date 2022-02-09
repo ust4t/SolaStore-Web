@@ -11,14 +11,14 @@ const ProductListView = ({ product, col5, addToCartAction }) => {
   const { wishListActions } = useContext(StoreContext);
   const { addToWishList, removeFromWishList } = wishListActions;
   const [isLiked, setIsLiked] = useState(false);
-  const [quickView, setQuickView] = useState(false);
-  const chooseId = user.state === "guest" ? user.uid : user.rnd_id;
+  // const [quickView, setQuickView] = useState(false);
+  // const chooseId = user.state === "guest" ? user.uid : user.rnd_id;
 
   const onClickCart = (e) => {
     e.preventDefault();
     const productData = {
       id: product.productID,
-      user: chooseId,
+      user: user.uid,
       quantity: 1,
     };
     addToCartAction(productData);
@@ -28,14 +28,14 @@ const ProductListView = ({ product, col5, addToCartAction }) => {
     if (!isLiked) {
       addToWishList({
         id: product.productID,
-        user: chooseId,
+        user: user.uid,
       });
       setIsLiked(true);
       return;
     }
     removeFromWishList({
       id: product.productID,
-      user: chooseId,
+      user: user.uid,
     });
     setIsLiked(false);
     return;

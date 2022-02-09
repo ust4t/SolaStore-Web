@@ -19,6 +19,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       saleProducts: data.reverse(),
+      revalidate: 180,
     },
   };
 }
