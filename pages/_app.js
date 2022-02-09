@@ -25,9 +25,17 @@ import "../styles/global.css";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const queryClient = new QueryClient();
-
   const fetchMenu = async () => {
     try {
+      const { data: menu } = await axios.get(
+        `/api/getFullMenu?lang=${store.getState().lang}`
+      );
+      store.dispatch({
+        type: GET_MAIN_MENU,
+        payload: menu,
+      });
+    } catch (error) {
+      console.log("second menu");
       const { data: menu } = await axios.get(
         `/api/getFullMenuNew?lang=${store.getState().lang}`
       );
@@ -35,9 +43,8 @@ function MyApp({ Component, pageProps }) {
         type: GET_MAIN_MENU,
         payload: menu,
       });
-    } catch (error) {
       console.log(error);
-      toast.error(`Menü alınırken hata oluştu: ${error.message}`);
+      toast.error("Menü alınırken hata oluştu");
     }
   };
 

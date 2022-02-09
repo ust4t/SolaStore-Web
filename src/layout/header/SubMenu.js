@@ -19,13 +19,35 @@ const SubMenu = ({ menu }) => {
         menu.map(
           (
             {
+              // selectedCategoryName,
+              // categoryID,
+              // squareCategoryPicture,
+              // subCategoriesList,
               selectedCategoryName,
               categoryID,
-              squareCategoryPicture,
-              subCategoriesList,
+              squareCategoryPictureGuidName,
+              subcategories,
             },
             i
           ) => (
+            // <li key={`${i}_*_${i}`}>
+            //   <Link
+            //     href={`/shop/${selectedCategoryName.replace(
+            //       " ",
+            //       "-"
+            //     )}:${categoryID}`}>
+            //     <a onClick={() => changeTitle(selectedCategoryName)}>
+            //       {selectedCategoryName}
+            //     </a>
+            //   </Link>
+            //   <SubCategory
+            //     parentCategory={{
+            //       name: selectedCategoryName,
+            //       id: categoryID,
+            //     }}
+            //     subMenuData={subCategoriesList}
+            //     picture={squareCategoryPicture[0].guidName}
+            //   />
             <li key={`${i}_*_${i}`}>
               <Link
                 href={`/shop/${selectedCategoryName.replace(
@@ -41,8 +63,8 @@ const SubMenu = ({ menu }) => {
                   name: selectedCategoryName,
                   id: categoryID,
                 }}
-                subMenuData={subCategoriesList}
-                picture={squareCategoryPicture[0].guidName}
+                subMenuData={subcategories}
+                picture={squareCategoryPictureGuidName}
               />
             </li>
           )
