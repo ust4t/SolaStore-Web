@@ -238,7 +238,7 @@ const Login = () => {
                             handleBlur={handleBlur}
                             handleChange={handleChange}
                           />
-                          <InputGroup
+                          {/* <InputGroup
                             containerClass="my-md-4"
                             formClassName="py-4"
                             labelClassName="mb-2"
@@ -252,7 +252,7 @@ const Login = () => {
                             touched={touched.bod}
                             handleBlur={handleBlur}
                             handleChange={handleChange}
-                          />
+                          /> */}
                         </div>
                         <div className="col-12 d-flex justify-content-center">
                           <button

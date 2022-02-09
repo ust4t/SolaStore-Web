@@ -1,6 +1,6 @@
 import ReactPaginate from "react-paginate";
 
-const PaginationList = ({ pageCount, handlePageClick }) => {
+const PaginationList = ({ pageCount, handlePageClick, ...rest }) => {
   return (
     <div className="row gy-3">
       <ReactPaginate
@@ -23,6 +23,7 @@ const PaginationList = ({ pageCount, handlePageClick }) => {
           "col-12 d-flex justify-content-center align-items-center flex-wrap"
         }
         activeClassName={"active"}
+        {...rest}
       />
     </div>
   );

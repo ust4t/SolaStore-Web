@@ -30,6 +30,7 @@ const ShopLayout = ({
   const pageCount = Math.ceil(allProducts.length / pageLimit);
   const [active, setActive] = useState(active_ ? active_ : 0);
   const [cartAnim, setCartAnim] = useState(false);
+  const [selectedPage, setSelectedPage] = useState(0);
 
   let sort = sortValue ? sortValue : pageLimit;
   const [products, setProducts] = useState(
@@ -45,10 +46,15 @@ const ShopLayout = ({
 
   const handlePageClick = (e) => {
     const selectedPage = e.selected;
+    setSelectedPage(selectedPage);
     const offset = selectedPage * pageLimit;
     setOffset(offset);
     handlePageData();
   };
+
+  useEffect(() => {
+    setSelectedPage(0);
+  }, [allProducts]);
 
   useEffect(() => {
     handlePageData();
@@ -154,6 +160,7 @@ const ShopLayout = ({
                 )}
                 <div className="mt-5 mb-5">
                   <PaginationList
+                    forcePage={selectedPage}
                     pageCount={pageCount}
                     handlePageClick={handlePageClick}
                   />

@@ -324,7 +324,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                         <div className="card border p-2">
                           <Link
                             href={{
-                              pathname: "/shop",
+                              pathname: "/filter",
                               query: {
                                 categoryIds: "",
                                 brandIds: brand.brandID,
@@ -345,7 +345,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                           <p className="card-body text-center px-1 py-0 m-0 my-1">
                             <Link
                               href={{
-                                pathname: "/shop",
+                                pathname: "/filter",
                                 query: {
                                   categoryIds: "",
                                   brandIds: brand.brandID,
@@ -380,7 +380,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                           <span className="text-muted">{t("brand")}:</span>
                           <Link
                             href={{
-                              pathname: "/shop",
+                              pathname: "/filter",
                               query: {
                                 categoryIds: "",
                                 brandIds: brand.brandID,

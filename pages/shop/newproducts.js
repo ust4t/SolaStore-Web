@@ -36,6 +36,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       newProducts: data,
+      revalidate: 15,
     },
   };
 }
