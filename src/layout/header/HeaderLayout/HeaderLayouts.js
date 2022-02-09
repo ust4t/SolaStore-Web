@@ -31,6 +31,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
   };
 
   const handleSearch = () => {
+    if (searchRef.current.value === "") return;
     push({
       pathname: "/search",
       query: {

@@ -6,6 +6,7 @@ import Shop from "../src/layout/Shop";
 export default function Filter({ filter, filterBrand }) {
   return (
     <Shop
+      isHidden={true}
       allProducts={filter}
       full
       title="Filter"

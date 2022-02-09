@@ -21,8 +21,8 @@ const SubMenu = ({ menu }) => {
             {
               selectedCategoryName,
               categoryID,
-              squareCategoryPictureGuidName,
-              subcategories,
+              squareCategoryPicture,
+              subCategoriesList,
             },
             i
           ) => (
@@ -41,8 +41,8 @@ const SubMenu = ({ menu }) => {
                   name: selectedCategoryName,
                   id: categoryID,
                 }}
-                subMenuData={subcategories}
-                picture={squareCategoryPictureGuidName}
+                subMenuData={subCategoriesList}
+                picture={squareCategoryPicture[0].guidName}
               />
             </li>
           )

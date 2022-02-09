@@ -21,6 +21,8 @@ const ShopLayout = ({
   sortValue,
   active_,
   filterDropdown = false,
+  isHidden = false,
+  isActiveHidden,
 }) => {
   const { t } = useTranslation("common");
   const { cartActions } = useContext(StoreContext);
@@ -54,18 +56,21 @@ const ShopLayout = ({
 
   useEffect(() => {
     setSelectedPage(0);
-  }, [allProducts]);
+  }, [allProducts, pageLimit]);
 
   useEffect(() => {
+    console.log("render");
     handlePageData();
-  }, [offset, allProducts]);
+  }, [offset, allProducts, pageLimit]);
 
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       {cartAnim && <div className="body_overlay" />}
       <main>
-        <PageTitle pageTitle={title} active={title} />
-        <section className="pt-75 px-4">
+        {!isHidden && (
+          <PageTitle pageTitle={title} active={isActiveHidden ? null : title} />
+        )}
+        <section className="pt-45 px-4">
           <div className="container">
             {filterDropdown && (
               <FilterDropdown

@@ -30,20 +30,24 @@ function SubCategory({ picture, subMenuData, parentCategory }) {
         <div className="col-8">
           <ul>
             {!!subMenuData &&
-              subMenuData.map(({ selectedCategoryName, categoryID }, i) => (
-                <li
-                  className={megamenu}
-                  key={`${i}_0_${i}`}
-                  onClick={() => changeTitle(selectedCategoryName)}>
-                  <Link
-                    href={`/shop/${selectedCategoryName.replace(
-                      " ",
-                      "-"
-                    )}:${categoryID}`}>
-                    <a className="text-uppercase">{selectedCategoryName}</a>
-                  </Link>
-                </li>
-              ))}
+              subMenuData.map(
+                ({ selectedSubCategoryName, subCategoryID }, i) => (
+                  <li
+                    className={megamenu}
+                    key={`${i}_0_${i}`}
+                    onClick={() => changeTitle(selectedSubCategoryName)}>
+                    <Link
+                      href={`/shop/${selectedSubCategoryName.replace(
+                        " ",
+                        "-"
+                      )}:${subCategoryID}`}>
+                      <a className="text-uppercase">
+                        {selectedSubCategoryName}
+                      </a>
+                    </Link>
+                  </li>
+                )
+              )}
           </ul>
         </div>
         {picture !== null && (
@@ -55,7 +59,7 @@ function SubCategory({ picture, subMenuData, parentCategory }) {
                 }`}>
                 <a>
                   <img
-                    src={`${sources.imageMidSrc}${picture}`}
+                    src={`${sources.imageMaxSrc}${picture}`}
                     alt={parentCategory.name}
                     loading="lazy"
                   />

@@ -1,11 +1,11 @@
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 import SelectCheckbox from "../../form/SelectCheckbox";
 import SelectCheckboxGroup from "../../form/SelectCheckboxGroup";
-import SelectOptions from "../../form/SelectOptions";
+// import SelectOptions from "../../form/SelectOptions";
 import PriceFilter from "./PriceFilter";
 
 export default function FilterDropdown({
@@ -17,6 +17,7 @@ export default function FilterDropdown({
   const { t } = useTranslation("common");
   const menu = useSelector((state) => state.menu.menuData);
   const { push, query } = useRouter();
+  const isMounted = useRef(false);
 
   const [filterData, setFilterData] = useState({
     category: [],
@@ -25,20 +26,18 @@ export default function FilterDropdown({
   });
 
   useEffect(() => {
-    if (
-      filterData.category.length > 0 ||
-      filterData.brand.length > 0 ||
-      filterData.price !== ""
-    ) {
+    // if (filterData.category.length > 0 || filterData.brand.length > 0) {
+    if (isMounted.current) {
       push({
         pathname: "/filter",
         query: {
-          categoryIds: filterData.category.join(",") || query.categoryIds,
-          brandIds: filterData.brand.join(",") || query.brandIds,
-          searchPrice: filterData.price || query.searchPrice,
+          categoryIds: filterData.category.join(","),
+          brandIds: filterData.brand.join(","),
+          searchPrice: filterData.price,
         },
       });
-    }
+    } else isMounted.current = true;
+    // }
   }, [filterData]);
 
   const showNum = [
@@ -61,6 +60,7 @@ export default function FilterDropdown({
   ];
 
   const handleFilterBrand = (e, value) => {
+    // if (!filterData.brand.length) setFilterData({ ...filterData, brand: "" });
     if (e.target.checked) {
       setFilterData({
         ...filterData,
@@ -78,6 +78,8 @@ export default function FilterDropdown({
   };
 
   const handleFilterCategory = (e, value) => {
+    // if (!filterData.category.length)
+    //   setFilterData({ ...filterData, category: "" });
     if (e.target.checked) {
       setFilterData({
         ...filterData,

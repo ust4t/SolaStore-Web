@@ -40,17 +40,17 @@ export const clickToActive = (activeArr, value, setActiveArr) => {
   }
 };
 
-export const scroll = () => {
-  let offset = window.scrollY;
-  const sticky = document.getElementById("header-sticky");
-  if (sticky) {
-    if (offset > 300) {
-      sticky.classList.add("sticky-header");
-    } else {
-      sticky.classList.remove("sticky-header");
-    }
-  }
-};
+// export const scroll = () => {
+//   let offset = window.scrollY;
+//   const sticky = document.getElementById("header-sticky");
+//   if (sticky) {
+//     if (offset > 300) {
+//       sticky.classList.add("sticky-header");
+//     } else {
+//       sticky.classList.remove("sticky-header");
+//     }
+//   }
+// };
 
 export const dblock = (active, id, sort) => {
   if (active === 0) {

@@ -2215,8 +2215,7 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .show-text span {
-  font-size: 13px;
-
+  font-size: 1rem;
   font-weight: 400;
 
   color: #777;
