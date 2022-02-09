@@ -72,7 +72,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <Head>
-        <title>SolaStore</title>
+        <title>
+          Sola Store | Оптом Женская одежда | Wholesale Women's Clothing
+        </title>
         <meta
           name="description"
           content="Solastore, where you can find the best fashion that you always desired"
