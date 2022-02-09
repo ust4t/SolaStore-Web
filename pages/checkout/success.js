@@ -8,7 +8,7 @@ export default function Success() {
           style={{
             fontSize: "6rem",
           }}
-          className="fas fa-exclamation text-center w-100 text-danger"
+          className="fas fa-check text-center w-100 text-success"
         />
         <h1 className="text-center fs-1">Payment Successful</h1>
       </div>
