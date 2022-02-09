@@ -1,0 +1,21 @@
+{
+  "orderthanks": "شكرا لطلبك",
+  "paymentsuccess": "تم إكمال طلبك. سيقوم مندوب العملاء لدينا بالاتصال بك.",
+  "orderid": "رقم طلبك: ",
+  "summary": "ملخص طلبك :",
+  "orderdate": "تاريخ طلبك :",
+  "ordertotal": "مجموعه طلبك :",
+  "orderinfo": "معلومات طلبك :",
+  "ordername": "اسمك :",
+  "ordercontact": "رقمك :",
+  "paymentmethod": "طريقة الدفع الخاصة بك :",
+  "ordercart": "بطاقة إئتمان",
+  "ordercurrent": "حساب جاري",
+  "ordertot": "مجموع",
+  "orderimage": "صورة المنتج",
+  "orderpname": "كود المنتج",
+  "orderuniteprice": "سعر الوحدة",
+  "orderqua": "عدد",
+  "ordersuccess": "تم اكتمال طلبك"
+ 
+}

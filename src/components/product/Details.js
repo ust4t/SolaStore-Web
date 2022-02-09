@@ -323,14 +323,10 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                       <div className="col-5 col-md-4">
                         <div className="card border p-2">
                           <Link
-                            href={{
-                              pathname: "/filter",
-                              query: {
-                                categoryIds: "",
-                                brandIds: brand.brandID,
-                                searchPrice: "",
-                              },
-                            }}>
+                            href={`/brands/${brand.brandName.replace(
+                              " ",
+                              "-"
+                            )}:${brand.brandID}`}>
                             <div>
                               <Image
                                 className="cursor-pointer"
@@ -344,14 +340,10 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                           </Link>
                           <p className="card-body text-center px-1 py-0 m-0 my-1">
                             <Link
-                              href={{
-                                pathname: "/filter",
-                                query: {
-                                  categoryIds: "",
-                                  brandIds: brand.brandID,
-                                  searchPrice: "",
-                                },
-                              }}>
+                              href={`/brands/${brand.brandName.replace(
+                                " ",
+                                "-"
+                              )}:${brand.brandID}`}>
                               <span className={brandStyle}>
                                 {brand.brandName}
                               </span>
@@ -379,14 +371,10 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                         <small>
                           <span className="text-muted">{t("brand")}:</span>
                           <Link
-                            href={{
-                              pathname: "/filter",
-                              query: {
-                                categoryIds: "",
-                                brandIds: brand.brandID,
-                                searchPrice: "",
-                              },
-                            }}>
+                            href={`/brands/${brand.brandName.replace(
+                              " ",
+                              "-"
+                            )}:${brand.brandID}`}>
                             <span
                               className={`${brandStyle} ${smallBrandStyle}`}>
                               {brand.brandName}

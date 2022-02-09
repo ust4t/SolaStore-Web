@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect } from "react";
+import useTranslation from "next-translate/useTranslation";
 import { useContext } from "react";
 
 import sources from "../sources";
@@ -7,16 +7,17 @@ import { StoreContext } from "../src/context/StoreProvider";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
 
-const OrderSuccess = ({ orderList, buyer }) => {
+const OrderSuccess = ({ orderList }) => {
+  const { t } = useTranslation("order");
   const { state } = useContext(StoreContext);
   const { completedCartData } = state;
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
         <PageTitle
-          pageTitle="SİPARİŞİNİZ İÇİN TEŞEKKÜR EDERİZ"
+          pageTitle={t("orderthanks")}
           thankupage
-          active="order success"
+          thankupageTitle={t("paymentsuccess")}
           id={orderList[0].orderID}
         />
         <section className="cart-area pt-100 pb-100">
@@ -28,11 +29,17 @@ const OrderSuccess = ({ orderList, buyer }) => {
                     <table className="table">
                       <thead>
                         <tr>
-                          <th className="product-thumbnail">Images</th>
-                          <th className="cart-product-name">Product</th>
-                          <th className="product-price">Unit Price</th>
-                          <th className="product-quantity">Quantity</th>
-                          <th className="product-subtotal">Total</th>
+                          <th className="product-thumbnail">
+                            {t("orderimage")}
+                          </th>
+                          <th className="cart-product-name">
+                            {t("orderpname")}
+                          </th>
+                          <th className="product-price">
+                            {t("orderuniteprice")}
+                          </th>
+                          <th className="product-quantity">{t("orderqua")}</th>
+                          <th className="product-subtotal">{t("ordertot")}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -75,10 +82,10 @@ const OrderSuccess = ({ orderList, buyer }) => {
                     </table>
                   </div>
                   <div className="cart-page-total">
-                    <h2>Cart totals</h2>
+                    <h2>{t("ordertot")}</h2>
                     <ul className="mb-20">
                       <li>
-                        Total <span>${orderList[0].totalAmount}</span>
+                        {t("ordertot")} <span>${orderList[0].totalAmount}</span>
                       </li>
                     </ul>
                   </div>
@@ -89,31 +96,31 @@ const OrderSuccess = ({ orderList, buyer }) => {
                   <div className="col-md-6">
                     <h5>Summary :</h5>
                     <p>
-                      <b>Order ID:</b> {orderList[0].orderID}
+                      <b>{t("orderid")}</b> {orderList[0].orderID}
                     </p>
                     <p>
-                      <b>Order Date:</b>{" "}
+                      <b>{t("orderdate")}</b>{" "}
                       {new Date(orderList[0].addingDate).toLocaleDateString()}
                     </p>
                     <p>
-                      <b>Order Total:</b> ${orderList[0].totalAmount}
+                      <b>{t("ordertotal")}</b> ${orderList[0].totalAmount}
                     </p>
                   </div>
                   <div className="col-md-6">
                     <h5>Shipping Address</h5>
                     <p className="text-capitalize">
-                      <b>Name:</b> {completedCartData.buyerName}
+                      <b>{t("ordername")}</b> {completedCartData.buyerName}
                     </p>
                     <p>
-                      <b>Contact No:</b> {completedCartData.buyerPhone}
+                      <b>{t("ordercontact")}</b> {completedCartData.buyerPhone}
                     </p>
                   </div>
                   <div className="col-12 mt-4">
                     <h5>
-                      <b>Payment Method:</b>
+                      <b>{t("paymentmethod")}</b>
                       {completedCartData.paymentType === "order"
-                        ? "Cari Ödeme"
-                        : "Kredi Kartı"}
+                        ? t("ordercurrent")
+                        : t("ordercart")}
                     </h5>
                   </div>
                 </div>

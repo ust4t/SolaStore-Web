@@ -2,6 +2,15 @@
   "locales": ["ru", "en", "tr", "ar", "fr"],
   "defaultLocale": "ru",
   "pages": {
-    "*": ["common", "home", "cart", "wishlist", "detail", "footer", "register"]
+    "*": [
+      "common",
+      "home",
+      "cart",
+      "wishlist",
+      "detail",
+      "footer",
+      "register",
+      "order"
+    ]
   }
 }

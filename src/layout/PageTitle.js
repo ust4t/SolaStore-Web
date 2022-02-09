@@ -5,6 +5,7 @@ const PageTitle = ({
   pageTitle,
   active,
   thankupage,
+  thankupageTitle,
   id,
   navigation = false,
 }) => {
@@ -28,8 +29,7 @@ const PageTitle = ({
               <h3 className={thankupage ? "mb-2" : ""}>{pageTitle}</h3>
               {thankupage && (
                 <p className="fs-20">
-                  Payment is successfully processsed and your order is on the
-                  way <br /> Order ID: {id}
+                  {thankupageTitle} <br /> Order ID: {id}
                 </p>
               )}
               {/* <h2 className="breadcrumb-title">{pageTitle}</h2> */}
@@ -43,20 +43,22 @@ const PageTitle = ({
                     </div>
                   </div>
                 )}
-                <div className="col-lg-6">
-                  <div className="breadcrumb-menu mt-20">
-                    <ul className="trail-items">
-                      <li className="trail-item trail-begin">
-                        <Link href="/">
-                          <a>{t("menu.home")}</a>
-                        </Link>
-                      </li>
-                      <li className="trail-item trail-end">
-                        <span>{active}</span>
-                      </li>
-                    </ul>
+                {active && (
+                  <div className="col-lg-6">
+                    <div className="breadcrumb-menu mt-20">
+                      <ul className="trail-items">
+                        <li className="trail-item trail-begin">
+                          <Link href="/">
+                            <a>{t("menu.home")}</a>
+                          </Link>
+                        </li>
+                        <li className="trail-item trail-end">
+                          <span>{active}</span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
+                )}
                 {navigation && (
                   <div className="col-lg-3 d-none d-lg-block">
                     <div className="next-product">

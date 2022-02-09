@@ -1,0 +1,20 @@
+{
+  "orderthanks": "THANK YOU FOR YOUR ORDER",
+  "paymentsuccess": "Your Order Has Been Completed. Our Customer Representative will contact you.",
+  "orderid": "Your Order ID : ",
+  "summary": "Your Order Summary :",
+  "orderdate": "Your Order Date :",
+  "ordertotal": "Your Order Total :",
+  "orderinfo": "Your Order Information :",
+  "ordername": "Your Name :",
+  "ordercontact": "Your Number :",
+  "paymentmethod": "Your Payment Method :",
+  "ordercart": "Credit Card",
+  "ordercurrent": "Current Account",
+  "ordertot": "Total",
+  "orderimage": "Product image",
+  "orderpname": "Product Name",
+  "orderuniteprice": "Unit price",
+  "orderqua": "Quantity",
+  "ordersuccess": "Your Order is Complete"
+}

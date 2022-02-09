@@ -1,0 +1,21 @@
+{
+  "orderthanks": "NOUS VOUS REMERCIONS DE VOTRE COMMANDE",
+  "paymentsuccess": "Votre commande est terminée. Notre représentant client vous contactera.",
+  "orderid": "Votre numéro de commande: ",
+  "summary": "Votre résumé de commande :",
+  "orderdate": "Date de votre commande :",
+  "ordertotal": "Total de votre commande :",
+  "orderinfo": "Vos informations de commande :",
+  "ordername": "Votre nom :",
+  "ordercontact": "Ton numéro :",
+  "paymentmethod": "Votre méthode de paiement :",
+  "ordercart": "Carte de crédit",
+  "ordercurrent": "Compte courant",
+  "ordertot": "Le total",
+  "orderimage": "Image du produit",
+  "orderpname": "Code produit",
+  "orderuniteprice": "Prix ​​unitaire",
+  "orderqua": "Nombre",
+  "ordersuccess": "Votre commande est terminée"
+ 
+}

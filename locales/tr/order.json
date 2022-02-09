@@ -1,0 +1,21 @@
+{
+  "orderthanks": "SİPARİŞİNİZ İÇİN TEŞEKKÜR EDERİZ",
+  "paymentsuccess": "Siparişiniz Tamamlandı. Müşteri Temsilcimiz Sizinle İrtibata Geçecek.",
+  "orderid": "Sipariş Numaranız: ",
+  "summary": "Sipariş Özetiniz :",
+  "orderdate": "Sipariş Tarihiniz :",
+  "ordertotal": "Sipariş Toplamınız :",
+  "orderinfo": "Sipariş Bilgileriniz :",
+  "ordername": "İsminiz :",
+  "ordercontact": "Numaranız :",
+  "paymentmethod": "Ödeme Yönteminiz :",
+  "ordercart": "Kredi Kartı",
+  "ordercurrent": "Cari Hesap",
+  "ordertot": "Toplam",
+  "orderimage": "Ürün Resmi",
+  "orderpname": "Ürün Kodu",
+  "orderuniteprice": "Birim Fiyat",
+  "orderqua": "Adet",
+  "ordersuccess": "Siparişiniz Tamamlandı"
+ 
+}
