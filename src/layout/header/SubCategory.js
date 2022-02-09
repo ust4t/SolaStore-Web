@@ -35,7 +35,8 @@ function SubCategory({ picture, subMenuData, parentCategory }) {
                   <li
                     className={megamenu}
                     key={`${i}_0_${i}`}
-                    onClick={() => changeTitle(selectedSubCategoryName)}>
+                    // onClick={() => changeTitle(selectedSubCategoryName)}
+                  >
                     <Link
                       href={`/shop/${selectedSubCategoryName.replace(
                         " ",
