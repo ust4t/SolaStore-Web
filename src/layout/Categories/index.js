@@ -41,7 +41,7 @@ export default function Categories({ categories }) {
               <Link
                 href={`/shop/${findCat(
                   Number(pictureLink.slice(pictureLink.indexOf("x/") + 2))
-                )}:${pictureLink.replace(/[^0-9.]/g, "")}`}>
+                ).toLowerCase()}:${pictureLink.replace(/[^0-9.]/g, "")}`}>
                 <Image
                   src={`${sources.campaign}${pictureGuidName}`}
                   alt={mainCampaignName}

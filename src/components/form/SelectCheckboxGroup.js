@@ -3,11 +3,16 @@ import useTranslation from "next-translate/useTranslation";
 
 import useDetectOutside from "../../hooks/useDetectOutside";
 
-function SelectCheckboxGroup({ filterData, title, data, onSelect = () => {} }) {
+function SelectCheckboxGroup({
+  filterData,
+  title,
+  data,
+  onParentSelect = () => {},
+  onChildSelect = () => {},
+}) {
   const { t } = useTranslation("common");
   const dropdownRef = React.useRef(null);
   const [hidden, setHidden] = React.useState(true);
-
   const buttonText =
     filterData.length < 1 ? t("choose") : `${filterData.length} ${t("chosen")}`;
 
@@ -33,7 +38,7 @@ function SelectCheckboxGroup({ filterData, title, data, onSelect = () => {} }) {
         <span className="multiselect-selected-text text-uppercase me-auto fs-5">
           {buttonText}
         </span>{" "}
-        <b className="caret"></b>
+        <b className="caret" />
       </button>
       <div
         style={{
@@ -45,39 +50,56 @@ function SelectCheckboxGroup({ filterData, title, data, onSelect = () => {} }) {
           !hidden ? "animate__zoomIn d-block" : "animate__zoomOut d-none"
         } dropdown-list shadow p-3 bg-body w-100 position-absolute overflow-auto`}>
         {data &&
-          data.map(({ categoryID, selectedCategoryName, subcategories }, i) => (
-            <Fragment key={`${categoryID}_._.?*${i}`}>
-              <label
-                key={`${categoryID}_<_${i}`}
-                className="d-block dropdown-option w-100 pt-2">
-                <input
-                  type="checkbox"
-                  name="dropdown-group"
-                  value={categoryID}
-                  onChange={(e) => onSelect(e, categoryID)}
-                />
-                <b className="ps-2 fs-6 text-uppercase">
-                  {selectedCategoryName}
-                </b>
-              </label>
-              {subcategories &&
-                subcategories.map(({ categoryID, selectedCategoryName }, i) => (
-                  <label
-                    key={`${categoryID}.#${i + 1}`}
-                    className="d-block dropdown-option w-100 ps-3 pt-2">
-                    <input
-                      type="checkbox"
-                      name="dropdown-group"
-                      value={categoryID}
-                      onChange={(e) => onSelect(e, categoryID)}
-                    />
-                    <b className="ps-2 fs-6 text-uppercase">
-                      {selectedCategoryName}
-                    </b>
-                  </label>
-                ))}
-            </Fragment>
-          ))}
+          data.map(
+            (
+              {
+                categoryID: mainCategoryID,
+                selectedCategoryName,
+                subcategories,
+              },
+              i
+            ) => (
+              <Fragment key={`${mainCategoryID}_._.?*${i}`}>
+                <label
+                  key={`${mainCategoryID}_<_${i}`}
+                  className="d-block dropdown-option w-100 pt-2">
+                  <input
+                    type="checkbox"
+                    name="dropdown-group"
+                    value={mainCategoryID}
+                    onChange={(e) =>
+                      onParentSelect(e, [
+                        mainCategoryID,
+                        ...subcategories.map(({ categoryID }) => categoryID),
+                      ])
+                    }
+                  />
+                  <b className="ps-2 fs-6 text-uppercase">
+                    {selectedCategoryName}
+                  </b>
+                </label>
+                {subcategories &&
+                  subcategories.map(
+                    ({ categoryID, selectedCategoryName }, i) => (
+                      <label
+                        key={`${categoryID}.#${i + 1}`}
+                        className="d-block dropdown-option w-100 ps-3 pt-2">
+                        <input
+                          checked={filterData.includes(categoryID)}
+                          type="checkbox"
+                          name="dropdown-group"
+                          value={categoryID}
+                          onChange={(e) => onChildSelect(e, categoryID)}
+                        />
+                        <b className="ps-2 fs-6 text-uppercase">
+                          {selectedCategoryName}
+                        </b>
+                      </label>
+                    )
+                  )}
+              </Fragment>
+            )
+          )}
       </div>
     </div>
   );

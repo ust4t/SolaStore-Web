@@ -61,7 +61,6 @@ const ShopLayout = ({
   }, [allProducts, pageLimit]);
 
   useEffect(() => {
-    console.log("render");
     handlePageData();
   }, [offset, allProducts, pageLimit]);
 

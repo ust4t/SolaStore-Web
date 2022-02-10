@@ -9,6 +9,7 @@ export default function Filter({ filter, filterBrand }) {
       isHidden={true}
       allProducts={filter}
       full
+      titleHead="Sola Store | Оптом Женская одежда | Wholesale Women's Clothing"
       title="Filter"
       filterDropdown
       brands={filterBrand}

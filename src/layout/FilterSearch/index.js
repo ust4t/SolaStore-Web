@@ -58,14 +58,45 @@ export default function FilterSearch({ brands }) {
       price: `${min}-${max}`,
     });
 
-  const handleFilterCategory = (e, value) => {
+  // const handleFilterCategory = (e, value) => {
+  //   if (e.target.checked) {
+  //     setFilterData({
+  //       ...filterData,
+  //       category: [
+  //         ...filterData.category,
+  //         !filterData.category.includes(value) ? value : null,
+  //       ],
+  //     });
+  //   } else {
+  //     setFilterData({
+  //       ...filterData,
+  //       category: filterData.category.filter((item) => item !== value),
+  //     });
+  //   }
+  // };
+
+  const handleFilterCategoryParent = (e, allCats) => {
     if (e.target.checked) {
       setFilterData({
         ...filterData,
         category: [
-          ...filterData.category,
-          !filterData.category.includes(value) ? value : null,
-        ],
+          ...filterData.category.filter((cat) => !allCats.includes(cat)),
+          ...allCats,
+        ].flat(),
+      });
+    } else {
+      setFilterData({
+        ...filterData,
+        category: filterData.category.filter((item) => !allCats.includes(item)),
+      });
+    }
+  };
+
+  const handleFilterCategoryChild = (e, value) => {
+    if (e.target.checked) {
+      setFilterData({
+        ...filterData,
+        category: [...filterData.category, value],
       });
     } else {
       setFilterData({
@@ -83,12 +114,21 @@ export default function FilterSearch({ brands }) {
           <h5 className="text-center">{t("home:filterDesc")}</h5>
         </div>
         <div className="col-xs-12 col-md-4 col-lg-3 py-3">
-          {menu && (
+          {menu ? (
             <SelectCheckboxGroup
               filterData={filterData.category}
               data={menu}
               title={t("category")}
-              onSelect={handleFilterCategory}
+              onParentSelect={handleFilterCategoryParent}
+              onChildSelect={handleFilterCategoryChild}
+            />
+          ) : (
+            <div
+              style={{
+                backgroundColor: "rgb(239 239 239)",
+                padding: "30px",
+              }}
+              className="align-items-center rounded w-100"
             />
           )}
         </div>

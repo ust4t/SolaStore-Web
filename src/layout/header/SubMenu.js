@@ -15,7 +15,7 @@ const SubMenu = ({ menu }) => {
 
   return (
     <ul>
-      {menu &&
+      {menu ? (
         menu.map(
           (
             {
@@ -67,7 +67,23 @@ const SubMenu = ({ menu }) => {
               />
             </li>
           )
-        )}
+        )
+      ) : (
+        <>
+          {Array(5)
+            .fill(0)
+            .map((_, i) => (
+              <li
+                key={`${i}_*_${i}`}
+                style={{
+                  backgroundColor: "#ccc",
+                  padding: "10px 30px",
+                  borderRadius: "3px",
+                }}
+              />
+            ))}
+        </>
+      )}
     </ul>
   );
 };
