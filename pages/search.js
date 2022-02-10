@@ -16,6 +16,7 @@ const Search = ({ search, searchText }) => {
   }, []);
   return (
     <Shop
+      titleHead="Sola Store | Оптом Женская одежда | Wholesale Women's Clothing"
       title={`Your Result: ' ${searchText} '`}
       isActiveHidden
       allProducts={search}

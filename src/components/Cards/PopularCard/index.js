@@ -136,6 +136,7 @@ function PopularCard({ productData, cartId }) {
       <ShareModal
         urlDetails={{
           id,
+          name,
           pictures: currentImages.pictures,
         }}
         show={shareModal}

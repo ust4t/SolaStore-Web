@@ -114,13 +114,7 @@ export const News_4 = () => {
                 priority
               />
             </a>
-            <a
-              className="mx-1"
-              onClick={() => {
-                changeLang("fr");
-                router.reload();
-              }}
-              href="#">
+            <a className="mx-1" onClick={() => changeLang("fr")} href="#">
               <Image
                 src="/images/flags/fr.jpg"
                 width="45"
@@ -150,13 +144,7 @@ export const News_4 = () => {
                 priority
               />
             </a>
-            <a
-              className="mx-1"
-              onClick={() => {
-                changeLang("tr");
-                router.reload();
-              }}
-              href="#">
+            <a className="mx-1" onClick={() => changeLang("tr")} href="#">
               <Image
                 src="/images/flags/tr.jpg"
                 width="45"

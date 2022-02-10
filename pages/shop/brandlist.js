@@ -1,22 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
 
 import sources from "../../sources";
 import Layout from "../../src/layout/Layout";
-import { SET_TITLE } from "../../src/redux/action/type";
 
 export default function AllBrands({ brands }) {
-  const dispatch = useDispatch();
-
-  const changeTitle = (title) => {
-    dispatch({
-      type: SET_TITLE,
-      payload: title,
-    });
-  };
-
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main className="my-4">

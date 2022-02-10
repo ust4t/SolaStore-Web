@@ -50,10 +50,9 @@ const SubMenu = ({ menu }) => {
             //   />
             <li key={`${i}_*_${i}`}>
               <Link
-                href={`/shop/${selectedCategoryName.replace(
-                  " ",
-                  "-"
-                )}:${categoryID}`}>
+                href={`/shop/${selectedCategoryName
+                  .toLowerCase()
+                  .replace(" ", "-")}:${categoryID}`}>
                 <a onClick={() => changeTitle(selectedCategoryName)}>
                   {selectedCategoryName}
                 </a>

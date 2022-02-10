@@ -13,10 +13,9 @@ function InnerMobileMenu({ subcategories, allItems }) {
         subcategories.map(({ categoryID, selectedCategoryName }) => (
           <li key={`${categoryID}_?9`}>
             <Link
-              href={`/shop/${selectedCategoryName.replace(
-                " ",
-                "-"
-              )}:${categoryID}`}>
+              href={`/shop/${selectedCategoryName
+                .toLowerCase()
+                .replace(" ", "-")}:${categoryID}`}>
               <a>{selectedCategoryName}</a>
             </Link>
           </li>

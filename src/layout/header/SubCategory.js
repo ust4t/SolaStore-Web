@@ -89,10 +89,9 @@ function SubCategory({ picture, subMenuData, parentCategory }) {
                   key={`${i}_0_${i}`}
                   onClick={() => changeTitle(selectedCategoryName)}>
                   <Link
-                    href={`/shop/${selectedCategoryName.replace(
-                      " ",
-                      "-"
-                    )}:${categoryID}`}>
+                    href={`/shop/${selectedCategoryName
+                      .toLowerCase()
+                      .replace(" ", "-")}:${categoryID}`}>
                     <a className="text-uppercase">{selectedCategoryName}</a>
                   </Link>
                 </li>

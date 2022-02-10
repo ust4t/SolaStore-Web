@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
@@ -40,6 +41,13 @@ const ProductListView = ({ product, col5, addToCartAction }) => {
     setIsLiked(false);
     return;
   };
+
+  const checkImage = (img) =>
+    `${
+      img.picture_1
+        ? `${sources.imageMidSrc}${img.picture_1}`
+        : "/images/placeholder.jpg"
+    }`;
   return (
     <div className="row">
       {/* <ProductModal
@@ -55,9 +63,11 @@ const ProductListView = ({ product, col5, addToCartAction }) => {
                 product.productID
               }`}>
               <a>
-                <img
-                  src={`${sources.imageMidSrc}${product.picture_1}`}
-                  alt="img 1"
+                <Image
+                  src={checkImage(product)}
+                  alt={product.productShortName}
+                  width={460}
+                  height={720}
                 />
               </a>
             </Link>

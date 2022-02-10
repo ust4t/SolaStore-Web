@@ -19,6 +19,7 @@ const ShopLayout = ({
   defaultKey,
   full,
   title,
+  titleHead,
   sortValue,
   active_,
   filterDropdown = false,
@@ -67,7 +68,7 @@ const ShopLayout = ({
   return (
     <>
       <Head>
-        <title>Sola Store | {title}</title>
+        <title>{titleHead}</title>
       </Head>
       <Layout news={4} logoLeft layout={2} paymentOption>
         {cartAnim && <div className="body_overlay" />}

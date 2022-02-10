@@ -18,7 +18,7 @@ const Header = ({ news, layout, darkBg, logoLeft }) => {
     }
   };
   const handleSearchBar = () => setActiveSearchBar(true);
-  const handleSidebar = () => setSidebar(true);
+  const handleSidebar = () => setSidebar(!sidebar);
   function handleCloseSidebar() {
     setSidebar(false);
   }

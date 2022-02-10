@@ -26,6 +26,9 @@ import sources from "../../../../sources";
 const shareUrl = "https://www.solastore.com.tr/detail/";
 
 export default function ShareModal({ show, handleClose, urlDetails }) {
+  const url = `${shareUrl}${urlDetails.name.toLowerCase().replace(" ", "-")}:${
+    urlDetails.id
+  }`;
   const { t } = useTranslation("common");
 
   const handleCopyText = (e) => {
@@ -54,30 +57,24 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
             <input
               readOnly
               onClick={handleCopyText}
-              value={`${shareUrl}${urlDetails.id}`}
+              value={url}
               className={`py-10 text-center cursor-pointer border-0 ${copyText}`}
             />
           </div>
           <div className="row px-md-2 mx-0 gy-3">
             <div className="col-3 col-md-2">
-              <WhatsappShareButton
-                url={`${shareUrl}${urlDetails.id}`}
-                title="Solastore"
-                separator=":: ">
+              <WhatsappShareButton url={url} title="Solastore" separator=":: ">
                 <WhatsappIcon size={55} round={true} />
               </WhatsappShareButton>
             </div>
             <div className="col-3 col-md-2">
-              <TelegramShareButton
-                url={`${shareUrl}${urlDetails.id}`}
-                title="Solastore"
-                separator=":: ">
+              <TelegramShareButton url={url} title="Solastore" separator=":: ">
                 <TelegramIcon size={55} round={true} />
               </TelegramShareButton>
             </div>
             <div className="col-3 col-md-2">
               <FacebookShareButton
-                url={`${shareUrl}${urlDetails.id}`}
+                url={url}
                 quote="Solastore"
                 hashtag="#solastore">
                 <FacebookIcon size={55} round={true} />
@@ -85,7 +82,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
             </div>
             <div className="col-3 col-md-2">
               <FacebookMessengerShareButton
-                url={`${shareUrl}${urlDetails.id}`}
+                url={url}
                 quote="Solastore"
                 hashtag="#solastore">
                 <FacebookMessengerIcon size={55} round={true} />
@@ -93,7 +90,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
             </div>
             <div className="col-3 col-md-2">
               <TwitterShareButton
-                url={`${shareUrl}${urlDetails.id}`}
+                url={url}
                 title="Solastore"
                 hashtags={["solastore"]}>
                 <TwitterIcon size={55} round={true} />
@@ -101,7 +98,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
             </div>
             <div className="col-3 col-md-2">
               <PinterestShareButton
-                url={`${shareUrl}${urlDetails.id}`}
+                url={url}
                 media={`${
                   urlDetails.pictures[0]
                     ? `${sources.imageMidSrc}${urlDetails.pictures[0].guidName}`
@@ -112,7 +109,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
             </div>
             <div className="col-3 col-md-2">
               <VKShareButton
-                url={`${shareUrl}${urlDetails.id}`}
+                url={url}
                 title="Solastore"
                 description="Solastore"
                 image={`${
@@ -125,7 +122,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
             </div>
             <div className="col-3 col-md-2">
               <RedditShareButton
-                url={`${shareUrl}${urlDetails.id}`}
+                url={url}
                 title="Solastore"
                 windowWidth={660}
                 windowHeight={460}>

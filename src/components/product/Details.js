@@ -164,6 +164,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
               <ShareModal
                 urlDetails={{
                   id: product.productID,
+                  name: product.productShortName,
                   pictures: product.pictures,
                 }}
                 show={shareModal}
@@ -287,6 +288,51 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                         </Nav>
                       </div>
                     </Tab.Container>
+                    {productVariants.length > 0 && (
+                      <div className="product-details-info d-block d-lg-none">
+                        <div className="sidebar-product-color">
+                          <h4 className="widget-title1 text-center">
+                            {t("otherColors")}
+                          </h4>
+                          <div
+                            className="details-filter-row details-row-size justify-content-center"
+                            style={{ margin: 5 }}>
+                            {[incomingProduct, ...productVariants]
+                              .filter(
+                                (variant) =>
+                                  variant.pictures && variant.pictures.length
+                              )
+                              .map((variant) => (
+                                <a
+                                  onClick={() => {
+                                    setProduct({
+                                      ...variant,
+                                      video_1: product.video_1,
+                                    });
+                                    setImageKey(0);
+                                  }}
+                                  href="#">
+                                  <div
+                                    className="details-filter-row details-row-size"
+                                    style={{ margin: 10, cursor: "pointer" }}>
+                                    <div className="product-nav product-nav-thumbs">
+                                      <span className="productvar cursor-pointer">
+                                        <Image
+                                          src={`${sources.imageMinSrc}${variant.picture_1}`}
+                                          alt={variant.productShortName}
+                                          title={variant.productShortName}
+                                          width={200}
+                                          height={320}
+                                        />
+                                      </span>
+                                    </div>
+                                  </div>
+                                </a>
+                              ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <div className={upthumb ? "col-lg-7" : "col-lg-5"}>
                     <div className="pro-details-content mt-15 row">
@@ -322,35 +368,37 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                           )}
                         </span>
                       </div>
-                      <div className="col-5 col-md-4">
-                        <div className="card border p-2">
-                          <Link
-                            href={`/brands/${brand.brandName
-                              .toLowerCase()
-                              .replace(" ", "-")}:${brand.brandID}`}>
-                            <div>
-                              <Image
-                                className="cursor-pointer"
-                                src={`${sources.brand}${brand.guidName2}`}
-                                width="180"
-                                height="130"
-                                layout="responsive"
-                                quality={50}
-                              />
-                            </div>
-                          </Link>
-                          <p className="card-body text-center px-1 py-0 m-0 my-1">
+                      {brand && (
+                        <div className="col-5 col-md-4">
+                          <div className="card border p-2">
                             <Link
                               href={`/brands/${brand.brandName
                                 .toLowerCase()
                                 .replace(" ", "-")}:${brand.brandID}`}>
-                              <span className={brandStyle}>
-                                {brand.brandName}
-                              </span>
+                              <div>
+                                <Image
+                                  className="cursor-pointer"
+                                  src={`${sources.brand}${brand.guidName2}`}
+                                  width="180"
+                                  height="130"
+                                  layout="responsive"
+                                  quality={50}
+                                />
+                              </div>
                             </Link>
-                          </p>
+                            <p className="card-body text-center px-1 py-0 m-0 my-1">
+                              <Link
+                                href={`/brands/${brand.brandName
+                                  .toLowerCase()
+                                  .replace(" ", "-")}:${brand.brandID}`}>
+                                <span className={brandStyle}>
+                                  {brand.brandName}
+                                </span>
+                              </Link>
+                            </p>
+                          </div>
                         </div>
-                      </div>
+                      )}
                       <div className="col-7 col-md-4 py-3">
                         <small>
                           <span className="text-muted">
@@ -472,7 +520,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                       </div>
 
                       {productVariants.length > 0 && (
-                        <div className="product-details-info">
+                        <div className="product-details-info d-none d-lg-flex">
                           <div className="sidebar-product-color">
                             <h4 className="widget-title1 text-center text-md-start">
                               {t("otherColors")}
@@ -521,7 +569,15 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                 </div>
               </div>
             </section>
-
+            <section>
+              <h1
+                style={{
+                  color: "#ccc",
+                }}
+                className="fs-6 me-2 text-end">
+                ID: {product.productID}
+              </h1>
+            </section>
             <section className="pro-desc-area">
               <div className="container">
                 <Tab.Container defaultActiveKey="dec">

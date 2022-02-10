@@ -7,6 +7,7 @@ export default function BrandsPage({ brandItems, brandData, title }) {
   return (
     <Shop
       allProducts={brandItems}
+      titleHead={title}
       title={title}
       full
       filterDropdown

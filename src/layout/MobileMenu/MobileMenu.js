@@ -140,10 +140,9 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                     key={`${categoryID}?=)${i}`}
                     className={`text-uppercase ${has_dropdown}`}>
                     <Link
-                      href={`/shop/${selectedCategoryName.replace(
-                        " ",
-                        "-"
-                      )}:${categoryID}`}>
+                      href={`/shop/${selectedCategoryName
+                        .toLowerCase()
+                        .replace(" ", "-")}:${categoryID}`}>
                       <a>{selectedCategoryName}</a>
                     </Link>
                     <InnerMobileMenu

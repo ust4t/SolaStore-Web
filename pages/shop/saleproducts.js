@@ -6,7 +6,14 @@ import Shop from "../../src/layout/Shop";
 const SaleProductPage = ({ saleProducts }) => {
   const { t } = useTranslation("home");
 
-  return <Shop allProducts={saleProducts} full title={t("sale")} />;
+  return (
+    <Shop
+      allProducts={saleProducts}
+      full
+      title={t("sale")}
+      titleHead="Sola Store | Оптом Женская одежда | Wholesale Women's Clothing"
+    />
+  );
 };
 
 export default SaleProductPage;

@@ -5,7 +5,14 @@ import Shop from "../../src/layout/Shop";
 
 export default function BestSeller({ bestSeller }) {
   const { t } = useTranslation("home");
-  return <Shop allProducts={bestSeller} full title={t("bestseller")} />;
+  return (
+    <Shop
+      allProducts={bestSeller}
+      full
+      title={t("bestseller")}
+      titleHead="Sola Store | Оптом Женская одежда | Wholesale Women's Clothing"
+    />
+  );
 }
 
 export async function getStaticProps({ locale }) {

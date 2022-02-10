@@ -7,7 +7,8 @@ export default function ShopPage({ catData, brandData, title }) {
   return (
     <Shop
       allProducts={catData}
-      title={title}
+      titleHead={`Sola Store | ${title.toUpperCase()}`}
+      title={title.toUpperCase()}
       full
       filterDropdown
       brands={brandData}
@@ -19,8 +20,6 @@ export async function getServerSideProps({ query, locale }) {
   const { catId } = query;
   const title = catId.slice(0, catId.indexOf(":")).replace("-", " ");
   const id = catId.slice(catId.indexOf(":") + 1);
-
-  console.log(catId);
 
   const [{ data: catData }, { data: brandData }] = await Promise.all([
     axios.get(
