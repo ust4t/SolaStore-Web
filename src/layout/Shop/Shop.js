@@ -144,7 +144,7 @@ const ShopLayout = ({
                                   <PopularCard
                                     setAnim={setCartAnim}
                                     productData={{
-                                      id: productItem.productID,
+                                      id: productItem.masterProductID,
                                       name: productItem.productShortName,
                                       images: productItem.pictures,
                                       singlePrice: productItem.singlePrice,

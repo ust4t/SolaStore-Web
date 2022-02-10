@@ -166,7 +166,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                   url: "https://www.solastore.com.tr/detail/",
                   id: product.productID,
                   name: product.productShortName,
-                  pictures: product.pictures[0].guidName,
+                  pictures: `${sources.imageMidSrc}${product.pictures[0].guidName}`,
                 }}
                 show={shareModal}
                 handleClose={() => setShareModal(false)}

@@ -50,7 +50,7 @@ function PopularCard({ productData, cartId }) {
   const changeDressColor = (variant) => {
     if (variant.pictures) {
       setCurrentImages({
-        id: variant.productID,
+        id: variant.masterProductID,
         pictures: variant.pictures,
       });
     } else {
@@ -138,7 +138,7 @@ function PopularCard({ productData, cartId }) {
           url: "https://www.solastore.com.tr/detail/",
           id,
           name,
-          pictures: currentImages.pictures[0].guidName,
+          pictures: `${sources.imageMidSrc}${currentImages.pictures[0].guidName}`,
         }}
         show={shareModal}
         handleClose={() => setShareModal(false)}

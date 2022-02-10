@@ -29,7 +29,7 @@ export default function OtherProducts({ products, id }) {
                   cartId={id}
                   productData={{
                     index,
-                    id: productData.productID,
+                    id: productData.masterProductID,
                     name: productData.productShortName,
                     images: productData.pictures,
                     sizes: productData.sizes,

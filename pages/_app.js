@@ -84,7 +84,7 @@ function MyApp({ Component, pageProps }) {
         <link
           rel="shortcut icon"
           type="image/x-icon"
-          href="logo/favicon/favicon.ico"
+          href="/images/logo/favicon/favicon.ico"
         />
         <link rel="manifest" href="/images/logo/favicon/manifest.json" />
       </Head>

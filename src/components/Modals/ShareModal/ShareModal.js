@@ -102,11 +102,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
             <div className="col-3 col-md-2">
               <PinterestShareButton
                 url={url}
-                media={`${
-                  urlDetails.picture
-                    ? `${sources.imageMidSrc}${urlDetails.picture}`
-                    : "/images/placeholder.jpg"
-                }`}>
+                media={`${urlDetails.picture || "/images/placeholder.jpg"}`}>
                 <PinterestIcon size={55} round={true} />
               </PinterestShareButton>
             </div>
@@ -115,11 +111,7 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
                 url={url}
                 title="Solastore"
                 description="Solastore"
-                image={`${
-                  urlDetails.picture
-                    ? `${sources.imageMidSrc}${urlDetails.picture}`
-                    : "/images/placeholder.jpg"
-                }`}>
+                image={`${urlDetails.picture || "/images/placeholder.jpg"}`}>
                 <VKIcon size={55} round={true} />
               </VKShareButton>
             </div>

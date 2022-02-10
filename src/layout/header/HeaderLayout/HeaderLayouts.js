@@ -43,7 +43,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
   useDetectScroll(handleScroll);
 
   return (
-    <header className={` ${darkBg ? "black-bg" : ""}`}>
+    <header className={darkBg ? "black-bg" : ""}>
       {news}
       <a
         href="https://api.whatsapp.com/send?phone=905554000005"

@@ -12,7 +12,7 @@ export default async function (req, res) {
       );
       const specificData = await product.json();
       allProducts.push({
-        id: popular.productID,
+        id: popular.masterProductID,
         name: popular.productShortName,
         images: popular.pictures,
         sizes: popular.sizes,
