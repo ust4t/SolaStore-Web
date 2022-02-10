@@ -135,9 +135,10 @@ function PopularCard({ productData, cartId }) {
       onMouseLeave={onMouseLeave}>
       <ShareModal
         urlDetails={{
+          url: "https://www.solastore.com.tr/detail/",
           id,
           name,
-          pictures: currentImages.pictures,
+          pictures: currentImages.pictures[0].guidName,
         }}
         show={shareModal}
         handleClose={() => setShareModal(false)}

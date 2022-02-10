@@ -19,6 +19,8 @@ const ShopLayout = ({
   defaultKey,
   full,
   title,
+  share,
+  shareDetails,
   titleHead,
   sortValue,
   active_,
@@ -74,6 +76,10 @@ const ShopLayout = ({
         <main>
           {!isHidden && (
             <PageTitle
+              share={share}
+              shareDetails={{
+                ...shareDetails,
+              }}
               pageTitle={title}
               active={isActiveHidden ? null : title}
             />
@@ -131,7 +137,7 @@ const ShopLayout = ({
                                 <div
                                   className={`${
                                     full
-                                      ? `col-lg-3 ${custom_col_6} col-sm-6 custom-col-10`
+                                      ? `col-6 col-lg-3 ${custom_col_6} col-sm-6 custom-col-10`
                                       : `col-lg-4 ${custom_col_6} col-sm-6 custom-col-10`
                                   } ${dblock(active, index, sort)}`}
                                   key={`${productItem.productID}-_*-|${index}`}>

@@ -1,15 +1,21 @@
+import { useState } from "react";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
+
+import ShareModal from "../components/Modals/ShareModal";
 
 const PageTitle = ({
   pageTitle,
   active,
   thankupage,
   thankupageTitle,
+  share,
+  shareDetails,
   id,
   navigation = false,
 }) => {
   const { t } = useTranslation("common");
+  const [shareModal, setShareModal] = useState(false);
   return (
     <div
       className="breadcrumb-bg pt-20 pb-20"
@@ -27,6 +33,20 @@ const PageTitle = ({
               )}
 
               <h3 className={thankupage ? "mb-2" : ""}>{pageTitle}</h3>
+              {share && (
+                <>
+                  <button
+                    onClick={() => setShareModal(true)}
+                    className="btn grenbtn1 rounded-3 p-3 py-2">
+                    Kategoriyi Paylaş
+                  </button>
+                  <ShareModal
+                    urlDetails={shareDetails}
+                    show={shareModal}
+                    handleClose={() => setShareModal(false)}
+                  />
+                </>
+              )}
               {thankupage && (
                 <p className="fs-20">
                   {thankupageTitle} <br /> Order ID: {id}

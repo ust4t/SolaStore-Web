@@ -86,7 +86,7 @@ function MyApp({ Component, pageProps }) {
           type="image/x-icon"
           href="logo/favicon/favicon.ico"
         />
-        <link rel="manifest" href="logo/favicon/manifest.json" />
+        <link rel="manifest" href="/images/logo/favicon/manifest.json" />
       </Head>
       <AllToaster />
       <QueryClientProvider client={queryClient}>

@@ -163,9 +163,10 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
             <section className="product-details-area pt-50 pb-50">
               <ShareModal
                 urlDetails={{
+                  url: "https://www.solastore.com.tr/detail/",
                   id: product.productID,
                   name: product.productShortName,
-                  pictures: product.pictures,
+                  pictures: product.pictures[0].guidName,
                 }}
                 show={shareModal}
                 handleClose={() => setShareModal(false)}
@@ -314,7 +315,10 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                                   href="#">
                                   <div
                                     className="details-filter-row details-row-size"
-                                    style={{ margin: 10, cursor: "pointer" }}>
+                                    style={{
+                                      margin: "20px 10px",
+                                      cursor: "pointer",
+                                    }}>
                                     <div className="product-nav product-nav-thumbs">
                                       <span className="productvar cursor-pointer">
                                         <Image

@@ -23,12 +23,10 @@ import {
 import { modalContainer, copyText } from "./ShareModal.module.css";
 import sources from "../../../../sources";
 
-const shareUrl = "https://www.solastore.com.tr/detail/";
-
 export default function ShareModal({ show, handleClose, urlDetails }) {
-  const url = `${shareUrl}${urlDetails.name.toLowerCase().replace(" ", "-")}:${
-    urlDetails.id
-  }`;
+  const url = `${urlDetails.url}${urlDetails.name
+    .toLowerCase()
+    .replace(" ", "-")}:${urlDetails.id}`;
   const { t } = useTranslation("common");
 
   const handleCopyText = (e) => {
@@ -63,12 +61,12 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
           </div>
           <div className="row px-md-2 mx-0 gy-3">
             <div className="col-3 col-md-2">
-              <WhatsappShareButton url={url} title="Solastore" separator=":: ">
+              <WhatsappShareButton url={url} title="Solastore" separator=": ">
                 <WhatsappIcon size={55} round={true} />
               </WhatsappShareButton>
             </div>
             <div className="col-3 col-md-2">
-              <TelegramShareButton url={url} title="Solastore" separator=":: ">
+              <TelegramShareButton url={url} title="Solastore" separator=": ">
                 <TelegramIcon size={55} round={true} />
               </TelegramShareButton>
             </div>
@@ -92,7 +90,12 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
               <TwitterShareButton
                 url={url}
                 title="Solastore"
-                hashtags={["solastore"]}>
+                hashtags={[
+                  "solastore",
+                  "wholesale",
+                  "fashion",
+                  "Women's Clothing",
+                ]}>
                 <TwitterIcon size={55} round={true} />
               </TwitterShareButton>
             </div>
@@ -100,8 +103,8 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
               <PinterestShareButton
                 url={url}
                 media={`${
-                  urlDetails.pictures[0]
-                    ? `${sources.imageMidSrc}${urlDetails.pictures[0].guidName}`
+                  urlDetails.picture
+                    ? `${sources.imageMidSrc}${urlDetails.picture}`
                     : "/images/placeholder.jpg"
                 }`}>
                 <PinterestIcon size={55} round={true} />
@@ -113,8 +116,8 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
                 title="Solastore"
                 description="Solastore"
                 image={`${
-                  urlDetails.pictures[0]
-                    ? `${sources.imageMidSrc}${urlDetails.pictures[0].guidName}`
+                  urlDetails.picture
+                    ? `${sources.imageMidSrc}${urlDetails.picture}`
                     : "/images/placeholder.jpg"
                 }`}>
                 <VKIcon size={55} round={true} />

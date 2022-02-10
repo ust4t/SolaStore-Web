@@ -3,12 +3,18 @@ import axios from "axios";
 
 import Shop from "../../src/layout/Shop";
 
-export default function ShopPage({ catData, brandData, title }) {
+export default function ShopPage({ catData, brandData, title, id }) {
   return (
     <Shop
       allProducts={catData}
       titleHead={`Sola Store | ${title.toUpperCase()}`}
       title={title.toUpperCase()}
+      share={true}
+      shareDetails={{
+        url: `https://www.solastore.com.tr/shop/`,
+        name: title,
+        id,
+      }}
       full
       filterDropdown
       brands={brandData}
@@ -35,6 +41,7 @@ export async function getServerSideProps({ query, locale }) {
       catData: catData.reverse(),
       brandData: brandData,
       title,
+      id,
     },
   };
 }
