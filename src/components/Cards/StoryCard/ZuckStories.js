@@ -15,7 +15,9 @@ export default class ZuckStories extends Component {
           story.productShortName,
           `${sources.imageMinSrc}${story.picture_1}`,
           story.productShortName,
-          `/detail/${story.productID}`,
+          `/detail/${story.productShortName.toLowerCase().replace(" ", "-")}:${
+            story.productID
+          }`,
           timestamp(),
           story.pictures.map((subStory) => [
             story.productShortName,
@@ -23,7 +25,9 @@ export default class ZuckStories extends Component {
             story.pictures.length,
             `${sources.imageMaxSrc}${subStory.guidName}`,
             `${sources.imageMaxSrc}${subStory.guidName}`,
-            `/detail/${story.productID}`,
+            `/detail/${story.productShortName
+              .toLowerCase()
+              .replace(" ", "-")}:${story.productID}`,
             "Ürüne tıklayın",
             false,
             timestamp(),

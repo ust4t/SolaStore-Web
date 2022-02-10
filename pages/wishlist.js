@@ -74,10 +74,9 @@ const Wishlist = () => {
                                 <tr key={`${productID}--*?${i}`}>
                                   <td className="product-thumbnail">
                                     <Link
-                                      href={`/detail/${productShortName.replace(
-                                        " ",
-                                        "-"
-                                      )}:${productID}`}>
+                                      href={`/detail/${productShortName
+                                        .toLowerCase()
+                                        .replace(" ", "-")}:${productID}`}>
                                       <a>
                                         <Image
                                           src={`${sources.imageMidSrc}${picture_1}`}
@@ -90,10 +89,9 @@ const Wishlist = () => {
                                   </td>
                                   <td className="product-name">
                                     <Link
-                                      href={`/detail/${productShortName.replace(
-                                        " ",
-                                        "-"
-                                      )}:${productID}`}>
+                                      href={`/detail/${productShortName
+                                        .toLowerCase()
+                                        .replace(" ", "-")}:${productID}`}>
                                       <a href="#">{productShortName}</a>
                                     </Link>
                                   </td>

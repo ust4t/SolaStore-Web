@@ -50,19 +50,21 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
   const productSize = [...product.pictures, product.video_1].filter(
     (item) => item !== null
   ).length;
+  const wishlist =
+    state.wishlistData &&
+    state.wishlistData.find(
+      (wishlist) => wishlist.productID === product.productID
+    );
+
   useEffect(() => {
     if (product.video_1 && videoRef.current) videoRef.current.pause();
   }, [product]);
 
   useEffect(() => {
-    const wishlist =
-      product &&
-      state.wishlistData &&
-      state.wishlistData.find(
-        (wishlist) => wishlist.productID === product.productID
-      );
-    setIsLiked(wishlist ? true : false);
-  }, []);
+    if (wishlist) {
+      setIsLiked(true);
+    }
+  }, [wishlist]);
 
   const handleCartAnim = () => {
     let imgtodrag = document.getElementsByClassName("detailPos")[0];
@@ -323,10 +325,9 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                       <div className="col-5 col-md-4">
                         <div className="card border p-2">
                           <Link
-                            href={`/brands/${brand.brandName.replace(
-                              " ",
-                              "-"
-                            )}:${brand.brandID}`}>
+                            href={`/brands/${brand.brandName
+                              .toLowerCase()
+                              .replace(" ", "-")}:${brand.brandID}`}>
                             <div>
                               <Image
                                 className="cursor-pointer"
@@ -340,10 +341,9 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                           </Link>
                           <p className="card-body text-center px-1 py-0 m-0 my-1">
                             <Link
-                              href={`/brands/${brand.brandName.replace(
-                                " ",
-                                "-"
-                              )}:${brand.brandID}`}>
+                              href={`/brands/${brand.brandName
+                                .toLowerCase()
+                                .replace(" ", "-")}:${brand.brandID}`}>
                               <span className={brandStyle}>
                                 {brand.brandName}
                               </span>
@@ -371,10 +371,9 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                         <small>
                           <span className="text-muted">{t("brand")}:</span>
                           <Link
-                            href={`/brands/${brand.brandName.replace(
-                              " ",
-                              "-"
-                            )}:${brand.brandID}`}>
+                            href={`/brands/${brand.brandName
+                              .toLowerCase()
+                              .replace(" ", "-")}:${brand.brandID}`}>
                             <span
                               className={`${brandStyle} ${smallBrandStyle}`}>
                               {brand.brandName}

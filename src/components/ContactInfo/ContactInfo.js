@@ -32,7 +32,11 @@ export default function ContactInfo() {
                 style={{
                   maxWidth: "200px",
                 }}>
-                Mimar Kemalettin, Mesihpaşa Cd. No:60, 34050 Fatih/İstanbul
+                <a
+                  href="https://www.google.com/maps?ll=41.007997,28.958228&z=14&t=m&hl=tr&gl=TR&mapclient=embed&cid=1563881826297615043"
+                  target="_blank">
+                  Mimar Kemalettin, Mesihpaşa Cd. No:60, 34050 Fatih/İstanbul
+                </a>
               </p>
             </div>
           </li>
@@ -43,13 +47,13 @@ export default function ContactInfo() {
             <div className={`${content} ${content_phone}`}>
               <h5>Telefon</h5>
               <p>
-                <a href="tel:">+90 (0212) 458 45 00</a>
+                <a href="tel:+9002124584500">+90 (0212) 458 45 00</a>
               </p>
               <p>
-                <a href="tel:">+90 (0555) 400 00 05</a>
+                <a href="tel:+9005554000005">+90 (0555) 400 00 05</a>
               </p>
               <p>
-                <a href="tel:">+90 (0555) 400 00 11</a>
+                <a href="tel:+9005554000011">+90 (0555) 400 00 11</a>
               </p>
             </div>
           </li>

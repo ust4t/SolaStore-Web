@@ -37,8 +37,6 @@ function PopularCard({ productData, cartId }) {
   const oldUnitPrice = oldPrice / sizeNum;
   const originalDiscount = oldUnitPrice - singlePrice;
 
-  // const chooseId = auth.state === "guest" ? auth.uid : auth.rnd_id;
-
   const wishlist =
     state.wishlistData &&
     state.wishlistData.find((item) => item.productID === id);
@@ -168,7 +166,9 @@ function PopularCard({ productData, cartId }) {
               ? "opacity-0 animate__fadeIn"
               : "opacity-100 animate__fadeOut"
           }`}>
-          <Link href={`/detail/${name.replace(" ", "-")}:${id}`} locale={lang}>
+          <Link
+            href={`/detail/${name.toLowerCase().replace(" ", "-")}:${id}`}
+            locale={lang}>
             <a>
               <Image
                 className="pro-image-front"
@@ -192,7 +192,9 @@ function PopularCard({ productData, cartId }) {
               ? "opacity-0 animate__fadeIn"
               : "opacity-100 animate__fadeOut"
           }`}>
-          <Link href={`/detail/${name.replace(" ", "-")}:${id}`} locale={lang}>
+          <Link
+            href={`/detail/${name.toLowerCase().replace(" ", "-")}:${id}`}
+            locale={lang}>
             <a>
               <Image
                 src={`${
@@ -253,7 +255,7 @@ function PopularCard({ productData, cartId }) {
         <div className="pro-title">
           <h6>
             <Link
-              href={`/detail/${name.replace(" ", "-")}:${id}`}
+              href={`/detail/${name.toLowerCase().replace(" ", "-")}:${id}`}
               locale={lang}>
               {name}
             </Link>

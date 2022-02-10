@@ -21,10 +21,10 @@ function CartProductItem({ id, image, name, price, quantity }) {
   return (
     <div className="row align-items-center justify-content-center">
       <div className="col-7 d-flex align-items-center p-2">
-        <Link href={`/detail/${name.replace(" ", "-")}:${id}`}>
+        <Link href={`/detail/${name.toLowerCase().replace(" ", "-")}:${id}`}>
           <img src={image} className={`${dropdown_img} cursor-pointer`} />
         </Link>
-        <Link href={`/detail/${name.replace(" ", "-")}:${id}`}>
+        <Link href={`/detail/${name.toLowerCase().replace(" ", "-")}:${id}`}>
           <p
             className={`fs-6 cursor-pointer ${dropdown_link}`}
             style={{

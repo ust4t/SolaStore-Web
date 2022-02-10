@@ -9,25 +9,16 @@ const hostname = "localhost";
 const port = process.env.PORT;
 const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
+// const cors = require('cors');
 
 app.prepare().then(() => {
   const server = express();
+  //   const corsOptions = {
+  //     origin: '*',
+  //     optionsSuccessStatus: 200
+  //  }
 
-  // server.use(function (req, res, next) {
-  //   //allow cross origin requests
-  //   const origin =
-  //     req.headers.origin == `http://${hostname}:${port}`
-  //       ? `http://${hostname}:${port}`
-  //       : "https://solastore.com.tr";
-  //   res.setHeader("Access-Control-Allow-Methods", "POST, GET");
-  //   res.header("Access-Control-Allow-Origin", origin);
-  //   res.header(
-  //     "Access-Control-Allow-Headers",
-  //     "Origin, X-Requested-With, Content-Type, Accept"
-  //   );
-  //   res.header("Access-Control-Allow-Credentials", true);
-  //   next();
-  // });
+  //   server.use(cors(corsOptions));
 
   server.set("trust proxy", 1);
 

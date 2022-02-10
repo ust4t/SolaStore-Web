@@ -33,7 +33,13 @@ export default function OrderDetail({ orderData }) {
         orderData.map((item, i) => (
           <div
             key={`${i}_?.`}
-            onClick={() => Router.push(`/detail/${item.productID}`)}
+            onClick={() =>
+              Router.push(
+                `/detail/${item.productName.toLowerCase().replace(" ", "-")}:${
+                  item.productID
+                }`
+              )
+            }
             className={`row justify-content-center align-items-center ${orderButton}`}>
             <div className="col-2">
               <Image

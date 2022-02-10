@@ -34,13 +34,16 @@ export const DefaultFooter = ({ darkBg }) => {
                 </div>
                 <div className="footer-text mt-45">
                   <h6>
-                    {t("tel")}:<span> +90 (0212) 458 45 00</span>
+                    {t("tel")}:
+                    <a href="tel:+9002124584500"> +90 (0212) 458 45 00</a>
                   </h6>
                   <h6>
-                    {t("tel")} 2:<span> +90 (0555) 400 00 05</span>
+                    {t("tel")} 2:
+                    <a href="tel:+9005554000005"> +90 (0555) 400 00 05</a>
                   </h6>
                   <h6>
-                    {t("tel")} 3:<span> +90 (0555) 400 00 11</span>
+                    {t("tel")} 3:
+                    <a href="tel:+9005554000011"> +90 (0555) 400 00 11</a>
                   </h6>
                   <h6>
                     {t("address")}:
