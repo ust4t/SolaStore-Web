@@ -20,7 +20,9 @@ const ShopLayout = ({
   full,
   title,
   share,
-  shareDetails,
+  shareDetails = {
+    data: {},
+  },
   titleHead,
   sortValue,
   active_,

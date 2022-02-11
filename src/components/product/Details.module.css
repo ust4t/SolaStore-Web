@@ -8,7 +8,7 @@
   border-radius: 50%;
   cursor: pointer;
   border: none;
-  z-index: 300;
+  z-index: 150;
 }
 
 .navActive {
@@ -58,10 +58,10 @@
 
 @media (max-width: 500px) {
   .arrowLeft {
-    left: 20px;
+    left: 0px;
   }
   .arrowRight {
-    right: -1px;
+    right: 0px;
   }
 }
 
