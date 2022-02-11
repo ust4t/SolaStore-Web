@@ -78,8 +78,9 @@ const ShopLayout = ({
             <PageTitle
               share={share}
               shareDetails={{
-                ...shareDetails,
+                ...shareDetails.data,
               }}
+              shareTitle={shareDetails.title}
               pageTitle={title}
               active={isActiveHidden ? null : title}
             />

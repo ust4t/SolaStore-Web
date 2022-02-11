@@ -11,9 +11,12 @@ export default function ShopPage({ catData, brandData, title, id }) {
       title={title.toUpperCase()}
       share={true}
       shareDetails={{
-        url: `https://www.solastore.com.tr/shop/`,
-        name: title,
-        id,
+        data: {
+          url: `https://www.solastore.com.tr/shop/`,
+          name: title,
+          id,
+        },
+        title: "Kategoriyi Paylaş",
       }}
       full
       filterDropdown

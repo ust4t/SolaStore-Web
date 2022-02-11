@@ -11,6 +11,7 @@ const PageTitle = ({
   thankupageTitle,
   share,
   shareDetails,
+  shareTitle,
   id,
   navigation = false,
 }) => {
@@ -34,18 +35,18 @@ const PageTitle = ({
 
               <h3 className={thankupage ? "mb-2" : ""}>{pageTitle}</h3>
               {share && (
-                <>
+                <div className="d-flex d-lg-none justify-content-center">
                   <button
                     onClick={() => setShareModal(true)}
                     className="btn grenbtn1 rounded-3 p-3 py-2">
-                    Kategoriyi Paylaş
+                    {shareTitle}
                   </button>
                   <ShareModal
                     urlDetails={shareDetails}
                     show={shareModal}
                     handleClose={() => setShareModal(false)}
                   />
-                </>
+                </div>
               )}
               {thankupage && (
                 <p className="fs-20">

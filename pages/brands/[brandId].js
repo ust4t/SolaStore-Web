@@ -12,12 +12,15 @@ export default function BrandsPage({ brandItems, brandData, title, id }) {
       title={title.toUpperCase()}
       share={true}
       shareDetails={{
-        url: `https://www.solastore.com.tr/brands/`,
-        name: title,
-        id,
-        picture: `${sources.brand}${
-          brandData.filter((item) => item.brandID === Number(id))[0].guidName2
-        }`,
+        data: {
+          url: `https://www.solastore.com.tr/brands/`,
+          name: title,
+          id,
+          picture: `${sources.brand}${
+            brandData.filter((item) => item.brandID === Number(id))[0].guidName2
+          }`,
+        },
+        title: "Markayı Paylaş",
       }}
       full
       filterDropdown
