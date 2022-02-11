@@ -36,13 +36,13 @@ function MyApp({ Component, pageProps }) {
       });
     } catch (error) {
       console.log("second menu");
-      const { data: menu } = await axios.get(
-        `/api/getFullMenuNew?lang=${store.getState().lang}`
-      );
-      store.dispatch({
-        type: GET_MAIN_MENU,
-        payload: menu,
-      });
+      // const { data: menu } = await axios.get(
+      //   `/api/getFullMenuNew?lang=${store.getState().lang}`
+      // );
+      // store.dispatch({
+      //   type: GET_MAIN_MENU,
+      //   payload: menu,
+      // });
       console.log(error);
       toast.error("Menü alınırken hata oluştu");
     }
@@ -58,7 +58,7 @@ function MyApp({ Component, pageProps }) {
 
   const handleRouteChange = (url) => {
     if (typeof window !== "undefined") {
-      window.gtag("config", "G-55XK0B4F2P", {
+      window.gtag("config", "UA-73451034-1", {
         page_path: url,
       });
     }
@@ -123,22 +123,17 @@ function MyApp({ Component, pageProps }) {
         }}
       />
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-55XK0B4F2P"
-        strategy="afterInteractive"
-      />
-      {/* <Script
         src="https://www.googletagmanager.com/gtag/js?id=UA-73451034-1"
         strategy="afterInteractive"
-      /> */}
+      />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-55XK0B4F2P', { page_path: window.location.pathname });
+          gtag('config', 'UA-73451034-1', { page_path: window.location.pathname }); 
           `}
       </Script>
-      {/* gtag('config', 'UA-73451034-1'); */}
     </Provider>
   );
 }
