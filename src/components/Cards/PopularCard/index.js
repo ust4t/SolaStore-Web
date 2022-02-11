@@ -15,6 +15,7 @@ import {
   color_select,
   product_image_2,
   cart_button,
+  cartBtnMobile,
 } from "./PopularCard.module.css";
 
 function PopularCard({ productData, cartId }) {
@@ -161,6 +162,24 @@ function PopularCard({ productData, cartId }) {
             size="35px"
           />
         </span>
+        <span
+          className="position-absolute start-0 translate-middle m-4 cursor-pointer d-block d-lg-none"
+          style={{
+            top: "45px",
+            zIndex: "150",
+          }}>
+          <a
+            onClick={(e) => {
+              e.preventDefault();
+              setShareModal(true);
+            }}
+            href="#"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Share">
+            <i className="fas fa-share-alt fa-2x text-secondary"></i>
+          </a>
+        </span>
 
         <span
           className={`animate__animated ${product_image_1} animate__faster ${
@@ -213,8 +232,10 @@ function PopularCard({ productData, cartId }) {
             </a>
           </Link>
         </span>
-        <div className=" text-center ">
-          <div className={`${cart_button}`} onClick={onAddToCart}>
+        <div className="text-center d-block d-lg-none">
+          <div
+            className={`${cart_button} ${cartBtnMobile}`}
+            onClick={onAddToCart}>
             {t("basket")}
           </div>
         </div>
@@ -233,22 +254,24 @@ function PopularCard({ productData, cartId }) {
             title="Quick View">
             <i className="fas fa-eye" />
           </a> */}
-          <a
-            onClick={(e) => {
-              e.preventDefault();
-              setShareModal(true);
-            }}
-            className={`animate__animated animate__faster ${
-              currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
-            }`}
-            href="#"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Share">
-            <i className="fas fa-share-alt"></i>
-          </a>
+          <span className="d-none d-lg-block">
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                setShareModal(true);
+              }}
+              className={`animate__animated animate__faster ${
+                currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
+              }`}
+              href="#"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Share">
+              <i className="fas fa-share-alt"></i>
+            </a>
+          </span>
         </div>
-        {/* <div className="product-action text-center position-absolute bottom-0 start-50 translate-middle-x w-100 mb-0 p-0 ">
+        <div className="product-action text-center position-absolute bottom-0 start-50 translate-middle-x w-100 mb-0 p-0 d-none d-lg-block">
           <div
             className={`${cart_button} animate__animated animate__faster h-100 ${
               currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
@@ -256,7 +279,7 @@ function PopularCard({ productData, cartId }) {
             onClick={onAddToCart}>
             {t("basket")}
           </div>
-        </div> */}
+        </div>
       </div>
       <div className="pro-text">
         <div className="pro-title">
