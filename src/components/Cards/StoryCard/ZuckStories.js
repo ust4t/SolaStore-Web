@@ -68,7 +68,6 @@ export default class ZuckStories extends Component {
   }
 
   render() {
-    console.log(this.state.stories);
     const timelineItems = [];
 
     this.state.stories.map((story, storyId) => {

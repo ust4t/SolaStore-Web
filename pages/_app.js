@@ -5,13 +5,15 @@ import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useRouter } from "next/router";
 import axios from "axios";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 
 import AllToaster from "../src/components/AllToaser";
 import ScrollTop from "../src/layout/ScrollTop";
 import StoreProvider from "../src/context/StoreProvider";
 import store from "../src/redux/store";
 import { GET_MAIN_MENU, CREATE_USER_ID } from "../src/redux/action/type";
+import menuData from "../public/menuData.json";
+
 import "zuck.js/dist/skins/snapgram.min.css";
 import "zuck.js/dist/zuck.min.css";
 import "react-input-range/lib/css/index.css";
@@ -26,26 +28,26 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const queryClient = new QueryClient();
   const fetchMenu = async () => {
-    try {
-      const { data: menu } = await axios.get(
-        `/api/getFullMenu?lang=${store.getState().lang}`
-      );
-      store.dispatch({
-        type: GET_MAIN_MENU,
-        payload: menu,
-      });
-    } catch (error) {
-      console.log("second menu");
-      // const { data: menu } = await axios.get(
-      //   `/api/getFullMenuNew?lang=${store.getState().lang}`
-      // );
-      // store.dispatch({
-      //   type: GET_MAIN_MENU,
-      //   payload: menu,
-      // });
-      console.log(error);
-      toast.error("Menü alınırken hata oluştu");
-    }
+    // try {
+    // const { data: menu } = await axios.get(
+    //   `/api/getFullMenu?lang=${store.getState().lang}`
+    // );
+    store.dispatch({
+      type: GET_MAIN_MENU,
+      payload: menuData[store.getState().lang],
+    });
+    console.log(menuData[store.getState().lang]);
+    // } catch (error) {
+    // const { data: menu } = await axios.get(
+    //   `/api/getFullMenuNew?lang=${store.getState().lang}`
+    // );
+    // store.dispatch({
+    //   type: GET_MAIN_MENU,
+    //   payload: menu,
+    // });
+    //   console.log(error);
+    //   toast.error("Menü alınırken hata oluştu");
+    // }
   };
 
   const checkUser = async () => {

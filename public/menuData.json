@@ -1,0 +1,933 @@
+{
+  "tr": [
+    {
+      "categoryID": 19,
+      "selectedCategoryName": "ALT GİYİM",
+      "squareCategoryPictureID": 111222,
+      "squareCategoryPictureGuidName": "2b9a8495-5.jpg",
+      "subcategories": [
+        {
+          "categoryID": 31,
+          "selectedCategoryName": "PANTOLON",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 32,
+          "selectedCategoryName": "ETEK",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 34,
+          "selectedCategoryName": "ŞORT",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 18,
+      "selectedCategoryName": "ÜST GİYİM",
+      "squareCategoryPictureID": 111352,
+      "squareCategoryPictureGuidName": "6227809a-d.jpg",
+      "subcategories": [
+        {
+          "categoryID": 27,
+          "selectedCategoryName": "TRİKO",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 28,
+          "selectedCategoryName": "BLUZ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 29,
+          "selectedCategoryName": "TUNİK",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 37,
+      "selectedCategoryName": "BÜYÜK BEDEN",
+      "squareCategoryPictureID": 111424,
+      "squareCategoryPictureGuidName": "5beeb98d-b.jpg",
+      "subcategories": [
+        {
+          "categoryID": 43,
+          "selectedCategoryName": "UZUN ELBİSE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 87,
+          "selectedCategoryName": "BLUZ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 89,
+          "selectedCategoryName": "Elbise",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 93,
+          "selectedCategoryName": "TAKIM",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 97,
+          "selectedCategoryName": "GÜNLÜK ELBİSE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 98,
+          "selectedCategoryName": "KISA ELBİSE ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 99,
+          "selectedCategoryName": "PANTOLON ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 101,
+          "selectedCategoryName": "KABAN",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 102,
+          "selectedCategoryName": "ETEK",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 107,
+          "selectedCategoryName": "CEKET",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 108,
+          "selectedCategoryName": "YELEK",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 17,
+      "selectedCategoryName": "ELBİSE",
+      "squareCategoryPictureID": 111400,
+      "squareCategoryPictureGuidName": "82efdfc3-1.jpg",
+      "subcategories": [
+        {
+          "categoryID": 21,
+          "selectedCategoryName": "GÜNLÜK ELBİSE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 25,
+          "selectedCategoryName": "UZUN ELBİSE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 26,
+          "selectedCategoryName": "KISA ELBİSE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 95,
+          "selectedCategoryName": "TAKIM",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 96,
+          "selectedCategoryName": "TULUM",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 20,
+      "selectedCategoryName": "KABAN",
+      "squareCategoryPictureID": 106523,
+      "squareCategoryPictureGuidName": "abc396d7-6.jpg",
+      "subcategories": [
+        {
+          "categoryID": 35,
+          "selectedCategoryName": "CEKET",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 36,
+          "selectedCategoryName": "YELEK",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    }
+  ],
+
+  "en": [
+    {
+      "categoryID": 19,
+      "selectedCategoryName": "BOTTOM WEAR",
+      "squareCategoryPictureID": 111222,
+      "squareCategoryPictureGuidName": "2b9a8495-5.jpg",
+      "subcategories": [
+        {
+          "categoryID": 31,
+          "selectedCategoryName": "TROUSERS",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 32,
+          "selectedCategoryName": "SKIRT",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 34,
+          "selectedCategoryName": "SHORTS",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 37,
+      "selectedCategoryName": "BIG SIZE",
+      "squareCategoryPictureID": 111448,
+      "squareCategoryPictureGuidName": "2c001d94-8.jpg",
+      "subcategories": [
+        {
+          "categoryID": 43,
+          "selectedCategoryName": "OVERGOWN",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 87,
+          "selectedCategoryName": "BLOUSE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 89,
+          "selectedCategoryName": "DRESS",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 93,
+          "selectedCategoryName": "SUIT",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 97,
+          "selectedCategoryName": "DAILY DRESS",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 98,
+          "selectedCategoryName": "SHORT DRESS",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 99,
+          "selectedCategoryName": "TROUSERS",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 101,
+          "selectedCategoryName": "COAT",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 102,
+          "selectedCategoryName": " SKIRT",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 107,
+          "selectedCategoryName": "JACKET",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 108,
+          "selectedCategoryName": "VEST",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 17,
+      "selectedCategoryName": "DRESS",
+      "squareCategoryPictureID": 111445,
+      "squareCategoryPictureGuidName": "fedbb474-a.jpg",
+      "subcategories": [
+        {
+          "categoryID": 21,
+          "selectedCategoryName": "DAILY DRESS",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 25,
+          "selectedCategoryName": "OVERGOWN",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 26,
+          "selectedCategoryName": "SHORT DRESS",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 95,
+          "selectedCategoryName": "SUIT",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 96,
+          "selectedCategoryName": "COVERALLS",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 18,
+      "selectedCategoryName": "TOP CLOTHING",
+      "squareCategoryPictureID": 111352,
+      "squareCategoryPictureGuidName": "6227809a-d.jpg",
+      "subcategories": [
+        {
+          "categoryID": 27,
+          "selectedCategoryName": "KNITWEAR",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 28,
+          "selectedCategoryName": "BLOUSE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 29,
+          "selectedCategoryName": "TUNIC",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 20,
+      "selectedCategoryName": "COAT",
+      "squareCategoryPictureID": 106523,
+      "squareCategoryPictureGuidName": "abc396d7-6.jpg",
+      "subcategories": [
+        {
+          "categoryID": 35,
+          "selectedCategoryName": "JACKET",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 36,
+          "selectedCategoryName": "VEST",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    }
+  ],
+  "fr": [
+    {
+      "categoryID": 20,
+      "selectedCategoryName": "MANTEAU",
+      "squareCategoryPictureID": 106523,
+      "squareCategoryPictureGuidName": "abc396d7-6.jpg",
+      "subcategories": [
+        {
+          "categoryID": 35,
+          "selectedCategoryName": "VESTE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 36,
+          "selectedCategoryName": "GILET",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 19,
+      "selectedCategoryName": "USURE DU BAS",
+      "squareCategoryPictureID": 111222,
+      "squareCategoryPictureGuidName": "2b9a8495-5.jpg",
+      "subcategories": [
+        {
+          "categoryID": 31,
+          "selectedCategoryName": "PANTALON",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 32,
+          "selectedCategoryName": "JUPE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 34,
+          "selectedCategoryName": "SHORT",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 37,
+      "selectedCategoryName": "GRANDE TAILLE",
+      "squareCategoryPictureID": 111448,
+      "squareCategoryPictureGuidName": "2c001d94-8.jpg",
+      "subcategories": [
+        {
+          "categoryID": 43,
+          "selectedCategoryName": "ROBE LONG",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 87,
+          "selectedCategoryName": "Blouse",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 89,
+          "selectedCategoryName": "DRESS",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 93,
+          "selectedCategoryName": " COSTUME",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 97,
+          "selectedCategoryName": "ROBE QUOTIDIENNE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 98,
+          "selectedCategoryName": "ROBE COURTE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 99,
+          "selectedCategoryName": "PANTALON",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 101,
+          "selectedCategoryName": "MANTEAU",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 102,
+          "selectedCategoryName": " JUPE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 107,
+          "selectedCategoryName": "VESTE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 108,
+          "selectedCategoryName": "GILET",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 17,
+      "selectedCategoryName": "ROBE",
+      "squareCategoryPictureID": 111445,
+      "squareCategoryPictureGuidName": "fedbb474-a.jpg",
+      "subcategories": [
+        {
+          "categoryID": 21,
+          "selectedCategoryName": "DU QUOTIDIEN",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 25,
+          "selectedCategoryName": "ROBE LONG",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 26,
+          "selectedCategoryName": "ROBE COURTE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 95,
+          "selectedCategoryName": "COSTUME",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 96,
+          "selectedCategoryName": "SALOPETTE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 18,
+      "selectedCategoryName": "VÊTEMENTS TOP",
+      "squareCategoryPictureID": 111352,
+      "squareCategoryPictureGuidName": "6227809a-d.jpg",
+      "subcategories": [
+        {
+          "categoryID": 27,
+          "selectedCategoryName": "TRICOTS",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 28,
+          "selectedCategoryName": "CHEMISIER",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 29,
+          "selectedCategoryName": "TUNIQUE",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    }
+  ],
+  "ru": [
+    {
+      "categoryID": 18,
+      "selectedCategoryName": "ВЕPX",
+      "squareCategoryPictureID": 111352,
+      "squareCategoryPictureGuidName": "6227809a-d.jpg",
+      "subcategories": [
+        {
+          "categoryID": 27,
+          "selectedCategoryName": "ТРИКОТАЖ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 28,
+          "selectedCategoryName": "БЛУЗКИ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 29,
+          "selectedCategoryName": "ТУНИКИ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 20,
+      "selectedCategoryName": "ВЕРХНЯЯ ОДЕЖДА",
+      "squareCategoryPictureID": 106523,
+      "squareCategoryPictureGuidName": "abc396d7-6.jpg",
+      "subcategories": [
+        {
+          "categoryID": 35,
+          "selectedCategoryName": "КУРТКИ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 36,
+          "selectedCategoryName": "ЖИЛЕТКИ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 19,
+      "selectedCategoryName": "НИЗ",
+      "squareCategoryPictureID": 111222,
+      "squareCategoryPictureGuidName": "2b9a8495-5.jpg",
+      "subcategories": [
+        {
+          "categoryID": 31,
+          "selectedCategoryName": "БРЮКИ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 32,
+          "selectedCategoryName": "ЮБКИ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 34,
+          "selectedCategoryName": "ШОРТЫ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 37,
+      "selectedCategoryName": "БОЛЬШИЕ РАЗМЕРЫ",
+      "squareCategoryPictureID": 111424,
+      "squareCategoryPictureGuidName": "5beeb98d-b.jpg",
+      "subcategories": [
+        {
+          "categoryID": 43,
+          "selectedCategoryName": "ДЛИННЫЕ ПЛАТЬЯ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 87,
+          "selectedCategoryName": "БЛУЗКИ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 89,
+          "selectedCategoryName": "ПЛАТЬЯ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 93,
+          "selectedCategoryName": "КОСТЮМЫ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 97,
+          "selectedCategoryName": "ПОВСЕДНЕВНЫЕ ПЛАТЬЯ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 98,
+          "selectedCategoryName": "КОРОТКИЕ ПЛАТЬЯ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 99,
+          "selectedCategoryName": "ШТАНЫ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 101,
+          "selectedCategoryName": "ПАЛЬТО",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 102,
+          "selectedCategoryName": "ЮБКИ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 107,
+          "selectedCategoryName": "КУРТКИ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 108,
+          "selectedCategoryName": "ЖИЛЕТКИ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 17,
+      "selectedCategoryName": "ПЛАТЬЯ",
+      "squareCategoryPictureID": 111400,
+      "squareCategoryPictureGuidName": "82efdfc3-1.jpg",
+      "subcategories": [
+        {
+          "categoryID": 21,
+          "selectedCategoryName": "ПОВСЕДНЕВНЫЕ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 25,
+          "selectedCategoryName": "ДЛИННЫЕ ПЛАТЬЯ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 26,
+          "selectedCategoryName": "КОРОТКИЕ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 95,
+          "selectedCategoryName": "КОСТЮМЫ",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 96,
+          "selectedCategoryName": "КОМБИНЕЗОН",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    }
+  ],
+  "ar": [
+    {
+      "categoryID": 19,
+      "selectedCategoryName": "ارتداء القاع",
+      "squareCategoryPictureID": 111222,
+      "squareCategoryPictureGuidName": "2b9a8495-5.jpg",
+      "subcategories": [
+        {
+          "categoryID": 31,
+          "selectedCategoryName": "بنطلون",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 32,
+          "selectedCategoryName": "تنورة",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 34,
+          "selectedCategoryName": "السراويل القصيرة",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 18,
+      "selectedCategoryName": "أفضل الملابس",
+      "squareCategoryPictureID": 111352,
+      "squareCategoryPictureGuidName": "6227809a-d.jpg",
+      "subcategories": [
+        {
+          "categoryID": 27,
+          "selectedCategoryName": "تريكو",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 28,
+          "selectedCategoryName": "بلوزة",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 29,
+          "selectedCategoryName": "تونك",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 17,
+      "selectedCategoryName": "فستان",
+      "squareCategoryPictureID": 111445,
+      "squareCategoryPictureGuidName": "fedbb474-a.jpg",
+      "subcategories": [
+        {
+          "categoryID": 21,
+          "selectedCategoryName": "اليومي",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 25,
+          "selectedCategoryName": "فستان طویل",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 26,
+          "selectedCategoryName": "فستان قصير",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 95,
+          "selectedCategoryName": "بدلة",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 96,
+          "selectedCategoryName": "بشكل عام",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 20,
+      "selectedCategoryName": "معطف",
+      "squareCategoryPictureID": 106523,
+      "squareCategoryPictureGuidName": "abc396d7-6.jpg",
+      "subcategories": [
+        {
+          "categoryID": 35,
+          "selectedCategoryName": "السترة",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 36,
+          "selectedCategoryName": "سترة",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    },
+    {
+      "categoryID": 37,
+      "selectedCategoryName": "حجم كبير",
+      "squareCategoryPictureID": 111448,
+      "squareCategoryPictureGuidName": "2c001d94-8.jpg",
+      "subcategories": [
+        {
+          "categoryID": 43,
+          "selectedCategoryName": "فستانفستان طویل",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 87,
+          "selectedCategoryName": "Blouse",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 89,
+          "selectedCategoryName": "DRESS",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 93,
+          "selectedCategoryName": "بدلة",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 97,
+          "selectedCategoryName": "فستان يومي",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 98,
+          "selectedCategoryName": "فستان قصير",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 99,
+          "selectedCategoryName": "بنطلون",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 101,
+          "selectedCategoryName": "معطف",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 102,
+          "selectedCategoryName": "تنورة",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 107,
+          "selectedCategoryName": "السترة",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        },
+        {
+          "categoryID": 108,
+          "selectedCategoryName": "سترة",
+          "squareCategoryPictureID": 0,
+          "squareCategoryPictureGuidName": ""
+        }
+      ]
+    }
+  ]
+}

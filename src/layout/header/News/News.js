@@ -64,7 +64,7 @@ export const News_4 = () => {
           <div className="flagright d-flex align-items-center justify-content-center justify-content-lg-end">
             <div
               className={`${menu_btn} d-none d-lg-flex align-items-center position-relative me-1 shadow-none`}>
-              <h6 className="me-1 cursor-pointer">{t("myaccount")}</h6>
+              <h6 className="me-1 cursor-pointer fw-bold">{t("myaccount")}</h6>
               <i className="fas fa-chevron-down cursor-pointer mb-1" />
               <ul className={menu}>
                 {user.state === "user_registered" ? (
