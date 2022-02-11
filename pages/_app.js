@@ -36,7 +36,6 @@ function MyApp({ Component, pageProps }) {
       type: GET_MAIN_MENU,
       payload: menuData[store.getState().lang],
     });
-    console.log(menuData[store.getState().lang]);
     // } catch (error) {
     // const { data: menu } = await axios.get(
     //   `/api/getFullMenuNew?lang=${store.getState().lang}`

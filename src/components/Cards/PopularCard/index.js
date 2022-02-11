@@ -213,6 +213,11 @@ function PopularCard({ productData, cartId }) {
             </a>
           </Link>
         </span>
+        <div className=" text-center ">
+          <div className={`${cart_button}`} onClick={onAddToCart}>
+            {t("basket")}
+          </div>
+        </div>
         <div className="mb-4 product-action text-center">
           {/* <a
             className={`animate__animated animate__faster ${
@@ -243,7 +248,7 @@ function PopularCard({ productData, cartId }) {
             <i className="fas fa-share-alt"></i>
           </a>
         </div>
-        <div className="product-action text-center position-absolute bottom-0 start-50 translate-middle-x w-100 mb-0 p-0 ">
+        {/* <div className="product-action text-center position-absolute bottom-0 start-50 translate-middle-x w-100 mb-0 p-0 ">
           <div
             className={`${cart_button} animate__animated animate__faster h-100 ${
               currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
@@ -251,7 +256,7 @@ function PopularCard({ productData, cartId }) {
             onClick={onAddToCart}>
             {t("basket")}
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="pro-text">
         <div className="pro-title">
