@@ -87,7 +87,7 @@ const ShopLayout = ({
               active={isActiveHidden ? null : title}
             />
           )}
-          <section className="pt-45 px-4">
+          <section className="pt-45 px-2">
             <div className="container">
               {filterDropdown && (
                 <FilterDropdown

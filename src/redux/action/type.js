@@ -22,13 +22,9 @@ export const GET_PRODUCT = "GET_PRODUCT";
 export const GET_SINGLE = "GET_SINGLE";
 
 // filter
-export const FILTER_NAME = "FILTER_NAME";
+export const FILTER_CAT = "FILTER_CAT";
 export const FILTER_BRAND = "FILTER_BRAND";
-export const FILTER_CATAGORY = "FILTER_CATAGORY";
-export const FILTER_SIZE = "FILTER_SIZE";
 export const FILTER_PRICE = "FILTER_PRICE";
-export const FILTER_COLOR = "FILTER_COLOR";
-export const FILTER_TAG = "FILTER_TAG";
 
 // auth
 export const CREATE_USER_ID = "CREATE_USER_ID";

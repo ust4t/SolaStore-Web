@@ -35,3 +35,28 @@
   border-radius: 7px;
   font-weight: 500;
 }
+
+.playBtn {
+  background-color: #fff;
+  padding: 7px 13px;
+  border-radius: 50%;
+  text-align: center;
+  top: 4px;
+  font-size: 1.1rem;
+  right: -35px;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
+  z-index: 150;
+  transition: all 0.2s ease-in-out;
+}
+
+.playBtn:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0px 0px 12px rgba(255, 85, 0, 0.6);
+}
+
+@media (max-width: 400px) {
+  .playBtn {
+    padding: 5px 11px;
+  }
+}

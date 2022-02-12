@@ -414,7 +414,7 @@ ul {
 
 @media (min-width: 992px) {
   .modal-dialog {
-    max-width: 70%;
+    max-width: 35%;
   }
 }
 

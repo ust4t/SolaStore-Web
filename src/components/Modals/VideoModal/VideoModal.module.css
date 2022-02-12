@@ -1,0 +1,42 @@
+.modalStyle {
+  max-width: 40%;
+}
+
+.modalBg {
+  background-color: transparent;
+}
+
+.videoStyle {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.close_icon {
+  color: var(--color-primary);
+  background-color: #fff;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
+  padding: 0.3rem 0.5rem;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  top: 2%;
+  right: 2%;
+}
+
+.modalBtn {
+  padding: 10px 15px;
+  border-radius: 10px;
+  top: 1%;
+}
+
+@media screen and (max-width: 350px) {
+  .modalBtn {
+    font-size: 1.1rem;
+    padding: 6px 8px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modalStyle {
+    max-width: 70%;
+  }
+}

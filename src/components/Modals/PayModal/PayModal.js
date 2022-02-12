@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { Modal } from "react-bootstrap";
 
 import { StoreContext } from "../../../context/StoreProvider";

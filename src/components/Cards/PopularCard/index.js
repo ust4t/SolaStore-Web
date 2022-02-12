@@ -16,7 +16,9 @@ import {
   product_image_2,
   cart_button,
   cartBtnMobile,
+  playBtn,
 } from "./PopularCard.module.css";
+import VideoModal from "../../Modals/VideoModal";
 
 function PopularCard({ productData, cartId }) {
   const { t } = useTranslation("common");
@@ -33,6 +35,7 @@ function PopularCard({ productData, cartId }) {
   const [shareModal, setShareModal] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
+  const [videoModal, setVideoModal] = useState(false);
 
   const sizeNum = (sizes && sizes.split("-").length) || 0;
   const oldUnitPrice = oldPrice / sizeNum;
@@ -144,6 +147,13 @@ function PopularCard({ productData, cartId }) {
         show={shareModal}
         handleClose={() => setShareModal(false)}
       />
+      <VideoModal
+        link={`/detail/${name.toLowerCase().replace(" ", "-")}:${id}`}
+        show={videoModal}
+        handleClose={() => setVideoModal(false)}
+        video={productData.video_1}
+      />
+
       <div className="pro-img mb-20 position-relative">
         {!!oldPrice && oldPrice > 0 && (
           <span className="discount-tag">
@@ -162,6 +172,13 @@ function PopularCard({ productData, cartId }) {
             size="35px"
           />
         </span>
+        {productData.video_1 && (
+          <span
+            onClick={() => setVideoModal(true)}
+            className={`position-absolute translate-middle m-4 cursor-pointer ${playBtn}`}>
+            <i className="fas fa-play" />
+          </span>
+        )}
         <span
           className="position-absolute start-0 translate-middle m-4 cursor-pointer d-block d-lg-none"
           style={{
@@ -177,7 +194,11 @@ function PopularCard({ productData, cartId }) {
             data-toggle="tooltip"
             data-placement="top"
             title="Share">
-            <i className="fas fa-share-alt fa-2x text-secondary"></i>
+            <i
+              className="fas fa-share-alt fa-2x"
+              style={{
+                color: "#adadad",
+              }}></i>
           </a>
         </span>
 
