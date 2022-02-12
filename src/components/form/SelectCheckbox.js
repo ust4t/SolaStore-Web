@@ -52,6 +52,7 @@ export default function SelectCheckbox({
               key={`${brandID}*${i}`}
               className="d-block dropdown-option w-100 pt-2">
               <input
+                checked={filterData.includes(brandID)}
                 type="checkbox"
                 name="dropdown-group"
                 value={brandID}

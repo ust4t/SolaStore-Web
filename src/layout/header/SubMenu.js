@@ -1,18 +1,8 @@
 import Link from "next/link";
-import { SET_TITLE } from "../../redux/action/type";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import SubCategory from "./SubCategory";
 
 const SubMenu = ({ menu }) => {
-  const dispatch = useDispatch();
-
-  const changeTitle = (title) => {
-    dispatch({
-      type: SET_TITLE,
-      payload: title,
-    });
-  };
-
   return (
     <ul>
       {menu ? (
@@ -53,9 +43,7 @@ const SubMenu = ({ menu }) => {
                 href={`/shop/${selectedCategoryName
                   .toLowerCase()
                   .replace(" ", "-")}:${categoryID}`}>
-                <a onClick={() => changeTitle(selectedCategoryName)}>
-                  {selectedCategoryName}
-                </a>
+                <a>{selectedCategoryName}</a>
               </Link>
               <SubCategory
                 parentCategory={{

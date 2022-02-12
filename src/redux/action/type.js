@@ -29,9 +29,6 @@ export const FILTER_PRICE = "FILTER_PRICE";
 // auth
 export const CREATE_USER_ID = "CREATE_USER_ID";
 
-// title
-export const SET_TITLE = "SET_TITLE";
-
 // Utiles
 export const GET_CARTS = "GET_CARTS";
 export const ADD_TO_CART = "ADD_TO_CART";

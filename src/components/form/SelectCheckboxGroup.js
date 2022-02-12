@@ -66,6 +66,7 @@ function SelectCheckboxGroup({
                   <input
                     type="checkbox"
                     name="dropdown-group"
+                    checked={filterData.includes(mainCategoryID)}
                     value={mainCategoryID}
                     onChange={(e) =>
                       onParentSelect(e, [

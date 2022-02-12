@@ -6,12 +6,17 @@ import useTranslation from "next-translate/useTranslation";
 import SelectCheckboxGroup from "../../components/form/SelectCheckboxGroup";
 import SelectCheckbox from "../../components/form/SelectCheckbox";
 import PriceFilter from "../../components/product/filter/PriceFilter";
-import { SET_TITLE } from "../../redux/action/type";
+import {
+  FILTER_BRAND,
+  FILTER_CAT,
+  FILTER_PRICE,
+} from "../../redux/action/type";
 
 export default function FilterSearch({ brands }) {
   const { t } = useTranslation("common");
   const { push } = useRouter();
   const menu = useSelector((state) => state.menu.menuData);
+  const [price, setPrice] = useState({ min: 0, max: 130 });
   const dispatch = useDispatch();
 
   const [filterData, setFilterData] = useState({
@@ -22,8 +27,16 @@ export default function FilterSearch({ brands }) {
 
   const navigateToSearch = () => {
     dispatch({
-      type: SET_TITLE,
-      payload: "Search",
+      type: FILTER_CAT,
+      payload: filterData.category,
+    });
+    dispatch({
+      type: FILTER_BRAND,
+      payload: filterData.brand,
+    });
+    dispatch({
+      type: FILTER_PRICE,
+      payload: price,
     });
     push({
       pathname: "/filter",
@@ -142,7 +155,11 @@ export default function FilterSearch({ brands }) {
         </div>
         <div className="col-xs-12 col-md-4 col-lg-3 py-3">
           <h5 className="fs-4 text-center fw-bold pb-10">{t("price")}</h5>
-          <PriceFilter filterByPrice={handlePriceSelect} />
+          <PriceFilter
+            filterByPrice={handlePriceSelect}
+            value={price}
+            onChange={setPrice}
+          />
         </div>
         <div className="col-xs-12 col-lg-3 py-3 d-flex align-items-end justify-content-center h-100 rounded">
           <button

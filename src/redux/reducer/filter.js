@@ -3,7 +3,10 @@ import { FILTER_BRAND, FILTER_CAT, FILTER_PRICE } from "../action/type";
 const initialState = {
   category: [],
   brand: [],
-  price: "",
+  price: {
+    min: 0,
+    max: 130,
+  },
 };
 
 const filter = (state = initialState, action) => {

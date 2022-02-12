@@ -1,19 +1,8 @@
 import axios from "axios";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 
 import Shop from "../src/layout/Shop";
-import { SET_TITLE } from "../src/redux/action/type";
 
 const Search = ({ search, searchText }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch({
-      type: SET_TITLE,
-      payload: "Search",
-    });
-  }, []);
   return (
     <Shop
       titleHead="Sola Store | Оптом Женская одежда | Wholesale Women's Clothing"

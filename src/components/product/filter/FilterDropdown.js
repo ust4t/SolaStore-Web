@@ -23,9 +23,11 @@ export default function FilterDropdown({
   const { menu, filter } = useSelector((state) => state);
   const dispatch = useDispatch();
   const { push } = useRouter();
+  const [price, setPrice] = useState({
+    min: filter.price.min,
+    max: filter.price.max,
+  });
   const isMounted = useRef(false);
-
-  console.log("filter", filter);
 
   // const [filterData, setFilterData] = useState({
   //   category: [],
@@ -41,7 +43,7 @@ export default function FilterDropdown({
         query: {
           categoryIds: filter.category.join(","),
           brandIds: filter.brand.join(","),
-          searchPrice: filter.price,
+          searchPrice: `${filter.price.min}-${filter.price.max}`,
           // categoryIds: filterData.category.join(","),
           // brandIds: filterData.brand.join(","),
           // searchPrice: filterData.price,
@@ -156,7 +158,10 @@ export default function FilterDropdown({
     // });
     dispatch({
       type: FILTER_PRICE,
-      payload: `${min}-${max}`,
+      payload: {
+        min,
+        max,
+      },
     });
   };
 
@@ -222,6 +227,8 @@ export default function FilterDropdown({
         <PriceFilter
           filterByPrice={handlePriceSlider}
           setActive_={setActive_}
+          value={price}
+          onChange={setPrice}
         />
       </div>
     </div>

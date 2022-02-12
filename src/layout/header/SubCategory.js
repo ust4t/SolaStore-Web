@@ -1,10 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import Link from "next/link";
-import Image from "next/image";
 
 import sources from "../../../sources";
-import { SET_TITLE } from "../../redux/action/type";
 import {
   banner,
   megamenu,
@@ -15,15 +12,6 @@ import {
 } from "./SubCategory.module.css";
 
 function SubCategory({ picture, subMenuData, parentCategory }) {
-  const dispatch = useDispatch();
-
-  const changeTitle = (title) => {
-    dispatch({
-      type: SET_TITLE,
-      payload: title,
-    });
-  };
-
   // return (
   //   <ul className="submenu submenu-two">
   //     <div className="row no-gutters justify-content-center">
@@ -84,10 +72,7 @@ function SubCategory({ picture, subMenuData, parentCategory }) {
           <ul>
             {!!subMenuData &&
               subMenuData.map(({ selectedCategoryName, categoryID }, i) => (
-                <li
-                  className={megamenu}
-                  key={`${i}_0_${i}`}
-                  onClick={() => changeTitle(selectedCategoryName)}>
+                <li className={megamenu} key={`${i}_0_${i}`}>
                   <Link
                     href={`/shop/${selectedCategoryName
                       .toLowerCase()
