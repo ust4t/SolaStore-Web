@@ -1,3 +1,4 @@
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import React from "react";
 import { Modal } from "react-bootstrap";
@@ -5,19 +6,19 @@ import sources from "../../../../sources";
 
 import {
   videoStyle,
-  modalStyle,
   close_icon,
   modalBtn,
   modalBg,
 } from "./VideoModal.module.css";
 
 export default function VideoModal({ show, handleClose, video, link }) {
+  const { t } = useTranslation("home");
+
   return (
     <Modal
       contentClassName={modalBg}
       show={show}
       onHide={handleClose}
-      dialogClassName={modalStyle}
       centered
       dialogClassName="justify-content-center"
       aria-labelledby="share-modal-title">
@@ -39,7 +40,7 @@ export default function VideoModal({ show, handleClose, video, link }) {
           </video>
           <Link href={link}>
             <button className={`btn grenbtn1 position-absolute ${modalBtn}`}>
-              Ürüne Git
+              {t("seeProduct")}
             </button>
           </Link>
         </div>

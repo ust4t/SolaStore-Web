@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
+import useTranslation from "next-translate/useTranslation";
 
 import {
   ADD_TO_CART,
@@ -13,7 +14,7 @@ import useQueryMutation from "./useQueryMutation";
 
 export default function useCart(dispatch) {
   const user = useSelector((state) => state.auth);
-  // const chooseId = user.state === "guest" ? user.uid : user.rnd_id;
+  const { t } = useTranslation("common");
   const { isLoading: isCartLoading, refetch: cartRefetch } = useQuery(
     `cart_${user.uid}`,
     () =>
@@ -42,7 +43,7 @@ export default function useCart(dispatch) {
       {
         onSuccess: () => {
           cartRefetch();
-          toast.success("Added order to cart");
+          toast.success(t("cartAdded"));
         },
       }
     );
@@ -59,51 +60,51 @@ export default function useCart(dispatch) {
       {
         onSuccess: ({ data }) => {
           cartRefetch();
-          toast.error("Removed From Cart");
+          toast.error(t("cartRemoved"));
         },
       }
     );
   };
 
-  const incrementQuantity = (creds) => {
-    dispatch({
-      type: INCREMENT_QUANTITY,
-    });
-    mutate(
-      {
-        url: `/api/cart/increaseProductCount?user=${creds.user}&ProductID=${creds.id}`,
-      },
-      {
-        onSuccess: ({ data }) => {
-          cartRefetch();
-          toast.success("Increased Quantity");
-        },
-      }
-    );
-  };
+  // const incrementQuantity = (creds) => {
+  //   dispatch({
+  //     type: INCREMENT_QUANTITY,
+  //   });
+  //   mutate(
+  //     {
+  //       url: `/api/cart/increaseProductCount?user=${creds.user}&ProductID=${creds.id}`,
+  //     },
+  //     {
+  //       onSuccess: ({ data }) => {
+  //         cartRefetch();
+  //         toast.success("Increased Quantity");
+  //       },
+  //     }
+  //   );
+  // };
 
-  const decrementQuantity = (creds) => {
-    dispatch({
-      type: DECREMENT_QUANTITY,
-    });
-    mutate(
-      {
-        url: `/api/cart/decreaseProductCount?user=${creds.user}&ProductID=${creds.id}`,
-      },
-      {
-        onSuccess: ({ data }) => {
-          cartRefetch();
-          toast.error("Decreased Quantity");
-        },
-      }
-    );
-  };
+  // const decrementQuantity = (creds) => {
+  //   dispatch({
+  //     type: DECREMENT_QUANTITY,
+  //   });
+  //   mutate(
+  //     {
+  //       url: `/api/cart/decreaseProductCount?user=${creds.user}&ProductID=${creds.id}`,
+  //     },
+  //     {
+  //       onSuccess: ({ data }) => {
+  //         cartRefetch();
+  //         toast.error("Decreased Quantity");
+  //       },
+  //     }
+  //   );
+  // };
 
   const cartActions = {
     addToCartAction,
     removeFromCart,
-    incrementQuantity,
-    decrementQuantity,
+    // incrementQuantity,
+    // decrementQuantity,
     cartRefetch,
   };
 

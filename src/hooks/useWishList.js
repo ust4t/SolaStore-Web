@@ -9,7 +9,6 @@ import useQueryMutation from "./useQueryMutation";
 export default function useWishList(dispatch) {
   const { t } = useTranslation("common");
   const { lang, auth } = useSelector((state) => state);
-  // const chooseId = auth.state === "guest" ? auth.uid : auth.rnd_id;
   const { isLoading: isWishlistLoading, refetch: wishlistRefetch } = useQuery(
     "wishlist",
     () =>
@@ -35,7 +34,7 @@ export default function useWishList(dispatch) {
       {
         onSuccess: () => {
           wishlistRefetch();
-          toast.success("Added to wishlist");
+          toast.success(t("addWishlist"));
         },
       }
     );

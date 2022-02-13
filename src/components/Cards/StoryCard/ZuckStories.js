@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import Zuck from "zuck.js";
+import withTranslation from "next-translate/withTranslation";
 
 import sources from "../../../../sources";
 import { timestamp } from "../../../utils/utils";
 
-export default class ZuckStories extends Component {
+class ZuckStories extends Component {
   constructor(props) {
     super(props);
     this.storiesElement = null;
     this.storiesApi = null;
+    const { t } = this.props.i18n;
     this.state = {
       stories: this.props.storiesData.map((story, i) =>
         Zuck.buildTimelineItem(
@@ -28,7 +30,7 @@ export default class ZuckStories extends Component {
             `/detail/${story.productShortName
               .toLowerCase()
               .replace(" ", "-")}:${story.productID}`,
-            "Ürüne tıklayın",
+            t("home:seeProduct"),
             false,
             timestamp(),
           ])
@@ -148,3 +150,5 @@ export default class ZuckStories extends Component {
     );
   }
 }
+
+export default withTranslation(ZuckStories);

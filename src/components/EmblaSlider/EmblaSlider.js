@@ -1,7 +1,5 @@
-import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { useState, useEffect, useCallback } from "react";
-import Link from "next/link";
 
 import {
   emblaMain,
@@ -35,7 +33,7 @@ export default function EmblaSlider({ children, config }) {
     <>
       <div className={emblaMain}>
         <div className={embla__viewport} ref={viewportRef}>
-          <div className={embla__container}>{children}</div>
+          <div className={`${embla__container}`}>{children}</div>
         </div>
         {/* <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
         <NextButton onClick={scrollNext} enabled={nextBtnEnabled} /> */}

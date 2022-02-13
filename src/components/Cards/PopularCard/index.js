@@ -190,12 +190,15 @@ function PopularCard({ productData, cartId }) {
               e.preventDefault();
               setShareModal(true);
             }}
+            style={{
+              fontSize: "1.3rem",
+            }}
             href="#"
             data-toggle="tooltip"
             data-placement="top"
             title="Share">
             <i
-              className="fas fa-share-alt fa-2x"
+              className="fas fa-share-alt"
               style={{
                 color: "#adadad",
               }}></i>

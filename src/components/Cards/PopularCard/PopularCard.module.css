@@ -38,11 +38,11 @@
 
 .playBtn {
   background-color: #fff;
-  padding: 7px 13px;
+  padding: 4px 10px;
   border-radius: 50%;
   text-align: center;
   top: 4px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   right: -35px;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
   z-index: 150;

@@ -8,7 +8,7 @@ import FilterSearch from "../src/layout/FilterSearch";
 import Layout from "../src/layout/Layout";
 import SliderProducts from "../src/components/sliders/sliderProducts";
 import TabLayout from "../src/layout/TabLayout";
-// import ReelsCard from "../src/components/Cards/ReelsCard";
+import ReelsCard from "../src/components/Cards/ReelsCard";
 const BrandsLayout = dynamic(() => import("../src/layout/BrandsLayout"));
 const Categories = dynamic(() => import("../src/layout/Categories"));
 const ZuckStories = dynamic(
@@ -38,7 +38,7 @@ const Index4 = ({
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
         <ZuckStories storiesData={newProducts.slice(0, 5)} />
-        {/* <ReelsCard /> */}
+        {/* <ReelsCard reels={newProducts.slice(0, 5)} /> */}
         <SliderProducts sliders={slidersData} />
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <IntroBanners banners={bannersData} />
