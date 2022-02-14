@@ -115,7 +115,9 @@ function PopularCard({ productData, cartId }) {
           url: "https://www.solastore.com.tr/detail/",
           id,
           name,
-          pictures: `${sources.imageMidSrc}${currentImages.pictures[0].guidName}`,
+          pictures: !!currentImages.pictures.length
+            ? `${sources.imageMidSrc}${currentImages.pictures[0].guidName}`
+            : "/images/placeholder.jpg",
         }}
         show={shareModal}
         handleClose={() => setShareModal(false)}
@@ -190,11 +192,11 @@ function PopularCard({ productData, cartId }) {
             <a>
               <Image
                 className="pro-image-front"
-                src={`${
-                  currentImages.pictures[0]
+                src={
+                  !!currentImages.pictures.length
                     ? `${sources.imageMidSrc}${currentImages.pictures[0].guidName}`
                     : "/images/placeholder.jpg"
-                }`}
+                }
                 width={400}
                 height={600}
                 alt={name}
@@ -215,11 +217,11 @@ function PopularCard({ productData, cartId }) {
             locale={lang}>
             <a>
               <Image
-                src={`${
-                  currentImages.pictures[1]
+                src={
+                  !!currentImages.pictures.length
                     ? `${sources.imageMidSrc}${currentImages.pictures[1].guidName}`
                     : "/images/placeholder.jpg"
-                }`}
+                }
                 alt={name}
                 width={400}
                 height={600}

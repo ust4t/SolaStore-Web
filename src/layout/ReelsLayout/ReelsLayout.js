@@ -11,6 +11,7 @@ import {
 import ReelsCard from "../../components/Cards/ReelsCard";
 import ShareModal from "../../components/Modals/ShareModal";
 import sources from "../../../sources";
+import useDetectOutside from "../../hooks/useDetectOutside";
 
 export default function ReelsLayout({ reels, onClose, open }) {
   const [viewportRef, embla] = useEmblaCarousel({
@@ -28,6 +29,7 @@ export default function ReelsLayout({ reels, onClose, open }) {
     },
   });
   const videoRef = useRef([]);
+  const reelsRef = useRef(null);
 
   const onSelect = useCallback(() => {
     if (!embla) return;
@@ -35,8 +37,10 @@ export default function ReelsLayout({ reels, onClose, open }) {
       video.currentTime = 0;
       video.pause();
     });
-    videoRef.current[embla.selectedScrollSnap()].play();
+    // videoRef.current[embla.selectedScrollSnap()].play();
   }, [embla]);
+
+  useDetectOutside(reelsRef, onClose);
 
   useEffect(() => {
     if (!open) {
@@ -67,7 +71,7 @@ export default function ReelsLayout({ reels, onClose, open }) {
           urlDetails={shareModal.details}
         />
         <div className={embla__viewport} ref={viewportRef}>
-          <div className={embla__container}>
+          <div ref={reelsRef} className={embla__container}>
             {reels &&
               reels
                 .filter((reel) => reel.video_1 !== null)

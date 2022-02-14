@@ -136,35 +136,33 @@ const ShopLayout = ({
                         <Tab.Pane eventKey="grid">
                           <div className="row custom-row-10">
                             {products &&
-                              products
-                                .filter((product) => product.picture_1 !== null)
-                                .map((productItem, index) => (
-                                  <div
-                                    className={`${
-                                      full
-                                        ? `col-6 col-lg-3 ${custom_col_6} col-sm-6 custom-col-10`
-                                        : `col-lg-4 ${custom_col_6} col-sm-6 custom-col-10`
-                                    } ${dblock(active, index, sort)}`}
-                                    key={`${productItem.productID}-_*-|${index}`}>
-                                    <PopularCard
-                                      setAnim={setCartAnim}
-                                      productData={{
-                                        id: productItem.masterProductID,
-                                        name: productItem.productShortName,
-                                        images: productItem.pictures,
-                                        singlePrice: productItem.singlePrice,
-                                        sizes: productItem.sizes,
-                                        price: productItem.price,
-                                        oldPrice: productItem.oldPrice,
-                                        productStockCode:
-                                          productItem.productStockCode,
-                                        video_1: productItem.video_1,
-                                        variants: productItem?.variants,
-                                        index,
-                                      }}
-                                    />
-                                  </div>
-                                ))}
+                              products.map((productItem, index) => (
+                                <div
+                                  className={`${
+                                    full
+                                      ? `col-6 col-lg-3 ${custom_col_6} col-sm-6 custom-col-10`
+                                      : `col-lg-4 ${custom_col_6} col-sm-6 custom-col-10`
+                                  } ${dblock(active, index, sort)}`}
+                                  key={`${productItem.productID}-_*-|${index}`}>
+                                  <PopularCard
+                                    setAnim={setCartAnim}
+                                    productData={{
+                                      id: productItem.masterProductID,
+                                      name: productItem.productShortName,
+                                      images: productItem.pictures,
+                                      singlePrice: productItem.singlePrice,
+                                      sizes: productItem.sizes,
+                                      price: productItem.price,
+                                      oldPrice: productItem.oldPrice,
+                                      productStockCode:
+                                        productItem.productStockCode,
+                                      video_1: productItem.video_1,
+                                      variants: productItem?.variants,
+                                      index,
+                                    }}
+                                  />
+                                </div>
+                              ))}
                           </div>
                         </Tab.Pane>
                         <Tab.Pane eventKey="list">

@@ -35,6 +35,10 @@ const Index4 = ({
   //   text: "Ut ultricies imperdiet sodales. Aliquam fringilla aliquam exs it amet elementum. Proin bibendum feugiat simplifies.",
   //   date: "2022-11-27 00:00:00",
   // };
+
+  function handleClose() {
+    setReelsOpen(false);
+  }
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
@@ -44,7 +48,7 @@ const Index4 = ({
         />
         {/* <ReelsLayout
           open={reelsOpen}
-          onClose={() => setReelsOpen(false)}
+          onClose={handleClose}
           reels={newProducts.slice(0, 10)}
         /> */}
         <SliderProducts sliders={slidersData} />

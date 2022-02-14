@@ -152,6 +152,9 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
     }
   };
 
+  const checkImage = ({ source, img }) =>
+    product.picture_1 ? `${source}${img}` : "/images/placeholder.jpg";
+
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
@@ -166,7 +169,9 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                   url: "https://www.solastore.com.tr/detail/",
                   id: product.productID,
                   name: product.productShortName,
-                  pictures: `${sources.imageMidSrc}${product.pictures[0].guidName}`,
+                  pictures: !!product.pictures.length
+                    ? `${sources.imageMidSrc}${product.pictures[0].guidName}`
+                    : "/images/placeholder.jpg",
                 }}
                 show={shareModal}
                 handleClose={() => setShareModal(false)}
@@ -215,7 +220,11 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                                   height="900"
                                   layout="responsive"
                                   alt={product.productShortName}
-                                  src={`${sources.imageMaxSrc}${img.guidName}`}
+                                  // src={`${sources.imageMaxSrc}${img.guidName}`}
+                                  src={checkImage({
+                                    source: sources.imageMaxSrc,
+                                    img: img.guidName,
+                                  })}
                                 />
                               </Tab.Pane>
                             ))}
@@ -248,7 +257,11 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                                         ? navActive
                                         : ""
                                     }`}
-                                    src={`${sources.imageMaxSrc}${img.guidName}`}
+                                    // src={`${sources.imageMaxSrc}${img.guidName}`}
+                                    src={checkImage({
+                                      source: sources.imageMaxSrc,
+                                      img: img.guidName,
+                                    })}
                                     width="145"
                                     height="220"
                                     alt={product.productShortName}
@@ -278,7 +291,11 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                                       ? navActive
                                       : ""
                                   }`}
-                                  src={`${sources.imageMaxSrc}${product.picture_1}`}
+                                  // src={`${sources.imageMaxSrc}${product.picture_1}`}
+                                  src={checkImage({
+                                    source: sources.imageMaxSrc,
+                                    img: product.picture_1,
+                                  })}
                                   width="145"
                                   height="220"
                                   alt={product.productShortName}
@@ -322,7 +339,11 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                                     <div className="product-nav product-nav-thumbs">
                                       <span className="productvar cursor-pointer">
                                         <Image
-                                          src={`${sources.imageMinSrc}${variant.picture_1}`}
+                                          // src={`${sources.imageMinSrc}${variant.picture_1}`}
+                                          src={checkImage({
+                                            source: sources.imageMinSrc,
+                                            img: variant.picture_1,
+                                          })}
                                           alt={variant.productShortName}
                                           title={variant.productShortName}
                                           width={200}
@@ -382,7 +403,11 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                               <div>
                                 <Image
                                   className="cursor-pointer"
-                                  src={`${sources.brand}${brand.guidName2}`}
+                                  src={
+                                    brand.guidName2
+                                      ? `${sources.brand}${brand.guidName2}`
+                                      : "/images/placeholder.jpg"
+                                  }
                                   width="180"
                                   height="130"
                                   layout="responsive"
@@ -553,7 +578,11 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                                       <div className="product-nav product-nav-thumbs">
                                         <span className="productvar cursor-pointer">
                                           <Image
-                                            src={`${sources.imageMinSrc}${variant.picture_1}`}
+                                            // src={`${sources.imageMinSrc}${variant.picture_1}`}
+                                            src={checkImage({
+                                              source: sources.imageMinSrc,
+                                              img: variant.picture_1,
+                                            })}
                                             alt={variant.productShortName}
                                             title={variant.productShortName}
                                             width={90}

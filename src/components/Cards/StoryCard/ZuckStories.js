@@ -131,7 +131,7 @@ class ZuckStories extends Component {
           className="position-relative storiesWrapper d-flex justify-content-center my-2 my-md-3">
           {timelineItems}
         </div>
-        <div
+        {/* <div
           onClick={this.props.onOpen}
           className="storiesWrapper position-fixed stories user-icon carousel snapgram"
           style={{
@@ -146,7 +146,7 @@ class ZuckStories extends Component {
               </span>
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }
