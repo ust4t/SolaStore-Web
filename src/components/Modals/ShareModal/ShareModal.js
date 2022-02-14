@@ -21,7 +21,6 @@ import {
 } from "react-share";
 
 import { modalContainer, copyText } from "./ShareModal.module.css";
-import sources from "../../../../sources";
 
 export default function ShareModal({ show, handleClose, urlDetails }) {
   const url = `${urlDetails.url}${urlDetails.name

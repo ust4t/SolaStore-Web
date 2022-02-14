@@ -41,7 +41,9 @@ export async function getServerSideProps({ query, locale }) {
 
   return {
     props: {
-      catData: catData.reverse(),
+      catData: catData
+        .reverse()
+        .filter((product) => product.picture_1 !== null),
       brandData: brandData,
       title,
       id,

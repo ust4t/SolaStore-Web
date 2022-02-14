@@ -18,7 +18,7 @@ const SaleProductPage = ({ saleProducts }) => {
 
 export default SaleProductPage;
 
-export async function getStaticProps({ locale }) {
+export async function getServerSideProps({ locale }) {
   const { data } = await axios.get(
     `https://api.solastore.com.tr/api/Product/GetSaleProducts?lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
   );

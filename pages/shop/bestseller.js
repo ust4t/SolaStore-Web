@@ -36,7 +36,7 @@ export async function getStaticProps({ locale }) {
   // );
   return {
     props: {
-      bestSeller: popularData,
+      bestSeller: popularData.filter((product) => product.picture_1 !== null),
       revalidate: 180,
     },
   };

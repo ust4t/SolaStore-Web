@@ -75,33 +75,6 @@ function PopularCard({ productData, cartId }) {
       id,
       quantity: 1,
     });
-
-    let imgtodrag = document.getElementsByClassName(cartId)[productData.index];
-    let viewcart = document.getElementsByClassName("cartToDrag")[0];
-    let imgtodragImage = imgtodrag.querySelector(".pro-image-front");
-
-    let disLeft = imgtodrag.getBoundingClientRect().left;
-    let disTop = imgtodrag.getBoundingClientRect().top;
-    let cartleft = viewcart.getBoundingClientRect().left;
-    let carttop = viewcart.getBoundingClientRect().top;
-    let image = imgtodragImage.cloneNode(true);
-
-    image.style =
-      "z-index: 1111; width: 100px;opacity:0.8; position:fixed; top:" +
-      (disTop + disTop * 3) +
-      "px;left:" +
-      disLeft +
-      "px;transition: left 6s, top 6s, width 6s, opacity 6s cubic-bezier(1, 1, 1, 1)";
-    var rechange = document.body.appendChild(image);
-    setTimeout(function () {
-      image.style.left = cartleft + "px";
-      image.style.top = carttop + "px";
-      image.style.width = "40px";
-      image.style.opacity = "0";
-    }, 200);
-    setTimeout(function () {
-      rechange.parentNode.removeChild(rechange);
-    }, 2000);
   };
 
   const onClickWishlist = (e) => {

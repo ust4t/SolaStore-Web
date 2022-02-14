@@ -42,7 +42,7 @@ export async function getServerSideProps({ locale }) {
 
   return {
     props: {
-      newProducts: data,
+      newProducts: data.filter((product) => product.picture_1 !== null),
       revalidate: 15,
     },
   };

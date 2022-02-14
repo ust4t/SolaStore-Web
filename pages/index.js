@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import dynamic from "next/dynamic";
 // import VideoLayout from "../src/layout/VideoLayout";
 import IntroBanners from "../src/layout/IntroBanners";
@@ -8,7 +8,7 @@ import FilterSearch from "../src/layout/FilterSearch";
 import Layout from "../src/layout/Layout";
 import SliderProducts from "../src/components/sliders/sliderProducts";
 import TabLayout from "../src/layout/TabLayout";
-import ReelsCard from "../src/components/Cards/ReelsCard";
+import ReelsLayout from "../src/layout/ReelsLayout/ReelsLayout";
 const BrandsLayout = dynamic(() => import("../src/layout/BrandsLayout"));
 const Categories = dynamic(() => import("../src/layout/Categories"));
 const ZuckStories = dynamic(
@@ -26,6 +26,7 @@ const Index4 = ({
   bannersData,
   brands,
 }) => {
+  const [reelsOpen, setReelsOpen] = useState(false);
   // const countdownSource = {
   //   img: "/img/countdown-bg.jpg",
   //   value: "-28",
@@ -37,8 +38,15 @@ const Index4 = ({
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
-        <ZuckStories storiesData={newProducts.slice(0, 5)} />
-        {/* <ReelsCard reels={newProducts.slice(0, 5)} /> */}
+        <ZuckStories
+          // onOpen={() => setReelsOpen(true)}
+          storiesData={newProducts.slice(0, 5)}
+        />
+        {/* <ReelsLayout
+          open={reelsOpen}
+          onClose={() => setReelsOpen(false)}
+          reels={newProducts.slice(0, 10)}
+        /> */}
         <SliderProducts sliders={slidersData} />
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <IntroBanners banners={bannersData} />
@@ -108,8 +116,10 @@ export async function getStaticProps({ locale }) {
 
   return {
     props: {
-      newProducts: newProducts,
-      saleProducts: saleProducts.reverse(),
+      newProducts: newProducts.filter((product) => product.picture_1 !== null),
+      saleProducts: saleProducts
+        .reverse()
+        .filter((product) => product.picture_1 !== null),
       slidersData,
       bannersData,
       categoriesData,

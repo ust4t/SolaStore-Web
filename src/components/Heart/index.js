@@ -5,7 +5,7 @@ import { heart_container, beat_anim } from "./Heart.module.css";
 function Heart({ onClick, isLiked, setIsLiked }) {
   const toggleLike = () => {
     onClick();
-    setIsLiked(!isLiked);
+    // setIsLiked(!isLiked);
   };
 
   return (
