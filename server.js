@@ -13,12 +13,7 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = express();
-  //   const corsOptions = {
-  //     origin: '*',
-  //     optionsSuccessStatus: 200
-  //  }
 
-  //   server.use(cors(corsOptions));
 
   server.set("trust proxy", 1);
 
