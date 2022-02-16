@@ -1,3 +1,85 @@
 .subTitle {
-  background: #1b1b1b;
+  position: relative;
+  background: #373840;
+  padding: 20px 50px;
+  margin: 20px 0;
+}
+
+.subTitle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+.subTitle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.subTitle h5 {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.numberInput {
+  position: relative;
+  width: 450px;
+  padding: 10px 95px 10px 0;
+  color: #fff;
+  font-size: 1.1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #fff;
+  transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.numberInput::selection {
+  background: #373840;
+}
+
+.numberInput:focus {
+  border-bottom: 2px solid #46464b;
+}
+
+.numberInput::placeholder {
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.inputBtn {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+@media (max-width: 500px) {
+  .numberInput {
+    width: 300px;
+  }
+}
+@media (max-width: 330px) {
+  .numberInput {
+    width: 230px;
+  }
+
+  .inputBtn {
+    font-size: 0.9rem;
+  }
 }
