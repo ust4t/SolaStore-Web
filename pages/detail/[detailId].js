@@ -1,9 +1,15 @@
 import Router from "next/router";
 import Details from "../../src/components/product/Details";
 
-const DetailPage = ({ product, brand, productVariants, selectedProduct }) => {
+const DetailPage = ({
+  productMain,
+  brand,
+  productVariants,
+  selectedProduct,
+}) => {
   return (
     <Details
+      productMain={productMain}
       incomingProduct={selectedProduct}
       productVariants={productVariants}
       brand={brand[0]}
@@ -44,7 +50,7 @@ export async function getServerSideProps(context) {
             (product) => product.productID === Number(selected)
           )[0]
         : allProducts.filter((product) => product.productID === Number(id))[0],
-      product: productData[0],
+      productMain: productData[0],
       productVariants: productVariantsData,
       brand: brandsJson.filter(
         (brandItem) => brandItem.brandID === productData[0].brandID

@@ -66,45 +66,45 @@ export default function useCart(dispatch) {
     );
   };
 
-  // const incrementQuantity = (creds) => {
-  //   dispatch({
-  //     type: INCREMENT_QUANTITY,
-  //   });
-  //   mutate(
-  //     {
-  //       url: `/api/cart/increaseProductCount?user=${creds.user}&ProductID=${creds.id}`,
-  //     },
-  //     {
-  //       onSuccess: ({ data }) => {
-  //         cartRefetch();
-  //         toast.success("Increased Quantity");
-  //       },
-  //     }
-  //   );
-  // };
+  const incrementQuantity = (creds) => {
+    dispatch({
+      type: INCREMENT_QUANTITY,
+    });
+    mutate(
+      {
+        url: `/api/cart/increaseProductCount?user=${creds.user}&ProductID=${creds.id}`,
+      },
+      {
+        onSuccess: ({ data }) => {
+          cartRefetch();
+          toast.success("Increased Quantity");
+        },
+      }
+    );
+  };
 
-  // const decrementQuantity = (creds) => {
-  //   dispatch({
-  //     type: DECREMENT_QUANTITY,
-  //   });
-  //   mutate(
-  //     {
-  //       url: `/api/cart/decreaseProductCount?user=${creds.user}&ProductID=${creds.id}`,
-  //     },
-  //     {
-  //       onSuccess: ({ data }) => {
-  //         cartRefetch();
-  //         toast.error("Decreased Quantity");
-  //       },
-  //     }
-  //   );
-  // };
+  const decrementQuantity = (creds) => {
+    dispatch({
+      type: DECREMENT_QUANTITY,
+    });
+    mutate(
+      {
+        url: `/api/cart/decreaseProductCount?user=${creds.user}&ProductID=${creds.id}`,
+      },
+      {
+        onSuccess: ({ data }) => {
+          cartRefetch();
+          toast.error("Decreased Quantity");
+        },
+      }
+    );
+  };
 
   const cartActions = {
     addToCartAction,
     removeFromCart,
-    // incrementQuantity,
-    // decrementQuantity,
+    incrementQuantity,
+    decrementQuantity,
     cartRefetch,
   };
 

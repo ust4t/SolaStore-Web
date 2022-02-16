@@ -166,7 +166,7 @@ const Cart = ({ saleTeam }) => {
                       handleSeller({
                         id: 9999,
                         name: "orderFirst",
-                        img: "/images/logo/person.jpg",
+                        img: "/images/representer.jpg",
                       })
                     }
                     className={`col-5 d-flex justify-content-center cursor-pointer ${
@@ -174,15 +174,16 @@ const Cart = ({ saleTeam }) => {
                         ? "border border-2 border-danger"
                         : ""
                     }`}>
-                    <Image
-                      src="/images/logo/person.jpg"
-                      width={120}
-                      height={120}
-                      className="rounded-circle"
+                    <img
+                      className="representers"
+                      src="/images/representer.jpg"
+                      alt="representers"
                     />
                   </div>
                   <h4 className="fs-5 fw-bold text-center mb-20">
-                    {t("orderFirst")}
+                    {/* {t("orderFirst")} */}
+                    Karina - Tatyana <br />
+                    (For new orders)
                   </h4>
 
                   {saleTeam.map(({ id, name, pictureGuidName }, i) => (
@@ -402,15 +403,22 @@ const Cart = ({ saleTeam }) => {
                         <h5 className="text-secondary">
                           {t("salesRepresentative")}
                         </h5>
-
-                        <Image
-                          src={currentSeller.img}
-                          alt={currentSeller.name}
-                          className="rounded-circle align-self-center"
-                          width={"100px"}
-                          height={"100px"}
-                          layout="fixed"
-                        />
+                        {currentSeller.id === 9999 ? (
+                          <img
+                            className="representers"
+                            src={currentSeller.img}
+                            alt={currentSeller.name}
+                          />
+                        ) : (
+                          <Image
+                            src={currentSeller.img}
+                            alt={currentSeller.name}
+                            className="rounded-circle align-self-center"
+                            width={"100px"}
+                            height={"100px"}
+                            layout="fixed"
+                          />
+                        )}
                         <h3 className="fw-bold text-center">
                           {currentSeller.id === 9999
                             ? t(currentSeller.name)

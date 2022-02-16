@@ -29,9 +29,9 @@
   display: grid;
   place-items: center;
   transition: all 0.3s ease-in-out;
-  visibility: hidden;
+  /* visibility: hidden; */
 }
-
+/* 
 .reelsOpen {
   visibility: visible;
   opacity: 1;
@@ -43,4 +43,4 @@
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
-}
+} */

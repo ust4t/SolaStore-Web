@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import Router from "next/router";
@@ -14,7 +14,14 @@ import Heart from "../../Heart";
 import sources from "../../../../sources";
 import { StoreContext } from "../../../context/StoreProvider";
 
-const ReelsCard = ({ embla, videoRef, reelsData, setShareModal, onClose }) => {
+const ReelsCard = ({
+  embla,
+  videoRef,
+  reelsData,
+  setShareModal,
+  onClose,
+  inView,
+}) => {
   const { video, name, id, index, picture, reelsLength } = reelsData;
   const { state, cartActions, wishListActions } = useContext(StoreContext);
   const auth = useSelector((state) => state.auth);
@@ -24,6 +31,11 @@ const ReelsCard = ({ embla, videoRef, reelsData, setShareModal, onClose }) => {
   const wishlist =
     state.wishlistData &&
     state.wishlistData.find((data) => data.masterProductID === id);
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  const setLoaded = useCallback(() => {
+    if (inView) setHasLoaded(true);
+  }, [inView, setHasLoaded]);
 
   useEffect(() => {
     if (wishlist) {

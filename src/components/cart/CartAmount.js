@@ -8,13 +8,12 @@ export default function CartAmount({
   incrementQuantity,
 }) {
   const user = useSelector((state) => state.auth);
-  const chooseId = user.state === "guest" ? user.uid : user.rnd_id;
   const onClickCart = (e) => {
     e.preventDefault();
     const cartData = {
       type: "increaseProductCount",
       id: productID,
-      user: chooseId,
+      user: user.uid,
     };
 
     incrementQuantity(cartData);
@@ -24,7 +23,7 @@ export default function CartAmount({
     const cartData = {
       type: "decreaseProductCount",
       id: productID,
-      user: chooseId,
+      user: user.uid,
     };
     decrementQuantity(cartData);
   };

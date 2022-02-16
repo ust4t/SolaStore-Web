@@ -4,6 +4,7 @@ import withTranslation from "next-translate/withTranslation";
 
 import sources from "../../../../sources";
 import { timestamp } from "../../../utils/utils";
+import Router from "next/router";
 
 class ZuckStories extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class ZuckStories extends Component {
           story.productShortName,
           `/detail/${story.productShortName.toLowerCase().replace(" ", "-")}:${
             story.masterProductID
-          }`,
+          }?selected=${story.productID}`,
           timestamp(),
           story.pictures.map((subStory) => [
             story.masterProductID,
@@ -29,7 +30,9 @@ class ZuckStories extends Component {
             `${sources.imageMaxSrc}${subStory.guidName}`,
             `/detail/${story.productShortName
               .toLowerCase()
-              .replace(" ", "-")}:${story.productID}`,
+              .replace(" ", "-")}:${story.productID}?selected=${
+              story.productID
+            }`,
             t("home:seeProduct"),
             false,
             timestamp(),
@@ -98,13 +101,26 @@ class ZuckStories extends Component {
       timelineItems[arrayFunc](
         <div
           onClick={() => {
-            if (storyId === this.props.storiesData.length - 1)
-              this.props.onOpen();
+            const modal = document.getElementById("zuck-modal");
+            if (storyId === this.props.storiesData.length - 1) {
+              modal.style.display = "none";
+              Router.push({
+                pathname: "/story",
+                query: {
+                  page: 1,
+                  pageSize: 50,
+                },
+              });
+            } else {
+              modal.style.display = "block";
+            }
           }}
           className={
             story.seen
               ? `story ${
-                  storyId === this.props.storiesData.length - 1 ? "" : "seen"
+                  storyId === this.props.storiesData.length - 1
+                    ? "seen reels"
+                    : "seen"
                 }`
               : "story"
           }

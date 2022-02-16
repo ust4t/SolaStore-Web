@@ -28,7 +28,13 @@ import {
 import { Arrow } from "../sliders/SliderArrows";
 import Heart from "../Heart";
 
-const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
+const Details = ({
+  productVariants,
+  incomingProduct,
+  brand,
+  upthumb,
+  productMain,
+}) => {
   const { t } = useTranslation("detail");
   const user = useSelector((state) => state.auth);
   const router = useRouter();
@@ -527,7 +533,7 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                             <div
                               className="details-filter-row details-row-size"
                               style={{ margin: 5 }}>
-                              {[incomingProduct, ...productVariants]
+                              {[productMain, ...productVariants]
                                 .filter(
                                   (variant) =>
                                     variant.pictures && variant.pictures.length

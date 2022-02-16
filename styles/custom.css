@@ -12,6 +12,23 @@ body > #__next {
   height: 120px !important;
 }
 
+.stories.snapgram .story.seen.reels {
+  opacity: 1;
+}
+
+.stories.snapgram .story.seen.reels > a {
+  color: #333 !important;
+}
+
+.stories.snapgram .story.seen.reels > a:hover {
+  color: var(--color-primary) !important;
+}
+
+.representers {
+  width: 260px;
+  margin: 10px 0;
+}
+
 .bg-center-cover {
   background-position: center;
   background-repeat: no-repeat;

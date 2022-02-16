@@ -23,27 +23,10 @@ const Index4 = ({
   bannersData,
   brands,
 }) => {
-  const [reelsOpen, setReelsOpen] = useState(false);
-
-  function handleClose() {
-    setReelsOpen(false);
-  }
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
-        <ZuckStories
-          onOpen={() => setReelsOpen(true)}
-          storiesData={newProducts.slice(0, 5)}
-        />
-        {reelsOpen && (
-          <ReelsLayout
-            open={reelsOpen}
-            onClose={handleClose}
-            reels={newProducts
-              .slice(60, 250)
-              .filter((reel) => reel.video_1 !== null && reel.video !== null)}
-          />
-        )}
+        <ZuckStories storiesData={newProducts.slice(0, 5)} />
         <SliderProducts sliders={slidersData} />
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <IntroBanners banners={bannersData} />
