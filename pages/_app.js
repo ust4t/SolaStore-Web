@@ -176,7 +176,7 @@ function MyApp({ Component, pageProps }) {
       </QueryClientProvider>
       <Script
         src="https://kit.fontawesome.com/9134714f20.js"
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
         strategy="beforeInteractive"
       />
       <Script

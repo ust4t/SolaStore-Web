@@ -181,9 +181,7 @@ const Cart = ({ saleTeam }) => {
                     />
                   </div>
                   <h4 className="fs-5 fw-bold text-center mb-20">
-                    {/* {t("orderFirst")} */}
-                    Karina - Tatyana <br />
-                    (For new orders)
+                    Karina - Tatyana <br />({t("orderFirst")})
                   </h4>
 
                   {saleTeam.map(({ id, name, pictureGuidName }, i) => (
