@@ -100,21 +100,21 @@ class ZuckStories extends Component {
       let arrayFunc = story.seen ? "push" : "unshift";
       timelineItems[arrayFunc](
         <div
-          onClick={() => {
-            const modal = document.getElementById("zuck-modal");
-            if (storyId === this.props.storiesData.length - 1) {
-              modal.style.display = "none";
-              Router.push({
-                pathname: "/story",
-                query: {
-                  page: 1,
-                  pageSize: 50,
-                },
-              });
-            } else {
-              modal.style.display = "block";
-            }
-          }}
+          // onClick={() => {
+          //   const modal = document.getElementById("zuck-modal");
+          //   if (storyId === this.props.storiesData.length - 1) {
+          //     modal.style.display = "none";
+          //     Router.push({
+          //       pathname: "/story",
+          //       query: {
+          //         page: 1,
+          //         pageSize: 50,
+          //       },
+          //     });
+          //   } else {
+          //     modal.style.display = "block";
+          //   }
+          // }}
           className={
             story.seen
               ? `story ${
