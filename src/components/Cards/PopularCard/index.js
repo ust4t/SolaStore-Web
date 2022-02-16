@@ -29,6 +29,7 @@ function PopularCard({ productData, cartId }) {
   const { addToWishList, removeFromWishList } = wishListActions;
   const [currentImages, setCurrentImages] = useState({
     id,
+    selectedId: id,
     pictures: images,
   });
   // const [quickView, setQuickView] = useState(false);
@@ -55,11 +56,13 @@ function PopularCard({ productData, cartId }) {
     if (variant.pictures) {
       setCurrentImages({
         id: variant.masterProductID,
+        selectedId: variant.productID,
         pictures: variant.pictures,
       });
     } else {
       setCurrentImages({
         id,
+        selectedId: id,
         pictures: variant.images,
       });
     }
@@ -187,7 +190,12 @@ function PopularCard({ productData, cartId }) {
               : "opacity-100 animate__fadeOut"
           }`}>
           <Link
-            href={`/detail/${name.toLowerCase().replace(" ", "-")}:${id}`}
+            href={{
+              pathname: `/detail/${name.toLowerCase().replace(" ", "-")}:${id}`,
+              query: {
+                selected: currentImages.selectedId,
+              },
+            }}
             locale={lang}>
             <a>
               <Image
@@ -213,7 +221,12 @@ function PopularCard({ productData, cartId }) {
               : "opacity-100 animate__fadeOut"
           }`}>
           <Link
-            href={`/detail/${name.toLowerCase().replace(" ", "-")}:${id}`}
+            href={{
+              pathname: `/detail/${name.toLowerCase().replace(" ", "-")}:${id}`,
+              query: {
+                selected: currentImages.selectedId,
+              },
+            }}
             locale={lang}>
             <a>
               <Image
@@ -239,20 +252,6 @@ function PopularCard({ productData, cartId }) {
           </div>
         </div>
         <div className="mb-4 product-action text-center">
-          {/* <a
-            className={`animate__animated animate__faster ${
-              currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"
-            }`}
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              setQuickView(true);
-            }}
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Quick View">
-            <i className="fas fa-eye" />
-          </a> */}
           <span className="d-none d-lg-block">
             <a
               onClick={(e) => {
@@ -284,7 +283,14 @@ function PopularCard({ productData, cartId }) {
         <div className="pro-title">
           <h6>
             <Link
-              href={`/detail/${name.toLowerCase().replace(" ", "-")}:${id}`}
+              href={{
+                pathname: `/detail/${name
+                  .toLowerCase()
+                  .replace(" ", "-")}:${id}`,
+                query: {
+                  selected: currentImages.selectedId,
+                },
+              }}
               locale={lang}>
               {name}
             </Link>

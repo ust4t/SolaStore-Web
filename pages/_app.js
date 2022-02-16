@@ -28,25 +28,18 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const queryClient = new QueryClient();
   const fetchMenu = async () => {
-    // try {
-    // const { data: menu } = await axios.get(
-    //   `/api/getFullMenu?lang=${store.getState().lang}`
-    // );
-    store.dispatch({
-      type: GET_MAIN_MENU,
-      payload: menuData[store.getState().lang],
-    });
-    // } catch (error) {
-    // const { data: menu } = await axios.get(
-    //   `/api/getFullMenuNew?lang=${store.getState().lang}`
-    // );
-    // store.dispatch({
-    //   type: GET_MAIN_MENU,
-    //   payload: menu,
-    // });
-    //   console.log(error);
-    //   toast.error("Menü alınırken hata oluştu");
-    // }
+    try {
+      const { data: menu } = await axios.get(
+        `/api/getFullMenu?lang=${store.getState().lang}`
+      );
+      store.dispatch({
+        type: GET_MAIN_MENU,
+        payload: menu,
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Menü alınırken hata oluştu");
+    }
   };
 
   const checkUser = async () => {

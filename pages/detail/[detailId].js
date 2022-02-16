@@ -1,19 +1,20 @@
+import Router from "next/router";
 import Details from "../../src/components/product/Details";
 
-const Single = ({ product, brand, productVariants }) => {
+const DetailPage = ({ product, brand, productVariants, selectedProduct }) => {
   return (
     <Details
-      incomingProduct={product}
+      incomingProduct={selectedProduct}
       productVariants={productVariants}
       brand={brand[0]}
     />
   );
 };
 
-export default Single;
+export default DetailPage;
 
 export async function getServerSideProps(context) {
-  const { detailId } = context.query;
+  const { detailId, selected } = context.query;
 
   const id = detailId.slice(detailId.indexOf(":") + 1);
 
@@ -35,9 +36,14 @@ export async function getServerSideProps(context) {
     productRes.json(),
     productVariantsRes.json(),
   ]);
-
+  const allProducts = [...productData, ...productVariantsData];
   return {
     props: {
+      selectedProduct: selected
+        ? allProducts.filter(
+            (product) => product.productID === Number(selected)
+          )[0]
+        : allProducts.filter((product) => product.productID === Number(id))[0],
       product: productData[0],
       productVariants: productVariantsData,
       brand: brandsJson.filter(

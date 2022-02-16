@@ -1,0 +1,11 @@
+.storyAnim {
+  top: 32%;
+  right: 580px;
+  z-index: 400;
+}
+
+@media (max-width: 500px) {
+  .storyAnim {
+    right: 0;
+  }
+}

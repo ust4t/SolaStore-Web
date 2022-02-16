@@ -97,13 +97,26 @@ class ZuckStories extends Component {
       let arrayFunc = story.seen ? "push" : "unshift";
       timelineItems[arrayFunc](
         <div
-          className={story.seen ? "story seen" : "story"}
+          onClick={() => {
+            if (storyId === this.props.storiesData.length - 1)
+              this.props.onOpen();
+          }}
+          className={
+            story.seen
+              ? `story ${
+                  storyId === this.props.storiesData.length - 1 ? "" : "seen"
+                }`
+              : "story"
+          }
           key={story.photo}
           data-id={storyId}
           data-last-updated={story.lastUpdated}
           data-photo={story.photo}>
           <a className="item-link" href={story.link}>
-            <span className="item-preview">
+            <span
+              className={`item-preview ${
+                storyId === this.props.storiesData.length - 1 && "animated"
+              }`}>
               <img src={story.photo} />
             </span>
             <span

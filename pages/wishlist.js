@@ -74,9 +74,14 @@ const Wishlist = () => {
                                 <tr key={`${productID}--*?${i}`}>
                                   <td className="product-thumbnail">
                                     <Link
-                                      href={`/detail/${productShortName
-                                        .toLowerCase()
-                                        .replace(" ", "-")}:${productID}`}>
+                                      href={{
+                                        pathname: `/detail/${productShortName
+                                          .toLowerCase()
+                                          .replace(" ", "-")}:${productID}`,
+                                        query: {
+                                          selected: productID,
+                                        },
+                                      }}>
                                       <a>
                                         <Image
                                           src={`${sources.imageMidSrc}${picture_1}`}
@@ -89,9 +94,14 @@ const Wishlist = () => {
                                   </td>
                                   <td className="product-name">
                                     <Link
-                                      href={`/detail/${productShortName
-                                        .toLowerCase()
-                                        .replace(" ", "-")}:${productID}`}>
+                                      href={{
+                                        pathname: `/detail/${productShortName
+                                          .toLowerCase()
+                                          .replace(" ", "-")}:${productID}`,
+                                        query: {
+                                          selected: productID,
+                                        },
+                                      }}>
                                       <a href="#">{productShortName}</a>
                                     </Link>
                                   </td>

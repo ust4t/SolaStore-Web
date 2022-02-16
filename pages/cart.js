@@ -240,11 +240,16 @@ const Cart = ({ saleTeam }) => {
                                       <div className="d-flex align-items-center ord">
                                         <div>
                                           <Link
-                                            href={`/detail/${cart.productShortName
-                                              .toLowerCase()
-                                              .replace(" ", "-")}:${
-                                              cart.productID
-                                            }`}>
+                                            href={{
+                                              pathname: `/detail/${cart.productShortName
+                                                .toLowerCase()
+                                                .replace(" ", "-")}:${
+                                                cart.productID
+                                              }`,
+                                              query: {
+                                                selected: cart.productID,
+                                              },
+                                            }}>
                                             <a>
                                               <img
                                                 className="pic"
@@ -256,11 +261,16 @@ const Cart = ({ saleTeam }) => {
                                         </div>
                                         <div className="ps-3 d-flex flex-column justify-content">
                                           <Link
-                                            href={`/detail/${cart.productShortName
-                                              .toLowerCase()
-                                              .replace(" ", "-")}:${
-                                              cart.productID
-                                            }`}>
+                                            href={{
+                                              pathname: `/detail/${cart.productShortName
+                                                .toLowerCase()
+                                                .replace(" ", "-")}:${
+                                                cart.productID
+                                              }`,
+                                              query: {
+                                                selected: cart.productID,
+                                              },
+                                            }}>
                                             <p className="fw-bold text-secondary">
                                               <a>{cart.productShortName}</a>
                                             </p>

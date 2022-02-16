@@ -285,6 +285,38 @@ ul {
   border: none;
 }
 
+.stories.snapgram .story > .item-link > .item-preview.animated {
+  padding: 4px !important;
+  background: linear-gradient(
+    60deg,
+    hsl(224, 85%, 66%),
+    hsl(269, 85%, 66%),
+    hsl(314, 85%, 66%),
+    hsl(359, 85%, 66%),
+    hsl(44, 85%, 66%),
+    hsl(89, 85%, 66%),
+    hsl(134, 85%, 66%),
+    hsl(179, 85%, 66%)
+  );
+  background-size: 300% 300%;
+  background-position: 0 50%;
+  animation: moveGradient 1s alternate infinite;
+}
+
+.stories.carousel {
+  overflow: unset;
+}
+
+#zuck-modal {
+  z-index: 399;
+}
+
+@keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 @media (min-width: 900px) {
   .slider-main {
     width: 50%;

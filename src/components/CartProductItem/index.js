@@ -8,23 +8,34 @@ import { dropdown_img, dropdown_link } from "./CartProductItem.module.css";
 
 function CartProductItem({ id, image, name, price, quantity }) {
   const auth = useSelector((state) => state.auth);
-  const chooseId = auth.state === "guest" ? auth.uid : auth.rnd_id;
   const { cartActions } = useContext(StoreContext);
   const { removeFromCart } = cartActions;
 
   const handleDelete = () =>
     removeFromCart({
-      user: chooseId,
+      user: auth.uid,
       id,
     });
 
   return (
     <div className="row align-items-center justify-content-center">
       <div className="col-7 d-flex align-items-center p-2">
-        <Link href={`/detail/${name.toLowerCase().replace(" ", "-")}:${id}`}>
+        <Link
+          href={{
+            pathname: `/detail/${name.toLowerCase().replace(" ", "-")}:${id}`,
+            query: {
+              selected: id,
+            },
+          }}>
           <img src={image} className={`${dropdown_img} cursor-pointer`} />
         </Link>
-        <Link href={`/detail/${name.toLowerCase().replace(" ", "-")}:${id}`}>
+        <Link
+          href={{
+            pathname: `/detail/${name.toLowerCase().replace(" ", "-")}:${id}`,
+            query: {
+              selected: id,
+            },
+          }}>
           <p
             className={`fs-6 cursor-pointer ${dropdown_link}`}
             style={{

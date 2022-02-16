@@ -1,4 +1,7 @@
 import React, { useContext, useState } from "react";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import Router from "next/router";
 
 import {
   embla__slide,
@@ -10,11 +13,9 @@ import {
 import Heart from "../../Heart";
 import sources from "../../../../sources";
 import { StoreContext } from "../../../context/StoreProvider";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
 
 const ReelsCard = ({ embla, videoRef, reelsData, setShareModal, onClose }) => {
-  const { video, name, id, index, picture } = reelsData;
+  const { video, name, id, index, picture, reelsLength } = reelsData;
   const { state, cartActions, wishListActions } = useContext(StoreContext);
   const auth = useSelector((state) => state.auth);
   const { addToCartAction } = cartActions;
@@ -60,9 +61,14 @@ const ReelsCard = ({ embla, videoRef, reelsData, setShareModal, onClose }) => {
     <div className={embla__slide}>
       <div className={embla__slide__inner}>
         <video
-          onEnded={() =>
-            embla && embla.scrollTo(embla.selectedScrollSnap() + 1)
-          }
+          autoPlay
+          onEnded={() => {
+            if (index === reelsLength - 1) {
+              onClose();
+              return;
+            }
+            if (embla) embla.scrollTo(embla.selectedScrollSnap() + 1);
+          }}
           ref={(el) => (videoRef.current[index] = el)}
           controls
           className={embla__slide__img}
@@ -75,7 +81,7 @@ const ReelsCard = ({ embla, videoRef, reelsData, setShareModal, onClose }) => {
         style={{
           top: "20px",
           right: "10px",
-          filter: "drop-shadow(0px 0px 10px #000)",
+          filter: "drop-shadow(rgb(0, 0, 0, .5) 0px 0px 5px)",
           cursor: "pointer",
         }}>
         <i
@@ -87,7 +93,7 @@ const ReelsCard = ({ embla, videoRef, reelsData, setShareModal, onClose }) => {
       </div>
       <div
         style={{
-          gap: "45px",
+          gap: "25px",
           zIndex: "5",
           bottom: "25px",
           right: "5px",
@@ -97,7 +103,7 @@ const ReelsCard = ({ embla, videoRef, reelsData, setShareModal, onClose }) => {
           style={{
             display: "grid",
             placeItems: "center",
-            filter: "drop-shadow(0px 0px 10px #000)",
+            filter: "drop-shadow(rgb(0, 0, 0, .5) 0px 0px 5px)",
           }}>
           <Heart isLiked={isLiked} onClick={() => handleLike(id)} />
           <h6 className="text-white">Нравится</h6>
@@ -107,16 +113,39 @@ const ReelsCard = ({ embla, videoRef, reelsData, setShareModal, onClose }) => {
           style={{
             display: "grid",
             placeItems: "center",
-            filter: "drop-shadow(0px 0px 10px #000)",
+            filter: "drop-shadow(rgb(0, 0, 0, .5) 0px 0px 5px)",
             cursor: "pointer",
           }}>
           <i
-            className="fas fa-plus text-white"
+            className="fas fa-cart-plus text-white"
             style={{
               fontSize: "30px",
             }}
           />
           <h6 className="text-white">Добавлять</h6>
+        </div>
+        <div
+          onClick={() =>
+            Router.push({
+              pathname: `/detail/${name.toLowerCase().replace(" ", "-")}:${id}`,
+              query: {
+                selected: id,
+              },
+            })
+          }
+          style={{
+            display: "grid",
+            placeItems: "center",
+            filter: "drop-shadow(rgb(0, 0, 0, .5) 0px 0px 5px)",
+            cursor: "pointer",
+          }}>
+          <i
+            className="fas fa-link text-white"
+            style={{
+              fontSize: "30px",
+            }}
+          />
+          <h6 className="text-white">продукт</h6>
         </div>
 
         <div
@@ -134,7 +163,7 @@ const ReelsCard = ({ embla, videoRef, reelsData, setShareModal, onClose }) => {
           style={{
             display: "grid",
             placeItems: "center",
-            filter: "drop-shadow(0px 0px 10px #000)",
+            filter: "drop-shadow(rgb(0, 0, 0, .5) 0px 0px 5px)",
             cursor: "pointer",
           }}>
           <i

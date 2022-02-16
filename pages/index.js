@@ -1,10 +1,7 @@
 import { memo, useState } from "react";
 import dynamic from "next/dynamic";
-// import VideoLayout from "../src/layout/VideoLayout";
 import IntroBanners from "../src/layout/IntroBanners";
 import FilterSearch from "../src/layout/FilterSearch";
-// import CountdownSection from "../src/layout/CountdownSection";
-// import EmailArea from "../src/layout/EmailArea";
 import Layout from "../src/layout/Layout";
 import SliderProducts from "../src/components/sliders/sliderProducts";
 import TabLayout from "../src/layout/TabLayout";
@@ -12,7 +9,7 @@ import ReelsLayout from "../src/layout/ReelsLayout/ReelsLayout";
 const BrandsLayout = dynamic(() => import("../src/layout/BrandsLayout"));
 const Categories = dynamic(() => import("../src/layout/Categories"));
 const ZuckStories = dynamic(
-  () => import("../src/components/Cards/StoryCard/ZuckStories"),
+  () => import("../src/components/Cards/ZuckStories"),
   {
     ssr: false,
   }
@@ -27,14 +24,6 @@ const Index4 = ({
   brands,
 }) => {
   const [reelsOpen, setReelsOpen] = useState(false);
-  // const countdownSource = {
-  //   img: "/img/countdown-bg.jpg",
-  //   value: "-28",
-  //   status: "Hot",
-  //   title: "Covid-19 Prevention & Product Supplies",
-  //   text: "Ut ultricies imperdiet sodales. Aliquam fringilla aliquam exs it amet elementum. Proin bibendum feugiat simplifies.",
-  //   date: "2022-11-27 00:00:00",
-  // };
 
   function handleClose() {
     setReelsOpen(false);
@@ -43,24 +32,25 @@ const Index4 = ({
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
         <ZuckStories
-          // onOpen={() => setReelsOpen(true)}
+          onOpen={() => setReelsOpen(true)}
           storiesData={newProducts.slice(0, 5)}
         />
-        {/* <ReelsLayout
-          open={reelsOpen}
-          onClose={handleClose}
-          reels={newProducts.slice(0, 10)}
-        /> */}
+        {reelsOpen && (
+          <ReelsLayout
+            open={reelsOpen}
+            onClose={handleClose}
+            reels={newProducts
+              .slice(60, 250)
+              .filter((reel) => reel.video_1 !== null && reel.video !== null)}
+          />
+        )}
         <SliderProducts sliders={slidersData} />
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <IntroBanners banners={bannersData} />
           <FilterSearch brands={brands} />
           <TabLayout newProducts={newProducts} saleProducts={saleProducts} />
           <Categories categories={categoriesData} />
-          {/* <CountdownSection countdown={countdownSource} /> */}
-          {/* <EmailArea /> */}
         </div>
-        {/* <VideoLayout /> */}
 
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <BrandsLayout brands={brands} />

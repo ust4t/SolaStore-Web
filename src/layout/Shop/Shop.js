@@ -53,6 +53,11 @@ const ShopLayout = ({
   };
 
   const handlePageClick = (e) => {
+    if (typeof window !== "undefined")
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     const selectedPage = e.selected;
     setSelectedPage(selectedPage);
     const offset = selectedPage * pageLimit;

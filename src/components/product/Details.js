@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
+import Head from "next/head";
+import { useRouter } from "next/router";
 
 import sources from "../../../sources";
 import { StoreContext } from "../../context/StoreProvider";
@@ -25,12 +27,11 @@ import {
 } from "./Details.module.css";
 import { Arrow } from "../sliders/SliderArrows";
 import Heart from "../Heart";
-import Head from "next/head";
 
 const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
   const { t } = useTranslation("detail");
   const user = useSelector((state) => state.auth);
-  // const chooseId = user.state === "guest" ? user.uid : user.rnd_id;
+  const router = useRouter();
   const { state, cartActions, wishListActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
   const { addToWishList, removeFromWishList } = wishListActions;
@@ -66,35 +67,6 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
     }
   }, [wishlist]);
 
-  const handleCartAnim = () => {
-    let imgtodrag = document.getElementsByClassName("detailPos")[0];
-    let viewcart = document.getElementsByClassName("cartToDrag")[0];
-    let imgtodragImage = document.querySelector(".detail-image-front");
-
-    let disLeft = imgtodrag.getBoundingClientRect().left;
-    let disTop = imgtodrag.getBoundingClientRect().top;
-    let cartleft = viewcart.getBoundingClientRect().left;
-    let carttop = viewcart.getBoundingClientRect().top;
-    let image = imgtodragImage.cloneNode(true);
-
-    image.style =
-      "z-index: 1111; width: 100px;opacity:0.8; position:fixed; top:" +
-      disTop +
-      "px;left:" +
-      disLeft +
-      "px;transition: left 2s, top 2s, width 7s, opacity 8s cubic-bezier(1, 1, 1, 1)";
-    var rechange = document.body.appendChild(image);
-    setTimeout(function () {
-      image.style.left = cartleft + "px";
-      image.style.top = carttop + "px";
-      image.style.width = "40px";
-      image.style.opacity = "0";
-    }, 200);
-    setTimeout(function () {
-      rechange.parentNode.removeChild(rechange);
-    }, 3000);
-  };
-
   const handleAddToCart = (e) => {
     e.preventDefault();
     addToCartAction({
@@ -102,8 +74,6 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
       user: user.uid,
       quantity,
     });
-
-    handleCartAnim();
   };
 
   const onIncrementCart = (e) => {
@@ -570,6 +540,15 @@ const Details = ({ productVariants, incomingProduct, brand, upthumb }) => {
                                         video_1: product.video_1,
                                       });
                                       setImageKey(0);
+                                      router.push(
+                                        `/detail/${variant.productShortName
+                                          .toLowerCase()
+                                          .replace(" ", "-")}:${
+                                          variant.masterProductID
+                                        }?selected=${variant.productID}`,
+                                        undefined,
+                                        { shallow: true }
+                                      );
                                     }}
                                     href="#">
                                     <div

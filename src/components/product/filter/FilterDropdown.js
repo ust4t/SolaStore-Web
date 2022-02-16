@@ -36,21 +36,20 @@ export default function FilterDropdown({
   // });
 
   useEffect(() => {
-    // if (filterData.category.length > 0 || filterData.brand.length > 0) {
     if (isMounted.current) {
-      push({
-        pathname: "/filter",
-        query: {
-          categoryIds: filter.category.join(","),
-          brandIds: filter.brand.join(","),
-          searchPrice: `${filter.price.min}-${filter.price.max}`,
-          // categoryIds: filterData.category.join(","),
-          // brandIds: filterData.brand.join(","),
-          // searchPrice: filterData.price,
+      push(
+        {
+          pathname: "/filter",
+          query: {
+            categoryIds: filter.category.join(","),
+            brandIds: filter.brand.join(","),
+            searchPrice: `${filter.price.min}-${filter.price.max}`,
+          },
         },
-      });
+        null,
+        { scroll: false }
+      );
     } else isMounted.current = true;
-    // }
   }, [filter]);
 
   const showNum = [
@@ -73,7 +72,6 @@ export default function FilterDropdown({
   ];
 
   const handleFilterBrand = (e, value) => {
-    // if (!filterData.brand.length) setFilterData({ ...filterData, brand: "" });
     if (e.target.checked) {
       dispatch({
         type: FILTER_BRAND,
@@ -82,18 +80,7 @@ export default function FilterDropdown({
           !filter.brand.includes(value) ? value : null,
         ],
       });
-      // setFilterData({
-      //   ...filterData,
-      //   brand: [
-      //     ...filterData.brand,
-      //     !filterData.brand.includes(value) ? value : null,
-      //   ],
-      // });
     } else {
-      // setFilterData({
-      //   ...filterData,
-      //   brand: filterData.brand.filter((item) => item !== value),
-      // });
       dispatch({
         type: FILTER_BRAND,
         payload: filter.brand.filter((item) => item !== value),
@@ -103,13 +90,6 @@ export default function FilterDropdown({
 
   const handleFilterCategoryParent = (e, allCats) => {
     if (e.target.checked) {
-      // setFilterData({
-      //   ...filterData,
-      //   category: [
-      //     ...filterData.category.filter((cat) => !allCats.includes(cat)),
-      //     ...allCats,
-      //   ].flat(),
-      // });
       dispatch({
         type: FILTER_CAT,
         payload: [
@@ -118,10 +98,6 @@ export default function FilterDropdown({
         ].flat(),
       });
     } else {
-      // setFilterData({
-      //   ...filterData,
-      //   category: filterData.category.filter((item) => !allCats.includes(item)),
-      // });
       dispatch({
         type: FILTER_CAT,
         payload: filter.category.filter((item) => !allCats.includes(item)),
@@ -131,19 +107,11 @@ export default function FilterDropdown({
 
   const handleFilterCategoryChild = (e, value) => {
     if (e.target.checked) {
-      // setFilterData({
-      //   ...filterData,
-      //   category: [...filterData.category, value],
-      // });
       dispatch({
         type: FILTER_CAT,
         payload: [...filter.category, value],
       });
     } else {
-      // setFilterData({
-      //   ...filterData,
-      //   category: filterData.category.filter((item) => item !== value),
-      // });
       dispatch({
         type: FILTER_CAT,
         payload: filter.category.filter((item) => item !== value),
@@ -152,10 +120,6 @@ export default function FilterDropdown({
   };
 
   const handlePriceSlider = ({ min, max }) => {
-    // setFilterData({
-    //   ...filterData,
-    //   price: `${min}-${max}`,
-    // });
     dispatch({
       type: FILTER_PRICE,
       payload: {
@@ -170,14 +134,6 @@ export default function FilterDropdown({
   return (
     <div className="row justify-content-space-evenly align-items-end my-20">
       <div className="col-xs-12 col-md-4 col-lg-3 py-3">
-        {/* {menu && (
-          <SelectCheckboxGroup
-            filterData={filterData.category}
-            data={menu}
-            title={t("category")}
-            onSelect={handleFilterCategory}
-          />
-        )} */}
         {menu.menuData ? (
           <SelectCheckboxGroup
             filterData={filter.category}
