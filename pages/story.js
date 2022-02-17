@@ -8,7 +8,7 @@ export default function StoryPage({ storyData }) {
 
   function handleClose() {
     // setReelsOpen(false);
-    document.getElementById("zuck-modal").style.display = "block";
+    // document.getElementById("zuck-modal").style.display = "block";
     Router.push("/");
   }
 

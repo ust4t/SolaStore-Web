@@ -10,6 +10,7 @@ import {
 } from "./ReelsLayout.module.css";
 import ReelsCard from "../../components/Cards/ReelsCard";
 import ShareModal from "../../components/Modals/ShareModal";
+import sources from "../../../sources";
 // import sources from "../../../sources";
 
 export default function ReelsLayout({ reels, onClose, open }) {
@@ -40,19 +41,19 @@ export default function ReelsLayout({ reels, onClose, open }) {
     }
   }, [embla, videoRef]);
 
-  // const findSlidesInView = useCallback(() => {
-  //   if (!embla) return;
+  const findSlidesInView = useCallback(() => {
+    if (!embla) return;
 
-  //   setSlidesInView((slidesInView) => {
-  //     if (slidesInView.length === embla.slideNodes().length) {
-  //       embla.off("select", findSlidesInView);
-  //     }
-  //     const inView = embla
-  //       .slidesInView(true)
-  //       .filter((index) => slidesInView.indexOf(index) === -1);
-  //     return slidesInView.concat(inView);
-  //   });
-  // }, [embla, setSlidesInView]);
+    setSlidesInView((slidesInView) => {
+      if (slidesInView.length === embla.slideNodes().length) {
+        embla.off("select", findSlidesInView);
+      }
+      const inView = embla
+        .slidesInView(true)
+        .filter((index) => slidesInView.indexOf(index) === -1);
+      return slidesInView.concat(inView);
+    });
+  }, [embla, setSlidesInView]);
 
   useEffect(() => {
     if (!open) {
@@ -65,9 +66,18 @@ export default function ReelsLayout({ reels, onClose, open }) {
 
   useEffect(() => {
     if (!embla) return;
-    embla.on("select", onSelect);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") {
+        embla.scrollNext();
+      } else if (e.key === "ArrowUp") {
+        embla.scrollPrev();
+      }
+    });
+    findSlidesInView();
     onSelect();
-  }, [embla, onSelect]);
+    embla.on("select", onSelect);
+    embla.on("select", findSlidesInView);
+  }, [embla, onSelect, findSlidesInView]);
 
   return (
     <div className={`${reelsContainer}`}>
@@ -84,8 +94,8 @@ export default function ReelsLayout({ reels, onClose, open }) {
         />
         <div className={embla__viewport} ref={viewportRef}>
           <div className={embla__container}>
-            {reels &&
-              reels.map(({ shortName, guidName, masterProductID }, index) => {
+            {reels.map(
+              ({ shortName, guidName, masterProductID, pic1 }, index) => {
                 return (
                   <ReelsCard
                     onClose={onClose}
@@ -97,14 +107,15 @@ export default function ReelsLayout({ reels, onClose, open }) {
                       id: masterProductID,
                       video: guidName,
                       index,
-                      // picture: `${sources.imageMidSrc}${picture_1}`,
-                      picture: "/images/placeholder.jpg",
+                      picture: `${sources.imageMidSrc}${pic1}`,
                       reelsLength: reels.length,
                     }}
                     videoRef={videoRef}
+                    inView={slidesInView.indexOf(index) > -1}
                   />
                 );
-              })}
+              }
+            )}
           </div>
         </div>
       </div>

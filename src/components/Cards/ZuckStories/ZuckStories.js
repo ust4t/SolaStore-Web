@@ -77,7 +77,6 @@ class ZuckStories extends Component {
 
     this.state.stories.map((story, storyId) => {
       const storyItems = [];
-
       story.items.map((storyItem, i) => {
         storyItems.push(
           <li
@@ -97,7 +96,10 @@ class ZuckStories extends Component {
         );
       });
 
-      let arrayFunc = story.seen ? "push" : "unshift";
+      let arrayFunc =
+        story.seen || storyId === this.props.storiesData.length - 1
+          ? "push"
+          : "unshift";
       timelineItems[arrayFunc](
         <div
           // onClick={() => {
@@ -160,22 +162,6 @@ class ZuckStories extends Component {
           className="position-relative storiesWrapper d-flex justify-content-center my-2 my-md-3">
           {timelineItems}
         </div>
-        {/* <div
-          onClick={this.props.onOpen}
-          className="storiesWrapper position-fixed stories user-icon carousel snapgram"
-          style={{
-            top: "50%",
-            right: "20px",
-            zIndex: "400",
-          }}>
-          <div className="story">
-            <a className="item-link" href="#">
-              <span className="item-preview">
-                <img src="https://solastore.com.tr/img/ProductWM/minPic/a07bc882-9.jpg" />
-              </span>
-            </a>
-          </div>
-        </div> */}
       </div>
     );
   }

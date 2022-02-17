@@ -30,7 +30,12 @@ export async function getServerSideProps({ query, locale }) {
       const { data: productData } = await axios.get(
         `https://api.solastore.com.tr/api/Product/GetVariationsByProductID?ProductID=${product.masterProductID}&lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
       );
-      productData.map((variant) => allSearchData.push(variant));
+      productData.map((variant) =>
+        allSearchData.push({
+          ...variant,
+          video_1: product.video_1,
+        })
+      );
     })
   );
 

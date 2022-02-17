@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useRouter } from "next/router";
 import axios from "axios";
-// import toast from "react-hot-toast";
 
 import AllToaster from "../src/components/AllToaser";
 import ScrollTop from "../src/layout/ScrollTop";
@@ -13,6 +12,7 @@ import StoreProvider from "../src/context/StoreProvider";
 import store from "../src/redux/store";
 import { GET_MAIN_MENU, CREATE_USER_ID } from "../src/redux/action/type";
 import menuData from "../public/menuData.json";
+import toast from "react-hot-toast";
 
 import "zuck.js/dist/skins/snapgram.min.css";
 import "zuck.js/dist/zuck.min.css";
@@ -37,7 +37,10 @@ function MyApp({ Component, pageProps }) {
         payload: menu,
       });
     } catch (error) {
-      console.log(error);
+      store.dispatch({
+        type: GET_MAIN_MENU,
+        payload: menuData[store.getState().lang],
+      });
       toast.error("Menü alınırken hata oluştu");
     }
   };

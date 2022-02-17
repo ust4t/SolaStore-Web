@@ -1,11 +1,10 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import dynamic from "next/dynamic";
 import IntroBanners from "../src/layout/IntroBanners";
 import FilterSearch from "../src/layout/FilterSearch";
 import Layout from "../src/layout/Layout";
 import SliderProducts from "../src/components/sliders/sliderProducts";
 import TabLayout from "../src/layout/TabLayout";
-import ReelsLayout from "../src/layout/ReelsLayout/ReelsLayout";
 const BrandsLayout = dynamic(() => import("../src/layout/BrandsLayout"));
 const Categories = dynamic(() => import("../src/layout/Categories"));
 const ZuckStories = dynamic(

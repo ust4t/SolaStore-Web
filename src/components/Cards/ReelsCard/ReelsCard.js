@@ -31,11 +31,7 @@ const ReelsCard = ({
   const wishlist =
     state.wishlistData &&
     state.wishlistData.find((data) => data.masterProductID === id);
-  const [hasLoaded, setHasLoaded] = useState(false);
-
-  const setLoaded = useCallback(() => {
-    if (inView) setHasLoaded(true);
-  }, [inView, setHasLoaded]);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     if (wishlist) {
@@ -73,7 +69,11 @@ const ReelsCard = ({
     <div className={embla__slide}>
       <div className={embla__slide__inner}>
         <video
+          poster={picture}
+          preload="none"
           autoPlay
+          onPlay={() => setPaused(false)}
+          onPause={() => setPaused(true)}
           onEnded={() => {
             if (index === reelsLength - 1) {
               onClose();
@@ -84,7 +84,7 @@ const ReelsCard = ({
           ref={(el) => (videoRef.current[index] = el)}
           controls
           className={embla__slide__img}
-          src={`${sources.videos}${video}`}
+          src={inView || index === 0 ? `${sources.videos}${video}` : ""}
         />
       </div>
       <div
@@ -186,8 +186,21 @@ const ReelsCard = ({
           />
           <h6 className="text-white">доля</h6>
         </div>
-        <i
-          className={`fas fa-compact-disc text-white ${videoFooter__record}`}
+        <img
+          src="/images/placeholder.jpg"
+          width={50}
+          height={50}
+          onClick={() => {
+            if (paused) {
+              videoRef.current[index].play();
+            } else {
+              videoRef.current[index].pause();
+            }
+          }}
+          className={videoFooter__record}
+          style={{
+            animationPlayState: paused ? "paused" : "running",
+          }}
         />
       </div>
       <div

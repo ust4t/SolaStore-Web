@@ -29,8 +29,8 @@
 }
 
 .videoFooter__record {
+  border-radius: 50%;
   animation: spinTheRecord infinite 5s linear;
-  font-size: 30px;
 }
 
 @keyframes spinTheRecord {
