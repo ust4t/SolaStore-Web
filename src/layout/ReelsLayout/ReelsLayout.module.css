@@ -1,5 +1,6 @@
 .emblaMain {
   position: relative;
+
   width: 350px;
   margin-left: auto;
   margin-right: auto;
@@ -44,8 +45,23 @@
   opacity: 0;
   pointer-events: none;
 } */
-/* 
-@media (max-width: 400px) {
-  
-  
-} */
+
+@media (max-width: 500px) {
+  .embla__container {
+    height: 730px;
+  }
+
+  .emblaMain {
+    margin-bottom: 60px;
+  }
+
+  .embla__container,
+  .emblaMain {
+    width: 100vw;
+    /* height: 730px; */
+  }
+
+  .embla__viewport {
+    border-radius: 0;
+  }
+}

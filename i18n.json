@@ -10,7 +10,8 @@
       "detail",
       "footer",
       "register",
-      "order"
+      "order",
+      "phone"
     ]
   }
 }

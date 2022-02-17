@@ -1,19 +1,18 @@
 import React, { useEffect, useCallback, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+
+import { loadState, saveState } from "../../redux/browser-storage";
 import {
   emblaMain,
   embla__viewport,
   embla__container,
   reelsContainer,
-  reelsOpen,
-  reelsClose,
 } from "./ReelsLayout.module.css";
 import ReelsCard from "../../components/Cards/ReelsCard";
 import ShareModal from "../../components/Modals/ShareModal";
 import sources from "../../../sources";
-// import sources from "../../../sources";
 
-export default function ReelsLayout({ reels, onClose, open }) {
+export default function ReelsLayout({ reels, onClose }) {
   const [slidesInView, setSlidesInView] = useState([]);
   const [viewportRef, embla] = useEmblaCarousel({
     axis: "y",
@@ -56,15 +55,6 @@ export default function ReelsLayout({ reels, onClose, open }) {
   }, [embla, setSlidesInView]);
 
   useEffect(() => {
-    if (!open) {
-      videoRef.current.forEach((video) => {
-        video.currentTime = 0;
-        video.pause();
-      });
-    }
-  }, [open]);
-
-  useEffect(() => {
     if (!embla) return;
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowDown") {
@@ -105,7 +95,7 @@ export default function ReelsLayout({ reels, onClose, open }) {
                     reelsData={{
                       name: shortName,
                       id: masterProductID,
-                      video: guidName,
+                      video: `${sources.videos}${guidName}`,
                       index,
                       picture: `${sources.imageMidSrc}${pic1}`,
                       reelsLength: reels.length,

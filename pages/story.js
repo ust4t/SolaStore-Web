@@ -4,17 +4,11 @@ import { useState } from "react";
 import ReelsLayout from "../src/layout/ReelsLayout/ReelsLayout";
 
 export default function StoryPage({ storyData }) {
-  const [reelsOpen, setReelsOpen] = useState(true);
-
   function handleClose() {
-    // setReelsOpen(false);
-    // document.getElementById("zuck-modal").style.display = "block";
     Router.push("/");
   }
 
-  return (
-    <ReelsLayout open={reelsOpen} onClose={handleClose} reels={storyData} />
-  );
+  return <ReelsLayout onClose={handleClose} reels={storyData} />;
 }
 
 export async function getServerSideProps({ query, locale }) {
@@ -23,7 +17,7 @@ export async function getServerSideProps({ query, locale }) {
   const { data } = await axios.get(
     `https://api.solastore.com.tr/api/Product/GetAllStory?pageNumber=${
       page || 1
-    }&pageSize=${pageSize || 50}&sourceProof=${process.env.SOURCE_PROOF}`
+    }&pageSize=${pageSize || 25}&sourceProof=${process.env.SOURCE_PROOF}`
   );
 
   return {

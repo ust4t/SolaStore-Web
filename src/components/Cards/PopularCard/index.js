@@ -201,7 +201,8 @@ function PopularCard({ productData, cartId }) {
               <Image
                 className="pro-image-front"
                 src={
-                  !!currentImages.pictures.length
+                  !!currentImages.pictures.length &&
+                  currentImages.pictures[0]?.guidName
                     ? `${sources.imageMidSrc}${currentImages.pictures[0].guidName}`
                     : "/images/placeholder.jpg"
                 }
@@ -231,7 +232,8 @@ function PopularCard({ productData, cartId }) {
             <a>
               <Image
                 src={
-                  !!currentImages.pictures.length
+                  !!currentImages.pictures.length &&
+                  currentImages.pictures[1]?.guidName
                     ? `${sources.imageMidSrc}${currentImages.pictures[1].guidName}`
                     : "/images/placeholder.jpg"
                 }

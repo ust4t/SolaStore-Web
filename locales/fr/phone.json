@@ -1,0 +1,9 @@
+{
+  "title": "Laissez votre numéro, nous vous appellerons !",
+  "subtitle": "Vous souhaitez que votre numéro soit appelé ?",
+  "placeholder": "Entrez votre numéro",
+  "info": "Après avoir laissé votre numéro, nos représentants du service clientèle vous contacteront dans les plus brefs délais.",
+  "button": "Envoyer",
+  "success": "Votre numéro a été envoyé avec succès",
+  "fail": "impossible d'envoyer votre numéro"
+}

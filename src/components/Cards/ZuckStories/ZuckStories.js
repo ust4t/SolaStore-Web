@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import Zuck from "zuck.js";
 import withTranslation from "next-translate/withTranslation";
+import Router from "next/router";
 
 import sources from "../../../../sources";
 import { timestamp } from "../../../utils/utils";
-import Router from "next/router";
+import { loadState } from "../../../redux/browser-storage";
 
 class ZuckStories extends Component {
   constructor(props) {
@@ -102,21 +103,21 @@ class ZuckStories extends Component {
           : "unshift";
       timelineItems[arrayFunc](
         <div
-          // onClick={() => {
-          //   const modal = document.getElementById("zuck-modal");
-          //   if (storyId === this.props.storiesData.length - 1) {
-          //     modal.style.display = "none";
-          //     Router.push({
-          //       pathname: "/story",
-          //       query: {
-          //         page: 1,
-          //         pageSize: 50,
-          //       },
-          //     });
-          //   } else {
-          //     modal.style.display = "block";
-          //   }
-          // }}
+          onClick={() => {
+            const modal = document.getElementById("zuck-modal");
+            if (storyId === this.props.storiesData.length - 1) {
+              modal.style.display = "none";
+              Router.push({
+                pathname: "/story",
+                query: {
+                  page: loadState("page") || 1,
+                  pageSize: 25,
+                },
+              });
+            } else {
+              modal.style.display = "block";
+            }
+          }}
           className={
             story.seen
               ? `story ${

@@ -26,6 +26,9 @@ export const FILTER_CAT = "FILTER_CAT";
 export const FILTER_BRAND = "FILTER_BRAND";
 export const FILTER_PRICE = "FILTER_PRICE";
 
+// page
+export const SET_STORY_PAGE = "SET_STORY_PAGE";
+
 // auth
 export const CREATE_USER_ID = "CREATE_USER_ID";
 

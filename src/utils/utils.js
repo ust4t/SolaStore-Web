@@ -61,3 +61,40 @@ export const dblock = (active, id, sort) => {
       : "d-none";
   }
 };
+
+export const chooseContent = ({ data, locale }) => {
+  switch (locale) {
+    case "tr":
+      return {
+        header: data.headerTR,
+        content: data.contentTR,
+      };
+    case "en":
+      return {
+        header: data.headerEN,
+        content: data.contentEN,
+      };
+
+    case "fr":
+      return {
+        header: data.headerFR,
+        content: data.contentFR,
+      };
+    case "ar":
+      return {
+        header: data.headerAR,
+        content: data.contentAR,
+      };
+    case "ru":
+      return {
+        header: data.headerRU,
+        content: data.contentRU,
+      };
+
+    default:
+      return {
+        header: data.headerRU,
+        content: data.contentRU,
+      };
+  }
+};

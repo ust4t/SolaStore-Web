@@ -35,7 +35,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
     push({
       pathname: "/search",
       query: {
-        searchText: searchRef.current.value,
+        searchText: encodeURI(searchRef.current.value),
       },
     });
   };

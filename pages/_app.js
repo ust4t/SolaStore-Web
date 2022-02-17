@@ -58,6 +58,9 @@ function MyApp({ Component, pageProps }) {
       window.gtag("config", "UA-73451034-1", {
         page_path: url,
       });
+      window.gtag("config", "G-SWHHCJ1EK6", {
+        page_path: url,
+      });
     }
   };
 
@@ -193,12 +196,17 @@ function MyApp({ Component, pageProps }) {
         src="https://www.googletagmanager.com/gtag/js?id=UA-73451034-1"
         strategy="afterInteractive"
       />
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-SWHHCJ1EK6"
+        strategy="afterInteractive"
+      />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', 'UA-73451034-1', { page_path: window.location.pathname }); 
+          gtag('config', 'G-SWHHCJ1EK6', { page_path: window.location.pathname }); 
           `}
       </Script>
     </Provider>

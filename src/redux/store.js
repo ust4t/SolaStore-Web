@@ -11,6 +11,7 @@ const loadedState = {
     state: null,
     name: "Guest",
   }),
+  page: loadState("page", 1),
 };
 
 const bindMiddleware = (middleware) => {

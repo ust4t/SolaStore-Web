@@ -1,5 +1,5 @@
-import React, { useCallback, useContext, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useContext, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import Router from "next/router";
 
@@ -11,8 +11,8 @@ import {
   videoFooter__record,
 } from "./ReelsCard.module.css";
 import Heart from "../../Heart";
-import sources from "../../../../sources";
 import { StoreContext } from "../../../context/StoreProvider";
+import { SET_STORY_PAGE } from "../../../redux/action/type";
 
 const ReelsCard = ({
   embla,
@@ -24,7 +24,8 @@ const ReelsCard = ({
 }) => {
   const { video, name, id, index, picture, reelsLength } = reelsData;
   const { state, cartActions, wishListActions } = useContext(StoreContext);
-  const auth = useSelector((state) => state.auth);
+  const { auth, page } = useSelector((state) => state);
+  const dispatch = useDispatch();
   const { addToCartAction } = cartActions;
   const { addToWishList, removeFromWishList } = wishListActions;
   const [isLiked, setIsLiked] = useState(false);
@@ -65,6 +66,33 @@ const ReelsCard = ({
     return;
   };
 
+  const handlePlay = () => {
+    if (paused) {
+      videoRef.current[index].play();
+    } else {
+      videoRef.current[index].pause();
+    }
+  };
+
+  const handleVideoEnded = () => {
+    if (index === reelsLength - 1) {
+      dispatch({
+        type: SET_STORY_PAGE,
+        payload: page + 1,
+      });
+      Router.push({
+        pathname: "/story",
+        query: {
+          page: page + 1,
+          pageSize: 25,
+        },
+      });
+      if (embla) embla.scrollTo(0);
+      return;
+    }
+    if (embla) embla.scrollTo(embla.selectedScrollSnap() + 1);
+  };
+
   return (
     <div className={embla__slide}>
       <div className={embla__slide__inner}>
@@ -72,19 +100,16 @@ const ReelsCard = ({
           poster={picture}
           preload="none"
           autoPlay
+          muted
+          accept="video/*"
+          onClick={handlePlay}
           onPlay={() => setPaused(false)}
           onPause={() => setPaused(true)}
-          onEnded={() => {
-            if (index === reelsLength - 1) {
-              onClose();
-              return;
-            }
-            if (embla) embla.scrollTo(embla.selectedScrollSnap() + 1);
-          }}
+          onEnded={handleVideoEnded}
           ref={(el) => (videoRef.current[index] = el)}
-          controls
+          controls={false}
           className={embla__slide__img}
-          src={inView || index === 0 ? `${sources.videos}${video}` : ""}
+          src={inView || index === 0 ? video : ""}
         />
       </div>
       <div
@@ -190,13 +215,7 @@ const ReelsCard = ({
           src="/images/placeholder.jpg"
           width={50}
           height={50}
-          onClick={() => {
-            if (paused) {
-              videoRef.current[index].play();
-            } else {
-              videoRef.current[index].pause();
-            }
-          }}
+          onClick={handlePlay}
           className={videoFooter__record}
           style={{
             animationPlayState: paused ? "paused" : "running",
@@ -206,7 +225,7 @@ const ReelsCard = ({
       <div
         className={`row position-absolute bottom-0 start-0 p-2 ${reelsFooter}`}>
         <div className="col-12">
-          <h3 className="text-white fs-3">{name}</h3>
+          <h3 className="text-white">{name}</h3>
         </div>
       </div>
     </div>

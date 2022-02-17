@@ -29,10 +29,12 @@ export default function TabLayout({ newProducts, saleProducts }) {
                       <i className="fas fa-fire-alt"></i>
                       {t("new")}
                     </Nav.Link>
-                    <Nav.Link eventKey="Sale Products">
-                      <i className="fas fa-tags"></i>
-                      {t("sale")}
-                    </Nav.Link>
+                    {saleProducts.length > 0 && (
+                      <Nav.Link eventKey="Sale Products">
+                        <i className="fas fa-tags"></i>
+                        {t("sale")}
+                      </Nav.Link>
+                    )}
                     <Nav.Link eventKey="Best Sell">
                       <i className="fas fa-chart-line"></i>
                       {t("bestseller")}
@@ -43,9 +45,11 @@ export default function TabLayout({ newProducts, saleProducts }) {
                   <Tab.Pane eventKey="New Products">
                     <OtherProducts id="new" products={newProducts} />
                   </Tab.Pane>
-                  <Tab.Pane eventKey="Sale Products">
-                    <OtherProducts id="sale" products={saleProducts} />
-                  </Tab.Pane>
+                  {saleProducts.length > 0 && (
+                    <Tab.Pane eventKey="Sale Products">
+                      <OtherProducts id="sale" products={saleProducts} />
+                    </Tab.Pane>
+                  )}
                   <Tab.Pane eventKey="Best Sell">
                     <PopularProducts />
                   </Tab.Pane>

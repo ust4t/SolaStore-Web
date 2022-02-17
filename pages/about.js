@@ -1,38 +1,39 @@
+import axios from "axios";
 import React from "react";
+
+import { chooseContent } from "../src/utils/utils";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
 
-export default function About() {
+export default function About({ aboutData }) {
+  console.log(aboutData.header);
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <PageTitle
-        active={"About Us"}
-        pageTitle={"About Us"}
+        active={aboutData.header}
+        pageTitle={aboutData.header}
         navigation={false}
       />
       <div className="row my-5">
         <div className="col-12 justify-content-center align-items-center">
-          <p className="fs-6 text-center mx-2">
-            Solastore, Mehmet Metin Sola tarafından 2002 yılında moda giyim
-            sektöründe fark oluşturmak için kurulmuş kadın giyim markasıdır.
-          </p>
-          <p className="fs-6 text-center mx-2">
-            Yenilikçi ve deneyimli kadrosu ile yurtdışı pazarında, kadın giyimin
-            modern çizgilerini ve kadın giyimin şıklığının temsilcisi olma
-            yolunda büyük adımlar atmaktadır.
-          </p>
-          <p className="fs-6 text-center mx-2">
-            Modern ve giyimin her tarzından kadınların aradığı şıklığı, doğanın
-            ilham veren renkleriyle bir araya getiren Sola Store, kadın toptan
-            giyimde dünyada iddaalı bir markadır.
-          </p>
-          <p className="fs-6 text-center mx-2">
-            Herhangi bir soru, şikayet ve görüşleriniz için bize iletişim
-            numaralarımız üzerinden ulaşabileceğiniz gibi, sosyal medya
-            hesaplarımız üzerinden de ulaşabilirsiniz.
-          </p>
+          <p className="fs-6 text-center mx-2">{aboutData.content}</p>
         </div>
       </div>
     </Layout>
   );
+}
+
+export async function getStaticProps({ locale }) {
+  const { data } = await axios.get(
+    `https://api.solastore.com.tr/api/Helpers/GetCorporates?id=1&sourceProof=${process.env.SOURCE_PROOF}`
+  );
+
+  return {
+    props: {
+      aboutData: chooseContent({
+        data: data.data,
+        locale: locale,
+      }),
+    },
+  };
 }

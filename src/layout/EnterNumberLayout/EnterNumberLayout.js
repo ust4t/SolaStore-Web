@@ -9,7 +9,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 export default function EnterNumberLayout() {
-  const { t } = useTranslation("footer");
+  const { t } = useTranslation("phone");
   const [number, setNumber] = React.useState("");
 
   const sendNumber = async (e) => {
@@ -26,9 +26,9 @@ export default function EnterNumberLayout() {
         },
       });
       setNumber("");
-      toast.success("успешно отправил ваш номер");
+      toast.success(t("success"));
     } catch (error) {
-      toast.error("не удалось отправить ваш номер");
+      toast.error(t("fail"));
     }
   };
 
@@ -39,9 +39,11 @@ export default function EnterNumberLayout() {
           backgroundImage: 'url("/images/all-bg/newsletter_bg.jpg")',
         }}
         className="col-lg-6 p-4 py-5 d-flex flex-column justify-content-between align-items-center">
-        <h3 className="text-white fw-bold">НО ВАШ НОМЕР. МЫ ЖДЕМ ВАС!</h3>
+        <h3 className="text-white fw-bold text-center text-uppercase">
+          {t("title")}
+        </h3>
         <div className={subTitle}>
-          <h5 className="text-white m-0">ВЫ ХОТИТЕ ВИДЕТЬ СЕБЯ?</h5>
+          <h5 className="text-white m-0 text-uppercase">{t("subtitle")}</h5>
         </div>
         <div className="position-relative">
           <form onSubmit={sendNumber}>
@@ -50,28 +52,25 @@ export default function EnterNumberLayout() {
               onChange={(e) => setNumber(e.target.value)}
               className={numberInput}
               type="number"
-              placeholder="Напишите ваш номер..."
+              placeholder={t("placeholder")}
             />
             <button type="submit" className={inputBtn}>
-              Отправить <i className="fas fa-arrow-circle-right" />
+              {t("button")} <i className="fas fa-arrow-circle-right" />
             </button>
           </form>
         </div>
       </div>
       <div className="col-lg-6 my-4 my-lg-0 d-flex flex-column align-items-center">
         <i className="fas fa-user fa-5x mb-4" />
-        <h4 className="fs-4 text-center mx-3">
-          После того, как вы оставите свой номер, наши представители по работе с
-          клиентами свяжутся с вами как можно скорее.
-        </h4>
+        <h4 className="fs-4 text-center mx-3">{t("info")}</h4>
         <a className="fs-6" href="tel:+9002124584500">
-          {t("tel")}: +90 (0212) 458 45 00
+          {t("footer:tel")}: +90 (0212) 458 45 00
         </a>
         <a className="fs-6" href="tel:+9005554000005">
-          {t("tel")} 2: +90 (0555) 400 00 05
+          {t("footer:tel")} 2: +90 (0555) 400 00 05
         </a>
         <a className="fs-6" href="tel:+9005554000011">
-          {t("tel")} 3: +90 (0555) 400 00 11
+          {t("footer:tel")} 3: +90 (0555) 400 00 11
         </a>
         <a className="fs-6" href="mailto:info@solastore.com.tr">
           е-мейл: info@solastore.com.tr
