@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useRef, useState } from "react";
+import { Fragment, useContext, useEffect, useRef, useState, memo } from "react";
 import { Nav, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Link from "next/link";
@@ -7,12 +7,11 @@ import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
+import useCartAnim from "../../hooks/useCartAnim";
 import sources from "../../../sources";
 import { StoreContext } from "../../context/StoreProvider";
 import Layout from "../../layout/Layout";
-// import PageTitle from '../../layout/PageTitle';
 
-// import RelatedProduct from '../sliders/RelatedProduct';
 import Zoom from "../Zoom";
 import ShareModal from "../Modals/ShareModal";
 import {
@@ -47,6 +46,7 @@ const Details = ({
   const [imageKey, setImageKey] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const videoRef = useRef();
+  const cartRef = useRef();
   const cart =
     product &&
     state.cartData &&
@@ -131,6 +131,12 @@ const Details = ({
   const checkImage = ({ source, img }) =>
     product.picture_1 ? `${source}${img}` : "/images/placeholder.jpg";
 
+  useCartAnim({
+    el: cartRef.current,
+    src: `${sources.imageMidSrc}${product.picture_1}`,
+    btnRef: "[data-addtocart]",
+  });
+
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
@@ -196,11 +202,11 @@ const Details = ({
                                   height="900"
                                   layout="responsive"
                                   alt={product.productShortName}
-                                  // src={`${sources.imageMaxSrc}${img.guidName}`}
                                   src={checkImage({
                                     source: sources.imageMaxSrc,
                                     img: img.guidName,
                                   })}
+                                  priority
                                 />
                               </Tab.Pane>
                             ))}
@@ -233,7 +239,6 @@ const Details = ({
                                         ? navActive
                                         : ""
                                     }`}
-                                    // src={`${sources.imageMaxSrc}${img.guidName}`}
                                     src={checkImage({
                                       source: sources.imageMaxSrc,
                                       img: img.guidName,
@@ -267,7 +272,6 @@ const Details = ({
                                       ? navActive
                                       : ""
                                   }`}
-                                  // src={`${sources.imageMaxSrc}${product.picture_1}`}
                                   src={checkImage({
                                     source: sources.imageMaxSrc,
                                     img: product.picture_1,
@@ -480,26 +484,22 @@ const Details = ({
                             />
                             <button
                               className="dec qtybutton cursor-pointer"
-                              onClick={
-                                (e) =>
-                                  cart &&
-                                  quantity !== 1 &&
-                                  setQuantity(quantity - 1)
-                                // onDecrementCart(e)
-                              }
-                              disabled={cart ? false : true}>
+                              onClick={(e) =>
+                                quantity !== 1 && setQuantity(quantity - 1)
+                              }>
                               -
                             </button>
                             <button
                               className="inc qtybutton cursor-pointer"
-                              onClick={onIncrementCart}
-                              // disabled={cart ? false : true}
-                            >
+                              onClick={onIncrementCart}>
                               +
                             </button>
                           </div>
                         </div>
-                        <div className="detailPos pro-cart-btn ms-2 ms-sm-3 ms-md-4 ms-lg-3 me-1 me-sm-3">
+                        <div
+                          data-addtocart
+                          ref={cartRef}
+                          className="detailPos pro-cart-btn ms-2 ms-sm-3 ms-md-4 ms-lg-3 me-1 me-sm-3 cartContainer">
                           <a href="#" onClick={handleAddToCart}>
                             <i className="fas fa-cart-arrow-down fa-lg" />{" "}
                             {t("common:addtocart")}

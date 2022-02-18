@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { single_banner } from "./BannerCard.module.css";
+import { single_banner, bannerTitle } from "./BannerCard.module.css";
 import sources from "../../../../sources";
 
 export default function BannerCard({
@@ -33,13 +33,17 @@ export default function BannerCard({
               <div className="row">
                 <div className="col-md-12">
                   <div className="banner-content d-flex flex-column align-items-center">
-                    <h5 className="text-white text-center text-shadow">
+                    <h5
+                      className={`text-white text-center text-shadow ${bannerTitle}`}>
                       {upperTitle}
                     </h5>
-                    <h3 className="text-white text-center text-shadow">
+                    <h3
+                      className={`text-white text-center text-shadow ${bannerTitle}`}>
                       {lowerTitle}
                     </h3>
-                    <a className="underline-link text-shadow">{buttonText}</a>
+                    <a className={`underline-link text-shadow ${bannerTitle}`}>
+                      {buttonText}
+                    </a>
                   </div>
                 </div>
               </div>

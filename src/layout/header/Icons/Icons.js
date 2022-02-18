@@ -69,34 +69,41 @@ export const CartIcon = () => {
     }, 0);
 
   return (
-    <div className={mainCart}>
+    <div className={`${mainCart}`}>
       <Link href="/cart">
-        <a className="cartToDrag">
+        <a>
           <span className="iconValue">{cartsNum || 0}</span>
           <i className="fas fa-cart-arrow-down fs-3" />
         </a>
       </Link>
       {state.cartData ? (
         <div className={cart_dropdown}>
-          {state.cartData.map(
-            ({
-              chartID,
-              pictureOneGuidName,
-              price,
-              productShortName,
-              productID,
-              quantity,
-            }) => (
-              <CartProductItem
-                key={chartID}
-                image={`${sources.imageMinSrc}${pictureOneGuidName}`}
-                name={productShortName}
-                price={price}
-                id={productID}
-                quantity={quantity}
-              />
-            )
-          )}
+          <div
+            style={{
+              maxHeight: "400px",
+              overflow: "hidden",
+              overflowY: "auto",
+            }}>
+            {state.cartData.map(
+              ({
+                chartID,
+                pictureOneGuidName,
+                price,
+                productShortName,
+                productID,
+                quantity,
+              }) => (
+                <CartProductItem
+                  key={chartID}
+                  image={`${sources.imageMinSrc}${pictureOneGuidName}`}
+                  name={productShortName}
+                  price={price}
+                  id={productID}
+                  quantity={quantity}
+                />
+              )
+            )}
+          </div>
           <div className="row pe-3 bg-light py-1">
             <div className="col-12">
               <p

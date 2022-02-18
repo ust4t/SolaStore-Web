@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper";
@@ -19,6 +19,7 @@ import {
   playBtn,
 } from "./PopularCard.module.css";
 import VideoModal from "../../Modals/VideoModal";
+import useCartAnim from "../../../hooks/useCartAnim";
 
 function PopularCard({ productData, cartId }) {
   const { t } = useTranslation("common");
@@ -37,6 +38,7 @@ function PopularCard({ productData, cartId }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [videoModal, setVideoModal] = useState(false);
+  const cartRef = useRef();
 
   const sizeNum = (sizes && sizes.split("-").length) || 0;
   const oldUnitPrice = oldPrice / sizeNum;
@@ -108,8 +110,15 @@ function PopularCard({ productData, cartId }) {
     }
   };
 
+  // useCartAnim({
+  //   el: cartRef.current,
+  //   src: "/images/placeholder.jpg",
+  //   btnRef: `.data-cart`,
+  // });
+
   return (
     <div
+      // ref={cartRef}
       className={`${cartId} product-wrapper mb-40`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}>
@@ -267,11 +276,12 @@ function PopularCard({ productData, cartId }) {
               data-toggle="tooltip"
               data-placement="top"
               title="Share">
-              <i className="fas fa-share-alt"></i>
+              <i className="fas fa-share-alt" />
             </a>
           </span>
         </div>
-        <div className="product-action text-center position-absolute bottom-0 start-50 translate-middle-x w-100 mb-0 p-0 d-none d-lg-block">
+        <div
+          className={`product-action text-center position-absolute bottom-0 start-50 translate-middle-x w-100 mb-0 p-0 d-none d-lg-block`}>
           <div
             className={`${cart_button} animate__animated animate__faster h-100 ${
               currentImageIndex ? "animate__fadeInUp" : "animate__fadeOutDown"

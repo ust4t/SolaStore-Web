@@ -43,7 +43,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
   useDetectScroll(handleScroll);
 
   return (
-    <header className={darkBg ? "black-bg" : ""}>
+    <header>
       {news}
       <a
         href="https://api.whatsapp.com/send?phone=905554000005"
@@ -163,7 +163,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
         </div>
       </div>
 
-      <div className="header-menu-area logo-circle-area">
+      <div className="header-menu-area logo-circle-area cartAnim">
         <div className="container-fluid">
           <div className="row align-items-center gx-0 justify-content-center justify-content-lg-center">
             <Fragment>

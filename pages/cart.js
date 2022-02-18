@@ -169,13 +169,13 @@ const Cart = ({ saleTeam }) => {
                         img: "/images/representer.jpg",
                       })
                     }
-                    className={`col-5 d-flex justify-content-center cursor-pointer ${
-                      currentSeller && currentSeller.id === 9999
-                        ? "border border-2 border-danger"
-                        : ""
-                    }`}>
+                    className="col-5 d-flex justify-content-center cursor-pointer">
                     <img
-                      className="representers"
+                      className={`representers ${
+                        currentSeller && currentSeller.id === 9999
+                          ? "border border-2 border-danger"
+                          : ""
+                      }`}
                       src="/images/representer.jpg"
                       alt="representers"
                     />

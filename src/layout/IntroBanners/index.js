@@ -1,10 +1,6 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useQuery } from "react-query";
+import React from "react";
 
-import Loader from "../../components/Loader";
 import BannerCard from "../../components/Cards/BannerCard";
-import { useSelector } from "react-redux";
 
 function IntroBanners({ banners }) {
   return (

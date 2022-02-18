@@ -102,6 +102,7 @@ const ReelsCard = ({
           autoPlay
           accept="video/*"
           playsinline
+          muted={false}
           onClick={handlePlay}
           onPlay={() => setPaused(false)}
           onPause={() => setPaused(true)}
@@ -130,10 +131,10 @@ const ReelsCard = ({
       </div>
       <div
         style={{
-          gap: "25px",
+          gap: "40px",
           zIndex: "5",
           bottom: "25px",
-          right: "5px",
+          right: "15px",
         }}
         className="position-absolute d-flex flex-column justify-content-center align-items-center">
         <div
@@ -142,8 +143,13 @@ const ReelsCard = ({
             placeItems: "center",
             filter: "drop-shadow(rgb(0, 0, 0, .5) 0px 0px 5px)",
           }}>
-          <Heart isLiked={isLiked} onClick={() => handleLike(id)} />
-          <h6 className="text-white">Нравится</h6>
+          <Heart
+            isLiked={isLiked}
+            onClick={() => handleLike(id)}
+            style={{
+              fontSize: "35px",
+            }}
+          />
         </div>
         <div
           onClick={() => handleAddToCart(id)}
@@ -159,7 +165,6 @@ const ReelsCard = ({
               fontSize: "30px",
             }}
           />
-          <h6 className="text-white">Добавлять</h6>
         </div>
         <div
           onClick={() =>
@@ -182,7 +187,6 @@ const ReelsCard = ({
               fontSize: "30px",
             }}
           />
-          <h6 className="text-white">продукт</h6>
         </div>
 
         <div
@@ -209,7 +213,6 @@ const ReelsCard = ({
               fontSize: "30px",
             }}
           />
-          <h6 className="text-white">доля</h6>
         </div>
         <img
           src="/images/placeholder.jpg"

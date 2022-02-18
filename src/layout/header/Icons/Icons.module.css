@@ -35,3 +35,10 @@
   border-radius: 7px;
   font-weight: 400;
 }
+
+@media (max-width: 500px) {
+  .cart_dropdown {
+    width: 350px;
+    left: -330px;
+  }
+}

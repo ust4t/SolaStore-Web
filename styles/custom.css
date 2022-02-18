@@ -7,6 +7,23 @@ body > #__next {
 }
 
 /* custom styles --------------------------------------------------------------------------------------------*/
+
+.flyingBtn {
+  z-index: 1;
+  transform-origin: center bottom;
+  transform: scale(1);
+}
+
+#cartAnim {
+  outline: none;
+  position: relative;
+}
+
+[data-addtocart] {
+  border: none;
+  outline: none;
+}
+
 /* zuck.js */
 .story {
   height: 120px !important;
