@@ -22,8 +22,6 @@ export default function useCartAnim({ el, src, btnRef }) {
       btnX = el.getBoundingClientRect().left,
       flyingBtn = imgClone.cloneNode();
 
-    console.log(btnX, btnY);
-
     flyingBtn.classList.add("flyingBtn");
     flyingBtn.style.position = position;
     flyingBtn.style.top = `${

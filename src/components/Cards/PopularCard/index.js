@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper";
@@ -19,7 +19,6 @@ import {
   playBtn,
 } from "./PopularCard.module.css";
 import VideoModal from "../../Modals/VideoModal";
-import useCartAnim from "../../../hooks/useCartAnim";
 
 function PopularCard({ productData, cartId }) {
   const { t } = useTranslation("common");
@@ -38,7 +37,6 @@ function PopularCard({ productData, cartId }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [videoModal, setVideoModal] = useState(false);
-  const cartRef = useRef();
 
   const sizeNum = (sizes && sizes.split("-").length) || 0;
   const oldUnitPrice = oldPrice / sizeNum;
@@ -110,15 +108,8 @@ function PopularCard({ productData, cartId }) {
     }
   };
 
-  // useCartAnim({
-  //   el: cartRef.current,
-  //   src: "/images/placeholder.jpg",
-  //   btnRef: `.data-cart`,
-  // });
-
   return (
     <div
-      // ref={cartRef}
       className={`${cartId} product-wrapper mb-40`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}>

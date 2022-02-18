@@ -110,7 +110,7 @@ class ZuckStories extends Component {
               Router.push({
                 pathname: "/story",
                 query: {
-                  page: loadState("page") || 1,
+                  page: loadState("page").page || 1,
                   pageSize: 25,
                 },
               });

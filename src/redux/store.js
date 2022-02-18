@@ -11,7 +11,10 @@ const loadedState = {
     state: null,
     name: "Guest",
   }),
-  page: loadState("page", 1),
+  page: loadState("page", {
+    page: 1,
+    lastIndex: 0,
+  }),
 };
 
 const bindMiddleware = (middleware) => {

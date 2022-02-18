@@ -47,10 +47,6 @@ const Details = ({
   const [quantity, setQuantity] = useState(1);
   const videoRef = useRef();
   const cartRef = useRef();
-  const cart =
-    product &&
-    state.cartData &&
-    state.cartData.find((cart) => cart.productID === product.productID);
 
   const sizeNum = (product.sizes && product.sizes.split("-").length) || 0;
   const oldUnitPrice = product.oldPrice / sizeNum;

@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
-import { loadState, saveState } from "../../redux/browser-storage";
 import {
   emblaMain,
   embla__viewport,
@@ -11,12 +10,15 @@ import {
 import ReelsCard from "../../components/Cards/ReelsCard";
 import ShareModal from "../../components/Modals/ShareModal";
 import sources from "../../../sources";
+import { useSelector } from "react-redux";
 
 export default function ReelsLayout({ reels, onClose }) {
+  const { page } = useSelector((state) => state);
   const [slidesInView, setSlidesInView] = useState([]);
   const [viewportRef, embla] = useEmblaCarousel({
     axis: "y",
     skipSnaps: false,
+    startIndex: page.lastIndex,
   });
   const [shareModal, setShareModal] = useState({
     isOpen: false,
@@ -30,6 +32,7 @@ export default function ReelsLayout({ reels, onClose }) {
   const videoRef = useRef([]);
 
   const onSelect = useCallback(() => {
+    console.log(page);
     if (!embla) return;
     if (videoRef.current.length) {
       videoRef.current.forEach((video) => {
