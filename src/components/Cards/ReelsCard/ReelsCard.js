@@ -100,8 +100,8 @@ const ReelsCard = ({
           poster={picture}
           preload="none"
           autoPlay
-          muted
           accept="video/*"
+          playsinline
           onClick={handlePlay}
           onPlay={() => setPaused(false)}
           onPause={() => setPaused(true)}
