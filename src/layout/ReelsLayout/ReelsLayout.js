@@ -18,7 +18,7 @@ export default function ReelsLayout({ reels, onClose }) {
   const [viewportRef, embla] = useEmblaCarousel({
     axis: "y",
     skipSnaps: false,
-    startIndex: page.lastIndex,
+    startIndex: page.lastIndex || 0,
   });
   const [shareModal, setShareModal] = useState({
     isOpen: false,
@@ -32,7 +32,6 @@ export default function ReelsLayout({ reels, onClose }) {
   const videoRef = useRef([]);
 
   const onSelect = useCallback(() => {
-    console.log(page);
     if (!embla) return;
     if (videoRef.current.length) {
       videoRef.current.forEach((video) => {
