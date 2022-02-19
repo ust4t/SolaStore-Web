@@ -51,7 +51,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
         target="_blank"
         style={{
           left: "20px",
-          bottom: "20px",
+          bottom: "80px",
         }}>
         <WhatsappIcon size={55} round={true} />
       </a>
@@ -152,7 +152,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
             </div>
           </div>
 
-          <div className="col-2">
+          <div className="col-2 px-lg-0">
             <div className="header-left-icon d-flex">
               <HomeIcon />
               <WishlistIcon />

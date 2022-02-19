@@ -67,6 +67,9 @@
   color: #fff;
   font-size: 1rem;
   font-weight: 500;
+  padding: 10px 10px;
+  background: #fff;
+  color: var(--color-primary);
 }
 
 @media (max-width: 500px) {

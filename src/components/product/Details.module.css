@@ -56,6 +56,25 @@
   font-size: 40px !important;
 }
 
+.mobileBtn {
+  padding: 10px 20px;
+  background-color: var(--color-primary);
+  color: #fff;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+.mobileCartBtn {
+  background-color: #fff;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.mobileCartBtn:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
 @media (max-width: 500px) {
   .arrowLeft {
     left: 0px;

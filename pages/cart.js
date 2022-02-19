@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { createRef, useContext, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
@@ -37,7 +37,8 @@ const Cart = ({ saleTeam }) => {
   const [warning, setWarning] = useState({
     sellerWarning: "",
   });
-  const sellerRef = React.createRef();
+  const sellerRef = createRef();
+  const sellerBoxRef = createRef();
 
   const paymentValidationSchema = Yup.object({
     name: Yup.string().required(t("validationName")),
@@ -162,13 +163,19 @@ const Cart = ({ saleTeam }) => {
                     {t("orderChoose")}
                   </h3>
                   <div
-                    onClick={() =>
+                    onClick={() => {
                       handleSeller({
                         id: 9999,
                         name: "orderFirst",
                         img: "/images/representer.jpg",
-                      })
-                    }
+                      });
+                      if (typeof window !== "undefined") {
+                        window.scrollTo({
+                          top: sellerBoxRef.current.offsetTop,
+                          behavior: "smooth",
+                        });
+                      }
+                    }}
                     className="col-5 d-flex justify-content-center cursor-pointer">
                     <img
                       className={`representers ${
@@ -187,13 +194,19 @@ const Cart = ({ saleTeam }) => {
                   {saleTeam.map(({ id, name, pictureGuidName }, i) => (
                     <div
                       key={`${id}_?=${i}`}
-                      onClick={() =>
+                      onClick={() => {
                         handleSeller({
                           id,
                           name,
                           img: `${sources.saleTeam}/${pictureGuidName}`,
-                        })
-                      }
+                        });
+                        if (typeof window !== "undefined") {
+                          window.scrollTo({
+                            top: sellerBoxRef.current.offsetTop,
+                            behavior: "smooth",
+                          });
+                        }
+                      }}
                       className={`col-4 col-lg-2 mt-3 d-flex flex-column align-items-center mustem cursor-pointer ${
                         currentSeller && currentSeller.id === id
                           ? "border border-2 border-danger"
@@ -395,7 +408,7 @@ const Cart = ({ saleTeam }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-4 payment-summary">
+                  <div ref={sellerBoxRef} className="col-lg-4 payment-summary">
                     {!!currentSeller && (
                       <div className="d-flex flex-column align-items-center justify-content-center mb-20 mt-20">
                         <h5 className="text-secondary">
@@ -457,7 +470,6 @@ const Cart = ({ saleTeam }) => {
                                   : ""
                               }`}
                               placeholder={t("orderName")}
-                              // required
                             />
                           </div>
                           {errors.name && touched.name ? (

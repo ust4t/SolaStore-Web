@@ -35,7 +35,7 @@ export default function VideoModal({ show, handleClose, video, link }) {
             className={`fa fa-times position-absolute cursor-pointer ${close_icon}`}
             onClick={handleClose}
           />
-          <video controls autoPlay className={videoStyle}>
+          <video playsInline controls autoPlay className={videoStyle}>
             <source src={`${sources.videos}${video}`} type="video/mp4" />
           </video>
           <Link href={link}>

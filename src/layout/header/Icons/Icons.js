@@ -71,7 +71,10 @@ export const CartIcon = () => {
   return (
     <div className={`${mainCart}`}>
       <Link href="/cart">
-        <a>
+        <a
+          style={{
+            marginLeft: "20px",
+          }}>
           <span className="iconValue">{cartsNum || 0}</span>
           <i className="fas fa-cart-arrow-down fs-3" />
         </a>

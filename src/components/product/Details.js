@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useRef, useState, memo } from "react";
+import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { Nav, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Link from "next/link";
@@ -23,6 +23,8 @@ import {
   videoStyle,
   videoLogoStyle,
   navActive,
+  mobileBtn,
+  mobileCartBtn,
 } from "./Details.module.css";
 import { Arrow } from "../sliders/SliderArrows";
 import Heart from "../Heart";
@@ -142,6 +144,31 @@ const Details = ({
               <title>Solastore | {product.productShortName}</title>
             </Head>
             <section className="product-details-area pt-50 pb-50">
+              <div
+                className="row bg-white p-3 position-fixed bottom-0 start-0 d-flex align-item-center justify-content-center d-lg-none"
+                style={{
+                  width: "105%",
+                  zIndex: 260,
+                }}>
+                <div className="col-6">
+                  <div
+                    onClick={handleAddToCart}
+                    data-addtocart
+                    ref={cartRef}
+                    className={`${mobileBtn} cartContainer`}>
+                    <i className="fas fa-cart-plus fa-lg" />{" "}
+                    {t("common:addtocart")}
+                  </div>
+                </div>
+                <div className="col-6">
+                  <Link href="/cart">
+                    <div className={`${mobileBtn} ${mobileCartBtn}`}>
+                      <i className="fas fa-cart-arrow-down fa-lg" />{" "}
+                      {t("cart:cartTitle")}
+                    </div>
+                  </Link>
+                </div>
+              </div>
               <ShareModal
                 urlDetails={{
                   url: "https://www.solastore.com.tr/detail/",
@@ -450,7 +477,7 @@ const Details = ({
                             </li>
                           </ul>
                         </div>
-                        <div className="d-flex justify-content-center d-sm-none ms-auto">
+                        <div className="d-flex d-lg-none justify-content-center ms-auto">
                           <div className="pro-wish me-2">
                             <Heart
                               onClick={handleAddToWishList}
@@ -469,7 +496,7 @@ const Details = ({
                         </div>
                       </div>
 
-                      <div className="d-flex justify-content-center justify-content-lg-start mb-55 mt-30">
+                      <div className="d-none d-lg-flex justify-content-center justify-content-lg-start mb-55 mt-30">
                         <div className="product-quantity">
                           <div className="cart-plus-minus">
                             <input
@@ -646,18 +673,6 @@ const Details = ({
                 </Tab.Container>
               </div>
             </section>
-            {/* <div className="product-details pt-100">
-              <RelatedProduct>
-                {products &&
-                  simpleProductFilter(
-                    product && product.category[0],
-                    products
-                  ).map((product) => (
-                    <Product key={product.id} product={product} />
-                  ))}
-              </RelatedProduct> 
-            </div>
-          */}
           </Fragment>
         ) : (
           <h2 className="text-center pt-50 pb-50">No Product found</h2>

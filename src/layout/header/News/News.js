@@ -87,7 +87,7 @@ export const News_4 = () => {
                   <>
                     <li>
                       <Link href="/login">
-                        <a>{t("loginhere")}</a>
+                        <a className="text-capitalize">{t("loginhere")}</a>
                       </Link>
                     </li>
                     <li>
