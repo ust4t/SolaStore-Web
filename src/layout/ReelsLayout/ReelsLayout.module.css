@@ -1,7 +1,6 @@
 .emblaMain {
   position: relative;
-
-  width: 350px;
+  width: 470px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -17,7 +16,7 @@
   -khtml-user-select: none;
   -webkit-tap-highlight-color: transparent;
   margin-top: -10px;
-  height: 580px;
+  height: 830px;
 }
 .reelsContainer {
   position: fixed;

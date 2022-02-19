@@ -72,7 +72,7 @@ export default function ReelsLayout({ reels, onClose }) {
   }, [embla, onSelect, findSlidesInView]);
 
   return (
-    <div className={`${reelsContainer}`}>
+    <div className={reelsContainer}>
       <div className={emblaMain}>
         <ShareModal
           show={shareModal.isOpen}

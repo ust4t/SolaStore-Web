@@ -1,0 +1,23 @@
+{
+  "form": {
+    "title": "Contact Form",
+    "subtitle": "You can contact us by filling this form",
+    "name": "Enter your name...",
+    "name_required": "Name is required",
+    "email": "Enter your email...",
+    "email_required": "Email is required",
+    "message": "Enter your message...",
+    "message_required": "Message is required",
+    "phone": "Enter your phone number...",
+    "phone_required": "Phone number is required",
+    "subject": "Enter your subject...",
+    "subject_required": "Subject is required",
+    "submit": "Send"
+  },
+  "info": {
+    "address": "Click to go to our address",
+    "titleAddress": "Address",
+    "titlePhone": "Phone",
+    "titleEmail": "Email"
+  }
+}

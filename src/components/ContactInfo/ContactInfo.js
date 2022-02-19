@@ -1,3 +1,4 @@
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 
 import {
@@ -11,13 +12,15 @@ import {
 } from "./ContactInfo.module.css";
 
 export default function ContactInfo() {
+  const { t } = useTranslation("contact");
+
   return (
     <div className={`${contact_sidebar}`}>
       <a
         href="https://www.google.com/maps?ll=41.007997,28.958228&z=14&t=m&hl=tr&gl=TR&mapclient=embed&cid=1563881826297615043"
         target="_blank">
         <div className="mb-20">
-          <h6 className={`${sub_title} text-center`}>Tıkla Adrese Git</h6>
+          <h6 className={`${sub_title} text-center`}>{t("info.address")}</h6>
         </div>
       </a>
       <div className={contact_info_wrap}>
@@ -27,7 +30,7 @@ export default function ContactInfo() {
               <i class={`fas fa-compass ${circle_icon}`} />
             </div>
             <div className={`${content} ${content_phone}`}>
-              <h5>Adres</h5>
+              <h5>{t("info.titleAddress")}</h5>
               <p
                 style={{
                   maxWidth: "200px",
@@ -45,7 +48,7 @@ export default function ContactInfo() {
               <i class={`fas fa-phone ${circle_icon}`} />
             </div>
             <div className={`${content} ${content_phone}`}>
-              <h5>Telefon</h5>
+              <h5>{t("info.titlePhone")}</h5>
               <p>
                 <a href="tel:+9002124584500">+90 (0212) 458 45 00</a>
               </p>
@@ -62,7 +65,7 @@ export default function ContactInfo() {
               <i class={`fas fa-envelope ${circle_icon}`} />
             </div>
             <div className={content}>
-              <h5>Email</h5>
+              <h5>{t("info.titleEmail")}</h5>
               <p>
                 <a href="mailto:info@solastore.com.tr">info@solastore.com.tr</a>
               </p>

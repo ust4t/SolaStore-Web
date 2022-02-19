@@ -1,6 +1,6 @@
 import { Formik } from "formik";
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
-import InputGroup from "../InputGroup";
 
 import {
   contact_wrap,
@@ -10,6 +10,8 @@ import {
 } from "./ContactForm.module.css";
 
 export default function ContactForm() {
+  const { t } = useTranslation("contact");
+
   const contactInitialValues = {
     name: "",
     email: "",
@@ -21,8 +23,8 @@ export default function ContactForm() {
   return (
     <div className={contact_wrap}>
       <div className="mb-2">
-        <span className={sub_title}>Bizimle İletişime Geçebilirsiniz</span>
-        <h2 className={title}>İletişim Formu</h2>
+        <span className={sub_title}>{t("form.subtitle")}</span>
+        <h2 className={title}>{t("form.title")}</h2>
       </div>
       <Formik initialValues={contactInitialValues}>
         {({
@@ -38,11 +40,10 @@ export default function ContactForm() {
             <div className="row">
               <div className="col-md-6">
                 <input
-                  label="Adınız"
                   id="name"
                   name="name"
                   type="string"
-                  placeholder="İsminizi giriniz..."
+                  placeholder={t("form.name")}
                   value={values.name}
                   onBlur={handleBlur}
                   onChange={handleChange}
@@ -51,11 +52,10 @@ export default function ContactForm() {
 
               <div className="col-md-6">
                 <input
-                  label="Email"
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="Email giriniz..."
+                  placeholder={t("form.email")}
                   value={values.email}
                   onBlur={handleBlur}
                   onChange={handleChange}
@@ -63,11 +63,10 @@ export default function ContactForm() {
               </div>
               <div className="col-md-6">
                 <input
-                  label="Telefon"
                   id="phone"
                   name="phone"
                   type="string"
-                  placeholder="Telefon giriniz..."
+                  placeholder={t("form.phone")}
                   value={values.phone}
                   onBlur={handleBlur}
                   onChange={handleChange}
@@ -75,19 +74,20 @@ export default function ContactForm() {
               </div>
               <div className="col-md-6">
                 <input
-                  label="Konu"
                   id="subject"
                   name="subject"
                   type="string"
-                  placeholder="Konu giriniz..."
+                  placeholder={t("form.subject")}
                   value={values.subject}
                   onBlur={handleBlur}
                   onChange={handleChange}
                 />
               </div>
             </div>
-            <textarea name="message" placeholder="Your Message" />
-            <button className="btn grenbtn1 text-uppercase">Gönder</button>
+            <textarea name="message" placeholder={t("form.message")} />
+            <button className="btn grenbtn1 text-uppercase">
+              {t("form.submit")}
+            </button>
           </form>
         )}
       </Formik>

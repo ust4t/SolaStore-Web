@@ -1,0 +1,23 @@
+{
+  "form": {
+    "title": "Formulaire de contact",
+    "subtitle": "Vous pouvez nous contacter en remplissant ce formulaire",
+    "name": "Entrez votre nom...",
+    "name_required": "Le nom est requis",
+    "email": "Entrer votre Email...",
+    "email_required": "L'e-mail est requis",
+    "message": "Entrez votre message...",
+    "message_required": "Un message est requis",
+    "phone": "Entrez votre numéro de téléphone...",
+    "phone_required": "Le numéro de téléphone est requis",
+    "subject": "Entrez votre sujet...",
+    "subject_required": "Le sujet est requis",
+    "submit": "Envoyer"
+  },
+  "info": {
+    "address": "Cliquez pour accéder à notre adresse",
+    "titleAddress": "Adresse",
+    "titlePhone": "Téléphoner",
+    "titleEmail": "Email"
+  }
+}

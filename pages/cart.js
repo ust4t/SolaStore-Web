@@ -487,6 +487,23 @@ const Cart = ({ saleTeam }) => {
                           <button
                             type="submit"
                             onClick={() => {
+                              setPaymentType("Order");
+                              if (!currentSeller) {
+                                toast.error("Lütfen bir satıcı seçiniz.");
+                                warningTimed("sellerWarning", 5000);
+                                return;
+                              }
+                            }}
+                            className="btn grenbtn1 mb-10"
+                            style={{ width: "100%", fontSize: "1.4rem" }}>
+                            <i
+                              className="fas fa-dollar-sign"
+                              style={{ marginRight: "5px" }}></i>
+                            {t("orderCurrent")}
+                          </button>
+                          <button
+                            type="submit"
+                            onClick={() => {
                               setPaymentType("cc");
                               if (!currentSeller) {
                                 toast.error("Lütfen bir satıcı seçiniz.");
@@ -500,23 +517,6 @@ const Cart = ({ saleTeam }) => {
                               className="fas fa-credit-card"
                               style={{ marginRight: "5px" }}></i>
                             {t("orderCredit")}
-                          </button>
-                          <button
-                            type="submit"
-                            onClick={() => {
-                              setPaymentType("Order");
-                              if (!currentSeller) {
-                                toast.error("Lütfen bir satıcı seçiniz.");
-                                warningTimed("sellerWarning", 5000);
-                                return;
-                              }
-                            }}
-                            className="btn grenbtn1 mb-10"
-                            style={{ width: "100%" }}>
-                            <i
-                              className="fas fa-dollar-sign"
-                              style={{ marginRight: "5px" }}></i>
-                            {t("orderCurrent")}
                           </button>
                         </Form>
                       )}

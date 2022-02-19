@@ -1,0 +1,23 @@
+{
+  "form": {
+    "title": "İletişim Formu",
+    "subtitle": "Bizimle iletişime geçebilirsiniz",
+    "name": "İsminizi giriniz...",
+    "name_required": "İsim gerekli",
+    "email": "E-posta adresinizi giriniz...",
+    "email_required": "E-posta gerekli",
+    "message": "Mesajınızı giriniz...",
+    "message_required": "Mesaj gerekli",
+    "phone": "Telefon numaranızı giriniz...",
+    "phone_required": "Telefon gerekli",
+    "subject": "Konu giriniz...",
+    "subject_required": "Konu gerekli",
+    "submit": "Gönder"
+  },
+  "info": {
+    "address": "Tıkla Adrese Git",
+    "titleAddress": "Adres",
+    "titlePhone": "Telefon",
+    "titleEmail": "Email"
+  }
+}
