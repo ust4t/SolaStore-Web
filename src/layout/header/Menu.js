@@ -17,12 +17,17 @@ const Menu = () => {
             <a className="text-uppercase">{t("menu.brands")}</a>
           </Link>
         </li>
-        <li>
+        <li
+          style={{
+            background: "var(--color-primary)",
+          }}>
           <Link href="/shop/newproducts">
-            <a className="text-uppercase">{t("home:new")}</a>
+            <a className="no-hover px-2 text-white text-uppercase">
+              {t("home:new")}
+            </a>
           </Link>
         </li>
-        <li>
+        <li className="p-0">
           <SubMenu />
         </li>
         <li>

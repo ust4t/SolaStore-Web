@@ -17,7 +17,7 @@ export default function BrandsLayout({ brands }) {
         {brands.map(({ brandID, guidName, brandName }, i) => (
           <div
             key={`${brandID}_|*_${i}`}
-            className={`col-4 col-lg-2 py-3 px-sm-3 ${brandborder}`}>
+            className={`col-4 col-lg-2 py-3 px-sm-3 border border-1 ${brandborder}`}>
             <Link
               href={`/brands/${brandName
                 .replace(" ", "-")

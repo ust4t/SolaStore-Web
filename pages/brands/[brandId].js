@@ -20,7 +20,7 @@ export default function BrandsPage({ brandItems, brandData, title, id }) {
             brandData.filter((item) => item.brandID === Number(id))[0].guidName2
           }`,
         },
-        title: "Markayı Paylaş",
+        title: t("shareBrand"),
       }}
       full
       filterDropdown

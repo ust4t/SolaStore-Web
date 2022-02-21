@@ -10,8 +10,10 @@ import InputGroup from "../src/components/form/InputGroup";
 import Preloader from "../src/layout/Preloader";
 import ConfirmModal from "../src/components/Modals/ConfirmModal/ConfirmModal";
 import Router from "next/router";
+import useTranslation from "next-translate/useTranslation";
 
-const Login = () => {
+const Dashboard = () => {
+  const { t } = useTranslation("register");
   const user = useSelector((state) => state.auth);
   const [userData, setUserData] = useState({
     name: "",
@@ -165,11 +167,11 @@ const Login = () => {
                             containerClass="my-md-4"
                             formClassName="py-4"
                             labelClassName="mb-2"
-                            label="Üye Adı"
+                            label={t("username")}
                             id="name"
                             name="name"
                             type="string"
-                            placeholder="İsim giriniz..."
+                            placeholder={t("username_placeholder")}
                             values={values.name}
                             errors={errors.name}
                             touched={touched.name}
@@ -180,11 +182,11 @@ const Login = () => {
                             containerClass="my-md-4"
                             formClassName="py-4"
                             labelClassName="mb-2"
-                            label="Üye Soyadı"
+                            label={t("userlast")}
                             id="lastname"
                             name="lastname"
                             type="string"
-                            placeholder="Soyisim giriniz..."
+                            placeholder={t("userlast_placeholder")}
                             values={values.lastname}
                             errors={errors.lastname}
                             touched={touched.lastname}
@@ -195,11 +197,11 @@ const Login = () => {
                             containerClass="my-md-4"
                             formClassName="py-4"
                             labelClassName="mb-2"
-                            label="Email"
+                            label={t("common:emaillogin")}
                             id="email"
                             name="email"
                             type="email"
-                            placeholder="Email giriniz..."
+                            placeholder={t("common:email_placeholder")}
                             values={values.email}
                             errors={errors.email}
                             touched={touched.email}
@@ -212,11 +214,11 @@ const Login = () => {
                             containerClass="my-md-4"
                             formClassName="py-4"
                             labelClassName="mb-2"
-                            label="Telefon"
+                            label={t("userphone")}
                             id="tel"
                             name="tel"
                             type="tel"
-                            placeholder="Telefon giriniz..."
+                            placeholder={t("common:userphone_placeholder")}
                             values={values.tel}
                             errors={errors.tel}
                             touched={touched.tel}
@@ -227,11 +229,11 @@ const Login = () => {
                             containerClass="my-md-4"
                             formClassName="py-4"
                             labelClassName="mb-2"
-                            label="Şifre"
+                            label={t("passlogin")}
                             id="password"
                             name="password"
                             type="password"
-                            placeholder="Şifre giriniz..."
+                            placeholder={t("pass_placeholder")}
                             values={values.password}
                             errors={errors.password}
                             touched={touched.password}
@@ -275,4 +277,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Dashboard;

@@ -54,7 +54,7 @@ export default function EnterNumberLayout() {
               type="number"
               placeholder={t("placeholder")}
             />
-            <button type="submit" className={inputBtn}>
+            <button type="submit" className={`${inputBtn} text-capitalize`}>
               {t("button")} <i className="fas fa-arrow-circle-right" />
             </button>
           </form>

@@ -12,7 +12,7 @@ export const SearchIcon = ({ hendelChangeSearch }) => (
   <Link href="#">
     <a
       className="search-btn nav-search search-trigger"
-      onClick={() => hendelChangeSearch()}>
+      onClick={hendelChangeSearch}>
       <i className="fas fa-search" />
     </a>
   </Link>
@@ -71,16 +71,13 @@ export const CartIcon = () => {
   return (
     <div className={`${mainCart}`}>
       <Link href="/cart">
-        <a
-          style={{
-            marginLeft: "20px",
-          }}>
+        <a>
           <span className="iconValue">{cartsNum || 0}</span>
           <i className="fas fa-cart-arrow-down fs-3" />
         </a>
       </Link>
       {state.cartData ? (
-        <div className={cart_dropdown}>
+        <div className={`d-none d-lg-block ${cart_dropdown}`}>
           <div
             style={{
               maxHeight: "400px",
@@ -140,7 +137,7 @@ export const CartIcon = () => {
           </div>
         </div>
       ) : (
-        <div className={cart_dropdown}>
+        <div className={`d-none d-lg-block ${cart_dropdown}`}>
           <p className="text-center p-3 fs-6">{t("cartEmpty")}</p>
         </div>
       )}

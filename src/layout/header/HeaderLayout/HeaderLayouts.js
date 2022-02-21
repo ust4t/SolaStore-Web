@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { Fragment, useState, useRef, useEffect } from "react";
+import React, { Fragment, useState, useRef } from "react";
 import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
+import { WhatsappIcon } from "react-share";
+
+import { stickyMobile } from "./HeaderLayout.module.css";
 import {
   CartIcon,
   HamburgerIcon,
@@ -12,7 +15,6 @@ import {
   UserIcon,
   WishlistIcon,
 } from "../Icons/Icons";
-import { WhatsappIcon } from "react-share";
 import Menu from "../Menu";
 import useDetectScroll from "../../../hooks/useDetectScroll";
 
@@ -74,7 +76,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
             <HamburgerIcon darkBg={darkBg} sidebarActive={setSidebar} />
           </div>
 
-          <div className="col-6">
+          <div className="col-5 col-sm-6 px-0 px-sm-2">
             <div className="input-group">
               <input
                 ref={searchRef}
@@ -96,12 +98,8 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
             </div>
           </div>
 
-          <div className="col-4">
-            <div
-              className="header-left-icon d-flex"
-              style={{
-                gap: "15px",
-              }}>
+          <div className="col-4 px-0 px-sm-2">
+            <div className={`header-left-icon d-flex ${stickyMobile}`}>
               <HomeIcon />
               <WishlistIcon />
               <CartIcon />
@@ -124,7 +122,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
           <div
             className={`col-7 main-menu z-index-first ${
               darkBg ? " main-menu-3" : ""
-            } text-center py-2`}>
+            } text-center`}>
             <Menu />
           </div>
 
@@ -236,7 +234,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
         <div
           className={`main-menu z-index-first ${
             darkBg ? " main-menu-3" : ""
-          } text-center py-2`}>
+          } text-center`}>
           <Menu />
         </div>
       </div>

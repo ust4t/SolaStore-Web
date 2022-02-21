@@ -1,9 +1,11 @@
 import React from "react";
 import axios from "axios";
+import useTranslation from "next-translate/useTranslation";
 
 import Shop from "../../src/layout/Shop";
 
 export default function ShopPage({ catData, brandData, title, id }) {
+  const { t } = useTranslation("common");
   return (
     <Shop
       allProducts={catData}
@@ -16,7 +18,7 @@ export default function ShopPage({ catData, brandData, title, id }) {
           name: title,
           id,
         },
-        title: "Kategoriyi Paylaş",
+        title: t("shareCat"),
       }}
       full
       filterDropdown

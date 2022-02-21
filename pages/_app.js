@@ -176,7 +176,7 @@ function MyApp({ Component, pageProps }) {
       <AllToaster />
       <QueryClientProvider client={queryClient}>
         <StoreProvider>
-          <ScrollTop />
+          {/* <ScrollTop /> */}
           <Component {...pageProps} />
         </StoreProvider>
       </QueryClientProvider>
@@ -231,6 +231,19 @@ fbq('track', 'PageView');`,
           src="https://www.facebook.com/tr?id=137952878122881&ev=PageView&noscript=1"
         />
       </noscript>
+      <Script id="live-chat-tawk" strategy="afterInteractive">
+        {`
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/61534fca25797d7a890145c2/1fgmmvbk8';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  `}
+      </Script>
     </Provider>
   );
 }

@@ -127,9 +127,14 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                 <a className="text-uppercase">{t("menu.brands")}</a>
               </Link>
             </li>
-            <li>
+            <li
+              style={{
+                background: "var(--color-primary)",
+              }}>
               <Link href="/shop/newproducts">
-                <a className="text-uppercase">{t("home:new")}</a>
+                <a className="text-white text-uppercase no-hover">
+                  {t("home:new")}
+                </a>
               </Link>
             </li>
 

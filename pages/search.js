@@ -3,7 +3,6 @@ import axios from "axios";
 import Shop from "../src/layout/Shop";
 
 const Search = ({ search, searchText }) => {
-  console.log(search);
   return (
     <Shop
       titleHead="Sola Store | Оптом Женская одежда | Wholesale Women's Clothing"

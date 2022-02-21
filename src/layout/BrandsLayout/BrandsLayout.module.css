@@ -5,6 +5,7 @@
   width: 33.33333333%;
   margin-top: 3px;
   margin-bottom: 3px;
+  border-color: #ededed;
 }
 
 @media (min-width: 768px) {

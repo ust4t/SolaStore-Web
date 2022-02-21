@@ -1,0 +1,17 @@
+@media (max-width: 300px) {
+  .stickyMobile {
+    gap: 5px;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 500px) {
+  .stickyMobile {
+    gap: 13px;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 800px) {
+  .stickyMobile {
+    gap: 15px;
+  }
+}

@@ -7,20 +7,13 @@
 }
 
 .side_mobile_menu ul li a {
-  padding: 13px 0;
-
+  padding: 13px 15px;
   display: block;
-
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-
   font-size: 14px;
-
   color: #101a23;
-
   font-weight: 500;
-
   text-transform: capitalize;
-
   position: relative;
 }
 
@@ -173,24 +166,14 @@
 
 .slide_bar {
   position: fixed;
-
   overflow-y: auto;
-
   top: 0;
-
   width: 300px;
-
-  padding: 25px 20px;
-
+  padding: 25px 0;
   height: 100%;
-
   display: block;
-
   background-color: #ffffff;
-
   z-index: 1020;
-
   transition: all 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
-
   box-shadow: -5px 0 20px -5px rgba(0, 0, 0, 0.5);
 }

@@ -291,14 +291,14 @@ button {
   position: relative;
 }
 
+.no-hover:hover {
+  color: #fff !important;
+}
 .main-menu ul li {
   display: inline-block;
-
   margin: 0px 10px;
-
   position: relative;
-
-  padding: 6px 0px;
+  padding: 17px 0px;
 }
 
 .main-menu ul li.mega-menu {
