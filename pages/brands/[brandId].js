@@ -1,10 +1,12 @@
 import React from "react";
 import axios from "axios";
+import useTranslation from "next-translate/useTranslation";
 
 import Shop from "../../src/layout/Shop";
 import sources from "../../sources";
 
 export default function BrandsPage({ brandItems, brandData, title, id }) {
+  const { t } = useTranslation("common");
   return (
     <Shop
       allProducts={brandItems}
