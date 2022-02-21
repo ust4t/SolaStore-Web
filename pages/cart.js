@@ -18,6 +18,8 @@ import Loader from "../src/components/Loader";
 import sources from "../sources";
 import { SET_COMPLETED_CART } from "../src/context/types";
 
+const DEF_SELLER = 357;
+
 const Cart = ({ saleTeam }) => {
   const { t } = useTranslation("cart");
   const auth = useSelector((state) => state.auth);
@@ -165,7 +167,7 @@ const Cart = ({ saleTeam }) => {
                   <div
                     onClick={() => {
                       handleSeller({
-                        id: 9999,
+                        id: DEF_SELLER,
                         name: "orderFirst",
                         img: "/images/representer.jpg",
                       });
@@ -179,7 +181,7 @@ const Cart = ({ saleTeam }) => {
                     className="col-5 d-flex justify-content-center cursor-pointer">
                     <img
                       className={`representers ${
-                        currentSeller && currentSeller.id === 9999
+                        currentSeller && currentSeller.id === DEF_SELLER
                           ? "border border-2 border-danger"
                           : ""
                       }`}
@@ -414,7 +416,7 @@ const Cart = ({ saleTeam }) => {
                         <h5 className="text-secondary">
                           {t("salesRepresentative")}
                         </h5>
-                        {currentSeller.id === 9999 ? (
+                        {currentSeller.id === DEF_SELLER ? (
                           <img
                             className="representers"
                             src={currentSeller.img}
@@ -431,7 +433,7 @@ const Cart = ({ saleTeam }) => {
                           />
                         )}
                         <h3 className="fw-bold text-center">
-                          {currentSeller.id === 9999
+                          {currentSeller.id === DEF_SELLER
                             ? t(currentSeller.name)
                             : currentSeller.name}
                         </h3>
