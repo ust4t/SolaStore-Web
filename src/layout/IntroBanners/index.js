@@ -13,7 +13,7 @@ function IntroBanners({ banners }) {
             lowerTitle={banners[1].selectedText2}
             buttonText={banners[1].selectedTextButton}
             width={200}
-            height={120}
+            height={165}
             link="/shop/saleproducts"
           />
           <BannerCard
@@ -31,7 +31,7 @@ function IntroBanners({ banners }) {
             lowerTitle={banners[2].selectedText2}
             buttonText={banners[2].selectedTextButton}
             width={200}
-            height={120}
+            height={165}
             link="/shop/bestseller"
           />
         </div>
