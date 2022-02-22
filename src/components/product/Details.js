@@ -33,6 +33,7 @@ const Details = ({
   productVariants,
   incomingProduct,
   brand,
+  category,
   upthumb,
   productMain,
 }) => {
@@ -457,6 +458,19 @@ const Details = ({
                             <span
                               className={`${brandStyle} ${smallBrandStyle}`}>
                               {brand.brandName}
+                            </span>
+                          </Link>
+                        </small>
+                        <br />
+                        <small>
+                          <span className="text-muted">{t("category")}:</span>
+                          <Link
+                            href={`/shop/${category.selectedCategoryName
+                              .toLowerCase()
+                              .replace(" ", "-")}:${category.categoryID}`}>
+                            <span
+                              className={`${brandStyle} ${smallBrandStyle}`}>
+                              {category.selectedCategoryName}
                             </span>
                           </Link>
                         </small>

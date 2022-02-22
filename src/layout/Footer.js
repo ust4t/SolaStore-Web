@@ -203,30 +203,22 @@ export const DefaultFooter = ({ darkBg }) => {
           <div className="row">
             <div className="col-md-4 col-12">
               <div className="copyright-text">
-                <span>Copyright {new Date().getFullYear()}</span>
+                <span className="fs-6">
+                  Copyright {new Date().getFullYear()}
+                </span>
               </div>
             </div>
 
-            <div className="footer-payment col-md-4  text-center">
+            <div className="col-md-4 col-12 d-flex justify-content-center">
               <Image
-                src="/images/footer/payment.png"
-                width={50}
-                height={4}
-                layout="responsive"
-                alt="payment"
+                src="/images/footer/payment-four.png"
+                width={330}
+                height={27}
+                alt=""
               />
             </div>
-            <div className="col-md-4 col-12">
-              <div className="copyright-text text-end">
-                <Image
-                  src="/images/footer/payment-four.png"
-                  width={50}
-                  height={4}
-                  layout="responsive"
-                  alt=""
-                />
-                <span>All Right Reserved By Sola Store.</span>
-              </div>
+            <div className="col-md-4 col-12 copyright-text text-end">
+              <span className="fs-6">All Right Reserved By Sola Store.</span>
             </div>
           </div>
         </div>

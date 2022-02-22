@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { Fragment, useState, useRef } from "react";
+import React, { Fragment, useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
 import { WhatsappIcon } from "react-share";
+import { useScrollData } from "scroll-data-hook";
 
-import { stickyMobile } from "./HeaderLayout.module.css";
 import {
   CartIcon,
   HamburgerIcon,
@@ -17,12 +17,30 @@ import {
 } from "../Icons/Icons";
 import Menu from "../Menu";
 import useDetectScroll from "../../../hooks/useDetectScroll";
+import StickyMenus from "./StickyMenus";
+import NumberModal from "../../../components/Modals/NumberModal";
+import {
+  loadSession,
+  saveToSessionStorage,
+} from "../../../redux/browser-storage";
 
 export const Layout2 = ({ setSidebar, darkBg, news }) => {
   const { t } = useTranslation("common");
-  const { push } = useRouter();
+  const router = useRouter();
   const searchRef = useRef();
   const [showMenu, setShowMenu] = useState(false);
+  const [modals, setModals] = useState({
+    numberModal: {
+      show: false,
+      handleClose: () =>
+        setModals({
+          ...modals,
+          numberModal: { ...modals.numberModal, show: false },
+        }),
+    },
+  });
+  const { speed } = useScrollData();
+  const modalSession = loadSession("numberModal", true);
 
   const handleScroll = () => {
     if (window.scrollY > 250) {
@@ -34,13 +52,32 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
 
   const handleSearch = () => {
     if (searchRef.current.value === "") return;
-    push({
+    router.push({
       pathname: "/search",
       query: {
         searchText: encodeURI(searchRef.current.value),
       },
     });
   };
+
+  useEffect(() => {
+    if (modalSession) {
+      setTimeout(() => {
+        if (speed.y < 3000)
+          setModals({
+            ...modals,
+            numberModal: { ...modals.numberModal, show: true },
+          });
+      }, 90000);
+      if (speed.y > 7000) {
+        setModals({
+          ...modals,
+          numberModal: { ...modals.numberModal, show: true },
+        });
+        saveToSessionStorage("numberModal", false);
+      }
+    }
+  }, [speed.y]);
 
   useDetectScroll(handleScroll);
 
@@ -58,108 +95,26 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
         <WhatsappIcon size={55} round={true} />
       </a>
 
-      <div
-        className="position-fixed bg-white d-block d-lg-none"
-        style={{
-          width: "100vw",
-          zIndex: "400",
-          top: showMenu ? "0" : "-200px",
-          visibility: showMenu ? "visible" : "hidden",
-          transition: "all 0.3s ease-in-out",
-          boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
-        }}>
-        <div className="row align-items-center justify-content-center">
-          <div
-            className={`col-2 main-menu z-index-first ${
-              darkBg ? " main-menu-3" : ""
-            } text-center py-2`}>
-            <HamburgerIcon darkBg={darkBg} sidebarActive={setSidebar} />
-          </div>
+      <StickyMenus
+        showMenu={showMenu}
+        handleSearch={handleSearch}
+        setSidebar={setSidebar}
+        searchRef={searchRef}
+        layout="desktop"
+      />
 
-          <div className="col-5 col-sm-6 px-0 px-sm-2">
-            <div className="input-group">
-              <input
-                ref={searchRef}
-                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                type="text"
-                className="form-control input-text"
-                placeholder={t("search")}
-                aria-label
-                aria-describedby="basic-addon2"
-              />
-              <div className="input-group-append">
-                <button
-                  onClick={handleSearch}
-                  className="btn btn-outline-dark btn-lg search-buton search-p"
-                  type="button">
-                  <i className="fa fa-search" />
-                </button>{" "}
-              </div>
-            </div>
-          </div>
+      <StickyMenus
+        showMenu={showMenu}
+        handleSearch={handleSearch}
+        setSidebar={setSidebar}
+        searchRef={searchRef}
+        layout="mobile"
+      />
 
-          <div className="col-4 px-0 px-sm-2">
-            <div className={`header-left-icon d-flex ${stickyMobile}`}>
-              <HomeIcon />
-              <WishlistIcon />
-              <CartIcon />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="position-fixed bg-white d-none d-lg-block"
-        style={{
-          width: "100vw",
-          zIndex: "400",
-          top: showMenu ? "0" : "-200px",
-          visibility: showMenu ? "visible" : "hidden",
-          transition: "all 0.5s ease-in-out",
-          boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
-        }}>
-        <div className="row align-items-center justify-content-center">
-          <div
-            className={`col-7 main-menu z-index-first ${
-              darkBg ? " main-menu-3" : ""
-            } text-center`}>
-            <Menu />
-          </div>
-
-          <div className="col-2">
-            <div className="input-group">
-              {" "}
-              <input
-                ref={searchRef}
-                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                type="text"
-                className="form-control input-text"
-                placeholder={t("search")}
-                aria-label
-                aria-describedby="basic-addon2"
-              />
-              <div className="input-group-append">
-                {" "}
-                <button
-                  onClick={handleSearch}
-                  className="btn btn-outline-dark btn-lg search-buton search-p"
-                  type="button">
-                  <i className="fa fa-search" />
-                </button>{" "}
-              </div>
-            </div>
-          </div>
-
-          <div className="col-2 px-lg-0">
-            <div className="header-left-icon d-flex">
-              <HomeIcon />
-              <WishlistIcon />
-              <UserIcon />
-              <CartIcon />
-            </div>
-          </div>
-        </div>
-      </div>
+      <NumberModal
+        show={modals.numberModal.show}
+        handleClose={modals.numberModal.handleClose}
+      />
 
       <div className="header-menu-area logo-circle-area cartAnim">
         <div className="container-fluid">
@@ -201,10 +156,9 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
                     aria-describedby="basic-addon2"
                   />
                   <div className="input-group-append">
-                    {" "}
                     <button
                       onClick={handleSearch}
-                      className="btn btn-outline-dark btn-lg search-buton search-p"
+                      className="btn btn-outline-dark btn-lg"
                       style={{
                         padding: ".5rem 0.5rem",
                       }}
@@ -218,9 +172,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
 
             <div className="col-xl-2 col-lg-3 col-md-4 col-5 order-1 order-md-3">
               <div
-                className={`header-left-icon ${
-                  darkBg ? "header-right-icon" : ""
-                } ms-auto d-flex justify-content-around justify-content-xl-center align-items-center f-right`}>
+                className={`header-left-icon ms-auto d-flex justify-content-around justify-content-xl-center align-items-center f-right`}>
                 <HomeIcon />
                 <WishlistIcon />
                 <UserIcon />
@@ -231,10 +183,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
         </div>
       </div>
       <div className="col-xl-12 col-lg-12 col-md-12 d-none d-lg-block mt-20 borderet ">
-        <div
-          className={`main-menu z-index-first ${
-            darkBg ? " main-menu-3" : ""
-          } text-center`}>
+        <div className={`main-menu z-index-first text-center`}>
           <Menu />
         </div>
       </div>

@@ -1,0 +1,19 @@
+{
+  "title": "Order Tracking",
+  "titleDetails": "Order Details",
+
+  "tel": "Phone Number",
+  "tel_placeholder": "Enter your phone no. ...",
+  "buttonSend": "Send",
+  "detailButton": "Detail",
+  "date": "Date",
+  "product": "Product",
+  "number": "Number",
+  "price": "Price",
+  "picture": "Picture",
+  "order_owner": "Order Owner",
+  "amount": "Amount",
+  "representer": "Sales Representative",
+  "order_not_found": "No Order Found",
+  "tel_warning": "Phone Number Required"
+}

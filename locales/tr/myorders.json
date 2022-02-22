@@ -1,0 +1,18 @@
+{
+  "title": "Sipariş Takibi",
+  "titleDetails": "Sipariş Detayları",
+  "tel": "Telefon Numarası",
+  "tel_placeholder": "Telefon No. giriniz...",
+  "buttonSend": "Gönder",
+  "detailButton": "Detay",
+  "date": "Tarih",
+  "product": "Ürün",
+  "number": "Adet",
+  "price": "Fiyat",
+  "order_owner": "Sipariş Sahibi",
+  "amount": "Tutar",
+  "picture": "Resim",
+  "order_not_found": "Sipariş bulunamadı",
+  "representer": "Satış Temsilcisi",
+  "tel_warning": "Telefon Numarası Gerekli"
+}

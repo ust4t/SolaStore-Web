@@ -1,4 +1,5 @@
 import { Form, Formik } from "formik";
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import * as Yup from "yup";
 
@@ -9,12 +10,13 @@ import {
 } from "./OrderFormPhone.module.css";
 
 export default function OrderFormPhone({ onSubmit }) {
+  const { t } = useTranslation("myorders");
   const orderInitials = {
     orderTel: "",
   };
 
   const orderSchema = Yup.object().shape({
-    orderTel: Yup.string().required("Telefon Numarası Gerekli"),
+    orderTel: Yup.string().required(t("tel_warning")),
   });
 
   return (
@@ -34,7 +36,7 @@ export default function OrderFormPhone({ onSubmit }) {
           <Form onSubmit={handleSubmit} className="d-flex">
             <div className="d-flex flex-column justify-content-center">
               <label className={orderFormLabel} htmlFor="orderTel">
-                Telefon Numarası <span className="text-danger">*</span>
+                {t("tel")} <span className="text-danger">*</span>
               </label>
 
               <input
@@ -47,14 +49,14 @@ export default function OrderFormPhone({ onSubmit }) {
                 id="orderTel"
                 name="orderTel"
                 type="tel"
-                placeholder="Telefon No. giriniz..."
+                placeholder={t("tel_placeholder")}
                 required
               />
             </div>
             <input
               type="submit"
               className={`btn grenbtn1 ${orderFormButton} text-uppercase`}
-              value="Gönder"
+              value={t("buttonSend")}
             />
           </Form>
         )}

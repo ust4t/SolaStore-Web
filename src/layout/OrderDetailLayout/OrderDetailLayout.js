@@ -1,3 +1,4 @@
+import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import Router from "next/router";
 import React from "react";
@@ -5,10 +6,12 @@ import React from "react";
 import { orderButton, emptyIndicator } from "./OrderDetailLayout.module.css";
 
 export default function OrderDetail({ orderData }) {
+  const { t } = useTranslation("myorders");
+
   return (
     <div className="px-2 px-md-4 my-3 container">
       <div className="row">
-        <h2 className="text-center fw-bold">Sipariş Detayları</h2>
+        <h2 className="text-center fw-bold">{t("titleDetails")}</h2>
       </div>
       <div
         className="row justify-content-center align-items-center rounded"
@@ -16,16 +19,16 @@ export default function OrderDetail({ orderData }) {
           background: "rgba(0,0,0,0.1)",
         }}>
         <div className="col-2">
-          <p className="fs-6 my-1 fw-bold">Resim</p>
+          <p className="fs-6 my-1 fw-bold">{t("picture")}</p>
         </div>
         <div className="col-4">
-          <p className="fs-6 my-1 fw-bold">Ürün</p>
+          <p className="fs-6 my-1 fw-bold">{t("product")}</p>
         </div>
         <div className="col-3">
-          <p className="fs-6 my-1 fw-bold">Adet</p>
+          <p className="fs-6 my-1 fw-bold">{t("number")}</p>
         </div>
         <div className="col-3">
-          <p className="fs-6 my-1 fw-bold">Fiyat</p>
+          <p className="fs-6 my-1 fw-bold">{t("price")}</p>
         </div>
       </div>
 
@@ -65,7 +68,7 @@ export default function OrderDetail({ orderData }) {
         <div className="row">
           <div className="col-12">
             <i className={`fas fa-box-open ${emptyIndicator}`} />
-            <h3 className="text-center">Sipariş Bulunamadı</h3>
+            <h3 className="text-center">{t("order_not_found")}</h3>
           </div>
         </div>
       )}

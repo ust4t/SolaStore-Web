@@ -97,9 +97,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       newProducts: newProducts.filter((product) => product.picture_1 !== null),
-      saleProducts: saleProducts
-        .reverse()
-        .filter((product) => product.picture_1 !== null),
+      saleProducts: saleProducts.reverse(),
       slidersData,
       bannersData,
       categoriesData,

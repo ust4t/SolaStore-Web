@@ -23,7 +23,6 @@ const DEF_SELLER = 9999;
 const Cart = ({ saleTeam }) => {
   const { t } = useTranslation("cart");
   const auth = useSelector((state) => state.auth);
-  // const chooseId = auth.state === "guest" ? auth.uid : auth.rnd_id;
   const { cartActions, state, isCartLoading, dispatch } =
     useContext(StoreContext);
   const router = useRouter();

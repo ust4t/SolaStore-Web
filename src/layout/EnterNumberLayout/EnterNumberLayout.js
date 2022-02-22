@@ -73,7 +73,7 @@ export default function EnterNumberLayout() {
           {t("footer:tel")} 3: +90 (0555) 400 00 11
         </a>
         <a className="fs-6" href="mailto:info@solastore.com.tr">
-          е-мейл: info@solastore.com.tr
+          Email: info@solastore.com.tr
         </a>
       </div>
     </div>

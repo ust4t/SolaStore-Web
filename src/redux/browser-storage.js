@@ -21,6 +21,25 @@ export async function saveState(key, state) {
   }
 }
 
+export function loadSession(key, fallback) {
+  try {
+    const serializedState = sessionStorage.getItem(key);
+    if (!serializedState) return fallback;
+    return JSON.parse(serializedState);
+  } catch (e) {
+    return fallback;
+  }
+}
+
+export function saveToSessionStorage(key, state) {
+  try {
+    const serializedState = JSON.stringify(state);
+    sessionStorage.setItem(key, serializedState);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export function saveCookie({ key, value, req, res }) {
   const cookies = new Cookies(req, res);
   cookies.set(key, JSON.stringify(value), {

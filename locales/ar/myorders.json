@@ -1,0 +1,19 @@
+{
+  "title": "تتبع الطلب",
+  "titleDetails": "تفاصيل الطلب",
+
+  "tel": "رقم التليفون",
+  "tel_placeholder": "أدخل رقم هاتفك...",
+  "buttonSend": "إرسال",
+  "detailButton": "التفاصيل",
+  "date": "تاريخ",
+  "product": "المنتج",
+  "number": "العدد",
+  "price": "السعر",
+  "picture": "صورة",
+  "order_owner": "صاحب الطلب",
+  "amount": "مقدار",
+  "order_not_found": "لا يوجد طلب بهذا الرقم",
+  "tel_warning": "يرجى إدخال رقم هاتف صحيح",
+  "representer": "مندوب مبيعات"
+}

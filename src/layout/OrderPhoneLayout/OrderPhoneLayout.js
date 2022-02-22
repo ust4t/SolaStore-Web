@@ -13,8 +13,10 @@ import {
 } from "./OrderPhoneLayout.module.css";
 import Loader from "../../components/Loader";
 import Link from "next/link";
+import useTranslation from "next-translate/useTranslation";
 
 export default function OrderPhoneLayout() {
+  const { t } = useTranslation("myorders");
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -36,7 +38,7 @@ export default function OrderPhoneLayout() {
   return (
     <div className="row m-4">
       <div className="col-12">
-        <h2 className="text-center fw-bold">Sipariş Takibi</h2>
+        <h2 className="text-center fw-bold">{t("title")}</h2>
       </div>
       <OrderFormPhone onSubmit={handleSubmit} />
       <div className="col-12 d-flex justify-content-center align-items-center my-2">
@@ -46,10 +48,10 @@ export default function OrderPhoneLayout() {
           <table className={tableRow}>
             <thead className={tableHead}>
               <tr>
-                <th>Tarih</th>
-                <th>Sipariş Sahibi</th>
-                <th>Tutar</th>
-                <th>Satış Temsilcisi</th>
+                <th>{t("date")}</th>
+                <th>{t("order_owner")}</th>
+                <th>{t("amount")}</th>
+                <th>{t("representer")}</th>
                 <th></th>
               </tr>
             </thead>
@@ -64,7 +66,7 @@ export default function OrderPhoneLayout() {
                   <td>
                     <button className={`btn grenbtn1 ${detailButton}`}>
                       <Link href={`/orders/${order.orderID}`}>
-                        <a>Detay</a>
+                        <a>{t("detailButton")}</a>
                       </Link>
                     </button>
                   </td>
@@ -75,7 +77,7 @@ export default function OrderPhoneLayout() {
         ) : (
           <div className=" d-flex flex-column justify-content-center align-items-center">
             <i className={`fas fa-box-open ${emptyIndicator}`} />
-            <h3 className="text-center">Sipariş Bulunamadı</h3>
+            <h3 className="text-center">{t("order_not_found")}</h3>
           </div>
         )}
       </div>

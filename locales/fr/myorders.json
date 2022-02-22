@@ -1,0 +1,18 @@
+{
+  "title": "Suivi de commande",
+  "titleDetails": "Suivi de commande",
+  "tel": "Numéro de téléphone",
+  "tel_placeholder": "Entrez votre numéro de téléphone...",
+  "buttonSend": "Envoyer",
+  "detailButton": "Détail",
+  "date": "Date",
+  "product": "Produit",
+  "number": "Nombre",
+  "price": "Prix",
+  "picture": "Image",
+  "order_owner": "Propriétaire de la commande",
+  "amount": "Montante",
+  "order_not_found": "Commande non trouvée",
+  "tel_warning": "Veuillez entrer un numéro de téléphone valide",
+  "representer": "Commercial"
+}
