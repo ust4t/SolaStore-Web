@@ -18,7 +18,7 @@ import Loader from "../src/components/Loader";
 import sources from "../sources";
 import { SET_COMPLETED_CART } from "../src/context/types";
 
-const DEF_SELLER = 357;
+const DEF_SELLER = 9999;
 
 const Cart = ({ saleTeam }) => {
   const { t } = useTranslation("cart");
