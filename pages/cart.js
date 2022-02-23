@@ -17,6 +17,7 @@ import PageTitle from "../src/layout/PageTitle";
 import Loader from "../src/components/Loader";
 import sources from "../sources";
 import { SET_COMPLETED_CART } from "../src/context/types";
+import { encodeURLString } from "../src/utils/utils";
 
 const DEF_SELLER = 9999;
 
@@ -219,7 +220,6 @@ const Cart = ({ saleTeam }) => {
                         className="rounded-circle"
                         width={110}
                         height={110}
-                        // layout=""
                       />
 
                       <h5 className="fs-4 mt-1 fw-bold text-center">{name}</h5>
@@ -254,11 +254,9 @@ const Cart = ({ saleTeam }) => {
                                         <div>
                                           <Link
                                             href={{
-                                              pathname: `/detail/${cart.productShortName
-                                                .toLowerCase()
-                                                .replace(" ", "-")}:${
-                                                cart.productID
-                                              }`,
+                                              pathname: `/detail/${encodeURLString(
+                                                cart.productShortName
+                                              )}:${cart.productID}`,
                                               query: {
                                                 selected: cart.productID,
                                               },
@@ -275,11 +273,9 @@ const Cart = ({ saleTeam }) => {
                                         <div className="ps-3 d-flex flex-column justify-content">
                                           <Link
                                             href={{
-                                              pathname: `/detail/${cart.productShortName
-                                                .toLowerCase()
-                                                .replace(" ", "-")}:${
-                                                cart.productID
-                                              }`,
+                                              pathname: `/detail/${encodeURLString(
+                                                cart.productShortName
+                                              )}:${cart.productID}`,
                                               query: {
                                                 selected: cart.productID,
                                               },

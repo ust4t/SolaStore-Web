@@ -28,6 +28,7 @@ import {
 } from "./Details.module.css";
 import { Arrow } from "../sliders/SliderArrows";
 import Heart from "../Heart";
+import { encodeURLString } from "../../utils/utils";
 
 const Details = ({
   productVariants,
@@ -401,9 +402,9 @@ const Details = ({
                         <div className="col-5 col-md-4">
                           <div className="card border p-2">
                             <Link
-                              href={`/brands/${brand.brandName
-                                .toLowerCase()
-                                .replace(" ", "-")}:${brand.brandID}`}>
+                              href={`/brands/${encodeURLString(
+                                brand.brandName
+                              )}:${brand.brandID}`}>
                               <div>
                                 <Image
                                   className="cursor-pointer"
@@ -421,9 +422,9 @@ const Details = ({
                             </Link>
                             <p className="card-body text-center px-1 py-0 m-0 my-1">
                               <Link
-                                href={`/brands/${brand.brandName
-                                  .toLowerCase()
-                                  .replace(" ", "-")}:${brand.brandID}`}>
+                                href={`/brands/${encodeURLString(
+                                  brand.brandName
+                                )}:${brand.brandID}`}>
                                 <span className={brandStyle}>
                                   {brand.brandName}
                                 </span>
@@ -452,9 +453,9 @@ const Details = ({
                         <small>
                           <span className="text-muted">{t("brand")}:</span>
                           <Link
-                            href={`/brands/${brand.brandName
-                              .toLowerCase()
-                              .replace(" ", "-")}:${brand.brandID}`}>
+                            href={`/brands/${encodeURLString(
+                              brand.brandName
+                            )}:${brand.brandID}`}>
                             <span
                               className={`${brandStyle} ${smallBrandStyle}`}>
                               {brand.brandName}
@@ -465,9 +466,9 @@ const Details = ({
                         <small>
                           <span className="text-muted">{t("category")}:</span>
                           <Link
-                            href={`/shop/${category.selectedCategoryName
-                              .toLowerCase()
-                              .replace(" ", "-")}:${category.categoryID}`}>
+                            href={`/shop/${encodeURLString(
+                              category.selectedCategoryName
+                            )}:${category.categoryID}`}>
                             <span
                               className={`${brandStyle} ${smallBrandStyle}`}>
                               {category.selectedCategoryName}
@@ -584,9 +585,9 @@ const Details = ({
                                       });
                                       setImageKey(0);
                                       router.push(
-                                        `/detail/${variant.productShortName
-                                          .toLowerCase()
-                                          .replace(" ", "-")}:${
+                                        `/detail/${encodeURLString(
+                                          variant.productShortName
+                                        )}:${
                                           variant.masterProductID
                                         }?selected=${variant.productID}`,
                                         undefined,

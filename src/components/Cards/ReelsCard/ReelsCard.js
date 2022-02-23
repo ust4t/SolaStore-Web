@@ -13,6 +13,7 @@ import {
 import Heart from "../../Heart";
 import { StoreContext } from "../../../context/StoreProvider";
 import { SET_STORY_PAGE } from "../../../redux/action/type";
+import { encodeURLString } from "../../../utils/utils";
 
 const ReelsCard = ({
   embla,
@@ -183,7 +184,7 @@ const ReelsCard = ({
         <div
           onClick={() =>
             Router.push({
-              pathname: `/detail/${name.toLowerCase().replace(" ", "-")}:${id}`,
+              pathname: `/detail/${encodeURLString(name)}:${id}`,
               query: {
                 selected: id,
               },

@@ -8,11 +8,11 @@ import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
 import { StoreContext } from "../src/context/StoreProvider";
 import sources from "../sources";
+import { encodeURLString } from "../src/utils/utils";
 
 const Wishlist = () => {
   const { t } = useTranslation("wishlist");
   const user = useSelector((state) => state.auth);
-  // const chooseId = user.state === "guest" ? user.uid : user.rnd_id;
   const { state, wishListActions, cartActions } = useContext(StoreContext);
   const { removeFromWishList } = wishListActions;
   const { addToCartAction } = cartActions;
@@ -75,9 +75,9 @@ const Wishlist = () => {
                                   <td className="product-thumbnail">
                                     <Link
                                       href={{
-                                        pathname: `/detail/${productShortName
-                                          .toLowerCase()
-                                          .replace(" ", "-")}:${productID}`,
+                                        pathname: `/detail/${encodeURLString(
+                                          productShortName
+                                        )}:${productID}`,
                                         query: {
                                           selected: productID,
                                         },
@@ -95,9 +95,9 @@ const Wishlist = () => {
                                   <td className="product-name">
                                     <Link
                                       href={{
-                                        pathname: `/detail/${productShortName
-                                          .toLowerCase()
-                                          .replace(" ", "-")}:${productID}`,
+                                        pathname: `/detail/${encodeURLString(
+                                          productShortName
+                                        )}:${productID}`,
                                         query: {
                                           selected: productID,
                                         },

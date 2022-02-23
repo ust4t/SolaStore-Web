@@ -4,7 +4,7 @@ import withTranslation from "next-translate/withTranslation";
 import Router from "next/router";
 
 import sources from "../../../../sources";
-import { timestamp } from "../../../utils/utils";
+import { encodeURLString, timestamp } from "../../../utils/utils";
 import { loadState } from "../../../redux/browser-storage";
 
 class ZuckStories extends Component {
@@ -19,7 +19,7 @@ class ZuckStories extends Component {
           story.masterProductID,
           `${sources.imageMinSrc}${story.picture_1}`,
           story.productShortName,
-          `/detail/${story.productShortName.toLowerCase().replace(" ", "-")}:${
+          `/detail/${encodeURLString(story.productShortName)}:${
             story.masterProductID
           }?selected=${story.productID}`,
           timestamp(),
@@ -29,11 +29,9 @@ class ZuckStories extends Component {
             story.pictures.length,
             `${sources.imageMaxSrc}${subStory.guidName}`,
             `${sources.imageMaxSrc}${subStory.guidName}`,
-            `/detail/${story.productShortName
-              .toLowerCase()
-              .replace(" ", "-")}:${story.productID}?selected=${
+            `/detail/${encodeURLString(story.productShortName)}:${
               story.productID
-            }`,
+            }?selected=${story.productID}`,
             t("home:seeProduct"),
             false,
             timestamp(),

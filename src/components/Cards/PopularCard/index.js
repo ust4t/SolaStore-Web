@@ -19,6 +19,7 @@ import {
   playBtn,
 } from "./PopularCard.module.css";
 import VideoModal from "../../Modals/VideoModal";
+import { encodeURLString } from "../../../utils/utils";
 
 function PopularCard({ productData, cartId }) {
   const { t } = useTranslation("common");
@@ -32,7 +33,6 @@ function PopularCard({ productData, cartId }) {
     selectedId: id,
     pictures: images,
   });
-  // const [quickView, setQuickView] = useState(false);
   const [shareModal, setShareModal] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
@@ -126,7 +126,7 @@ function PopularCard({ productData, cartId }) {
         handleClose={() => setShareModal(false)}
       />
       <VideoModal
-        link={`/detail/${name.toLowerCase().replace(" ", "-")}:${id}`}
+        link={`/detail/${encodeURLString(name)}:${id}`}
         show={videoModal}
         handleClose={() => setVideoModal(false)}
         video={productData.video_1}
@@ -191,7 +191,7 @@ function PopularCard({ productData, cartId }) {
           }`}>
           <Link
             href={{
-              pathname: `/detail/${name.toLowerCase().replace(" ", "-")}:${id}`,
+              pathname: `/detail/${encodeURLString(name)}:${id}`,
               query: {
                 selected: currentImages.selectedId,
               },
@@ -223,7 +223,7 @@ function PopularCard({ productData, cartId }) {
           }`}>
           <Link
             href={{
-              pathname: `/detail/${name.toLowerCase().replace(" ", "-")}:${id}`,
+              pathname: `/detail/${encodeURLString(name)}:${id}`,
               query: {
                 selected: currentImages.selectedId,
               },
@@ -287,9 +287,7 @@ function PopularCard({ productData, cartId }) {
           <h6>
             <Link
               href={{
-                pathname: `/detail/${name
-                  .toLowerCase()
-                  .replace(" ", "-")}:${id}`,
+                pathname: `/detail/${encodeURLString(name)}:${id}`,
                 query: {
                   selected: currentImages.selectedId,
                 },

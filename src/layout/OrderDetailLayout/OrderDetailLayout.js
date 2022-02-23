@@ -2,6 +2,7 @@ import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import Router from "next/router";
 import React from "react";
+import { encodeURLString } from "../../utils/utils";
 
 import { orderButton, emptyIndicator } from "./OrderDetailLayout.module.css";
 
@@ -38,9 +39,7 @@ export default function OrderDetail({ orderData }) {
             key={`${i}_?.`}
             onClick={() =>
               Router.push(
-                `/detail/${item.productName.toLowerCase().replace(" ", "-")}:${
-                  item.productID
-                }`
+                `/detail/${encodeURLString(item.productName)}:${item.productID}`
               )
             }
             className={`row justify-content-center align-items-center ${orderButton}`}>

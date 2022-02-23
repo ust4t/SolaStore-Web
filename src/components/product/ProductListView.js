@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
 import sources from "../../../sources";
 import { StoreContext } from "../../context/StoreProvider";
+import { encodeURLString } from "../../utils/utils";
 import Heart from "../Heart";
 // import ProductModal from "./ProductModal";
 
@@ -59,7 +60,7 @@ const ProductListView = ({ product, col5, addToCartAction }) => {
         <div className="product-wrapper mb-30">
           <div className="pro-img mb-20">
             <Link
-              href={`/detail/${product.productShortName.replace(" ", "-")}:${
+              href={`/detail/${encodeURLString(product.productShortName)}:${
                 product.productID
               }`}>
               <a>
@@ -84,10 +85,9 @@ const ProductListView = ({ product, col5, addToCartAction }) => {
             <div className="pro-title">
               <h6>
                 <Link
-                  href={`/detail/${product.productShortName.replace(
-                    " ",
-                    "-"
-                  )}:${product.productID}`}>
+                  href={`/detail/${encodeURLString(product.productShortName)}:${
+                    product.productID
+                  }`}>
                   {product.productShortName}
                 </Link>
               </h6>

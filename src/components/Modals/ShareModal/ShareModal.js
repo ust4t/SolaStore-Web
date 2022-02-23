@@ -19,13 +19,14 @@ import {
   RedditIcon,
   RedditShareButton,
 } from "react-share";
+import { encodeURLString } from "../../../utils/utils";
 
 import { modalContainer, copyText } from "./ShareModal.module.css";
 
 export default function ShareModal({ show, handleClose, urlDetails }) {
-  const url = `${urlDetails.url}${urlDetails.name
-    .toLowerCase()
-    .replace(" ", "-")}:${urlDetails.id}`;
+  const url = `${urlDetails.url}${encodeURLString(urlDetails.name)}:${
+    urlDetails.id
+  }`;
   const { t } = useTranslation("common");
 
   const handleCopyText = (e) => {

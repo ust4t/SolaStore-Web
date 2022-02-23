@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import sources from "../../sources";
 import Layout from "../../src/layout/Layout";
+import { encodeURLString } from "../../src/utils/utils";
 
 export default function AllBrands({ brands }) {
   return (
@@ -15,7 +16,7 @@ export default function AllBrands({ brands }) {
               brands.map(({ brandID, brandName, guidName2 }) => (
                 <div className="col-6 col-md-4">
                   <Link
-                    href={`/brands/${brandName.replace(" ", "-")}:${brandID}`}>
+                    href={`/brands/${encodeURLString(brandName)}:${brandID}`}>
                     <Image
                       src={`${sources.brand}${guidName2}`}
                       width={200}

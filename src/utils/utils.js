@@ -50,6 +50,13 @@ export const dblock = (active, id, sort) => {
   }
 };
 
+export const encodeURLString = (url) => {
+  return url
+    .toLowerCase()
+    .replace(/ /gi, "")
+    .replace(/[`~!@#$%^&*()_|+\-=?;'",.<>\{\}\[\]\\\/]/gi, "-");
+};
+
 export const chooseContent = ({ data, locale }) => {
   switch (locale) {
     case "tr":
