@@ -32,7 +32,6 @@ const Index4 = ({
       <main>
         <ZuckStories storiesData={newProducts.slice(0, 5)} />
         <SliderProducts sliders={slidersData} />
-        <h1>{locationData.country}</h1>
         {locationData && locationData.country === "Turkey" && <VisitStore />}
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <IntroBanners banners={bannersData} />
@@ -52,7 +51,9 @@ const Index4 = ({
 export default memo(Index4);
 
 export async function getStaticProps({ locale }) {
-  const resLocation = await fetch("http://ip-api.com/json");
+  const resLocation = await fetch(
+    "https://extreme-ip-lookup.com/json/?key=j3W7JAAEOzY9E2EB2acK"
+  );
 
   const locationData = await resLocation.json();
 

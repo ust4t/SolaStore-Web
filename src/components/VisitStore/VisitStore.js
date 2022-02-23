@@ -16,12 +16,13 @@ export default function VisitStore() {
           display: "grid",
           placeContent: "center",
         }}>
-        <Image
+        <img className="img-fluid" src="/images/car.gif" alt="" />
+        {/* <Image
           src="/images/car.gif"
           alt="Solastore visit our page"
           width={400}
           height={200}
-        />
+        /> */}
       </div>
       <div className="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center">
         <h1 className={`text-center ${visitTitle} fw-bold`}>
