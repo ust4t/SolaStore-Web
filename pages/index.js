@@ -32,7 +32,8 @@ const Index4 = ({
       <main>
         <ZuckStories storiesData={newProducts.slice(0, 5)} />
         <SliderProducts sliders={slidersData} />
-        {locationData && locationData.country && <VisitStore />}
+        <h1>{locationData.country}</h1>
+        {locationData && locationData.country === "Turkey" && <VisitStore />}
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <IntroBanners banners={bannersData} />
           <FilterSearch brands={brands} />
