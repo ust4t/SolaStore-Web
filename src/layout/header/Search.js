@@ -28,7 +28,7 @@ const Search = ({ active, hendelChangeSearch }) => {
           onClick={hendelChangeSearch}
         />
         <div className="search-cell">
-          <form onSubmit={(e) => onSubmit(e)}>
+          <form onSubmit={onSubmit}>
             <div className="search-field-holder">
               <input
                 type="search"

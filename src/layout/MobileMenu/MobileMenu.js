@@ -18,6 +18,7 @@ import InnerMobileMenu from "../header/InnerMobileMenu";
 import useDetectOutside from "../../hooks/useDetectOutside";
 import { useSelector } from "react-redux";
 import { CREATE_USER_ID } from "../../redux/action/type";
+import { encodeURLString } from "../../utils/utils";
 
 const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
   const user = useSelector((state) => state.auth);
@@ -86,16 +87,6 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                         <a>{t("myorders")}</a>
                       </Link>
                     </li>
-                    {/* <li>
-                      <Link href="/orders">
-                        <a>Adreslerim</a>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/orders">
-                        <a>İndirimlerim</a>
-                      </Link>
-                    </li> */}
                     <li onClick={handleLogOut}>
                       <a href="#">{t("logout")}</a>
                     </li>
@@ -145,9 +136,9 @@ const MobileMenu = ({ menu, sidebarActive, sidebarClose }) => {
                     key={`${categoryID}?=)${i}`}
                     className={`text-uppercase ${has_dropdown}`}>
                     <Link
-                      href={`/shop/${selectedCategoryName
-                        .toLowerCase()
-                        .replace(" ", "-")}:${categoryID}`}>
+                      href={`/shop/${encodeURLString(
+                        selectedCategoryName
+                      )}:${categoryID}`}>
                       <a>{selectedCategoryName}</a>
                     </Link>
                     <InnerMobileMenu

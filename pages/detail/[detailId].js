@@ -1,5 +1,5 @@
 import axios from "axios";
-import Router from "next/router";
+
 import Details from "../../src/components/product/Details";
 
 const DetailPage = ({
@@ -44,10 +44,6 @@ export async function getServerSideProps(context) {
       ),
     ]);
 
-  // const [productData, productVariantsData] = await Promise.all([
-  //   productRes.json(),
-  //   productVariantsRes.json(),
-  // ]);
   const allProducts = [...productData, ...productVariantsData];
   return {
     props: {

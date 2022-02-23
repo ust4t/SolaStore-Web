@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { connect } from "react-redux";
+import { encodeURLString } from "../../utils/utils";
 import SubCategory from "./SubCategory";
 
 const SubMenu = ({ menu }) => {
@@ -9,10 +10,6 @@ const SubMenu = ({ menu }) => {
         menu.map(
           (
             {
-              // selectedCategoryName,
-              // categoryID,
-              // squareCategoryPicture,
-              // subCategoriesList,
               selectedCategoryName,
               categoryID,
               squareCategoryPictureGuidName,
@@ -20,29 +17,11 @@ const SubMenu = ({ menu }) => {
             },
             i
           ) => (
-            // <li key={`${i}_*_${i}`}>
-            //   <Link
-            //     href={`/shop/${selectedCategoryName.replace(
-            //       " ",
-            //       "-"
-            //     )}:${categoryID}`}>
-            //     <a onClick={() => changeTitle(selectedCategoryName)}>
-            //       {selectedCategoryName}
-            //     </a>
-            //   </Link>
-            //   <SubCategory
-            //     parentCategory={{
-            //       name: selectedCategoryName,
-            //       id: categoryID,
-            //     }}
-            //     subMenuData={subCategoriesList}
-            //     picture={squareCategoryPicture[0].guidName}
-            //   />
             <li key={`${i}_*_${i}`}>
               <Link
-                href={`/shop/${selectedCategoryName
-                  .toLowerCase()
-                  .replace(" ", "-")}:${categoryID}`}>
+                href={`/shop/${encodeURLString(
+                  selectedCategoryName
+                )}:${categoryID}`}>
                 <a>{selectedCategoryName}</a>
               </Link>
               <SubCategory

@@ -121,12 +121,15 @@ function PopularCard({ productData, cartId }) {
           pictures: !!currentImages.pictures.length
             ? `${sources.imageMidSrc}${currentImages.pictures[0].guidName}`
             : "/images/placeholder.jpg",
+          query: `?selected=${currentImages.selectedId}`,
         }}
         show={shareModal}
         handleClose={() => setShareModal(false)}
       />
       <VideoModal
-        link={`/detail/${encodeURLString(name)}:${id}`}
+        link={`/detail/${encodeURLString(name)}:${id}?selected=${
+          currentImages.selectedId
+        }`}
         show={videoModal}
         handleClose={() => setVideoModal(false)}
         video={productData.video_1}

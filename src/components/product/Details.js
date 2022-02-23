@@ -174,11 +174,12 @@ const Details = ({
               <ShareModal
                 urlDetails={{
                   url: "https://www.solastore.com.tr/detail/",
-                  id: product.productID,
+                  id: product.masterProductID,
                   name: product.productShortName,
                   pictures: !!product.pictures.length
                     ? `${sources.imageMidSrc}${product.pictures[0].guidName}`
                     : "/images/placeholder.jpg",
+                  query: `?selected=${product.productID}`,
                 }}
                 show={shareModal}
                 handleClose={() => setShareModal(false)}
@@ -311,16 +312,17 @@ const Details = ({
                         </Nav>
                       </div>
                     </Tab.Container>
+
                     {productVariants.length > 0 && (
-                      <div className="product-details-info d-block d-lg-none">
+                      <div className="product-details-info d-flex d-lg-none">
                         <div className="sidebar-product-color">
-                          <h4 className="widget-title1 text-center">
+                          <h4 className="widget-title1 text-center text-md-start">
                             {t("otherColors")}
                           </h4>
                           <div
-                            className="details-filter-row details-row-size justify-content-center"
+                            className="details-filter-row details-row-size"
                             style={{ margin: 5 }}>
-                            {[incomingProduct, ...productVariants]
+                            {[productMain, ...productVariants]
                               .filter(
                                 (variant) =>
                                   variant.pictures && variant.pictures.length
@@ -333,14 +335,20 @@ const Details = ({
                                       video_1: product.video_1,
                                     });
                                     setImageKey(0);
+                                    router.push(
+                                      `/detail/${encodeURLString(
+                                        variant.productShortName
+                                      )}:${variant.masterProductID}?selected=${
+                                        variant.productID
+                                      }`,
+                                      undefined,
+                                      { shallow: true }
+                                    );
                                   }}
                                   href="#">
                                   <div
                                     className="details-filter-row details-row-size"
-                                    style={{
-                                      margin: "20px 10px",
-                                      cursor: "pointer",
-                                    }}>
+                                    style={{ margin: 5, cursor: "pointer" }}>
                                     <div className="product-nav product-nav-thumbs">
                                       <span className="productvar cursor-pointer">
                                         <Image
@@ -351,8 +359,8 @@ const Details = ({
                                           })}
                                           alt={variant.productShortName}
                                           title={variant.productShortName}
-                                          width={200}
-                                          height={320}
+                                          width={90}
+                                          height={140}
                                         />
                                       </span>
                                     </div>
@@ -443,13 +451,7 @@ const Details = ({
                           </span>
                         </small>
                         <br />
-                        {/* <small>
-                          <span className="text-muted">
-                            {t("category")}:{" "}
-                            <span className="text-dark">KATEGORI</span>
-                          </span>
-                        </small>
-                        <br /> */}
+
                         <small>
                           <span className="text-muted">{t("brand")}:</span>
                           <Link

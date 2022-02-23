@@ -26,14 +26,14 @@ import { modalContainer, copyText } from "./ShareModal.module.css";
 export default function ShareModal({ show, handleClose, urlDetails }) {
   const url = `${urlDetails.url}${encodeURLString(urlDetails.name)}:${
     urlDetails.id
-  }`;
+  }${urlDetails?.query || ""}`;
   const { t } = useTranslation("common");
 
   const handleCopyText = (e) => {
     const text = e.target.value;
     e.target.select();
     e.target.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(text);
+    if (window.isSecureContext) navigator.clipboard.writeText(text);
   };
 
   return (
