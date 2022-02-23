@@ -5,5 +5,7 @@
   "bestseller": "Bestseller Products",
   "seeProduct": "See Product",
   "filterTitle": "Filter Search",
-  "filterDesc": "Please press 'Search' after you have selected category, brand and price"
+  "filterDesc": "Please press 'Search' after you have selected category, brand and price",
+  "visitTitle": "Would you like to visit our store?",
+  "visitButton": "Go to Address"
 }

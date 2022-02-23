@@ -8,6 +8,7 @@ import TabLayout from "../src/layout/TabLayout";
 const EnterNumberLayout = dynamic(() =>
   import("../src/layout/EnterNumberLayout")
 );
+const VisitStore = dynamic(() => import("../src/components/VisitStore"));
 const BrandsLayout = dynamic(() => import("../src/layout/BrandsLayout"));
 const Categories = dynamic(() => import("../src/layout/Categories"));
 const ZuckStories = dynamic(
@@ -24,12 +25,14 @@ const Index4 = ({
   slidersData,
   bannersData,
   brands,
+  locationData,
 }) => {
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
         <ZuckStories storiesData={newProducts.slice(0, 5)} />
         <SliderProducts sliders={slidersData} />
+        {locationData && locationData.country && <VisitStore />}
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <IntroBanners banners={bannersData} />
           <FilterSearch brands={brands} />
@@ -48,6 +51,10 @@ const Index4 = ({
 export default memo(Index4);
 
 export async function getStaticProps({ locale }) {
+  const resLocation = await fetch("http://ip-api.com/json");
+
+  const locationData = await resLocation.json();
+
   const [
     newProductsRes,
     saleProductsRes,
@@ -102,6 +109,7 @@ export async function getStaticProps({ locale }) {
       bannersData,
       categoriesData,
       brands,
+      locationData,
     },
     revalidate: 300,
   };

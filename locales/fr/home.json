@@ -5,5 +5,7 @@
   "bestseller": "Produits les plus vendus",
   "seeProduct": "Voir le produit",
   "filterTitle": "Filtrer par",
-  "filterDesc": "Vous pouvez filtrer les produits par catégorie ou par marque"
+  "filterDesc": "Vous pouvez filtrer les produits par catégorie ou par marque",
+  "visitTitle": "Vous souhaitez visiter notre magasin ?",
+  "visitButton": "Aller à l'adresse"
 }
