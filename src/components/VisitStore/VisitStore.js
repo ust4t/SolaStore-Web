@@ -28,13 +28,17 @@ export default function VisitStore() {
         <h1 className={`text-center ${visitTitle} fw-bold`}>
           {t("visitTitle")}
         </h1>
-        <button
-          className={`btn ${buttonStore}`}
-          style={{
-            borderRadius: "10px",
-          }}>
-          {t("visitButton")}
-        </button>
+        <a
+          href="https://www.google.com/maps?ll=41.007997,28.958228&z=14&t=m&hl=tr&gl=TR&mapclient=embed&cid=1563881826297615043"
+          target="_blank">
+          <button
+            className={`btn ${buttonStore}`}
+            style={{
+              borderRadius: "10px",
+            }}>
+            {t("visitButton")}
+          </button>
+        </a>
       </div>
     </div>
   );

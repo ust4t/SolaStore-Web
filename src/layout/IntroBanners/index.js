@@ -4,7 +4,11 @@ import BannerCard from "../../components/Cards/BannerCard";
 
 function IntroBanners({ banners }) {
   return (
-    <div className="banner-area pt-90">
+    <div
+      className="banner-area"
+      style={{
+        paddingTop: "40px",
+      }}>
       <div className="container">
         <div className="row custom-row align-items-center">
           <BannerCard
