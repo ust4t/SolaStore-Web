@@ -59,16 +59,20 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
       },
     });
   };
-
   useEffect(() => {
     if (modalSession) {
       setTimeout(() => {
-        if (speed.y < 3000)
+        if (speed.y < 2300)
           setModals({
             ...modals,
             numberModal: { ...modals.numberModal, show: true },
           });
       }, 90000);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (modalSession) {
       if (speed.y > 7000) {
         setModals({
           ...modals,

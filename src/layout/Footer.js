@@ -46,7 +46,7 @@ export const DefaultFooter = ({ darkBg }) => {
                     <a href="tel:+9005554000011"> +90 (0555) 400 00 11</a>
                   </h6>
                   <h6>
-                    {t("address")}:
+                    {t("address")}:{" "}
                     <span>
                       <a
                         href="https://www.google.com/maps?ll=41.007997,28.958228&z=14&t=m&hl=tr&gl=TR&mapclient=embed&cid=1563881826297615043"

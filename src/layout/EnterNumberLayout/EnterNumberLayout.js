@@ -22,7 +22,7 @@ export default function EnterNumberLayout() {
       await axios.post("/api/sendNumber", null, {
         params: {
           phone: number,
-          title: "Numaranızı Bırakın",
+          title: "Numaranızı Bırakın(Website)",
         },
       });
       setNumber("");
