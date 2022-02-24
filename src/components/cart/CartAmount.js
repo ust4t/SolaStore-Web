@@ -29,7 +29,7 @@ export default function CartAmount({
   };
 
   return (
-    <td className="quantity-col align-middle">
+    <div className="quantity-col align-middle my-2">
       <div className="left">
         <input
           type="button"
@@ -60,6 +60,6 @@ export default function CartAmount({
           value="+"
         />
       </div>
-    </td>
+    </div>
   );
 }

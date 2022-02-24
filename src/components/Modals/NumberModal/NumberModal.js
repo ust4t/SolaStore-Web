@@ -15,10 +15,39 @@ export default function NumberModal({ show, handleClose }) {
   const { t } = useTranslation("phone");
   const [number, setNumber] = React.useState("");
 
+  const ToastComponent = ({ icon, message, hotToast }) => (
+    <div
+      className="row cursor-pointer"
+      onClick={() => toast.dismiss(hotToast.id)}>
+      <div className="col-12 d-flex flex-column align-items-center justify-content-center">
+        <i
+          className={`${icon} my-2`}
+          style={{
+            fontSize: "3.5rem",
+          }}
+        />
+        <h5 className="fs-2 text-center">{message}</h5>
+      </div>
+    </div>
+  );
+
   const sendNumber = async (e) => {
     e.preventDefault();
     if (number === "") {
-      toast.error("нельзя оставлять номер пустым");
+      toast(
+        (ht) => (
+          <ToastComponent
+            icon="fas fa-exclamation-circle text-danger"
+            message={t("nonumber")}
+            hotToast={ht}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-center",
+        }
+      );
+
       return;
     }
     try {
@@ -29,9 +58,34 @@ export default function NumberModal({ show, handleClose }) {
         },
       });
       setNumber("");
-      toast.success(t("success"));
+
+      toast(
+        (ht) => (
+          <ToastComponent
+            icon="fas fa-check-circle text-success"
+            message={t("success")}
+            hotToast={ht}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-center",
+        }
+      );
     } catch (error) {
-      toast.error(t("fail"));
+      toast(
+        (ht) => (
+          <ToastComponent
+            icon="fas fa-exclamation-circle text-danger"
+            message={t("fail")}
+            hotToast={ht}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-center",
+        }
+      );
     }
   };
 

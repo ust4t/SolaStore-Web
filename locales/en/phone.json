@@ -5,5 +5,6 @@
   "button": "send",
   "info": "After you leave your number, our customer service representatives will contact you as soon as possible.",
   "success": "successfully sent your number",
-  "fail": "failed to send your number"
+  "fail": "failed to send your number",
+  "nonumber": "Please enter a valid phone number"
 }

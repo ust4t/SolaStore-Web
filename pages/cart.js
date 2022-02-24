@@ -238,106 +238,105 @@ const Cart = ({ saleTeam }) => {
                         <span>{t("cartTitle")}</span>
                       </div>
                       <div>
-                        <div className="table-responsive px-md-4 px-2 pt-3">
-                          <table
-                            className="table table-borderless"
-                            style={{ marginBottom: "0rem" }}>
-                            <tbody>
-                              {isCartLoading ? (
-                                <Loader />
-                              ) : state.cartData &&
-                                state.cartData.length > 0 ? (
-                                state.cartData.map((cart) => (
-                                  <tr className="border-bottom">
-                                    <td>
-                                      <div className="d-flex align-items-center ord">
-                                        <div>
-                                          <Link
-                                            href={{
-                                              pathname: `/detail/${encodeURLString(
-                                                cart.productShortName
-                                              )}:${cart.productID}`,
-                                              query: {
-                                                selected: cart.productID,
-                                              },
-                                            }}>
-                                            <a>
-                                              <img
-                                                className="pic"
-                                                src={`${sources.imageMinSrc}${cart.pictureOneGuidName}`}
-                                                alt=""
-                                              />
-                                            </a>
-                                          </Link>
-                                        </div>
-                                        <div className="ps-3 d-flex flex-column justify-content">
-                                          <Link
-                                            href={{
-                                              pathname: `/detail/${encodeURLString(
-                                                cart.productShortName
-                                              )}:${cart.productID}`,
-                                              query: {
-                                                selected: cart.productID,
-                                              },
-                                            }}>
-                                            <p className="fw-bold text-secondary">
-                                              <a>{cart.productShortName}</a>
-                                            </p>
-                                          </Link>
-                                        </div>
-                                      </div>
-                                    </td>
-                                    <td>
-                                      <div className="sept40">
-                                        <p className="pe-3">
-                                          <span className="red">
-                                            ${Number(cart.price).toFixed(2)}
-                                          </span>
-                                        </p>
-                                        {/* <p className="text-muted text-decoration-line-through">
-                                          $55.00
-                                        </p> */}
-                                      </div>
-                                    </td>
-                                    <CartAmount
-                                      incrementQuantity={incrementQuantity}
-                                      decrementQuantity={decrementQuantity}
-                                      productID={cart.productID}
-                                      cart={cart}
-                                    />
-                                    <td>
-                                      <div className="sept40">
-                                        <p className="pe-3">
-                                          <span className="red">
-                                            $
-                                            {Number(cart.price).toFixed(2) *
-                                              cart.quantity}
-                                          </span>
-                                        </p>
-                                      </div>
-                                    </td>
-                                    <td>
-                                      <div className="sept40">
-                                        <a
-                                          href="#"
-                                          onClick={(e) =>
-                                            removeFromCart(e, {
-                                              id: cart.productID,
-                                            })
-                                          }>
-                                          <i className="fa fa-times" />
-                                        </a>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                ))
-                              ) : (
-                                <h2 className="pt-100 pb-50 text-center w-100">
-                                  {t("cartEmpty")}
-                                </h2>
-                              )}
-                            </tbody>
-                          </table>
+                        <div className=" px-md-4 px-2 pt-3">
+                          <div>
+                            {isCartLoading ? (
+                              <Loader />
+                            ) : state.cartData && state.cartData.length > 0 ? (
+                              state.cartData.map((cart) => (
+                                <div className="py-2 col-12 border-bottom d-flex flex-column flex-sm-row justify-content-between align-items-center">
+                                  <div className="d-flex d-sm-none w-100 px-2">
+                                    <a
+                                      href="#"
+                                      onClick={(e) =>
+                                        removeFromCart(e, {
+                                          id: cart.productID,
+                                        })
+                                      }>
+                                      <i
+                                        className="fa fa-times text-danger"
+                                        style={{
+                                          fontSize: "1.4rem",
+                                        }}
+                                      />
+                                    </a>
+                                  </div>
+                                  <div className="d-flex align-items-center ord">
+                                    <Link
+                                      href={{
+                                        pathname: `/detail/${encodeURLString(
+                                          cart.productShortName
+                                        )}:${cart.productID}`,
+                                        query: {
+                                          selected: cart.productID,
+                                        },
+                                      }}>
+                                      <a>
+                                        <img
+                                          className="img-fluid"
+                                          src={`${sources.imageMinSrc}${cart.pictureOneGuidName}`}
+                                          alt=""
+                                        />
+                                      </a>
+                                    </Link>
+                                  </div>
+                                  <Link
+                                    href={{
+                                      pathname: `/detail/${encodeURLString(
+                                        cart.productShortName
+                                      )}:${cart.productID}`,
+                                      query: {
+                                        selected: cart.productID,
+                                      },
+                                    }}>
+                                    <p className="fs-6 fw-bold my-2 m-sm-0">
+                                      <a>{cart.productShortName}</a>
+                                    </p>
+                                  </Link>
+                                  <p className="mb-0 fs-5">
+                                    <span className="red">
+                                      ${Number(cart.price).toFixed(2)}
+                                    </span>
+                                  </p>
+                                  <CartAmount
+                                    incrementQuantity={incrementQuantity}
+                                    decrementQuantity={decrementQuantity}
+                                    productID={cart.productID}
+                                    cart={cart}
+                                  />
+                                  <div>
+                                    <p className="mb-0 fs-5">
+                                      <span className="red">
+                                        $
+                                        {Number(cart.price).toFixed(2) *
+                                          cart.quantity}
+                                      </span>
+                                    </p>
+                                  </div>
+                                  <div className="d-none d-sm-block">
+                                    <a
+                                      href="#"
+                                      onClick={(e) =>
+                                        removeFromCart(e, {
+                                          id: cart.productID,
+                                        })
+                                      }>
+                                      <i
+                                        className="fa fa-times text-danger"
+                                        style={{
+                                          fontSize: "1.4rem",
+                                        }}
+                                      />
+                                    </a>
+                                  </div>
+                                </div>
+                              ))
+                            ) : (
+                              <h2 className="pt-100 pb-50 text-center w-100">
+                                {t("cartEmpty")}
+                              </h2>
+                            )}
+                          </div>
 
                           <div className="container">
                             <div className="row py-3">
