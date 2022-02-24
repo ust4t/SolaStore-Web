@@ -18,6 +18,7 @@ import Loader from "../src/components/Loader";
 import sources from "../sources";
 import { SET_COMPLETED_CART } from "../src/context/types";
 import { encodeURLString } from "../src/utils/utils";
+import ToastComponent from "../src/components/ToastComponent";
 
 const DEF_SELLER = 9999;
 
@@ -92,7 +93,19 @@ const Cart = ({ saleTeam }) => {
 
   const handleCartSubmit = async (values, { resetForm }, paymentRoute) => {
     if (!state.cartData.length) {
-      toast.error("Sepetinizde ürün bulunmamaktadır.");
+      toast(
+        (ht) => (
+          <ToastComponent
+            icon="fas fa-exclamation-triangle text-danger"
+            message="Sepetinizde ürün bulunmamaktadır."
+            hotToast={ht}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-left",
+        }
+      );
       return;
     }
 
@@ -128,7 +141,19 @@ const Cart = ({ saleTeam }) => {
         },
       });
     } catch (err) {
-      toast.error("Bir hata oluştu. Lütfen tekrar deneyiniz.");
+      toast(
+        (ht) => (
+          <ToastComponent
+            icon="fas fa-exclamation-triangle text-danger"
+            message="Bir hata oluştu. Lütfen tekrar deneyiniz."
+            hotToast={ht}
+          />
+        ),
+        {
+          duration: 3000,
+          position: "top-left",
+        }
+      );
       console.log(err);
     } finally {
       setIsLoading(false);
@@ -497,7 +522,21 @@ const Cart = ({ saleTeam }) => {
                             onClick={() => {
                               setPaymentType("Order");
                               if (!currentSeller) {
-                                toast.error("Lütfen bir satıcı seçiniz.");
+                                toast(
+                                  (ht) => (
+                                    <ToastComponent
+                                      icon="fas fa-exclamation-triangle text-danger"
+                                      message="Lütfen bir satıcı seçiniz"
+                                      hotToast={ht}
+                                      iconSize="2.5rem"
+                                      messageSize="1.5rem"
+                                    />
+                                  ),
+                                  {
+                                    duration: 3000,
+                                    position: "top-left",
+                                  }
+                                );
                                 warningTimed("sellerWarning", 5000);
                                 return;
                               }
@@ -514,7 +553,21 @@ const Cart = ({ saleTeam }) => {
                             onClick={() => {
                               setPaymentType("cc");
                               if (!currentSeller) {
-                                toast.error("Lütfen bir satıcı seçiniz.");
+                                toast(
+                                  (ht) => (
+                                    <ToastComponent
+                                      icon="fas fa-exclamation-triangle text-danger"
+                                      message="Lütfen bir satıcı seçiniz"
+                                      hotToast={ht}
+                                      iconSize="2.5rem"
+                                      messageSize="1.5rem"
+                                    />
+                                  ),
+                                  {
+                                    duration: 3000,
+                                    position: "top-left",
+                                  }
+                                );
                                 warningTimed("sellerWarning", 5000);
                                 return;
                               }

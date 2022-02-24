@@ -10,26 +10,11 @@ import {
 } from "../../../layout/EnterNumberLayout/EnterNumberLayout.module.css";
 import toast from "react-hot-toast";
 import axios from "axios";
+import ToastComponent from "../../ToastComponent";
 
 export default function NumberModal({ show, handleClose }) {
   const { t } = useTranslation("phone");
   const [number, setNumber] = React.useState("");
-
-  const ToastComponent = ({ icon, message, hotToast }) => (
-    <div
-      className="row cursor-pointer"
-      onClick={() => toast.dismiss(hotToast.id)}>
-      <div className="col-12 d-flex flex-column align-items-center justify-content-center">
-        <i
-          className={`${icon} my-2`}
-          style={{
-            fontSize: "3.5rem",
-          }}
-        />
-        <h5 className="fs-2 text-center">{message}</h5>
-      </div>
-    </div>
-  );
 
   const sendNumber = async (e) => {
     e.preventDefault();
