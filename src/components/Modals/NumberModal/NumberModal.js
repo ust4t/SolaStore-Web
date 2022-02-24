@@ -25,6 +25,7 @@ export default function NumberModal({ show, handleClose }) {
             icon="fas fa-exclamation-circle text-danger"
             message={t("nonumber")}
             hotToast={ht}
+            messageSize="1.4rem"
           />
         ),
         {
@@ -50,6 +51,7 @@ export default function NumberModal({ show, handleClose }) {
             icon="fas fa-check-circle text-success"
             message={t("success")}
             hotToast={ht}
+            messageSize="1.4rem"
           />
         ),
         {
@@ -57,6 +59,8 @@ export default function NumberModal({ show, handleClose }) {
           position: "top-center",
         }
       );
+
+      handleClose();
     } catch (error) {
       toast(
         (ht) => (
@@ -64,6 +68,7 @@ export default function NumberModal({ show, handleClose }) {
             icon="fas fa-exclamation-circle text-danger"
             message={t("fail")}
             hotToast={ht}
+            messageSize="1.4rem"
           />
         ),
         {

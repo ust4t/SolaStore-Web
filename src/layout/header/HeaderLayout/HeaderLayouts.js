@@ -23,6 +23,7 @@ import {
   loadSession,
   saveToSessionStorage,
 } from "../../../redux/browser-storage";
+import Search from "../Search";
 
 export const Layout2 = ({ setSidebar, darkBg, news }) => {
   const { t } = useTranslation("common");
@@ -60,15 +61,13 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
     });
   };
   useEffect(() => {
-    if (modalSession) {
-      setTimeout(() => {
-        if (speed.y < 2300)
-          setModals({
-            ...modals,
-            numberModal: { ...modals.numberModal, show: true },
-          });
-      }, 90000);
-    }
+    setTimeout(() => {
+      if (modalSession && speed.y < 5300)
+        setModals({
+          ...modals,
+          numberModal: { ...modals.numberModal, show: true },
+        });
+    }, 90000);
   }, []);
 
   useEffect(() => {
@@ -148,29 +147,11 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
                 </div>
               </div>
               <div className="col-6 d-block order-md-2">
-                <div className="input-group">
-                  {" "}
-                  <input
-                    ref={searchRef}
-                    onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                    type="text"
-                    className="form-control input-text"
-                    placeholder={t("search")}
-                    aria-label
-                    aria-describedby="basic-addon2"
-                  />
-                  <div className="input-group-append">
-                    <button
-                      onClick={handleSearch}
-                      className="btn btn-outline-dark btn-lg"
-                      style={{
-                        padding: ".5rem 0.5rem",
-                      }}
-                      type="button">
-                      <i className="fa fa-search" />
-                    </button>{" "}
-                  </div>
-                </div>
+                <Search
+                  handleSearch={handleSearch}
+                  searchRef={searchRef}
+                  placeholder={t("search")}
+                />
               </div>
             </Fragment>
 

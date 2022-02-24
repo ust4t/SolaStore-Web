@@ -4,7 +4,7 @@
   "placeholder": "Numaranızı Giriniz",
   "info": "Numaranızı bıraktıktan sonra müşteri temsilcilerimiz en kısa sürede sizinle iletişime geçecektir.",
   "button": "Gönder",
-  "success": "Başarılı bir şekilde numaranızı bıraktınız.",
+  "success": "Teşekkürler, Müşteri temsilcilerimiz sizinle en kısa sürede iletişime geçecektir.",
   "fail": "Numaranızı bırakamadınız. Lütfen tekrar deneyiniz.",
   "nonumber": "Lütfen geçerli bir numara giriniz."
 }

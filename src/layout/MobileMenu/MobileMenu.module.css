@@ -119,6 +119,7 @@
   transform: rotate(-135deg) translateY(-50%);
 }
 .close_mobile_menu a {
+  padding-left: 15px;
   color: #212121;
 
   position: relative;

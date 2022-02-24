@@ -4,7 +4,7 @@
   "placeholder": "Enter your number",
   "button": "send",
   "info": "After you leave your number, our customer service representatives will contact you as soon as possible.",
-  "success": "successfully sent your number",
+  "success": "Thank You, Our customer service representatives will contact you as soon as possible.",
   "fail": "failed to send your number",
   "nonumber": "Please enter a valid phone number"
 }

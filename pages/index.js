@@ -1,5 +1,6 @@
-import { memo } from "react";
+import { memo, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+
 import IntroBanners from "../src/layout/IntroBanners";
 import FilterSearch from "../src/layout/FilterSearch";
 import Layout from "../src/layout/Layout";
@@ -25,14 +26,31 @@ const Index4 = ({
   slidersData,
   bannersData,
   brands,
-  locationData,
 }) => {
+  const [location, setLocation] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const abortController = new AbortController();
+      const locationRes = await fetch("/api/getLocation", {
+        signal: abortController.signal,
+      });
+      const locationData = await locationRes.json();
+      setLocation(locationData);
+      return () => {
+        abortController.abort();
+      };
+    })();
+  }, []);
+
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
         <ZuckStories storiesData={newProducts.slice(0, 5)} />
         <SliderProducts sliders={slidersData} />
-        {locationData && locationData.country === "Turkey" && <VisitStore />}
+        {location && location.country_code.toLowerCase() === "tr" && (
+          <VisitStore />
+        )}
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <IntroBanners banners={bannersData} />
           <FilterSearch brands={brands} />
@@ -51,12 +69,6 @@ const Index4 = ({
 export default memo(Index4);
 
 export async function getStaticProps({ locale }) {
-  const resLocation = await fetch(
-    "https://extreme-ip-lookup.com/json/?key=j3W7JAAEOzY9E2EB2acK"
-  );
-
-  const locationData = await resLocation.json();
-
   const [
     newProductsRes,
     saleProductsRes,
@@ -111,7 +123,6 @@ export async function getStaticProps({ locale }) {
       bannersData,
       categoriesData,
       brands,
-      locationData,
     },
     revalidate: 300,
   };

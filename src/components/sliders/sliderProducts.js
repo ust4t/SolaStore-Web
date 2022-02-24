@@ -33,6 +33,7 @@ export default function SliderProducts({ sliders }) {
             selectedText1,
             selectedText2,
             selectedTextButton,
+            link,
           },
           i
         ) => (
@@ -62,9 +63,9 @@ export default function SliderProducts({ sliders }) {
                   </h2>
                   <Link
                     href={
-                      selectedText1 === "İNDİRİMLİ ÜRÜNLER"
-                        ? "/shop/saleproducts"
-                        : "/shop/newproducts"
+                      link.toLowerCase().includes("newproducts")
+                        ? "/shop/newproducts"
+                        : "/shop/saleproducts"
                     }>
                     <a
                       className={`${sliderButton} w-25`}

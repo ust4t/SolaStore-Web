@@ -5,9 +5,10 @@ import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useRouter } from "next/router";
 import axios from "axios";
+import ym, { YMInitializer } from "react-yandex-metrika";
 
 import AllToaster from "../src/components/AllToaser";
-import ScrollTop from "../src/layout/ScrollTop";
+// import ScrollTop from "../src/layout/ScrollTop";
 import StoreProvider from "../src/context/StoreProvider";
 import store from "../src/redux/store";
 import { GET_MAIN_MENU, CREATE_USER_ID } from "../src/redux/action/type";
@@ -55,6 +56,7 @@ function MyApp({ Component, pageProps }) {
 
   const handleRouteChange = (url) => {
     if (typeof window !== "undefined") {
+      ym("hit", url);
       window.gtag("config", "UA-73451034-1", {
         page_path: url,
       });
@@ -185,13 +187,19 @@ function MyApp({ Component, pageProps }) {
         crossOrigin="anonymous"
         strategy="beforeInteractive"
       />
-      <Script
+      {/* <Script
         id="yandex-metrika-script"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `!function(e,t,a,n,c,m,r){e.ym=e.ym||function(){(e.ym.a=e.ym.a||[]).push(arguments)},e.ym.l=1*new Date,m=t.createElement(a),r=t.getElementsByTagName(a)[0],m.async=1,m.src="https://mc.yandex.ru/metrika/tag.js",r.parentNode.insertBefore(m,r)}(window,document,"script"),ym(69119899,"init",{clickmap:!0,trackLinks:!0,accurateTrackBounce:!0,webvisor:!0});`,
         }}
+      /> */}
+      <YMInitializer
+        accounts={[69119899]}
+        options={{ webvisor: true, defer: true }}
+        version="2"
       />
+
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=UA-73451034-1"
         strategy="afterInteractive"
