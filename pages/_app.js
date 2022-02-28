@@ -11,7 +11,11 @@ import AllToaster from "../src/components/AllToaser";
 // import ScrollTop from "../src/layout/ScrollTop";
 import StoreProvider from "../src/context/StoreProvider";
 import store from "../src/redux/store";
-import { GET_MAIN_MENU, CREATE_USER_ID } from "../src/redux/action/type";
+import {
+  GET_MAIN_MENU,
+  CREATE_USER_ID,
+  SET_WHEEL_DATA,
+} from "../src/redux/action/type";
 import menuData from "../public/menuData.json";
 import toast from "react-hot-toast";
 
@@ -24,8 +28,13 @@ import "swiper/css/bundle";
 import "animate.css";
 import "antd/dist/antd.css";
 import "../styles/global.css";
+import { loadState, saveState } from "../src/redux/browser-storage";
 
 function MyApp({ Component, pageProps }) {
+  const spinStatus = loadState("spinStatus", {
+    hasSpinned: false,
+    expires: new Date().getTime() + 60 * 60 * 24 * 1000,
+  });
   const router = useRouter();
   const queryClient = new QueryClient();
   const fetchMenu = async () => {
@@ -54,6 +63,14 @@ function MyApp({ Component, pageProps }) {
     });
   };
 
+  const getWheels = async () => {
+    const { data } = await axios.get("/api/advertisement/getWheelsData");
+    store.dispatch({
+      type: SET_WHEEL_DATA,
+      payload: data,
+    });
+  };
+
   const handleRouteChange = (url) => {
     if (typeof window !== "undefined") {
       ym("hit", url);
@@ -78,6 +95,13 @@ function MyApp({ Component, pageProps }) {
   }, [router.locale]);
 
   useEffect(() => {
+    getWheels();
+    const nextDay = new Date().getTime() + 60 * 60 * 24 * 1000;
+    if (spinStatus.expires < nextDay)
+      saveState("spinStatus", {
+        hasSpinned: false,
+        expires: new Date().getTime() + 60 * 60 * 24 * 1000,
+      });
     checkUser();
     if (router.locale !== store.getState().lang) {
       router.push(router.asPath, router.asPath, {

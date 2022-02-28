@@ -7,5 +7,16 @@
   "filterTitle": "Filtrer par",
   "filterDesc": "Vous pouvez filtrer les produits par catégorie ou par marque",
   "visitTitle": "Vous souhaitez visiter notre magasin ?",
-  "visitButton": "Aller à l'adresse"
+  "visitButton": "Aller à l'adresse",
+  "wheel": {
+    "copy": "Copie",
+    "phone": "Numéro de téléphone",
+    "wonTitle": "Tu as gagné",
+    "phonePlaceholder": "Entrez votre numéro de téléphone",
+    "telValid": "s'il vous plaît entrer un numéro de téléphone valide",
+    "wheelSpun": "Vous avez déjà fait tourner la roue !",
+    "tryAgain": "Pas de chance, réessayez !",
+    "wheelWon": "Votre prix a été pris avec succès, vous pouvez utiliser votre code promo en le copiant",
+    "wheelClickTitle": "Cliquez sur la roue pour gagner votre prix"
+  }
 }

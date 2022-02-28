@@ -7,7 +7,7 @@ import {
   HomeIcon,
   UserIcon,
   WishlistIcon,
-} from "../Icons/Icons";
+} from "../Icons";
 import Menu from "../Menu";
 
 import { stickyMobile } from "./HeaderLayout.module.css";

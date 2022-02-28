@@ -28,6 +28,8 @@ export const FILTER_PRICE = "FILTER_PRICE";
 
 // page
 export const SET_STORY_PAGE = "SET_STORY_PAGE";
+export const SET_WHEEL_MODAL = "SET_WHEEL_MODAL";
+export const SET_WHEEL_DATA = "SET_WHEEL_DATA";
 
 // auth
 export const CREATE_USER_ID = "CREATE_USER_ID";

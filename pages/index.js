@@ -6,7 +6,6 @@ import FilterSearch from "../src/layout/FilterSearch";
 import Layout from "../src/layout/Layout";
 import SliderProducts from "../src/components/sliders/sliderProducts";
 import TabLayout from "../src/layout/TabLayout";
-import WheelModal from "../src/components/Modals/WheelModal";
 const EnterNumberLayout = dynamic(() =>
   import("../src/layout/EnterNumberLayout")
 );
@@ -27,10 +26,8 @@ const Index4 = ({
   slidersData,
   bannersData,
   brands,
-  wheelsData,
 }) => {
   const [location, setLocation] = useState(null);
-  const [showWheel, setShowWheel] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -49,12 +46,6 @@ const Index4 = ({
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
-        <button onClick={() => setShowWheel(true)}>Show Wheel</button>
-        <WheelModal
-          wheelsData={wheelsData}
-          show={showWheel}
-          handleClose={() => setShowWheel(false)}
-        />
         <ZuckStories storiesData={newProducts.slice(0, 5)} />
         <SliderProducts sliders={slidersData} />
         {location && location.country_code.toLowerCase() === "tr" && (
@@ -78,12 +69,6 @@ const Index4 = ({
 export default memo(Index4);
 
 export async function getStaticProps({ locale }) {
-  const wheelsRes = await fetch(
-    `https://api.solastore.com.tr/api/Advertising/GetPassionFlowerVouchers?sourceProof=${process.env.SOURCE_PROOF}`
-  );
-
-  const wheelsData = await wheelsRes.json();
-
   const [
     newProductsRes,
     saleProductsRes,
@@ -138,7 +123,6 @@ export async function getStaticProps({ locale }) {
       bannersData,
       categoriesData,
       brands,
-      wheelsData,
     },
     revalidate: 300,
   };

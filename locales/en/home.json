@@ -7,5 +7,16 @@
   "filterTitle": "Filter Search",
   "filterDesc": "Please press 'Search' after you have selected category, brand and price",
   "visitTitle": "Would you like to visit our store?",
-  "visitButton": "Go to Address"
+  "visitButton": "Go to Address",
+  "wheel": {
+    "copy": "Copy",
+    "phone": "Phone Number",
+    "wonTitle": "You Won",
+    "phonePlaceholder": "Enter your phone number",
+    "telValid": "Please enter a valid phone number",
+    "wheelSpun": "You have already spun the wheel!",
+    "tryAgain": "Bad luck, try again!",
+    "wheelWon": "Your prize has been successfully taken, You can use your coupon code by copying it",
+    "wheelClickTitle": "Click the wheel to earn your prize"
+  }
 }

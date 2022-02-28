@@ -17,6 +17,38 @@
   overflow: hidden;
 }
 
+.wheel_icon_container {
+  position: fixed;
+  top: 270px;
+  right: 20px;
+  z-index: 402;
+  cursor: pointer;
+}
+
+.wheel_icon_container h3 {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-20deg);
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+    2px 2px 0 #000;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.wheel_icon_container h3::selection {
+  background: transparent;
+}
+
+.wheel_icon_container img {
+  width: 120px;
+  height: 120px;
+}
+
 .cart_dropdown p {
   margin: 0;
 }

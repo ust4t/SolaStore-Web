@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
-import { Modal } from "react-bootstrap";
+import { Modal, ModalDialog } from "react-bootstrap";
 import toast from "react-hot-toast";
+import useTranslation from "next-translate/useTranslation";
 
 import Loader from "../../Loader";
 import { saveState, loadState } from "../../../redux/browser-storage";
@@ -19,11 +20,15 @@ import {
 } from "./WheelModal.module.css";
 
 export default function WheelModal({ show, handleClose, wheelsData }) {
+  const { t } = useTranslation("home");
   const [prize, setPrize] = useState(null);
   const [resultHidden, setResultHidden] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [telNum, setTelNum] = useState("");
-  const hasSpinned = loadState("hasSpinned", false);
+  const spinStatus = loadState("spinStatus", {
+    hasSpinned: false,
+    expires: new Date().getTime() + 60 * 60 * 24 * 1000,
+  });
 
   const colors = [
     "#eae56f",
@@ -45,19 +50,19 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
 
   const handleWheelClick = () => {
     if (telNum.length <= 5) {
-      toast.error("Please enter a valid phone number", {
+      toast.error(t("wheel.telValid"), {
         position: "top-center",
       });
       return;
     }
-    if (hasSpinned) {
-      toast.error("You have already spun the wheel!", {
+    if (spinStatus.hasSpinned) {
+      toast.error(t("wheel.wheelSpun"), {
         position: "top-center",
       });
       return;
     }
     if (!telNum) {
-      toast.error("Please enter your phone number", {
+      toast.error(t("wheel.phonePlaceholder"), {
         position: "top-center",
       });
       return;
@@ -67,19 +72,19 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
 
   const handleWheelResult = async (itemIndex) => {
     if (prize && prize.discountRate === 0) {
-      toast.error("Bad luck, try again!", {
+      toast.error(t("wheel.tryAgain"), {
         position: "top-center",
       });
       return;
     }
     if (telNum.length <= 5) {
-      toast.error("Please enter a valid phone number", {
+      toast.error(t("wheel.telValid"), {
         position: "top-center",
       });
       return;
     }
-    if (hasSpinned) {
-      toast.error("You have already spun the wheel!", {
+    if (spinStatus.hasSpinned) {
+      toast.error(t("wheel.wheelSpun"), {
         position: "top-center",
       });
       return;
@@ -95,13 +100,13 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
       });
       setResultHidden(false);
       setPrize({ ...wheelsData[itemIndex], code: data.result2[0].voucherCode });
-      saveState("hasSpinned", true);
-      toast.success(
-        "Ödül kodunuz başarıyla alındı. Kupon kodunuzu kopyalayıp kullanabilirsiniz.",
-        {
-          position: "top-center",
-        }
-      );
+      saveState("spinStatus", {
+        hasSpinned: true,
+        expires: Date.parse(data.result2[0].deletingDate),
+      });
+      toast.success(t("wheel.wheelWon"), {
+        position: "top-center",
+      });
     } catch (e) {
       toast.error("An error occured", {
         position: "top-center",
@@ -114,6 +119,9 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
   return (
     <Modal
       contentClassName={modalBg}
+      style={{
+        zIndex: "100000000000000000 !important",
+      }}
       show={show}
       onHide={handleClose}
       aria-labelledby="share-modal-title">
@@ -126,10 +134,6 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
             className={`fa fa-times position-absolute cursor-pointer ${close_icon}`}
             onClick={handleClose}
           />
-
-          <h3 className="text-center text-white">
-            Click the wheel to earn your prize
-          </h3>
           <Wheel
             items={wheelsData.map((item, index) => ({
               ...item,
@@ -137,10 +141,15 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
             }))}
             onWheelClick={handleWheelClick}
             onSelectItem={handleWheelResult}
-            disabled={!telNum || hasSpinned || telNum.length <= 5}
+            disabled={!telNum || spinStatus.hasSpinned || telNum.length <= 5}
           />
           <div
             className={`${result_container} d-flex flex-column align-items-center justify-content-center`}>
+            {resultHidden && (
+              <h2 className="text-center text-white">
+                {t("wheel.wheelClickTitle")}
+              </h2>
+            )}
             <div
               className={`d-flex flex-column align-items-center ${
                 prize && !resultHidden ? show_result : hide_result
@@ -150,11 +159,11 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
               ) : (
                 <>
                   {prize?.discountRate === 0 ? (
-                    <h3 className={result_text}>Bad luck, try again!</h3>
+                    <h3 className={result_text}>{t("wheel.tryAgain")}</h3>
                   ) : (
                     <>
                       <h3 className={result_text}>
-                        You won <br /> {prize?.voucherName}
+                        {t("wheel.wonTitle")} <br /> {prize?.voucherName}
                       </h3>
                       <span>
                         <input
@@ -182,13 +191,13 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
                 </>
               )}
             </div>
-            <h5 className="text-white fw-bold fs-4">Your Phone Number:</h5>
+            <h5 className="text-white fw-bold fs-4">{t("wheel.phone")}:</h5>
             <input
               onChange={(e) => setTelNum(e.target.value)}
               value={telNum}
               className={result_input}
               type="number"
-              placeholder="Enter Your Phone Number"
+              placeholder={t("wheel.phonePlaceholder")}
             />
           </div>
         </div>

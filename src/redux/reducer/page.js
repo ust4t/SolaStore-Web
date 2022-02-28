@@ -1,7 +1,7 @@
 import { SET_STORY_PAGE } from "../action/type";
 import { saveState } from "../browser-storage";
 
-const menu = (
+const page = (
   state = {
     page: 1,
     lastIndex: 0,
@@ -14,9 +14,8 @@ const menu = (
       saveState("page", payload);
       return payload;
     }
-
     default:
       return state;
   }
 };
-export default menu;
+export default page;

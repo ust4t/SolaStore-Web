@@ -4,7 +4,7 @@ import Cookies from "cookies";
 export function loadState(key, fallback) {
   try {
     const serializedState = localStorage.getItem(key);
-    if (!serializedState) return undefined;
+    if (!serializedState) return fallback;
     return JSON.parse(serializedState);
   } catch (e) {
     return fallback;

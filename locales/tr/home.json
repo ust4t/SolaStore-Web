@@ -7,5 +7,16 @@
   "filterTitle": "Detaylı Arama",
   "filterDesc": "Lütfen kategori, marka ve fiyat seçip Ara düğmesine basın.",
   "visitTitle": "Mağazamızı ziyaret etmek ister misiniz?",
-  "visitButton": "Adrese Git"
+  "visitButton": "Adrese Git",
+  "wheel": {
+    "copy": "Kopyala",
+    "phone": "Telefon Numarası",
+    "wonTitle": "Kazandınız",
+    "phonePlaceholder": "Lütfen telefon numaranızı girin",
+    "telValid": "Lütfen geçerli bir telefon numarası girin",
+    "wheelSpun": "Çark önceden çevrildi!",
+    "tryAgain": "Hay aksi, tekrar deneyin",
+    "wheelWon": "Ödül kodunuz başarıyla alındı. Kupon kodunuzu kopyalayıp kullanabilirsiniz.",
+    "wheelClickTitle": "Ödülünüzü kazanmak için çarkı çeviriniz"
+  }
 }
