@@ -49,10 +49,10 @@ export const WishlistIcon = () => {
 
 export const WheelsIcon = ({ onWheelClick }) => {
   return (
-    <div onClick={onWheelClick} className={wheel_icon_container}>
+    <a onClick={onWheelClick} className={wheel_icon_container}>
       <h3>Çark</h3>
       <img src="/images/wheelIcon.gif" alt="" />
-    </div>
+    </a>
   );
 };
 

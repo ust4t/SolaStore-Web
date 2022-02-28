@@ -28,15 +28,11 @@ import "swiper/css/bundle";
 import "animate.css";
 import "antd/dist/antd.css";
 import "../styles/global.css";
-import { loadState, saveState } from "../src/redux/browser-storage";
 
 function MyApp({ Component, pageProps }) {
-  const spinStatus = loadState("spinStatus", {
-    hasSpinned: false,
-    expires: new Date().getTime() + 60 * 60 * 24 * 1000,
-  });
   const router = useRouter();
   const queryClient = new QueryClient();
+
   const fetchMenu = async () => {
     try {
       const { data: menu } = await axios.get(
@@ -96,12 +92,6 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     getWheels();
-    const nextDay = new Date().getTime() + 60 * 60 * 24 * 1000;
-    if (spinStatus.expires < nextDay)
-      saveState("spinStatus", {
-        hasSpinned: false,
-        expires: new Date().getTime() + 60 * 60 * 24 * 1000,
-      });
     checkUser();
     if (router.locale !== store.getState().lang) {
       router.push(router.asPath, router.asPath, {
@@ -244,15 +234,15 @@ function MyApp({ Component, pageProps }) {
       <Script
         dangerouslySetInnerHTML={{
           __html: `!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '137952878122881');
-fbq('track', 'PageView');`,
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '137952878122881');
+      fbq('track', 'PageView');`,
         }}
       />
       <noscript>

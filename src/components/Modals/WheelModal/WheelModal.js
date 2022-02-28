@@ -3,6 +3,7 @@ import axios from "axios";
 import { Modal, ModalDialog } from "react-bootstrap";
 import toast from "react-hot-toast";
 import useTranslation from "next-translate/useTranslation";
+import Router from "next/router";
 
 import Loader from "../../Loader";
 import { saveState, loadState } from "../../../redux/browser-storage";
@@ -21,7 +22,10 @@ import {
 
 export default function WheelModal({ show, handleClose, wheelsData }) {
   const { t } = useTranslation("home");
-  const [prize, setPrize] = useState(null);
+  const [prize, setPrize] = useState({
+    data: null,
+    index: null,
+  });
   const [resultHidden, setResultHidden] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [telNum, setTelNum] = useState("");
@@ -71,27 +75,39 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
   };
 
   const handleWheelResult = async (itemIndex) => {
-    if (prize && prize.discountRate === 0) {
-      toast.error(t("wheel.tryAgain"), {
-        position: "top-center",
-      });
-      return;
-    }
-    if (telNum.length <= 5) {
-      toast.error(t("wheel.telValid"), {
-        position: "top-center",
-      });
-      return;
-    }
-    if (spinStatus.hasSpinned) {
-      toast.error(t("wheel.wheelSpun"), {
-        position: "top-center",
-      });
-      return;
-    }
-    if (!telNum) return;
-    setIsLoading(true);
     try {
+      Router.push(
+        {
+          pathname: Router.pathname,
+          query: { spinned: true },
+        },
+        undefined,
+        { shallow: true }
+      );
+      if (wheelsData[itemIndex].discountRate === 0) {
+        setPrize({
+          discountRate: 0,
+        });
+        setResultHidden(false);
+        toast.error(t("wheel.tryAgain"), {
+          position: "top-center",
+        });
+        return false;
+      }
+      if (telNum.length <= 5) {
+        toast.error(t("wheel.telValid"), {
+          position: "top-center",
+        });
+        return;
+      }
+      if (spinStatus.hasSpinned) {
+        toast.error(t("wheel.wheelSpun"), {
+          position: "top-center",
+        });
+        return;
+      }
+      if (!telNum) return;
+      setIsLoading(true);
       const { data } = await axios.get("/api/advertisement/generateCoupon", {
         params: {
           tel: telNum,
@@ -119,9 +135,6 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
   return (
     <Modal
       contentClassName={modalBg}
-      style={{
-        zIndex: "100000000000000000 !important",
-      }}
       show={show}
       onHide={handleClose}
       aria-labelledby="share-modal-title">
@@ -158,7 +171,7 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
                 <Loader />
               ) : (
                 <>
-                  {prize?.discountRate === 0 ? (
+                  {prize.discountRate === 0 ? (
                     <h3 className={result_text}>{t("wheel.tryAgain")}</h3>
                   ) : (
                     <>

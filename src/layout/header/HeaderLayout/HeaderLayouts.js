@@ -119,7 +119,16 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
         }}>
         <WhatsappIcon size={55} round={true} />
       </a>
-
+      {!spinStatus.hasSpinned && (
+        <WheelsIcon
+          onWheelClick={() =>
+            dispatch({
+              type: SET_WHEEL_MODAL,
+              payload: !wheel.showWheel,
+            })
+          }
+        />
+      )}
       <StickyMenus
         showMenu={showMenu}
         handleSearch={handleSearch}
@@ -141,16 +150,6 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
         handleClose={modals.numberModal.handleClose}
       />
 
-      {!spinStatus.hasSpinned && (
-        <WheelsIcon
-          onWheelClick={() =>
-            dispatch({
-              type: SET_WHEEL_MODAL,
-              payload: !wheel.showWheel,
-            })
-          }
-        />
-      )}
       <WheelModal
         wheelsData={wheel.wheelData}
         show={wheel.showWheel}

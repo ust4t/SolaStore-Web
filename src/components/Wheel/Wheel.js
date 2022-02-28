@@ -33,7 +33,6 @@ export default class Wheel extends React.Component {
     const audio = new Audio("/wheelSound.mp3");
 
     if (this.state.selectedItem === null) {
-      // const selectedItem = Math.floor(Math.random() * this.props.items.length);
       const selectedItem = this.getRandom();
       if (this.props.onSelectItem) {
         setTimeout(() => {

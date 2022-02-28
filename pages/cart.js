@@ -365,9 +365,8 @@ const Cart = ({ saleTeam }) => {
 
                           <div className="container">
                             <div className="row py-3">
-                              {/*
                               <div className="col p00  mb-20 mt-15">
-                                 <div className="col-lg-11 mr-20">
+                                <div className="col-lg-11 mr-20">
                                   <div className="d-flex justify-content-between pb-3">
                                     {" "}
                                     <small className="text-muted">
@@ -384,9 +383,9 @@ const Cart = ({ saleTeam }) => {
                                     />
                                     <div className="kpnbut">Uygula</div>
                                   </div>
-                                </div> 
+                                </div>
                               </div>
-                                */}
+
                               <div className="col p00  mb-20">
                                 <div className="col-lg-12">
                                   <div className="d-flex flex-column">

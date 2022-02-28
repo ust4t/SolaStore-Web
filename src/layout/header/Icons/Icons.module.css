@@ -40,10 +40,6 @@
   margin-top: 10px;
 }
 
-.wheel_icon_container h3::selection {
-  background: transparent;
-}
-
 .wheel_icon_container img {
   width: 120px;
   height: 120px;
