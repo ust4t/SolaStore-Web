@@ -119,7 +119,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
         }}>
         <WhatsappIcon size={55} round={true} />
       </a>
-      {!spinStatus.hasSpinned && (
+      {/* {!spinStatus.hasSpinned && (
         <WheelsIcon
           title={t("home:wheel.wheelTitle")}
           onWheelClick={() =>
@@ -129,7 +129,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
             })
           }
         />
-      )}
+      )} */}
       <StickyMenus
         showMenu={showMenu}
         handleSearch={handleSearch}
@@ -151,11 +151,11 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
         handleClose={modals.numberModal.handleClose}
       />
 
-      <WheelModal
+      {/* <WheelModal
         wheelsData={wheel.wheelData}
         show={wheel.showWheel}
         handleClose={() => dispatch({ type: SET_WHEEL_MODAL, payload: false })}
-      />
+      /> */}
 
       <div className="header-menu-area logo-circle-area cartAnim">
         <div className="container-fluid">
