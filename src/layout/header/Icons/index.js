@@ -47,10 +47,10 @@ export const WishlistIcon = () => {
   );
 };
 
-export const WheelsIcon = ({ onWheelClick }) => {
+export const WheelsIcon = ({ title, onWheelClick }) => {
   return (
     <a onClick={onWheelClick} className={wheel_icon_container}>
-      <h3>Çark</h3>
+      <h3>{title}</h3>
       <img src="/images/wheelIcon.gif" alt="" />
     </a>
   );

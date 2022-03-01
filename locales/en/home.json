@@ -17,6 +17,8 @@
     "wheelSpun": "You have already spun the wheel!",
     "tryAgain": "Bad luck, try again!",
     "wheelWon": "Your prize has been successfully taken, You can use your coupon code by copying it",
-    "wheelClickTitle": "Click the wheel to earn your prize"
+    "wheelClickTitle": "Enter your phone number to spin the wheel",
+    "wheelSpin": "Spin",
+    "wheelTitle": "Wheel"
   }
 }

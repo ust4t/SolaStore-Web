@@ -17,6 +17,8 @@
     "wheelSpun": "Vous avez déjà fait tourner la roue !",
     "tryAgain": "Pas de chance, réessayez !",
     "wheelWon": "Votre prix a été pris avec succès, vous pouvez utiliser votre code promo en le copiant",
-    "wheelClickTitle": "Cliquez sur la roue pour gagner votre prix"
+    "wheelClickTitle": "Entrez votre numéro à composer",
+    "wheelSpin": "Tourner",
+    "wheelTitle": "Roue"
   }
 }

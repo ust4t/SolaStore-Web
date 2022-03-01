@@ -17,6 +17,8 @@
     "wheelSpun": "Çark önceden çevrildi!",
     "tryAgain": "Hay aksi, tekrar deneyin",
     "wheelWon": "Ödül kodunuz başarıyla alındı. Kupon kodunuzu kopyalayıp kullanabilirsiniz.",
-    "wheelClickTitle": "Ödülünüzü kazanmak için çarkı çeviriniz"
+    "wheelClickTitle": "Çevirmek için numaranızı giriniz",
+    "wheelSpin": "Çevir",
+    "wheelTitle": "Çark"
   }
 }

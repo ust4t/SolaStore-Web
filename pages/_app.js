@@ -18,6 +18,7 @@ import {
 } from "../src/redux/action/type";
 import menuData from "../public/menuData.json";
 import toast from "react-hot-toast";
+import { loadState, saveState } from "../src/redux/browser-storage";
 
 import "zuck.js/dist/skins/snapgram.min.css";
 import "zuck.js/dist/zuck.min.css";
@@ -29,7 +30,14 @@ import "animate.css";
 import "antd/dist/antd.css";
 import "../styles/global.css";
 
+const analyticID1 = "UA-73451034-1";
+const analyticID2 = "G-SWHHCJ1EK6";
+
 function MyApp({ Component, pageProps }) {
+  const spinStatus = loadState("spinStatus", {
+    hasSpinned: false,
+    expires: new Date().getTime() + 60 * 60 * 24 * 1000,
+  });
   const router = useRouter();
   const queryClient = new QueryClient();
 
@@ -70,10 +78,10 @@ function MyApp({ Component, pageProps }) {
   const handleRouteChange = (url) => {
     if (typeof window !== "undefined") {
       ym("hit", url);
-      window.gtag("config", "UA-73451034-1", {
+      window.gtag("config", analyticID1, {
         page_path: url,
       });
-      window.gtag("config", "G-SWHHCJ1EK6", {
+      window.gtag("config", analyticID2, {
         page_path: url,
       });
     }
@@ -91,6 +99,11 @@ function MyApp({ Component, pageProps }) {
   }, [router.locale]);
 
   useEffect(() => {
+    if (spinStatus.expires < Date.now())
+      saveState("spinStatus", {
+        hasSpinned: false,
+        expires: new Date().getTime() + 60 * 60 * 24 * 1000,
+      });
     getWheels();
     checkUser();
     if (router.locale !== store.getState().lang) {
@@ -215,11 +228,11 @@ function MyApp({ Component, pageProps }) {
       />
 
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=UA-73451034-1"
+        src={`https://www.googletagmanager.com/gtag/js?id=${analyticID1}`}
         strategy="afterInteractive"
       />
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-SWHHCJ1EK6"
+        src={`https://www.googletagmanager.com/gtag/js?id=${analyticID2}`}
         strategy="afterInteractive"
       />
       <Script id="google-analytics" strategy="afterInteractive">
@@ -227,8 +240,8 @@ function MyApp({ Component, pageProps }) {
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'UA-73451034-1', { page_path: window.location.pathname }); 
-          gtag('config', 'G-SWHHCJ1EK6', { page_path: window.location.pathname }); 
+          gtag('config', '${analyticID1}', { page_path: window.location.pathname }); 
+          gtag('config', '${analyticID2}', { page_path: window.location.pathname }); 
           `}
       </Script>
       <Script

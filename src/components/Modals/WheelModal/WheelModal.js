@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Modal, ModalDialog } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import toast from "react-hot-toast";
 import useTranslation from "next-translate/useTranslation";
 import Router from "next/router";
@@ -22,10 +22,8 @@ import {
 
 export default function WheelModal({ show, handleClose, wheelsData }) {
   const { t } = useTranslation("home");
-  const [prize, setPrize] = useState({
-    data: null,
-    index: null,
-  });
+  const [prize, setPrize] = useState(null);
+  const [spinOverlay, setSpinOverlay] = useState(true);
   const [resultHidden, setResultHidden] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [telNum, setTelNum] = useState("");
@@ -71,6 +69,7 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
       });
       return;
     }
+    setSpinOverlay(false);
     setResultHidden(true);
   };
 
@@ -79,7 +78,10 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
       Router.push(
         {
           pathname: Router.pathname,
-          query: { spinned: true },
+          query: {
+            ...Router.query,
+            spinned: true,
+          },
         },
         undefined,
         { shallow: true }
@@ -115,7 +117,10 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
         },
       });
       setResultHidden(false);
-      setPrize({ ...wheelsData[itemIndex], code: data.result2[0].voucherCode });
+      setPrize({
+        ...wheelsData[itemIndex],
+        code: data.result2[0].voucherCode,
+      });
       saveState("spinStatus", {
         hasSpinned: true,
         expires: Date.parse(data.result2[0].deletingDate),
@@ -128,6 +133,7 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
         position: "top-center",
       });
     } finally {
+      setSpinOverlay(false);
       setIsLoading(false);
     }
   };
@@ -148,6 +154,13 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
             onClick={handleClose}
           />
           <Wheel
+            overlay={{
+              show: spinOverlay,
+              title:
+                telNum.length > 5
+                  ? t("wheel.wheelSpin")
+                  : t("wheel.wheelClickTitle"),
+            }}
             items={wheelsData.map((item, index) => ({
               ...item,
               color: colors[index] || "#dc5d5d",
@@ -158,11 +171,6 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
           />
           <div
             className={`${result_container} d-flex flex-column align-items-center justify-content-center`}>
-            {resultHidden && (
-              <h2 className="text-center text-white">
-                {t("wheel.wheelClickTitle")}
-              </h2>
-            )}
             <div
               className={`d-flex flex-column align-items-center ${
                 prize && !resultHidden ? show_result : hide_result
@@ -171,7 +179,7 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
                 <Loader />
               ) : (
                 <>
-                  {prize.discountRate === 0 ? (
+                  {prize?.discountRate === 0 ? (
                     <h3 className={result_text}>{t("wheel.tryAgain")}</h3>
                   ) : (
                     <>

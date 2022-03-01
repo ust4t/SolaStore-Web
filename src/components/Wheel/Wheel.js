@@ -1,6 +1,12 @@
 import React from "react";
 
-import { wheel_container, wheel, spinningWheel } from "./Wheel.module.css";
+import {
+  wheel_container,
+  wheel,
+  spinningWheel,
+  wheel_overlay,
+  wheel_overlay_title,
+} from "./Wheel.module.css";
 
 export default class Wheel extends React.Component {
   constructor(props) {
@@ -10,7 +16,6 @@ export default class Wheel extends React.Component {
       cancelTouch: false,
     };
     this.selectItem = this.selectItem.bind(this);
-    // this.getRandom = this.getRandom.bind(this);
   }
 
   getRandom() {
@@ -64,6 +69,18 @@ export default class Wheel extends React.Component {
 
     return (
       <div onClick={this.props.onWheelClick} className={wheel_container}>
+        {this.props.overlay.show && (
+          <span
+            onClick={
+              !this.props.disabled && !this.state.cancelTouch
+                ? this.selectItem
+                : null
+            }>
+            <div className={wheel_overlay} />
+            <h1 className={wheel_overlay_title}>{this.props.overlay.title}</h1>
+          </span>
+        )}
+
         <div
           className={`${wheel} ${spinning}`}
           style={{

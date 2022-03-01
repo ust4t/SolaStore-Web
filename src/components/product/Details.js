@@ -469,11 +469,14 @@ const Details = ({
                           <span className="text-muted">{t("category")}:</span>
                           <Link
                             href={`/shop/${encodeURLString(
-                              category.selectedCategoryName
-                            )}:${category.categoryID}`}>
+                              category.subCategoriesList.selectedSubCategoryName
+                            )}:${category.subCategoriesList.subCategoryID}`}>
                             <span
                               className={`${brandStyle} ${smallBrandStyle}`}>
-                              {category.selectedCategoryName}
+                              {
+                                category.subCategoriesList
+                                  .selectedSubCategoryName
+                              }
                             </span>
                           </Link>
                         </small>

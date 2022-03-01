@@ -121,6 +121,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
       </a>
       {!spinStatus.hasSpinned && (
         <WheelsIcon
+          title={t("home:wheel.wheelTitle")}
           onWheelClick={() =>
             dispatch({
               type: SET_WHEEL_MODAL,
