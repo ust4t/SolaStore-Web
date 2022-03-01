@@ -17,5 +17,12 @@
   "orderCurrent": "Cari Hesap ile Öde",
   "validationName": "Lütfen isminizi giriniz",
   "validationTel": "Lütfen telefon numaranızı giriniz",
-  "salesRepresentative": "Satış Temsilcisi"
+  "salesRepresentative": "Satış Temsilcisi",
+  "discountTitle": "İndirim Tutarı",
+  "couponTitle": "Lütfen kupon kodunuzu giriniz",
+  "couponPlaceholder": "Kupon Kodunuzu Giriniz",
+  "couponApply": "Uygula",
+  "couponRemove": "Kuponu Kaldır",
+  "couponSuccess": "Kupon kodunuz başarıyla kullanıldı.",
+  "couponError": "Kupon kodunuz geçersiz."
 }

@@ -148,6 +148,13 @@ body {
   margin-top: 37px;
 }
 
+@media (max-width: 576px) {
+  .kpnbut {
+    padding: 6.5px 15px;
+    margin-left: 0;
+  }
+}
+
 @media (min-width: 1270px) {
   .mustem {
     max-width: 12% !important;

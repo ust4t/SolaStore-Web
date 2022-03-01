@@ -17,5 +17,12 @@
   "orderCurrent": "Pay with Current Account",
   "validationName": "Please enter your name",
   "validationTel": "Please enter your telephone number",
-  "salesRepresentative": "Sales Representative"
+  "salesRepresentative": "Sales Representative",
+  "discountTitle": "Discount Amount",
+  "couponTitle": "Please enter your coupon code",
+  "couponPlaceholder": "Enter your coupon code",
+  "couponApply": "Apply",
+  "couponRemove": "Remove Coupon",
+  "couponSuccess": "Your coupon has been successfully applied",
+  "couponError": "Your coupon code is invalid"
 }

@@ -19,7 +19,6 @@ import Loader from "../src/components/Loader";
 import sources from "../sources";
 import { SET_COMPLETED_CART } from "../src/context/types";
 import { encodeURLString } from "../src/utils/utils";
-import ToastComponent from "../src/components/ToastComponent";
 import { SET_CART_DATA_REDUX } from "../src/redux/action/type";
 
 const DEF_SELLER = 9999;
@@ -43,9 +42,9 @@ const Cart = ({ saleTeam }) => {
   const [warning, setWarning] = useState({
     sellerWarning: "",
   });
+  const [couponCode, setCouponCode] = useState(cart.coupon);
   const sellerRef = createRef();
   const sellerBoxRef = createRef();
-  const couponCodeRef = createRef();
 
   const paymentValidationSchema = Yup.object({
     name: Yup.string().required(t("validationName")),
@@ -97,7 +96,7 @@ const Cart = ({ saleTeam }) => {
 
   const handleCartSubmit = async (values, { resetForm }, paymentRoute) => {
     if (!state.cartData.length) {
-      toast.error("Sepetinizde ürün bulunmamaktadır.", {
+      toast.error(t("cartEmpty"), {
         duration: 3000,
         position: "top-left",
       });
@@ -149,7 +148,7 @@ const Cart = ({ saleTeam }) => {
         },
       });
     } catch (err) {
-      toast.error("Bir hata oluştu. Lütfen tekrar deneyiniz.", {
+      toast.error(t("common:error"), {
         duration: 3000,
         position: "top-left",
       });
@@ -163,8 +162,8 @@ const Cart = ({ saleTeam }) => {
     (keyEvent.charCode || keyEvent.keyCode) === 13 && keyEvent.preventDefault();
 
   const handleDiscount = async () => {
-    if (!couponCodeRef.current.value.length) {
-      toast.error("Kupon kodunuzu giriniz.", {
+    if (!couponCode.length) {
+      toast.error(t("couponTitle"), {
         position: "top-center",
       });
       return;
@@ -172,7 +171,7 @@ const Cart = ({ saleTeam }) => {
     try {
       const { data } = await axios.post("/api/payment/addOrderVisitor", {
         visitorGuidID: auth.uid.toString(),
-        coupon: couponCodeRef.current.value,
+        coupon: couponCode,
         buyerName: "000",
         buyerPhone: "000",
         salesRepresantID: 0,
@@ -180,22 +179,32 @@ const Cart = ({ saleTeam }) => {
         os: "Desktop",
         isCompleted: false,
       });
-      console.log(couponCodeRef.current.value, data.data);
       dispatchRedux({
         type: SET_CART_DATA_REDUX,
         payload: {
-          coupon: couponCodeRef.current.value,
+          coupon: couponCode,
           discount: data.data,
         },
       });
-      toast.success("Kupon kodunuz başarıyla kullanıldı.", {
+      toast.success(t("couponSuccess"), {
         position: "top-center",
       });
     } catch (e) {
-      toast.error("Kupon kodunuz geçersiz.", {
+      toast.error(t("couponError"), {
         position: "top-center",
       });
     }
+  };
+
+  const handleRemoveDiscount = () => {
+    dispatchRedux({
+      type: SET_CART_DATA_REDUX,
+      payload: {
+        discount: 0,
+        coupon: "",
+      },
+    });
+    setCouponCode("");
   };
 
   return (
@@ -400,26 +409,33 @@ const Cart = ({ saleTeam }) => {
 
                           <div className="container">
                             <div className="row py-3">
-                              <div className="col p00  mb-20 mt-15">
+                              <div className="col-12 col-md p00 mb-20 mt-15">
                                 <div className="col-lg-11 mr-20">
-                                  <div className="d-flex justify-content-between pb-3">
-                                    {" "}
+                                  <div className="d-flex justify-content-center justify-content-md-between pb-3">
                                     <small className="text-muted">
-                                      Kupon Kodunuz Varsa Kodunuzu Giriniz
+                                      {t("couponTitle")}
                                     </small>
-                                    <p className=""></p>
                                   </div>
-                                  <div className="d-flex flex-column flex-sm-row justify-content-start align-items-center">
+                                  <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start align-items-center">
                                     <input
-                                      ref={couponCodeRef}
+                                      value={couponCode}
+                                      onChange={(e) =>
+                                        setCouponCode(e.target.value)
+                                      }
                                       type="text"
                                       className="border border-secondary rounded py-2 ps-2 mb-2 mb-sm-0"
-                                      placeholder="Kupon Kodu Giriniz"
+                                      placeholder={t("couponPlaceholder")}
                                     />
                                     <div
-                                      onClick={handleDiscount}
+                                      onClick={
+                                        !!cart.discount && cart.coupon
+                                          ? handleRemoveDiscount
+                                          : handleDiscount
+                                      }
                                       className="kpnbut">
-                                      Uygula
+                                      {!!cart.discount && cart.coupon
+                                        ? t("couponRemove")
+                                        : t("couponApply")}
                                     </div>
                                   </div>
                                 </div>
@@ -429,31 +445,34 @@ const Cart = ({ saleTeam }) => {
                                 <div className="col-lg-12">
                                   <div className="d-flex flex-column">
                                     {cart.discount ? (
-                                      <div className="d-flex justify-content-between">
-                                        {" "}
-                                        <small className="text-muted fs-5">
-                                          {t("cartAmount")}
-                                        </small>
-                                        <del className="text-danger fs-5">
-                                          ${totalPrice(state.cartData)}
-                                        </del>
-                                      </div>
+                                      <>
+                                        <div className="d-flex justify-content-between">
+                                          {" "}
+                                          <small className="text-muted fs-5">
+                                            {t("cartAmount")}
+                                          </small>
+                                          <del className="text-danger fs-5">
+                                            ${totalPrice(state.cartData)}
+                                          </del>
+                                        </div>
+                                        <div className="d-flex align-items-center justify-content-between p-2 my-2 bg-success">
+                                          {" "}
+                                          <small className="text-white fw-bold fs-5">
+                                            {t("discountTitle")}
+                                          </small>
+                                          <p className="text-white fs-5 mb-0">
+                                            $
+                                            {Math.floor(
+                                              (cart.discount / 100) *
+                                                totalPrice(state.cartData)
+                                            )}
+                                          </p>
+                                        </div>
+                                      </>
                                     ) : (
                                       <></>
                                     )}
-                                    <div className="d-flex align-items-center justify-content-between p-2 my-2 bg-success">
-                                      {" "}
-                                      <small className="text-white fw-bold fs-5">
-                                        İndirim Tutarı
-                                      </small>
-                                      <p className="text-white fs-5 mb-0">
-                                        $
-                                        {Math.floor(
-                                          (cart.discount / 100) *
-                                            totalPrice(state.cartData)
-                                        )}
-                                      </p>
-                                    </div>
+
                                     <div className="d-flex justify-content-between">
                                       <small className="text-muted fw-bold fs-5">
                                         {t("totalAmount")}
@@ -521,9 +540,8 @@ const Cart = ({ saleTeam }) => {
                             { resetForm },
                             "/order-success"
                           );
-                        } else {
+                        } else
                           handleCartSubmit(values, { resetForm }, "/checkout");
-                        }
                       }}>
                       {({ values, errors, touched, handleChange }) => (
                         <Form onKeyDown={preventKey}>
@@ -556,7 +574,6 @@ const Cart = ({ saleTeam }) => {
                                   : ""
                               }`}
                               placeholder={t("orderTel")}
-                              // required
                             />
                           </div>
                           {errors.tel && touched.tel ? (
@@ -569,21 +586,10 @@ const Cart = ({ saleTeam }) => {
                             onClick={() => {
                               setPaymentType("Order");
                               if (!currentSeller) {
-                                toast(
-                                  (ht) => (
-                                    <ToastComponent
-                                      icon="fas fa-exclamation-triangle text-danger"
-                                      message="Lütfen bir satıcı seçiniz"
-                                      hotToast={ht}
-                                      iconSize="2.5rem"
-                                      messageSize="1.5rem"
-                                    />
-                                  ),
-                                  {
-                                    duration: 3000,
-                                    position: "top-left",
-                                  }
-                                );
+                                toast.error(t("orderChoose"), {
+                                  duration: 3000,
+                                  position: "top-left",
+                                });
                                 warningTimed("sellerWarning", 5000);
                                 return;
                               }
@@ -600,21 +606,10 @@ const Cart = ({ saleTeam }) => {
                             onClick={() => {
                               setPaymentType("cc");
                               if (!currentSeller) {
-                                toast(
-                                  (ht) => (
-                                    <ToastComponent
-                                      icon="fas fa-exclamation-triangle text-danger"
-                                      message="Lütfen bir satıcı seçiniz"
-                                      hotToast={ht}
-                                      iconSize="2.5rem"
-                                      messageSize="1.5rem"
-                                    />
-                                  ),
-                                  {
-                                    duration: 3000,
-                                    position: "top-left",
-                                  }
-                                );
+                                toast.error(t("orderChoose"), {
+                                  duration: 3000,
+                                  position: "top-left",
+                                });
                                 warningTimed("sellerWarning", 5000);
                                 return;
                               }

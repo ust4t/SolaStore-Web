@@ -40,5 +40,7 @@
   "or": "ou",
   "filterNum": "Affichage de {{min}} résultats sur {{max}}",
   "required": "requis",
-  "invalidEmail": "Adresse e-mail non valide"
+  "invalidEmail": "Adresse e-mail non valide",
+  "error": "Une erreur s'est produite, veuillez réessayer plus tard",
+  "copy": "Copié dans le presse-papier"
 }

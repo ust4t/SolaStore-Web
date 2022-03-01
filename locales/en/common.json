@@ -40,5 +40,7 @@
   "or": "Or",
   "filterNum": "Showing {{min}} of {{max}} results",
   "required": "Required",
-  "invalidEmail": "Invalid Email"
+  "invalidEmail": "Invalid Email",
+  "error": "An error occured, please try again later",
+  "copy": "Copied to clipboard"
 }

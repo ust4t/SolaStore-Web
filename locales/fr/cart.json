@@ -17,5 +17,12 @@
   "orderCurrent": "Payer avec un compte courant",
   "validationName": "S'il vous plaît entrez votre nom",
   "validationTel": "Veuillez entrer votre numéro de téléphone",
-  "salesRepresentative": "Commercial"
+  "salesRepresentative": "Commercial",
+  "discountTitle": "Momtant de la remise",
+  "couponTitle": "Veuillez entrer votre code promo",
+  "couponPlaceholder": "Entrez votre code promo",
+  "couponApply": "Appliquer",
+  "couponRemove": "Supprimer le coupon",
+  "couponSuccess": "Votre coupon a été appliqué avec succès",
+  "couponError": "Votre code promo est invalide"
 }

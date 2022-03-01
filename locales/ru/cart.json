@@ -17,5 +17,12 @@
   "orderCurrent": "ЗАВЕРШИТЬ ЗАКАЗ",
   "validationName": "Пожалуйста, введите Ваше имя",
   "validationTel": "Пожалуйста, введите свой номер телефона",
-  "salesRepresentative": "Торговый представитель"
+  "salesRepresentative": "Торговый представитель",
+  "discountTitle": "Сумма скидки",
+  "couponTitle": "Пожалуйста, введите код купона",
+  "couponPlaceholder": "Введите код купона",
+  "couponApply": "Применять",
+  "couponRemove": "Удалить купон",
+  "couponSuccess": "Ваш купон успешно применен",
+  "couponError": "Ваш код купона недействителен"
 }

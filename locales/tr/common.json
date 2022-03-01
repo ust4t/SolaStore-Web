@@ -40,5 +40,7 @@
   "or": "veya",
   "filterNum": "{{max}} sonuçtan {{min}} tanesi gösteriliyor",
   "required": "Gerekli",
-  "invalidEmail": "Geçersiz E-mail"
+  "invalidEmail": "Geçersiz E-mail",
+  "error": "Bir hata oluştu, lütfen tekrar deneyiniz",
+  "copy": "Panoya kopyalandı"
 }

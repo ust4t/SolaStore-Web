@@ -17,5 +17,12 @@
   "orderCurrent": "ادفع بالحساب الجاري",
   "validationName": "من فضلك أدخل إسمك",
   "validationTel": "يرجى إدخال رقم الهاتف الخاص بك",
-  "salesRepresentative": "مندوب مبيعات"
+  "salesRepresentative": "مندوب مبيعات",
+  "discountTitle": "مقدار الخصم",
+  "couponTitle": "الرجاء إدخال رمز القسيمة الخاص بك",
+  "couponPlaceholder": "أدخل رمز القسيمة الخاص بك",
+  "couponApply": "تطبيق",
+  "couponRemove": "إزالة القسيمة",
+  "couponSuccess": "تم تطبيق قسيمتك بنجاح",
+  "couponError": "رمز القسيمة الخاص بك غير صالح"
 }
