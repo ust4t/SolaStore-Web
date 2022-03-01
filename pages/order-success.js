@@ -18,7 +18,7 @@ const OrderSuccess = ({ orderList }) => {
           pageTitle={t("orderthanks")}
           thankupage
           thankupageTitle={t("paymentsuccess")}
-          id={orderList[0].orderID}
+          id={!!orderList.length ? orderList[0].orderID : 0}
         />
         <section className="cart-area pt-100 pb-100">
           <div className="container">
@@ -118,7 +118,7 @@ const OrderSuccess = ({ orderList }) => {
                   <div className="col-12 mt-4">
                     <h5>
                       <b>{t("paymentmethod")}</b>
-                      {completedCartData.paymentType === "order"
+                      {completedCartData.paymentType === "Order"
                         ? t("ordercurrent")
                         : t("ordercart")}
                     </h5>
@@ -140,8 +140,6 @@ export async function getServerSideProps({ query }) {
   const { data: orderList } = await axios.get(
     `https://api.solastore.com.tr/api/Order/OrderList?UserID=${user}&sourceProof=${process.env.SOURCE_PROOF}`
   );
-
-  console.log(query);
 
   return {
     props: {

@@ -19,7 +19,6 @@ const Checkout = () => {
   const [paymentBox, setPaymentBox] = useState(null);
   const { state } = useContext(StoreContext);
   const { orderID, amount } = state.completedCartData;
-  console.log(state.completedCartData);
 
   const checkoutInitialValues = {
     cardNumber: "",

@@ -28,21 +28,6 @@ body {
 .qtybutton-box > span.minus.dis {
   cursor: auto;
 }
-tr {
-  border: 1px solid #eee;
-}
-
-td {
-  vertical-align: middle;
-}
-
-.head th {
-  font-weight: 500;
-}
-
-tr:nth-child(3) {
-  border: solid thin;
-}
 
 .red {
   color: #fd1c1c !important;
@@ -61,11 +46,6 @@ tr:nth-child(3) {
 .p00 {
   padding-left: 0px;
   padding-right: 0px;
-}
-
-.kpninput {
-  height: 40px;
-  padding: 11px 18px;
 }
 
 .kpnbut {

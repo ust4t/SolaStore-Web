@@ -31,6 +31,9 @@ export const SET_STORY_PAGE = "SET_STORY_PAGE";
 export const SET_WHEEL_MODAL = "SET_WHEEL_MODAL";
 export const SET_WHEEL_DATA = "SET_WHEEL_DATA";
 
+// cart
+export const SET_CART_DATA_REDUX = "SET_CART_DATA_REDUX";
+
 // auth
 export const CREATE_USER_ID = "CREATE_USER_ID";
 

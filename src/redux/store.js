@@ -1,5 +1,5 @@
 import { applyMiddleware, createStore } from "redux";
-import { loadState, loadUserData } from "./browser-storage";
+import { loadState } from "./browser-storage";
 import thunk from "redux-thunk";
 import rootReducer from "./reducer";
 
@@ -14,6 +14,10 @@ const loadedState = {
   page: loadState("page", {
     page: 1,
     lastIndex: 0,
+  }),
+  cart: loadState("cart", {
+    coupon: "",
+    discount: 0,
   }),
 };
 

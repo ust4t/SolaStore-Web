@@ -3,13 +3,7 @@ import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import useTranslation from "next-translate/useTranslation";
 
-import {
-  ADD_TO_CART,
-  REMOVE_FROM_CART,
-  SET_CART_DATA,
-  INCREMENT_QUANTITY,
-  DECREMENT_QUANTITY,
-} from "../context/types";
+import { SET_CART_DATA } from "../context/types";
 import useQueryMutation from "./useQueryMutation";
 
 export default function useCart(dispatch) {
@@ -33,9 +27,6 @@ export default function useCart(dispatch) {
   const { mutate } = useQueryMutation(`addCart_${user.uid}`);
 
   const addToCartAction = (creds) => {
-    dispatch({
-      type: ADD_TO_CART,
-    });
     mutate(
       {
         url: `/api/cart/addToCart?user=${creds.user}&productID=${creds.id}&quantity=${creds.quantity}`,
@@ -50,9 +41,6 @@ export default function useCart(dispatch) {
   };
 
   const removeFromCart = (creds) => {
-    dispatch({
-      type: REMOVE_FROM_CART,
-    });
     mutate(
       {
         url: `/api/cart/removeFromCart?user=${creds.user}&ProductID=${creds.id}`,
@@ -67,9 +55,6 @@ export default function useCart(dispatch) {
   };
 
   const incrementQuantity = (creds) => {
-    dispatch({
-      type: INCREMENT_QUANTITY,
-    });
     mutate(
       {
         url: `/api/cart/increaseProductCount?user=${creds.user}&ProductID=${creds.id}`,
@@ -84,9 +69,6 @@ export default function useCart(dispatch) {
   };
 
   const decrementQuantity = (creds) => {
-    dispatch({
-      type: DECREMENT_QUANTITY,
-    });
     mutate(
       {
         url: `/api/cart/decreaseProductCount?user=${creds.user}&ProductID=${creds.id}`,

@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import useTranslation from "next-translate/useTranslation";
+import { useDispatch } from "react-redux";
 
 import Preloader from "../src/layout/Preloader";
 import CartAmount from "../src/components/cart/CartAmount";
@@ -19,14 +20,16 @@ import sources from "../sources";
 import { SET_COMPLETED_CART } from "../src/context/types";
 import { encodeURLString } from "../src/utils/utils";
 import ToastComponent from "../src/components/ToastComponent";
+import { SET_CART_DATA_REDUX } from "../src/redux/action/type";
 
 const DEF_SELLER = 9999;
 
 const Cart = ({ saleTeam }) => {
   const { t } = useTranslation("cart");
-  const auth = useSelector((state) => state.auth);
+  const { auth, cart } = useSelector((state) => state);
   const { cartActions, state, isCartLoading, dispatch } =
     useContext(StoreContext);
+  const dispatchRedux = useDispatch();
   const router = useRouter();
   const {
     removeFromCart: removeFromCartAction,
@@ -42,6 +45,7 @@ const Cart = ({ saleTeam }) => {
   });
   const sellerRef = createRef();
   const sellerBoxRef = createRef();
+  const couponCodeRef = createRef();
 
   const paymentValidationSchema = Yup.object({
     name: Yup.string().required(t("validationName")),
@@ -78,12 +82,12 @@ const Cart = ({ saleTeam }) => {
     removeFromCartAction(cartData);
   };
 
-  const totalPrice = (items) => {
+  const totalPrice = (items, discount = 0) => {
     if (items) {
       const total = items.reduce((a, b) => {
         return a + b.price * b.quantity;
       }, 0);
-      return total;
+      return Math.floor(total - discount);
     }
 
     return 0;
@@ -93,19 +97,10 @@ const Cart = ({ saleTeam }) => {
 
   const handleCartSubmit = async (values, { resetForm }, paymentRoute) => {
     if (!state.cartData.length) {
-      toast(
-        (ht) => (
-          <ToastComponent
-            icon="fas fa-exclamation-triangle text-danger"
-            message="Sepetinizde ürün bulunmamaktadır."
-            hotToast={ht}
-          />
-        ),
-        {
-          duration: 3000,
-          position: "top-left",
-        }
-      );
+      toast.error("Sepetinizde ürün bulunmamaktadır.", {
+        duration: 3000,
+        position: "top-left",
+      });
       return;
     }
 
@@ -116,20 +111,33 @@ const Cart = ({ saleTeam }) => {
         buyerPhone: values.tel.replace(/\+/g, ""),
         salesRepresantID: currentSeller.id,
         visitorGuidID: auth.uid.toString(),
-        os: "desktop",
+        os: "Desktop",
         paymentType,
+        isCompleted: true,
+        coupon: cart.coupon,
       });
       resetForm();
       setCurrentSeller(null);
+
       dispatch({
         type: SET_COMPLETED_CART,
         payload: {
           orderID: data.data,
-          amount: totalPrice(state.cartData),
+          amount: totalPrice(
+            state.cartData,
+            (cart.discount / 100) * totalPrice(state.cartData)
+          ),
           buyerName: values.name,
           buyerPhone: values.tel.replace(/\+/g, ""),
           paymentType,
           carts: state.cartData,
+        },
+      });
+      dispatchRedux({
+        type: SET_CART_DATA_REDUX,
+        payload: {
+          discount: 0,
+          coupon: "",
         },
       });
       cartRefetch();
@@ -141,19 +149,10 @@ const Cart = ({ saleTeam }) => {
         },
       });
     } catch (err) {
-      toast(
-        (ht) => (
-          <ToastComponent
-            icon="fas fa-exclamation-triangle text-danger"
-            message="Bir hata oluştu. Lütfen tekrar deneyiniz."
-            hotToast={ht}
-          />
-        ),
-        {
-          duration: 3000,
-          position: "top-left",
-        }
-      );
+      toast.error("Bir hata oluştu. Lütfen tekrar deneyiniz.", {
+        duration: 3000,
+        position: "top-left",
+      });
       console.log(err);
     } finally {
       setIsLoading(false);
@@ -162,6 +161,42 @@ const Cart = ({ saleTeam }) => {
 
   const preventKey = (keyEvent) =>
     (keyEvent.charCode || keyEvent.keyCode) === 13 && keyEvent.preventDefault();
+
+  const handleDiscount = async () => {
+    if (!couponCodeRef.current.value.length) {
+      toast.error("Kupon kodunuzu giriniz.", {
+        position: "top-center",
+      });
+      return;
+    }
+    try {
+      const { data } = await axios.post("/api/payment/addOrderVisitor", {
+        visitorGuidID: auth.uid.toString(),
+        coupon: couponCodeRef.current.value,
+        buyerName: "000",
+        buyerPhone: "000",
+        salesRepresantID: 0,
+        paymentType: "Order",
+        os: "Desktop",
+        isCompleted: false,
+      });
+      console.log(couponCodeRef.current.value, data.data);
+      dispatchRedux({
+        type: SET_CART_DATA_REDUX,
+        payload: {
+          coupon: couponCodeRef.current.value,
+          discount: data.data,
+        },
+      });
+      toast.success("Kupon kodunuz başarıyla kullanıldı.", {
+        position: "top-center",
+      });
+    } catch (e) {
+      toast.error("Kupon kodunuz geçersiz.", {
+        position: "top-center",
+      });
+    }
+  };
 
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
@@ -374,14 +409,18 @@ const Cart = ({ saleTeam }) => {
                                     </small>
                                     <p className=""></p>
                                   </div>
-                                  <div className="d-flex justify-content-between align-items-center">
-                                    {" "}
+                                  <div className="d-flex flex-column flex-sm-row justify-content-start align-items-center">
                                     <input
+                                      ref={couponCodeRef}
                                       type="text"
-                                      className="border border-secondary rounded kpninput"
+                                      className="border border-secondary rounded py-2 ps-2 mb-2 mb-sm-0"
                                       placeholder="Kupon Kodu Giriniz"
                                     />
-                                    <div className="kpnbut">Uygula</div>
+                                    <div
+                                      onClick={handleDiscount}
+                                      className="kpnbut">
+                                      Uygula
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -389,37 +428,46 @@ const Cart = ({ saleTeam }) => {
                               <div className="col p00  mb-20">
                                 <div className="col-lg-12">
                                   <div className="d-flex flex-column">
-                                    <div className="d-flex justify-content-between">
+                                    {cart.discount ? (
+                                      <div className="d-flex justify-content-between">
+                                        {" "}
+                                        <small className="text-muted fs-5">
+                                          {t("cartAmount")}
+                                        </small>
+                                        <del className="text-danger fs-5">
+                                          ${totalPrice(state.cartData)}
+                                        </del>
+                                      </div>
+                                    ) : (
+                                      <></>
+                                    )}
+                                    <div className="d-flex align-items-center justify-content-between p-2 my-2 bg-success">
                                       {" "}
-                                      <small className="text-muted">
-                                        {t("cartAmount")}
-                                      </small>
-                                      <p>${totalPrice(state.cartData)}</p>
-                                    </div>
-                                    {/* <div className="d-flex justify-content-between">
-                                      {" "}
-                                      <small className="text-muted fw-bold red">
+                                      <small className="text-white fw-bold fs-5">
                                         İndirim Tutarı
                                       </small>
-                                      <p className="red">$20</p>
-                                    </div> */}
+                                      <p className="text-white fs-5 mb-0">
+                                        $
+                                        {Math.floor(
+                                          (cart.discount / 100) *
+                                            totalPrice(state.cartData)
+                                        )}
+                                      </p>
+                                    </div>
                                     <div className="d-flex justify-content-between">
-                                      <small className="text-muted fw-bold">
+                                      <small className="text-muted fw-bold fs-5">
                                         {t("totalAmount")}
                                       </small>
-                                      <p className="fw-bold">
-                                        ${totalPrice(state.cartData)}
+                                      <p className="fw-bold fs-5">
+                                        $
+                                        {totalPrice(
+                                          state.cartData,
+                                          (cart.discount / 100) *
+                                            totalPrice(state.cartData)
+                                        )}
                                       </p>
                                     </div>
                                   </div>
-                                  {/* <div style={{ display: "none" }}>
-                                    <div className="sale1 my-3">
-                                      Geçersiz Kod{" "}
-                                    </div>
-                                    <div className="true1 my-3">
-                                      Kupon Uygulandı{" "}
-                                    </div>
-                                  </div> */}
                                 </div>
                               </div>
                             </div>

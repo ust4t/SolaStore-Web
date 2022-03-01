@@ -214,10 +214,10 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
             </div>
             <h5 className="text-white fw-bold fs-4">{t("wheel.phone")}:</h5>
             <input
-              onChange={(e) => setTelNum(e.target.value)}
-              value={telNum}
+              onChange={(e) => setTelNum(e.target.value.replace(/\D/g, ""))}
+              value={telNum.replace(/\D/g, "")}
               className={result_input}
-              type="number"
+              type="text"
               placeholder={t("wheel.phonePlaceholder")}
             />
           </div>

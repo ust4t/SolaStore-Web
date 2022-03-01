@@ -214,13 +214,6 @@ function MyApp({ Component, pageProps }) {
         crossOrigin="anonymous"
         strategy="beforeInteractive"
       />
-      {/* <Script
-        id="yandex-metrika-script"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `!function(e,t,a,n,c,m,r){e.ym=e.ym||function(){(e.ym.a=e.ym.a||[]).push(arguments)},e.ym.l=1*new Date,m=t.createElement(a),r=t.getElementsByTagName(a)[0],m.async=1,m.src="https://mc.yandex.ru/metrika/tag.js",r.parentNode.insertBefore(m,r)}(window,document,"script"),ym(69119899,"init",{clickmap:!0,trackLinks:!0,accurateTrackBounce:!0,webvisor:!0});`,
-        }}
-      /> */}
       <YMInitializer
         accounts={[69119899]}
         options={{ webvisor: true, defer: true }}
@@ -268,16 +261,16 @@ function MyApp({ Component, pageProps }) {
       </noscript>
       <Script id="live-chat-tawk" strategy="afterInteractive">
         {`
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-  s1.async=true;
-  s1.src='https://embed.tawk.to/61534fca25797d7a890145c2/1fgmmvbk8';
-  s1.charset='UTF-8';
-  s1.setAttribute('crossorigin','*');
-  s0.parentNode.insertBefore(s1,s0);
-  })();
-  `}
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/61534fca25797d7a890145c2/1fgmmvbk8';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        `}
       </Script>
     </Provider>
   );
