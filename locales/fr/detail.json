@@ -1,11 +1,13 @@
 {
-	"productCode": "Code produit",
-	"category": "Catégorie",
-	"brand": "Marque",
-	"stock": "Stocker",
-	"inStock": "En stock",
-	"outOfStock": "En rupture de stock",
-	"size": "Taille",
-	"otherColors": "Autres couleurs du produit",
-	"desc": "La description"
+  "productCode": "Code produit",
+  "category": "Catégorie",
+  "brand": "Marque",
+  "stock": "Stocker",
+  "inStock": "En stock",
+  "outOfStock": "En rupture de stock",
+  "size": "Taille",
+  "otherColors": "Autres couleurs du produit",
+  "desc": "La description",
+  "discountTitle": "{{price}} $ de réduction dans la catégorie {{category}}!",
+  "discountDesc": "C'est le prix réduit du produit, ne le manquez pas en l'ajoutant à votre panier !"
 }

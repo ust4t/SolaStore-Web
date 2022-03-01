@@ -75,6 +75,35 @@
   color: #fff;
 }
 
+.discount_banner {
+  margin: 30px 160px;
+  margin-top: 0;
+  border-radius: 10px;
+}
+
+.price_box {
+  margin-right: 20px !important;
+  padding: 10px 35px;
+  color: #390;
+  font-size: 1.45rem;
+  font-weight: bold;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+@media (max-width: 1400px) {
+  .discount_banner {
+    margin: 30px 20px;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .price_box {
+    margin-right: 0 !important;
+  }
+}
+
 @media (max-width: 500px) {
   .arrowLeft {
     left: 0px;

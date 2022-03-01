@@ -7,5 +7,7 @@
   "outOfStock": "Out of Stock",
   "size": "Size",
   "otherColors": "Other Colors of the Product",
-  "desc": "Description"
+  "desc": "Description",
+  "discountTitle": "{{price}}$ discount in {{category}} category!",
+  "discountDesc": "This is discounted price of the product, don't miss it by adding it to your cart!"
 }

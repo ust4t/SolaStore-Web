@@ -1,11 +1,13 @@
 {
-	"productCode": "Ürün Kodu",
-	"category": "Kategori",
-	"brand": "Marka",
-	"stock": "Stok",
-	"inStock": "Stokta",
-	"outOfStock": "Tükenmiş",
-	"size": "Beden",
-	"otherColors": "Ürünün Diğer Renkleri",
-	"desc": "Açıklama"
+  "productCode": "Ürün Kodu",
+  "category": "Kategori",
+  "brand": "Marka",
+  "stock": "Stok",
+  "inStock": "Stokta",
+  "outOfStock": "Tükenmiş",
+  "size": "Beden",
+  "otherColors": "Ürünün Diğer Renkleri",
+  "desc": "Açıklama",
+  "discountTitle": "{{category}} Kategorisinde {{price}}$ indirim!",
+  "discountDesc": "Bu ürünün indirimli fiyatıdır, sepetinize ekleyip fırsatı kaçırmayın!"
 }

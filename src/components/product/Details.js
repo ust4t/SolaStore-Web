@@ -25,6 +25,8 @@ import {
   navActive,
   mobileBtn,
   mobileCartBtn,
+  discount_banner,
+  price_box,
 } from "./Details.module.css";
 import { Arrow } from "../sliders/SliderArrows";
 import Heart from "../Heart";
@@ -146,6 +148,34 @@ const Details = ({
               <title>Solastore | {product.productShortName}</title>
             </Head>
             <section className="product-details-area pt-50 pb-50">
+              {product.oldPrice > 0 && sizeNum && (
+                <div
+                  style={{
+                    background: "#390",
+                  }}
+                  className={`row p-3 py-4 align-items-center justify-content-around ${discount_banner}`}>
+                  <div className="col-12 col-lg-5 d-flex align-items-center justify-content-center mb-3 mb-lg-0">
+                    <i className="d-none d-lg-block text-white fas fa-tags fa-2x me-2" />
+                    <h3 className="text-white m-0 fw-bold fs-4 text-center text-lg-start text-capitalize">
+                      {t("discountTitle", {
+                        category:
+                          category.subCategoriesList.selectedSubCategoryName,
+                        price:
+                          oldUnitPrice * sizeNum -
+                          product.singlePrice * sizeNum,
+                      })}
+                    </h3>
+                  </div>
+                  <div className="col-12 col-lg-4 d-flex flex-column flex-lg-row align-items-center justify-centent-center">
+                    <h5 className={`m-0 ${price_box} mb-3 mb-lg-0`}>
+                      {product.singlePrice * sizeNum}$
+                    </h5>
+                    <h5 className="m-0 fs-6 fw-bold text-white text-center text-lg-start">
+                      {t("discountDesc")}
+                    </h5>
+                  </div>
+                </div>
+              )}
               <div
                 className="row bg-white p-3 position-fixed bottom-0 start-0 d-flex align-item-center justify-content-center d-lg-none"
                 style={{

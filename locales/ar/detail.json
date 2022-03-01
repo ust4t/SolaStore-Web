@@ -1,11 +1,13 @@
 {
-	"productCode": "كود المنتج",
-	"category": "فئة",
-	"brand": "ماركة",
-	"stock": "المخزون",
-	"inStock": "في المخزن",
-	"outOfStock": "إنتهى من المخزن",
-	"size": "بحجم",
-	"otherColors": "ألوان أخرى للمنتج",
-	"desc": "وصف"
+  "productCode": "كود المنتج",
+  "category": "فئة",
+  "brand": "ماركة",
+  "stock": "المخزون",
+  "inStock": "في المخزن",
+  "outOfStock": "إنتهى من المخزن",
+  "size": "بحجم",
+  "otherColors": "ألوان أخرى للمنتج",
+  "desc": "وصف",
+  "discountTitle": "خصم {{price}} دولار في فئة {{category}}!",
+  "discountDesc": "هذا سعر مخفض للمنتج ، لا تفوّته بإضافته إلى سلة التسوق الخاصة بك!"
 }
