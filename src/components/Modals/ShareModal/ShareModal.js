@@ -1,6 +1,7 @@
+import React, { memo } from "react";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
 import { Modal } from "react-bootstrap";
+import toast from "react-hot-toast";
 import {
   WhatsappIcon,
   WhatsappShareButton,
@@ -19,11 +20,11 @@ import {
   RedditIcon,
   RedditShareButton,
 } from "react-share";
-import { encodeURLString } from "../../../utils/utils";
 
+import { encodeURLString } from "../../../utils/utils";
 import { modalContainer, copyText } from "./ShareModal.module.css";
 
-export default function ShareModal({ show, handleClose, urlDetails }) {
+function ShareModal({ show, handleClose, urlDetails }) {
   const url = `${urlDetails.url}${encodeURLString(urlDetails.name)}:${
     urlDetails.id
   }${urlDetails?.query || ""}`;
@@ -33,7 +34,14 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
     const text = e.target.value;
     e.target.select();
     e.target.setSelectionRange(0, 99999);
-    if (window.isSecureContext) navigator.clipboard.writeText(text);
+
+    if (window.isSecureContext) {
+      navigator.clipboard.writeText(text);
+      toast.success(t("copy"), {
+        position: "top-center",
+        duration: 1000,
+      });
+    }
   };
 
   return (
@@ -130,3 +138,5 @@ export default function ShareModal({ show, handleClose, urlDetails }) {
     </Modal>
   );
 }
+
+export default memo(ShareModal);

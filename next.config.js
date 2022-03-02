@@ -1,5 +1,12 @@
 const nextTranslate = require("next-translate");
 
+const main_headers = [
+  {
+    key: "Cache-Control",
+    value: "public, s-maxage=15, stale-while-revalidate=59",
+  },
+];
+
 module.exports = nextTranslate({
   swcMinify: true,
   i18n: {
@@ -14,6 +21,14 @@ module.exports = nextTranslate({
         http: true,
       },
     ],
+  },
+  async headers() {
+    return [
+      {
+        source: "/(.*)", // applies headers to all pages
+        headers: main_headers,
+      },
+    ];
   },
   images: {
     domains: ["solastore.com.tr", "yenisite.solastore.com.tr"],

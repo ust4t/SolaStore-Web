@@ -21,7 +21,7 @@ import {
 import VideoModal from "../../Modals/VideoModal";
 import { encodeURLString } from "../../../utils/utils";
 
-function PopularCard({ productData, cartId }) {
+function PopularCard({ productData }) {
   const { t } = useTranslation("common");
   const { id, name, images, price, oldPrice, singlePrice, sizes } = productData;
   const { auth, lang } = useSelector((state) => state);
@@ -47,9 +47,7 @@ function PopularCard({ productData, cartId }) {
     state.wishlistData.find((item) => item.productID === id);
 
   useEffect(() => {
-    if (wishlist) {
-      setIsLiked(true);
-    }
+    if (wishlist) setIsLiked(true);
   }, [wishlist]);
 
   const changeDressColor = (variant) => {
@@ -110,7 +108,7 @@ function PopularCard({ productData, cartId }) {
 
   return (
     <div
-      className={`${cartId} product-wrapper mb-40`}
+      className="product-wrapper mb-40"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}>
       <ShareModal

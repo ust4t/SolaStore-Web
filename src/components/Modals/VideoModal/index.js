@@ -1,6 +1,6 @@
+import { memo } from "react";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
-import React from "react";
 import { Modal } from "react-bootstrap";
 import sources from "../../../../sources";
 
@@ -11,7 +11,7 @@ import {
   modalBg,
 } from "./VideoModal.module.css";
 
-export default function VideoModal({ show, handleClose, video, link }) {
+function VideoModal({ show, handleClose, video, link }) {
   const { t } = useTranslation("home");
 
   return (
@@ -48,3 +48,5 @@ export default function VideoModal({ show, handleClose, video, link }) {
     </Modal>
   );
 }
+
+export default memo(VideoModal);

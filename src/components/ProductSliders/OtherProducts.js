@@ -26,7 +26,6 @@ export default function OtherProducts({ products, id }) {
               className={embla__slide}>
               <div className={embla__slide__inner}>
                 <PopularCard
-                  cartId={id}
                   productData={{
                     index,
                     id: productData.masterProductID,

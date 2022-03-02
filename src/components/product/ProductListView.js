@@ -8,13 +8,12 @@ import { encodeURLString } from "../../utils/utils";
 import Heart from "../Heart";
 // import ProductModal from "./ProductModal";
 
-const ProductListView = ({ product, col5, addToCartAction }) => {
+const ProductListView = ({ product, addToCartAction }) => {
   const user = useSelector((state) => state.auth);
   const { wishListActions } = useContext(StoreContext);
   const { addToWishList, removeFromWishList } = wishListActions;
   const [isLiked, setIsLiked] = useState(false);
   // const [quickView, setQuickView] = useState(false);
-  // const chooseId = user.state === "guest" ? user.uid : user.rnd_id;
 
   const onClickCart = (e) => {
     e.preventDefault();

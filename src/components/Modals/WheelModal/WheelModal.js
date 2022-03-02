@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import axios from "axios";
 import { Modal } from "react-bootstrap";
 import toast from "react-hot-toast";
@@ -20,7 +20,7 @@ import {
   copy_button,
 } from "./WheelModal.module.css";
 
-export default function WheelModal({ show, handleClose, wheelsData }) {
+function WheelModal({ show, handleClose, wheelsData }) {
   const { t } = useTranslation("home");
   const [prize, setPrize] = useState(null);
   const [spinOverlay, setSpinOverlay] = useState(true);
@@ -198,8 +198,9 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
                           onClick={() => {
                             if (window.isSecureContext) {
                               navigator.clipboard.writeText(prize?.code);
-                              toast.success("Copied to clipboard", {
+                              toast.success(t("common:copy"), {
                                 position: "top-center",
+                                duration: 1500,
                               });
                             }
                           }}
@@ -226,3 +227,5 @@ export default function WheelModal({ show, handleClose, wheelsData }) {
     </Modal>
   );
 }
+
+export default memo(WheelModal);

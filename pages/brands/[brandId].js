@@ -32,6 +32,10 @@ export default function BrandsPage({ brandItems, brandData, title, id }) {
 }
 
 export async function getServerSideProps({ query, locale }) {
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=15, stale-while-revalidate=59"
+  );
   const { brandId } = query;
   const title = brandId.slice(0, brandId.indexOf(":")).replace("-", " ");
   const id = brandId.slice(brandId.indexOf(":") + 1);
