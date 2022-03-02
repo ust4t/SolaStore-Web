@@ -11,15 +11,14 @@ import useTranslation from "next-translate/useTranslation";
 import { useDispatch } from "react-redux";
 
 import Preloader from "../src/layout/Preloader";
-import CartAmount from "../src/components/cart/CartAmount";
 import { StoreContext } from "../src/context/StoreProvider";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
 import Loader from "../src/components/Loader";
 import sources from "../sources";
 import { SET_COMPLETED_CART } from "../src/context/types";
-import { encodeURLString } from "../src/utils/utils";
 import { SET_CART_DATA_REDUX } from "../src/redux/action/type";
+import CartCard from "../src/components/Cards/CartCard/CartCard";
 
 const DEF_SELLER = 9999;
 
@@ -45,6 +44,8 @@ const Cart = ({ saleTeam }) => {
   const [couponCode, setCouponCode] = useState(cart.coupon);
   const sellerRef = createRef();
   const sellerBoxRef = createRef();
+
+  console.log("cart", state.cartData);
 
   const paymentValidationSchema = Yup.object({
     name: Yup.string().required(t("validationName")),
@@ -312,93 +313,18 @@ const Cart = ({ saleTeam }) => {
                             {isCartLoading ? (
                               <Loader />
                             ) : state.cartData && state.cartData.length > 0 ? (
-                              state.cartData.map((cart) => (
-                                <div className="py-2 col-12 border-bottom d-flex flex-column flex-sm-row justify-content-between align-items-center">
-                                  <div className="d-flex d-sm-none w-100 px-2">
-                                    <a
-                                      href="#"
-                                      onClick={(e) =>
-                                        removeFromCart(e, {
-                                          id: cart.productID,
-                                        })
-                                      }>
-                                      <i
-                                        className="fa fa-times text-danger"
-                                        style={{
-                                          fontSize: "1.4rem",
-                                        }}
-                                      />
-                                    </a>
-                                  </div>
-                                  <div className="d-flex align-items-center ord">
-                                    <Link
-                                      href={{
-                                        pathname: `/detail/${encodeURLString(
-                                          cart.productShortName
-                                        )}:${cart.productID}`,
-                                        query: {
-                                          selected: cart.productID,
-                                        },
-                                      }}>
-                                      <a>
-                                        <img
-                                          className="img-fluid"
-                                          src={`${sources.imageMinSrc}${cart.pictureOneGuidName}`}
-                                          alt=""
-                                        />
-                                      </a>
-                                    </Link>
-                                  </div>
-                                  <Link
-                                    href={{
-                                      pathname: `/detail/${encodeURLString(
-                                        cart.productShortName
-                                      )}:${cart.productID}`,
-                                      query: {
-                                        selected: cart.productID,
-                                      },
-                                    }}>
-                                    <p className="fs-6 fw-bold my-2 m-sm-0">
-                                      <a>{cart.productShortName}</a>
-                                    </p>
-                                  </Link>
-                                  <p className="mb-0 fs-5">
-                                    <span className="red">
-                                      ${Number(cart.price).toFixed(2)}
-                                    </span>
-                                  </p>
-                                  <CartAmount
-                                    incrementQuantity={incrementQuantity}
-                                    decrementQuantity={decrementQuantity}
-                                    productID={cart.productID}
-                                    cart={cart}
-                                  />
-                                  <div>
-                                    <p className="mb-0 fs-5">
-                                      <span className="red">
-                                        $
-                                        {Number(cart.price).toFixed(2) *
-                                          cart.quantity}
-                                      </span>
-                                    </p>
-                                  </div>
-                                  <div className="d-none d-sm-block">
-                                    <a
-                                      href="#"
-                                      onClick={(e) =>
-                                        removeFromCart(e, {
-                                          id: cart.productID,
-                                        })
-                                      }>
-                                      <i
-                                        className="fa fa-times text-danger"
-                                        style={{
-                                          fontSize: "1.4rem",
-                                        }}
-                                      />
-                                    </a>
-                                  </div>
-                                </div>
+                              state.cartData.map((cart, i) => (
+                                <CartCard
+                                  key={`${cart.productID}.|.${i}`}
+                                  cart={cart}
+                                  onCartRemove={(e) =>
+                                    removeFromCart(e, {
+                                      id: cart.productID,
+                                    })
+                                  }
+                                  onCartIncrease={incrementQuantity}
+                                  onCartDecrease={decrementQuantity}
+                                />
                               ))
                             ) : (
                               <h2 className="pt-100 pb-50 text-center w-100">
@@ -447,7 +373,6 @@ const Cart = ({ saleTeam }) => {
                                     {cart.discount ? (
                                       <>
                                         <div className="d-flex justify-content-between">
-                                          {" "}
                                           <small className="text-muted fs-5">
                                             {t("cartAmount")}
                                           </small>

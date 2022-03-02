@@ -13,7 +13,8 @@
       "order",
       "myorders",
       "phone",
-      "contact"
+      "contact",
+      "appointment"
     ]
   }
 }

@@ -1,0 +1,50 @@
+.appointWrapper {
+  margin: 15px 0;
+  padding: 30px 50px;
+  background-color: #fff;
+}
+
+.appointmentForm {
+  width: 100%;
+  border: none;
+  background: #ecf0f1;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Jost", sans-serif;
+  padding: 18px 25px;
+}
+
+.appointmentFormMessage {
+  min-height: 155px;
+  width: 100%;
+  border: none;
+  background: #ecf0f1;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+  font-family: "Jost", sans-serif;
+  padding: 18px 25px;
+}
+
+.appointmentFormDateTime {
+  color: #333;
+}
+
+.appointmentFormDateTime::-webkit-calendar-picker-indicator {
+  color: #333;
+  cursor: pointer;
+}
+
+.appointmentSubmit {
+  width: 100%;
+  border: none;
+  margin-top: 0;
+  padding: 15px;
+}
+
+@media (max-width: 991px) {
+  .appointWrapper {
+    padding: 20px;
+  }
+}

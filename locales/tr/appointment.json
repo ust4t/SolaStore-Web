@@ -1,0 +1,7 @@
+{
+  "appointmentFormTitle": "Randevu Formu",
+  "appointmentSuccess": "Randevu başarıyla oluşturuldu",
+  "appointmentFailed": "Randevu oluşturma başarısız",
+  "appointmentPhone": "En az {{count}} haneli telefon numarası gereklidir",
+  "appointmentDate": "Lütfen geçerli bir tarih giriniz"
+}

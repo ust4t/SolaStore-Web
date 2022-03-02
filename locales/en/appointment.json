@@ -1,0 +1,7 @@
+{
+  "appointmentFormTitle": "Appointment Form",
+  "appointmentSuccess": "You have successfully booked an appointment",
+  "appointmentFailed": "Failed to book an appointment. Please try again later",
+  "appointmentPhone": "You have to enter at least 5 numbers",
+  "appointmentDate": "You have to select a date"
+}

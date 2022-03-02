@@ -1,0 +1,7 @@
+{
+  "appointmentFormTitle": "Форма записи",
+  "appointmentSuccess": "Вы успешно забронировали встречу",
+  "appointmentFailed": "Не удалось записаться на прием. Пожалуйста, попробуйте позже",
+  "appointmentPhone": "Вы должны ввести как минимум {{count}} цифр",
+  "appointmentDate": "Вы должны выбрать дату"
+}

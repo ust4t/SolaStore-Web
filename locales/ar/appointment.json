@@ -1,0 +1,7 @@
+{
+  "appointmentFormTitle": "استمارة التعيين",
+  "appointmentSuccess": "لقد قمت بحجز موعد بنجاح",
+  "appointmentFailed": "فشل في حجز موعد. الرجاء معاودة المحاولة في وقت لاحق",
+  "appointmentPhone": "يجب عليك إدخال {{count}} أرقام على الأقل",
+  "appointmentDate": "عليك أن تختار التاريخ"
+}

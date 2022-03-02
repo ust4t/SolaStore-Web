@@ -1,0 +1,7 @@
+{
+  "appointmentFormTitle": "Formulaire de rendez-vous",
+  "appointmentSuccess": "Vous avez pris rendez-vous avec succès",
+  "appointmentFailed": "Échec de la prise de rendez-vous. Veuillez réessayer plus tard",
+  "appointmentPhone": "Vous devez entrer au moins {{count}} chiffres",
+  "appointmentDate": "Vous devez sélectionner une date"
+}

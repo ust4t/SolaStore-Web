@@ -10,7 +10,7 @@ export default function VisitStore() {
 
   return (
     <div
-      className={`row ${container} justify-content-center align-items-center`}>
+      className={`d-block d-md-none row ${container} justify-content-center align-items-center`}>
       <div
         className="col-12 col-lg-4"
         style={{

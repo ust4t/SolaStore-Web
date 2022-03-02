@@ -88,7 +88,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
               shownBefore: true,
             },
           });
-      }, 90000);
+      }, 300000);
     }
   }, []);
 
