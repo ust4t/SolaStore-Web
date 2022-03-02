@@ -44,7 +44,6 @@ function PopularProducts() {
                   className={embla__slide}>
                   <div className={embla__slide__inner}>
                     <PopularCard
-                      cartId="popularProducts"
                       productData={{
                         ...productData,
                         index,

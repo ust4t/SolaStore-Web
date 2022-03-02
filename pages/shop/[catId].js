@@ -27,7 +27,11 @@ export default function ShopPage({ catData, brandData, title, id }) {
   );
 }
 
-export async function getServerSideProps({ query, locale }) {
+export async function getServerSideProps({ query, locale, res }) {
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=15, stale-while-revalidate=59"
+  );
   const { catId } = query;
   const title = catId.slice(0, catId.indexOf(":")).replace("-", " ");
   const id = catId.slice(catId.indexOf(":") + 1);

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Zuck from "zuck.js";
 import withTranslation from "next-translate/withTranslation";
 import Router from "next/router";
@@ -7,7 +7,7 @@ import sources from "../../../../sources";
 import { encodeURLString, timestamp } from "../../../utils/utils";
 import { loadState } from "../../../redux/browser-storage";
 
-class ZuckStories extends Component {
+class ZuckStories extends PureComponent {
   constructor(props) {
     super(props);
     this.storiesElement = null;
