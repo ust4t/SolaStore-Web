@@ -112,7 +112,7 @@ const Cart = ({ saleTeam }) => {
         os: "Desktop",
         paymentType,
         isCompleted: true,
-        coupon: cart.coupon,
+        coupon: cart.coupon || "string",
       });
       resetForm();
       setCurrentSeller(null);
@@ -123,7 +123,7 @@ const Cart = ({ saleTeam }) => {
           orderID: data.data,
           amount: totalPrice(
             state.cartData,
-            (cart.discount / 100) * totalPrice(state.cartData)
+            (cart.discount.discountRate / 100) * totalPrice(state.cartData)
           ),
           buyerName: values.name,
           buyerPhone: values.tel.replace(/\+/g, ""),
@@ -139,7 +139,7 @@ const Cart = ({ saleTeam }) => {
             total: 0,
             oldPrice: 0,
           },
-          coupon: "string",
+          coupon: " ",
         },
       });
       cartRefetch();
@@ -214,10 +214,10 @@ const Cart = ({ saleTeam }) => {
           total: 0,
           oldPrice: 0,
         },
-        coupon: "string",
+        coupon: " ",
       },
     });
-    setCouponCode("");
+    setCouponCode(" ");
   };
 
   return (

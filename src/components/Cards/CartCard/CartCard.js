@@ -53,13 +53,13 @@ function CartCard({ cart, onCartRemove, onCartIncrease, onCartDecrease }) {
         {cart.oldPrice > 0 ? (
           <>
             <del className="d-block mb-0 text-center text-danger">
-              ${cart.oldPrice}
+              ${cart.oldPrice.toFixed(0)}
             </del>
-            <span>${Number(cart.price).toFixed(2)}</span>
+            <span>${Number(cart.price).toFixed(0)}</span>
           </>
         ) : (
           <>
-            <span className="red">${Number(cart.price).toFixed(2)}</span>
+            <span className="red">${Number(cart.price).toFixed(0)}</span>
           </>
         )}
       </p>

@@ -19,11 +19,7 @@ export const DefaultFooter = ({ darkBg }) => {
                   <Link href="/index">
                     <a>
                       <Image
-                        src={
-                          darkBg
-                            ? "/images/footer/footer-logo3.png"
-                            : "/images/footer/footer-logo.png"
-                        }
+                        src={"/images/footer/footer-logo.png"}
                         alt="Logo"
                         width={130}
                         height={90}
