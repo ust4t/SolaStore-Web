@@ -5,5 +5,6 @@
   "appointmentFailed": "Échec de la prise de rendez-vous. Veuillez réessayer plus tard",
   "appointmentPhone": "Vous devez entrer au moins {{count}} chiffres",
   "appointmentDate": "Vous devez sélectionner une date",
-  "appointBtn": "réserver une réunion"
+  "appointBtn": "réserver une réunion",
+  "appointmentFormSuccess": "Vos informations ont été envoyées avec succès, nos représentants clients vous contacteront."
 }

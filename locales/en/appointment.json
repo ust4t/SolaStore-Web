@@ -5,5 +5,6 @@
   "appointmentFailed": "Failed to book an appointment. Please try again later",
   "appointmentPhone": "You have to enter at least 5 numbers",
   "appointmentDate": "You have to select a date",
-  "appointBtn": "Book a meeting"
+  "appointBtn": "Book a meeting",
+  "appointmentFormSuccess": "Your appointment has been booked successfully, Our customer service will contact you soon"
 }

@@ -5,5 +5,6 @@
   "appointmentFailed": "فشل في حجز موعد. الرجاء معاودة المحاولة في وقت لاحق",
   "appointmentPhone": "يجب عليك إدخال {{count}} أرقام على الأقل",
   "appointmentDate": "عليك أن تختار التاريخ",
-  "appointBtn": "حجز لقاء"
+  "appointBtn": "حجز لقاء",
+  "appointmentFormSuccess": "تم إرسال معلوماتك بنجاح ، وسيتصل بك مندوبو عملائنا."
 }
