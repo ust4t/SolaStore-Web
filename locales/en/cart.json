@@ -24,5 +24,6 @@
   "couponApply": "Apply",
   "couponRemove": "Remove Coupon",
   "couponSuccess": "Your coupon has been successfully applied",
-  "couponError": "Your coupon code is invalid"
+  "couponError": "Your coupon code is invalid",
+  "couponInfo": "Your discount will only be applied to products with no discount"
 }

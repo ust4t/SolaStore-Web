@@ -42,5 +42,6 @@
   "required": "Gerekli",
   "invalidEmail": "Geçersiz E-mail",
   "error": "Bir hata oluştu, lütfen tekrar deneyiniz",
-  "copy": "Panoya kopyalandı"
+  "copy": "Panoya kopyalandı",
+  "copyBtn": "Kopyala"
 }

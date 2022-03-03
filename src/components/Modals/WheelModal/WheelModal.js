@@ -205,7 +205,7 @@ function WheelModal({ show, handleClose, wheelsData }) {
                             }
                           }}
                           className={copy_button}>
-                          <i className="fas fa-copy" /> Copy
+                          <i className="fas fa-copy" /> {t("common:copyBtn")}
                         </button>
                       </span>
                     </>

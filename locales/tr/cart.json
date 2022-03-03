@@ -24,5 +24,6 @@
   "couponApply": "Uygula",
   "couponRemove": "Kuponu Kaldır",
   "couponSuccess": "Kupon kodunuz başarıyla kullanıldı.",
-  "couponError": "Kupon kodunuz geçersiz."
+  "couponError": "Kupon kodunuz geçersiz.",
+  "couponInfo": "İndiriminiz sadece indirimsiz ürünlere uygulanacaktır."
 }

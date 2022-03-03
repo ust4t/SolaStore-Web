@@ -24,5 +24,6 @@
   "couponApply": "Appliquer",
   "couponRemove": "Supprimer le coupon",
   "couponSuccess": "Votre coupon a été appliqué avec succès",
-  "couponError": "Votre code promo est invalide"
+  "couponError": "Votre code promo est invalide",
+  "couponInfo": "Votre réduction ne sera appliquée qu'aux produits sans réduction"
 }

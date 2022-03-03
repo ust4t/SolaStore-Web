@@ -383,8 +383,7 @@ const Cart = ({ saleTeam }) => {
                                         fontSize: "16px",
                                       }}
                                       className="text-danger mt-2">
-                                      * Your discount will only be applied to
-                                      products with no discount
+                                      * {t("couponInfo")}
                                     </p>
                                   ) : null}
                                 </div>
@@ -405,7 +404,6 @@ const Cart = ({ saleTeam }) => {
                                           </del>
                                         </div>
                                         <div className="d-flex align-items-center justify-content-between p-2 my-2 bg-success">
-                                          {" "}
                                           <small className="text-white fw-bold fs-5">
                                             {t("discountTitle")}
                                           </small>
