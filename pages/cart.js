@@ -45,8 +45,6 @@ const Cart = ({ saleTeam }) => {
   const sellerRef = createRef();
   const sellerBoxRef = createRef();
 
-  console.log("cart", state.cartData);
-
   const paymentValidationSchema = Yup.object({
     name: Yup.string().required(t("validationName")),
     tel: Yup.string().required(t("validationTel")),

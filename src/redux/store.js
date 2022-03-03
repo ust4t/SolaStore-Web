@@ -16,7 +16,7 @@ const loadedState = {
     lastIndex: 0,
   }),
   cart: loadState("cart", {
-    coupon: "",
+    coupon: "string",
     discount: 0,
   }),
 };
