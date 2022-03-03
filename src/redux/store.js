@@ -17,7 +17,11 @@ const loadedState = {
   }),
   cart: loadState("cart", {
     coupon: "string",
-    discount: 0,
+    discount: {
+      discountRate: 0,
+      total: 0,
+      oldPrice: 0,
+    },
   }),
 };
 

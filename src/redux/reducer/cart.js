@@ -4,7 +4,11 @@ import { saveState } from "../browser-storage";
 const cart = (
   state = {
     coupon: "string",
-    discount: 0,
+    discount: {
+      discountRate: 0,
+      total: 0,
+      oldPrice: 0,
+    },
   },
   action
 ) => {

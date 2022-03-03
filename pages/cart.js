@@ -85,7 +85,7 @@ const Cart = ({ saleTeam }) => {
       const total = items.reduce((a, b) => {
         return a + b.price * b.quantity;
       }, 0);
-      return Math.floor(total - discount);
+      return Math.ceil(total - discount);
     }
 
     return 0;
@@ -134,7 +134,11 @@ const Cart = ({ saleTeam }) => {
       dispatchRedux({
         type: SET_CART_DATA_REDUX,
         payload: {
-          discount: 0,
+          discount: {
+            discountRate: 0,
+            total: 0,
+            oldPrice: 0,
+          },
           coupon: "",
         },
       });
@@ -199,7 +203,11 @@ const Cart = ({ saleTeam }) => {
     dispatchRedux({
       type: SET_CART_DATA_REDUX,
       payload: {
-        discount: 0,
+        discount: {
+          discountRate: 0,
+          total: 0,
+          oldPrice: 0,
+        },
         coupon: "",
       },
     });
@@ -352,23 +360,33 @@ const Cart = ({ saleTeam }) => {
                                     />
                                     <div
                                       onClick={
-                                        !!cart.discount && cart.coupon
+                                        !!cart.discount.discountRate
                                           ? handleRemoveDiscount
                                           : handleDiscount
                                       }
                                       className="kpnbut">
-                                      {!!cart.discount && cart.coupon
+                                      {!!cart.discount.discountRate
                                         ? t("couponRemove")
                                         : t("couponApply")}
                                     </div>
                                   </div>
+                                  {!!cart.discount.discountRate && (
+                                    <p
+                                      style={{
+                                        fontSize: "16px",
+                                      }}
+                                      className="text-danger mt-2">
+                                      * Your discount will only be applied to
+                                      products with no discount
+                                    </p>
+                                  )}
                                 </div>
                               </div>
 
                               <div className="col p00  mb-20">
                                 <div className="col-lg-12">
                                   <div className="d-flex flex-column">
-                                    {cart.discount ? (
+                                    {cart.discount.discountRate ? (
                                       <>
                                         <div className="d-flex justify-content-between">
                                           <small className="text-muted fs-5">
@@ -386,8 +404,18 @@ const Cart = ({ saleTeam }) => {
                                           <p className="text-white fs-5 mb-0">
                                             $
                                             {Math.floor(
-                                              (cart.discount / 100) *
-                                                totalPrice(state.cartData)
+                                              (cart.discount.discountRate /
+                                                100) *
+                                                state.cartData
+                                                  .filter(
+                                                    (item) =>
+                                                      item.oldPrice === 0
+                                                  )
+                                                  .reduce(
+                                                    (a, b) =>
+                                                      a + b.price * b.quantity,
+                                                    0
+                                                  )
                                             )}
                                           </p>
                                         </div>
@@ -404,8 +432,16 @@ const Cart = ({ saleTeam }) => {
                                         $
                                         {totalPrice(
                                           state.cartData,
-                                          (cart.discount / 100) *
-                                            totalPrice(state.cartData)
+                                          (cart.discount.discountRate / 100) *
+                                            state.cartData
+                                              .filter(
+                                                (item) => item.oldPrice === 0
+                                              )
+                                              .reduce(
+                                                (a, b) =>
+                                                  a + b.price * b.quantity,
+                                                0
+                                              )
                                         )}
                                       </p>
                                     </div>

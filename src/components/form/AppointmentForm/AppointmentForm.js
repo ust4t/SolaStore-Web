@@ -57,6 +57,7 @@ export default function AppointmentForm() {
         customerName: values.name,
         customerSurname: values.lastName,
         customerPhoneNumber: values.tel,
+        message: values.message,
       });
       toast.success(t("appointmentSuccess"), {
         position: "top-center",

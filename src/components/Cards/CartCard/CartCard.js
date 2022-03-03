@@ -50,15 +50,18 @@ function CartCard({ cart, onCartRemove, onCartIncrease, onCartDecrease }) {
         </p>
       </Link>
       <p className="mb-0 fs-5">
-        {/* {
-          cart.oldPrice > 0 ? <>
-<del className="d-block mb-0 text-center text-danger">${cart.oldPrice}</del>
-<span>${Number(cart.price).toFixed(2)}</span>
-          </> :<>
-          <span className="red">${Number(cart.price).toFixed(2)}</span>
-          </> 
-        } */}
-        <span className="red">${Number(cart.price).toFixed(2)}</span>
+        {cart.oldPrice > 0 ? (
+          <>
+            <del className="d-block mb-0 text-center text-danger">
+              ${cart.oldPrice}
+            </del>
+            <span>${Number(cart.price).toFixed(2)}</span>
+          </>
+        ) : (
+          <>
+            <span className="red">${Number(cart.price).toFixed(2)}</span>
+          </>
+        )}
       </p>
       <CartAmount
         incrementQuantity={onCartIncrease}
