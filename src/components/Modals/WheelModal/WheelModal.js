@@ -221,6 +221,11 @@ function WheelModal({ show, handleClose, wheelsData }) {
               type="text"
               placeholder={t("wheel.phonePlaceholder")}
             />
+            {prize && !resultHidden && (
+              <p className="text-white fs-5 text-center">
+                {t("wheel.wheelInfo")}
+              </p>
+            )}
           </div>
         </div>
       </Modal.Body>
