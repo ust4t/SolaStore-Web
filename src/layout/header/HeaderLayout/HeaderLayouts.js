@@ -94,13 +94,19 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
 
   useEffect(() => {
     if (!wheel.showWheel && modalSession && !modals.numberModal.shownBefore) {
-      if (speed.y > 7000) {
-        setModals({
-          ...modals,
-          numberModal: { ...modals.numberModal, show: true, shownBefore: true },
-        });
-        saveToSessionStorage("numberModal", false);
-      }
+      setTimeout(() => {
+        if (speed.y > 7000) {
+          setModals({
+            ...modals,
+            numberModal: {
+              ...modals.numberModal,
+              show: true,
+              shownBefore: true,
+            },
+          });
+          saveToSessionStorage("numberModal", false);
+        }
+      }, 90000);
     }
   }, [speed.y]);
 
