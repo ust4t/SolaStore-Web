@@ -17,10 +17,6 @@ const Search = ({ search, searchText }) => {
 export default Search;
 
 export async function getServerSideProps({ query, locale, res }) {
-  res.setHeader(
-    "Cache-Control",
-    "public, s-maxage=15, stale-while-revalidate=59"
-  );
   const { searchText } = query;
   const { data: searchData } = await axios.get(
     `https://api.solastore.com.tr/api/Helpers/AdvancedSearchTextSearch?text=${searchText}&lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
