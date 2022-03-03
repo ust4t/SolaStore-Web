@@ -12,19 +12,6 @@ import {
   appointmentSubmit,
 } from "./AppointmentForm.module.css";
 
-const imagesDesktop = [
-  "/images/all-bg/appointment.jpg",
-  "/images/all-bg/appointment2.jpg",
-];
-
-const imagesMobile = [
-  "/images/all-bg/mobile.jpg",
-  "/images/all-bg/mobile2.jpg",
-];
-
-const randomizeImage = (images) =>
-  images[Math.floor(Math.random() * images.length)];
-
 export default function AppointmentForm() {
   const { t } = useTranslation("appointment");
 
@@ -90,9 +77,12 @@ export default function AppointmentForm() {
         }) => (
           <div className="col-12 col-lg-6 order-2 order-lg-1">
             <div className="row align-items-center justify-content-center">
-              <h1 className="mb-3 fs-2 fw-bold text-center text-lg-start">
+              <h1 className="mb-3 fs-1 fw-bold text-center text-lg-start">
                 {t("appointmentFormTitle")}
               </h1>
+              <h5 className="mb-4 text-center text-lg-start">
+                {t("appointmentFormSubtitle")}
+              </h5>
 
               <div className="col-12 col-lg-6 mb-1">
                 <input
@@ -189,7 +179,7 @@ export default function AppointmentForm() {
       <div className="col-12 col-lg-4 order-1 order-lg-2">
         <img
           className="d-none d-lg-block"
-          src={randomizeImage(imagesDesktop)}
+          src="/images/all-bg/appointment.jpg"
           alt="solastore"
         />
         <img
@@ -197,7 +187,7 @@ export default function AppointmentForm() {
             objectFit: "cover",
           }}
           className="d-block d-lg-none w-100 mb-4"
-          src={randomizeImage(imagesMobile)}
+          src="/images/all-bg/appointment.jpg"
           alt="solastore"
         />
       </div>

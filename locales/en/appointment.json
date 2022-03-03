@@ -1,7 +1,9 @@
 {
-  "appointmentFormTitle": "Appointment Form",
+  "appointmentFormTitle": "Wanna see our products in live video?",
+  "appointmentFormSubtitle": "You can reach us out to get more detailed help by our experienced customer service",
   "appointmentSuccess": "You have successfully booked an appointment",
   "appointmentFailed": "Failed to book an appointment. Please try again later",
   "appointmentPhone": "You have to enter at least 5 numbers",
-  "appointmentDate": "You have to select a date"
+  "appointmentDate": "You have to select a date",
+  "appointBtn": "Book a meeting"
 }

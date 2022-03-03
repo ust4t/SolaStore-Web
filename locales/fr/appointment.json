@@ -1,7 +1,9 @@
 {
-  "appointmentFormTitle": "Formulaire de rendez-vous",
+  "appointmentFormTitle": "Vous voulez voir nos produits en vidéo live ?",
+  "appointmentFormSubtitle": "Vous pouvez nous contacter pour obtenir une aide plus détaillée de notre service client expérimenté.",
   "appointmentSuccess": "Vous avez pris rendez-vous avec succès",
   "appointmentFailed": "Échec de la prise de rendez-vous. Veuillez réessayer plus tard",
   "appointmentPhone": "Vous devez entrer au moins {{count}} chiffres",
-  "appointmentDate": "Vous devez sélectionner une date"
+  "appointmentDate": "Vous devez sélectionner une date",
+  "appointBtn": "réserver une réunion"
 }

@@ -1,7 +1,9 @@
 {
-  "appointmentFormTitle": "استمارة التعيين",
+  "appointmentFormTitle": "هل تريد مشاهدة منتجاتنا في فيديو مباشر؟",
+  "appointmentFormSubtitle": "يمكنك التواصل معنا للحصول على مساعدة أكثر تفصيلاً من خلال خدمة العملاء ذات الخبرة لدينا",
   "appointmentSuccess": "لقد قمت بحجز موعد بنجاح",
   "appointmentFailed": "فشل في حجز موعد. الرجاء معاودة المحاولة في وقت لاحق",
   "appointmentPhone": "يجب عليك إدخال {{count}} أرقام على الأقل",
-  "appointmentDate": "عليك أن تختار التاريخ"
+  "appointmentDate": "عليك أن تختار التاريخ",
+  "appointBtn": "حجز لقاء"
 }

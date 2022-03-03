@@ -139,7 +139,7 @@ const Cart = ({ saleTeam }) => {
             total: 0,
             oldPrice: 0,
           },
-          coupon: "",
+          coupon: "string",
         },
       });
       cartRefetch();
@@ -167,6 +167,12 @@ const Cart = ({ saleTeam }) => {
   const handleDiscount = async () => {
     if (!couponCode.length) {
       toast.error(t("couponTitle"), {
+        position: "top-center",
+      });
+      return;
+    }
+    if (!state.cartData.length) {
+      toast.error(t("cartEmpty"), {
         position: "top-center",
       });
       return;
@@ -208,7 +214,7 @@ const Cart = ({ saleTeam }) => {
           total: 0,
           oldPrice: 0,
         },
-        coupon: "",
+        coupon: "string",
       },
     });
     setCouponCode("");
@@ -370,7 +376,8 @@ const Cart = ({ saleTeam }) => {
                                         : t("couponApply")}
                                     </div>
                                   </div>
-                                  {!!cart.discount.discountRate && (
+                                  {!!cart.discount.discountRate &&
+                                  state.cartData.length ? (
                                     <p
                                       style={{
                                         fontSize: "16px",
@@ -379,14 +386,15 @@ const Cart = ({ saleTeam }) => {
                                       * Your discount will only be applied to
                                       products with no discount
                                     </p>
-                                  )}
+                                  ) : null}
                                 </div>
                               </div>
 
                               <div className="col p00  mb-20">
                                 <div className="col-lg-12">
                                   <div className="d-flex flex-column">
-                                    {cart.discount.discountRate ? (
+                                    {cart.discount.discountRate &&
+                                    state.cartData.length ? (
                                       <>
                                         <div className="d-flex justify-content-between">
                                           <small className="text-muted fs-5">
@@ -406,7 +414,7 @@ const Cart = ({ saleTeam }) => {
                                             {Math.floor(
                                               (cart.discount.discountRate /
                                                 100) *
-                                                state.cartData
+                                                (state.cartData || [])
                                                   .filter(
                                                     (item) =>
                                                       item.oldPrice === 0
@@ -420,9 +428,7 @@ const Cart = ({ saleTeam }) => {
                                           </p>
                                         </div>
                                       </>
-                                    ) : (
-                                      <></>
-                                    )}
+                                    ) : null}
 
                                     <div className="d-flex justify-content-between">
                                       <small className="text-muted fw-bold fs-5">
@@ -433,7 +439,7 @@ const Cart = ({ saleTeam }) => {
                                         {totalPrice(
                                           state.cartData,
                                           (cart.discount.discountRate / 100) *
-                                            state.cartData
+                                            (state.cartData || [])
                                               .filter(
                                                 (item) => item.oldPrice === 0
                                               )
