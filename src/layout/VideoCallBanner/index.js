@@ -1,5 +1,6 @@
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
+import sources from "../../../sources";
 
 import { bannerContainer, bannerBtn } from "./VideoCallBanner.module.css";
 

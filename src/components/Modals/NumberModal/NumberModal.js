@@ -2,6 +2,7 @@ import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { Modal } from "react-bootstrap";
 
+import sources from "../../../../sources";
 import { close_icon, modalBg } from "./NumberModal.module.css";
 import {
   subTitle,

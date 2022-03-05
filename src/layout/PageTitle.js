@@ -3,6 +3,7 @@ import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
 
 import ShareModal from "../components/Modals/ShareModal";
+import sources from "../../sources";
 
 const PageTitle = ({
   pageTitle,
@@ -20,8 +21,10 @@ const PageTitle = ({
   return (
     <div
       className="breadcrumb-bg pt-20 pb-20"
-      data-background="images/all-bg/papyrus.png"
-      style={{ backgroundImage: 'url("/images/all-bg/papyrus.png")' }}>
+      data-background={`${sources.imageCDN}/fit-in/500x400/filters:format(webp)/images/all_bg/papyrus.png`}
+      style={{
+        backgroundImage: `url("${sources.imageCDN}/fit-in/500x400/filters:format(webp)/images/all_bg/papyrus.png")`,
+      }}>
       <div className="container">
         <div className="row">
           <div className="col-12">
