@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { CHANGE_LANG, CREATE_USER_ID } from "../../../redux/action/type";
 import { martext, rightJS, menu, menu_btn } from "./News.module.css";
 import { StoreContext } from "../../../context/StoreProvider";
+import sources from "../../../../sources";
 
 export const News_4 = () => {
   const { wishListActions } = useContext(StoreContext);
@@ -17,6 +18,7 @@ export const News_4 = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
+
   const changeLang = (lang) => {
     dispatch({
       type: CHANGE_LANG,
@@ -48,7 +50,6 @@ export const News_4 = () => {
         <div className="col-xl-5 col-lg-5 col-md-12">
           <div className="header-top-offer">
             <p className="text-center text-lg-start">
-              {" "}
               +90 (0212) 458 45 00 / +90 (0555) 400 00 05 / +90 (0555) 400 00 11
             </p>
           </div>
@@ -79,8 +80,6 @@ export const News_4 = () => {
                         <a>{t("myorders")}</a>
                       </Link>
                     </li>
-                    {/* <li>Adreslerim</li>
-                    <li>İndirimlerim</li> */}
                     <li onClick={handleLogOut}>{t("logout")}</li>
                   </>
                 ) : (
@@ -106,7 +105,7 @@ export const News_4 = () => {
             </div>
             <a className="mx-1" href="#" onClick={() => changeLang("en")}>
               <Image
-                src="/images/flags/uk.jpg"
+                src={`${sources.imageCDN}/fit-in/200x200/filters:format(webp)/images/flags/uk.jpg`}
                 width="45"
                 height="25"
                 alt="https://www.solastore.com.tr"
@@ -116,7 +115,7 @@ export const News_4 = () => {
             </a>
             <a className="mx-1" onClick={() => changeLang("fr")} href="#">
               <Image
-                src="/images/flags/fr.jpg"
+                src={`${sources.imageCDN}/fit-in/200x200/filters:format(webp)/images/flags/fr.jpg`}
                 width="45"
                 height="25"
                 alt="https://www.solastore.com.tr"
@@ -126,7 +125,7 @@ export const News_4 = () => {
             </a>
             <a className="mx-1" onClick={() => changeLang("ar")} href="#">
               <Image
-                src="/images/flags/sa.jpg"
+                src={`${sources.imageCDN}/fit-in/200x200/filters:format(webp)/images/flags/sa.jpg`}
                 width="45"
                 height="25"
                 alt="https://www.solastore.com.tr"
@@ -136,7 +135,7 @@ export const News_4 = () => {
             </a>
             <a className="mx-1" onClick={() => changeLang("ru")} href="#">
               <Image
-                src="/images/flags/rs.jpg"
+                src={`${sources.imageCDN}/fit-in/200x200/filters:format(webp)/images/flags/rs.jpg`}
                 width="45"
                 height="25"
                 alt="https://www.solastore.com.tr"
@@ -146,7 +145,7 @@ export const News_4 = () => {
             </a>
             <a className="mx-1" onClick={() => changeLang("tr")} href="#">
               <Image
-                src="/images/flags/tr.jpg"
+                src={`${sources.imageCDN}/fit-in/200x200/filters:format(webp)/images/flags/tr.jpg`}
                 width="45"
                 height="25"
                 alt="https://www.solastore.com.tr"

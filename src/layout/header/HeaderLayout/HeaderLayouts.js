@@ -29,6 +29,7 @@ import {
 import Search from "../Search";
 import { SET_WHEEL_MODAL } from "../../../redux/action/type";
 import WheelModal from "../../../components/Modals/WheelModal/WheelModal";
+import sources from "../../../../sources";
 
 export const Layout2 = ({ setSidebar, darkBg, news }) => {
   const wheel = useSelector((state) => state.wheel);
@@ -175,11 +176,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
                   <Link href="/">
                     <a>
                       <Image
-                        src={
-                          darkBg
-                            ? "/images/logo/logo3.png"
-                            : "/images/logo/logo.png"
-                        }
+                        src={`${sources.imageCDN}/fit-in/400x400/filters:format(webp)/images/logo/logo.png`}
                         alt="Logo"
                         width={120}
                         height={80}

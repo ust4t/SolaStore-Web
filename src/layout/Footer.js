@@ -1,8 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
+import { useSelector } from "react-redux";
+import sources from "../../sources";
 
 export const DefaultFooter = ({ darkBg }) => {
+  const auth = useSelector((state) => state.auth);
   const { t } = useTranslation("footer");
 
   return (
@@ -16,10 +19,10 @@ export const DefaultFooter = ({ darkBg }) => {
                   darkBg ? "widget-three" : ""
                 }`}>
                 <div className="footer-logo">
-                  <Link href="/index">
+                  <Link href="/">
                     <a>
                       <Image
-                        src={"/images/footer/footer-logo.png"}
+                        src={`${sources.imageCDN}/fit-in/100x100/filters:format(webp)/images/footer/footer-logo.png`}
                         alt="Logo"
                         width={130}
                         height={90}
@@ -97,11 +100,13 @@ export const DefaultFooter = ({ darkBg }) => {
                 }`}>
                 <h5>{t("account")}</h5>
                 <ul className="links">
-                  <li>
-                    <Link href="/dashboard">
-                      <a>{t("myprofile")}</a>
-                    </Link>
-                  </li>
+                  {auth.state === "user_registered" && (
+                    <li>
+                      <Link href="/dashboard">
+                        <a>{t("myprofile")}</a>
+                      </Link>
+                    </li>
+                  )}
                   <li>
                     <Link href="/dashboard">
                       <a>{t("myorders")}</a>
@@ -207,7 +212,7 @@ export const DefaultFooter = ({ darkBg }) => {
 
             <div className="col-md-4 col-12 d-flex justify-content-center">
               <Image
-                src="/images/footer/payment-four.png"
+                src={`${sources.imageCDN}/fit-in/250x200/filters:format(webp)/images/footer/payment-four.png`}
                 width={330}
                 height={27}
                 alt=""

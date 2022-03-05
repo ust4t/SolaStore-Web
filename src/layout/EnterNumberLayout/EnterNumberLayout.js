@@ -7,6 +7,7 @@ import {
 import useTranslation from "next-translate/useTranslation";
 import axios from "axios";
 import toast from "react-hot-toast";
+import sources from "../../../sources";
 
 export default function EnterNumberLayout() {
   const { t } = useTranslation("phone");
@@ -36,7 +37,7 @@ export default function EnterNumberLayout() {
     <div className="row p-lg-5 mx-lg-5">
       <div
         style={{
-          backgroundImage: 'url("/images/all-bg/newsletter_bg.jpg")',
+          backgroundImage: `url("${sources.imageCDN}/fit-in/400x450/filters:format(webp)/images/all_bg/newsletter_bg.jpg")`,
         }}
         className="col-lg-6 p-4 py-5 d-flex flex-column justify-content-between align-items-center">
         <h3 className="text-white fw-bold text-center text-uppercase">

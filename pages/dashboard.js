@@ -11,6 +11,7 @@ import Preloader from "../src/layout/Preloader";
 import ConfirmModal from "../src/components/Modals/ConfirmModal/ConfirmModal";
 import Router from "next/router";
 import useTranslation from "next-translate/useTranslation";
+import sources from "../sources";
 
 const Dashboard = () => {
   const { t } = useTranslation("register");
@@ -114,7 +115,7 @@ const Dashboard = () => {
                   gap: "15px",
                 }}>
                 <Image
-                  src="/images/logo/person.jpg"
+                  src={`${sources.imageCDN}/fit-in/300x300/filters:format(webp)/images/logo/person.jpg`}
                   width="150"
                   height="150"
                   className="m-2 rounded-circle"

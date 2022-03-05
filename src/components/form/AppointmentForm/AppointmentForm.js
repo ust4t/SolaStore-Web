@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
+import sources from "../../../../sources";
 
 import {
   appointmentForm,
@@ -204,7 +205,7 @@ export default function AppointmentForm() {
       <div className="col-12 col-lg-4 order-1 order-lg-2">
         <img
           className="d-none d-lg-block"
-          src="/images/all-bg/appointment.jpg"
+          src={`${sources.imageCDN}/fit-in/800x800/filters:format(webp)/images/all_bg/appointment.jpg`}
           alt="solastore"
         />
         <img
@@ -212,7 +213,7 @@ export default function AppointmentForm() {
             objectFit: "cover",
           }}
           className="d-block d-lg-none w-100 mb-4"
-          src="/images/all-bg/appointment.jpg"
+          src={`${sources.imageCDN}/fit-in/700x500/filters:format(webp)/images/all_bg/appointment.jpg`}
           alt="solastore"
         />
       </div>

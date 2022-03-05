@@ -2,6 +2,7 @@ import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { Modal } from "react-bootstrap";
 
+import sources from "../../../../sources";
 import { close_icon, modalBg } from "./NumberModal.module.css";
 import {
   subTitle,
@@ -99,7 +100,7 @@ export default function NumberModal({ show, handleClose }) {
           <div className="row">
             <div
               style={{
-                backgroundImage: 'url("/images/all-bg/newsletter_bg.jpg")',
+                backgroundImage: `url("${sources.imageCDN}/fit-in/650x600/filters:format(webp)/images/all-bg/newsletter_bg.jpg")`,
               }}
               className="col-12 p-4 py-5 d-flex flex-column justify-content-between align-items-center">
               <h3 className="text-white fw-bold text-center text-uppercase">
