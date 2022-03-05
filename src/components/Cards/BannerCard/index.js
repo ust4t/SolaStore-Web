@@ -21,7 +21,6 @@ export default function BannerCard({
           <a className="position-relative">
             <Image
               src={`${sources.banners}${banner}`}
-              // className="img-fluid"
               alt="Banner"
               width={width}
               height={height}

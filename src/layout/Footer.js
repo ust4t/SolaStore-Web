@@ -16,7 +16,7 @@ export const DefaultFooter = ({ darkBg }) => {
                   darkBg ? "widget-three" : ""
                 }`}>
                 <div className="footer-logo">
-                  <Link href="/index">
+                  <Link href="/">
                     <a>
                       <Image
                         src={"/images/footer/footer-logo.png"}
