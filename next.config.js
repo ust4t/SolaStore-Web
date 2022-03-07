@@ -19,7 +19,7 @@ module.exports = nextTranslate({
     domains: [
       "solastore.com.tr",
       "yenisite.solastore.com.tr",
-      "d2tt2d87osw7ul.cloudfront.net",
+      "dcxgf5s1s4f6f.cloudfront.net",
     ],
     formats: ["image/webp", "image/avif"],
   },

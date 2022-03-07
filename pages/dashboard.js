@@ -115,7 +115,7 @@ const Dashboard = () => {
                   gap: "15px",
                 }}>
                 <Image
-                  src={`${sources.imageCDN}/fit-in/300x300/filters:format(webp)/images/logo/person.jpg`}
+                  src="/images/logo/person.jpg"
                   width="150"
                   height="150"
                   className="m-2 rounded-circle"

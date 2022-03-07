@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 import { CHANGE_LANG, CREATE_USER_ID } from "../../../redux/action/type";
 import { martext, rightJS, menu, menu_btn } from "./News.module.css";
 import { StoreContext } from "../../../context/StoreProvider";
-import sources from "../../../../sources";
+// import sources from "../../../../sources";
 
 export const News_4 = () => {
   const { wishListActions } = useContext(StoreContext);
@@ -105,7 +105,7 @@ export const News_4 = () => {
             </div>
             <a className="mx-1" href="#" onClick={() => changeLang("en")}>
               <Image
-                src={`${sources.imageCDN}/fit-in/200x200/filters:format(webp)/images/flags/uk.jpg`}
+                src={`/images/flags/uk.jpg`}
                 width="45"
                 height="25"
                 alt="https://www.solastore.com.tr"
@@ -115,7 +115,7 @@ export const News_4 = () => {
             </a>
             <a className="mx-1" onClick={() => changeLang("fr")} href="#">
               <Image
-                src={`${sources.imageCDN}/fit-in/200x200/filters:format(webp)/images/flags/fr.jpg`}
+                src={`/images/flags/fr.jpg`}
                 width="45"
                 height="25"
                 alt="https://www.solastore.com.tr"
@@ -125,7 +125,7 @@ export const News_4 = () => {
             </a>
             <a className="mx-1" onClick={() => changeLang("ar")} href="#">
               <Image
-                src={`${sources.imageCDN}/fit-in/200x200/filters:format(webp)/images/flags/sa.jpg`}
+                src={`/images/flags/sa.jpg`}
                 width="45"
                 height="25"
                 alt="https://www.solastore.com.tr"
@@ -135,7 +135,7 @@ export const News_4 = () => {
             </a>
             <a className="mx-1" onClick={() => changeLang("ru")} href="#">
               <Image
-                src={`${sources.imageCDN}/fit-in/200x200/filters:format(webp)/images/flags/rs.jpg`}
+                src={`/images/flags/rs.jpg`}
                 width="45"
                 height="25"
                 alt="https://www.solastore.com.tr"
@@ -145,7 +145,7 @@ export const News_4 = () => {
             </a>
             <a className="mx-1" onClick={() => changeLang("tr")} href="#">
               <Image
-                src={`${sources.imageCDN}/fit-in/200x200/filters:format(webp)/images/flags/tr.jpg`}
+                src={`/images/flags/tr.jpg`}
                 width="45"
                 height="25"
                 alt="https://www.solastore.com.tr"

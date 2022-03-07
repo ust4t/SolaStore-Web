@@ -37,8 +37,7 @@ export default function EnterNumberLayout() {
     <div className="row p-lg-5 mx-lg-5">
       <div
         style={{
-          backgroundImage:
-            'url("https://d2tt2d87osw7ul.cloudfront.net/fit-in/800x600/images/all_bg/newsletter_bg.jpg")',
+          backgroundImage: 'url("/images/all-bg/newsletter_bg.jpg")',
         }}
         className="col-lg-6 p-4 py-5 d-flex flex-column justify-content-between align-items-center">
         <h3 className="text-white fw-bold text-center text-uppercase">

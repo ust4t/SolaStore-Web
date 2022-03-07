@@ -22,7 +22,7 @@ export const DefaultFooter = ({ darkBg }) => {
                   <Link href="/">
                     <a>
                       <Image
-                        src={`${sources.imageCDN}/fit-in/100x100/filters:format(webp)/images/footer/footer-logo.png`}
+                        src={"/images/footer/footer-logo.png"}
                         alt="Logo"
                         width={130}
                         height={90}
@@ -212,7 +212,7 @@ export const DefaultFooter = ({ darkBg }) => {
 
             <div className="col-md-4 col-12 d-flex justify-content-center">
               <Image
-                src={`${sources.imageCDN}/fit-in/250x200/filters:format(webp)/images/footer/payment-four.png`}
+                src="/images/footer/payment-four.png"
                 width={330}
                 height={27}
                 alt=""

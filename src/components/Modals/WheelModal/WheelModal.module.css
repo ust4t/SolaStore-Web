@@ -11,7 +11,7 @@
 
 .modalBg {
   position: relative;
-  background: url("https://d2tt2d87osw7ul.cloudfront.net/fit-in/800x800/filters:format(webp)/images/wheelBackground.jpg");
+  background: url(/images/wheelBackground.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

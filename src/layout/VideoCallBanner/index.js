@@ -9,7 +9,7 @@ export default function VideoCallBanner() {
   return (
     <div
       style={{
-        background: `url("https://d2tt2d87osw7ul.cloudfront.net/fit-in/900x900/images/all_bg/appointment.jpg") no-repeat center center cover`,
+        background: `url("${sources.imageCDN}/fit-in/900x900/images/all_bg/appointment.jpg") no-repeat center center / cover`,
       }}
       className={bannerContainer}>
       <h1

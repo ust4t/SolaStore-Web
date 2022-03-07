@@ -176,7 +176,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
                   <Link href="/">
                     <a>
                       <Image
-                        src={`${sources.imageCDN}/fit-in/400x400/filters:format(webp)/images/logo/logo.png`}
+                        src={`/images/logo/logo.png`}
                         alt="Logo"
                         width={120}
                         height={80}
