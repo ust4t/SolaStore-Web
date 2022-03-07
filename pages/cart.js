@@ -139,7 +139,7 @@ const Cart = ({ saleTeam }) => {
             total: 0,
             oldPrice: 0,
           },
-          coupon: " ",
+          coupon: "",
         },
       });
       cartRefetch();
@@ -214,10 +214,10 @@ const Cart = ({ saleTeam }) => {
           total: 0,
           oldPrice: 0,
         },
-        coupon: " ",
+        coupon: "",
       },
     });
-    setCouponCode(" ");
+    setCouponCode("");
   };
 
   return (

@@ -3,7 +3,7 @@ import { saveState } from "../browser-storage";
 
 const cart = (
   state = {
-    coupon: " ",
+    coupon: "",
     discount: {
       discountRate: 0,
       total: 0,
