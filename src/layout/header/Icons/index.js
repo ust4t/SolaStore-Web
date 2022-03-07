@@ -51,10 +51,7 @@ export const WheelsIcon = ({ title, onWheelClick }) => {
   return (
     <a onClick={onWheelClick} className={wheel_icon_container}>
       <h3>{title}</h3>
-      <img
-        src={`https://ik.imagekit.io/gjwqrlaewxv/images/wheelIcon.gif`}
-        alt={title}
-      />
+      <img src={`/images/wheelIcon.gif`} alt={title} />
     </a>
   );
 };

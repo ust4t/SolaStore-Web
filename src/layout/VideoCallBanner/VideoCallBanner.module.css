@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   margin: 40px 0 20px 0;
-  background: url("https://ik.imagekit.io/gjwqrlaewxv/images/tr:w-800,h-500/all_bg/appointment.jpg");
+  background: url(/images/all-bg/appointment.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
