@@ -251,7 +251,7 @@ const Cart = ({ saleTeam }) => {
                       handleSeller({
                         id: DEF_SELLER,
                         name: "orderFirst",
-                        img: `${sources.imageCDN}/fit-in/300x300/filters:format(webp)/images/representer.jpg`,
+                        img: "/images/representer.jpg",
                       });
                       if (typeof window !== "undefined") {
                         window.scrollTo({
@@ -267,7 +267,7 @@ const Cart = ({ saleTeam }) => {
                           ? "border border-2 border-danger"
                           : ""
                       }`}
-                      src={`${sources.imageCDN}/fit-in/300x300/filters:format(webp)/images/representer.jpg`}
+                      src="/images/representer.jpg"
                       alt="representers"
                     />
                   </div>

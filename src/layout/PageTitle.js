@@ -21,10 +21,8 @@ const PageTitle = ({
   return (
     <div
       className="breadcrumb-bg pt-20 pb-20"
-      data-background={`${sources.imageCDN}/fit-in/500x400/filters:format(webp)/images/all_bg/papyrus.png`}
-      style={{
-        backgroundImage: `url("${sources.imageCDN}/fit-in/500x400/filters:format(webp)/images/all_bg/papyrus.png")`,
-      }}>
+      data-background="images/all-bg/papyrus.png"
+      style={{ backgroundImage: 'url("/images/all-bg/papyrus.png")' }}>
       <div className="container">
         <div className="row">
           <div className="col-12">

@@ -7,11 +7,7 @@ import { bannerContainer, bannerBtn } from "./VideoCallBanner.module.css";
 export default function VideoCallBanner() {
   const { t } = useTranslation("appointment");
   return (
-    <div
-      style={{
-        background: `url("${sources.imageCDN}/fit-in/900x900/images/all_bg/appointment.jpg") no-repeat center center / cover`,
-      }}
-      className={bannerContainer}>
+    <div className={bannerContainer}>
       <h1
         style={{
           fontSize: "3rem",

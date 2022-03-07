@@ -205,7 +205,7 @@ export default function AppointmentForm() {
       <div className="col-12 col-lg-4 order-1 order-lg-2">
         <img
           className="d-none d-lg-block"
-          src={`https://d2tt2d87osw7ul.cloudfront.net/fit-in/900x900/images/all_bg/appointment.jpg`}
+          src="/images/all-bg/appointment.jpg"
           alt="solastore"
         />
         <img
@@ -213,7 +213,7 @@ export default function AppointmentForm() {
             objectFit: "cover",
           }}
           className="d-block d-lg-none w-100 mb-4"
-          src={`https://d2tt2d87osw7ul.cloudfront.net/fit-in/600x600/images/all_bg/appointment.jpg`}
+          src="/images/all-bg/appointment.jpg"
           alt="solastore"
         />
       </div>

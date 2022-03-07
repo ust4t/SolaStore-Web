@@ -16,11 +16,7 @@ module.exports = nextTranslate({
     ],
   },
   images: {
-    domains: [
-      "solastore.com.tr",
-      "yenisite.solastore.com.tr",
-      "dcxgf5s1s4f6f.cloudfront.net",
-    ],
+    domains: ["solastore.com.tr", "yenisite.solastore.com.tr"],
     formats: ["image/webp", "image/avif"],
   },
 });

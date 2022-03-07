@@ -219,7 +219,7 @@ const Dashboard = () => {
                             id="tel"
                             name="tel"
                             type="tel"
-                            placeholder={t("common:userphone_placeholder")}
+                            placeholder={t("register:userphone_placeholder")}
                             values={values.tel}
                             errors={errors.tel}
                             touched={touched.tel}
@@ -230,11 +230,11 @@ const Dashboard = () => {
                             containerClass="my-md-4"
                             formClassName="py-4"
                             labelClassName="mb-2"
-                            label={t("passlogin")}
+                            label={t("common:passlogin")}
                             id="password"
                             name="password"
                             type="password"
-                            placeholder={t("pass_placeholder")}
+                            placeholder={t("common:pass_placeholder")}
                             values={values.password}
                             errors={errors.password}
                             touched={touched.password}

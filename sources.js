@@ -8,6 +8,4 @@ export default {
   campaign: "https://solastore.com.tr/img/MainCampaingn/",
   brand: "https://solastore.com.tr/img/Brand/",
   saleTeam: "https://solastore.com.tr/img/Representative/",
-  imageCDN: "https://dcxgf5s1s4f6f.cloudfront.net",
-  bucketS3: "https://solastorecdn.s3.eu-west-3.amazonaws.com",
 };
