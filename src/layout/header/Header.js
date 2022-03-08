@@ -4,7 +4,7 @@ import { DefaultLayout, Layout2 } from "./HeaderLayout/HeaderLayouts";
 import MobileMenu from "../MobileMenu";
 import { News_4 } from "./News/News";
 
-const Header = ({ news, layout, darkBg, logoLeft }) => {
+const Header = ({ news, layout, darkBg, logoLeft, hideWheel = false }) => {
   const [sidebar, setSidebar] = useState(false);
 
   const newsList = (value) => {
@@ -25,6 +25,7 @@ const Header = ({ news, layout, darkBg, logoLeft }) => {
       case 2:
         return (
           <Layout2
+            hideWheel={hideWheel}
             setSidebar={handleSidebar}
             darkBg={darkBg}
             logoLeft={logoLeft}

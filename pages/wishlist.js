@@ -32,7 +32,7 @@ const Wishlist = () => {
   };
 
   return (
-    <Layout news={4} logoLeft layout={2} paymentOption>
+    <Layout news={4} logoLeft layout={2} paymentOption={true} hideWheel={true}>
       <main>
         <PageTitle
           active={t("title")}

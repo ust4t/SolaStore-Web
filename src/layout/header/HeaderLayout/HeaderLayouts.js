@@ -31,7 +31,7 @@ import { SET_WHEEL_MODAL } from "../../../redux/action/type";
 import WheelModal from "../../../components/Modals/WheelModal/WheelModal";
 import sources from "../../../../sources";
 
-export const Layout2 = ({ setSidebar, darkBg, news }) => {
+export const Layout2 = ({ setSidebar, darkBg, news, hideWheel = false }) => {
   const wheel = useSelector((state) => state.wheel);
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
@@ -126,7 +126,7 @@ export const Layout2 = ({ setSidebar, darkBg, news }) => {
         }}>
         <WhatsappIcon size={55} round={true} />
       </a>
-      {!spinStatus.hasSpinned && (
+      {!spinStatus.hasSpinned && !hideWheel && (
         <WheelsIcon
           title={t("home:wheel.wheelTitle")}
           onWheelClick={() =>
