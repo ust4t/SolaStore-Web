@@ -154,7 +154,7 @@ const Details = ({
                 property="og:url"
                 content={`/detail/${encodeURLString(
                   product.productShortName
-                )}:${id}?selected=${currentImages.selectedId}`}
+                )}:${product.masterProductID}?selected=${product.productID}`}
               />
               <meta
                 property="og:image"
