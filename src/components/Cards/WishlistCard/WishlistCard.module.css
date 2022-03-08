@@ -1,0 +1,10 @@
+.wishlist_center {
+  display: grid;
+  place-content: center;
+}
+
+@media (min-width: 991px) {
+  .wishlist_center {
+    place-content: flex-start;
+  }
+}

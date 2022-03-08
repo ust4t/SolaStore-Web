@@ -89,6 +89,9 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     router.events.on("routeChangeComplete", handleRouteChange);
+    router.events.on("routeChangeStart", (url) => {
+      ym("hit", url);
+    });
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
@@ -216,7 +219,14 @@ function MyApp({ Component, pageProps }) {
       />
       <YMInitializer
         accounts={[69119899]}
-        options={{ webvisor: true, defer: true }}
+        options={{
+          accurateTrackBounce: true,
+          webvisor: true,
+          defer: true,
+          clickmap: true,
+          trackHash: true,
+          trackLinks: true,
+        }}
         version="2"
       />
 
@@ -237,7 +247,7 @@ function MyApp({ Component, pageProps }) {
           gtag('config', '${analyticID2}', { page_path: window.location.pathname }); 
           `}
       </Script>
-      <Script strategy="afterInteractive">
+      <Script id="facebook-analytics" strategy="afterInteractive">
         {`!function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
