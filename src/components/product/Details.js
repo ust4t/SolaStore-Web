@@ -146,6 +146,29 @@ const Details = ({
           <Fragment>
             <Head>
               <title>Solastore | {product.productShortName}</title>
+              <meta
+                property="og:title"
+                content={`Solastore | ${product.productShortName}`}
+              />
+              <meta
+                property="og:url"
+                content={`/detail/${encodeURLString(
+                  product.productShortName
+                )}:${id}?selected=${currentImages.selectedId}`}
+              />
+              <meta
+                property="og:image"
+                content={
+                  product.picture_1
+                    ? `${sources.imageMinSrc}${product.picture_1}`
+                    : "/images/placeholder.jpg"
+                }
+              />
+              <meta property="og:type" content="website" />
+              <meta
+                property="og:description"
+                content="Solastore, where you can find the best fashion that you always desired"
+              />
             </Head>
             <section className="product-details-area pt-50 pb-50">
               {product.oldPrice > 0 && sizeNum && (
