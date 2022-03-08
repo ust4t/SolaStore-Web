@@ -130,76 +130,76 @@ function MyApp({ Component, pageProps }) {
         <link
           rel="apple-touch-icon"
           sizes="57x57"
-          href="/images/logo/favicon/apple-icon-57x57.png"
+          href="/images/logo/favicon/apple-icon-57x57.jpg"
         />
         <link
           rel="apple-touch-icon"
           sizes="60x60"
-          href="/images/logo/favicon/apple-icon-60x60.png"
+          href="/images/logo/favicon/apple-icon-60x60.jpg"
         />
         <link
           rel="apple-touch-icon"
           sizes="72x72"
-          href="/images/logo/favicon/apple-icon-72x72.png"
+          href="/images/logo/favicon/apple-icon-72x72.jpg"
         />
         <link
           rel="apple-touch-icon"
           sizes="76x76"
-          href="/images/logo/favicon/apple-icon-76x76.png"
+          href="/images/logo/favicon/apple-icon-76x76.jpg"
         />
         <link
           rel="apple-touch-icon"
           sizes="114x114"
-          href="/images/logo/favicon/apple-icon-114x114.png"
+          href="/images/logo/favicon/apple-icon-114x114.jpg"
         />
         <link
           rel="apple-touch-icon"
           sizes="120x120"
-          href="/images/logo/favicon/apple-icon-120x120.png"
+          href="/images/logo/favicon/apple-icon-120x120.jpg"
         />
         <link
           rel="apple-touch-icon"
           sizes="144x144"
-          href="/images/logo/favicon/apple-icon-144x144.png"
+          href="/images/logo/favicon/apple-icon-144x144.jpg"
         />
         <link
           rel="apple-touch-icon"
           sizes="152x152"
-          href="/images/logo/favicon/apple-icon-152x152.png"
+          href="/images/logo/favicon/apple-icon-152x152.jpg"
         />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/images/logo/favicon/apple-icon-180x180.png"
+          href="/images/logo/favicon/apple-icon-180x180.jpg"
         />
         <link
           rel="icon"
-          type="image/png"
+          type="image/jpeg"
           sizes="192x192"
-          href="/images/logo/favicon/android-icon-192x192.png"
+          href="/images/logo/favicon/android-icon-192x192.jpg"
         />
         <link
           rel="icon"
-          type="image/png"
+          type="image/jpeg"
           sizes="32x32"
-          href="/images/logo/favicon/favicon-32x32.png"
+          href="/images/logo/favicon/favicon-32x32.jpg"
         />
         <link
           rel="icon"
-          type="image/png"
+          type="image/jpeg"
           sizes="96x96"
-          href="/images/logo/favicon/favicon-96x96.png"
+          href="/images/logo/favicon/favicon-96x96.jpg"
         />
         <link
           rel="icon"
-          type="image/png"
+          type="image/jpeg"
           sizes="16x16"
-          href="/images/logo/favicon/favicon-16x16.png"
+          href="/images/logo/favicon/favicon-16x16.jpg"
         />
         <link rel="manifest" href="/images/logo/favicon/manifest.json" />
         <meta
           name="msapplication-TileImage"
-          content="/images/logo/favicon/ms-icon-144x144.png"
+          content="/images/logo/favicon/ms-icon-144x144.jpg"
         />
       </Head>
       <AllToaster />
@@ -237,9 +237,8 @@ function MyApp({ Component, pageProps }) {
           gtag('config', '${analyticID2}', { page_path: window.location.pathname }); 
           `}
       </Script>
-      <Script
-        dangerouslySetInnerHTML={{
-          __html: `!function(f,b,e,v,n,t,s)
+      <Script strategy="afterInteractive">
+        {`!function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
       if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
@@ -248,17 +247,8 @@ function MyApp({ Component, pageProps }) {
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '137952878122881');
-      fbq('track', 'PageView');`,
-        }}
-      />
-      <noscript>
-        <img
-          height="1"
-          width="1"
-          style={{ display: "none" }}
-          src="https://www.facebook.com/tr?id=137952878122881&ev=PageView&noscript=1"
-        />
-      </noscript>
+      fbq('track', 'PageView');`}
+      </Script>
       <Script id="live-chat-tawk" strategy="afterInteractive">
         {`
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
