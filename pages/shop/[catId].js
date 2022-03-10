@@ -27,7 +27,7 @@ export default function ShopPage({ catData, brandData, title, id }) {
   );
 }
 
-export async function getServerSideProps({ query, locale, res }) {
+export async function getServerSideProps({ query, locale }) {
   const { catId } = query;
   const title = catId.slice(0, catId.indexOf(":")).replace("-", " ");
   const id = catId.slice(catId.indexOf(":") + 1);

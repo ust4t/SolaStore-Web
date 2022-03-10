@@ -29,7 +29,7 @@ const Index4 = ({
   bannersData,
   brands,
 }) => {
-  const location = useSelector((state) => state.lang.lang.location);
+  const location = useSelector((state) => state.lang.location);
 
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
