@@ -80,7 +80,7 @@ export const Layout2 = ({ setSidebar, darkBg, news, hideWheel = false }) => {
   useEffect(() => {
     if (!wheel.showWheel && modalSession && !modals.numberModal.shownBefore) {
       setTimeout(() => {
-        if (speed.y < 5000)
+        if (speed.y < 6000)
           setModals({
             ...modals,
             numberModal: {
@@ -93,23 +93,23 @@ export const Layout2 = ({ setSidebar, darkBg, news, hideWheel = false }) => {
     }
   }, []);
 
-  useEffect(() => {
-    if (!wheel.showWheel && modalSession && !modals.numberModal.shownBefore) {
-      setTimeout(() => {
-        if (speed.y > 7000) {
-          setModals({
-            ...modals,
-            numberModal: {
-              ...modals.numberModal,
-              show: true,
-              shownBefore: true,
-            },
-          });
-          saveToSessionStorage("numberModal", false);
-        }
-      }, 90000);
-    }
-  }, [speed.y]);
+  // useEffect(() => {
+  //   if (!wheel.showWheel && modalSession && !modals.numberModal.shownBefore) {
+  //     setTimeout(() => {
+  //       if (speed.y > 7000) {
+  //         setModals({
+  //           ...modals,
+  //           numberModal: {
+  //             ...modals.numberModal,
+  //             show: true,
+  //             shownBefore: true,
+  //           },
+  //         });
+  //         saveToSessionStorage("numberModal", false);
+  //       }
+  //     }, 90000);
+  //   }
+  // }, [speed.y]);
 
   useDetectScroll(handleScroll);
 
