@@ -29,7 +29,7 @@ import {
 import Search from "../Search";
 import { SET_WHEEL_MODAL } from "../../../redux/action/type";
 import WheelModal from "../../../components/Modals/WheelModal/WheelModal";
-import sources from "../../../../sources";
+// import sources from "../../../../sources";
 
 export const Layout2 = ({ setSidebar, darkBg, news, hideWheel = false }) => {
   const wheel = useSelector((state) => state.wheel);

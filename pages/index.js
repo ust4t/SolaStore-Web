@@ -1,5 +1,6 @@
-import { memo, useState, useEffect } from "react";
+import { memo } from "react";
 import dynamic from "next/dynamic";
+import { useSelector } from "react-redux";
 
 import IntroBanners from "../src/layout/IntroBanners";
 import FilterSearch from "../src/layout/FilterSearch";
@@ -28,30 +29,14 @@ const Index4 = ({
   bannersData,
   brands,
 }) => {
-  const [location, setLocation] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      const abortController = new AbortController();
-      const locationRes = await fetch("/api/getLocation", {
-        signal: abortController.signal,
-      });
-      const locationData = await locationRes.json();
-      setLocation(locationData);
-      return () => {
-        abortController.abort();
-      };
-    })();
-  }, []);
+  const location = useSelector((state) => state.lang.lang.location);
 
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
         <ZuckStories storiesData={newProducts.slice(0, 5)} />
         <SliderProducts sliders={slidersData} />
-        {location && location.country_code.toLowerCase() === "tr" && (
-          <VisitStore />
-        )}
+        {location && location.toLowerCase() === "tr" && <VisitStore />}
         <VideoCallBanner />
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <IntroBanners banners={bannersData} />

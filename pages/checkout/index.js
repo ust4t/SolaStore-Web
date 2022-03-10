@@ -13,7 +13,7 @@ import CheckoutLayout from "../../src/layout/CheckoutLayout";
 import { useSelector } from "react-redux";
 
 const Checkout = () => {
-  const lang = useSelector((state) => state.lang);
+  const lang = useSelector((state) => state.lang.lang);
   const [payModal, setPayModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [paymentBox, setPaymentBox] = useState(null);

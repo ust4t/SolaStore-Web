@@ -15,6 +15,7 @@ import {
   GET_MAIN_MENU,
   CREATE_USER_ID,
   SET_WHEEL_DATA,
+  SET_COUNTRY,
 } from "../src/redux/action/type";
 import menuData from "../public/menuData.json";
 import toast from "react-hot-toast";
@@ -44,7 +45,7 @@ function MyApp({ Component, pageProps }) {
   const fetchMenu = async () => {
     try {
       const { data: menu } = await axios.get(
-        `/api/getFullMenu?lang=${store.getState().lang}`
+        `/api/getFullMenu?lang=${store.getState().lang.lang}`
       );
       store.dispatch({
         type: GET_MAIN_MENU,
@@ -53,7 +54,7 @@ function MyApp({ Component, pageProps }) {
     } catch (error) {
       store.dispatch({
         type: GET_MAIN_MENU,
-        payload: menuData[store.getState().lang],
+        payload: menuData[store.getState().lang.lang],
       });
       toast.error("Menü alınırken hata oluştu");
     }
@@ -87,6 +88,26 @@ function MyApp({ Component, pageProps }) {
     }
   };
 
+  const detectCountry = async () => {
+    try {
+      const { data } = await axios.get("/api/getLocation");
+      store.dispatch({
+        type: SET_COUNTRY,
+        payload: data.country_code,
+      });
+      if (
+        store.getState().lang.hasChanged &&
+        data.continent_code.toLowerCase() === "eu"
+      ) {
+        router.push(router.asPath, router.asPath, {
+          locale: "en",
+        });
+      }
+    } catch (error) {
+      return;
+    }
+  };
+
   useEffect(() => {
     router.events.on("routeChangeComplete", handleRouteChange);
     router.events.on("routeChangeStart", (url) => {
@@ -94,6 +115,9 @@ function MyApp({ Component, pageProps }) {
     });
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange);
+      router.events.off("routeChangeStart", (url) => {
+        ym("hit", url);
+      });
     };
   }, [router.events]);
 
@@ -102,6 +126,13 @@ function MyApp({ Component, pageProps }) {
   }, [router.locale]);
 
   useEffect(() => {
+    detectCountry();
+    // if (router.locale !== store.getState().lang.lang) {
+    //   // if (detectCountry() && detectCountry().toLowerCase() !== "eu") {
+    //   router.push(router.asPath, router.asPath, {
+    //     locale: store.getState().lang.lang,
+    //   });
+    // }
     if (spinStatus.expires < Date.now())
       saveState("spinStatus", {
         hasSpinned: false,
@@ -109,11 +140,6 @@ function MyApp({ Component, pageProps }) {
       });
     getWheels();
     checkUser();
-    if (router.locale !== store.getState().lang) {
-      router.push(router.asPath, router.asPath, {
-        locale: store.getState().lang,
-      });
-    }
   }, []);
 
   return (

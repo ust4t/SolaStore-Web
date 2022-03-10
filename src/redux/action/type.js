@@ -13,9 +13,12 @@ export const HOME_3 = "HOME_3";
 export const HOME_4 = "HOME_4";
 export const HOME_5 = "HOME_5";
 export const BRAND = "BRAND";
+
+// lang
 export const CHANGE_LANG = "CHANGE_LANG";
 export const GET_LANG = "GET_LANG";
 export const GET_BRANDS = "GET_BRANDS";
+export const SET_COUNTRY = "SET_COUNTRY";
 
 // Product
 export const GET_PRODUCT = "GET_PRODUCT";

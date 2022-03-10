@@ -22,7 +22,10 @@ export const News_4 = () => {
   const changeLang = (lang) => {
     dispatch({
       type: CHANGE_LANG,
-      payload: lang,
+      payload: {
+        lang,
+        hasChanged: true,
+      },
     });
     router.push(router.asPath, router.asPath, {
       locale: lang,

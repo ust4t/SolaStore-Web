@@ -13,7 +13,7 @@ export default function useWishList(dispatch) {
     "wishlist",
     () =>
       fetch(
-        `/api/wishlist/getUserFavorites?user=${auth.uid}&lang=${lang}`
+        `/api/wishlist/getUserFavorites?user=${auth.uid}&lang=${lang.lang}`
       ).then((res) => res.json()),
     {
       onSuccess: ({ data }) => {

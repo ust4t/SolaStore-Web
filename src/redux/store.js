@@ -5,7 +5,11 @@ import rootReducer from "./reducer";
 
 const middleware = [thunk];
 const loadedState = {
-  lang: loadState("lang"),
+  lang: loadState("lang", {
+    lang: "ru",
+    hasChanged: false,
+    location: null,
+  }),
   auth: loadState("udata", {
     uid: null,
     state: null,
