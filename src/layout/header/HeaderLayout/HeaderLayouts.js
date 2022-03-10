@@ -1,6 +1,6 @@
+import React, { Fragment, useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { Fragment, useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
 import { WhatsappIcon } from "react-share";
@@ -24,7 +24,7 @@ import NumberModal from "../../../components/Modals/NumberModal";
 import {
   loadSession,
   loadState,
-  saveToSessionStorage,
+  // saveToSessionStorage,
 } from "../../../redux/browser-storage";
 import Search from "../Search";
 import { SET_WHEEL_MODAL } from "../../../redux/action/type";

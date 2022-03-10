@@ -3,7 +3,7 @@ const nextTranslate = require("next-translate");
 module.exports = nextTranslate({
   swcMinify: true,
   i18n: {
-    localeDetection: false,
+    localeDetection: true,
     locales: ["en", "ru", "ar", "fr", "tr", "ru"],
     defaultLocale: "ru",
 
