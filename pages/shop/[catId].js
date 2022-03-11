@@ -2,7 +2,9 @@ import React from "react";
 import axios from "axios";
 import useTranslation from "next-translate/useTranslation";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
+import menuJSON from "../../public/menuData.json";
 // import Shop from "../../src/layout/Shop";
 import ProductCategory from "../../src/layout/ProductCategory/ProductCategory";
 
@@ -14,19 +16,18 @@ export default function ShopPage({
   page,
   count,
 }) {
+  const router = useRouter();
   const { t } = useTranslation("common");
   const menu = useSelector((state) => state.menu.menuData);
-  const flatMenu =
-    menu &&
-    menu.reduce((acc, curr) => {
-      acc.push(curr);
-      if (curr.subcategories) {
-        curr.subcategories.forEach((sub) => {
-          acc.push(sub);
-        });
-      }
-      return acc;
-    }, []);
+  const flatMenu = (menu || menuJSON[router.locale]).reduce((acc, curr) => {
+    acc.push(curr);
+    if (curr.subcategories) {
+      curr.subcategories.forEach((sub) => {
+        acc.push(sub);
+      });
+    }
+    return acc;
+  }, []);
   const dynamicTitle = flatMenu.find(
     (item) => item.categoryID === Number(id)
   ).selectedCategoryName;
