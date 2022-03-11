@@ -11,7 +11,7 @@ const SaleProductPage = ({ saleProducts }) => {
       allProducts={saleProducts}
       full
       title={t("sale")}
-      titleHead="Sola Store | Оптом Женская одежда | Wholesale Women's Clothing"
+      titleHead={`Sola Store | ${t("sale")}`}
     />
   );
 };

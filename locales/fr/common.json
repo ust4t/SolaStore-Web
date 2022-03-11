@@ -44,5 +44,6 @@
   "error": "Une erreur s'est produite, veuillez réessayer plus tard",
   "copy": "Copié dans le presse-papier",
   "copyBtn": "Copie",
-  "searchTitle": "Rechercher"
+  "searchTitle": "Rechercher",
+  "appointmentTitle": "Rendez-vous"
 }

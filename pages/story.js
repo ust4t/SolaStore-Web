@@ -2,10 +2,14 @@ import axios from "axios";
 import Router from "next/router";
 import { useEffect } from "react";
 import { saveState } from "../src/redux/browser-storage";
+import useTranslation from "next-translate/useTranslation";
+import Head from "next/head";
 
 import ReelsLayout from "../src/layout/ReelsLayout/ReelsLayout";
 
 export default function StoryPage({ storyData }) {
+  const { t } = useTranslation("common");
+
   function handleClose() {
     Router.push("/");
   }
@@ -26,7 +30,14 @@ export default function StoryPage({ storyData }) {
     }
   }, [storyData]);
 
-  return <ReelsLayout onClose={handleClose} reels={storyData} />;
+  return (
+    <>
+      <Head>
+        <title>Sola Store | Reels</title>
+      </Head>
+      <ReelsLayout onClose={handleClose} reels={storyData} />;
+    </>
+  );
 }
 
 export async function getServerSideProps({ query, locale }) {

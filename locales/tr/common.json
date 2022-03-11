@@ -44,5 +44,6 @@
   "error": "Bir hata oluştu, lütfen tekrar deneyiniz",
   "copy": "Panoya kopyalandı",
   "copyBtn": "Kopyala",
-  "searchTitle": "Arama"
+  "searchTitle": "Arama",
+  "appointmentTitle": "Randevu"
 }

@@ -44,5 +44,6 @@
   "error": "لقد حدث خطأ، رجاء أعد المحاولة لاحقا",
   "copy": "نسخ إلى الحافظة",
   "copyBtn": "ينسخ",
-  "searchTitle": "بحث"
+  "searchTitle": "بحث",
+  "appointmentTitle": "ميعاد"
 }

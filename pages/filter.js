@@ -2,14 +2,17 @@ import React from "react";
 import axios from "axios";
 
 import Shop from "../src/layout/Shop";
+import useTranslation from "next-translate/useTranslation";
 
 export default function Filter({ filter, filterBrand }) {
+  const { t } = useTranslation("home");
+
   return (
     <Shop
       isHidden={true}
       allProducts={filter}
       full
-      titleHead="Sola Store | Оптом Женская одежда | Wholesale Women's Clothing"
+      titleHead={`Sola Store | ${t("filterTitle")}`}
       title="Filter"
       filterDropdown
       brands={filterBrand}

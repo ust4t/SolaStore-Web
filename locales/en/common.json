@@ -44,5 +44,6 @@
   "error": "An error occured, please try again later",
   "copy": "Copied to clipboard",
   "copyBtn": "Copy",
-  "searchTitle": "Search"
+  "searchTitle": "Search",
+  "appointmentTitle": "Appointment"
 }

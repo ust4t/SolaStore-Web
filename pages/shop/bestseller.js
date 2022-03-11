@@ -10,7 +10,7 @@ export default function BestSeller({ bestSeller }) {
       allProducts={bestSeller}
       full
       title={t("bestseller")}
-      titleHead="Sola Store | Оптом Женская одежда | Wholesale Women's Clothing"
+      titleHead={`Sola Store | ${t("bestseller")}`}
     />
   );
 }
