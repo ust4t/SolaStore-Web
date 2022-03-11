@@ -50,7 +50,7 @@ export const WishlistIcon = () => {
 export const WheelsIcon = ({ title, onWheelClick }) => {
   return (
     <a onClick={onWheelClick} className={wheel_icon_container}>
-      <h3>{title}</h3>
+      <span>{title}</span>
       <img src={`/images/wheelIcon.gif`} alt={title} />
     </a>
   );

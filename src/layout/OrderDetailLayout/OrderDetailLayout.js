@@ -1,7 +1,7 @@
 import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import Router from "next/router";
-import React from "react";
+
 import { encodeURLString } from "../../utils/utils";
 
 import { orderButton, emptyIndicator } from "./OrderDetailLayout.module.css";

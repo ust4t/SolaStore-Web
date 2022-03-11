@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useSelector } from "react-redux";
 import useTranslation from "next-translate/useTranslation";
+import Head from "next/head";
 
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
@@ -32,46 +33,56 @@ const Wishlist = () => {
   };
 
   return (
-    <Layout news={4} logoLeft layout={2} paymentOption={true} hideWheel={true}>
-      <main>
-        <PageTitle
-          active={t("title")}
-          pageTitle={t("title")}
-          navigation={false}
-        />
-        {wishlist && wishlist.length > 0 ? (
-          <section className="cart-area pt-100 pb-100">
-            <div className="container">
-              <div className="row">
-                <div className="col-12">
-                  <form action="#" onSubmit={(e) => e.preventDefault()}>
-                    <div className="overflow-hidden border border-1 p-2 rounded-3">
-                      {wishlist &&
-                        wishlist.map((wishlistItem, i) => (
-                          <WishlistCard
-                            key={`${wishlistItem.productID}--*?${i}`}
-                            wishlist={wishlistItem}
-                            onAddToCart={() =>
-                              handleAddToCart(wishlistItem.productID)
-                            }
-                            onWishlistRemove={() =>
-                              handleWishlistRemove(wishlistItem.productID)
-                            }
-                          />
-                        ))}
-                    </div>
-                  </form>
+    <>
+      <Head>
+        <title>SolaStore | {t("title")}</title>
+      </Head>
+      <Layout
+        news={4}
+        logoLeft
+        layout={2}
+        paymentOption={true}
+        hideWheel={true}>
+        <main>
+          <PageTitle
+            active={t("title")}
+            pageTitle={t("title")}
+            navigation={false}
+          />
+          {wishlist && wishlist.length > 0 ? (
+            <section className="cart-area pt-100 pb-100">
+              <div className="container">
+                <div className="row">
+                  <div className="col-12">
+                    <form action="#" onSubmit={(e) => e.preventDefault()}>
+                      <div className="overflow-hidden border border-1 p-2 rounded-3">
+                        {wishlist &&
+                          wishlist.map((wishlistItem, i) => (
+                            <WishlistCard
+                              key={`${wishlistItem.productID}--*?${i}`}
+                              wishlist={wishlistItem}
+                              onAddToCart={() =>
+                                handleAddToCart(wishlistItem.productID)
+                              }
+                              onWishlistRemove={() =>
+                                handleWishlistRemove(wishlistItem.productID)
+                              }
+                            />
+                          ))}
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
-        ) : (
-          <h2 className="pt-100 pb-50 text-center w-100">
-            {t("wishlistEmpty")}
-          </h2>
-        )}
-      </main>
-    </Layout>
+            </section>
+          ) : (
+            <h2 className="pt-100 pb-50 text-center w-100">
+              {t("wishlistEmpty")}
+            </h2>
+          )}
+        </main>
+      </Layout>
+    </>
   );
 };
 

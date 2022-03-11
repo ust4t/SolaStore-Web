@@ -25,11 +25,12 @@
   cursor: pointer;
 }
 
-.wheel_icon_container h3 {
+.wheel_icon_container span {
   position: absolute;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-20deg);
+  line-height: 1;
   font-size: 1.35rem;
   font-weight: bold;
   text-transform: uppercase;

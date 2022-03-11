@@ -4,12 +4,10 @@ export const activeData = (active, sort, products) => {
   }
 
   return {
-    min: ` ${products && products.length ? _(active * sort + 1) : "00"}–${
-      products && products.length > (active + 1) * sort
-        ? _((active + 1) * sort)
-        : _(products && products.length)
+    min: ` ${products ? _(active * sort + 1) : "00"}–${
+      products > (active + 1) * sort ? _((active + 1) * sort) : _(products)
     }`,
-    max: _(products && products.length),
+    max: _(products),
   };
 };
 

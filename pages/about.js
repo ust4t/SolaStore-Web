@@ -1,25 +1,29 @@
 import axios from "axios";
-import React from "react";
+import Head from "next/head";
 
 import { chooseContent } from "../src/utils/utils";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
 
 export default function About({ aboutData }) {
-  console.log(aboutData.header);
   return (
-    <Layout news={4} logoLeft layout={2} paymentOption>
-      <PageTitle
-        active={aboutData.header}
-        pageTitle={aboutData.header}
-        navigation={false}
-      />
-      <div className="row my-5">
-        <div className="col-12 justify-content-center align-items-center">
-          <p className="fs-6 text-center mx-2">{aboutData.content}</p>
+    <>
+      <Head>
+        <title>Sola Store | {aboutData.header}</title>
+      </Head>
+      <Layout news={4} logoLeft layout={2} paymentOption>
+        <PageTitle
+          active={aboutData.header}
+          pageTitle={aboutData.header}
+          navigation={false}
+        />
+        <div className="row my-5">
+          <div className="col-12 justify-content-center align-items-center">
+            <p className="fs-6 text-center mx-2">{aboutData.content}</p>
+          </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </>
   );
 }
 

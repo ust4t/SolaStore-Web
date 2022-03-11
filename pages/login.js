@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useContext } from "react";
 import * as Yup from "yup";
 import useTranslation from "next-translate/useTranslation";
+import Head from "next/head";
 
 import InputGroup from "../src/components/form/InputGroup";
 import Layout from "../src/layout/Layout";
@@ -60,84 +61,89 @@ const Login = () => {
   };
 
   return (
-    <Layout news={4} logoLeft layout={2} paymentOption>
-      <main>
-        <PageTitle active={t("loginhere")} pageTitle={t("loginhere")} />
-        <section className="login-area pt-100 pb-100">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-8 offset-lg-2">
-                <div className="basic-login">
-                  <h3 className="text-center mb-60">{t("loginhere")}</h3>
-                  <Formik
-                    initialValues={initialValues}
-                    validationSchema={loginSchema}
-                    onSubmit={handleLogin}>
-                    {({
-                      values,
-                      touched,
-                      errors,
-                      handleChange,
-                      handleBlur,
-                      handleSubmit,
-                      isSubmitting,
-                    }) => (
-                      <form onSubmit={handleSubmit}>
-                        <div className="row">
-                          <div className="col-12">
-                            <InputGroup
-                              label={t("emaillogin")}
-                              id="email"
-                              name="email"
-                              type="email"
-                              placeholder={t("email_placeholder")}
-                              values={values.email}
-                              errors={errors.email}
-                              touched={touched.email}
-                              handleBlur={handleBlur}
-                              handleChange={handleChange}
-                            />
+    <>
+      <Head>
+        <title>Sola Store | {t("loginhere")}</title>
+      </Head>
+      <Layout news={4} logoLeft layout={2} paymentOption>
+        <main>
+          <PageTitle active={t("loginhere")} pageTitle={t("loginhere")} />
+          <section className="login-area pt-100 pb-100">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-8 offset-lg-2">
+                  <div className="basic-login">
+                    <h3 className="text-center mb-60">{t("loginhere")}</h3>
+                    <Formik
+                      initialValues={initialValues}
+                      validationSchema={loginSchema}
+                      onSubmit={handleLogin}>
+                      {({
+                        values,
+                        touched,
+                        errors,
+                        handleChange,
+                        handleBlur,
+                        handleSubmit,
+                        isSubmitting,
+                      }) => (
+                        <form onSubmit={handleSubmit}>
+                          <div className="row">
+                            <div className="col-12">
+                              <InputGroup
+                                label={t("emaillogin")}
+                                id="email"
+                                name="email"
+                                type="email"
+                                placeholder={t("email_placeholder")}
+                                values={values.email}
+                                errors={errors.email}
+                                touched={touched.email}
+                                handleBlur={handleBlur}
+                                handleChange={handleChange}
+                              />
+                            </div>
+                            <div className="col-12">
+                              <InputGroup
+                                label={t("passlogin")}
+                                id="password"
+                                name="password"
+                                type="password"
+                                placeholder={t("pass_placeholder")}
+                                values={values.password}
+                                errors={errors.password}
+                                touched={touched.password}
+                                handleBlur={handleBlur}
+                                handleChange={handleChange}
+                              />
+                            </div>
                           </div>
-                          <div className="col-12">
-                            <InputGroup
-                              label={t("passlogin")}
-                              id="password"
-                              name="password"
-                              type="password"
-                              placeholder={t("pass_placeholder")}
-                              values={values.password}
-                              errors={errors.password}
-                              touched={touched.password}
-                              handleBlur={handleBlur}
-                              handleChange={handleChange}
-                            />
-                          </div>
-                        </div>
 
-                        <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="bt-btn theme-btn-2 w-100">
-                          {t("loginhere")}
-                        </button>
-                        <div className="or-divide">
-                          <span>{t("or")}</span>
-                        </div>
-                        <Link href="/register">
-                          <a className="bt-btn bt-btn-black w-100 text-center">
-                            {t("signup")}
-                          </a>
-                        </Link>
-                      </form>
-                    )}
-                  </Formik>
+                          <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="bt-btn theme-btn-2 w-100">
+                            {t("loginhere")}
+                          </button>
+                          <div className="or-divide">
+                            <span>{t("or")}</span>
+                          </div>
+                          <Link href="/register">
+                            <a className="bt-btn bt-btn-black w-100 text-center">
+                              {t("signup")}
+                            </a>
+                          </Link>
+                        </form>
+                      )}
+                    </Formik>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      </main>
-    </Layout>
+          </section>
+        </main>
+      </Layout>
+    </>
   );
 };
 

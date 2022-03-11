@@ -108,7 +108,7 @@ export const DefaultFooter = ({ darkBg }) => {
                     </li>
                   )}
                   <li>
-                    <Link href="/dashboard">
+                    <Link href="/orders">
                       <a>{t("myorders")}</a>
                     </Link>
                   </li>

@@ -10,7 +10,7 @@ import {
 
 import SelectCheckbox from "../../form/SelectCheckbox";
 import SelectCheckboxGroup from "../../form/SelectCheckboxGroup";
-// import SelectOptions from "../../form/SelectOptions";
+import SelectOptions from "../../form/SelectOptions";
 import PriceFilter from "./PriceFilter";
 
 export default function FilterDropdown({
@@ -171,12 +171,12 @@ export default function FilterDropdown({
         )}
       </div>
       <div className="col-xs-12 col-md-2 col-xl-3 py-3">
-        {/* <SelectOptions
+        <SelectOptions
           selectedData={pageLimit}
           data={showNum}
           title="Göster"
           onSelect={handlePageLimit}
-        /> */}
+        />
       </div>
       <div className="col-xs-12 col-md-2 col-xl-3 py-3">
         <h5 className="fs-4 text-center fw-bold">{t("price")}</h5>

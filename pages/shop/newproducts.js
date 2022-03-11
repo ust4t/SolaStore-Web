@@ -10,7 +10,7 @@ const NewProductPage = ({ newProducts }) => {
       allProducts={newProducts}
       full
       title={t("new")}
-      titleHead="Sola Store | Оптом Женская одежда | Wholesale Women's Clothing"
+      titleHead={`Sola Store | ${t("new")}`}
     />
   );
 };

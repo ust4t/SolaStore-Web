@@ -43,5 +43,6 @@
   "invalidEmail": "Adresse e-mail non valide",
   "error": "Une erreur s'est produite, veuillez réessayer plus tard",
   "copy": "Copié dans le presse-papier",
-  "copyBtn": "Copie"
+  "copyBtn": "Copie",
+  "searchTitle": "Rechercher"
 }

@@ -43,5 +43,6 @@
   "invalidEmail": "Geçersiz E-mail",
   "error": "Bir hata oluştu, lütfen tekrar deneyiniz",
   "copy": "Panoya kopyalandı",
-  "copyBtn": "Kopyala"
+  "copyBtn": "Kopyala",
+  "searchTitle": "Arama"
 }

@@ -34,7 +34,7 @@ const PageTitle = ({
                 />
               )}
 
-              <h3 className={thankupage ? "mb-2" : ""}>{pageTitle}</h3>
+              <h1 className={thankupage ? "mb-2 fs-2" : "fs-2"}>{pageTitle}</h1>
               {share && (
                 <div className="d-flex d-lg-none justify-content-center">
                   <button

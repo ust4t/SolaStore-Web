@@ -428,9 +428,9 @@ const Details = ({
                   <div className={upthumb ? "col-lg-7" : "col-lg-5"}>
                     <div className="pro-details-content mt-15 row">
                       <div className="col-12 col-md-12">
-                        <h3 className="border-bottom">
+                        <h1 className="border-bottom fs-2">
                           {product && product.productShortName}
-                        </h3>
+                        </h1>
                       </div>
                       <div className="col-7 col-md-4 py-3 border-right">
                         <span className="details-pro-price mb-40">
@@ -478,6 +478,7 @@ const Details = ({
                                   height="130"
                                   layout="responsive"
                                   quality={50}
+                                  alt={brand.brandName}
                                 />
                               </div>
                             </Link>

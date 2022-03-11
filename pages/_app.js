@@ -16,6 +16,7 @@ import {
   CREATE_USER_ID,
   SET_WHEEL_DATA,
   SET_COUNTRY,
+  CHANGE_LANG,
 } from "../src/redux/action/type";
 import menuData from "../public/menuData.json";
 import toast from "react-hot-toast";
@@ -89,6 +90,11 @@ function MyApp({ Component, pageProps }) {
   };
 
   const detectCountry = async () => {
+    if (router.locale !== store.getState().lang.lang) {
+      router.push(router.asPath, router.asPath, {
+        locale: store.getState().lang.lang,
+      });
+    }
     try {
       const { data } = await axios.get("/api/getLocation");
       store.dispatch({
@@ -101,6 +107,13 @@ function MyApp({ Component, pageProps }) {
       ) {
         router.push(router.asPath, router.asPath, {
           locale: "en",
+        });
+        store.dispatch({
+          type: CHANGE_LANG,
+          payload: {
+            lang: "en",
+            hasChanged: true,
+          },
         });
       }
     } catch (error) {
@@ -126,13 +139,12 @@ function MyApp({ Component, pageProps }) {
   }, [router.locale]);
 
   useEffect(() => {
-    detectCountry();
     // if (router.locale !== store.getState().lang.lang) {
-    //   // if (detectCountry() && detectCountry().toLowerCase() !== "eu") {
     //   router.push(router.asPath, router.asPath, {
     //     locale: store.getState().lang.lang,
     //   });
     // }
+    detectCountry();
     if (spinStatus.expires < Date.now())
       saveState("spinStatus", {
         hasSpinned: false,

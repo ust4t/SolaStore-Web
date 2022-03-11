@@ -1,29 +1,35 @@
 import axios from "axios";
-import React from "react";
+import Head from "next/head";
+
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
 import { chooseContent } from "../src/utils/utils";
 
 export default function SalesPolicy({ policyData }) {
   return (
-    <Layout news={4} logoLeft layout={2} paymentOption>
-      <PageTitle
-        active={policyData.header}
-        pageTitle={policyData.header}
-        navigation={false}
-      />
-      <div className="row justify-content-center my-5">
-        <div className="col-8">
-          <p
-            style={{
-              fontSize: "1rem",
-              textAlign: "justify",
-            }}>
-            {policyData.content}
-          </p>
+    <>
+      <Head>
+        <title>Sola Store | {policyData.header}</title>
+      </Head>
+      <Layout news={4} logoLeft layout={2} paymentOption>
+        <PageTitle
+          active={policyData.header}
+          pageTitle={policyData.header}
+          navigation={false}
+        />
+        <div className="row justify-content-center my-5">
+          <div className="col-8">
+            <p
+              style={{
+                fontSize: "1rem",
+                textAlign: "justify",
+              }}>
+              {policyData.content}
+            </p>
+          </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </>
   );
 }
 

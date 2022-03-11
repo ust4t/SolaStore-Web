@@ -2,6 +2,7 @@ import useTranslation from "next-translate/useTranslation";
 import { useContext, useEffect, useState, memo } from "react";
 import { Nav, Tab } from "react-bootstrap";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import PopularCard from "../../components/Cards/PopularCard";
 import PaginationList from "../../components/PaginationList";
@@ -11,10 +12,10 @@ import { StoreContext } from "../../context/StoreProvider";
 import { activeData, dblock } from "../../utils/utils";
 import Layout from "../Layout";
 import PageTitle from "../PageTitle";
-import { custom_col_6 } from "./Shop.module.css";
+import { custom_col_6 } from "./ProductCategory.module.css";
 
-const ShopLayout = ({
-  allProducts,
+const ProductCategory = ({
+  allProducts: products,
   brands,
   defaultKey,
   full,
@@ -29,28 +30,32 @@ const ShopLayout = ({
   filterDropdown = false,
   isHidden = false,
   isActiveHidden,
+  selectedPage,
+  count,
 }) => {
+  const router = useRouter();
   const { t } = useTranslation("common");
   const { cartActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
-  const [pageLimit, setPageLimit] = useState(20);
-  const [offset, setOffset] = useState(0);
-  const pageCount = Math.ceil(allProducts.length / pageLimit);
+  const [pageSize, setPageSize] = useState(router.query.pageSize || 20);
+  //   const [offset, setOffset] = useState(0);
+  const pageCount = Math.ceil(count / pageSize);
   const [active, setActive] = useState(active_ ? active_ : 0);
-  const [cartAnim, setCartAnim] = useState(false);
-  const [selectedPage, setSelectedPage] = useState(0);
+  //   const [cartAnim, setCartAnim] = useState(false);
+  //   const [selectedPage, setSelectedPage] = useState(0);
 
-  let sort = sortValue ? sortValue : pageLimit;
-  const [products, setProducts] = useState(
-    allProducts.slice(offset, offset + pageLimit)
-  );
+  let sort = sortValue ? sortValue : pageSize;
+  //   const [products, setProducts] = useState(
+  //      allProducts.slice(offset, offset + pageLimit)
+  //     allProducts
+  //   );
 
-  const { min, max } = activeData(active, sort, allProducts.length);
+  const { min, max } = activeData(active, sort, count);
 
-  const handlePageData = () => {
-    const pageData = allProducts.slice(offset, offset + pageLimit);
-    setProducts(pageData);
-  };
+  //   const handlePageData = () => {
+  //     const pageData = allProducts.slice(offset, offset + pageLimit);
+  //     setProducts(pageData);
+  //   };
 
   const handlePageClick = (e) => {
     if (typeof window !== "undefined")
@@ -58,20 +63,32 @@ const ShopLayout = ({
         top: 0,
         behavior: "smooth",
       });
-    const selectedPage = e.selected;
-    setSelectedPage(selectedPage);
-    const offset = selectedPage * pageLimit;
-    setOffset(offset);
-    handlePageData();
+
+    router.push(
+      `/shop/${router.query.catId}?page=${e.selected + 1}&pageSize=${pageSize}`
+    );
+    // const selectedPage = e.selected;
+    // setSelectedPage(selectedPage);
+    // const offset = selectedPage * pageLimit;
+    // setOffset(offset);
+    // handlePageData();
   };
 
   useEffect(() => {
-    setSelectedPage(0);
-  }, [allProducts, pageLimit]);
+    router.push(
+      `/shop/${router.query.catId}?page=${
+        router.query.page || 1
+      }&pageSize=${pageSize}`
+    );
+  }, [pageSize]);
 
-  useEffect(() => {
-    handlePageData();
-  }, [offset, allProducts, pageLimit]);
+  //   useEffect(() => {
+  //     setSelectedPage(0);
+  //   }, [allProducts, pageLimit]);
+
+  //   useEffect(() => {
+  //     handlePageData();
+  //   }, [offset, allProducts, pageLimit]);
 
   return (
     <>
@@ -79,7 +96,6 @@ const ShopLayout = ({
         <title>{titleHead}</title>
       </Head>
       <Layout news={4} logoLeft layout={2} paymentOption>
-        {cartAnim && <div className="body_overlay" />}
         <main>
           {!isHidden && (
             <PageTitle
@@ -97,8 +113,8 @@ const ShopLayout = ({
               {filterDropdown && (
                 <FilterDropdown
                   brands={brands}
-                  pageLimit={pageLimit}
-                  setPageLimit={setPageLimit}
+                  pageLimit={pageSize}
+                  setPageLimit={setPageSize}
                   setActive_={() => setActive(0)}
                 />
               )}
@@ -150,7 +166,6 @@ const ShopLayout = ({
                                   } ${dblock(active, index, sort)}`}
                                   key={`${productItem.productID}-_*-|${index}`}>
                                   <PopularCard
-                                    setAnim={setCartAnim}
                                     productData={{
                                       id: productItem.masterProductID,
                                       name: productItem.productShortName,
@@ -187,7 +202,7 @@ const ShopLayout = ({
                   )}
                   <div className="mt-5 mb-5">
                     <PaginationList
-                      forcePage={selectedPage}
+                      forcePage={selectedPage - 1}
                       pageCount={pageCount}
                       handlePageClick={handlePageClick}
                     />
@@ -202,4 +217,4 @@ const ShopLayout = ({
   );
 };
 
-export default memo(ShopLayout);
+export default memo(ProductCategory);

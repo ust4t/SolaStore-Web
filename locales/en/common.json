@@ -43,5 +43,6 @@
   "invalidEmail": "Invalid Email",
   "error": "An error occured, please try again later",
   "copy": "Copied to clipboard",
-  "copyBtn": "Copy"
+  "copyBtn": "Copy",
+  "searchTitle": "Search"
 }

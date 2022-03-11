@@ -1,11 +1,14 @@
 import axios from "axios";
+import useTranslation from "next-translate/useTranslation";
 
 import Shop from "../src/layout/Shop";
 
 const Search = ({ search, searchText }) => {
+  const { t } = useTranslation("common");
+
   return (
     <Shop
-      titleHead="Sola Store | Оптом Женская одежда | Wholesale Women's Clothing"
+      titleHead={`Sola Store | ${t("searchTitle")}`}
       title={`Your Result: ' ${decodeURI(searchText)} '`}
       isActiveHidden
       allProducts={search}
