@@ -44,21 +44,25 @@ function MyApp({ Component, pageProps }) {
   const queryClient = new QueryClient();
 
   const fetchMenu = async () => {
-    try {
-      const { data: menu } = await axios.get(
-        `/api/getFullMenu?lang=${store.getState().lang.lang}`
-      );
-      store.dispatch({
-        type: GET_MAIN_MENU,
-        payload: menu,
-      });
-    } catch (error) {
-      store.dispatch({
-        type: GET_MAIN_MENU,
-        payload: menuData[store.getState().lang.lang],
-      });
-      toast.error("Menü alınırken hata oluştu");
-    }
+    store.dispatch({
+      type: GET_MAIN_MENU,
+      payload: menuData[store.getState().lang.lang],
+    });
+    // try {
+    //   const { data: menu } = await axios.get(
+    //     `/api/getFullMenu?lang=${store.getState().lang.lang}`
+    //   );
+    //   store.dispatch({
+    //     type: GET_MAIN_MENU,
+    //     payload: menu,
+    //   });
+    // } catch (error) {
+    //   store.dispatch({
+    //     type: GET_MAIN_MENU,
+    //     payload: menuData[store.getState().lang.lang],
+    //   });
+    //   toast.error("Menü alınırken hata oluştu");
+    // }
   };
 
   const checkUser = async () => {
