@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps }) {
   const fetchMenu = async () => {
     store.dispatch({
       type: GET_MAIN_MENU,
-      payload: menuData[store.getState().lang.lang],
+      payload: menuData[router.locale],
     });
     // try {
     //   const { data: menu } = await axios.get(
