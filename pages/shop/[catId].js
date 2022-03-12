@@ -16,6 +16,7 @@ export default function ShopPage({
   page,
   count,
 }) {
+  console.log(catData);
   const router = useRouter();
   const { t } = useTranslation("common");
   const menu = useSelector((state) => state.menu.menuData);
@@ -86,6 +87,8 @@ export async function getServerSideProps({ query, locale }) {
       `https://api.solastore.com.tr/api/Brand/GetAllBrands?sourceProof=${process.env.SOURCE_PROOF}`
     ),
   ]);
+
+  console.log(catData);
 
   return {
     props: {
