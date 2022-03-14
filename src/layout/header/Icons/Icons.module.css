@@ -71,3 +71,14 @@
     left: -330px;
   }
 }
+
+@media (max-width: 750px) {
+  .wheel_icon_container img {
+    width: 105px;
+    height: 105px;
+  }
+
+  .wheel_icon_container span {
+    font-size: 1.2rem;
+  }
+}

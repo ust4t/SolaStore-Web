@@ -74,6 +74,7 @@ const PageTitle = ({
                             <a>{t("menu.home")}</a>
                           </Link>
                         </li>
+                        <i className="fas fa-angle-double-right" />{" "}
                         <li className="trail-item trail-end">
                           <span>{active}</span>
                         </li>
