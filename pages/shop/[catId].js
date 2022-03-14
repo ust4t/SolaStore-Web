@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 import menuJSON from "../../public/menuData.json";
 // import Shop from "../../src/layout/Shop";
-import ProductCategory from "../../src/layout/ProductCategory/ProductCategory";
+import ProductCategory from "../../src/layout/ProductCategory";
 
 export default function ShopPage({
   catData,
@@ -67,6 +67,7 @@ export default function ShopPage({
       brands={brandData}
       selectedPage={page}
       count={count}
+      catRoute={router.query.catId}
     />
   );
 }

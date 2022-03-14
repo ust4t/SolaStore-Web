@@ -32,6 +32,7 @@ const ProductCategory = ({
   isActiveHidden,
   selectedPage,
   count,
+  catRoute,
 }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
@@ -65,7 +66,7 @@ const ProductCategory = ({
       });
 
     router.push(
-      `/shop/${router.query.catId}?page=${e.selected + 1}&pageSize=${pageSize}`
+      `/shop/${catRoute}?page=${e.selected + 1}&pageSize=${pageSize}`
     );
     // const selectedPage = e.selected;
     // setSelectedPage(selectedPage);
@@ -76,9 +77,7 @@ const ProductCategory = ({
 
   useEffect(() => {
     router.push(
-      `/shop/${router.query.catId}?page=${
-        router.query.page || 1
-      }&pageSize=${pageSize}`
+      `/shop/${catRoute}?page=${router.query.page || 1}&pageSize=${pageSize}`
     );
   }, [pageSize]);
 
