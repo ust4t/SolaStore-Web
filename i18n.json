@@ -15,7 +15,8 @@
       "phone",
       "contact",
       "appointment",
-      "checkout"
+      "checkout",
+      "statics"
     ]
   }
 }

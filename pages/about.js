@@ -4,6 +4,7 @@ import Head from "next/head";
 import { chooseContent } from "../src/utils/utils";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
+import AboutLayout from "../src/layout/AboutLayout";
 
 export default function About({ aboutData }) {
   return (
@@ -17,11 +18,7 @@ export default function About({ aboutData }) {
           pageTitle={aboutData.header}
           navigation={false}
         />
-        <div className="row my-5">
-          <div className="col-12 justify-content-center align-items-center">
-            <p className="fs-6 text-center mx-2">{aboutData.content}</p>
-          </div>
-        </div>
+        <AboutLayout />
       </Layout>
     </>
   );
