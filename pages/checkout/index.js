@@ -1,10 +1,10 @@
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
 import { useContext, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
+import useTranslation from "next-translate/useTranslation";
 
-import InputGroup from "../../src/components/form/InputGroup";
 import Layout from "../../src/layout/Layout";
 import PageTitle from "../../src/layout/PageTitle";
 import { StoreContext } from "../../src/context/StoreProvider";
@@ -13,6 +13,7 @@ import CheckoutLayout from "../../src/layout/CheckoutLayout";
 import { useSelector } from "react-redux";
 
 const Checkout = () => {
+  const { t } = useTranslation("common");
   const lang = useSelector((state) => state.lang.lang);
   const [payModal, setPayModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -30,18 +31,38 @@ const Checkout = () => {
 
   const checkoutSchema = Yup.object().shape({
     cardNumber: Yup.string()
-      .required("Required")
-      .matches(/^[0-9]{16}$/, "Must be 16 digits"),
+      .required(t("required"))
+      .matches(
+        /^[0-9]{16}$/,
+        t("digitWarn", {
+          num: 16,
+        })
+      ),
     cardHoldersName: Yup.string()
-      .required("Required")
-      .matches(/^[a-zA-Z ]{2,30}$/, "Must be 2-30 characters"),
+      .required(t("required"))
+      .matches(
+        /^[a-zA-Z ]{2,30}$/,
+        t("charWarn", {
+          charNum: "2-30",
+        })
+      ),
     expirationYear: Yup.string()
-      .required("Required")
-      .matches(/^[0-9]{2}$/, "Must be 2 digits"),
-    expirationMonth: Yup.string().required("Required"),
+      .required(t("required"))
+      .matches(
+        /^[0-9]{2}$/,
+        t("digitWarn", {
+          num: 2,
+        })
+      ),
+    expirationMonth: Yup.string().required(t("required")),
     cvv: Yup.string()
-      .required("Required")
-      .matches(/^[0-9]{3}$/, "Must be 3 digits"),
+      .required(t("required"))
+      .matches(
+        /^[0-9]{3}$/,
+        t("digitWarn", {
+          num: 3,
+        })
+      ),
   });
 
   const handlePayment = async (values, { resetForm }) => {
@@ -67,7 +88,7 @@ const Checkout = () => {
       setPayModal(true);
       resetForm();
     } catch (err) {
-      toast.error("Bir hata oluştu");
+      toast.error(t("error"));
       console.log(err);
     }
   };
@@ -104,14 +125,17 @@ const Checkout = () => {
       setIsLoading(false);
     } catch (error) {
       console.log(error);
-      toast.error("Bir hata oluştu");
+      toast.error(t("error"));
     }
   };
 
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <main>
-        <PageTitle active="Checkout" pageTitle="Checkout" />
+        <PageTitle
+          active={t("checkout:title")}
+          pageTitle={t("checkout:title")}
+        />
         <PayModal
           show={payModal}
           handleClose={() => setPayModal(false)}

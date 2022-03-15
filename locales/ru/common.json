@@ -46,5 +46,7 @@
   "copyBtn": "Копировать",
   "searchTitle": "Поиск",
   "appointmentTitle": "Встреча",
-  "title404": "Страница не найдена"
+  "title404": "Страница Hе Hайдена",
+  "digitWarn": "Должно быть {{num}} цифр",
+  "charWarn": "Должно быть от {{charNum}}символов."
 }

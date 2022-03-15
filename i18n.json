@@ -14,7 +14,8 @@
       "myorders",
       "phone",
       "contact",
-      "appointment"
+      "appointment",
+      "checkout"
     ]
   }
 }

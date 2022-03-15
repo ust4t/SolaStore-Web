@@ -46,5 +46,7 @@
   "copyBtn": "Kopyala",
   "searchTitle": "Arama",
   "appointmentTitle": "Randevu",
-  "title404": "Sayfa Bulunamadı"
+  "title404": "Sayfa Bulunamadı",
+  "digitWarn": "{{num}} haneli olmalıdır",
+  "charWarn": "{{charNum}} karakter olmalıdır"
 }

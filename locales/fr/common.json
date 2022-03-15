@@ -46,5 +46,7 @@
   "copyBtn": "Copie",
   "searchTitle": "Rechercher",
   "appointmentTitle": "Rendez-vous",
-  "title404": "Page non trouvée"
+  "title404": "Page Non Trouvée",
+  "digitWarn": "Doit être composé de {{num}} chiffres",
+  "charWarn": "Doit être de {{charNum}} caractères"
 }

@@ -1,0 +1,10 @@
+{
+  "title": "Vérifier",
+  "formTitle": "Détails de la facturation",
+  "cardNumber": "Numéro de carte",
+  "cardHolder": "Nom du titulaire",
+  "expiryDate": "Année d'expiration",
+  "expiryMonth": "mois d'expiration",
+  "cvv": "CVV",
+  "checkoutBtn": "Passer la commande"
+}

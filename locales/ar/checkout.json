@@ -1,0 +1,10 @@
+{
+  "title": "الدفع",
+  "formTitle": "تفاصيل الفاتورة",
+  "cardNumber": "رقم البطاقة",
+  "cardHolder": "إسم صاحب البطاقة",
+  "expiryDate": "سنة انتهاء الصلاحية",
+  "expiryMonth": "انتهاء شهر",
+  "cvv": "CVV",
+  "checkoutBtn": "مكان الامر"
+}

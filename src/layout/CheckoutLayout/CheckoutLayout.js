@@ -1,5 +1,6 @@
 import { Form } from "formik";
 import React from "react";
+import useTranslation from "next-translate/useTranslation";
 
 import InputGroup from "../../components/form/InputGroup";
 import {
@@ -8,21 +9,23 @@ import {
 } from "./CheckoutLayout.module.css";
 
 export default function CheckoutLayout({ errors, values, handleChange }) {
+  const { t } = useTranslation("checkout");
+
   return (
-    <section className="pb-70">
+    <section className="pb-70 mt-4">
       <div className="container">
         <Form>
           <div className="row justify-content-center">
             <div className="col-lg-6">
               <>
-                <h3>Billing Details</h3>
+                <h3>{t("formTitle")}</h3>
                 <div className="row">
                   <div className="col-md-12">
                     <div className={`${checkout_form_list}`}>
                       <InputGroup
                         name="CardNum"
                         id="CardNum"
-                        label="Card Number"
+                        label={t("cardNumber")}
                         errors={errors.cardNumber}
                         values={values.cardNumber.replace(" ", "")}
                         handleChange={handleChange("cardNumber")}
@@ -34,7 +37,7 @@ export default function CheckoutLayout({ errors, values, handleChange }) {
                       <InputGroup
                         name="CardHoldersName"
                         id="CardHoldersName"
-                        label="Card Holder Name"
+                        label={t("cardHolder")}
                         errors={errors.cardHoldersName}
                         values={values.cardHoldersName}
                         handleChange={handleChange("cardHoldersName")}
@@ -46,7 +49,7 @@ export default function CheckoutLayout({ errors, values, handleChange }) {
                       <InputGroup
                         name="ExpirationYear"
                         id="ExpirationYear"
-                        label="Expiration Year"
+                        label={t("expiryDate")}
                         errors={errors.expirationYear}
                         values={values.expirationYear}
                         handleChange={handleChange("expirationYear")}
@@ -58,7 +61,7 @@ export default function CheckoutLayout({ errors, values, handleChange }) {
                       <InputGroup
                         name="ExpirationMonth"
                         id="ExpirationMonth"
-                        label="Expiration Month"
+                        label={t("expiryMonth")}
                         errors={errors.expirationMonth}
                         values={values.expirationMonth}
                         handleChange={handleChange("expirationMonth")}
@@ -79,7 +82,7 @@ export default function CheckoutLayout({ errors, values, handleChange }) {
                   </div>
                   <div className={`${order_button_payment} mt-20`}>
                     <button type="submit" className="bt-btn">
-                      Place order
+                      {t("checkoutBtn")}
                     </button>
                   </div>
                 </div>

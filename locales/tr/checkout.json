@@ -1,0 +1,10 @@
+{
+  "title": "Ödeme",
+  "formTitle": "Ödeme Detayları",
+  "cardNumber": "Kart Numarası",
+  "cardHolder": "Kart Sahibinin Adı",
+  "expiryDate": "Son Kullanma Yılı",
+  "expiryMonth": "Son Kullanma Ayı",
+  "cvv": "CVV",
+  "checkoutBtn": "Siparişi Tamamla"
+}

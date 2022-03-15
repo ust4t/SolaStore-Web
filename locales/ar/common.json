@@ -46,5 +46,7 @@
   "copyBtn": "ينسخ",
   "searchTitle": "بحث",
   "appointmentTitle": "ميعاد",
-  "title404": "الصفحة غير موجودة"
+  "title404": "الصفحة غير موجودة",
+  "digitWarn": "يجب أن يتألف من {{num}} رقم",
+  "charWarn": "يجب أن يكون من {{charNum}} حرفًا"
 }

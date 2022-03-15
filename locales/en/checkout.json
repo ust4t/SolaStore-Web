@@ -1,0 +1,10 @@
+{
+  "title": "Checkout",
+  "formTitle": "Billing Details",
+  "cardNumber": "Card Number",
+  "cardHolder": "Card Holder Name",
+  "expiryDate": "Expiration Year",
+  "expiryMonth": "Expiration Month",
+  "cvv": "CVV",
+  "checkoutBtn": "Place Order"
+}
