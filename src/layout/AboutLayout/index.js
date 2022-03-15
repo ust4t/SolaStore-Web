@@ -36,6 +36,19 @@ export default function AboutLayout() {
           {t("aboutParagraph2")}
         </p>
       </div>
+      <div class={`${divider} ${div_transparent} ${div_dot}`} />
+      <div className="row my-5 justify-content-center align-items-center">
+        <div className="col-12 col-lg-3 me-md-5 me-md-3 d-flex align-items-center justify-content-center">
+          <img
+            src="/images/all-bg/about3.jpg"
+            alt="about-image"
+            className={`${aboutImg} me-lg-4`}
+          />
+        </div>
+        <p className="fs-5 col-12 col-lg-5 justify-content-center align-items-center text-center text-lg-start px-3 px-sm-5 px-lg-0 mt-3 mb-0">
+          {t("aboutParagraph3")}
+        </p>
+      </div>
     </>
   );
 }

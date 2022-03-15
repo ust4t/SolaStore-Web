@@ -5,7 +5,7 @@ import Router from "next/router";
 
 import sources from "../../../../sources";
 import { encodeURLString, timestamp } from "../../../utils/utils";
-import { loadState } from "../../../redux/browser-storage";
+import { loadState, saveState } from "../../../redux/browser-storage";
 
 class ZuckStories extends PureComponent {
   constructor(props) {
@@ -14,6 +14,7 @@ class ZuckStories extends PureComponent {
     this.storiesApi = null;
     const { t } = this.props.i18n;
     this.state = {
+      seenStories: loadState("stories", []),
       stories: this.props.storiesData.map((story, i) =>
         Zuck.buildTimelineItem(
           story.masterProductID,
@@ -66,6 +67,30 @@ class ZuckStories extends PureComponent {
             }
           );
         }.bind(this),
+        onEnd: function (currentState, callback) {
+          const storiesData = loadState("stories", []);
+          if (
+            !storiesData.includes(
+              this.props.storiesData[currentState].masterProductID
+            )
+          ) {
+            this.setState(
+              (state) => {
+                state.seenStories.push(
+                  this.props.storiesData[currentState].masterProductID
+                );
+                return state;
+              },
+              () => {
+                saveState("stories", [
+                  ...storiesData,
+                  this.props.storiesData[currentState].masterProductID,
+                ]);
+              }
+            );
+          }
+          callback();
+        }.bind(this),
       },
       stories: this.state.stories,
     });
@@ -117,9 +142,23 @@ class ZuckStories extends PureComponent {
             }
           }}
           className={
-            story.seen
+            this.state.seenStories.includes(
+              Number(
+                story.link.slice(
+                  story.link.indexOf(":") + 1,
+                  story.link.indexOf("?")
+                )
+              )
+            )
               ? `story ${
-                  storyId === this.props.storiesData.length - 1
+                  Number(
+                    story.link.slice(
+                      story.link.indexOf(":") + 1,
+                      story.link.indexOf("?")
+                    )
+                  ) ===
+                  this.props.storiesData[this.props.storiesData.length - 1]
+                    .masterProductID
                     ? "seen reels"
                     : "seen"
                 }`
