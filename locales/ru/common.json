@@ -45,5 +45,6 @@
   "copy": "Скопировано в буфер обмена",
   "copyBtn": "Копировать",
   "searchTitle": "Поиск",
-  "appointmentTitle": "Встреча"
+  "appointmentTitle": "Встреча",
+  "title404": "Страница не найдена"
 }

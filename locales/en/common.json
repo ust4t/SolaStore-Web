@@ -45,5 +45,6 @@
   "copy": "Copied to clipboard",
   "copyBtn": "Copy",
   "searchTitle": "Search",
-  "appointmentTitle": "Appointment"
+  "appointmentTitle": "Appointment",
+  "title404": "Page Not Found"
 }

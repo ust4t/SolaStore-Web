@@ -45,5 +45,6 @@
   "copy": "Copié dans le presse-papier",
   "copyBtn": "Copie",
   "searchTitle": "Rechercher",
-  "appointmentTitle": "Rendez-vous"
+  "appointmentTitle": "Rendez-vous",
+  "title404": "Page non trouvée"
 }
