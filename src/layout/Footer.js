@@ -151,6 +151,11 @@ export const DefaultFooter = ({ darkBg }) => {
                         <i className="fab fa-twitter-square" />
                       </a>
                     </Link>
+                    <Link href="https://www.instagram.com/solastore.online">
+                      <a target="_blank">
+                        <i className="fab fa-instagram" />
+                      </a>
+                    </Link>
                     <Link href="https://www.linkedin.com/company/sola-store-tekstil/mycompany/">
                       <a target="_blank">
                         <i className="fab fa-linkedin" />

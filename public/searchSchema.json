@@ -1,0 +1,28 @@
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "https://solastore.com.tr/",
+  "name": "Sola Store",
+  "potentialAction": [
+    {
+      "@type": "SearchAction",
+      "target": "https://solastore.com.tr/search?searchText={search_term}",
+      "query-input": {
+        "@type": "PropertyValueSpecification",
+        "valueRequired": true,
+        "valueMaxlength": 200,
+        "valueName": "search_term"
+      }
+    },
+    {
+      "@type": "SearchAction",
+      "target": "android-app://solastore.com.tr/search?searchText={search_term}",
+      "query-input": {
+        "@type": "PropertyValueSpecification",
+        "valueRequired": true,
+        "valueMaxlength": 200,
+        "valueName": "search_term"
+      }
+    }
+  ]
+}

@@ -9,6 +9,8 @@ import ym, { YMInitializer } from "react-yandex-metrika";
 
 import AllToaster from "../src/components/AllToaser";
 // import ScrollTop from "../src/layout/ScrollTop";
+import companySchema from "../public/companySchema.json";
+import searchSchema from "../public/searchSchema.json";
 import StoreProvider from "../src/context/StoreProvider";
 import store from "../src/redux/store";
 import {
@@ -19,7 +21,7 @@ import {
   CHANGE_LANG,
 } from "../src/redux/action/type";
 import menuData from "../public/menuData.json";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import { loadState, saveState } from "../src/redux/browser-storage";
 
 import "zuck.js/dist/skins/snapgram.min.css";
@@ -43,7 +45,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const queryClient = new QueryClient();
 
-  const fetchMenu = async () => {
+  const fetchMenu = () => {
     store.dispatch({
       type: GET_MAIN_MENU,
       payload: menuData[router.locale],
@@ -164,6 +166,11 @@ function MyApp({ Component, pageProps }) {
         <title>
           Sola Store | Оптом Женская одежда | Wholesale Women's Clothing
         </title>
+        <link rel="dns-prefetch" href="//www.googletagmanager.com/" />
+        <link rel="dns-prefetch" href="//mc.yandex.ru/" />
+        <link rel="dns-prefetch" href="//connect.facebook.net/" />
+        <link rel="dns-prefetch" href="//embed.tawk.to/" />
+        <link rel="dns-prefetch" href="//kit.fontawesome.com/" />
         <Script
           id="google-tag-manager"
           strategy="afterInteractive">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -179,6 +186,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <meta name="keywords" content="Fashion, Solastore, Trending" />
         <meta name="theme-color" content="#ffffff" />
         <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="yandex-verification" content="69119899" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta property="fb:app_id" content="137952878122881" />
+        <meta
+          property="og:title"
+          content="Sola Store | Оптом Женская одежда | Wholesale Women's Clothing"
+        />
+        <meta property="og:type" content="product" />
+        <meta property="og:site_name" content="Sola Store" />
+        <meta
+          name="google-play-app"
+          content="app-id=com.solastore.solastoreapp"
+        />
+        <meta name="apple-itunes-app" content="app-id=1532399779" />
+        <link rel="canonical" href="https://solastore.com.tr/" />
         <link
           rel="apple-touch-icon"
           sizes="57x57"
@@ -252,6 +274,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <meta
           name="msapplication-TileImage"
           content="/images/logo/favicon/ms-icon-144x144.jpg"
+        />
+        <Script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(companySchema),
+          }}
+        />
+        <Script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(searchSchema),
+          }}
         />
       </Head>
       <AllToaster />

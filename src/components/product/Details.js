@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
+import Script from "next/script";
 import { useRouter } from "next/router";
 
 import useCartAnim from "../../hooks/useCartAnim";
@@ -139,37 +140,87 @@ const Details = ({
     btnRef: "[data-addtocart]",
   });
 
+  const schemaData = {
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "@id": `https://solastore.com.tr/detail/${encodeURLString(
+      product.productShortName
+    )}:${product.masterProductID}#baseproduct`,
+    name: product.productShortName,
+    image:
+      product.pictures.length > 0
+        ? product.pictures.map((img) => `${sources.imageMidSrc}${img.guidName}`)
+        : "/images/placeholder.jpg",
+    description:
+      "Solastore, where you can find the best fashion that you always desired",
+    brand: {
+      "@type": "Brand",
+      name: brand.brandName,
+    },
+    url: `https://solastore.com.tr/detail/${encodeURLString(
+      product.productShortName
+    )}:${product.masterProductID}?selected=${product.productID}`,
+    sku: product.productStockCode,
+    audience: { "@type": "PeopleAudience", suggestedGender: "unisex" },
+    hasVariant: [productMain, ...productVariants].map((productItem) => ({
+      "@type": "Product",
+      name: productItem.productShortName,
+      sku: productItem.productStockCode,
+      isVariantOf: {
+        "@id": `https://solastore.com.tr/detail/${encodeURLString(
+          productItem.productShortName
+        )}:${productItem.masterProductID}#baseproduct`,
+      },
+      offers: {
+        "@type": "Offer",
+        url: `https://solastore.com.tr/detail/${encodeURLString(
+          productItem.productShortName
+        )}:${productItem.masterProductID}?selected=${productItem.productID}`,
+        priceCurrency: "USD",
+        price: product.singlePrice * sizeNum,
+        itemCondition: "https://schema.org/NewCondition",
+        availability: "https://schema.org/InStock",
+      },
+    })),
+  };
+
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
-      <main>
-        {product ? (
-          <Fragment>
-            <Head>
-              <title>Solastore | {product.productShortName}</title>
-              <meta
-                property="og:title"
-                content={`Solastore | ${product.productShortName}`}
-              />
-              <meta
-                property="og:url"
-                content={`/detail/${encodeURLString(
-                  product.productShortName
-                )}:${product.masterProductID}?selected=${product.productID}`}
-              />
-              <meta
-                property="og:image"
-                content={
-                  product.picture_1
-                    ? `${sources.imageMinSrc}${product.picture_1}`
-                    : "/images/placeholder.jpg"
-                }
-              />
-              <meta property="og:type" content="website" />
-              <meta
-                property="og:description"
-                content="Solastore, where you can find the best fashion that you always desired"
-              />
-            </Head>
+      {product ? (
+        <Fragment>
+          <Head>
+            <title>Sola Store | {product.productShortName}</title>
+            <link
+              rel="canonical"
+              href={`https://solastore.com.tr/detail/${encodeURLString(
+                product.productShortName
+              )}:${product.masterProductID}?selected=${product.productID}`}
+            />
+            <meta
+              property="og:title"
+              content={`Solastore | ${product.productShortName}`}
+            />
+            <meta
+              property="og:url"
+              content={`https://solastore.com.tr/detail/${encodeURLString(
+                product.productShortName
+              )}:${product.masterProductID}?selected=${product.productID}`}
+            />
+            <meta
+              property="og:image"
+              content={
+                product.picture_1
+                  ? `${sources.imageMinSrc}${product.picture_1}`
+                  : "/images/placeholder.jpg"
+              }
+            />
+            <meta property="og:type" content="website" />
+            <meta
+              property="og:description"
+              content="Solastore, where you can find the best fashion that you always desired"
+            />
+          </Head>
+          <main>
             <section className="product-details-area pt-50 pb-50">
               {product.oldPrice > 0 && sizeNum && (
                 <div
@@ -747,11 +798,19 @@ const Details = ({
                 </Tab.Container>
               </div>
             </section>
-          </Fragment>
-        ) : (
-          <h2 className="text-center pt-50 pb-50">No Product found</h2>
-        )}
-      </main>
+            <span hidden>
+              <Script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                  __html: JSON.stringify(schemaData),
+                }}
+              />
+            </span>
+          </main>
+        </Fragment>
+      ) : (
+        <h2 className="text-center pt-50 pb-50">No Product found</h2>
+      )}
     </Layout>
   );
 };

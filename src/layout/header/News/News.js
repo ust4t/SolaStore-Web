@@ -111,8 +111,8 @@ export const News_4 = () => {
                 src={`/images/flags/uk.jpg`}
                 width="45"
                 height="25"
-                alt="https://www.solastore.com.tr"
-                title="https://www.solastore.com.tr"
+                alt="English"
+                title="English"
                 priority
               />
             </a>
@@ -121,8 +121,8 @@ export const News_4 = () => {
                 src={`/images/flags/fr.jpg`}
                 width="45"
                 height="25"
-                alt="https://www.solastore.com.tr"
-                title="https://www.solastore.com.tr"
+                alt="French"
+                title="French"
                 priority
               />
             </a>
@@ -131,8 +131,8 @@ export const News_4 = () => {
                 src={`/images/flags/sa.jpg`}
                 width="45"
                 height="25"
-                alt="https://www.solastore.com.tr"
-                title="https://www.solastore.com.tr"
+                alt="Arabic"
+                title="Arabic"
                 priority
               />
             </a>
@@ -141,8 +141,8 @@ export const News_4 = () => {
                 src={`/images/flags/rs.jpg`}
                 width="45"
                 height="25"
-                alt="https://www.solastore.com.tr"
-                title="https://www.solastore.com.tr"
+                alt="Russian"
+                title="Russian"
                 priority
               />
             </a>
@@ -151,8 +151,8 @@ export const News_4 = () => {
                 src={`/images/flags/tr.jpg`}
                 width="45"
                 height="25"
-                alt="https://www.solastore.com.tr"
-                title="https://www.solastore.com.tr"
+                alt="Turkish"
+                title="Turkish"
                 priority
               />
             </a>

@@ -1,0 +1,22 @@
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "Sola Store",
+  "alternateName": "Sola Store",
+  "url": "https://solastore.com.tr/",
+  "logo": "https://solastore.com.tr/images/placeholder.jpg",
+  "foundingDate": "2002",
+  "founders": [{ "@type": "Person", "jobTitle": "CEO", "name": "Metin Sola" }],
+  "sameAs": [
+    "https://www.facebook.com/solastore",
+    "https://twitter.com/Solastoreonline",
+    "https://www.instagram.com/solastore.online/",
+    "https://www.youtube.com/channel/UCO1EGdGpU-Moy8yJ8Hu3N2Q",
+    "https://vk.com/solastoreonline",
+    "https://www.linkedin.com/company/sola-store-tekstil/mycompany/",
+    "https://www.pinterest.com/SolaStoreonline/",
+    "https://t.me/solastoreonline",
+    "https://www.tiktok.com/@solastoreofficial",
+    "https://ru.foursquare.com/user/399137018"
+  ]
+}

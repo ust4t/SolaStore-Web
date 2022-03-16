@@ -60,3 +60,9 @@
   width: 100%;
   z-index: 1;
 }
+
+@media (max-width: 565px) {
+  .sliderTitle {
+    font-size: 2.9rem;
+  }
+}
