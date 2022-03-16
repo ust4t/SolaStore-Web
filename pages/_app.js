@@ -171,6 +171,10 @@ function MyApp({ Component, pageProps }) {
         <link rel="dns-prefetch" href="//connect.facebook.net/" />
         <link rel="dns-prefetch" href="//embed.tawk.to/" />
         <link rel="dns-prefetch" href="//kit.fontawesome.com/" />
+        <link
+          rel="shortcut icon"
+          href="/images/logo/favicon/apple-icon-72x72.jpg"
+        />
         <Script
           id="google-tag-manager"
           strategy="afterInteractive">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -201,6 +205,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         />
         <meta name="apple-itunes-app" content="app-id=1532399779" />
         <link rel="canonical" href="https://solastore.com.tr/" />
+        <meta name="twitter:app:name:iphone" content="Sola Store" />
+        <meta name="twitter:app:name:ipad" content="Sola Store" />
+        <meta name="twitter:app:id:iphone" content="1532399779" />
+        <meta name="twitter:app:id:ipad" content="1532399779" />
+        <meta
+          name="twitter:app:url:iphone"
+          content="https://apps.apple.com/tr/app/sola-store/id1532399779"
+        />
+        <meta
+          name="twitter:app:url:ipad"
+          content="https://apps.apple.com/tr/app/sola-store/id1532399779"
+        />
+        <meta name="twitter:app:name:googleplay" content="Sola Store" />
+        <meta
+          name="twitter:app:id:googleplay"
+          content="com.solastore.solastoreapp"
+        />
+        <meta
+          name="twitter:app:url:googleplay"
+          content="https://play.google.com/store/apps/details?id=com.solastore.solastoreapp"
+        />
         <link
           rel="apple-touch-icon"
           sizes="57x57"

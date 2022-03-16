@@ -219,6 +219,27 @@ const Details = ({
               property="og:description"
               content="Solastore, where you can find the best fashion that you always desired"
             />
+            <meta name="twitter:domain" content="solastore.com.tr" />
+            <meta name="twitter:card" content="product" />
+            <meta name="twitter:site" content="@Solastoreonline" />
+            <meta name="twitter:creator" content="@Solastoreonline" />
+            <meta
+              name="twitter:title"
+              content={`Solastore | ${product.productShortName}`}
+            />
+            <meta
+              name="twitter:description"
+              content={`Brand: ${brand.brandName}`}
+            />
+            <meta
+              name="twitter:image"
+              content={`${sources.imageMidSrc}${product.picture_1}`}
+            />
+            <meta
+              name="twitter:data1"
+              content={`${product.singlePrice * sizeNum}`}
+            />
+            <meta name="twitter:label1" content="Price" />
           </Head>
           <main>
             <section className="product-details-area pt-50 pb-50">
