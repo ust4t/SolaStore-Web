@@ -69,6 +69,7 @@ class ZuckStories extends PureComponent {
         }.bind(this),
         onEnd: function (currentState, callback) {
           const storiesData = loadState("stories", []);
+          if (storiesData.length > 6) saveState("stories", []);
           if (
             !storiesData.includes(
               this.props.storiesData[currentState].masterProductID

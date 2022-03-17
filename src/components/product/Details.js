@@ -210,7 +210,7 @@ const Details = ({
               property="og:image"
               content={
                 product.picture_1
-                  ? `${sources.imageMinSrc}${product.picture_1}`
+                  ? `${sources.imageMidSrc}${product.picture_1}`
                   : "/images/placeholder.jpg"
               }
             />
