@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
-import Script from "next/script";
+// import Script from "next/script";
 import { useRouter } from "next/router";
 
 import useCartAnim from "../../hooks/useCartAnim";
@@ -820,7 +820,8 @@ const Details = ({
               </div>
             </section>
             <span hidden>
-              <Script
+              <script
+                id="detailSchema"
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                   __html: JSON.stringify(schemaData),

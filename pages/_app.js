@@ -311,13 +311,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           name="msapplication-TileImage"
           content="/images/logo/favicon/ms-icon-144x144.jpg"
         />
-        <Script
+        <script
+          id="companySchema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(companySchema),
           }}
         />
-        <Script
+        <script
+          id="searchSchema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(searchSchema),

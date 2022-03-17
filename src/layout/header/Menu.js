@@ -7,17 +7,18 @@ const Menu = () => {
   return (
     <nav id="mobile-menu-four">
       <ul>
-        <li>
+        <li tabIndex={1}>
           <Link href="/">
             <a className="text-uppercase">{t("menu.home")}</a>
           </Link>
         </li>
-        <li>
+        <li tabIndex={1}>
           <Link href="/shop/brandlist">
             <a className="text-uppercase">{t("menu.brands")}</a>
           </Link>
         </li>
         <li
+          tabIndex={1}
           style={{
             background: "var(--color-primary)",
           }}>
@@ -30,7 +31,7 @@ const Menu = () => {
         <li className="p-0">
           <SubMenu />
         </li>
-        <li>
+        <li tabIndex={1}>
           <Link href="/contact">
             <a className="text-uppercase">{t("menu.contact")}</a>
           </Link>

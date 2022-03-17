@@ -17,7 +17,7 @@ const SubMenu = ({ menu }) => {
             },
             i
           ) => (
-            <li key={`${i}_*_${i}`}>
+            <li tabIndex={1} key={`${i}_*_${i}`}>
               <Link
                 href={`/shop/${encodeURLString(
                   selectedCategoryName

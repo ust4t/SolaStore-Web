@@ -1294,7 +1294,7 @@ input.main-search-input:-ms-input-placeholder {
   margin-top: 4px;
   font-size: 15px;
   font-weight: 700;
-  color: #47474d;
+  color: rgb(0 0 0 / 85%);
   font-family: "Muli", sans-serif;
 }
 
