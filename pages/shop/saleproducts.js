@@ -43,7 +43,9 @@ export async function getServerSideProps({ locale, query }) {
       // saleProducts: data.sort(
       //   (a, b) => new Date(b.lastUpdateDate) - new Date(a.lastUpdateDate)
       // ),
-      saleProducts: data,
+      saleProducts: data.sort(
+        (a, b) => new Date(b.lastUpdateDate) - new Date(a.lastUpdateDate)
+      ),
       // revalidate: 180,
       // page: page || 1,
       // count: data.count,

@@ -105,7 +105,9 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       newProducts: newProducts.filter((product) => product.picture_1 !== null),
-      saleProducts: saleProducts.reverse(),
+      saleProducts: saleProducts.sort(
+        (a, b) => new Date(b.lastUpdateDate) - new Date(a.lastUpdateDate)
+      ),
       slidersData,
       bannersData,
       categoriesData,
