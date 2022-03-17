@@ -46,36 +46,36 @@ function MyApp({ Component, pageProps }) {
   const queryClient = new QueryClient();
 
   const fetchMenu = async () => {
-    // store.dispatch({
-    //   type: GET_MAIN_MENU,
-    //   payload: menuData[router.locale],
-    // });
-    try {
-      const { data: menu } = await axios.get(
-        `/api/getFullMenu?lang=${store.getState().lang.lang}`
-      );
-      store.dispatch({
-        type: GET_MAIN_MENU,
-        payload: menuData[router.locale].map((item) => ({
-          ...item,
-          squareCategoryPictureGuidName:
-            menu
-              .map(
-                (menuItem) =>
-                  menuItem.categoryID === item.categoryID &&
-                  menuItem &&
-                  menuItem.squareCategoryPictureGuidName
-              )
-              .filter(Boolean)[0] || item.squareCategoryPictureGuidName,
-        })),
-      });
-    } catch (error) {
-      store.dispatch({
-        type: GET_MAIN_MENU,
-        payload: menuData[router.locale],
-      });
-      // toast.error("Menü alınırken hata oluştu");
-    }
+    store.dispatch({
+      type: GET_MAIN_MENU,
+      payload: menuData[router.locale],
+    });
+    // try {
+    //   const { data: menu } = await axios.get(
+    //     `/api/getFullMenu?lang=${store.getState().lang.lang}`
+    //   );
+    //   store.dispatch({
+    //     type: GET_MAIN_MENU,
+    //     payload: menuData[router.locale].map((item) => ({
+    //       ...item,
+    //       squareCategoryPictureGuidName:
+    //         menu
+    //           .map(
+    //             (menuItem) =>
+    //               menuItem.categoryID === item.categoryID &&
+    //               menuItem &&
+    //               menuItem.squareCategoryPictureGuidName
+    //           )
+    //           .filter(Boolean)[0] || item.squareCategoryPictureGuidName,
+    //     })),
+    //   });
+    // } catch (error) {
+    //   store.dispatch({
+    //     type: GET_MAIN_MENU,
+    //     payload: menuData[router.locale],
+    //   });
+    //   toast.error("Menü alınırken hata oluştu");
+    // }
   };
 
   const checkUser = async () => {
