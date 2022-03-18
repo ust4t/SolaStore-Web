@@ -22,7 +22,9 @@ export default Search;
 export async function getServerSideProps({ query, locale, res }) {
   const { searchText } = query;
   const { data: searchData } = await axios.get(
-    `https://api.solastore.com.tr/api/Helpers/AdvancedSearchTextSearch?text=${searchText}&lang=${locale}&sourceProof=${process.env.SOURCE_PROOF}`
+    `https://api.solastore.com.tr/api/Helpers/AdvancedSearchTextSearch?text=${searchText.toUpperCase()}&lang=${locale}&sourceProof=${
+      process.env.SOURCE_PROOF
+    }`
   );
 
   let allSearchData = [];

@@ -9,6 +9,7 @@ import {
   WishlistIcon,
 } from "../Icons";
 import Menu from "../Menu";
+import Search from "../Search";
 
 import { stickyMobile } from "./HeaderLayout.module.css";
 
@@ -39,25 +40,11 @@ export default function StickyMenus({
 
         <div className="col-2">
           <div className="input-group">
-            {" "}
-            <input
-              ref={searchRef}
-              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-              type="text"
-              className="form-control input-text"
+            <Search
+              handleSearch={handleSearch}
+              searchRef={searchRef}
               placeholder={t("search")}
-              aria-label
-              aria-describedby="basic-addon2"
             />
-            <div className="input-group-append">
-              {" "}
-              <button
-                onClick={handleSearch}
-                className="btn btn-outline-dark btn-lg search-buton search-p"
-                type="button">
-                <i className="fa fa-search" />
-              </button>{" "}
-            </div>
           </div>
         </div>
 
@@ -91,23 +78,11 @@ export default function StickyMenus({
 
         <div className="col-5 col-sm-6 px-0 px-sm-2">
           <div className="input-group">
-            <input
-              ref={searchRef}
-              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-              type="text"
-              className="form-control input-text"
+            <Search
+              handleSearch={handleSearch}
+              searchRef={searchRef}
               placeholder={t("search")}
-              aria-label
-              aria-describedby="basic-addon2"
             />
-            <div className="input-group-append">
-              <button
-                onClick={handleSearch}
-                className="btn btn-outline-dark btn-lg search-buton search-p"
-                type="button">
-                <i className="fa fa-search" />
-              </button>{" "}
-            </div>
           </div>
         </div>
 

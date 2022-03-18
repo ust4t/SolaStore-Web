@@ -48,5 +48,6 @@
   "appointmentTitle": "Rendez-vous",
   "title404": "Page Non Trouvée",
   "digitWarn": "Doit être composé de {{num}} chiffres",
-  "charWarn": "Doit être de {{charNum}} caractères"
+  "charWarn": "Doit être de {{charNum}} caractères",
+  "showMore": "Montre plus"
 }

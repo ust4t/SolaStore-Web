@@ -48,5 +48,6 @@
   "appointmentTitle": "Randevu",
   "title404": "Sayfa Bulunamadı",
   "digitWarn": "{{num}} haneli olmalıdır",
-  "charWarn": "{{charNum}} karakter olmalıdır"
+  "charWarn": "{{charNum}} karakter olmalıdır",
+  "showMore": "Daha Fazla Göster"
 }

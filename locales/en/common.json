@@ -48,5 +48,6 @@
   "appointmentTitle": "Appointment",
   "title404": "Page Not Found",
   "digitWarn": "Must be {{num}} digits",
-  "charWarn": "Must be {{charNum}} characters"
+  "charWarn": "Must be {{charNum}} characters",
+  "showMore": "Show More"
 }

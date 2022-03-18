@@ -196,8 +196,7 @@ function PopularCard({ productData }) {
               query: {
                 selected: currentImages.selectedId,
               },
-            }}
-            locale={lang.lang}>
+            }}>
             <a>
               <Image
                 className="pro-image-front"
@@ -228,8 +227,7 @@ function PopularCard({ productData }) {
               query: {
                 selected: currentImages.selectedId,
               },
-            }}
-            locale={lang.lang}>
+            }}>
             <a>
               <Image
                 src={
@@ -292,8 +290,7 @@ function PopularCard({ productData }) {
                 query: {
                   selected: currentImages.selectedId,
                 },
-              }}
-              locale={lang.lang}>
+              }}>
               {name}
             </Link>
           </h6>

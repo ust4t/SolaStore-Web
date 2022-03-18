@@ -77,6 +77,7 @@ export const Layout2 = ({ setSidebar, darkBg, news, hideWheel = false }) => {
       },
     });
   };
+
   useEffect(() => {
     if (!wheel.showWheel && modalSession && !modals.numberModal.shownBefore) {
       setTimeout(() => {

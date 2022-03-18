@@ -48,5 +48,6 @@
   "appointmentTitle": "Встреча",
   "title404": "Страница Hе Hайдена",
   "digitWarn": "Должно быть {{num}} цифр",
-  "charWarn": "Должно быть от {{charNum}}символов."
+  "charWarn": "Должно быть от {{charNum}}символов.",
+  "showMore": "Показать больше"
 }
