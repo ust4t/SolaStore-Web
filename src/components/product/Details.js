@@ -76,6 +76,10 @@ const Details = ({
     }
   }, [wishlist]);
 
+  useEffect(() => {
+    setProduct(incomingProduct);
+  }, [incomingProduct]);
+
   const handleAddToCart = (e) => {
     e.preventDefault();
     addToCartAction({
@@ -344,7 +348,7 @@ const Details = ({
                           {product &&
                             product.pictures.map((img, i) => (
                               <Tab.Pane
-                                key={i}
+                                key={`${i}.-.-${i}`}
                                 eventKey={`tum-${i}`}
                                 style={{ maxWidth: "900px" }}>
                                 <Zoom
@@ -374,7 +378,9 @@ const Details = ({
                           role="tablist">
                           {product &&
                             product.pictures.map((img, i) => (
-                              <Nav.Item key={i} className="px-1">
+                              <Nav.Item
+                                key={`${i}.c.w${i + 1}`}
+                                className="px-1">
                                 <Nav.Link
                                   eventKey={`tum-${i}`}
                                   className="mr-0"
@@ -452,8 +458,9 @@ const Details = ({
                                 (variant) =>
                                   variant.pictures && variant.pictures.length
                               )
-                              .map((variant) => (
+                              .map((variant, i) => (
                                 <a
+                                  key={`${i}.--${i}`}
                                   onClick={() => {
                                     setProduct({
                                       ...variant,
@@ -707,8 +714,9 @@ const Details = ({
                                   (variant) =>
                                     variant.pictures && variant.pictures.length
                                 )
-                                .map((variant) => (
+                                .map((variant, i) => (
                                   <a
+                                    key={`${i}.pw.!${i + 1}`}
                                     onClick={() => {
                                       setProduct({
                                         ...variant,
