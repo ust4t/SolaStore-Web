@@ -3,23 +3,24 @@ import useTranslation from "next-translate/useTranslation";
 import Layout from "../Layout";
 import {
   container,
-  img404,
+  imgStatus,
   textContainer,
   title,
   imgContainer,
-} from "./Custom404.module.css";
+} from "./CustomStatusLayout.module.css";
 
-export default function Custom404Layout() {
-  const { t } = useTranslation("common");
+export default function CustomStatusLayout({ img, statusCode, statusTitle }) {
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       <div className={container}>
         <div className={imgContainer}>
-          <img src="/images/404.jpg" className={img404} />
+          <img src={img} className={imgStatus} />
           <div className={textContainer}>
-            <h1 className={`text-center fw-bold text-white ${title}`}>404</h1>
+            <h1 className={`text-center fw-bold text-white ${title}`}>
+              {statusCode}
+            </h1>
             <h2 className="text-center fw-bold fs-2 text-white">
-              {t("title404")}
+              {statusTitle}
             </h2>
           </div>
         </div>
