@@ -31,31 +31,42 @@ function Search({ handleSearch, searchRef, placeholder }) {
     setShowSuggest(false);
   }
 
-  const handleSearchAutoComplete = () => {
-    clearTimeout(timeout);
+  const handleSearchAutoComplete = (e) => {
+    const charCode = e.keyCode;
 
-    timeout = setTimeout(async function () {
-      if (searchRef.current && searchRef.current.value.length >= 1) {
-        try {
-          setLoading(true);
-          setShowSuggest(true);
-          const { data } = await axios.get(
-            `/api/helpers/searchResult?searchQuery=${replaceUnescaped(
-              searchRef.current.value.toLowerCase()
-            ).toUpperCase()}&lang=${lang.lang}`
-          );
-          setSuggest(data);
-        } catch (error) {
+    if (
+      (charCode > 64 && charCode < 91) ||
+      (charCode > 96 && charCode < 123) ||
+      charCode == 8 ||
+      (charCode >= 48 && charCode <= 57) ||
+      charCode == 8 /*BCKSPC*/ ||
+      charCode == 45 /*minus sign*/
+    ) {
+      clearTimeout(timeout);
+
+      timeout = setTimeout(async function () {
+        if (searchRef.current && searchRef.current.value.length >= 1) {
+          try {
+            setLoading(true);
+            setShowSuggest(true);
+            const { data } = await axios.get(
+              `/api/helpers/searchResult?searchQuery=${replaceUnescaped(
+                searchRef.current.value.toLowerCase()
+              ).toUpperCase()}&lang=${lang.lang}`
+            );
+            setSuggest(data);
+          } catch (error) {
+            setSuggest([]);
+            setShowSuggest(false);
+          } finally {
+            setLoading(false);
+          }
+        } else {
           setSuggest([]);
           setShowSuggest(false);
-        } finally {
-          setLoading(false);
         }
-      } else {
-        setSuggest([]);
-        setShowSuggest(false);
-      }
-    }, 1000);
+      }, 1000);
+    }
   };
 
   return (

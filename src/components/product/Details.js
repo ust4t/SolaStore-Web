@@ -316,7 +316,7 @@ const Details = ({
               <div className="container">
                 <div className="row">
                   <div
-                    className={` ${
+                    className={`${
                       upthumb ? "product-modal col-lg-5" : "col-lg-7"
                     }`}>
                     <Tab.Container
