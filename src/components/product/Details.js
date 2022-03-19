@@ -450,9 +450,7 @@ const Details = ({
                           <h4 className="widget-title1 text-center text-md-start">
                             {t("otherColors")}
                           </h4>
-                          <div
-                            className="details-filter-row details-row-size"
-                            style={{ margin: 5 }}>
+                          <div className="details-filter-row details-row-size justify-content-center">
                             {[productMain, ...productVariants]
                               .filter(
                                 (variant) =>
@@ -460,6 +458,7 @@ const Details = ({
                               )
                               .map((variant, i) => (
                                 <a
+                                  className="mx-2 my-3"
                                   key={`${i}.--${i}`}
                                   onClick={() => {
                                     setProduct({
@@ -491,8 +490,8 @@ const Details = ({
                                           })}
                                           alt={variant.productShortName}
                                           title={variant.productShortName}
-                                          width={90}
-                                          height={140}
+                                          width={130}
+                                          height={205}
                                         />
                                       </span>
                                     </div>

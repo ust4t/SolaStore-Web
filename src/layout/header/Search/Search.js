@@ -33,6 +33,7 @@ function Search({ handleSearch, searchRef, placeholder }) {
 
   const handleSearchAutoComplete = (e) => {
     const charCode = e.keyCode;
+    const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
 
     if (
       (charCode > 64 && charCode < 91) ||
@@ -40,7 +41,8 @@ function Search({ handleSearch, searchRef, placeholder }) {
       charCode == 8 ||
       (charCode >= 48 && charCode <= 57) ||
       charCode == 8 /*BCKSPC*/ ||
-      charCode == 45 /*minus sign*/
+      charCode == 45 /*minus sign*/ ||
+      isMobileDevice
     ) {
       clearTimeout(timeout);
 
