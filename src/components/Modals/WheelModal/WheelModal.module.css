@@ -112,3 +112,9 @@
 .copy_button:hover {
   background-color: var(--color-primary-dark);
 }
+
+@media (max-width: 300px) {
+  .result_input {
+    width: 230px;
+  }
+}

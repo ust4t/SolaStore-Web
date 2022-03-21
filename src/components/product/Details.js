@@ -30,6 +30,7 @@ import {
   price_box,
 } from "./Details.module.css";
 import { Arrow } from "../sliders/SliderArrows";
+import ImageModal from "../Modals/ImageModal";
 import Heart from "../Heart";
 import { encodeURLString } from "../../utils/utils";
 
@@ -49,6 +50,7 @@ const Details = ({
   const { addToWishList, removeFromWishList } = wishListActions;
   const [product, setProduct] = useState(incomingProduct);
   const [shareModal, setShareModal] = useState(false);
+  const [imageModal, setImageModal] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [imageKey, setImageKey] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -352,6 +354,7 @@ const Details = ({
                                 eventKey={`tum-${i}`}
                                 style={{ maxWidth: "900px" }}>
                                 <Zoom
+                                  onClick={() => setImageModal(true)}
                                   className="detail-image-front"
                                   width="600"
                                   height="900"
@@ -443,7 +446,14 @@ const Details = ({
                         </Nav>
                       </div>
                     </Tab.Container>
-
+                    <ImageModal
+                      show={imageModal}
+                      handleClose={() => setImageModal(false)}
+                      onClickPrev={() => handlePrev({ imageKey, product })}
+                      onClickNext={() => handleNext({ imageKey, product })}
+                      imageKey={imageKey}
+                      product={product}
+                    />
                     {productVariants.length > 0 && (
                       <div className="product-details-info d-flex d-lg-none">
                         <div className="sidebar-product-color">

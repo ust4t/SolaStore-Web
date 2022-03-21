@@ -99,13 +99,22 @@
 
 .wheel_overlay_title {
   position: absolute;
+  width: 95%;
   top: 50%;
   left: 50%;
   color: #fff;
+  font-size: 2.35rem;
   text-align: center;
   transform: translate(-50%, -50%) rotate(-15deg);
   text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
     2px 2px 0 #000;
   z-index: 501;
   cursor: pointer;
+}
+
+@media (max-width: 300px) {
+  .wheel_overlay_title {
+    width: 100%;
+    font-size: 2rem;
+  }
 }

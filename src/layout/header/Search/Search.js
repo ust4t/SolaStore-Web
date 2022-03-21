@@ -32,43 +32,43 @@ function Search({ handleSearch, searchRef, placeholder }) {
   }
 
   const handleSearchAutoComplete = (e) => {
-    const charCode = e.keyCode;
-    const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
+    // const charCode = e.keyCode;
+    // const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
 
-    if (
-      (charCode > 64 && charCode < 91) ||
-      (charCode > 96 && charCode < 123) ||
-      charCode == 8 ||
-      (charCode >= 48 && charCode <= 57) ||
-      charCode == 8 /*BCKSPC*/ ||
-      charCode == 45 /*minus sign*/ ||
-      isMobileDevice
-    ) {
-      clearTimeout(timeout);
+    // if (
+    //   (charCode > 64 && charCode < 91) ||
+    //   (charCode > 96 && charCode < 123) ||
+    //   charCode == 8 ||
+    //   (charCode >= 48 && charCode <= 57) ||
+    //   charCode == 8 /*BCKSPC*/ ||
+    //   charCode == 45 /*minus sign*/ ||
+    //   isMobileDevice
+    // ) {
+    clearTimeout(timeout);
 
-      timeout = setTimeout(async function () {
-        if (searchRef.current && searchRef.current.value.length >= 1) {
-          try {
-            setLoading(true);
-            setShowSuggest(true);
-            const { data } = await axios.get(
-              `/api/helpers/searchResult?searchQuery=${replaceUnescaped(
-                searchRef.current.value.toLowerCase()
-              ).toUpperCase()}&lang=${lang.lang}`
-            );
-            setSuggest(data);
-          } catch (error) {
-            setSuggest([]);
-            setShowSuggest(false);
-          } finally {
-            setLoading(false);
-          }
-        } else {
+    timeout = setTimeout(async function () {
+      if (searchRef.current && searchRef.current.value.length >= 1) {
+        try {
+          setLoading(true);
+          setShowSuggest(true);
+          const { data } = await axios.get(
+            `/api/helpers/searchResult?searchQuery=${replaceUnescaped(
+              searchRef.current.value.toLowerCase()
+            ).toUpperCase()}&lang=${lang.lang}`
+          );
+          setSuggest(data);
+        } catch (error) {
           setSuggest([]);
           setShowSuggest(false);
+        } finally {
+          setLoading(false);
         }
-      }, 1000);
-    }
+      } else {
+        setSuggest([]);
+        setShowSuggest(false);
+      }
+    }, 1000);
+    // }
   };
 
   return (
@@ -76,7 +76,7 @@ function Search({ handleSearch, searchRef, placeholder }) {
       <input
         onClick={() => !showSuggest && setShowSuggest(true)}
         ref={searchRef}
-        onKeyUp={handleSearchAutoComplete}
+        onChange={handleSearchAutoComplete}
         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
         type="text"
         className="form-control input-text"
