@@ -81,7 +81,7 @@ const ReelsCard = ({
         type: SET_STORY_PAGE,
         payload: {
           page: page.page + 1,
-          lastIndex: index,
+          lastIndex: 0,
         },
       });
       Router.push({
@@ -95,6 +95,13 @@ const ReelsCard = ({
       return;
     }
     if (embla) embla.scrollTo(embla.selectedScrollSnap() + 1);
+    dispatch({
+      type: SET_STORY_PAGE,
+      payload: {
+        page: page.page,
+        lastIndex: embla.selectedScrollSnap(),
+      },
+    });
   };
 
   const handleStoryClose = () => {
@@ -118,7 +125,7 @@ const ReelsCard = ({
           accept="video/*"
           playsInline
           muted={false}
-          onClick={handlePlay}
+          // onClick={handlePlay}
           onPlay={() => setPaused(false)}
           onPause={() => setPaused(true)}
           onEnded={handleVideoEnded}

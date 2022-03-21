@@ -23,7 +23,7 @@ class ZuckStories extends PureComponent {
           `/detail/${encodeURLString(story.productShortName)}:${
             story.masterProductID
           }?selected=${story.productID}`,
-          timestamp(),
+          timestamp(story.lastUpdateDate),
           story.pictures.map((subStory) => [
             story.masterProductID,
             "photo",
@@ -35,7 +35,7 @@ class ZuckStories extends PureComponent {
             }?selected=${story.productID}`,
             t("home:seeProduct"),
             false,
-            timestamp(),
+            timestamp(story.lastUpdateDate),
           ])
         )
       ),

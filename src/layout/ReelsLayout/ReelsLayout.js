@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   emblaMain,
@@ -10,15 +11,16 @@ import {
 import ReelsCard from "../../components/Cards/ReelsCard";
 import ShareModal from "../../components/Modals/ShareModal";
 import sources from "../../../sources";
-import { useSelector } from "react-redux";
+import { SET_STORY_PAGE } from "../../redux/action/type";
 
 export default function ReelsLayout({ reels, onClose }) {
   const { page } = useSelector((state) => state);
+  const dispatch = useDispatch();
   const [slidesInView, setSlidesInView] = useState([]);
   const [viewportRef, embla] = useEmblaCarousel({
     axis: "y",
     skipSnaps: false,
-    startIndex: page.lastIndex || 0,
+    // startIndex: page.lastIndex || 0,
   });
   const [shareModal, setShareModal] = useState({
     isOpen: false,
@@ -39,6 +41,13 @@ export default function ReelsLayout({ reels, onClose }) {
         video.pause();
       });
       videoRef.current[embla.selectedScrollSnap()].play();
+      dispatch({
+        type: SET_STORY_PAGE,
+        payload: {
+          page: page.page,
+          lastIndex: embla.selectedScrollSnap(),
+        },
+      });
     }
   }, [embla, videoRef]);
 
@@ -58,6 +67,7 @@ export default function ReelsLayout({ reels, onClose }) {
 
   useEffect(() => {
     if (!embla) return;
+    embla.scrollTo(page.lastIndex || 0);
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowDown") {
         embla.scrollNext();

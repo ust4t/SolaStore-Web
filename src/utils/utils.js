@@ -11,7 +11,7 @@ export const activeData = (active, sort, products) => {
   };
 };
 
-export const timestamp = () => {
+export const timestamp = (dateParam) => {
   let timeIndex = 0;
   let shifts = [
     35,
@@ -23,7 +23,7 @@ export const timestamp = () => {
     60 * 60 * 24 * 10,
   ];
 
-  let now = new Date();
+  let now = new Date(dateParam);
   let shift = shifts[timeIndex++] || 0;
   let date = new Date(now - shift * 1000);
 
