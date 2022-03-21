@@ -13,6 +13,7 @@ import {
   close_icon,
 } from "../../product/Details.module.css";
 import Zoom from "../../Zoom";
+import useDetectOutside from "../../../hooks/useDetectOutside";
 
 function ImageModal({
   show,
@@ -23,6 +24,15 @@ function ImageModal({
   product,
 }) {
   const videoRef = useRef();
+  const imageRef = useRef();
+
+  useDetectOutside(imageRef, hideImage);
+
+  function hideImage() {
+    videoRef.current.pause();
+    videoRef.current.currentTime = 0;
+    handleClose();
+  }
 
   const checkImage = ({ source, img }) =>
     product.picture_1 ? `${source}${img}` : "/images/placeholder.jpg";
@@ -57,7 +67,9 @@ function ImageModal({
           onClick={handleClose}
         />
         <Tab.Container activeKey={`tum-${imageKey}`} defaultActiveKey={`tum-0`}>
-          <div className="pro-details-tab d-flex d-lg-block flex-column">
+          <div
+            ref={imageRef}
+            className="pro-details-tab d-flex d-lg-block flex-column">
             <Tab.Content className="tab-content custom-content position-relative">
               <Arrow
                 onClick={onClickPrev}
