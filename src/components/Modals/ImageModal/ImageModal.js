@@ -29,8 +29,10 @@ function ImageModal({
   useDetectOutside(imageRef, hideImage);
 
   function hideImage() {
-    videoRef.current.pause();
-    videoRef.current.currentTime = 0;
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
     handleClose();
   }
 
@@ -58,19 +60,19 @@ function ImageModal({
       contentClassName={modalBg}
       dialogClassName={modalContainer}
       aria-labelledby="image-modal-title">
-      <Modal.Body className="position-relative">
-        <i
-          style={{
-            zIndex: "1",
-          }}
-          className={`fa fa-times position-absolute cursor-pointer ${close_icon}`}
-          onClick={handleClose}
-        />
+      <Modal.Body>
         <Tab.Container activeKey={`tum-${imageKey}`} defaultActiveKey={`tum-0`}>
           <div
             ref={imageRef}
             className="pro-details-tab d-flex d-lg-block flex-column">
             <Tab.Content className="tab-content custom-content position-relative">
+              <i
+                style={{
+                  zIndex: "1",
+                }}
+                className={`fa fa-times position-absolute cursor-pointer ${close_icon}`}
+                onClick={handleClose}
+              />
               <Arrow
                 onClick={onClickPrev}
                 className={`${arrow} ${arrowLeft}`}
