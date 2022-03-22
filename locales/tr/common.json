@@ -47,6 +47,7 @@
   "searchTitle": "Arama",
   "appointmentTitle": "Randevu",
   "title404": "Sayfa Bulunamadı",
+  "title500": "Sunucu Tarafında Bir Sorun Oluştu",
   "digitWarn": "{{num}} haneli olmalıdır",
   "charWarn": "{{charNum}} karakter olmalıdır",
   "showMore": "Daha Fazla Göster"

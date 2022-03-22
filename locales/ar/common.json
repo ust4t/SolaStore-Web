@@ -47,6 +47,7 @@
   "searchTitle": "بحث",
   "appointmentTitle": "ميعاد",
   "title404": "الصفحة غير موجودة",
+  "title500": "حدث خطأ في جانب الخادم",
   "digitWarn": "يجب أن يتألف من {{num}} رقم",
   "charWarn": "يجب أن يكون من {{charNum}} حرفًا",
   "showMore": "أظهر المزيد"

@@ -9,7 +9,7 @@ export default function Custom500() {
     <CustomStatusLayout
       img="/images/500.jpg"
       statusCode="500"
-      statusTitle={t("error")}
+      statusTitle={t("title500")}
     />
   );
 }

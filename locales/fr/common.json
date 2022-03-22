@@ -47,6 +47,7 @@
   "searchTitle": "Rechercher",
   "appointmentTitle": "Rendez-vous",
   "title404": "Page Non Trouvée",
+  "title500": "Une erreur côté serveur s'est produite",
   "digitWarn": "Doit être composé de {{num}} chiffres",
   "charWarn": "Doit être de {{charNum}} caractères",
   "showMore": "Montre plus"

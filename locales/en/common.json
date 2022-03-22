@@ -47,6 +47,7 @@
   "searchTitle": "Search",
   "appointmentTitle": "Appointment",
   "title404": "Page Not Found",
+  "title500": "Server Side Error Occurred",
   "digitWarn": "Must be {{num}} digits",
   "charWarn": "Must be {{charNum}} characters",
   "showMore": "Show More"
