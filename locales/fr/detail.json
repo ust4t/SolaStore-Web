@@ -9,5 +9,7 @@
   "otherColors": "Autres couleurs du produit",
   "desc": "La description",
   "discountTitle": "{{price}} $ de réduction dans la catégorie {{category}}!",
-  "discountDesc": "C'est le prix réduit du produit, ne le manquez pas en l'ajoutant à votre panier !"
+  "discountDesc": "C'est le prix réduit du produit, ne le manquez pas en l'ajoutant à votre panier !",
+  "whatsapp": "Je veux en savoir plus sur {{product}}",
+  "whatsapp_btn": "Message sur WhatsApp"
 }

@@ -28,6 +28,7 @@ import {
   mobileCartBtn,
   discount_banner,
   price_box,
+  whatsappButton,
 } from "./Details.module.css";
 import { Arrow } from "../sliders/SliderArrows";
 import ImageModal from "../Modals/ImageModal";
@@ -638,6 +639,42 @@ const Details = ({
                               <span className="fs-6">{product.sizes}</span>
                             </li>
                           </ul>
+                          <div className="pro-cart-btn ms-auto d-block d-sm-none my-2">
+                            <a
+                              href={`https://api.whatsapp.com/send?phone=905554000005&text=${t(
+                                "whatsapp",
+                                {
+                                  product: product.productShortName,
+                                }
+                              )}`}
+                              style={{
+                                backgroundColor: "#25d366",
+                                lineHeight: "1.4",
+                                padding: ".75rem 1rem",
+                              }}
+                              className={`fs-6 px-3 ${whatsappButton}`}
+                              target="_blank">
+                              <i className="fab fa-whatsapp fa-lg" />{" "}
+                              {t("whatsapp_btn")}
+                            </a>
+                          </div>
+                        </div>
+                        <div className="pro-cart-btn ms-auto d-none d-sm-block">
+                          <a
+                            href={`https://api.whatsapp.com/send?phone=905554000005&text=${t(
+                              "whatsapp",
+                              {
+                                product: product.productShortName,
+                              }
+                            )}`}
+                            style={{
+                              backgroundColor: "#25d366",
+                            }}
+                            className={`fs-6 px-3 ${whatsappButton}`}
+                            target="_blank">
+                            <i className="fab fa-whatsapp fa-lg" />{" "}
+                            {t("whatsapp_btn")}
+                          </a>
                         </div>
                         <div className="d-flex d-lg-none justify-content-center ms-auto">
                           <div className="pro-wish me-2">
@@ -650,7 +687,7 @@ const Details = ({
                           <div className="pro-wish">
                             <a
                               href="#"
-                              className={"fs-3"}
+                              className="fs-3"
                               onClick={() => setShareModal(true)}>
                               <i className="fas fa-share-alt" />
                             </a>

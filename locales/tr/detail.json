@@ -9,5 +9,7 @@
   "otherColors": "Ürünün Diğer Renkleri",
   "desc": "Açıklama",
   "discountTitle": "{{category}} Kategorisinde {{price}}$ indirim!",
-  "discountDesc": "Bu ürünün indirimli fiyatıdır, sepetinize ekleyip fırsatı kaçırmayın!"
+  "discountDesc": "Bu ürünün indirimli fiyatıdır, sepetinize ekleyip fırsatı kaçırmayın!",
+  "whatsapp": "{{product}} hakkında bilgi almak istiyorum",
+  "whatsapp_btn": "Whatsapp'a Gönder"
 }

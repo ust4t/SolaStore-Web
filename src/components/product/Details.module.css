@@ -112,6 +112,12 @@
   right: 2%;
 }
 
+.whatsappButton:hover {
+  background-color: #fff !important;
+  color: #25d366 !important;
+  border: 1.5px solid#25d366;
+}
+
 @media (max-width: 1400px) {
   .discount_banner {
     margin: 30px 20px;
