@@ -14,6 +14,7 @@ import {
   sliderButton,
   slider__content,
   sliderTitle,
+  sliderTopTitle,
 } from "./Slider.module.css";
 import EmblaSlider from "../EmblaSlider";
 
@@ -52,7 +53,8 @@ export default function SliderProducts({ sliders }) {
                 layout="fill"
                 priority={true}>
                 <div className={slider__content}>
-                  <h5 className="text-white fadeInUp wow text-uppercase text-shadow">
+                  <h5
+                    className={`text-white fadeInUp wow text-uppercase text-shadow ${sliderTopTitle}`}>
                     {selectedText1}
                   </h5>
                   <h2
