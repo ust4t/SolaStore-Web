@@ -76,9 +76,7 @@ const ProductCategory = ({
   };
 
   useEffect(() => {
-    router.push(
-      `/shop/${catRoute}?page=${router.query.page || 1}&pageSize=${pageSize}`
-    );
+    router.push(`/shop/${catRoute}?page=${1}&pageSize=${pageSize}`);
   }, [pageSize]);
 
   //   useEffect(() => {
