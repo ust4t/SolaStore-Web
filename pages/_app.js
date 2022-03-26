@@ -19,6 +19,8 @@ import {
   SET_WHEEL_DATA,
   SET_COUNTRY,
   CHANGE_LANG,
+  SET_WHEEL_MODAL,
+  SET_WHEEL_ICON,
 } from "../src/redux/action/type";
 import menuData from "../public/menuData.json";
 // import toast from "react-hot-toast";
@@ -161,6 +163,19 @@ function MyApp({ Component, pageProps }) {
     //     locale: store.getState().lang.lang,
     //   });
     // }
+    store.dispatch({
+      type: SET_WHEEL_ICON,
+      payload: false,
+    });
+
+    setTimeout(
+      () =>
+        store.dispatch({
+          type: SET_WHEEL_ICON,
+          payload: true,
+        }),
+      30000
+    );
     detectCountry();
     if (spinStatus.expires < Date.now())
       saveState("spinStatus", {

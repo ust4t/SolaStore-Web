@@ -38,7 +38,6 @@ export const Layout2 = ({ setSidebar, darkBg, news, hideWheel = false }) => {
   const router = useRouter();
   const searchRef = useRef();
   const [showMenu, setShowMenu] = useState(false);
-  const [showWheel, setShowWheel] = useState(false);
   const [modals, setModals] = useState({
     numberModal: {
       show: false,
@@ -80,7 +79,6 @@ export const Layout2 = ({ setSidebar, darkBg, news, hideWheel = false }) => {
   };
 
   useEffect(() => {
-    setTimeout(() => setShowWheel(true), 30000);
     if (!wheel.showWheel && modalSession && !modals.numberModal.shownBefore) {
       setTimeout(() => {
         if (speed.y < 6000)
@@ -129,7 +127,7 @@ export const Layout2 = ({ setSidebar, darkBg, news, hideWheel = false }) => {
         }}>
         <WhatsappIcon size={55} round={true} />
       </a>
-      {showWheel && !spinStatus.hasSpinned && !hideWheel && (
+      {wheel.showIcon && !spinStatus.hasSpinned && !hideWheel && (
         <WheelsIcon
           title={t("home:wheel.wheelTitle")}
           onWheelClick={() =>

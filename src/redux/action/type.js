@@ -33,6 +33,7 @@ export const FILTER_PRICE = "FILTER_PRICE";
 export const SET_STORY_PAGE = "SET_STORY_PAGE";
 export const SET_WHEEL_MODAL = "SET_WHEEL_MODAL";
 export const SET_WHEEL_DATA = "SET_WHEEL_DATA";
+export const SET_WHEEL_ICON = "SET_WHEEL_ICON";
 
 // cart
 export const SET_CART_DATA_REDUX = "SET_CART_DATA_REDUX";

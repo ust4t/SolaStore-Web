@@ -1,7 +1,12 @@
-import { SET_WHEEL_DATA, SET_WHEEL_MODAL } from "../action/type";
+import {
+  SET_WHEEL_DATA,
+  SET_WHEEL_ICON,
+  SET_WHEEL_MODAL,
+} from "../action/type";
 
 const wheel = (
   state = {
+    showIcon: false,
     showWheel: false,
     wheelData: [],
   },
@@ -13,6 +18,13 @@ const wheel = (
       return {
         ...state,
         showWheel: payload,
+      };
+    }
+
+    case SET_WHEEL_ICON: {
+      return {
+        ...state,
+        showIcon: payload,
       };
     }
 
