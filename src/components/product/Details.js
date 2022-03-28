@@ -536,6 +536,9 @@ const Details = ({
                                 {product.price &&
                                   `$${product.singlePrice * sizeNum} USD`}
                               </span>
+                              <p className="fs-5 text-danger fw-bold">
+                                {t("priceInfo")}
+                              </p>
                             </>
                           ) : (
                             <>
@@ -544,6 +547,9 @@ const Details = ({
                                 {product.price &&
                                   `$${product.singlePrice * sizeNum} USD`}
                               </span>
+                              <p className="fs-5 text-danger fw-bold">
+                                {t("priceInfo")}
+                              </p>
                             </>
                           )}
                         </span>

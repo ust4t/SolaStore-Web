@@ -11,5 +11,6 @@
   "discountTitle": "Скидка ${{price}} в категории {{category}}!",
   "discountDesc": "Это сниженная цена товара, не пропустите, добавив его в корзину!",
   "whatsapp": "Я хочу знать о {{product}}",
-  "whatsapp_btn": "Сообщение в WhatsApp"
+  "whatsapp_btn": "Сообщение в WhatsApp",
+  "priceInfo": "Цена 4 размера"
 }

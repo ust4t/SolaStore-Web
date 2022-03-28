@@ -11,5 +11,6 @@
   "discountTitle": "خصم {{price}} دولار في فئة {{category}}!",
   "discountDesc": "هذا سعر مخفض للمنتج ، لا تفوّته بإضافته إلى سلة التسوق الخاصة بك!",
   "whatsapp": "أرغب في الحصول على معلومات حول {{product}}",
-  "whatsapp_btn": "الرسالة على WhatsApp"
+  "whatsapp_btn": "الرسالة على WhatsApp",
+  "priceInfo": "سعر 4 مقاسات"
 }

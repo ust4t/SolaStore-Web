@@ -19,7 +19,6 @@ import {
   SET_WHEEL_DATA,
   SET_COUNTRY,
   CHANGE_LANG,
-  SET_WHEEL_MODAL,
   SET_WHEEL_ICON,
 } from "../src/redux/action/type";
 import menuData from "../public/menuData.json";
