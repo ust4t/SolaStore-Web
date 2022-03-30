@@ -26,8 +26,8 @@ function PopularProducts() {
       ) : (
         <EmblaSlider
           config={{
-            infinite: true,
-            loop: true,
+            // infinite: true,
+            // loop: true,
             draggable: true,
             dragFree: true,
             skipSnaps: false,

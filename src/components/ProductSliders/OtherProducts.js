@@ -1,15 +1,15 @@
-import React from "react";
+import React, { memo } from "react";
 
 import PopularCard from "../Cards/PopularCard";
 import EmblaSlider from "../EmblaSlider";
 import { embla__slide, embla__slide__inner } from "./ProductSliders.module.css";
 
-export default function OtherProducts({ products, id }) {
+function OtherProducts({ products }) {
   return (
     <EmblaSlider
       config={{
-        infinite: true,
-        loop: true,
+        // infinite: true,
+        // loop: true,
         draggable: true,
         dragFree: true,
         skipSnaps: false,
@@ -46,3 +46,5 @@ export default function OtherProducts({ products, id }) {
     </EmblaSlider>
   );
 }
+
+export default memo(OtherProducts);

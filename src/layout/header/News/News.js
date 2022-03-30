@@ -53,7 +53,17 @@ export const News_4 = () => {
         <div className="col-xl-5 col-lg-5 col-md-12">
           <div className="header-top-offer">
             <p className="text-center text-lg-start">
-              +90 (0212) 458 45 00 / +90 (0555) 400 00 05 / +90 (0555) 400 00 11
+              <a href="tel:+902124584500" className="text-dark">
+                +90 (212) 458 45 00
+              </a>{" "}
+              /{" "}
+              <a href="tel:+905554000005" className="text-dark">
+                +90 (555) 400 00 05
+              </a>{" "}
+              /{" "}
+              <a href="tel:+905554000011" className="text-dark">
+                +90 (555) 400 00 11
+              </a>
             </p>
           </div>
         </div>
