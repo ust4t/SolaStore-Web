@@ -310,8 +310,8 @@ const Cart = ({ saleTeam }) => {
                           src={`${sources.saleTeam}/${pictureGuidName}`}
                           alt={name}
                           className="rounded-circle"
-                          width={110}
-                          height={110}
+                          width={125}
+                          height={125}
                         />
 
                         <h5 className="fs-4 mt-1 fw-bold text-center">
@@ -491,8 +491,8 @@ const Cart = ({ saleTeam }) => {
                               src={currentSeller.img}
                               alt={currentSeller.name}
                               className="rounded-circle align-self-center"
-                              width={"100px"}
-                              height={"100px"}
+                              width={"125px"}
+                              height={"125px"}
                               layout="fixed"
                             />
                           )}
