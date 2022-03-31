@@ -30,7 +30,7 @@ const PageTitle = ({
               {thankupage && (
                 <i
                   className="fa fa-check-circle text-success fs-100 mb-3"
-                  ariaHidden="true"
+                  aria-hidden="true"
                 />
               )}
 

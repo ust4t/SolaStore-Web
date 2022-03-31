@@ -10,7 +10,7 @@ const PopularProducts = dynamic(() =>
 );
 
 export default function TabLayout({ newProducts, saleProducts }) {
-  const [tab, setTab] = useState("popular");
+  const [tab, setTab] = useState("new");
   const { t } = useTranslation("home");
 
   return (

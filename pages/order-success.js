@@ -1,21 +1,105 @@
 import axios from "axios";
+import Script from "next/script";
 import useTranslation from "next-translate/useTranslation";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Head from "next/head";
 
 import sources from "../sources";
 import { StoreContext } from "../src/context/StoreProvider";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
+import { useSelector } from "react-redux";
 
 const OrderSuccess = ({ orderList }) => {
+  // const [gtag, setGtag] = useState([]);
+  // const { lang } = useSelector((state) => state.lang);
   const { t } = useTranslation("order");
   const { state } = useContext(StoreContext);
   const { completedCartData } = state;
+
+  const subTotal = completedCartData.carts.reduce(
+    (acc, curr) => acc + curr.price * curr.quantity,
+    0
+  );
+
+  // const mapGtag = async () => {
+  //   await Promise.all(
+  //     completedCartData.carts.map(async (cart) => {
+  //       const { data: category } = await axios(
+  //         `/api/product/getCategory?id=${cart.productID}?lang=${lang}`
+  //       );
+
+  //       setGtag([
+  //         ...gtag,
+  //         `ga('ecommerce:addItem', {
+  //         'id': '${orderList[0].orderID}',
+  //         'name':  '${cart.productShortName}',
+  //         'sku': '${cart.productShortName.slice(
+  //           cart.productShortName.indexOf("-") + 1,
+  //           cart.productShortName.length
+  //         )}',
+  //         'category': '${
+  //           category.subCategoriesList.selectedSubCategoryName
+  //         }',
+  //         'price': '${Number(cart.price).toFixed(2)}',
+  //         'quantity':'${Number(cart.quantity)}'
+  //         });
+  //       `,
+  //       ]);
+  //     })
+  //   );
+  // };
+
   return (
     <>
       <Head>
         <title>Sola Store | {t("ordersuccess")}</title>
+        <script type="text/javascript">
+          {`gtag('event', 'conversion', {
+      'send_to': 'AW-359547484/9PdGCMzym64DENyEuasB',
+      'value': ${subTotal},
+      'currency': 'USD',
+      'transaction_id': ''
+          });`}
+        </script>
+
+        <script type="text/javascript">
+          {`
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ 
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) 
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-73451034-1', 'solastore.com.tr'); 
+                ga('require', 'ecommerce', 'ecommerce.js');
+
+                ga('ecommerce:addTransaction', {
+                'id': '${orderList[0].orderID}',
+                'affiliation': 'Sola Store', 
+                'revenue': '${subTotal}', 
+                'shipping': '', 
+                'tax': '',  
+                });
+                
+                ${completedCartData.carts
+                  .map((cart) => {
+                    return `ga('ecommerce:addItem', { 
+                    'id': '${orderList[0].orderID}',
+                    'name':  '${cart.productShortName}', 
+                    'sku': '${cart.productShortName.slice(
+                      cart.productShortName.indexOf("-") + 1,
+                      cart.productShortName.length
+                    )}',
+                    'category': '',       
+                    'price': '${Number(cart.price).toFixed(2)}', 
+                    'quantity':'${Number(cart.quantity)}'
+                    });
+                  `;
+                  })
+                  .join("")}
+                ga('ecommerce:send');
+`}
+        </script>
       </Head>
       <Layout news={4} logoLeft layout={2} paymentOption>
         <main>

@@ -35,8 +35,10 @@ import "animate.css";
 import "antd/dist/antd.css";
 import "../styles/global.css";
 
+// const analyticID1 = "UA-73451034-1";
+// const analyticID2 = "G-SWHHCJ1EK6";
 const analyticID1 = "UA-73451034-1";
-const analyticID2 = "G-SWHHCJ1EK6";
+const analyticID2 = "AW-359547484";
 
 function MyApp({ Component, pageProps }) {
   const spinStatus = loadState("spinStatus", {
@@ -377,8 +379,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${analyticID1}', { page_path: window.location.pathname }); 
-          gtag('config', '${analyticID2}', { page_path: window.location.pathname }); 
+          gtag('config', '${analyticID2}'); 
+          `}
+      </Script>
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${analyticID1}'); 
           `}
       </Script>
       <Script id="facebook-analytics" strategy="afterInteractive">

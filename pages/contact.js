@@ -24,7 +24,7 @@ export default function Contact() {
             frameborder="0"
             style={{ border: 0 }}
             allowfullscreen=""
-            ariaHidden="false"
+            aria-hidden="false"
             tabindex="0"
           />
           <div
