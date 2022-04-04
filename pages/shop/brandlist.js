@@ -51,7 +51,6 @@ export async function getStaticProps() {
   const brandsRes = await fetch(
     `https://api.solastore.com.tr/api/Brand/GetAllBrands?sourceProof=${process.env.SOURCE_PROOF}`
   );
-
   const brands = await brandsRes.json();
 
   return {
