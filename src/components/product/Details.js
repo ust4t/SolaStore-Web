@@ -5,10 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
-// import Script from "next/script";
 import { useRouter } from "next/router";
 
-import useCartAnim from "../../hooks/useCartAnim";
 import sources from "../../../sources";
 import { StoreContext } from "../../context/StoreProvider";
 import Layout from "../../layout/Layout";
@@ -140,12 +138,6 @@ const Details = ({
 
   const checkImage = ({ source, img }) =>
     product.picture_1 ? `${source}${img}` : "/images/placeholder.jpg";
-
-  useCartAnim({
-    el: cartRef.current,
-    src: `${sources.imageMidSrc}${product.picture_1}`,
-    btnRef: "[data-addtocart]",
-  });
 
   const schemaData = {
     "@context": "http://schema.org",
