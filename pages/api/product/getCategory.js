@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export default async function (req, res) {
   const { lang, id } = req.query;
   try {

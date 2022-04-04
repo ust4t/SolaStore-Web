@@ -8,11 +8,8 @@ import sources from "../sources";
 import { StoreContext } from "../src/context/StoreProvider";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
-import { useSelector } from "react-redux";
 
 const OrderSuccess = ({ orderList }) => {
-  // const [gtag, setGtag] = useState([]);
-  // const { lang } = useSelector((state) => state.lang);
   const { t } = useTranslation("order");
   const { state } = useContext(StoreContext);
   const { completedCartData } = state;
@@ -21,34 +18,6 @@ const OrderSuccess = ({ orderList }) => {
     (acc, curr) => acc + curr.price * curr.quantity,
     0
   );
-
-  // const mapGtag = async () => {
-  //   await Promise.all(
-  //     completedCartData.carts.map(async (cart) => {
-  //       const { data: category } = await axios(
-  //         `/api/product/getCategory?id=${cart.productID}?lang=${lang}`
-  //       );
-
-  //       setGtag([
-  //         ...gtag,
-  //         `ga('ecommerce:addItem', {
-  //         'id': '${orderList[0].orderID}',
-  //         'name':  '${cart.productShortName}',
-  //         'sku': '${cart.productShortName.slice(
-  //           cart.productShortName.indexOf("-") + 1,
-  //           cart.productShortName.length
-  //         )}',
-  //         'category': '${
-  //           category.subCategoriesList.selectedSubCategoryName
-  //         }',
-  //         'price': '${Number(cart.price).toFixed(2)}',
-  //         'quantity':'${Number(cart.quantity)}'
-  //         });
-  //       `,
-  //       ]);
-  //     })
-  //   );
-  // };
 
   return (
     <>
@@ -64,8 +33,7 @@ const OrderSuccess = ({ orderList }) => {
         </script>
 
         <script type="text/javascript">
-          {`
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ 
+          {`(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ 
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) 
                 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
@@ -80,7 +48,6 @@ const OrderSuccess = ({ orderList }) => {
                 'shipping': '', 
                 'tax': '',  
                 });
-                
                 ${completedCartData.carts
                   .map((cart) => {
                     return `ga('ecommerce:addItem', { 
@@ -100,6 +67,40 @@ const OrderSuccess = ({ orderList }) => {
                 ga('ecommerce:send');
 `}
         </script>
+        {/* 
+         ${
+                  gtag
+                  .map((cart) => {
+                    return `ga('ecommerce:addItem', {
+                    'id': '${orderList[0].orderID}',
+                    'name':  '${cart.productShortName}',
+                    'sku': '${cart.productShortName.slice(
+                      cart.productShortName.indexOf("-") + 1,
+                      cart.productShortName.length
+                    )}',
+                    'category': ${cart.category},
+                    'price': '${Number(cart.price).toFixed(2)}',
+                    'quantity':'${Number(cart.quantity)}'
+                    });`;
+                  })
+                  .join("")
+                }
+         ${completedCartData.carts
+                  .map((cart) => {
+                    return `ga('ecommerce:addItem', { 
+                    'id': '${orderList[0].orderID}',
+                    'name':  '${cart.productShortName}', 
+                    'sku': '${cart.productShortName.slice(
+                      cart.productShortName.indexOf("-") + 1,
+                      cart.productShortName.length
+                    )}',
+                    'category': '',       
+                    'price': '${Number(cart.price).toFixed(2)}', 
+                    'quantity':'${Number(cart.quantity)}'
+                    });
+                  `;
+                  })
+                  .join("")} */}
       </Head>
       <Layout news={4} logoLeft layout={2} paymentOption>
         <main>

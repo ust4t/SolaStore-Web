@@ -16,7 +16,7 @@ export default function useCart(dispatch) {
         res.json()
       ),
     {
-      onSuccess: ({ data }) => {
+      onSuccess: async ({ data }) => {
         dispatch({
           type: SET_CART_DATA,
           payload: data,
