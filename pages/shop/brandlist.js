@@ -20,8 +20,8 @@ export default function AllBrands({ brands }) {
           <section className="container">
             <div className="row gy-4">
               {brands ? (
-                brands.map(({ brandID, brandName, guidName2 }) => (
-                  <div className="col-6 col-md-4">
+                brands.map(({ brandID, brandName, guidName2 }, i) => (
+                  <div key={`${i}*_.${brandID}`} className="col-6 col-md-4">
                     <Link
                       href={`/brands/${encodeURLString(brandName)}:${brandID}`}>
                       <Image
