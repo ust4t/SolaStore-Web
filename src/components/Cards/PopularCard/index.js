@@ -24,7 +24,7 @@ import { encodeURLString } from "../../../utils/utils";
 function PopularCard({ productData }) {
   const { t } = useTranslation("common");
   const { id, name, images, price, oldPrice, singlePrice, sizes } = productData;
-  const { auth, lang } = useSelector((state) => state);
+  const { auth } = useSelector((state) => state);
   const { state, cartActions, wishListActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
   const { addToWishList, removeFromWishList } = wishListActions;
@@ -44,11 +44,16 @@ function PopularCard({ productData }) {
 
   const wishlist =
     state.wishlistData &&
-    state.wishlistData.find((item) => item.productID === id);
+    state.wishlistData.find(
+      (item) => item.productID === currentImages.selectedId
+    );
 
   useEffect(() => {
-    if (wishlist) setIsLiked(true);
-  }, [wishlist]);
+    if (wishlist) {
+      setIsLiked(true);
+      return;
+    } else setIsLiked(false);
+  }, [wishlist, currentImages]);
 
   const changeDressColor = (variant) => {
     if (variant.pictures) {
@@ -73,7 +78,7 @@ function PopularCard({ productData }) {
   const onAddToCart = () => {
     addToCartAction({
       user: auth.uid,
-      id,
+      id: currentImages.selectedId,
       quantity: 1,
     });
   };
@@ -82,7 +87,7 @@ function PopularCard({ productData }) {
     if (!isLiked) {
       addToWishList({
         user: auth.uid,
-        id,
+        id: currentImages.selectedId,
       });
       setIsLiked(true);
       return;
@@ -90,7 +95,7 @@ function PopularCard({ productData }) {
 
     removeFromWishList({
       user: auth.uid,
-      id,
+      id: currentImages.selectedId,
     });
     setIsLiked(false);
     return;

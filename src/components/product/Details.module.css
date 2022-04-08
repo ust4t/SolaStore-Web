@@ -115,7 +115,30 @@
 .whatsappButton:hover {
   background-color: #fff !important;
   color: #25d366 !important;
-  border: 1.5px solid#25d366;
+  border: 1.5px solid #25d366;
+}
+
+.cartButtonAnim {
+  animation: cartAnim 5s ease-in-out infinite;
+}
+
+@keyframes cartAnim {
+  10%,
+  100% {
+    transform: rotate(0deg);
+  }
+  0% {
+    transform: rotate(0deg);
+  }
+  2% {
+    transform: rotate(15deg);
+  }
+  4% {
+    transform: rotate(-15deg);
+  }
+  5% {
+    transform: rotate(0deg);
+  }
 }
 
 @media (max-width: 1400px) {

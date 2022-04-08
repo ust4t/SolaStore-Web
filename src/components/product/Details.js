@@ -27,6 +27,7 @@ import {
   discount_banner,
   price_box,
   whatsappButton,
+  cartButtonAnim,
 } from "./Details.module.css";
 import { Arrow } from "../sliders/SliderArrows";
 import ImageModal from "../Modals/ImageModal";
@@ -81,8 +82,10 @@ const Details = ({
   useEffect(() => {
     if (wishlist) {
       setIsLiked(true);
+      return;
     }
-  }, [wishlist]);
+    setIsLiked(false);
+  }, [wishlist, product]);
 
   useEffect(() => {
     setProduct({
@@ -209,6 +212,8 @@ const Details = ({
       },
     })),
   };
+
+  console.log(isLiked);
 
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
@@ -752,7 +757,10 @@ const Details = ({
                           data-addtocart
                           ref={cartRef}
                           className="detailPos pro-cart-btn ms-2 ms-sm-3 ms-md-4 ms-lg-3 me-1 me-sm-3 cartContainer">
-                          <a href="#" onClick={handleAddToCart}>
+                          <a
+                            className={cartButtonAnim}
+                            href="#"
+                            onClick={handleAddToCart}>
                             <i className="fas fa-cart-arrow-down fa-lg" />{" "}
                             {t("common:addtocart")}
                           </a>

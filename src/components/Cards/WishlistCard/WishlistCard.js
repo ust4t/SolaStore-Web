@@ -24,7 +24,7 @@ export default function WishlistCard({
         <Link
           href={{
             pathname: `/detail/${encodeURLString(wishlist.productShortName)}:${
-              wishlist.productID
+              wishlist.masterProductID
             }`,
             query: {
               selected: wishlist.productID,
@@ -44,7 +44,7 @@ export default function WishlistCard({
         <Link
           href={{
             pathname: `/detail/${encodeURLString(wishlist.productShortName)}:${
-              wishlist.productID
+              wishlist.masterProductID
             }`,
             query: {
               selected: wishlist.productID,
