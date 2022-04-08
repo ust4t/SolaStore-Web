@@ -213,8 +213,6 @@ const Details = ({
     })),
   };
 
-  console.log(isLiked);
-
   return (
     <Layout news={4} logoLeft layout={2} paymentOption>
       {product ? (

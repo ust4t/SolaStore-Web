@@ -5,6 +5,8 @@ import useTranslation from "next-translate/useTranslation";
 
 import { SET_CART_DATA } from "../context/types";
 import useQueryMutation from "./useQueryMutation";
+import AnimatedToast from "../components/Toasts/AnimatedToast";
+import cartAnim from "../../public/lottie/cart_anim.json";
 
 export default function useCart(dispatch) {
   const user = useSelector((state) => state.auth);
@@ -34,7 +36,27 @@ export default function useCart(dispatch) {
       {
         onSuccess: () => {
           cartRefetch();
-          toast.success(t("cartAdded"));
+          // toast.success(t("cartAdded"));
+          toast(
+            (ht) => (
+              <AnimatedToast
+                animationData={cartAnim}
+                message={t("cartAdded")}
+                hotToast={ht}
+                messageSize="1.7rem"
+                config={{
+                  style: {
+                    width: "155px",
+                    height: "155px",
+                  },
+                }}
+              />
+            ),
+            {
+              duration: 3000,
+              position: "top-center",
+            }
+          );
         },
       }
     );

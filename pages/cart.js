@@ -236,10 +236,10 @@ const Cart = ({ saleTeam }) => {
 
                 
                 ${
-                  state.cartData.length &&
-                  state.cartData
-                    .map((g) => {
-                      return `ga('ecommerce:addItem', { 
+                  state.cartData.length
+                    ? state.cartData
+                        .map((g) => {
+                          return `ga('ecommerce:addItem', { 
                     'id': '${g.productID}',
                     'name':  '${g.productShortName}', 
                     'sku': '${g.productShortName.slice(
@@ -249,10 +249,10 @@ const Cart = ({ saleTeam }) => {
                     'category': '',       
                     'price': '${Number(g.price).toFixed(2)}', 
                     'quantity':'${Number(g.quantity)}'
-                    });
-                  `;
-                    })
-                    .join("")
+                    });`
+                        })
+                        .join("")
+                    : ""
                 }
 
                 ga('ecommerce:send');

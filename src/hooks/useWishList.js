@@ -3,6 +3,8 @@ import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 
+import AnimatedToast from "../components/Toasts/AnimatedToast";
+import FavoriteAnim from "../../public/lottie/favorite.json";
 import { SET_WISHLIST_DATA } from "../context/types";
 import useQueryMutation from "./useQueryMutation";
 
@@ -34,7 +36,27 @@ export default function useWishList(dispatch) {
       {
         onSuccess: () => {
           wishlistRefetch();
-          toast.success(t("addWishlist"));
+          // toast.success(t("addWishlist"));
+          toast(
+            (ht) => (
+              <AnimatedToast
+                animationData={FavoriteAnim}
+                message={t("addWishlist")}
+                hotToast={ht}
+                messageSize="1.7rem"
+                config={{
+                  style: {
+                    width: "155px",
+                    height: "155px",
+                  },
+                }}
+              />
+            ),
+            {
+              duration: 1500,
+              position: "top-center",
+            }
+          );
         },
       }
     );
@@ -48,7 +70,27 @@ export default function useWishList(dispatch) {
       {
         onSuccess: () => {
           wishlistRefetch();
-          toast.error(t("removedfromlist"));
+          // toast.error(t("removedfromlist"));
+          toast(
+            (ht) => (
+              <AnimatedToast
+                animationData={FavoriteAnim}
+                message={t("removedfromlist")}
+                hotToast={ht}
+                messageSize="1.7rem"
+                config={{
+                  style: {
+                    width: "155px",
+                    height: "155px",
+                  },
+                }}
+              />
+            ),
+            {
+              duration: 1500,
+              position: "top-center",
+            }
+          );
         },
       }
     );
