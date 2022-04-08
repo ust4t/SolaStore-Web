@@ -15,6 +15,7 @@ export default function ShopPage({
   id,
   page,
   count,
+  mostViewed,
 }) {
   const router = useRouter();
   const { t } = useTranslation("common");
@@ -68,6 +69,8 @@ export default function ShopPage({
       selectedPage={page}
       count={count}
       catRoute={router.query.catId}
+      showMostViewed={false}
+      mostViewed={mostViewed}
     />
   );
 }
@@ -77,16 +80,20 @@ export async function getServerSideProps({ query, locale }) {
   const title = catId.slice(0, catId.indexOf(":")).replace("-", " ");
   const id = catId.slice(catId.indexOf(":") + 1);
 
-  const [{ data: catData }, { data: brandData }] = await Promise.all([
-    axios.get(
-      `https://api.solastore.com.tr/api/Product/GetAllByCategoryIDNew?id=${id}&lang=${locale}&pageNumber=${
-        page || 1
-      }&pageSize=${pageSize || 20}&sourceProof=${process.env.SOURCE_PROOF}`
-    ),
-    axios.get(
-      `https://api.solastore.com.tr/api/Brand/GetAllBrands?sourceProof=${process.env.SOURCE_PROOF}`
-    ),
-  ]);
+  const [{ data: catData }, { data: brandData }, { data: mostViewed }] =
+    await Promise.all([
+      axios.get(
+        `https://api.solastore.com.tr/api/Product/GetAllByCategoryIDNew?id=${id}&lang=${locale}&pageNumber=${
+          page || 1
+        }&pageSize=${pageSize || 20}&sourceProof=${process.env.SOURCE_PROOF}`
+      ),
+      axios.get(
+        `https://api.solastore.com.tr/api/Brand/GetAllBrands?sourceProof=${process.env.SOURCE_PROOF}`
+      ),
+      axios.get(
+        `https://api.solastore.com.tr/api/Product/GetMostViewedProducts?sourceProof=${process.env.SOURCE_PROOF}`
+      ),
+    ]);
 
   return {
     props: {
@@ -96,6 +103,7 @@ export async function getServerSideProps({ query, locale }) {
       id,
       page: page || 1,
       count: catData.count,
+      mostViewed,
     },
   };
 }

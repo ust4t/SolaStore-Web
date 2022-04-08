@@ -41,13 +41,20 @@ const Details = ({
   upthumb,
   productMain,
 }) => {
+  const productIndex = [productMain, ...productVariants].findIndex(
+    (item) => item.productID === incomingProduct.productID
+  );
   const { t } = useTranslation("detail");
   const user = useSelector((state) => state.auth);
   const router = useRouter();
   const { state, cartActions, wishListActions } = useContext(StoreContext);
   const { addToCartAction } = cartActions;
   const { addToWishList, removeFromWishList } = wishListActions;
-  const [product, setProduct] = useState(incomingProduct);
+  const [product, setProduct] = useState({
+    ...incomingProduct,
+    index: productIndex,
+    video_1: productMain.video_1,
+  });
   const [shareModal, setShareModal] = useState(false);
   const [imageModal, setImageModal] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
@@ -78,7 +85,11 @@ const Details = ({
   }, [wishlist]);
 
   useEffect(() => {
-    setProduct(incomingProduct);
+    setProduct({
+      ...incomingProduct,
+      index: productIndex,
+      video_1: productMain.video_1,
+    });
   }, [incomingProduct]);
 
   const handleAddToCart = (e) => {
@@ -112,14 +123,23 @@ const Details = ({
     return;
   };
 
-  const handleNext = ({ imageKey, product }) => {
-    if (product.video_1) {
+  const handleNext = ({ imageKey, productSelected }) => {
+    if (productSelected.video_1) {
       videoRef.current.pause();
     }
 
     if (imageKey < productSize - 1) {
       setImageKey(imageKey + 1);
     } else {
+      const allProducts = [productMain, ...productVariants];
+      const newIndex =
+        product.index === allProducts.length - 1 ? 0 : product.index + 1;
+      const nextProduct = allProducts[newIndex];
+      setProduct({
+        ...nextProduct,
+        index: newIndex,
+        video_1: productMain.video_1,
+      });
       setImageKey(0);
     }
   };
@@ -132,6 +152,13 @@ const Details = ({
     if (imageKey > 0) {
       setImageKey(imageKey - 1);
     } else {
+      const newIndex = product.index <= 0 ? 0 : product.index - 1;
+      const nextProduct = [productMain, ...productVariants][newIndex];
+      setProduct({
+        ...nextProduct,
+        index: newIndex,
+        video_1: productMain.video_1,
+      });
       setImageKey(productSize - 1);
     }
   };
@@ -362,7 +389,9 @@ const Details = ({
                               </Tab.Pane>
                             ))}
                           <Arrow
-                            onClick={() => handleNext({ imageKey, product })}
+                            onClick={() =>
+                              handleNext({ imageKey, productSelected: product })
+                            }
                             className={`${arrow} ${arrowRight}`}
                             icon="fas fa-arrow-right"
                           />
@@ -443,7 +472,9 @@ const Details = ({
                       show={imageModal}
                       handleClose={() => setImageModal(false)}
                       onClickPrev={() => handlePrev({ imageKey, product })}
-                      onClickNext={() => handleNext({ imageKey, product })}
+                      onClickNext={() =>
+                        handleNext({ imageKey, productSelected: product })
+                      }
                       imageKey={imageKey}
                       product={product}
                     />
@@ -466,7 +497,8 @@ const Details = ({
                                   onClick={() => {
                                     setProduct({
                                       ...variant,
-                                      video_1: product.video_1,
+                                      video_1: productMain.video_1,
+                                      index: i,
                                     });
                                     setImageKey(0);
                                     router.push(
@@ -765,6 +797,7 @@ const Details = ({
                                       setProduct({
                                         ...variant,
                                         video_1: product.video_1,
+                                        index: i,
                                       });
                                       setImageKey(0);
                                       router.push(

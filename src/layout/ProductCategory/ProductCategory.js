@@ -12,7 +12,8 @@ import { StoreContext } from "../../context/StoreProvider";
 import { activeData, dblock } from "../../utils/utils";
 import Layout from "../Layout";
 import PageTitle from "../PageTitle";
-import { custom_col_6 } from "./ProductCategory.module.css";
+import { custom_col_6, mostViewedTitle } from "./ProductCategory.module.css";
+import OtherProducts from "../../components/ProductSliders/OtherProducts";
 
 const ProductCategory = ({
   allProducts: products,
@@ -33,6 +34,8 @@ const ProductCategory = ({
   selectedPage,
   count,
   catRoute,
+  showMostViewed,
+  mostViewed,
 }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
@@ -107,6 +110,12 @@ const ProductCategory = ({
           )}
           <section className="pt-45 px-2">
             <div className="container">
+              {showMostViewed && (
+                <div>
+                  <h1 className={mostViewedTitle}>En Çok Gezilenler</h1>
+                  <OtherProducts products={mostViewed} />
+                </div>
+              )}
               {filterDropdown && (
                 <FilterDropdown
                   brands={brands}
