@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 import {
   wishlistBox,
@@ -37,10 +38,13 @@ export default function WishlistMiniCard({
               selected: productID,
             },
           }}>
-          <img
+          <Image
             className={`${wishlistImage} cursor-pointer`}
             src={`${sources.imageMinSrc}${picture_1}`}
             alt={productShortName}
+            width={60}
+            height={90}
+            quality={60}
           />
         </Link>
         <Link
