@@ -52,10 +52,12 @@ function CartCard({ cart, onCartRemove, onCartIncrease, onCartDecrease }) {
       <p className="mb-0 fs-5">
         {cart.oldPrice > 0 ? (
           <>
-            <del className="d-block mb-0 text-center text-danger">
+            <del className="d-block mb-0 text-center text-danger red">
               ${cart.oldPrice.toFixed(0)}
             </del>
-            <span>${Number(cart.price).toFixed(0)}</span>
+            <span style={{ fontWeight: "500" }}>
+              ${Number(cart.price).toFixed(0)}
+            </span>
           </>
         ) : (
           <>

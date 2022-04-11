@@ -20,22 +20,25 @@ import sources from "../sources";
 import { SET_COMPLETED_CART } from "../src/context/types";
 import { SET_CART_DATA_REDUX } from "../src/redux/action/type";
 import CartCard from "../src/components/Cards/CartCard/CartCard";
+import WishlistMiniCard from "../src/components/Cards/WishlistMiniCard/WishlistMiniCard";
 
 const DEF_SELLER = 9999;
 
 const Cart = ({ saleTeam }) => {
   const { t } = useTranslation("cart");
   const { auth, cart } = useSelector((state) => state);
-  const { cartActions, state, isCartLoading, dispatch } =
+  const { cartActions, wishListActions, state, isCartLoading, dispatch } =
     useContext(StoreContext);
   const dispatchRedux = useDispatch();
   const router = useRouter();
   const {
+    addToCartAction,
     removeFromCart: removeFromCartAction,
     incrementQuantity,
     decrementQuantity,
     cartRefetch,
   } = cartActions;
+  const { removeFromWishList } = wishListActions;
   const [currentSeller, setCurrentSeller] = useState(null);
   const [paymentType, setPaymentType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -72,6 +75,14 @@ const Cart = ({ saleTeam }) => {
     }
   };
 
+  const onAddToCart = (id) => {
+    addToCartAction({
+      user: auth.uid,
+      id: id,
+      quantity: 1,
+    });
+  };
+
   const removeFromCart = (e, { id }) => {
     e.preventDefault();
     const cartData = {
@@ -79,6 +90,13 @@ const Cart = ({ saleTeam }) => {
       user: auth.uid,
     };
     removeFromCartAction(cartData);
+  };
+
+  const handleWishlistRemove = (id) => {
+    removeFromWishList({
+      id,
+      user: auth.uid,
+    });
   };
 
   const totalPrice = (items, discount = 0) => {
@@ -249,7 +267,7 @@ const Cart = ({ saleTeam }) => {
                     'category': '',       
                     'price': '${Number(g.price).toFixed(2)}', 
                     'quantity':'${Number(g.quantity)}'
-                    });`
+                    });`;
                         })
                         .join("")
                     : ""
@@ -503,6 +521,23 @@ const Cart = ({ saleTeam }) => {
                             </div>
                           </div>
                         </div>
+                      </div>
+                      <h4 className="mt-3 pb-2 fs-4 border-bottom text-capitalize">
+                        {t("favoriteTitle")}
+                      </h4>
+                      <div className="row">
+                        {state.wishlistData.map((wishlistItem, i) => (
+                          <WishlistMiniCard
+                            key={`${wishlistItem.productID}.|.${i}`}
+                            wishlistData={wishlistItem}
+                            addToCart={(e) =>
+                              onAddToCart(wishlistItem.productID)
+                            }
+                            removeFromWishlist={(e) =>
+                              handleWishlistRemove(wishlistItem.productID)
+                            }
+                          />
+                        ))}
                       </div>
                     </div>
                     <div

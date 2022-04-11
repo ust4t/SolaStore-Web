@@ -1,0 +1,54 @@
+.wishlistBox {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: solid 1px #e6e6e6;
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 10px;
+}
+.wishlistImage {
+  width: 60px;
+  height: 90px;
+}
+.wishlistButton {
+  margin-right: 15px;
+  width: 150px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+  color: var(--color-primary);
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+.wishlistButton:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.wishlistTitle {
+  font-size: 1.05rem;
+  font-weight: bold;
+}
+.wishlistPrice {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.wishlistRemove {
+  position: absolute;
+  top: 3px;
+  right: 0;
+  background-color: transparent;
+}
+
+.closeIcon {
+  color: #adadad;
+  font-size: 1rem;
+}
