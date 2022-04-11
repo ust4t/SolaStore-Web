@@ -522,23 +522,27 @@ const Cart = ({ saleTeam }) => {
                           </div>
                         </div>
                       </div>
-                      <h4 className="mt-3 pb-2 fs-4 border-bottom text-capitalize">
-                        {t("favoriteTitle")}
-                      </h4>
-                      <div className="row">
-                        {state.wishlistData.map((wishlistItem, i) => (
-                          <WishlistMiniCard
-                            key={`${wishlistItem.productID}.|.${i}`}
-                            wishlistData={wishlistItem}
-                            addToCart={(e) =>
-                              onAddToCart(wishlistItem.productID)
-                            }
-                            removeFromWishlist={(e) =>
-                              handleWishlistRemove(wishlistItem.productID)
-                            }
-                          />
-                        ))}
-                      </div>
+                      {state.wishlistData.length > 0 && (
+                        <>
+                          <h4 className="mt-3 pb-2 fs-4 border-bottom text-capitalize">
+                            {t("favoriteTitle")}
+                          </h4>
+                          <div className="row">
+                            {state.wishlistData.map((wishlistItem, i) => (
+                              <WishlistMiniCard
+                                key={`${wishlistItem.productID}.|.${i}`}
+                                wishlistData={wishlistItem}
+                                addToCart={(e) =>
+                                  onAddToCart(wishlistItem.productID)
+                                }
+                                removeFromWishlist={(e) =>
+                                  handleWishlistRemove(wishlistItem.productID)
+                                }
+                              />
+                            ))}
+                          </div>
+                        </>
+                      )}
                     </div>
                     <div
                       ref={sellerBoxRef}
