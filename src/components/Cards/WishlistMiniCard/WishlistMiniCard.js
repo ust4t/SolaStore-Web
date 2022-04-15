@@ -4,7 +4,6 @@ import Image from "next/image";
 
 import {
   wishlistBox,
-  wishlistImage,
   wishlistButton,
   wishlistTitle,
   wishlistPrice,
@@ -39,7 +38,7 @@ export default function WishlistMiniCard({
             },
           }}>
           <Image
-            className={`${wishlistImage} cursor-pointer`}
+            className="cursor-pointer"
             src={`${sources.imageMinSrc}${picture_1}`}
             alt={productShortName}
             width={60}
