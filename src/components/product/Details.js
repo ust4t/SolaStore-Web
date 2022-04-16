@@ -6,6 +6,7 @@ import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useSwipeable } from "react-swipeable";
 
 import sources from "../../../sources";
 import { StoreContext } from "../../context/StoreProvider";
@@ -63,6 +64,12 @@ const Details = ({
   const [quantity, setQuantity] = useState(1);
   const videoRef = useRef();
   const cartRef = useRef();
+  const handlers = useSwipeable({
+    onSwipedLeft: () => handleNext({ imageKey, productSelected: product }),
+    onSwipedRight: () => handlePrev({ imageKey, product }),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
 
   const sizeNum = (product.sizes && product.sizes.split("-").length) || 0;
   const oldUnitPrice = product.oldPrice / sizeNum;
@@ -343,7 +350,8 @@ const Details = ({
                   <div
                     className={`${
                       upthumb ? "product-modal col-lg-5" : "col-lg-7"
-                    }`}>
+                    }`}
+                    {...handlers}>
                     <Tab.Container
                       activeKey={`tum-${imageKey}`}
                       defaultActiveKey={`tum-0`}>
