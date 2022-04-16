@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useRef } from "react";
 import { Modal, Tab } from "react-bootstrap";
+import { useSwipeable } from "react-swipeable";
 
 import sources from "../../../../sources";
 import { Arrow } from "../../sliders/SliderArrows";
@@ -27,6 +28,12 @@ function ImageModal({
   const imageRef = useRef();
 
   useDetectOutside(imageRef, hideImage);
+  const handlers = useSwipeable({
+    onSwipedLeft: onClickPrev,
+    onSwipedRight: onClickNext,
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
 
   function hideImage() {
     if (videoRef.current) {
@@ -64,7 +71,8 @@ function ImageModal({
         <Tab.Container activeKey={`tum-${imageKey}`} defaultActiveKey={`tum-0`}>
           <div
             ref={imageRef}
-            className="pro-details-tab d-flex d-lg-block flex-column">
+            className="pro-details-tab d-flex d-lg-block flex-column"
+            {...handlers}>
             <Tab.Content className="tab-content custom-content position-relative">
               <i
                 style={{
