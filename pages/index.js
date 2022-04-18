@@ -37,7 +37,7 @@ const Index4 = ({
         <ZuckStories storiesData={newProducts.slice(0, 5)} />
         <SliderProducts sliders={slidersData} />
         {location && location.toLowerCase() === "tr" && <VisitStore />}
-        <VideoCallBanner />
+        {location && location.toLowerCase() !== "tr" && <VideoCallBanner />}
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <IntroBanners banners={bannersData} />
           <FilterSearch brands={brands} />
