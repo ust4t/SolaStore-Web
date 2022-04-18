@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import useTranslation from "next-translate/useTranslation";
@@ -11,6 +11,10 @@ import {
   mainCart,
   dropdown_btn,
   wheel_icon_container,
+  wheel_icon_text,
+  wheel_icon_text_minimized,
+  wheel_icon_img,
+  wheel_icon_img_minimized,
 } from "./Icons.module.css";
 
 export const SearchIcon = ({ hendelChangeSearch }) => (
@@ -48,11 +52,38 @@ export const WishlistIcon = () => {
 };
 
 export const WheelsIcon = ({ title, onWheelClick }) => {
+  const [minimize, setMinimize] = useState(false);
   return (
-    <a onClick={onWheelClick} className={wheel_icon_container}>
-      <span>{title}</span>
-      <img src={`/images/wheelIcon.gif`} alt={title} />
-    </a>
+    <span className={wheel_icon_container}>
+      <i
+        onClick={() => setMinimize(!minimize)}
+        style={{
+          position: "absolute",
+          fontSize: "1.5rem",
+          left: "-20px",
+        }}
+        className={minimize ? "fas fa-expand-alt" : "fas fa-times"}
+      />
+      <a onClick={onWheelClick}>
+        <span
+          className={
+            minimize
+              ? `${wheel_icon_text} ${wheel_icon_text_minimized}`
+              : wheel_icon_text
+          }>
+          {title}
+        </span>
+        <img
+          className={
+            minimize
+              ? `${wheel_icon_img} ${wheel_icon_img_minimized}`
+              : wheel_icon_img
+          }
+          src={`/images/wheelIcon.gif`}
+          alt={title}
+        />
+      </a>
+    </span>
   );
 };
 
