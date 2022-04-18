@@ -50,6 +50,10 @@ export default function useWishList(dispatch) {
                     height: "155px",
                   },
                 }}
+                controls
+                buttonLeftRoute="/wishlist"
+                buttonLeftTitle={t("goToWishlist")}
+                buttonRightTitle={t("close")}
               />
             ),
             {
@@ -84,6 +88,10 @@ export default function useWishList(dispatch) {
                     height: "155px",
                   },
                 }}
+                controls
+                buttonLeftRoute="/wishlist"
+                buttonLeftTitle={t("goToWishlist")}
+                buttonRightTitle={t("close")}
               />
             ),
             {

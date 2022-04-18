@@ -51,6 +51,7 @@ export default function useCart(dispatch) {
                   },
                 }}
                 controls
+                buttonLeftRoute="/cart"
                 buttonLeftTitle={t("goToCart")}
                 buttonRightTitle={t("close")}
               />

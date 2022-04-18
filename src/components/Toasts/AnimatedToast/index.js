@@ -12,6 +12,7 @@ const AnimatedToast = ({
   controls,
   buttonLeftTitle,
   buttonRightTitle,
+  buttonLeftRoute = "/",
   config = {},
 }) => {
   const options = {
@@ -23,7 +24,7 @@ const AnimatedToast = ({
   const router = useRouter();
   const { View } = useLottie(options);
 
-  const navigateToBasket = () => router.push("/cart");
+  const navigateToBasket = () => router.push(buttonLeftRoute);
   return (
     <div
       className="row cursor-pointer"
