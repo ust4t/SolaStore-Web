@@ -5,6 +5,7 @@
     "contact": "İletişim"
   },
   "redirect": "Lütfen sizi sayfaya yönlendirirken bekleyiniz",
+  "close": "Kapat",
   "shareCat": "Kategoriyi Paylaş",
   "shareBrand": "Markayı Paylaş",
   "search": "Aramak istediğiniz ürünü giriniz",
@@ -26,6 +27,7 @@
   "cartAdded": "Sepete Eklendi",
   "cartRemoved": "Sepetten Çıkarıldı",
   "goToCart": "Sepete Git",
+  "goToWishlist": "Favorilere Git",
   "followus": "Bizi Takip Edin",
   "addWishlist": "İstek Listesine Eklendi",
   "removedfromlist": "Listenizden Silindi",

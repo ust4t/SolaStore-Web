@@ -1,0 +1,16 @@
+.controlsBtn {
+  background-color: #fff;
+  padding: 8px 10px;
+  font-size: 1rem;
+  color: var(--color-primary);
+  font-weight: 500;
+  margin: 0 10px;
+  border-radius: 30px;
+  border: 2px solid var(--color-primary);
+  transition: all 200ms ease;
+}
+
+.controlsBtn:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+}

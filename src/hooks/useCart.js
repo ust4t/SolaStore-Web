@@ -50,6 +50,9 @@ export default function useCart(dispatch) {
                     height: "155px",
                   },
                 }}
+                controls
+                buttonLeftTitle={t("goToCart")}
+                buttonRightTitle={t("close")}
               />
             ),
             {

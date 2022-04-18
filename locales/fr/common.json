@@ -5,6 +5,8 @@
     "contact": "prendre contact"
   },
   "redirect": "Veuillez patienter en vous redirigeant vers la page",
+  "close": "Proche",
+
   "shareCat": "Partager la catégorie",
   "shareBrand": "Partager la marque",
   "search": "Tapez l'article que vous recherchez",
@@ -26,6 +28,7 @@
   "cartAdded": "ajouté au panier",
   "cartRemoved": "supprimé du panier",
   "goToCart": "Aller au panier",
+  "goToWishlist": "Aller à la liste de souhaits",
   "followus": "Suivez nous",
   "addWishlist": "Ajouter à la liste de souhaits",
   "removedfromlist": "Supprimé de votre liste",

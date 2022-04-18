@@ -1,11 +1,17 @@
 import { useLottie } from "lottie-react";
+import { useRouter } from "next/router";
 import toast from "react-hot-toast";
+
+import { controlsBtn } from "./AnimatedToast.module.css";
 
 const AnimatedToast = ({
   animationData,
   message,
   hotToast,
   messageSize = "2rem",
+  controls,
+  buttonLeftTitle,
+  buttonRightTitle,
   config = {},
 }) => {
   const options = {
@@ -14,8 +20,10 @@ const AnimatedToast = ({
     autoplay: true,
     ...config,
   };
-
+  const router = useRouter();
   const { View } = useLottie(options);
+
+  const navigateToBasket = () => router.push("/cart");
   return (
     <div
       className="row cursor-pointer"
@@ -29,6 +37,14 @@ const AnimatedToast = ({
           className="text-center">
           {message}
         </h5>
+        {controls && (
+          <div className="d-flex align-items-center justify-content-center">
+            <button onClick={navigateToBasket} className={controlsBtn}>
+              {buttonLeftTitle}
+            </button>
+            <button className={controlsBtn}>{buttonRightTitle}</button>
+          </div>
+        )}
       </div>
     </div>
   );

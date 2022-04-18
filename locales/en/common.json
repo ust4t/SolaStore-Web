@@ -5,6 +5,7 @@
     "contact": "Contact"
   },
   "redirect": "Please wait while redirecting you to the page",
+  "close": "Close",
   "shareCat": "Share Category",
   "shareBrand": "Share Brand",
   "search": "Type the item you are looking for",
@@ -26,6 +27,7 @@
   "cartAdded": "Added to Cart",
   "cartRemoved": "Removed from Cart",
   "goToCart": "Go to Cart",
+  "goToWishlist": "Go to Wishlist",
   "followus": "Follow Us",
   "addWishlist": "Added to Wishlist",
   "removedfromlist": "Removed Wishlist",
