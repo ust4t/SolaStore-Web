@@ -7,7 +7,8 @@ import FilterSearch from "../src/layout/FilterSearch";
 import Layout from "../src/layout/Layout";
 import SliderProducts from "../src/components/sliders/sliderProducts";
 import TabLayout from "../src/layout/TabLayout";
-const VideoCallBanner = dynamic(() => import("../src/layout/VideoCallBanner"));
+// const VideoCallBanner = dynamic(() => import("../src/layout/VideoCallBanner"));
+import VideoCallBanner from "../src/layout/VideoCallBanner";
 const EnterNumberLayout = dynamic(() =>
   import("../src/layout/EnterNumberLayout")
 );
@@ -37,7 +38,7 @@ const Index4 = ({
         <ZuckStories storiesData={newProducts.slice(0, 5)} />
         <SliderProducts sliders={slidersData} />
         {location && location.toLowerCase() === "tr" && <VisitStore />}
-        {/* {location && location.toLowerCase() !== "tr" && <VideoCallBanner />} */}
+        {location && location.toLowerCase() !== "tr" && <VideoCallBanner />}
         <div className="mx-md-2 mx-lg-3 mx-xl-4">
           <IntroBanners banners={bannersData} />
           <FilterSearch brands={brands} />
