@@ -29,6 +29,7 @@ import {
   price_box,
   whatsappButton,
   cartButtonAnim,
+  secondaryButton,
 } from "./Details.module.css";
 import { Arrow } from "../sliders/SliderArrows";
 import ImageModal from "../Modals/ImageModal";
@@ -175,6 +176,15 @@ const Details = ({
 
   const checkImage = ({ source, img }) =>
     product.picture_1 ? `${source}${img}` : "/images/placeholder.jpg";
+
+  const handleFastOrder = () => {
+    addToCartAction({
+      id: product.productID,
+      user: user.uid,
+      quantity,
+    });
+    router.push(`/cart`);
+  };
 
   const schemaData = {
     "@context": "http://schema.org",
@@ -762,13 +772,23 @@ const Details = ({
                         <div
                           data-addtocart
                           ref={cartRef}
-                          className="detailPos pro-cart-btn ms-2 ms-sm-3 ms-md-4 ms-lg-3 me-1 me-sm-3 cartContainer">
+                          style={{
+                            gap: "10px",
+                          }}
+                          className="detailPos pro-cart-btn ms-2 ms-sm-3 ms-md-4 ms-lg-3 me-1 me-sm-3 cartContainer d-flex flex-column">
                           <a
-                            className={cartButtonAnim}
+                            className={`${cartButtonAnim}`}
                             href="#"
                             onClick={handleAddToCart}>
-                            <i className="fas fa-cart-arrow-down fa-lg" />{" "}
+                            <i className="fas fa-cart-plus fa-lg" />{" "}
                             {t("common:addtocart")}
+                          </a>
+                          <a
+                            className={`${secondaryButton}`}
+                            href="#"
+                            onClick={handleFastOrder}>
+                            <i className="fas fa-cart-arrow-down fa-lg" />{" "}
+                            {t("common:fastOrder")}
                           </a>
                         </div>
                         <div className="d-none d-sm-block">

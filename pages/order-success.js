@@ -44,7 +44,7 @@ const OrderSuccess = ({ orderList }) => {
                 ga('ecommerce:addTransaction', {
                 'id': '${orderList[0].orderID}',
                 'affiliation': 'Sola Store', 
-                'revenue': '${subTotal}', 
+                'revenue': ${subTotal}, 
                 'shipping': '', 
                 'tax': '',  
                 });
@@ -58,7 +58,7 @@ const OrderSuccess = ({ orderList }) => {
                       cart.productShortName.length
                     )}',
                     'category': '',       
-                    'price': '${Number(cart.price).toFixed(2)}', 
+                    'price': ${Number(cart.price).toFixed(2)}, 
                     'quantity':'${Number(cart.quantity)}'
                     });
                   `;

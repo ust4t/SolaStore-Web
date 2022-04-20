@@ -265,7 +265,7 @@ const Cart = ({ saleTeam }) => {
                       g.productShortName.length
                     )}',
                     'category': '',       
-                    'price': '${Number(g.price).toFixed(2)}', 
+                    'price': ${Number(g.price).toFixed(2)}, 
                     'quantity':'${Number(g.quantity)}'
                     });`;
                         })
