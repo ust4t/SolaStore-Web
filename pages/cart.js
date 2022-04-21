@@ -266,7 +266,7 @@ const Cart = ({ saleTeam }) => {
                     )}',
                     'category': '',       
                     'price': ${Number(g.price).toFixed(2)}, 
-                    'quantity':'${Number(g.quantity)}'
+                    'quantity': ${Number(g.quantity)}
                     });`;
                         })
                         .join("")

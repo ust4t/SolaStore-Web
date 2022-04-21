@@ -1,23 +1,23 @@
 import axios from "axios";
-import Script from "next/script";
+import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import Head from "next/head";
 
 import sources from "../sources";
 import { StoreContext } from "../src/context/StoreProvider";
 import Layout from "../src/layout/Layout";
 import PageTitle from "../src/layout/PageTitle";
+import { encodeURLString } from "../src/utils/utils";
 
 const OrderSuccess = ({ orderList }) => {
   const { t } = useTranslation("order");
   const { state } = useContext(StoreContext);
   const { completedCartData } = state;
 
-  const subTotal = completedCartData.carts.reduce(
-    (acc, curr) => acc + curr.price * curr.quantity,
-    0
-  );
+  const subTotal = completedCartData.carts
+    .reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
+    .toFixed(2);
 
   return (
     <>
@@ -28,7 +28,7 @@ const OrderSuccess = ({ orderList }) => {
       'send_to': 'AW-359547484/9PdGCMzym64DENyEuasB',
       'value': ${subTotal},
       'currency': 'USD',
-      'transaction_id': ''
+      'transaction_id': '${orderList[0].orderID}'
           });`}
         </script>
 
@@ -59,7 +59,7 @@ const OrderSuccess = ({ orderList }) => {
                     )}',
                     'category': '',       
                     'price': ${Number(cart.price).toFixed(2)}, 
-                    'quantity':'${Number(cart.quantity)}'
+                    'quantity': ${Number(cart.quantity)}
                     });
                   `;
                   })
@@ -141,21 +141,37 @@ const OrderSuccess = ({ orderList }) => {
                             completedCartData.carts.map((cart) => (
                               <tr key={cart.chartID}>
                                 <td className="product-thumbnail">
-                                  <a
-                                    href="#"
-                                    onClick={(e) => e.preventDefault()}>
-                                    <img
-                                      src={`${sources.imageMinSrc}${cart.pictureOneGuidName}`}
-                                      alt="cart"
-                                    />
-                                  </a>
+                                  <Link
+                                    href={{
+                                      pathname: `/detail/${encodeURLString(
+                                        cart.productShortName
+                                      )}:${cart.productID}`,
+                                      query: {
+                                        selected: cart.productID,
+                                      },
+                                    }}>
+                                    <a onClick={(e) => e.preventDefault()}>
+                                      <img
+                                        src={`${sources.imageMinSrc}${cart.pictureOneGuidName}`}
+                                        alt="cart"
+                                      />
+                                    </a>
+                                  </Link>
                                 </td>
                                 <td className="product-name">
-                                  <a
-                                    href="#"
-                                    onClick={(e) => e.preventDefault()}>
-                                    {cart.productShortName}
-                                  </a>
+                                  <Link
+                                    href={{
+                                      pathname: `/detail/${encodeURLString(
+                                        cart.productShortName
+                                      )}:${cart.productID}`,
+                                      query: {
+                                        selected: cart.productID,
+                                      },
+                                    }}>
+                                    <a onClick={(e) => e.preventDefault()}>
+                                      {cart.productShortName}
+                                    </a>
+                                  </Link>
                                 </td>
                                 <td className="product-price">
                                   <span className="amount">
