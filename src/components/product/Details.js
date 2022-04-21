@@ -30,6 +30,7 @@ import {
   whatsappButton,
   cartButtonAnim,
   secondaryButton,
+  discount_box,
 } from "./Details.module.css";
 import { Arrow } from "../sliders/SliderArrows";
 import ImageModal from "../Modals/ImageModal";
@@ -82,6 +83,12 @@ const Details = ({
     state.wishlistData.find(
       (wishlist) => wishlist.productID === product.productID
     );
+
+  const oldPrice = oldUnitPrice * sizeNum;
+  const newPrice = product.singlePrice * sizeNum;
+
+  const discountPercentage =
+    product.oldPrice > 0 && sizeNum && 100 - (newPrice * 100) / oldPrice;
 
   useEffect(() => {
     if (product.video_1 && videoRef.current) videoRef.current.pause();
@@ -570,13 +577,21 @@ const Details = ({
                         <span className="details-pro-price mb-40">
                           {product.oldPrice > 0 && sizeNum ? (
                             <>
-                              <h5>
-                                {product.price && (
-                                  <del className="text-danger">
-                                    ${oldUnitPrice * sizeNum} USD
-                                  </del>
-                                )}
-                              </h5>
+                              {product.price && (
+                                <div className="d-flex align-items-center">
+                                  <h5 className={`${discount_box} text-danger`}>
+                                    -{discountPercentage.toFixed(0)}%
+                                  </h5>
+                                  <h5
+                                    style={{
+                                      fontSize: "1.3rem",
+                                    }}>
+                                    <del className="text-danger fw-bold">
+                                      ${oldUnitPrice * sizeNum} USD
+                                    </del>
+                                  </h5>
+                                </div>
+                              )}
                               <span className="details-pro-price mb-40">
                                 {product.price &&
                                   `$${product.singlePrice * sizeNum} USD`}
